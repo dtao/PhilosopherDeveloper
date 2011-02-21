@@ -4,7 +4,7 @@ Public Class DeadlockExampleForm
 
     Private _unlocked As New ManualResetEvent(False)
 
-    Private Sub BigButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BigButton.Click
+    Private Sub BigButton_Click(ByVal sender As Object, ByVal e As EventArgs) Handles BigButton.Click
         Dim t As New Thread(AddressOf Deadlock)
         t.Start()
 
