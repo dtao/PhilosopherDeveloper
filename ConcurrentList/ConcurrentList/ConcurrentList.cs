@@ -6,6 +6,31 @@ namespace ConcurrentList
 {
     public class ConcurrentList<T> : IList<T>
     {
+        static readonly int[] Sizes;
+        static readonly int[] Counts;
+
+        static ConcurrentList()
+        {
+            Sizes = new int[32];
+            Counts = new int[32];
+
+            int size = 1;
+            int count = 1;
+            for (int i = 0; i < Sizes.Length; i++)
+            {
+                Sizes[i] = size;
+                Counts[i] = count;
+
+                if (i < Sizes.Length - 1)
+                {
+                    size *= 2;
+                    count += size;
+                }
+            }
+
+            Console.WriteLine();
+        }
+
         int m_index;
         int m_fuzzyCount;
         T[][] m_array;
@@ -24,7 +49,7 @@ namespace ConcurrentList
                     throw new ArgumentOutOfRangeException("index");
                 }
 
-                int arrayIndex = GetArrayIndex(index);
+                int arrayIndex = GetArrayIndex(index + 1);
                 if (arrayIndex > 0)
                 {
                     index -= ((int)Math.Pow(2, arrayIndex) - 1);
@@ -39,7 +64,7 @@ namespace ConcurrentList
                     throw new ArgumentOutOfRangeException("index");
                 }
 
-                int arrayIndex = GetArrayIndex(index);
+                int arrayIndex = GetArrayIndex(index + 1);
                 if (arrayIndex > 0)
                 {
                     index -= ((int)Math.Pow(2, arrayIndex) - 1);
@@ -69,25 +94,15 @@ namespace ConcurrentList
             int index = Interlocked.Increment(ref m_index) - 1;
             int adjustedIndex = index;
 
-            int arrayIndex = GetArrayIndex(index);
+            int arrayIndex = GetArrayIndex(index + 1);
             if (arrayIndex > 0)
             {
-                adjustedIndex -= ((int)Math.Pow(2, arrayIndex) - 1);
+                adjustedIndex -= Counts[arrayIndex - 1];
             }
 
             if (m_array[arrayIndex] == null)
             {
-                int arrayLength;
-
-                if (arrayIndex > 0 && m_array[arrayIndex - 1] != null)
-                {
-                    arrayLength = m_array[arrayIndex - 1].Length * 2;
-                }
-                else
-                {
-                    arrayLength = (int)Math.Pow(2, arrayIndex);
-                }
-
+                int arrayLength = Sizes[arrayIndex];
                 Interlocked.CompareExchange(ref m_array[arrayIndex], new T[arrayLength], null);
             }
 
@@ -153,10 +168,41 @@ namespace ConcurrentList
             }
         }
 
-        private static int GetArrayIndex(int index)
+        private static int GetArrayIndex(int count)
         {
-            double n = Math.Log(index + 1, 2);
-            return (int)Math.Truncate(n);
+            int arrayIndex = 0;
+
+            if ((count & 0xFFFF0000) != 0)
+            {
+                count >>= 16;
+                arrayIndex |= 16;
+            }
+
+            if ((count & 0xFF00) != 0)
+            {
+                count >>= 8;
+                arrayIndex |= 8;
+            }
+
+            if ((count & 0xF0) != 0)
+            {
+                count >>= 4;
+                arrayIndex |= 4;
+            }
+
+            if ((count & 0xC) != 0)
+            {
+                count >>= 2;
+                arrayIndex |= 2;
+            }
+
+            if ((count & 0x2) != 0)
+            {
+                count >>= 1;
+                arrayIndex |= 1;
+            }
+
+            return arrayIndex;
         }
 
         void IList<T>.Insert(int index, T element)
