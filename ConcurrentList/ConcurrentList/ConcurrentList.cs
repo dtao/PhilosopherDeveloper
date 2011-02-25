@@ -7,7 +7,6 @@ namespace ConcurrentList
     public class ConcurrentList<T> : IList<T>
     {
         int m_index;
-        int m_highestIndexInserted;
         int m_fuzzyCount;
         int m_concreteCount;
         T[][] m_array;
@@ -55,7 +54,11 @@ namespace ConcurrentList
         {
             get
             {
-                return m_concreteCount;
+                int count = m_index;
+
+                SpinWait.SpinUntil(() => m_fuzzyCount >= count);
+
+                return count;
             }
         }
 
@@ -88,7 +91,7 @@ namespace ConcurrentList
 
             m_array[arrayIndex][adjustedIndex] = element;
 
-            UpdateCount(index);
+            Interlocked.Increment(ref m_fuzzyCount);
         }
 
         public bool Contains(T element)
@@ -139,29 +142,17 @@ namespace ConcurrentList
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < m_fuzzyCount; i++)
+            int count = Count;
+            for (int i = 0; i < count; i++)
             {
                 yield return this[i];
             }
         }
 
-        private void UpdateCount(int index)
+        private void UpdateCount()
         {
-            int initialHighestIndex, recentHighestIndex;
-            do
-            {
-                initialHighestIndex = m_highestIndexInserted;
-                if (index < initialHighestIndex)
-                {
-                    break;
-                }
-
-                recentHighestIndex = Interlocked.CompareExchange(ref m_highestIndexInserted, index, initialHighestIndex);
-            }
-            while (recentHighestIndex != initialHighestIndex);
-
             int fuzzyCount = Interlocked.Increment(ref m_fuzzyCount);
-            if (fuzzyCount == m_highestIndexInserted + 1)
+            if (fuzzyCount == m_index)
             {
                 int initialCount, recentCount;
                 do
