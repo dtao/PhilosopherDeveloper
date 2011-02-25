@@ -8,7 +8,6 @@ namespace ConcurrentList
     {
         int m_index;
         int m_fuzzyCount;
-        int m_concreteCount;
         T[][] m_array;
 
         public ConcurrentList()
