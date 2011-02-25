@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentList.UnitTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentList.Threading", "ConcurrentList.Threading\ConcurrentList.Threading.csproj", "{57C2F20B-19DB-412D-A78D-3210B4D479E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcurrentList.PerformanceTests", "ConcurrentList.PerformanceTests\ConcurrentList.PerformanceTests.csproj", "{59BA7C08-256D-4981-8EF2-8C869330A8FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{57C2F20B-19DB-412D-A78D-3210B4D479E3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{57C2F20B-19DB-412D-A78D-3210B4D479E3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{57C2F20B-19DB-412D-A78D-3210B4D479E3}.Release|x86.ActiveCfg = Release|Any CPU
+		{59BA7C08-256D-4981-8EF2-8C869330A8FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59BA7C08-256D-4981-8EF2-8C869330A8FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59BA7C08-256D-4981-8EF2-8C869330A8FF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{59BA7C08-256D-4981-8EF2-8C869330A8FF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{59BA7C08-256D-4981-8EF2-8C869330A8FF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{59BA7C08-256D-4981-8EF2-8C869330A8FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59BA7C08-256D-4981-8EF2-8C869330A8FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59BA7C08-256D-4981-8EF2-8C869330A8FF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{59BA7C08-256D-4981-8EF2-8C869330A8FF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{59BA7C08-256D-4981-8EF2-8C869330A8FF}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
