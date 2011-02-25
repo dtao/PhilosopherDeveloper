@@ -7,6 +7,7 @@ namespace ConcurrentList
     public class ConcurrentList<T> : IList<T>
     {
         int m_index;
+        int m_highestIndexInserted;
         int m_fuzzyCount;
         int m_concreteCount;
         T[][] m_array;
@@ -146,8 +147,21 @@ namespace ConcurrentList
 
         private void UpdateCount(int index)
         {
+            int initialHighestIndex, recentHighestIndex;
+            do
+            {
+                initialHighestIndex = m_highestIndexInserted;
+                if (index < initialHighestIndex)
+                {
+                    break;
+                }
+
+                recentHighestIndex = Interlocked.CompareExchange(ref m_highestIndexInserted, index, initialHighestIndex);
+            }
+            while (recentHighestIndex != initialHighestIndex);
+
             int fuzzyCount = Interlocked.Increment(ref m_fuzzyCount);
-            if (fuzzyCount == m_index)
+            if (fuzzyCount == m_highestIndexInserted + 1)
             {
                 int initialCount, recentCount;
                 do

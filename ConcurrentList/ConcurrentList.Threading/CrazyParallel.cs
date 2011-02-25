@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace ConcurrentList.UnitTests
+namespace ConcurrentList.Threading
 {
-    static class CrazyParallel
+    public static class CrazyParallel
     {
         class ThreadJoiner : IDisposable
         {

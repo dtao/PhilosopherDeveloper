@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{998FD762-3A0B-4D4D-B9DF-BD46B52B4D36}</ProjectGuid>
+    <ProjectGuid>{57C2F20B-19DB-412D-A78D-3210B4D479E3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConcurrentList.UnitTests</RootNamespace>
-    <AssemblyName>ConcurrentList.UnitTests</AssemblyName>
+    <RootNamespace>ConcurrentList.Threading</RootNamespace>
+    <AssemblyName>ConcurrentList.Threading</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.5.9.10348, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\lib\NUnit\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,18 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConcurrentListTests.cs" />
+    <Compile Include="CrazyParallel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ConcurrentList.Threading\ConcurrentList.Threading.csproj">
-      <Project>{57C2F20B-19DB-412D-A78D-3210B4D479E3}</Project>
-      <Name>ConcurrentList.Threading</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ConcurrentList\ConcurrentList.csproj">
-      <Project>{EC64FF5B-C17E-478B-94FC-EF8773345989}</Project>
-      <Name>ConcurrentList</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
