@@ -20,7 +20,7 @@ namespace ConcurrentList
         {
             get
             {
-                if (index < 0 || index >= m_fuzzyCount)
+                if (index < 0 || index >= Count)
                 {
                     throw new ArgumentOutOfRangeException("index");
                 }
@@ -35,7 +35,7 @@ namespace ConcurrentList
             }
             set
             {
-                if (index < 0 || index >= m_fuzzyCount)
+                if (index < 0 || index >= Count)
                 {
                     throw new ArgumentOutOfRangeException("index");
                 }
@@ -56,7 +56,10 @@ namespace ConcurrentList
             {
                 int count = m_index;
 
-                SpinWait.SpinUntil(() => m_fuzzyCount >= count);
+                if (count > m_fuzzyCount)
+                {
+                    SpinWait.SpinUntil(() => count <= m_fuzzyCount);
+                }
 
                 return count;
             }
@@ -103,7 +106,8 @@ namespace ConcurrentList
         {
             IEqualityComparer<T> equalityComparer = EqualityComparer<T>.Default;
 
-            for (int i = 0; i < m_fuzzyCount; i++)
+            int count = Count;
+            for (int i = 0; i < count; i++)
             {
                 if (equalityComparer.Equals(this[i], element))
                 {
@@ -116,11 +120,12 @@ namespace ConcurrentList
 
         public void CopyTo(T[] array, int index)
         {
-            int count = m_fuzzyCount;
             if (array == null)
             {
                 throw new ArgumentNullException("array");
             }
+
+            int count = Count;
             if (array.Length - index < count)
             {
                 throw new ArgumentException("There is not enough available space in the destination array.");
@@ -146,26 +151,6 @@ namespace ConcurrentList
             for (int i = 0; i < count; i++)
             {
                 yield return this[i];
-            }
-        }
-
-        private void UpdateCount()
-        {
-            int fuzzyCount = Interlocked.Increment(ref m_fuzzyCount);
-            if (fuzzyCount == m_index)
-            {
-                int initialCount, recentCount;
-                do
-                {
-                    initialCount = m_concreteCount;
-                    if (fuzzyCount < initialCount)
-                    {
-                        break;
-                    }
-
-                    recentCount = Interlocked.CompareExchange(ref m_concreteCount, fuzzyCount, initialCount);
-                }
-                while (initialCount != recentCount);
             }
         }
 
