@@ -27,8 +27,6 @@ namespace ConcurrentList
                     count += size;
                 }
             }
-
-            Console.WriteLine();
         }
 
         int m_index;
