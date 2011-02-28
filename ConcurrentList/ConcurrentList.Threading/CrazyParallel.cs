@@ -18,10 +18,7 @@ namespace ConcurrentList.Threading
                 }
             };
 
-            var t = new Thread(loop);
-            t.Start();
-
-            return new ThreadJoiner(t);
+            return new ThreadLauncher(new Thread(loop));
         }
 
         public static IDisposable For(int fromInclusive, int toExclusive, Action<int> action)
@@ -33,12 +30,7 @@ namespace ConcurrentList.Threading
                 threads.Add(new Thread(() => { Thread.Sleep(100); action(local); }));
             }
 
-            foreach (Thread t in threads)
-            {
-                t.Start();
-            }
-
-            return new ThreadJoiner(threads);
+            return new ThreadLauncher(threads);
         }
 
         public static IDisposable ForEach<T>(IEnumerable<T> source, Action<T> action)
@@ -50,12 +42,7 @@ namespace ConcurrentList.Threading
                 threads.Add(new Thread(() => { Thread.Sleep(100); action(local); }));
             }
 
-            foreach (Thread t in threads)
-            {
-                t.Start();
-            }
-
-            return new ThreadJoiner(threads);
+            return new ThreadLauncher(threads);
         }
     }
 }

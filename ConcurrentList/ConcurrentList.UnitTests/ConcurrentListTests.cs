@@ -41,7 +41,7 @@ namespace ConcurrentList.UnitTests
         public void CountShouldNotReturnInaccuratelyHighNumbers()
         {
             var random = new Random();
-            List<int> integers = Enumerable.Range(0, 10000)
+            List<int> integers = Enumerable.Range(0, 1000)
                                            .Select(i => random.Next(1, int.MaxValue))
                                            .ToList();
 
@@ -85,6 +85,23 @@ namespace ConcurrentList.UnitTests
             _list.Add(element);
 
             Assert.That(_list[index], Is.EqualTo(element));
+        }
+
+        [Test]
+        public void GetItemShouldBeStableWhileAddingConcurrently()
+        {
+            for (int i = 0; i < 1000; ++i)
+            {
+                _list.Add(i);
+            }
+
+            using (CrazyParallel.For(0, 900, i => _list.Add(i)))
+            {
+                while (_list.Count < 1000)
+                {
+                    Assert.That(_list[99], Is.EqualTo(99));
+                }
+            }
         }
 
         [TestCase(0)]
@@ -147,6 +164,24 @@ namespace ConcurrentList.UnitTests
             Assert.That(_list.Contains(needle), Is.EqualTo(Array.IndexOf(haystack, needle) != -1));
         }
 
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(1000)]
+        public void CopyTo(int count)
+        {
+            var random = new Random();
+            for (int i = 0; i < count; i++)
+            {
+                _list.Add(random.Next());
+            }
+
+            var array = new int[count];
+            _list.CopyTo(array, 0);
+
+            Assert.That(array.SequenceEqual(_list));
+        }
+
         [Test]
         public void CopyToShouldThrowOnInvalidIndex()
         {
@@ -164,24 +199,6 @@ namespace ConcurrentList.UnitTests
 
             array = null;
             Assert.That(() => _list.CopyTo(array, 0), Throws.InstanceOf<ArgumentNullException>());
-        }
-
-        [TestCase(0)]
-        [TestCase(1)]
-        [TestCase(2)]
-        [TestCase(1000)]
-        public void CopyTo(int count)
-        {
-            var random = new Random();
-            for (int i = 0; i < count; i++)
-            {
-                _list.Add(random.Next());
-            }
-
-            var array = new int[count];
-            _list.CopyTo(array, 0);
-
-            Assert.That(array.SequenceEqual(_list));
         }
 
         [Test]
