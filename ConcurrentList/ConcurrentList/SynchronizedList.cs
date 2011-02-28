@@ -35,7 +35,8 @@ namespace ConcurrentList
 
         public override void CopyTo(T[] array, int arrayIndex)
         {
-            m_list.CopyTo(array, arrayIndex);
+            int count = m_count;
+            m_list.CopyTo(0, array, arrayIndex, count);
         }
     }
 }
