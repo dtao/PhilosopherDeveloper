@@ -9,48 +9,47 @@ namespace ConcurrentList.PerformanceTests
 {
     public class Program
     {
-        const int ThreadCount = 32;
-        const int N = 1000000;
+        const int ThreadCount = 64;
+        const int N = 100000;
 
         public static void Main()
         {
             Console.Write("Press Enter to start running trials, then Escape at any time to quit.");
             Console.ReadLine();
 
-            var stop = new ManualResetEvent(false);
-            var finished = new ManualResetEvent(false);
-
-            ThreadStart start = () =>
+            using (var stop = new ManualResetEvent(false))
+            using (var finished = new ManualResetEvent(false))
             {
-                int trial = 1;
-                while (!stop.WaitOne(0))
+                ThreadStart start = () =>
                 {
-                    var list = new List<int>();
-                    var concurrentList = new ConcurrentList<int>();
-
-                    TimeSpan listPerf = Benchmark(() => { lock (list) list.Add(0); }, ThreadCount, N);
-                    TimeSpan concurrentListPerf = Benchmark(() => concurrentList.Add(0), ThreadCount, N);
-
-                    Console.WriteLine("Trial {0}", trial++);
-                    Console.WriteLine("List<T>:           {0} ms", listPerf.TotalMilliseconds, list.Count);
-                    Console.WriteLine("ConcurrentList<T>: {0} ms", concurrentListPerf.TotalMilliseconds, concurrentList.Count);
-                    Console.WriteLine();
+                    int trial = 1;
+                    while (!stop.WaitOne(0))
+                    {
+                        var list = new List<int>();
+                        var concurrentList = new ConcurrentList<int>();
+                        TimeSpan listPerf = Benchmark(() =>
+                        {
+                            lock (list)
+                                list.Add(0);
+                        }, ThreadCount, N);
+                        TimeSpan concurrentListPerf = Benchmark(() => concurrentList.Add(0), ThreadCount, N);
+                        Console.WriteLine("Trial {0}", trial++);
+                        Console.WriteLine("List<T>:           {0} ms", listPerf.TotalMilliseconds, list.Count);
+                        Console.WriteLine("ConcurrentList<T>: {0} ms", concurrentListPerf.TotalMilliseconds, concurrentList.Count);
+                        Console.WriteLine();
+                    }
+                    finished.Set();
+                };
+                var thread = new Thread(start);
+                thread.Start();
+                while (Console.ReadKey(true).Key != ConsoleKey.Escape)
+                {
+                    // Do nothing.
                 }
 
-                finished.Set();
-            };
-
-            var thread = new Thread(start);
-
-            thread.Start();
-
-            while (Console.ReadKey(true).Key != ConsoleKey.Escape)
-            {
-                // Do nothing.
+                stop.Set();
+                finished.WaitOne();
             }
-
-            stop.Set();
-            finished.WaitOne();
 
             Console.Write("Finished. Press Enter to quit.");
             Console.ReadLine();

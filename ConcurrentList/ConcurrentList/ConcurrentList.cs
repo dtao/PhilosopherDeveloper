@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 
 namespace ConcurrentList
 {
-    public class ConcurrentList<T> : IList<T>
+    public sealed class ConcurrentList<T> : ThreadSafeList<T>
     {
         static readonly int[] Sizes;
         static readonly int[] Counts;
@@ -38,7 +37,7 @@ namespace ConcurrentList
             m_array = new T[32][];
         }
 
-        public T this[int index]
+        public override T this[int index]
         {
             get
             {
@@ -72,7 +71,7 @@ namespace ConcurrentList
             }
         }
 
-        public int Count
+        public override int Count
         {
             get
             {
@@ -87,7 +86,7 @@ namespace ConcurrentList
             }
         }
 
-        public void Add(T element)
+        public override void Add(T element)
         {
             int index = Interlocked.Increment(ref m_index) - 1;
             int adjustedIndex = index;
@@ -108,29 +107,7 @@ namespace ConcurrentList
 
             Interlocked.Increment(ref m_fuzzyCount);
         }
-
-        public bool Contains(T element)
-        {
-            return IndexOf(element) != -1;
-        }
-
-        public int IndexOf(T element)
-        {
-            IEqualityComparer<T> equalityComparer = EqualityComparer<T>.Default;
-
-            int count = Count;
-            for (int i = 0; i < count; i++)
-            {
-                if (equalityComparer.Equals(this[i], element))
-                {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-
-        public void CopyTo(T[] array, int index)
+        public override void CopyTo(T[] array, int index)
         {
             if (array == null)
             {
@@ -154,15 +131,6 @@ namespace ConcurrentList
                 Array.Copy(source, 0, array, startIndex, elementsToCopy);
 
                 elementsRemaining -= elementsToCopy;
-            }
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            int count = Count;
-            for (int i = 0; i < count; i++)
-            {
-                yield return this[i];
             }
         }
 
@@ -201,36 +169,6 @@ namespace ConcurrentList
             }
 
             return arrayIndex;
-        }
-
-        void IList<T>.Insert(int index, T element)
-        {
-            throw new NotSupportedException();
-        }
-
-        void IList<T>.RemoveAt(int index)
-        {
-            throw new NotSupportedException();
-        }
-
-        bool ICollection<T>.IsReadOnly
-        {
-            get { return false; }
-        }
-
-        void ICollection<T>.Clear()
-        {
-            throw new NotSupportedException();
-        }
-
-        bool ICollection<T>.Remove(T element)
-        {
-            throw new NotSupportedException();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

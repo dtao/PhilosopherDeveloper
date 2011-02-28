@@ -18,7 +18,7 @@ namespace ConcurrentList.UnitTests
             // For comparison: change the line below to initialize _list as a
             // List<int>, and the Add and Count tests are likely to fail.
 
-            _list = new ConcurrentList<int>();
+            _list = new SynchronizedList<int>();
         }
 
         [Test]
