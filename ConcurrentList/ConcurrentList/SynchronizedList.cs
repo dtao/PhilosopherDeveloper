@@ -15,8 +15,29 @@ namespace ConcurrentList
 
         public override T this[int index]
         {
-            get { return m_list[index]; }
-            set { m_list[index] = value; }
+            get
+            {
+                int count = m_count;
+                if (index < 0 || index >= count)
+                {
+                    throw new ArgumentOutOfRangeException("index");
+                }
+
+                return m_list[index];
+            }
+            set
+            {
+                int count = m_count;
+                if (index < 0 || index >= count)
+                {
+                    throw new ArgumentOutOfRangeException("index");
+                }
+
+                lock (m_list)
+                {
+                    m_list[index] = value;
+                }
+            }
         }
 
         public override int Count
