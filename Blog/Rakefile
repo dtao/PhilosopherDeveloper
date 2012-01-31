@@ -1,0 +1,19 @@
+require 'find'
+require 'redcarpet'
+
+desc "Render all posts from Markdown to HTML"
+task :render_posts do
+  Find.find(".").select { |f| f.end_with? "markdown" }.each do |markdown_file|
+    html_file = File.join("dist", File.dirname(markdown_file) + ".html")
+
+    STDOUT.write "Rendering #{File.basename(html_file)}... "
+
+    File.open(html_file, "w") do |io|
+      io.write Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(File.read(markdown_file))
+    end
+    
+    puts "Done."
+  end
+end
+
+task :default => :render_posts
