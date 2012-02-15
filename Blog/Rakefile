@@ -2,6 +2,19 @@ require 'find'
 require 'redcarpet'
 require 'wordpress'
 
+def quit(msg)
+  puts msg
+  exit 1
+end
+
+def successful_wordpress_response?(response)
+  return false if !(response.is_a? Hash)
+  return false if !(response.include? :rsp)
+  return false if !(response[:rsp].include? :stat)
+  return false if response[:rsp][:stat] != "ok"
+  true
+end
+
 desc "Render all posts from Markdown to HTML"
 task :render_posts do
   Find.find(".").select { |f| f.end_with? "markdown" }.each do |markdown_file|
@@ -20,21 +33,21 @@ end
 desc "Upload a post to WordPress by name (tags should be a colon-delimited list)"
 task :post, :title, :tags do |task, args|
   username = ENV["WORDPRESS_USERNAME"]
-  raise "You must set the WORDPRESS_USERNAME environment variable" if username.nil?
+  quit "You must set the WORDPRESS_USERNAME environment variable" if username.nil?
 
   password = ENV["WORDPRESS_PASSWORD"]
-  raise "You must set the WORDPRESS_PASSWORD environment variable" if password.nil?
+  quit "You must set the WORDPRESS_PASSWORD environment variable" if password.nil?
 
   login_url = ENV["WORDPRESS_LOGIN_URL"]
-  raise "You must set the WORDPRESS_LOGIN_URL environment variable" if login_url.nil?
+  quit "You must set the WORDPRESS_LOGIN_URL environment variable" if login_url.nil?
 
   client = Wordpress::Client.new(username, password, login_url)
 
   title = args[:title]
-  tags = args[:tags].split(":")
+  tags = args.include?(:tags) ? args[:tags].split(":") : []
 
   html_file = File.join("dist", "#{title}.html")
-  raise "'#{title}' is not a valid post title!" if not File.exist?(html_file)
+  quit "'#{title}' is not a valid post title!" if not File.exist?(html_file)
 
   content = File.read(html_file)
 
@@ -42,15 +55,7 @@ task :post, :title, :tags do |task, args|
 
   response = client.post(title, content, tags)
 
-  is_successful_response = lambda { |response|
-    return false if !(response.is_a? Hash)
-    return false if !(response.include? :rsp)
-    return false if !(response[:rsp].include? :stat)
-    return false if response[:rsp][:stat] != "ok"
-    true
-  }
-
-  if is_successful_response(response)
+  if successful_wordpress_response?(response)
     puts "Done! Post now available at: #{response[:rsp][:post][:url]}"
   else
     puts "Failed!"
