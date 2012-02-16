@@ -8,11 +8,19 @@ def quit(msg)
 end
 
 def successful_wordpress_response?(response)
-  return false if !(response.is_a? Hash)
+  return false if !(response.respond_to?(:include?) && response.respond_to?(:[]))
   return false if !(response.include? :rsp)
   return false if !(response[:rsp].include? :stat)
   return false if response[:rsp][:stat] != "ok"
   true
+end
+
+def error_from_wordpress_response(response)
+  if response.include?(:rsp) && response[:rsp].include?(:err) && response[:rsp][:err].include?(:msg)
+    response[:rsp][:err][:msg]
+  end
+
+  response.to_s
 end
 
 desc "Render all posts from Markdown to HTML"
@@ -48,6 +56,9 @@ task :post, :title, :tags do |task, args|
 
   html_file = File.join("dist", "#{title}.html")
   quit "'#{title}' is not a valid post title!" if not File.exist?(html_file)
+  
+  title_match = title.match /\d+\-\w+\-\d+ (.*)/
+  title = title_match[1] unless title_match.nil?
 
   content = File.read(html_file)
 
@@ -61,7 +72,7 @@ task :post, :title, :tags do |task, args|
     puts "Failed!"
     puts ""
     puts "Message:"
-    puts response[:rsp][:err][:msg]
+    puts error_from_wordpress_response(response)
   end
 end
 
