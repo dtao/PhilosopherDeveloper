@@ -9,9 +9,9 @@ end
 
 def successful_wordpress_response?(response)
   return false if !(response.respond_to?(:include?) && response.respond_to?(:[]))
-  return false if !(response.include? :rsp)
-  return false if !(response[:rsp].include? :stat)
-  return false if response[:rsp][:stat] != "ok"
+  return false if !(response.include? "rsp")
+  return false if !(response["rsp"].include? "stat")
+  return false if response["rsp"]["stat"] != "ok"
   true
 end
 
@@ -31,7 +31,8 @@ task :render_posts do
     STDOUT.write "Rendering #{File.basename(html_file)}... "
 
     File.open(html_file, "w") do |io|
-      io.write Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(File.read(markdown_file))
+      raw_markdown = File.read(markdown_file)
+      io.write Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(raw_markdown.gsub("--", "&mdash;"))
     end
     
     puts "Done."
@@ -67,7 +68,7 @@ task :post, :title, :tags do |task, args|
   response = client.post(title, content, tags)
 
   if successful_wordpress_response?(response)
-    puts "Done! Post now available at: #{response[:rsp][:post][:url]}"
+    puts "Done! Post now available at: #{response['rsp']['post']['url']}"
   else
     puts "Failed!"
     puts ""
