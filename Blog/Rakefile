@@ -68,7 +68,13 @@ task :post, :title, :tags do |task, args|
   response = client.post(title, content, tags)
 
   if successful_wordpress_response?(response)
-    puts "Done! Post now available at: #{response['rsp']['post']['url']}"
+    url = response['rsp']['post']['url']
+    id = response['rsp']['post']['id'].split("&")[0]
+
+    # Save post ID for future reference.
+    File.open(File.join(title, "id"), "w").write(id)
+
+    puts "Done! Post now available at: #{url} (id: #{id})"
   else
     puts "Failed!"
     puts ""
