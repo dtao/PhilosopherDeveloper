@@ -12,7 +12,7 @@ To my pleasant surprise, the woman I interviewed came up with some really effici
 
 > We should forget about small efficiencies, say about 97% of the time; premature optimization is the root of all evil.
 
-I won't address this quote directly (or the way it's so common wielded inappropriately); others with more clout than I have [already weighed in on it](http://www.bluebytesoftware.com/blog/2010/09/06/ThePrematureOptimizationIsEvilMyth.aspx).
+I won't address this quote directly (or the way it's so commonly wielded inappropriately); others with more clout than I have [already weighed in on it](http://www.bluebytesoftware.com/blog/2010/09/06/ThePrematureOptimizationIsEvilMyth.aspx).
 
 But I do want to point something out, which many of us often overlook (or are completely ignorant of): *we all have different ways of thinking*. I believe that some of us have a **compulsion to optimize**, whereas others have **optimizing minds**.
 
