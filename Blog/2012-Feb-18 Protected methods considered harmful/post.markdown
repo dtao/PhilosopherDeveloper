@@ -1,0 +1,1 @@
+You'll have to forgive my sensationalist title. I actually use protected methods (when coding in languages that support them) just as much as the next guy; and I don't feel 

@@ -1,4 +1,6 @@
 source :rubygems
 
-gem 'redcarpet'
-gem 'wordpress'
+gem "haml"
+gem "redcarpet"
+gem "sinatra"
+gem "wordpress", :git => "git://github.com/jordandobson/wordpress.git"
