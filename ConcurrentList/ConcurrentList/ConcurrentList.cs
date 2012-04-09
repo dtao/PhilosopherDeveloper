@@ -107,6 +107,15 @@ namespace ConcurrentList
 
             Interlocked.Increment(ref m_fuzzyCount);
         }
+        
+         public void AddRange(T[] array)
+         {
+             foreach (T t in array)
+             {
+                 Add(t);
+             }
+         }
+        
         public override void CopyTo(T[] array, int index)
         {
             if (array == null)
