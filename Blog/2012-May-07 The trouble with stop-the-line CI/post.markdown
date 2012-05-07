@@ -1,0 +1,20 @@
+I have an issue with the way CI is done on a lot of software projects. To illustrate this issue I will tell a short story, as an analogy.
+
+There was a factory owner who saw that occasionally defects would creep into his manufactured goods. Whenever this happened, he would do his own research into the situation, sometimes finding that one of the many machines in his factory was in need of repair. In many cases, however, his research led him to the discovery that it was human error that caused the problem. Whenever this occurred, the owner would schedule some time with his workers to go over the rules and procedures of the factory.
+
+Over time, the factory owner grew tired of teaching the same rules and procedures every time he discovered a human error. He decided to save himself some time by posting them on a large poster against each factory wall. That way the workers could see them at all times and hopefully not keep repeating the same mistakes.
+
+Sadly, this did not solve the problem. Workers would still make the same mistakes, as often as they did before. Defeated, the factory owner decided to bring in an outside expert for help.
+
+The expert advised the factory owner that there was a new technique called "Constant Validation," or CV, which was a way of raising an alert every time a worker made one of the mistakes that inevitably led to defects in the factory's products. It was a simple technique, requiring the installation of only a small new piece of machinery within the factory. After a short demo, the factory owner was highly impressed and agreed to allow the expert to install CV at the factory.
+
+Far from a charlatan, the expert wanted the factory owner to understand the investment he was making and explained that CV is not magic; it requires configuration so that it knows when an alert should be raised. And so together the factory owner and the expert spent several hours going over the existing list of rules and procedures and configuring the CV to enforce them. When the factory owner realized how easy this was to do, he even asked the expert to stick around a bit longer to help him add some additional rules and procedures that he'd never had the time to write up before.
+
+Before the expert left, he gave the factory owner one final piece of very important advice: whenever an alert goes off from the CV system, it is crucial that all workers stop until the problem is resolved. Otherwise, if work proceeds while an investigation is under way, further violations may occur, leading to a complicated series of defects that cannot be properly untangled and opening up the possibility of the original problem never being solved. This made a lot of sense to the factory owner, so he agreed and thanked the expert for all his help.
+
+After a day or two, the CV system raised its first alert, flashing red lights and sounding a loud siren. Startled, the factory owner rushed out of his office and headed down to the floor to find all of his workers stopped, as instructed, in a state of confusion. He questioned several of them, who weren't sure what had happened, before finally arriving at someone who could explain the problem: one worker had become distracted briefly, and as a result a product had been labeled upside down.
+
+Pleased at having identified the root of the problem, the factory owner happily concluded that they could simply throw out the defective product, and he would record the incident in his books. The workers resumed their work, and the factory owner returned to his office, satisfied with his purchase of this handy new CV device.
+
+The next day, the CV system raised another alert. Slightly less alarmed this time, the factory owner returned to the floor to investigate. After looking around for some time, he learned from the workers that someone had dropped a screw during packaging; and so one of the packages was missing a screw. Always a practical man, the factory owner reasoned that the simplest course of action would be to simply resume work, and deal with a customer service issue later by sending an extra screw along with a reimbursement to the affected customer.
+
