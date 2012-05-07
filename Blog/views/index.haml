@@ -4,9 +4,12 @@
 %body
   %h1 The Philosopher Developer
 
-  - if not @post.nil?
-    = markdown @post.content
-
-  - @posts.each do |p|
-    %p
-      %a(href="/#{p.id}")= p.title
+  .content
+    - if @post
+      .post
+        = markdown @post.content
+      %a(href="/") Back
+    - else
+      - @posts.each do |p|
+        %p
+          %a(href="/#{p.id}")= p.title

@@ -28,6 +28,8 @@ GEM
     rack-protection (1.2.0)
       rack
     redcarpet (2.1.0)
+    shotgun (0.9)
+      rack (>= 1.0)
     sinatra (1.3.2)
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
@@ -44,5 +46,6 @@ PLATFORMS
 DEPENDENCIES
   haml
   redcarpet
+  shotgun
   sinatra
   wordpress!

@@ -15,20 +15,16 @@ helpers do
   end
 
   def post_from_title(post_id)
-    posts_from_fs.find { |post| post.id == post_id }
+    posts_from_fs.find { |post| post.id == post_id.to_sym }
   end
 end
 
 get "/" do
-  puts "Normal get!"
   @posts = posts_from_fs
   haml :index
 end
 
 get "/*" do |post_id|
-  puts "Post Id: #{post_id}"
-  @posts = posts_from_fs
   @post = post_from_title(post_id)
-  puts "Post: #{@post}"
   haml :index
 end

@@ -3,4 +3,8 @@ source :rubygems
 gem "haml"
 gem "redcarpet"
 gem "sinatra"
-gem "wordpress", :git => "git://github.com/jordandobson/wordpress.git"
+
+group :development do
+  gem "shotgun"
+  gem "wordpress", :git => "git://github.com/jordandobson/wordpress.git"
+end
