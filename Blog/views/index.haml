@@ -7,7 +7,7 @@
   .content
     - if @post
       .post
-        = markdown @post.content
+        = markdown(@post.content).gsub("--", "&mdash;")
       %a(href="/") Back
     - else
       - @posts.each do |p|

@@ -31,8 +31,9 @@ task :render_posts do
     STDOUT.write "Rendering #{File.basename(html_file)}... "
 
     File.open(html_file, "w") do |io|
-      raw_markdown = File.read(markdown_file)
-      io.write Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(raw_markdown.gsub("--", "&mdash;"))
+      markdown = File.read(markdown_file)
+      markdown.gsub!("--", "&mdash;")
+      io.write Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(markdown)
     end
     
     puts "Done."
