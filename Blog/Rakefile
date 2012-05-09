@@ -1,86 +1,26 @@
-require 'find'
-require 'redcarpet'
-require 'wordpress'
+require File.join(File.dirname(__FILE__), "config", "boot")
 
-def quit(msg)
-  puts msg
-  exit 1
+def path_to(file)
+  File.join(File.dirname(__FILE__), file)
 end
 
-def successful_wordpress_response?(response)
-  return false if !(response.respond_to?(:include?) && response.respond_to?(:[]))
-  return false if !(response.include? "rsp")
-  return false if !(response["rsp"].include? "stat")
-  return false if response["rsp"]["stat"] != "ok"
-  true
-end
-
-def error_from_wordpress_response(response)
-  if response.include?(:rsp) && response[:rsp].include?(:err) && response[:rsp][:err].include?(:msg)
-    response[:rsp][:err][:msg]
+namespace :db do
+  desc "Migrate the database with the latest models"
+  task :update do
+    DataMapper.auto_migrate!
+    puts "Database updated."
   end
 
-  response.to_s
-end
-
-desc "Render all posts from Markdown to HTML"
-task :render_posts do
-  Find.find(".").select { |f| f.end_with? "markdown" }.each do |markdown_file|
-    html_file = File.join("dist", File.dirname(markdown_file) + ".html")
-
-    STDOUT.write "Rendering #{File.basename(html_file)}... "
-
-    File.open(html_file, "w") do |io|
-      markdown = File.read(markdown_file)
-      io.write Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(markdown).gsub("--", "&mdash;")
+  desc "Take all the posts in the posts/ folder and add them to the database"
+  task :import_posts do
+    Dir.glob("posts/*.markdown").each do |file|
+      title_from_file_name = file.match(/posts\/[^\s]*\s*(.*)/)
+      if title_from_file_name
+        title = title_from_file_name[1].chomp(".markdown")
+        content = File.read(path_to(file))
+        post = Post.create(:title => title, :content => content, :last_updated => Time.now)
+        puts "Created post '#{title}' (#{post.id})"
+      end
     end
-    
-    puts "Done."
   end
 end
-
-desc "Upload a post to WordPress by name (tags should be a colon-delimited list)"
-task :post, :title, :tags do |task, args|
-  username = ENV["WORDPRESS_USERNAME"]
-  quit "You must set the WORDPRESS_USERNAME environment variable" if username.nil?
-
-  password = ENV["WORDPRESS_PASSWORD"]
-  quit "You must set the WORDPRESS_PASSWORD environment variable" if password.nil?
-
-  login_url = ENV["WORDPRESS_LOGIN_URL"]
-  quit "You must set the WORDPRESS_LOGIN_URL environment variable" if login_url.nil?
-
-  client = Wordpress::Client.new(username, password, login_url)
-
-  title = args[:title]
-  tags = args.include?(:tags) ? args[:tags].split(":") : []
-
-  html_file = File.join("dist", "#{title}.html")
-  quit "'#{title}' is not a valid post title!" if not File.exist?(html_file)
-  
-  title_match = title.match /\d+\-\w+\-\d+ (.*)/
-  title = title_match[1] unless title_match.nil?
-
-  content = File.read(html_file)
-
-  STDOUT.write "Posting '#{title}'... "
-
-  response = client.post(title, content, tags)
-
-  if successful_wordpress_response?(response)
-    url = response['rsp']['post']['url']
-    id = response['rsp']['post']['id'].split("&")[0]
-
-    # Save post ID for future reference.
-    File.open(File.join(title, "id"), "w").write(id)
-
-    puts "Done! Post now available at: #{url} (id: #{id})"
-  else
-    puts "Failed!"
-    puts ""
-    puts "Message:"
-    puts error_from_wordpress_response(response)
-  end
-end
-
-task :default => :render_posts

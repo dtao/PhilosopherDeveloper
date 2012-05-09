@@ -1,3 +1,4 @@
+# Stuff Padrino put here
 .DS_Store
 log/**/*
 tmp/**/*
@@ -5,3 +6,6 @@ bin/*
 vendor/gems/*
 !vendor/gems/cache/
 .sass-cache/*
+
+# Stuff I put here
+db/

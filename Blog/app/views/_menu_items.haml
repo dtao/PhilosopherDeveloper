@@ -1,0 +1,7 @@
+- ["posts", "about"].each do |item|
+  - if request.path_info.include?(item)
+    %li.active
+      %a(href="/#{item}")= item.capitalize
+  - else
+    %li
+      %a(href="/#{item}")= item.capitalize
