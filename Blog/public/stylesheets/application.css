@@ -1,5 +1,21 @@
 body {
   padding-top: 60px; }
 
-.post-content {
-  font-size: 24pt; }
+h1 {
+  font-size: 64px;
+  margin-bottom: 32px; }
+
+.numeric-column {
+  text-align: right !important; }
+
+.post-content h1 {
+  font-size: 48px; }
+.post-content h2 {
+  font-size: 36px; }
+.post-content h3 {
+  font-size: 28px; }
+.post-content sub {
+  line-height: 100%; }
+
+.post-form input, .post-form textarea {
+  width: 100%; }

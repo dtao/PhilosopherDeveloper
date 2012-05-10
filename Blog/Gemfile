@@ -19,9 +19,16 @@ gem "dm-constraints"
 gem "dm-aggregates"
 gem "dm-core"
 
-# Test requirements
-gem "rspec", :group => "test"
-gem "rack-test", :group => "test", :require => "rack/test"
-
 # Padrino Stable Gem
 gem "padrino", "0.10.6"
+
+group :development do
+  gem "guard"
+  gem "guard-less"
+  gem "guard-sass"
+end
+
+group :test do
+  gem "rspec", :group => "test"
+  gem "rack-test", :group => "test", :require => "rack/test"
+end

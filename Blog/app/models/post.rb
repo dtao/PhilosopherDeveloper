@@ -1,8 +1,12 @@
 class Post
   include DataMapper::Resource
 
+  has n, :visits
+
   property :id,           Serial
-  property :last_updated, DateTime
+  property :created_at,   Date
+  property :permalink,    String, :unique => true, :index => true
   property :title,        String
   property :content,      Text
+  property :published,    Boolean
 end
