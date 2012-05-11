@@ -1,0 +1,22 @@
+%h1 Posts
+
+%table.table.posts-table
+  %tr
+    %th Date
+    %th Title
+    %th.numeric-column Visits
+    %th.checkmark-column Published
+    %th
+  - @posts.each do |post|
+    %tr
+      %td= render_post_created_at(post)
+      %td= render_post_title_as_link(post)
+      %td.numeric-column= post.visits.count
+      %td.checkmark-column= render_post_published(post)
+      %td
+        %a.delete(href="javascript:void(0);" data-post="#{post.permalink}") <i class="icon-remove"></i>
+
+%a(href="/posts/new") New Post
+
+- content_for :javascripts do
+  = javascript_include_tag "/javascripts/posts/index"

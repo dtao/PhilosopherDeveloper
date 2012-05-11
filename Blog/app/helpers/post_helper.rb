@@ -8,7 +8,7 @@ module PostHelper
   end
 
   def render_post_published(post)
-    post.published ? %Q{<i class="icon-ok"></i>} : ""
+    post.published ? %Q{<i class="icon-ok"></i>} : %Q{<a class="publish" href="javascript:void(0);" data-post="#{post.permalink}">Publish</a>}
   end
 
   def render_post_content(post)

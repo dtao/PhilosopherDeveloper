@@ -1,7 +1,12 @@
 Blog.controllers :posts do
   get :index do
-    @posts = Post.all(:order => [:created_at.desc])
-    render :"posts/index"
+    if is_admin?(request)
+      @posts = Post.all(:order => [:created_at.desc])
+      render :"posts/admin/index"
+    else
+      @posts = Post.all(:published => true, :order => [:created_at.desc])
+      render :"posts/index"
+    end
   end
 
   post :index do
@@ -13,7 +18,7 @@ Blog.controllers :posts do
       :title => title,
       :permalink => permalink,
       :content => params["content"],
-      :published => true
+      :published => (params["publish"] == "true") || false
     })
 
     redirect "/posts"
@@ -36,6 +41,18 @@ Blog.controllers :posts do
     })
 
     render :"posts/show"
+  end
+
+  put :index, :with => [:permalink] do
+    post = Post.first(:permalink => params[:permalink])
+
+    if post
+      title = post.title
+      post.update(:published => true)
+      "Published post '#{title}'"
+    else
+      "Unable to find post"
+    end
   end
 
   delete :index, :with => [:permalink] do
