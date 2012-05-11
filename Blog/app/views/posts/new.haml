@@ -1,8 +1,10 @@
 %h1 New Post
 
-.post-form
+%form.post-form(method="POST" action="/posts")
   %label(for="title") Title
   %input#title(name="title" type="text")
 
-  %label(for="text") Content
-  %textarea#text
+  %label(for="content") Content
+  %textarea#content(name="content")
+
+  %input(type="submit")
