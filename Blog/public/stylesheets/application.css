@@ -15,14 +15,16 @@ h1 {
 .posts-table .checkmark-column {
   text-align: center !important; }
 
-.post-content h1 {
-  font-size: 48px; }
-.post-content h2 {
-  font-size: 36px; }
-.post-content h3 {
-  font-size: 28px; }
-.post-content sub {
-  line-height: 100%; }
+.post-content {
+  font-weight: 300; }
+  .post-content h1 {
+    font-size: 48px; }
+  .post-content h2 {
+    font-size: 36px; }
+  .post-content h3 {
+    font-size: 28px; }
+  .post-content sub {
+    line-height: 100%; }
 
 .post-form input, .post-form textarea {
   width: 100%;

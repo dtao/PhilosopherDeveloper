@@ -26,6 +26,7 @@ group :development do
   gem "guard"
   gem "guard-less"
   gem "guard-sass"
+  gem "heroku"
 end
 
 group :test do
