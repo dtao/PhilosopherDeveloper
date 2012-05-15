@@ -11,7 +11,6 @@ gem "sinatra-flash", :require => "sinatra/flash"
 gem "haml"
 gem "redcarpet"
 gem "sass"
-gem "dm-sqlite-adapter"
 gem "dm-validations"
 gem "dm-timestamps"
 gem "dm-migrations"
@@ -22,7 +21,12 @@ gem "dm-core"
 # Padrino Stable Gem
 gem "padrino", "0.10.6"
 
+group :production do
+  gem "dm-postgres-adapter"
+end
+
 group :development do
+  gem "dm-sqlite-adapter"
   gem "guard"
   gem "guard-less"
   gem "guard-sass"
