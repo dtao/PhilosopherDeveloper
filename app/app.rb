@@ -7,7 +7,7 @@ class Blog < Padrino::Application
   enable :sessions
 
   get "/" do
-    @post = Post.last
+    @post = Post.most_recent
     raise Sinatra::NotFound if @post.nil?
     render :"posts/show", :post_id => @post.id
   end

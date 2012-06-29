@@ -31,6 +31,7 @@ group :development do
   gem "guard-less"
   gem "guard-sass"
   gem "heroku"
+  gem "shotgun"
 end
 
 group :test do

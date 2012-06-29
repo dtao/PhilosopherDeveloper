@@ -1,7 +1,1 @@
-bin/
-obj/
-
-*.pidb
-*.suo
-*.user
-*.userprefs
+.sass-cache/

@@ -1,19 +1,14 @@
 module PostHelper
-  def render_post_created_at(post)
-    %Q{#{format_date(post.created_at)} <span class="post-time">#{format_time(post.created_at)}</span>}
-  end
-
   def render_post_title_as_link(post)
-    %Q{<a href="/posts/#{post.permalink}">#{post.title}</a>}
-  end
-
-  def render_post_published(post)
-    post.published ? %Q{<i class="icon-ok"></i>} : %Q{<a class="publish" href="javascript:void(0);" data-post="#{post.permalink}">Publish</a>}
+    %Q{<a href="/posts/#{post.id}">#{post.title}</a>}
   end
 
   def render_post_content(post)
-    html = markdown(post.content)
-    html.gsub("--", "&mdash;")
+    post.rendered_html ||= render_post_html(post)
+  end
+
+  def render_post_html(post)
+    markdown(post.text).gsub("--", "&mdash;")
   end
 end
 
