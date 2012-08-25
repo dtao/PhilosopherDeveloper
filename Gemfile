@@ -1,7 +1,9 @@
 source :rubygems
 
 # Server requirements
-gem "thin"
+gem "thin", :platform => :ruby
+gem "ffi", "1.0.9", :platform => :mingw
+gem "mongrel", :platform => :mingw
 
 # Project requirements
 gem "rake"
@@ -27,9 +29,9 @@ end
 
 group :development do
   gem "dm-sqlite-adapter"
-  gem "guard"
-  gem "guard-less"
-  gem "guard-sass"
+  gem "guard", :platform => :ruby
+  gem "guard-less", :platform => :ruby
+  gem "guard-sass", :platform => :ruby
   gem "heroku"
   gem "shotgun"
 end
