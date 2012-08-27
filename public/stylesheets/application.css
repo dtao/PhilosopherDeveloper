@@ -84,15 +84,16 @@ code {
     background-color: #f0f3f4; }
   #comments form p {
     font-weight: bold; }
-  #comments .field label {
-    display: inline-block;
-    vertical-align: top;
-    width: 300px; }
-  #comments .field input, #comments .field textarea {
-    border: 1px solid black;
-    margin-left: 0;
+  #comments .field {
     margin-top: 10px; }
-  #comments .field textarea {
-    margin: 10px auto;
-    height: 300px;
-    width: 500px; }
+    #comments .field label {
+      display: inline-block;
+      vertical-align: top;
+      width: 300px; }
+    #comments .field input, #comments .field textarea {
+      border: 1px solid black;
+      margin-left: 0; }
+    #comments .field textarea {
+      margin-left: 0;
+      height: 200px;
+      width: 500px; }
