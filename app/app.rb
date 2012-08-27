@@ -8,11 +8,11 @@ class Blog < Padrino::Application
 
   get "/" do
     @post = Post.most_recent
-    raise Sinatra::NotFound if @post.nil?
-    render :"posts/show", :post_id => @post.id
+    render :post
   end
 
-  not_found do
-    render :not_found, :layout => :application
+  get "/*" do |identifier|
+    @post = Post.get(identifier)
+    render :post
   end
 end

@@ -1,38 +1,24 @@
-h1
-  font-size: 64px
-  margin: 32px auto
-  padding-top: 16px
+html, body
+  font-family: Helvetica, sans-serif
+  margin: 0
+  padding: 0
+  height: 100%
+  width: 100%
 
-.posts-table
-  td
-    vertical-align: middle
-  
-  .post-time
-    color: #888
-    font-size: 12px
+#menu
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  width: 250px
+  padding: 0 25px
 
-  .numeric-column
-    text-align: right !important
-
-  .checkmark-column
-    text-align: center !important
-
-.post-content
-  font-weight: 300
-  h1
-    font-size: 48px
-  h2
-    font-size: 36px
-  h3
-    font-size: 28px
-  sub
-    line-height: 100%
-
-.post-form
-  input, textarea
-    width: 100%
-    min-height: 48px
-    padding: 12px
-
-  textarea
-    min-height: 480px
+#content
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 300px
+  right: 0
+  border-left: 1px solid black
+  padding-left: 25px
+  overflow: auto

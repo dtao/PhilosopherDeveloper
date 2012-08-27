@@ -1,56 +1,37 @@
 require "yaml"
 
 class Post
-  def self.load_all
-    @@table ||= {}
-
-    YAML.load_file(File.join(PADRINO_ROOT, "config", "posts.yml")).tap do |posts|
-      posts.each do |id, info|
-        @@table[id] = Post.new(id, info)
+  def self.load_all(yaml_file)
+    @@posts ||= begin
+      all_posts = []
+      YAML.load_file(yaml_file).tap do |posts|
+        posts.each do |identifier, info|
+          all_posts << Post.new(identifier, info)
+        end
       end
-    end
 
-    # Order from newest to oldest.
-    @@all = @@table.values.sort { |x, y| y.date <=> x.date }.freeze
+      # Order from newest to oldest.
+      all_posts.sort { |x, y| y.date <=> x.date }.freeze
+    end
   end
 
-  def self.all
-    @@all
+  def self.each
+    @@posts.each do |post|
+      yield post
+    end
   end
 
   def self.most_recent
-    @@all.first
+    @@posts.first
   end
 
-  def self.get(id)
-    @@table[id]
-  end
-
-  attr_reader :date, :id, :title, :text
-  attr_accessor :rendered_html
-
-  def published?
-    @published
-  end
-
-  def visit!(request)
-    date = Time.now.utc
-
-    visits = PostVisits.first_or_create(:date => date, :post_id => @id)
-    visits.count += 1
-    visits.save
-
-    referrers = Referrers.first_or_create(:date => date, :referrer => request.referrer)
-    referrers.count += 1
-    referrers.save
-  end
+  attr_reader :identifier, :date, :title, :published
 
   private
-  def initialize(id, info)
-    @id = id
+  def initialize(identifier, info)
+    @identifier = identifier
     @date = info["date"]
     @title = info["title"]
-    @text = File.read(File.join(PADRINO_ROOT, "posts", "#{@date} #{@title}.markdown"))
     @published = info["published"]
   end
 end

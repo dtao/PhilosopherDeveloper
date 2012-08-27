@@ -1,22 +1,32 @@
-fast-string-concatenation:
+magical-optimization-of-the-+=-operator-with-strings:
   date: 2012-08-25
-  title: Fast String Concatenation
+  title: A magical optimization of the += operator with strings
   published: true
 
 value-of-a-detached-perspective:
   date: 2012-08-21
   title: The value of a detached perspective
-  published: true
+  published: false
 
 to-start-over-or-continue:
   date: 2012-06-15
   title: To start over or continue
   published: true
 
+fast-string-concatenation:
+  date: 2012-06-11
+  title: Fast String Concatenation
+  published: true
+
 trouble-with-stop-the-line-ci:
   date: 2012-05-07
   title: The trouble with stop-the-line CI
   published: true
+
+conflation-of-cause-and-responsibility:
+  date: 2012-02-19
+  title: The Conflation of Cause and Responsibility
+  published: false
 
 optimizing-mind:
   date: 2012-02-19
@@ -26,4 +36,9 @@ optimizing-mind:
 trick-to-good-ballpark-estimates:
   date: 2012-02-02
   title: The trick to good ballpark estimates
+  published: true
+
+am-i-being-obnoxious:
+  date: 2012-02-02
+  title: Am I being obnoxious?
   published: true
