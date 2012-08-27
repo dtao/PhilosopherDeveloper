@@ -5,20 +5,54 @@ html, body
   height: 100%
   width: 100%
 
+code
+  font-family: Consolas, monospace
+
 #menu
   position: absolute
   top: 0
   bottom: 0
   left: 0
-  width: 250px
+  width: 350px
   padding: 0 25px
+  text-align: right
+
+  .menu-heading
+    font-size: 24px
+
+  .menu-item
+    font-size: 16px
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+  a
+    color: #008
+    font-weight: bold
+    text-decoration: none
+
+  a:hover
+    color: #880
 
 #content
   position: fixed
   top: 0
   bottom: 0
-  left: 300px
+  left: 400px
   right: 0
   border-left: 1px solid black
-  padding-left: 25px
+  padding: 0 25px
   overflow: auto
+
+  p, li, pre
+    font-size: 24px
+
+  h1
+    font-size: 48px
+    font-weight: 300
+
+  h2
+    font-size: 36px
+
+  h3
+    font-size: 28px

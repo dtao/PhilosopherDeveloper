@@ -5,20 +5,46 @@ html, body {
   height: 100%;
   width: 100%; }
 
+code {
+  font-family: Consolas, monospace; }
+
 #menu {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
-  width: 250px;
-  padding: 0 25px; }
+  width: 350px;
+  padding: 0 25px;
+  text-align: right; }
+  #menu .menu-heading {
+    font-size: 24px; }
+  #menu .menu-item {
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  #menu a {
+    color: #000088;
+    font-weight: bold;
+    text-decoration: none; }
+  #menu a:hover {
+    color: #888800; }
 
 #content {
   position: fixed;
   top: 0;
   bottom: 0;
-  left: 300px;
+  left: 400px;
   right: 0;
   border-left: 1px solid black;
-  padding-left: 25px;
+  padding: 0 25px;
   overflow: auto; }
+  #content p, #content li, #content pre {
+    font-size: 24px; }
+  #content h1 {
+    font-size: 48px;
+    font-weight: 300; }
+  #content h2 {
+    font-size: 36px; }
+  #content h3 {
+    font-size: 28px; }

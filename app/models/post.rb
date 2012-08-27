@@ -4,6 +4,7 @@ class Post
   def self.load_all(yaml_file)
     @@posts ||= begin
       all_posts = []
+
       YAML.load_file(yaml_file).tap do |posts|
         posts.each do |identifier, info|
           all_posts << Post.new(identifier, info)
@@ -11,19 +12,28 @@ class Post
       end
 
       # Order from newest to oldest.
-      all_posts.sort { |x, y| y.date <=> x.date }.freeze
+      all_posts.select(&:published).sort { |x, y| y.date <=> x.date }.freeze
     end
 
-    @@table ||= begin
-      all_posts.inject({}) do |hash, post|
-        hash.update(post.identifier => post)
-      end
+    @@table ||= @@posts.inject({}) do |hash, post|
+      hash[post.identifier] = post
+      hash
     end
+
+    @@posts_by_month ||= @@posts.group_by { |p| Date.new(p.date.year, p.date.month, 1) }
+
+    @@months ||= @@posts_by_month.keys.sort.reverse
   end
 
   def self.each
-    @@posts.select(&:published).each do |post|
+    @@posts.each do |post|
       yield post
+    end
+  end
+
+  def self.by_month
+    @@months.each do |month|
+      yield [month, @@posts_by_month[month]]
     end
   end
 
@@ -32,7 +42,6 @@ class Post
   end
 
   def self.get(identifier)
-    puts "Looking for post #{identifier}"
     @@table[identifier]
   end
 

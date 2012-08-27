@@ -5,8 +5,10 @@
 
 %body
   #menu
-    - Post.each do |post|
-      %p.menu-item= "<a href=\"/#{post.identifier}\">#{post.title}</a>"
+    - Post.by_month do |month, posts|
+      %h1.menu-heading= month.strftime("%B %Y")
+      - posts.each do |post|
+        %p.menu-item= "<a href=\"/#{post.identifier}\">#{post.title}</a>"
 
   #content
     = yield

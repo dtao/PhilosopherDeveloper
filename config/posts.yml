@@ -16,7 +16,7 @@ to-start-over-or-continue:
 fast-string-concatenation:
   date: 2012-06-11
   title: Fast String Concatenation
-  published: true
+  published: false
 
 trouble-with-stop-the-line-ci:
   date: 2012-05-07
