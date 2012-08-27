@@ -1,6 +1,9 @@
 %h1
   = @post.title
-  %span.date= @post.date.strftime("%B %d, %Y")
+  %span.date-and-comments
+    = @post.date.strftime("%B %d, %Y")
+    |
+    %a(href="#comments")= noun("Comment", @post.comments.count)
 
 = markdown(:"posts/#{@post.identifier}").gsub("--", "&mdash;")
 

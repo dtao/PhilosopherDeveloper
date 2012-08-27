@@ -14,6 +14,13 @@ html, body
   height: 100%
   width: 100%
 
+a
+  color: #008
+  text-decoration: none
+
+a:hover
+  color: #880
+
 code
   font-family: Consolas, Inconsolata, monospace
 
@@ -47,12 +54,7 @@ code
     white-space: nowrap
 
   a
-    color: #008
     font-weight: bold
-    text-decoration: none
-
-  a:hover
-    color: #880
 
 #content
   position: fixed
@@ -77,7 +79,7 @@ code
     font-size: 48px
     font-weight: 300
 
-    span.date
+    span.date-and-comments
       color: #888
       font-size: 24px
 
@@ -101,6 +103,9 @@ code
     .comment-time
       color: $darkBlue
       font-size: 16px
+
+    p
+      margin: 10px auto
 
   .comment:nth-child(odd)
     background-color: lighten($gray, 5%)
