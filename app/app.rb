@@ -3,6 +3,7 @@ class Blog < Padrino::Application
   register Padrino::Rendering
   register Padrino::Mailer
   register Padrino::Helpers
+  register Sinatra::Glorify
 
   enable :sessions
 

@@ -1,3 +1,5 @@
-%h1= @post.title
+%h1
+  = @post.title
+  %span.date= @post.date.strftime("%B %d, %Y")
 
 = markdown(:"posts/#{@post.identifier}").gsub("--", "&mdash;")

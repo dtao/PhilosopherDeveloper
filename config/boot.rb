@@ -18,7 +18,7 @@ end
 #
 Padrino.after_load do
   Post.load_all(File.join(PADRINO_ROOT, "config", "posts.yml"))
-  DataMapper.finalize
+  Tilt.prefer Sinatra::Glorify::Template
 end
 
 Padrino.load!
