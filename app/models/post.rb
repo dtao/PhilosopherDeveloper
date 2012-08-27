@@ -13,16 +13,27 @@ class Post
       # Order from newest to oldest.
       all_posts.sort { |x, y| y.date <=> x.date }.freeze
     end
+
+    @@table ||= begin
+      all_posts.inject({}) do |hash, post|
+        hash.update(post.identifier => post)
+      end
+    end
   end
 
   def self.each
-    @@posts.each do |post|
+    @@posts.select(&:published).each do |post|
       yield post
     end
   end
 
   def self.most_recent
     @@posts.first
+  end
+
+  def self.get(identifier)
+    puts "Looking for post #{identifier}"
+    @@table[identifier]
   end
 
   attr_reader :identifier, :date, :title, :published

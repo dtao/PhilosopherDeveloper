@@ -11,8 +11,8 @@ class Blog < Padrino::Application
     render :post
   end
 
-  get "/*" do |identifier|
-    @post = Post.get(identifier)
+  get "/", :with => :identifier do
+    @post = Post.get(params[:identifier])
     render :post
   end
 end

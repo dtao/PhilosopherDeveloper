@@ -5,9 +5,8 @@
 
 %body
   #menu
-    %ul.posts
     - Post.each do |post|
-      %li.post= "<a href=\"/#{post.identifier}\">#{post.title}</a>"
+      %p.menu-item= "<a href=\"/#{post.identifier}\">#{post.title}</a>"
 
   #content
     = yield
