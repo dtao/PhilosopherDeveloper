@@ -47,6 +47,10 @@ class Post
 
   attr_reader :identifier, :date, :title, :published
 
+  def comments
+    Comment.all(:post_identifier => self.identifier)
+  end
+
   private
   def initialize(identifier, info)
     @identifier = identifier

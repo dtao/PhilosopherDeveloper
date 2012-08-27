@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"mo",
+				"month"
+			],
+			[
+				"grou",
+				"grouped_by_month"
+			],
+			[
+				"all",
+				"all_posts"
+			],
+			[
 				"cards",
 				"cards_from_request"
 			],
@@ -502,25 +514,53 @@
 			[
 				"tack",
 				"trackIndex"
-			],
-			[
-				"st",
-				"start_date"
-			],
-			[
-				"ne",
-				"nested_level"
-			],
-			[
-				"el",
-				"elapsed"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "posts/2012-08-25 Fast String Concatenation.markdown",
+			"file": "app/app.rb",
+			"settings":
+			{
+				"buffer_size": 365,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/layouts/application.haml",
+			"settings":
+			{
+				"buffer_size": 311,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/stylesheets/application.sass",
+			"settings":
+			{
+				"buffer_size": 823,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/post.haml",
+			"settings":
+			{
+				"buffer_size": 131,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/post.rb",
+			"settings":
+			{
+				"buffer_size": 1156,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/posts/magical-optimization-of-the-+=-operator-with-strings.markdown",
 			"settings":
 			{
 				"buffer_size": 8882,
@@ -528,10 +568,10 @@
 			}
 		},
 		{
-			"file": "app/app.rb",
+			"file": "Gemfile",
 			"settings":
 			{
-				"buffer_size": 377,
+				"buffer_size": 833,
 				"line_ending": "Unix"
 			}
 		},
@@ -539,7 +579,7 @@
 			"file": "config/boot.rb",
 			"settings":
 			{
-				"buffer_size": 520,
+				"buffer_size": 587,
 				"line_ending": "Unix"
 			}
 		}
@@ -576,6 +616,16 @@
 	},
 	"file_history":
 	[
+		"/Users/dantao/Projects/PhilosopherDeveloper/Gemfile",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/stylesheets/application.sass",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/models/post.rb",
+		"/Users/dantao/Projects/PhilosopherDeveloper/config/posts.yml",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/app.rb",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/views/post.haml",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/views/layouts/application.haml",
+		"/Users/dantao/Projects/PhilosopherDeveloper/config/boot.rb",
+		"/Users/dantao/Projects/PhilosopherDeveloper/posts/2012-08-25 Fast String Concatenation.markdown",
+		"/Users/dantao/Projects/PhilosopherDeveloper/public/favicon.ico",
 		"/Users/dantao/Projects/PhilosopherDeveloper/.gitignore",
 		"/Users/dantao/Projects/PhilosopherDeveloper/PhilosopherDeveloper.sublime-project",
 		"/Users/dantao/Cardpool/code/rails/main/app/models/user.rb",
@@ -693,17 +743,7 @@
 		"/Users/dantao/Cardpool/code/rails/main/spec/controllers/sell_carts_controller_instant_spec.rb",
 		"/Users/dantao/Cardpool/code/rails/main/lib/payment_processor.rb",
 		"/Users/dantao/Cardpool/code/rails/main/spec/lib/payment_processor_spec.rb",
-		"/Users/dantao/Cardpool/code/rails/main/spec/controllers/sell_carts_controller_spec.rb",
-		"/Users/dantao/Cardpool/code/rails/doubleplusgood/app/controllers/home_controller.rb",
-		"/Users/dantao/scratch/threading_test.rb",
-		"/Users/dantao/Cardpool/code/rails/main/app/controllers/api/shopping_carts_controller.rb",
-		"/Users/dantao/scratch/yeah.sql",
-		"/Users/dantao/Cardpool/code/rails/main/lib/doubleplusgood.rb",
-		"/Users/dantao/Cardpool/code/rails/main/script/migrations/add_merchant_descriptions/merchant_descriptions.csv",
-		"/Users/dantao/Cardpool/code/rails/main/app/models/card_exception.rb",
-		"/Users/dantao/Cardpool/code/rails/main/lib/action_logging.rb",
-		"/Users/dantao/Cardpool/code/rails/main/lib/tasks/logs.rake",
-		"/Users/dantao/Cardpool/code/rails/main/app/controllers/sell_carts_controller.rb"
+		"/Users/dantao/Cardpool/code/rails/main/spec/controllers/sell_carts_controller_spec.rb"
 	],
 	"find":
 	{
@@ -726,6 +766,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"@@grouped_by_month",
+			"all",
+			"@@table",
+			"file",
+			"id",
 			"App.model.retailSalesDisplayFilters",
 			"discovered",
 			"acquired",
@@ -848,12 +893,7 @@
 			"dl_field",
 			"Affordable Fashion for Women",
 			"mark_available",
-			"list_for_sale!",
-			"mark_verif",
-			"mark_verid",
-			"list_for_sale!",
-			"list_for_",
-			"mark_verified!"
+			"list_for_sale!"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -902,51 +942,23 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "posts/2012-08-25 Fast String Concatenation.markdown",
-					"settings":
-					{
-						"buffer_size": 8882,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "app/app.rb",
 					"settings":
 					{
-						"buffer_size": 377,
+						"buffer_size": 365,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								165,
-								165
+								365,
+								365
 							]
 						],
 						"settings":
@@ -962,19 +974,181 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "config/boot.rb",
+					"buffer": 1,
+					"file": "app/views/layouts/application.haml",
 					"settings":
 					{
-						"buffer_size": 520,
+						"buffer_size": 311,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								520,
-								520
+								311,
+								311
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/stylesheets/application.sass",
+					"settings":
+					{
+						"buffer_size": 823,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								823,
+								823
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 731.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/views/post.haml",
+					"settings":
+					{
+						"buffer_size": 131,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								131,
+								131
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/models/post.rb",
+					"settings":
+					{
+						"buffer_size": 1156,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								661,
+								661
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/views/posts/magical-optimization-of-the-+=-operator-with-strings.markdown",
+					"settings":
+					{
+						"buffer_size": 8882,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8882,
+								8882
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2877.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Gemfile",
+					"settings":
+					{
+						"buffer_size": 833,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								296,
+								296
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "config/boot.rb",
+					"settings":
+					{
+						"buffer_size": 587,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								587,
+								587
 							]
 						],
 						"settings":
@@ -1036,8 +1210,32 @@
 		"selected_items":
 		[
 			[
+				"boo",
+				"config/boot.rb"
+			],
+			[
 				"app",
 				"app/app.rb"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"po",
+				"app/views/post.haml"
+			],
+			[
+				"appli",
+				"app/stylesheets/application.sass"
+			],
+			[
+				"pos",
+				"config/posts.yml"
+			],
+			[
+				"appl",
+				"app/views/layouts/application.haml"
 			],
 			[
 				"fast",
@@ -1496,10 +1694,6 @@
 				"app/views/cards/_store.html.erb"
 			],
 			[
-				"appli",
-				"app/views/layouts/application.html.erb"
-			],
-			[
 				"ga_tr",
 				"app/views/home/_ga_tracking.html.erb"
 			],
@@ -1526,26 +1720,6 @@
 			[
 				"doubl",
 				"lib/doubleplusgood.rb"
-			],
-			[
-				"merchant_desc",
-				"script/migrations/add_merchant_descriptions/merchant_descriptions.csv"
-			],
-			[
-				"rece",
-				"app/models/receivables_object.rb"
-			],
-			[
-				"sell",
-				"app/controllers/sell_carts_controller.rb"
-			],
-			[
-				"logs",
-				"lib/tasks/logs.rake"
-			],
-			[
-				"action",
-				"lib/action_logging.rb"
 			]
 		],
 		"width": 0.0
@@ -1562,6 +1736,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 294.0,
+	"side_bar_width": 432.0,
 	"status_bar_visible": true
 }

@@ -1,21 +1,41 @@
+// Colors
+$darkBlue: #445560
+$yellow: #ffc
+$gray: #d2dadf
+
+// Sizes
+$headerFontSize: 48px
+$headerHeight: 64px
+
 html, body
-  font-family: Helvetica, sans-serif
+  font-family: Helvetica, Arial, sans-serif
   margin: 0
   padding: 0
   height: 100%
   width: 100%
 
 code
-  font-family: Consolas, monospace
+  font-family: Consolas, Inconsolata, monospace
+
+#header
+  background-color: $gray
+  border-bottom: 1px solid black
+  padding: (($headerHeight - $headerFontSize) / 2) 25px
+  height: $headerFontSize
+
+  h1
+    color: $darkBlue
+    font-size: $headerFontSize
+    line-height: $headerFontSize
+    margin: 0
 
 #menu
   position: absolute
-  top: 0
+  top: $headerHeight
   bottom: 0
-  left: 0
+  right: 0
   width: 350px
   padding: 0 25px
-  text-align: right
 
   .menu-heading
     font-size: 24px
@@ -36,16 +56,22 @@ code
 
 #content
   position: fixed
-  top: 0
+  top: $headerHeight
   bottom: 0
-  left: 400px
-  right: 0
-  border-left: 1px solid black
-  padding: 0 25px
+  left: 0
+  right: 400px
+  border-top: 1px solid black
+  border-right: 1px solid black
+  padding: 0 25px 25px
   overflow: auto
 
-  p, li, pre
+  p, li, label, input, textarea
     font-size: 24px
+
+  pre
+    background-color: $gray
+    font-size: 20px
+    padding: 10px
 
   h1
     font-size: 48px
@@ -60,3 +86,44 @@ code
 
   h3
     font-size: 28px
+
+#comments
+  margin-top: 25px
+
+  .comment
+    font-size: 20px
+    padding: 10px
+
+    .reader-name
+      font-size: 28px
+      font-weight: bold
+
+    .comment-time
+      color: $darkBlue
+      font-size: 16px
+
+  .comment:nth-child(odd)
+    background-color: lighten($gray, 5%)
+
+  .comment:nth-child(even)
+    background-color: lighten($gray, 10%)
+
+  form
+    p
+      font-weight: bold
+
+  .field
+    label
+      display: inline-block
+      vertical-align: top
+      width: 300px
+
+    input, textarea
+      border: 1px solid black
+      margin-left: 0
+      margin-top: 10px
+
+    textarea
+      margin: 10px auto
+      height: 300px
+      width: 500px

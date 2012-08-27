@@ -4,6 +4,9 @@
   = stylesheet_link_tag("application")
 
 %body
+  #header
+    %h1 The Philosopher Developer
+
   #menu
     - Post.by_month do |month, posts|
       %h1.menu-heading= month.strftime("%B %Y")
