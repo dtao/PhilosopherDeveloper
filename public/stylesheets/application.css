@@ -18,21 +18,29 @@ code {
 #header {
   background-color: #d2dadf;
   border-bottom: 1px solid black;
-  padding: 8px 25px;
-  height: 48px; }
+  padding: 8px 25px; }
   #header h1 {
     color: #445560;
     font-size: 48px;
     line-height: 48px;
     margin: 0; }
 
+@media all and (min-width: 800px) {
+  #header {
+    height: 48px; } }
+#menu-header {
+  background-color: #d2dadf;
+  border-top: 1px solid black;
+  padding: 5px 25px; }
+  #menu-header h1 {
+    color: #445560;
+    font-size: 32px;
+    line-height: 32px;
+    margin: 0; }
+
 #menu {
-  position: absolute;
-  top: 64px;
-  bottom: 0;
-  right: 0;
-  width: 350px;
-  padding: 0 25px; }
+  border-top: 1px solid black;
+  padding: 0 25px 25px; }
   #menu .menu-heading {
     font-size: 24px; }
   #menu .menu-item {
@@ -43,37 +51,52 @@ code {
   #menu a {
     font-weight: bold; }
 
+@media all and (min-width: 800px) {
+  #menu-header {
+    display: none; }
+
+  #menu {
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    right: 0;
+    width: 350px; } }
 #content {
-  position: fixed;
-  top: 64px;
-  bottom: 0;
-  left: 0;
-  right: 400px;
   border-top: 1px solid black;
-  border-right: 1px solid black;
-  padding: 0 25px 25px;
-  overflow: auto; }
+  padding: 0 25px 25px; }
   #content p, #content li, #content label, #content input, #content textarea {
     font-size: 24px; }
   #content pre {
     background-color: #d2dadf;
     font-size: 20px;
     padding: 10px; }
-  #content h1 {
+  #content h1.post-title {
     font-size: 48px;
-    font-weight: 300; }
-    #content h1 span.date-and-comments {
-      color: #888888;
-      font-size: 24px; }
+    font-weight: 300;
+    margin-bottom: 0; }
+  #content h2.post-info {
+    color: #888888;
+    font-size: 24px;
+    font-weight: 300;
+    margin-top: 0; }
   #content h2 {
     font-size: 36px; }
   #content h3 {
     font-size: 28px; }
 
+@media all and (min-width: 800px) {
+  #content {
+    position: fixed;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    right: 400px;
+    border-right: 1px solid black;
+    overflow: auto; } }
 #comments {
+  border-top: 1px solid black;
   margin-top: 25px; }
   #comments .comment {
-    font-size: 20px;
     padding: 10px; }
     #comments .comment .reader-name {
       font-size: 28px;
@@ -82,6 +105,7 @@ code {
       color: #445560;
       font-size: 16px; }
     #comments .comment p {
+      font-size: 20px;
       margin: 10px auto; }
   #comments .comment:nth-child(odd) {
     background-color: #e1e6ea; }
@@ -91,14 +115,23 @@ code {
     font-weight: bold; }
   #comments .field {
     margin-top: 10px; }
-    #comments .field label {
-      display: inline-block;
-      vertical-align: top;
-      width: 300px; }
     #comments .field input, #comments .field textarea {
-      border: 1px solid black;
-      margin-left: 0; }
+      border: 1px solid black; }
     #comments .field textarea {
-      margin-left: 0;
       height: 200px;
       width: 500px; }
+    @media all and (min-width: 1200px) {
+      #comments .field label {
+        display: inline-block;
+        vertical-align: top;
+        width: 200px; }
+      #comments .field input, #comments .field textarea {
+        margin-left: 0; }
+      #comments .field textarea {
+        margin-left: 0; } }
+    @media all and (max-width: 1199px) {
+      #comments .field label {
+        display: block; } }
+    @media all and (max-width: 549px) {
+      #comments .field input, #comments .field textarea {
+        width: 100%; } }

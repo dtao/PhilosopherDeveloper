@@ -28,7 +28,6 @@ code
   background-color: $gray
   border-bottom: 1px solid black
   padding: (($headerHeight - $headerFontSize) / 2) 25px
-  height: $headerFontSize
 
   h1
     color: $darkBlue
@@ -36,13 +35,24 @@ code
     line-height: $headerFontSize
     margin: 0
 
+@media all and (min-width: 800px)
+  #header
+    height: $headerFontSize
+
+#menu-header
+  background-color: $gray
+  border-top: 1px solid black
+  padding: 5px 25px
+
+  h1
+    color: $darkBlue
+    font-size: 32px
+    line-height: 32px
+    margin: 0
+
 #menu
-  position: absolute
-  top: $headerHeight
-  bottom: 0
-  right: 0
-  width: 350px
-  padding: 0 25px
+  border-top: 1px solid black
+  padding: 0 25px 25px
 
   .menu-heading
     font-size: 24px
@@ -56,16 +66,20 @@ code
   a
     font-weight: bold
 
+@media all and (min-width: 800px)
+  #menu-header
+    display: none
+
+  #menu
+    position: absolute
+    top: $headerHeight
+    bottom: 0
+    right: 0
+    width: 350px
+
 #content
-  position: fixed
-  top: $headerHeight
-  bottom: 0
-  left: 0
-  right: 400px
   border-top: 1px solid black
-  border-right: 1px solid black
   padding: 0 25px 25px
-  overflow: auto
 
   p, li, label, input, textarea
     font-size: 24px
@@ -75,13 +89,16 @@ code
     font-size: 20px
     padding: 10px
 
-  h1
+  h1.post-title
     font-size: 48px
     font-weight: 300
+    margin-bottom: 0
 
-    span.date-and-comments
-      color: #888
-      font-size: 24px
+  h2.post-info
+    color: #888
+    font-size: 24px
+    font-weight: 300
+    margin-top: 0
 
   h2
     font-size: 36px
@@ -89,11 +106,21 @@ code
   h3
     font-size: 28px
 
+@media all and (min-width: 800px)
+  #content
+    position: fixed
+    top: $headerHeight
+    bottom: 0
+    left: 0
+    right: 400px
+    border-right: 1px solid black
+    overflow: auto
+
 #comments
+  border-top: 1px solid black
   margin-top: 25px
 
   .comment
-    font-size: 20px
     padding: 10px
 
     .reader-name
@@ -105,6 +132,7 @@ code
       font-size: 16px
 
     p
+      font-size: 20px
       margin: 10px auto
 
   .comment:nth-child(odd)
@@ -120,16 +148,29 @@ code
   .field
     margin-top: 10px
 
-    label
-      display: inline-block
-      vertical-align: top
-      width: 300px
-
     input, textarea
       border: 1px solid black
-      margin-left: 0
 
     textarea
-      margin-left: 0
       height: 200px
       width: 500px
+
+    @media all and (min-width: 1200px)
+      label
+        display: inline-block
+        vertical-align: top
+        width: 200px
+
+      input, textarea
+        margin-left: 0
+
+      textarea
+        margin-left: 0
+
+    @media all and (max-width: 1199px)
+      label
+        display: block
+
+    @media all and (max-width: 549px)
+      input, textarea
+        width: 100%

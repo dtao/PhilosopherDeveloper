@@ -1,11 +1,18 @@
 !!!
 %head
   %title The Philosopher Developer
+  %meta(name="viewport" content="initial-scale=1.0, width=device-width, height=device-height")
   = stylesheet_link_tag("application")
 
 %body
   #header
     %h1 The Philosopher Developer
+
+  #content
+    = yield
+
+  #menu-header
+    %h1 Menu
 
   #menu
     - Post.by_month do |month, posts|
@@ -13,6 +20,3 @@
       - posts.each do |post|
         %p.menu-item
           %a(href="#{post.identifier}")= post.title
-
-  #content
-    = yield

@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"rea",
+				"reader_email"
+			],
+			[
+				"reader",
+				"reader_email"
+			],
+			[
 				"mo",
 				"month"
 			],
@@ -484,10 +492,6 @@
 				"trackData"
 			],
 			[
-				"rea",
-				"reader"
-			],
-			[
 				"fie",
 				"fieldSpec"
 			],
@@ -510,28 +514,16 @@
 			[
 				"tra",
 				"trackIndex"
-			],
-			[
-				"tack",
-				"trackIndex"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "app/app.rb",
-			"settings":
-			{
-				"buffer_size": 365,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "app/views/layouts/application.haml",
 			"settings":
 			{
-				"buffer_size": 311,
+				"buffer_size": 356,
 				"line_ending": "Unix"
 			}
 		},
@@ -539,7 +531,7 @@
 			"file": "app/stylesheets/application.sass",
 			"settings":
 			{
-				"buffer_size": 823,
+				"buffer_size": 2113,
 				"line_ending": "Unix"
 			}
 		},
@@ -547,39 +539,31 @@
 			"file": "app/views/post.haml",
 			"settings":
 			{
-				"buffer_size": 131,
+				"buffer_size": 710,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/models/post.rb",
+			"file": "app/views/comment.haml",
 			"settings":
 			{
-				"buffer_size": 1156,
+				"buffer_size": 64,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/posts/magical-optimization-of-the-+=-operator-with-strings.markdown",
+			"file": "app/helpers/language_helper.rb",
 			"settings":
 			{
-				"buffer_size": 8882,
+				"buffer_size": 162,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Gemfile",
+			"file": "app/helpers/comments_helper.rb",
 			"settings":
 			{
-				"buffer_size": 833,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config/boot.rb",
-			"settings":
-			{
-				"buffer_size": 587,
+				"buffer_size": 495,
 				"line_ending": "Unix"
 			}
 		}
@@ -616,14 +600,23 @@
 	},
 	"file_history":
 	[
-		"/Users/dantao/Projects/PhilosopherDeveloper/Gemfile",
-		"/Users/dantao/Projects/PhilosopherDeveloper/app/stylesheets/application.sass",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/views/comment.haml",
 		"/Users/dantao/Projects/PhilosopherDeveloper/app/models/post.rb",
-		"/Users/dantao/Projects/PhilosopherDeveloper/config/posts.yml",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/controllers/comments_controller.rb",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/models/comment.rb",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/helpers/comments_helper.rb",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/helpers/language_helper.rb",
 		"/Users/dantao/Projects/PhilosopherDeveloper/app/app.rb",
-		"/Users/dantao/Projects/PhilosopherDeveloper/app/views/post.haml",
-		"/Users/dantao/Projects/PhilosopherDeveloper/app/views/layouts/application.haml",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/models/reader.rb",
+		"/Users/dantao/.rvm/gems/ruby-1.8.7-p358@philosopherdeveloper/gems/dm-core-1.2.0/lib/dm-core/resource.rb",
 		"/Users/dantao/Projects/PhilosopherDeveloper/config/boot.rb",
+		"/Users/dantao/Projects/PhilosopherDeveloper/Rakefile",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/stylesheets/application.sass",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/views/post.haml",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/views/posts/magical-optimization-of-the-+=-operator-with-strings.markdown",
+		"/Users/dantao/Projects/PhilosopherDeveloper/Gemfile",
+		"/Users/dantao/Projects/PhilosopherDeveloper/config/posts.yml",
+		"/Users/dantao/Projects/PhilosopherDeveloper/app/views/layouts/application.haml",
 		"/Users/dantao/Projects/PhilosopherDeveloper/posts/2012-08-25 Fast String Concatenation.markdown",
 		"/Users/dantao/Projects/PhilosopherDeveloper/public/favicon.ico",
 		"/Users/dantao/Projects/PhilosopherDeveloper/.gitignore",
@@ -734,16 +727,7 @@
 		"/Users/dantao/Cardpool/code/rails/main/public/javascripts/search_bar.instrumented.js",
 		"/Users/dantao/Cardpool/code/rails/main/egiftcards/resources/banana_republic/base.css",
 		"/Users/dantao/scratch/listing_25_cards_final.patch",
-		"/Users/dantao/Cardpool/code/rails/main/app/models/experiment.rb",
-		"/Users/dantao/Cardpool/code/rails/main/db/migrate/20120614200413_launch_list100_experiment_to_everyone.rb",
-		"/Users/dantao/Cardpool/code/rails/main/app/views/home/_ga_tracking.html.erb",
-		"/Users/dantao/Cardpool/code/rails/main/app/views/layouts/application.html.erb",
-		"/Users/dantao/Cardpool/code/rails/main/listing_25_cards_final.patch",
-		"/Users/dantao/Dropbox/Cardpool Share/Marketing/Analyses/Experiments/bulk-purchase-aka-knapsack/bulk_purchase_experiment.sql",
-		"/Users/dantao/Cardpool/code/rails/main/spec/controllers/sell_carts_controller_instant_spec.rb",
-		"/Users/dantao/Cardpool/code/rails/main/lib/payment_processor.rb",
-		"/Users/dantao/Cardpool/code/rails/main/spec/lib/payment_processor_spec.rb",
-		"/Users/dantao/Cardpool/code/rails/main/spec/controllers/sell_carts_controller_spec.rb"
+		"/Users/dantao/Cardpool/code/rails/main/app/models/experiment.rb"
 	],
 	"find":
 	{
@@ -766,6 +750,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"}?\"",
+			"name",
+			"Name",
+			"name",
+			"height",
+			"Height",
 			"@@grouped_by_month",
 			"all",
 			"@@table",
@@ -887,13 +877,7 @@
 			"Sam's",
 			"merchantsTheUseLastFourDigitsAsPin",
 			"tiffany",
-			"\"]],",
-			"guitar",
-			"enable_card",
-			"dl_field",
-			"Affordable Fashion for Women",
-			"mark_available",
-			"list_for_sale!"
+			"\"]],"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -942,28 +926,28 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/app.rb",
+					"file": "app/views/layouts/application.haml",
 					"settings":
 					{
-						"buffer_size": 365,
+						"buffer_size": 356,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								365,
-								365
+								167,
+								167
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -975,44 +959,18 @@
 				},
 				{
 					"buffer": 1,
-					"file": "app/views/layouts/application.haml",
-					"settings":
-					{
-						"buffer_size": 311,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								311,
-								311
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/Ruby Haml.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "app/stylesheets/application.sass",
 					"settings":
 					{
-						"buffer_size": 823,
+						"buffer_size": 2113,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								823,
-								823
+								1353,
+								1353
 							]
 						],
 						"settings":
@@ -1022,25 +980,53 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 731.0,
+						"translation.y": 1810.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "app/views/post.haml",
 					"settings":
 					{
-						"buffer_size": 131,
+						"buffer_size": 710,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								131,
-								131
+								45,
+								41
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/views/comment.haml",
+					"settings":
+					{
+						"buffer_size": 64,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								64,
+								64
 							]
 						],
 						"settings":
@@ -1055,74 +1041,18 @@
 				},
 				{
 					"buffer": 4,
-					"file": "app/models/post.rb",
+					"file": "app/helpers/language_helper.rb",
 					"settings":
 					{
-						"buffer_size": 1156,
+						"buffer_size": 162,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								661,
-								661
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/views/posts/magical-optimization-of-the-+=-operator-with-strings.markdown",
-					"settings":
-					{
-						"buffer_size": 8882,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8882,
-								8882
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2877.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "Gemfile",
-					"settings":
-					{
-						"buffer_size": 833,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								296,
-								296
+								162,
+								162
 							]
 						],
 						"settings":
@@ -1136,19 +1066,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "config/boot.rb",
+					"buffer": 5,
+					"file": "app/helpers/comments_helper.rb",
 					"settings":
 					{
-						"buffer_size": 587,
+						"buffer_size": 495,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								587,
-								587
+								495,
+								495
 							]
 						],
 						"settings":
@@ -1210,12 +1140,24 @@
 		"selected_items":
 		[
 			[
-				"boo",
-				"config/boot.rb"
+				"comm",
+				"app/helpers/comments_helper.rb"
+			],
+			[
+				"lan",
+				"app/helpers/language_helper.rb"
 			],
 			[
 				"app",
 				"app/app.rb"
+			],
+			[
+				"appli",
+				"app/stylesheets/application.sass"
+			],
+			[
+				"boo",
+				"config/boot.rb"
 			],
 			[
 				"gem",
@@ -1224,10 +1166,6 @@
 			[
 				"po",
 				"app/views/post.haml"
-			],
-			[
-				"appli",
-				"app/stylesheets/application.sass"
 			],
 			[
 				"pos",
@@ -1712,14 +1650,6 @@
 			[
 				"payment",
 				"lib/payment_processor.rb"
-			],
-			[
-				"payme",
-				"spec/lib/payment_processor_spec.rb"
-			],
-			[
-				"doubl",
-				"lib/doubleplusgood.rb"
 			]
 		],
 		"width": 0.0
@@ -1736,6 +1666,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 432.0,
+	"side_bar_width": 272.0,
 	"status_bar_visible": true
 }
