@@ -1,9 +1,9 @@
 source :rubygems
 
 # Server requirements
-gem "thin", :platform => :ruby
-gem "ffi", "1.0.9", :platform => :mingw
-gem "mongrel", :platform => :mingw
+gem "eventmachine"
+gem "thin"
+gem "ffi", "~> 1.1.5", :platform => :mingw
 
 # Project requirements
 gem "rake"
