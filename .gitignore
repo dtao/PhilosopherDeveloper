@@ -1,2 +1,4 @@
+*.sublime-project
+*.sublime-workspace
 .sass-cache/
 db/*.db
