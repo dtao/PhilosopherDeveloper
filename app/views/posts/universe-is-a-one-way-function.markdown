@@ -130,8 +130,8 @@ A plausible explanation is an attempt to solve the mystery by proposing what the
 
 It's an easy trap to fall into, because when an explanation is *inconsistent* with what we know, we can generally rule it out. I guess our natural instinct is to therefore run with consistency when we find it.
 
-The brain uses heuristics
--------------------------
+Why are we like this?
+---------------------
 
 Not that it particularly matters, but I do have a hypothesis as to why we humans tend to think in this way.\*\*\*\*
 
@@ -140,6 +140,18 @@ In the very beginning of my explanation of one-way functions, I mentioned that t
 And yet there is a tremendous advantage to understanding the world--both practically and emotionally. Practically speaking, we're better able to predict and manipulate our environment when we understand its rules--so a greater capacity for understanding is an advantage. I also think we're biologically hard-wired to feel rewarded or even euphoric whenever we're able to solve difficult mental problems, for just this reason. It's a kind of positive reinforcement, encouraging us pursue even deeper understanding. (It's certainly one of the reasons I believe humanity has come this far in science and technology.) And so emotionally, I think it makes sense for humans to crave this experience: of figuring things out, of "solving" the mysteries of our lives.
 
 ![Eureka!](/images/eureka.jpg)
+
+### The brain uses heuristics
+
+In computer science (and other fields as well) there are classes of very hard problems that cannot--at least to anyone's present knowledge--be "solved" efficiently. One such class of problems is known as [NP Complete](http://en.wikipedia.org/wiki/Np_complete). The *NP* stands for *non-polynomial* (time), which basically means that these problems take so long to solve, the time required--as a function of the size of the input--cannot even be expressed by a polynomial expression.
+
+One of the easier-to-explain\*\*\*\*\* examples of an NP Complete problem is a famous one known as the [Knapsack Problem](http://en.wikipedia.org/wiki/Knapsack_problem), which is this: given some container of finite capacity and a set of items with differing weights (or sizes) and values, find the optimal assortment of items that can be stored in the container.
+
+![The so-called Knapsack Problem](/images/knapsack.png)
+
+I happen to have a bit of firsthand experience with this problem, believe it or not, because at [Cardpool](http://www.cardpool.com/buy-gift-cards) I recently implemented a feature that allows customers to specify a total card value they'd like to purchase and have cards automatically selected and added to their cart\*\*\*\*\*\*. This is essentially a special case of the knapsack problem where every item's "weight" happens to also be its value (in fact, internally we still refer to the feature as the "knapsack" feature).
+
+Why do I bring this up? Well, in building this functionality, I was already aware that knapsack is an NP problem. Therefore it isn't realistic to try to solve with 100% accuracy or correctness merely for a convenient feature of a retail website. What we software developers do in these situations is figure out [heuristics](http://en.wikipedia.org/wiki/Heuristic)
 
 ***
 
@@ -150,3 +162,7 @@ And yet there is a tremendous advantage to understanding the world--both practic
 <sub>\*\*\*No pun intended--I swear!</sub>
 
 <sub>\*\*\*\*Notice that this hypothesis is itself a demonstration of the Sherlock tendency! Recursion, anyone?</sub>
+
+<sub>\*\*\*\*\*By which I mean, the only example I know of off the top of my head besides [Traveling Salesman](http://en.wikipedia.org/wiki/Traveling_salesman_problem).</sub>
+
+<sub>\*\*\*\*\*\*If you'd like to see this feature in action, [try searching for a few $1,000 of Home Depot cards](http://www.cardpool.com/buy/home-depot-gift-cards) on Cardpool's website.</sub>
