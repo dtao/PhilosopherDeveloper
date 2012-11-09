@@ -151,7 +151,11 @@ One of the easier-to-explain\*\*\*\*\* examples of an NP Complete problem is a f
 
 I happen to have a bit of firsthand experience with this problem, believe it or not, because at [Cardpool](http://www.cardpool.com/buy-gift-cards) I recently implemented a feature that allows customers to specify a total card value they'd like to purchase and have cards automatically selected and added to their cart\*\*\*\*\*\*. This is essentially a special case of the knapsack problem where every item's "weight" happens to also be its value (in fact, internally we still refer to the feature as the "knapsack" feature).
 
-Why do I bring this up? Well, in building this functionality, I was already aware that knapsack is an NP problem. Therefore it isn't realistic to try to solve with 100% accuracy or correctness merely for a convenient feature of a retail website. What we software developers do in these situations is figure out [heuristics](http://en.wikipedia.org/wiki/Heuristic)
+Why do I bring this up? Well, in building this functionality, I was already aware that knapsack is an NP problem. Therefore it isn't realistic to try to solve with 100% accuracy or correctness merely for a convenient feature of a retail website. What we software developers do in these situations is figure out [heuristics](http://en.wikipedia.org/wiki/Heuristic), or rough solutions that are *good enough* for practical use.
+
+In the case of the feature I wrote, I came up with a very basic algorithm initially. I'm sure many other engineers reading this could easily guess what that algorithm might be. I also introduced a few optimizations that I felt were relatively decent. At the suggestion of one of my teammates, I then ran some tests to measure the performance of this algorithm in terms of speed and accuracy--i.e., how close it came to filling a user's cart with the desired total value of cards.
+
+With my optimizations, sampled over thousands of randomized carts, I found that the algorithm generally got to about 94%. Not bad. I THINK I'M GOING INTO TOO MUCH DETAIL ABOUT THIS DAMN FEATURE.
 
 ***
 
@@ -165,4 +169,4 @@ Why do I bring this up? Well, in building this functionality, I was already awar
 
 <sub>\*\*\*\*\*By which I mean, the only example I know of off the top of my head besides [Traveling Salesman](http://en.wikipedia.org/wiki/Traveling_salesman_problem).</sub>
 
-<sub>\*\*\*\*\*\*If you'd like to see this feature in action, [try searching for a few $1,000 of Home Depot cards](http://www.cardpool.com/buy/home-depot-gift-cards) on Cardpool's website.</sub>
+<sub>\*\*\*\*\*\*If you'd like to see this feature in action, [try using the "Bulk Purchase" button on Cardpool's Home Depot page](http://www.cardpool.com/buy/home-depot-gift-cards) and searching for, say, $2000 of cards.</sub>
