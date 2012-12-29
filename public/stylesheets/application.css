@@ -1,139 +1,94 @@
-html, body {
-  font-family: Helvetica, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%; }
+@font-face {
+  font-family: Oswald;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Oswald Regular"), local("Oswald-Regular"), url("/fonts/Oswald.woff") format("woff"); }
+
+body {
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px);
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px);
+  background-repeat: repeat-x;
+  width: 67%;
+  margin: auto;
+  padding-bottom: 60px; }
 
 a {
-  color: #000088;
+  color: #36bcab;
   text-decoration: none; }
-
-a:hover {
-  color: #888800; }
-
-code {
-  font-family: Consolas, Inconsolata, monospace; }
+  a:hover {
+    color: #1f6d63; }
 
 #header {
-  background-color: #d2dadf;
   border-bottom: 1px solid black;
-  padding: 12px 25px; }
+  text-align: center; }
   #header h1 {
-    color: #445560;
-    font-size: 24px;
-    line-height: 24px;
-    margin: 0; }
-
-@media all and (min-width: 800px) {
-  #header {
-    position: absolute;
-    right: 0;
-    height: 24px;
-    width: 350px; } }
-#menu-header {
-  background-color: #d2dadf;
-  border-top: 1px solid black;
-  padding: 5px 25px; }
-  #menu-header h1 {
-    color: #445560;
+    font-family: Oswald, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    font-size: 96px;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+    text-transform: uppercase; }
+    #header h1 a {
+      color: black;
+      text-decoration: none; }
+      #header h1 a:hover {
+        color: #36bcab; }
+  #header h2 {
+    font-family: Oswald, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    color: #555555;
     font-size: 32px;
-    line-height: 32px;
-    margin: 0; }
-
-#menu {
-  border-top: 1px solid black;
-  padding: 0 25px 25px; }
-  #menu .menu-heading {
-    font-size: 24px; }
-  #menu .menu-item {
-    font-size: 16px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; }
-  #menu a {
-    font-weight: bold; }
-
-@media all and (min-width: 800px) {
-  #menu-header {
-    display: none; }
-
-  #menu {
-    position: absolute;
-    top: 48px;
-    bottom: 0;
-    right: 0;
-    width: 350px; } }
-#content {
-  padding: 0 25px 25px; }
-  #content p, #content li, #content label, #content input, #content textarea {
-    font-size: 24px; }
-  #content pre {
-    background-color: #d2dadf;
-    font-size: 20px;
-    padding: 10px; }
-  #content h1.post-title {
-    font-size: 48px;
-    font-weight: 300;
-    margin-bottom: 0; }
-  #content h2.post-info {
-    color: #888888;
-    font-size: 24px;
-    font-weight: 300;
     margin-top: 0; }
-  #content h2 {
-    font-size: 36px; }
-  #content h3 {
-    font-size: 28px; }
 
-@media all and (min-width: 800px) {
-  #content {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 400px;
-    border-right: 1px solid black;
-    overflow: auto; } }
-#comments {
-  border-top: 1px solid black;
-  margin-top: 25px; }
-  #comments .comment {
-    padding: 10px; }
-    #comments .comment .reader-name {
-      font-size: 28px;
-      font-weight: bold; }
-    #comments .comment .comment-time {
-      color: #445560;
-      font-size: 16px; }
-    #comments .comment p {
-      font-size: 20px;
-      margin: 10px auto; }
-  #comments .comment:nth-child(odd) {
-    background-color: #e1e6ea; }
-  #comments .comment:nth-child(even) {
-    background-color: #f0f3f4; }
-  #comments form p {
-    font-weight: bold; }
-  #comments .field {
-    margin-top: 10px; }
-    #comments .field input, #comments .field textarea {
-      border: 1px solid black; }
-    #comments .field textarea {
-      height: 200px;
-      width: 500px; }
-    @media all and (min-width: 1200px) {
-      #comments .field label {
+.post {
+  font-family: Cambria, Georgia, serif;
+  font-size: 24px; }
+  .post h1, .post h2, .post h3 {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 300; }
+  .post .heading h1 .title {
+    font-size: 48px;
+    letter-spacing: -2px;
+    margin-bottom: 0; }
+  .post .heading h1 .date {
+    color: #555555;
+    font-size: 24px; }
+  .post .content {
+    border-bottom: 1px solid black;
+    margin-bottom: 25px; }
+  .post .comments {
+    font-size: 16px; }
+    .post .comments .field {
+      margin-bottom: 10px; }
+      .post .comments .field label {
         display: inline-block;
         vertical-align: top;
-        width: 200px; }
-      #comments .field input, #comments .field textarea {
-        margin-left: 0; }
-      #comments .field textarea {
-        margin-left: 0; } }
-    @media all and (max-width: 1199px) {
-      #comments .field label {
-        display: block; } }
-    @media all and (max-width: 549px) {
-      #comments .field input, #comments .field textarea {
-        width: 100%; } }
+        width: 250px; }
+      .post .comments .field input[type="text"] {
+        font-size: 20px;
+        margin: 0;
+        padding: 5px; }
+      .post .comments .field textarea {
+        font-size: 20px;
+        margin: 0;
+        height: 100px;
+        width: 300px; }
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #eeeeee;
+  line-height: 50px; }
+  #footer ul.menu {
+    list-style: none;
+    width: 67%;
+    margin: 0 auto;
+    padding-left: 0; }
+    #footer ul.menu li {
+      display: inline-block;
+      margin-right: 10px; }

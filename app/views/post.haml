@@ -1,28 +1,12 @@
-%h1.post-title
-  = @post.title
+%article.post
+  %section.heading
+    = partial(:heading, :locals => { :post => @post })
 
-%h2.post-info
-  = @post.date.strftime("%B %d, %Y")
-  |
-  %a(href="#comments")= noun("Comment", @post.comments.count)
+  %section.content
+    = markdown(:"posts/#{@post.identifier}").gsub("--", "&mdash;")
 
-= markdown(:"posts/#{@post.identifier}").gsub("--", "&mdash;")
+  %section.comments
+    - @post.comments.each do |comment|
+      = partial(:comment, :locals => { :comment => comment })
 
-#comments
-  - @post.comments.each do |comment|
-    = render(:comment, :locals => { :comment => comment }, :layout => false)
-
-  %form(action="/comments/#{@post.identifier}" method="POST")
-    %p Leave a comment
-    .field
-      %label(for="name") Name
-      %input(type="text" name="name")
-    .field
-      %label(for="email") E-mail (optional)
-      %input(type="text" name="email")
-    .field
-      %label Comment
-      %textarea(name="text")
-    .field
-      %label
-      %input(type="submit")
+    = partial(:comment_form, :locals => { :post => @post })

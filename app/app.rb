@@ -7,9 +7,11 @@ class Blog < Padrino::Application
 
   enable :sessions
 
+  get "/index" do
+  end
+
   get "/" do
-    @post = Post.most_recent
-    render :post
+    return redirect("/#{Post.most_recent.identifier}")
   end
 
   get "/", :with => :identifier do

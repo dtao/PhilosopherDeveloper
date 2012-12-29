@@ -1,0 +1,15 @@
+%form(action="/comments/#{post.identifier}" method="POST")
+  %fieldset
+    %legend Leave a comment
+    .field
+      %label(for="name") Name
+      %input(type="text" name="name")
+    .field
+      %label(for="email") E-mail (optional)
+      %input(type="text" name="email")
+    .field
+      %label Comment
+      %textarea(name="text")
+    .field
+      %label
+      %input(type="submit")

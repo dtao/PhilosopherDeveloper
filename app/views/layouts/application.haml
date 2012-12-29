@@ -6,17 +6,12 @@
 
 %body
   #header
-    %h1 The Philosopher Developer
+    %h1 <a href="/">The Philosopher Developer</a>
+    %h2 half-sound logic, half-decent code
 
-  #content
-    = yield
+  = yield
 
-  #menu-header
-    %h1 Menu
-
-  #menu
-    - Post.by_month do |month, posts|
-      %h1.menu-heading= month.strftime("%B %Y")
-      - posts.each do |post|
-        %p.menu-item
-          %a(href="#{post.identifier}")= post.title
+  #footer
+    %ul.menu
+      %li <a href="#comments">Comments</a>
+      %li <a href="/index">All Posts</a>
