@@ -12,6 +12,10 @@ body {
   margin: auto;
   padding-bottom: 60px; }
 
+h1, h2, h3 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 300; }
+
 a {
   color: #36bcab;
   text-decoration: none; }
@@ -45,9 +49,6 @@ a {
 .post {
   font-family: Cambria, Georgia, serif;
   font-size: 24px; }
-  .post h1, .post h2, .post h3 {
-    font-family: Helvetica, Arial, sans-serif;
-    font-weight: 300; }
   .post .heading h1 .title {
     font-size: 48px;
     letter-spacing: -2px;
@@ -75,6 +76,22 @@ a {
         margin: 0;
         height: 100px;
         width: 300px; }
+
+ul.posts {
+  display: table;
+  padding-left: 0;
+  width: 100%; }
+  ul.posts .post {
+    display: table-row; }
+    ul.posts .post:hover {
+      background-color: #dfefff; }
+    ul.posts .post .title,
+    ul.posts .post .date {
+      display: table-cell;
+      padding: 5px; }
+    ul.posts .post .date {
+      text-align: right;
+      width: 250px; }
 
 #footer {
   position: fixed;

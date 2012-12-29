@@ -8,6 +8,8 @@ class Blog < Padrino::Application
   enable :sessions
 
   get "/index" do
+    @posts = Post.all_by_period
+    render :index
   end
 
   get "/" do

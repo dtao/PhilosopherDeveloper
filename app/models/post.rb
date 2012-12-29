@@ -1,6 +1,21 @@
 require "yaml"
 
 class Post
+  MONTHS_TO_PERIODS = {
+    1  => 12,
+    2  => 12,
+    3  => 3,
+    4  => 3,
+    5  => 3,
+    6  => 6,
+    7  => 6,
+    8  => 6,
+    9  => 9,
+    10 => 9,
+    11 => 9,
+    12 => 12
+  }
+
   def self.load_all(yaml_file)
     @@posts ||= begin
       all_posts = []
@@ -20,9 +35,11 @@ class Post
       hash
     end
 
-    @@posts_by_month ||= @@posts.group_by { |p| Date.new(p.date.year, p.date.month, 1) }
+    @@posts_by_month ||= @@posts.group_by(&:month)
+    @@posts_by_period ||= @@posts.group_by(&:period)
 
     @@months ||= @@posts_by_month.keys.sort.reverse
+    @@periods ||= @@posts_by_period.keys.sort.reverse
   end
 
   def self.each
@@ -31,9 +48,15 @@ class Post
     end
   end
 
-  def self.by_month
-    @@months.each do |month|
-      yield [month, @@posts_by_month[month]]
+  def self.all_by_month
+    @@months.map do |month|
+      [month, @@posts_by_month[month]]
+    end
+  end
+
+  def self.all_by_period
+    @@periods.map do |period|
+      [period, @@posts_by_period[period]]
     end
   end
 
@@ -45,10 +68,40 @@ class Post
     @@table[identifier]
   end
 
+  def self.friendly_month(date)
+    date.strftime("%B %Y")
+  end
+
+  def self.friendly_period(date)
+    case date.month
+    when 3
+      "Spring #{date.year}"
+    when 6
+      "Summer #{date.year}"
+    when 9
+      "Fall #{date.year}"
+    when 12
+      "Winter #{date.year} - #{date.year + 1}"
+    end
+  end
+
   attr_reader :identifier, :date, :title, :published
 
   def comments
     Comment.all(:post_identifier => self.identifier)
+  end
+
+  def month
+    Date.new(@date.year, @date.month, 1)
+  end
+
+  def period
+    year = @date.month > 2 ? @date.year : @date.year - 1
+    Date.new(year, MONTHS_TO_PERIODS[@date.month], 1)
+  end
+
+  def friendly_date
+    @date.strftime("%B %d, %Y")
   end
 
   private

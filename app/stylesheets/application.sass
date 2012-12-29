@@ -1,5 +1,6 @@
 // Colors
 $lightGreen: #36BCAB
+$lightBlue: #dfefff
 $darkGray: #555
 $lightGray: #eee
 
@@ -30,6 +31,9 @@ body
   width: 67%
   margin: auto
   padding-bottom: 60px
+
+h1, h2, h3
+  @include headingFont
 
 a
   color: $lightGreen
@@ -63,9 +67,6 @@ a
 .post
   @include contentFont
   font-size: 24px
-
-  h1, h2, h3
-    @include headingFont
 
   .heading
 
@@ -104,6 +105,25 @@ a
         margin: 0
         height: 100px
         width: 300px
+
+ul.posts
+  display: table
+  padding-left: 0
+  width: 100%
+
+  .post
+    display: table-row
+    &:hover
+      background-color: $lightBlue
+
+    .title,
+    .date
+      display: table-cell
+      padding: 5px
+
+    .date
+      text-align: right
+      width: 250px
 
 #footer
   position: fixed
