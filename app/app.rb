@@ -7,6 +7,8 @@ class Blog < Padrino::Application
 
   enable :sessions
 
+  Tilt.prefer Sinatra::Glorify::Template
+
   get "/index" do
     @posts = Post.all_by_period
     render :index

@@ -24,6 +24,9 @@ $lightGray: #eee
   font-family: Helvetica, Arial, sans-serif
   font-weight: 300
 
+@mixin codeFont
+  font-family: Consolas, Inconsolata, monospace
+
 body
   background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px)
   background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px)
@@ -37,9 +40,25 @@ h1, h2, h3
 
 a
   color: $lightGreen
+  font-weight: bold
   text-decoration: none
   &:hover
     color: darken($lightGreen, 20%)
+
+blockquote
+  background-color: $lightGray
+  border-left: 5px solid darken($lightGray, 20%)
+  font-size: 20px
+  padding: 5px
+
+  p
+    padding-left: 10px
+
+pre
+  @include codeFont
+  background-color: $lightGray
+  font-size: 16px
+  padding: 10px
 
 #header
   border-bottom: 1px solid black
@@ -119,7 +138,7 @@ ul.posts
     .title,
     .date
       display: table-cell
-      padding: 5px
+      padding: 5px 0
 
     .date
       text-align: right

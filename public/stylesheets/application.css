@@ -18,9 +18,24 @@ h1, h2, h3 {
 
 a {
   color: #36bcab;
+  font-weight: bold;
   text-decoration: none; }
   a:hover {
     color: #1f6d63; }
+
+blockquote {
+  background-color: #eeeeee;
+  border-left: 5px solid #bbbbbb;
+  font-size: 20px;
+  padding: 5px; }
+  blockquote p {
+    padding-left: 10px; }
+
+pre {
+  font-family: Consolas, Inconsolata, monospace;
+  background-color: #eeeeee;
+  font-size: 16px;
+  padding: 10px; }
 
 #header {
   border-bottom: 1px solid black;
@@ -88,7 +103,7 @@ ul.posts {
     ul.posts .post .title,
     ul.posts .post .date {
       display: table-cell;
-      padding: 5px; }
+      padding: 5px 0; }
     ul.posts .post .date {
       text-align: right;
       width: 250px; }
