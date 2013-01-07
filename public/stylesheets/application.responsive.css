@@ -1,0 +1,159 @@
+@font-face {
+  font-family: Oswald;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Oswald Regular"), local("Oswald-Regular"), url("/fonts/Oswald.woff") format("woff"); }
+
+@font-face {
+  font-family: Segoe;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Segoe UI"), local("Segoe-UI"), url("/fonts/SegoeUI.woff") format("woff"); }
+
+body {
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px);
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px);
+  background-repeat: repeat-x;
+  width: 67%;
+  margin: auto;
+  padding-bottom: 60px; }
+
+h1, h2, h3 {
+  font-family: Segoe, Helvetica, Arial, sans-serif;
+  font-weight: 300; }
+
+a {
+  color: #36bcab;
+  font-weight: bold;
+  text-decoration: none; }
+  a:hover {
+    color: #1f6d63; }
+
+blockquote {
+  background-color: #eeeeee;
+  border-left: 5px solid #bbbbbb;
+  font-size: 20px;
+  padding: 5px; }
+  blockquote p {
+    padding-left: 10px; }
+
+pre {
+  font-family: Consolas, Inconsolata, monospace;
+  background-color: #eeeeee;
+  font-size: 16px;
+  padding: 10px; }
+
+#header {
+  border-bottom: 1px solid black;
+  text-align: center; }
+  #header h1 {
+    font-family: Oswald, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    font-size: 96px;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+    text-transform: uppercase; }
+    #header h1 a {
+      color: black;
+      text-decoration: none; }
+      #header h1 a:hover {
+        color: #36bcab; }
+  #header h2 {
+    font-family: Oswald, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    color: #555555;
+    font-size: 32px;
+    margin-top: 0; }
+
+.post {
+  font-family: Cambria, Georgia, serif;
+  font-size: 24px; }
+  .post .heading h1 .title {
+    font-size: 48px;
+    letter-spacing: -2px;
+    margin-bottom: 0; }
+  .post .heading h1 .date {
+    color: #555555;
+    font-size: 24px; }
+  .post .content {
+    border-bottom: 1px solid black;
+    margin-bottom: 25px; }
+  .post .comments {
+    font-size: 16px; }
+    .post .comments .field {
+      margin-bottom: 10px; }
+      .post .comments .field label {
+        display: inline-block;
+        vertical-align: top;
+        width: 250px; }
+      .post .comments .field input[type="text"] {
+        font-size: 20px;
+        margin: 0;
+        padding: 5px; }
+      .post .comments .field textarea {
+        font-size: 20px;
+        margin: 0;
+        height: 100px;
+        width: 300px; }
+
+ul.posts {
+  display: table;
+  padding-left: 0;
+  width: 100%; }
+  ul.posts .post {
+    display: table-row; }
+    ul.posts .post:hover {
+      background-color: #dfefff; }
+    ul.posts .post .title,
+    ul.posts .post .date {
+      display: table-cell;
+      padding: 5px 0; }
+    ul.posts .post .date {
+      text-align: right;
+      width: 250px; }
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #3b3b3b;
+  line-height: 50px; }
+  #footer ul.menu {
+    list-style: none;
+    width: 67%;
+    margin: 0 auto;
+    padding-left: 0; }
+    #footer ul.menu li {
+      font-family: Segoe, Helvetica, Arial, sans-serif;
+      display: inline-block;
+      margin-right: 10px; }
+      #footer ul.menu li a {
+        color: #7edace; }
+        #footer ul.menu li a:hover {
+          color: #a6e5dd;
+          text-decoration: underline; }
+
+@media all and (max-width: 640px) {
+  body {
+    width: 100%; }
+
+  #header h1 {
+    font-size: 48px; }
+  #header h2 {
+    font-size: 24px; }
+
+  .post {
+    font-size: 16px;
+    padding: 10px; }
+    .post .heading h1 .title {
+      font-size: 32px; }
+    .post .heading h1 .date {
+      font-size: 16px; }
+
+  #footer ul.menu {
+    width: 100%;
+    padding: 0 10px; } }
