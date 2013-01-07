@@ -11,6 +11,12 @@ $lightGray: #eee
   font-weight: 400
   src: local("Oswald Regular"), local("Oswald-Regular"), url("/fonts/Oswald.woff") format("woff")
 
+@font-face
+  font-family: Segoe
+  font-style: normal
+  font-weight: 400
+  src: local("Segoe UI"), local("Segoe-UI"), url("/fonts/SegoeUI.woff") format("woff")
+
 @mixin contentFont
   font-family: Cambria, Georgia, serif
 
@@ -21,8 +27,7 @@ $lightGray: #eee
   text-rendering: optimizeLegibility
 
 @mixin headingFont
-  font-family: Helvetica, Arial, sans-serif
-  font-weight: 300
+  font-family: Segoe, Helvetica, Arial, sans-serif
 
 @mixin codeFont
   font-family: Consolas, Inconsolata, monospace
@@ -37,6 +42,7 @@ body
 
 h1, h2, h3
   @include headingFont
+  font-weight: 300
 
 a
   color: $lightGreen
@@ -150,7 +156,7 @@ ul.posts
   left: 0
   right: 0
   height: 50px
-  background-color: $lightGray
+  background-color: darken($darkGray, 10%)
   line-height: 50px
 
   ul.menu
@@ -160,5 +166,13 @@ ul.posts
     padding-left: 0
 
     li
+      @include headingFont
       display: inline-block
       margin-right: 10px
+
+      a
+        color: lighten($lightGreen, 20%)
+
+        &:hover
+          color: lighten($lightGreen, 30%)
+          text-decoration: underline

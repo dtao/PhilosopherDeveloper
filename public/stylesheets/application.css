@@ -4,6 +4,12 @@
   font-weight: 400;
   src: local("Oswald Regular"), local("Oswald-Regular"), url("/fonts/Oswald.woff") format("woff"); }
 
+@font-face {
+  font-family: Segoe;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Segoe UI"), local("Segoe-UI"), url("/fonts/SegoeUI.woff") format("woff"); }
+
 body {
   background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px);
   background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px);
@@ -13,7 +19,7 @@ body {
   padding-bottom: 60px; }
 
 h1, h2, h3 {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Segoe, Helvetica, Arial, sans-serif;
   font-weight: 300; }
 
 a {
@@ -114,7 +120,7 @@ ul.posts {
   left: 0;
   right: 0;
   height: 50px;
-  background-color: #eeeeee;
+  background-color: #3b3b3b;
   line-height: 50px; }
   #footer ul.menu {
     list-style: none;
@@ -122,5 +128,11 @@ ul.posts {
     margin: 0 auto;
     padding-left: 0; }
     #footer ul.menu li {
+      font-family: Segoe, Helvetica, Arial, sans-serif;
       display: inline-block;
       margin-right: 10px; }
+      #footer ul.menu li a {
+        color: #7edace; }
+        #footer ul.menu li a:hover {
+          color: #a6e5dd;
+          text-decoration: underline; }
