@@ -25,40 +25,44 @@ One habit of Yujun's that bugged me, though, was that he *loved* to refactor cod
 
 Since a code snippet will probably better illustrate this type of refactoring than I could with words, here's an example. Suppose we came across this (completely fabricated) code on our project:
 
-    public void sendNotifications() {
-        Iterable<Notification> pendingNotifications = getPendingNotifications();
+```java
+public void sendNotifications() {
+    Iterable<Notification> pendingNotifications = getPendingNotifications();
 
-        // Group notifications by recipient.
-        Map<String, List<Notification>> notificationsByRecipient = new HashMap<String, List<Notification>>();
-        for (Notification n : pendingNotifications) {
-            String recipient = n.getRecipient();
-            if (!notificationsByRecipient.containsKey(recipient)) {
-                notificationsByRecipient.put(recipient, new ArrayList<Notification>());
-            }
-            notificationsByRecipient.get(recipient).add(n);
+    // Group notifications by recipient.
+    Map<String, List<Notification>> notificationsByRecipient = new HashMap<String, List<Notification>>();
+    for (Notification n : pendingNotifications) {
+        String recipient = n.getRecipient();
+        if (!notificationsByRecipient.containsKey(recipient)) {
+            notificationsByRecipient.put(recipient, new ArrayList<Notification>());
         }
-
-        // For each recipient, create a new notification task to be executed by the scheduler.
-        Set<String> recipients = notificationsByRecipient.keySet();
-        for (String recipient : recipients) {
-            List<Notification> notificationsForRecipient = notificationsByRecipient.get(recipient);
-            NotificationTask task = new NotificationTask(recipient);
-            for (Notification n : notificationsForRecipient) {
-              task.addNotification(n);
-            }
-            task.scheduleForDelivery();
-        }
+        notificationsByRecipient.get(recipient).add(n);
     }
+
+    // For each recipient, create a new notification task to be executed by the scheduler.
+    Set<String> recipients = notificationsByRecipient.keySet();
+    for (String recipient : recipients) {
+        List<Notification> notificationsForRecipient = notificationsByRecipient.get(recipient);
+        NotificationTask task = new NotificationTask(recipient);
+        for (Notification n : notificationsForRecipient) {
+          task.addNotification(n);
+        }
+        task.scheduleForDelivery();
+    }
+}
+```
 
 Yujun would refactor the above into something like this:
 
-    public void sendNotifications() {
-        Map<String, List<Notification>> notificationGroups = groupNotificationsByRecipient(getPendingNotifications());
-        Iterable<NotificationTask> tasks = createNotificationTasksFromGroups(notificationGroups);
-        scheduleNotificationTasksForDelivery(tasks);
-    }
+```java
+public void sendNotifications() {
+    Map<String, List<Notification>> notificationGroups = groupNotificationsByRecipient(getPendingNotifications());
+    Iterable<NotificationTask> tasks = createNotificationTasksFromGroups(notificationGroups);
+    scheduleNotificationTasksForDelivery(tasks);
+}
 
-    // same implementation as above, just broken up into methods
+// same implementation as above, just broken up into methods
+```
 
 Here's what bothered me about this kind of refactoring at the time: *there was still functionality to build.* While I would have conceded that Yujun's refactoring arguably made the code more *readable*, it did not get us any closer to completing the [stories](http://en.wikipedia.org/wiki/User_stories) we needed to finish that iteration. For me, that meant it was not an appropriate use of our time as (expensive) consultants. It was not even reducing code duplication, as the code in question only appeared in one place. I felt this sort of thing belonged at the bottom of a prioritized list of work.
 
@@ -101,17 +105,19 @@ Pete noticed that in one of my commits I had added a snippet of code in a place 
 
 The problem actually went beyond the poor placement of a code snippet within a larger codebase, though. I really can't recall what the actual code was, so I'll just write another little fabrication to illustrate the problem:
 
-    // what was already there
-    updateListContents();
-    attachEventHandlers();
-    refreshStyles();
+```javascript
+// what was already there
+updateListContents();
+attachEventHandlers();
+refreshStyles();
 
-    // what I added
-    for (var i = 0; i < pages.length; i++) {
-      if (pageIsHidden(pages[i])) {
-        hideDialogs(pages[i]);
-      }
-    }
+// what I added
+for (var i = 0; i < pages.length; i++) {
+  if (pageIsHidden(pages[i])) {
+    hideDialogs(pages[i]);
+  }
+}
+```
 
 Again, that isn't the actual code I wrote; but I'm pretty confident it was something like that. In retrospect, I'm pretty ashamed to admit that I *ever* failed to see the problem there. But as Pete was kind enough to articulate for me, and as I quickly understood, there most certainly is a problem: the above code fails to maintain a **consistent abstraction level**.
 
