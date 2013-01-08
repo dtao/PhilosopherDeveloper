@@ -76,7 +76,8 @@ pre {
     margin-bottom: 0; }
   .post .heading h1 .date {
     color: #555555;
-    font-size: 24px; }
+    font-size: 24px;
+    white-space: nowrap; }
   .post .content {
     border-bottom: 1px solid black;
     margin-bottom: 25px; }
@@ -140,6 +141,15 @@ ul.posts {
 @media all and (max-width: 640px) {
   body {
     width: 100%; }
+
+  blockquote {
+    font-size: 14px;
+    margin: 0; }
+    blockquote p {
+      padding: 0; }
+
+  pre {
+    font-size: 12px; }
 
   #header h1 {
     font-size: 48px; }
