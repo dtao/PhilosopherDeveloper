@@ -131,9 +131,12 @@ ul.posts {
     #footer ul.menu li {
       font-family: Segoe, Helvetica, Arial, sans-serif;
       display: inline-block;
+      color: white;
       margin-right: 10px; }
       #footer ul.menu li a {
         color: #7edace; }
         #footer ul.menu li a:hover {
           color: #a6e5dd;
           text-decoration: underline; }
+        #footer ul.menu li a img {
+          vertical-align: middle; }
