@@ -9,17 +9,7 @@ class Blog < Padrino::Application
 
   Tilt.prefer Sinatra::Glorify::Template
 
-  get "/index" do
-    @posts = Post.all_by_period
-    render :index
-  end
-
   get "/" do
-    return redirect("/#{Post.most_recent.identifier}")
-  end
-
-  get "/", :with => :identifier do
-    @post = Post.get(params[:identifier])
-    render :post
+    redirect("/posts/latest")
   end
 end

@@ -60,7 +60,7 @@ class Post
     end
   end
 
-  def self.most_recent
+  def self.latest
     @@posts.first
   end
 

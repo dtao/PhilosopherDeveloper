@@ -6,5 +6,5 @@
     - posts.each do |post|
       %li.post
         .title
-          %a(href="/#{post.identifier}")= post.title
+          %a(href="/posts/#{post.identifier}")= post.title
         .date= post.friendly_date
