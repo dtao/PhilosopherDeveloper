@@ -4,6 +4,7 @@ source :rubygems
 gem "eventmachine"
 gem "thin"
 gem "ffi", "~> 1.1.5", :platform => :mingw
+gem "foreman"
 
 # Project requirements
 gem "rake"
@@ -33,7 +34,6 @@ group :development do
   gem "guard", :platform => :ruby
   gem "guard-less", :platform => :ruby
   gem "guard-sass", :platform => :ruby
-  gem "heroku"
   gem "shotgun"
 end
 
