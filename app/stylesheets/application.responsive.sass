@@ -1,9 +1,6 @@
 @import "application"
 
 @media all and (max-width: 640px)
-  body
-    width: 100%
-
   blockquote
     font-size: 14px
     margin: 0
@@ -21,7 +18,8 @@
     h2
       font-size: 24px
 
-  .post
+  article.post
+    width: auto
     font-size: 16px
     padding: 10px
 
@@ -32,6 +30,16 @@
 
         .date
           font-size: 16px
+
+  .index
+    width: auto
+
+    ul.posts
+      li.post
+        font-size: 16px
+
+        .date
+          width: 150px
 
   #footer
     ul.menu

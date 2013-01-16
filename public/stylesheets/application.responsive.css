@@ -14,8 +14,6 @@ body {
   background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px);
   background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px);
   background-repeat: repeat-x;
-  width: 67%;
-  margin: auto;
   padding-bottom: 60px; }
 
 h1, h2, h3 {
@@ -67,53 +65,59 @@ pre {
     font-size: 32px;
     margin-top: 0; }
 
-.post {
+article.post {
   font-family: Cambria, Georgia, serif;
-  font-size: 24px; }
-  .post .heading h1 .title {
+  font-size: 24px;
+  width: 67%;
+  margin: auto; }
+  article.post section.heading h1 .title {
     font-size: 48px;
     letter-spacing: -2px;
     margin-bottom: 0; }
-  .post .heading h1 .date {
+  article.post section.heading h1 .date {
     color: #555555;
     font-size: 24px;
     white-space: nowrap; }
-  .post .content {
+  article.post section.content {
     border-bottom: 1px solid black;
     margin-bottom: 25px; }
-  .post .comments {
+  article.post section.comments {
     font-size: 16px; }
-    .post .comments .field {
+    article.post section.comments .field {
       margin-bottom: 10px; }
-      .post .comments .field label {
+      article.post section.comments .field label {
         display: inline-block;
         vertical-align: top;
         width: 250px; }
-      .post .comments .field input[type="text"] {
+      article.post section.comments .field input[type="text"] {
         font-size: 20px;
         margin: 0;
         padding: 5px; }
-      .post .comments .field textarea {
+      article.post section.comments .field textarea {
         font-size: 20px;
         margin: 0;
         height: 100px;
         width: 300px; }
 
-ul.posts {
-  display: table;
-  padding-left: 0;
-  width: 100%; }
-  ul.posts .post {
-    display: table-row; }
-    ul.posts .post:hover {
-      background-color: #dfefff; }
-    ul.posts .post .title,
-    ul.posts .post .date {
-      display: table-cell;
-      padding: 5px 0; }
-    ul.posts .post .date {
-      text-align: right;
-      width: 250px; }
+.index {
+  width: 67%;
+  margin: auto; }
+  .index ul.posts {
+    display: table;
+    padding-left: 0;
+    width: 100%; }
+    .index ul.posts li.post {
+      display: table-row;
+      font-size: 24px; }
+      .index ul.posts li.post:hover {
+        background-color: #dfefff; }
+      .index ul.posts li.post .title,
+      .index ul.posts li.post .date {
+        display: table-cell;
+        padding: 5px 0; }
+      .index ul.posts li.post .date {
+        text-align: right;
+        width: 250px; }
 
 #footer {
   position: fixed;
@@ -142,9 +146,6 @@ ul.posts {
           vertical-align: middle; }
 
 @media all and (max-width: 640px) {
-  body {
-    width: 100%; }
-
   blockquote {
     font-size: 14px;
     margin: 0; }
@@ -159,13 +160,21 @@ ul.posts {
   #header h2 {
     font-size: 24px; }
 
-  .post {
+  article.post {
+    width: auto;
     font-size: 16px;
     padding: 10px; }
-    .post .heading h1 .title {
+    article.post .heading h1 .title {
       font-size: 32px; }
-    .post .heading h1 .date {
+    article.post .heading h1 .date {
       font-size: 16px; }
+
+  .index {
+    width: auto; }
+    .index ul.posts li.post {
+      font-size: 16px; }
+      .index ul.posts li.post .date {
+        width: 150px; }
 
   #footer ul.menu {
     width: 100%;

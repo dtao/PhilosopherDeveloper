@@ -36,8 +36,6 @@ body
   background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px)
   background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px)
   background-repeat: repeat-x
-  width: 67%
-  margin: auto
   padding-bottom: 60px
 
 h1, h2, h3
@@ -89,12 +87,13 @@ pre
     font-size: 32px
     margin-top: 0
 
-.post
+article.post
   @include contentFont
   font-size: 24px
+  width: 67%
+  margin: auto
 
-  .heading
-
+  section.heading
     h1
       .title
         font-size: 48px
@@ -106,11 +105,11 @@ pre
         font-size: 24px
         white-space: nowrap
 
-  .content
+  section.content
     border-bottom: 1px solid black
     margin-bottom: 25px
 
-  .comments
+  section.comments
     font-size: 16px
 
     .field
@@ -132,24 +131,29 @@ pre
         height: 100px
         width: 300px
 
-ul.posts
-  display: table
-  padding-left: 0
-  width: 100%
+.index
+  width: 67%
+  margin: auto
 
-  .post
-    display: table-row
-    &:hover
-      background-color: $lightBlue
+  ul.posts
+    display: table
+    padding-left: 0
+    width: 100%
 
-    .title,
-    .date
-      display: table-cell
-      padding: 5px 0
+    li.post
+      display: table-row
+      font-size: 24px
+      &:hover
+        background-color: $lightBlue
 
-    .date
-      text-align: right
-      width: 250px
+      .title,
+      .date
+        display: table-cell
+        padding: 5px 0
+
+      .date
+        text-align: right
+        width: 250px
 
 #footer
   position: fixed

@@ -1,10 +1,11 @@
-%h1 Posts
+.index
+  %h1 Posts
 
-- @posts.each do |period, posts|
-  %h2= Post.friendly_period(period)
-  %ul.posts
-    - posts.each do |post|
-      %li.post
-        .title
-          %a(href="/posts/#{post.identifier}")= post.title
-        .date= post.friendly_date
+  - @posts.each do |period, posts|
+    %h2= Post.friendly_period(period)
+    %ul.posts
+      - posts.each do |post|
+        %li.post
+          .title
+            %a(href="/posts/#{post.identifier}")= post.title
+          .date= post.friendly_date
