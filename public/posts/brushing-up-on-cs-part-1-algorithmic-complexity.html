@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title>The Philosopher Developer</title>
+  <meta content='initial-scale=1.0; width=device-width; user-scalable=no;' name='viewport' />
+  <link href='/stylesheets/application.responsive.css' rel='stylesheet' />
+  <link href='/stylesheets/pygments.css' rel='stylesheet' />
+</head>
+<body>
+  <div id='header'>
+    <h1><a href="/">The Philosopher Developer</a></h1>
+    <h2>half-sound logic, half-decent code</h2>
+  </div>
+  <article class='post'>
+  <section class='heading'>
+    <h1>
+      <span class='title'>Brushing up on C.S. - Part 1: Algorithmic Complexity</span>
+      <span class='date'>September 15, 2012</span>
+    </h1>
+  </section>
+  <section class='content'>
+    <h1 id="preamble_1">Preamble</h1>
+
+<p>As I’m sure plenty of you already know (the title of this blog is a bit of a giveaway), I was a <strong>philosophy</strong> major in college. Which means I was <em>not</em> a C.S. major. But that’s not the full extent of it: I didn’t <em>minor</em> in C.S., either; I actually took <em>absolutely no computer sciences courses at all</em> in college.</p>
+
+<p>I did recently receive an M.S. in software engineering from <a href="http://www.cmu.edu/silicon-valley/">Carnegie Mellon</a>; but the courses in that program were higher-level in nature: software architecture, process management, software metrics, entrepreneurship—that sort of thing. And so I’ve still never really had an academic foundation for a lot of the more theoretical stuff that those with bachelor’s degrees in computer science have.</p>
+
+<p>To clarify: I <em>do</em> know a decent amount of C.S. stuff in practice, because:</p>
+
+<ul>
+<li>I worked for two years at an algorithmic trading company, where performance was a key concern (use of optimal data structures was critical) and the software was highly concurrent (so I got plenty of hands-on experience with things like synchronization, mutexes, semaphores, etc.)</li>
+
+<li>I am a huge nerd who spends way too much time reading about <a href="http://en.wikipedia.org/wiki/Skip_list">skip lists</a> and <a href="http://en.wikipedia.org/wiki/Red_black_tree">red-black trees</a> and all that good stuff on Wikipedia</li>
+</ul>
+<p>Anyway, all this is my long-winded way of introducing a little series of blog posts I’m going to be doing, starting with this one. The basic idea behind it should already be obvious: I’m going to “brush up” on (in some cases, learn entirely from scratch) some of the fun theoretical stuff that I missed by never going through a college C.S. program.</p>
+
+<p>Those of you already well-versed with theoretical C.S. stuff will probably not be all that intrigued by this or the next few posts. Then again, maybe you will. My goal is actually two-fold here:</p>
+
+<ol>
+<li>Obviously, to add to my own knowledge and study some of the things that fascinate me more in depth</li>
+
+<li>To do my best to explain these concepts in a straightforward and easily comprehensible way, so that even someone without a C.S. background can understand them (at least insofar as it’s feasible—I will readily admit some of this stuff may end up being too tricky for me to explain without requiring some lower level knowledge on the part of the reader)</li>
+</ol>
+<p>OK, now that I’ve written about five too many paragraphs <em>introducing</em> this series (not off to a good start!), let’s go ahead and dive in.</p>
+
+<h1 id="part_1_algorithmic_complexity_2">Part 1: Algorithmic Complexity</h1>
+
+<p>So originally I was thinking I’d start with some sorting algorithms. I’m excited about that topic, because it’s honestly one of the things that got me really psyched about computer programming when I first started (which also means it probably isn’t the best topic for the first goal I mentioned above, because a lot of this stuff I’ve known for a while). I remember when I first started learning several years ago, reading through countless Wikipedia articles about <a href="http://en.wikipedia.org/wiki/Sorting_algorithm">all the different sorting algorithms</a> that have been devised over the years and being totally obsessed with it. I just thought it was the coolest thing ever.</p>
+
+<p>But upon thinking about it for a bit, I realized I’d be getting ahead of myself by starting there. If you visit the Wikipedia page I just linked to, you’ll see a big table listing the names of a bunch of famous algorithms, with columns labeled “Best”, “Average”, and “Worst” and containing values like <em>n<sup>2</sup></em> and <em>n log n</em>. I noticed that table, and it occurred to me that most people have no idea what those things mean. (And to be honest with you, I’ve met a lot of <em>developers</em> who don’t fully understand what they mean either. Most have a rough sense, but often developers think they get it when in fact they are mistaken about a few things, which I’ll get to.) And so the best place for me to start, if I want to eventually get to sorting algorithms, is a concept called <strong>algorithmic complexity</strong>.</p>
+
+<h3 id="the_basic_gist_3">The Basic Gist</h3>
+
+<p>I personally find most academic terms like “algorithmic complexity” to be vaguely pretentious<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, so I’m going to present the idea as much in plain English as I can. The whole point of this concept is to explain how well an algorithm—essentially, any software procedure, or even more simply a set of instructions—will perform, i.e., <strong>how fast it runs</strong>. But that’s not the whole picture. Actually, how “fast” an algorithm runs is not a specific enough question; the real issue is how fast it runs <em>for a given set of input</em>.</p>
+
+<p>(I can already see the flags going up in my more technical readers heads: “That is not an accurate way of explaning algorithmic complexity!” Hold your horses, guys. I’m getting there.)</p>
+
+<p>It’s pretty easy to explain the distinction I just made. Imagine if someone were to ask you, “How fast can you paint a house?” Your first obvious response would almost certainly <em>not</em> be: “About a week.” How could you give an answer without knowing more context about what the person is asking? You’d need to know: How <em>large</em> of a house? What <em>kind</em> of house? Under what conditions? And so on.</p>
+
+<p>But there’s another, more important distinction between the concepts of <em>speed</em> and <em>complexity</em>. And this is the part that a lot of developers don’t actually understand (though I’m sure all the developers reading this do!). To describe it, I’ll give another (absurd) analogy.</p>
+
+<h3 id="choosing_a_gym_membership_4">Choosing a Gym Membership</h3>
+
+<p>Let’s say you decide to join a gym, and you have two choices. Gym A will charge you $100 every year that you have a membership with them. Gym B, on the other hand, charges a one-time fee of $1000 for joining. After that, though, they charge no recurring fees.</p>
+
+<p>For the sake of illustration, let’s say that whichever gym you choose, you will be a member with them for life. Put aside for now the fact that that isn’t very realistic. My question to you is: which should you choose, given that you must choose one?</p>
+
+<p>It isn’t a hard question, really. Most of us have dealt with some decision like this at some point in our lives; or anyway, we can think logically enough to see that a one-time cost of $1000 is probably better than paying $100 <em>every year</em>, as the latter would likely amount to more than $1000 over the course of a lifetime.</p>
+
+<p>To prove this intuition, let’s suppose you have 25 more years to live. Then:</p>
+
+<p>$100 × 25 years = $2,500</p>
+
+<p>You would ultimately pay Gym A more than twice as much as you’d pay Gym B in this case. Pretty bad. But what if you had <em>50</em> more years to live? Then with Gym A you’d pay $5,000, more than <em>four times</em> as much as you’d pay with Gym B.</p>
+
+<p>We’re now honing in on what algorithmic complexity is really about. It is intended as a way of measuring <strong>the cost of an algorithm relative to input size</strong>. In the gym example, we could think of “Choose Gym A” or “Choose Gym B” as two separate algorithms, where the input size is the number of years you have a membership with either gym.</p>
+
+<p>In the case of Gym A, doubling the number of years doubles the cost. So in terms of algorithmic complexity, we would say this is <em>O(n)</em><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, which I read as “order of <em>n</em>” (the <em>n</em> represents whatever value you use to define input size—in this case, the number of years).</p>
+
+<p>In the case of Gym B, doubling the number of years does what? Has no effect, actually. The cost is $1,000 regardless of whether you’re with the gym for 1 year or 100 years. And so we would describe this “algorithm’s” complexity as <em>O(1)</em>. Notice there is no <em>n</em> there, because the input size in this case does not impact the cost of the algorithm at all.</p>
+
+<h3 id="complexity_versus_suitability_5">Complexity Versus Suitability</h3>
+
+<p>Now, I’ve met plenty of engineers who mistake this to mean that <em>O(1)</em> is “better” or “faster” than <em>O(n)</em>. But that’s not quite right. $1000 is a lot of money. Suppose I took away the restriction that you had to stay with either Gym A or Gym B for the rest of your life. If you were only to keep your membership for a few years, then Gym A would end up costing you <em>less</em> than $1000; and suddenly the <em>O(n)</em> option would be a smarter choice than the <em>O(1)</em> one.</p>
+
+<p>And so there is often a judgment call involved in picking the right algorithm for a particular scenario. In the world of sorting algorithms, for instance (the topic I intend to write about next), you will often see cases of “hybrid” algorithms which start with some <em>O(n log n)</em> algorithm (like <a href="http://en.wikipedia.org/wiki/Quicksort">Quicksort</a>) for large sets of input data, but then convert to a <em>O(n<sup>2</sup>)</em> algorithm (like <a href="http://en.wikipedia.org/wiki/Insertion_sort">Insertion sort</a>) when the input size is small. In other words: preferring the cost structure of something like Gym B in general, but being open to joining something like Gym A if it’s only for a short time.</p>
+
+<h3 id="one_last_example_6">One Last Example</h3>
+
+<p>I should offer one more example of complexity, since I’ve only hit on two fairly easy-to-understand cases so far–<em>O(1)</em> and <em>O(n)</em>. For this example, I will refer to a common method people use to greet one another in groups.</p>
+
+<p>Let’s say Jack and Jill meet for the first time.</p>
+
+<p>Here’s one way it could go down: Jack says “Hi, I’m Jack,” to which Jill responds, “Hello, I’m Jill,” and they shake hands.</p>
+
+<p>Two people, two introductions (Jack introducing himself to Jill and vice versa). Seems reasonably efficient, right?</p>
+
+<p>Let’s add two more people to the mix: Alice and Bob. Below is a quick list of the introductions that would occur in this group of four, following the same sort of greetings as above:</p>
+
+<ol>
+<li>Jack-Jill</li>
+
+<li>Jack-Alice</li>
+
+<li>Jack-Bob</li>
+
+<li>Jill-Jack</li>
+
+<li>Jill-Alice</li>
+
+<li>Jill-Bob</li>
+
+<li>Alice-Jack</li>
+
+<li>Alice-Jill</li>
+
+<li>Alice-Bob</li>
+
+<li>Bob-Jack</li>
+
+<li>Bob-Jill</li>
+
+<li>Bob-Alice</li>
+</ol>
+<p>Whoa! We just went from two introductions to twelve! Clearly this method of greeting people would not be sustainable if the number of people grew much larger. (And yet, the Owambo people in Namibia greet one another in precisly this way—and to be honest, I quite like it. But that is a <em>completely</em> different topic.)</p>
+
+<p>So, clearly this situation is different from the case of Gym A from my earlier example. Whereas with Gym A, the cost of membership grew <em>linearly</em> (in a straight line) over time, the number of greetings above basically explodes out of control if you add many more people to the setting. This is an example of an <em>O(n<sup>2</sup>)</em> algorithm—one in which the performance cost of the procedure in question grows <em>exponentially</em> with input size.</p>
+
+<p>It probably isn’t the best example I could have given, as it’s not 100% obvious that the exponent should be 2 (4 squared is 16, not 12). If you want an explanation, I’ll provide it in a footnote<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</p>
+
+<p>Anyway, hopefully now you have a sense of what algorithmic complexity is about. If you only have a rough idea but don’t feel like you totally understand it yet, that’s OK; I will do my best to give better examples and provide better explanations as I move forward in this blog series.</p>
+
+<p>And if you found this material mind-numbingly boring: don’t worry, I will most likely break up the series with posts about other topics from time to time as well.</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Yeah, I don’t totally know why. To be fair, I find “industry” terms like <em>scalability</em> to be equally pretentious, for similarly inexplicable reasons. <a href="#fnref:1" rev="footnote">↩</a></p>
+</li>
+<li id="fn:2">
+<p>This way of describing complexity is called <a href="http://en.wikipedia.org/wiki/Big_o_notation">Big O notation</a>, and it’s probably one of the most common interview topics that I can think of for software engineers. <a href="#fnref:2" rev="footnote">↩</a></p>
+</li>
+<li id="fn:3">
+<p>Unless I’m mistaken, the greeting procedure really is O(n<sup>2</sup>). The reason is this. For every person you introduce into the group, that person has to greet everyone already in the group. So if the group consists of n people, and you add another person, right there that’s n more introductions. But <em>in addition</em>, every person in the group also has to greet the new person; so that’s <em>another</em> n more introductions. In total, the number of introductions will always be n<sup>2</sup> (every person greeting every other person), minus n since you don’t greet yourself. So in the example I gave, 4 people made 12 introductions, which is 16 (4 squared) minus 4 since Jack did not introduce himself to Jack, etc. <a href="#fnref:3" rev="footnote">↩</a></p>
+</li>
+</ol>
+</div>
+  </section>
+  <section class='comments'>
+    <div id='disqus_thread'></div>
+    <script src='/javascripts/disqus.js' type='text/javascript'></script>
+    <noscript>
+      Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+    <a class='dsq-brlink' href='http://disqus.com'>
+      comments powered by
+      <span class='logo-disqus'>Disqus</span>
+    </a>
+  </section>
+</article>
+  <div id='footer'>
+    <ul class='menu'>
+      <li><a href="/posts">All Posts</a></li>
+      <li><a href="/about">About</a></li>
+      <li>
+        <a href='http://stackoverflow.com/users/105570' target='_blank'>
+          <img alt='StackOverflow' src='/icons/stackoverflow-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://github.com/dtao' target='_blank'>
+          <img alt='GitHub' src='/icons/github-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://twitter.com/dan_tao' target='_blank'>
+          <img alt='Twitter' src='/icons/twitter-small.png' />
+        </a>
+      </li>
+    </ul>
+  </div>
+</body>

@@ -28,7 +28,7 @@ But upon thinking about it for a bit, I realized I'd be getting ahead of myself 
 
 ### The Basic Gist
 
-I personally find most academic terms like "algorithmic complexity" to be vaguely pretentious\*, so I'm going to present the idea as much in plain English as I can. The whole point of this concept is to explain how well an algorithm--essentially, any software procedure, or even more simply a set of instructions--will perform, i.e., **how fast it runs**. But that's not the whole picture. Actually, how "fast" an algorithm runs is not a specific enough question; the real issue is how fast it runs *for a given set of input*.
+I personally find most academic terms like "algorithmic complexity" to be vaguely pretentious[^pretentious], so I'm going to present the idea as much in plain English as I can. The whole point of this concept is to explain how well an algorithm--essentially, any software procedure, or even more simply a set of instructions--will perform, i.e., **how fast it runs**. But that's not the whole picture. Actually, how "fast" an algorithm runs is not a specific enough question; the real issue is how fast it runs *for a given set of input*.
 
 (I can already see the flags going up in my more technical readers heads: "That is not an accurate way of explaning algorithmic complexity!" Hold your horses, guys. I'm getting there.)
 
@@ -52,7 +52,7 @@ You would ultimately pay Gym A more than twice as much as you'd pay Gym B in thi
 
 We're now honing in on what algorithmic complexity is really about. It is intended as a way of measuring **the cost of an algorithm relative to input size**. In the gym example, we could think of "Choose Gym A" or "Choose Gym B" as two separate algorithms, where the input size is the number of years you have a membership with either gym.
 
-In the case of Gym A, doubling the number of years doubles the cost. So in terms of algorithmic complexity, we would say this is *O(n)*\*\*, which I read as "order of *n*" (the *n* represents whatever value you use to define input size--in this case, the number of years).
+In the case of Gym A, doubling the number of years doubles the cost. So in terms of algorithmic complexity, we would say this is *O(n)*[^big-o-notation], which I read as "order of *n*" (the *n* represents whatever value you use to define input size--in this case, the number of years).
 
 In the case of Gym B, doubling the number of years does what? Has no effect, actually. The cost is $1,000 regardless of whether you're with the gym for 1 year or 100 years. And so we would describe this "algorithm's" complexity as *O(1)*. Notice there is no *n* there, because the input size in this case does not impact the cost of the algorithm at all.
 
@@ -91,14 +91,14 @@ Whoa! We just went from two introductions to twelve! Clearly this method of gree
 
 So, clearly this situation is different from the case of Gym A from my earlier example. Whereas with Gym A, the cost of membership grew *linearly* (in a straight line) over time, the number of greetings above basically explodes out of control if you add many more people to the setting. This is an example of an *O(n<sup>2</sup>)* algorithm--one in which the performance cost of the procedure in question grows *exponentially* with input size.
 
-It probably isn't the best example I could have given, as it's not 100% obvious that the exponent should be 2 (4 squared is 16, not 12). If you want an explanation, I'll provide it in a footnote\*\*\*.
+It probably isn't the best example I could have given, as it's not 100% obvious that the exponent should be 2 (4 squared is 16, not 12). If you want an explanation, I'll provide it in a footnote[^complexity-explanation].
 
 Anyway, hopefully now you have a sense of what algorithmic complexity is about. If you only have a rough idea but don't feel like you totally understand it yet, that's OK; I will do my best to give better examples and provide better explanations as I move forward in this blog series.
 
 And if you found this material mind-numbingly boring: don't worry, I will most likely break up the series with posts about other topics from time to time as well.
 
-<sub>\* Yeah, I don't totally know why. To be fair, I find "industry" terms like *scalability* to be equally pretentious, for similarly inexplicable reasons.</sub>
+[^pretentious]: Yeah, I don't totally know why. To be fair, I find "industry" terms like *scalability* to be equally pretentious, for similarly inexplicable reasons.
 
-<sub>\*\* This way of describing complexity is called [Big O notation](http://en.wikipedia.org/wiki/Big_o_notation), and it's probably one of the most common interview topics that I can think of for software engineers.</sub>
+[^big-o-notation]: This way of describing complexity is called [Big O notation](http://en.wikipedia.org/wiki/Big_o_notation), and it's probably one of the most common interview topics that I can think of for software engineers.
 
-<sub>\*\*\* Unless I'm mistaken, the greeting procedure really is O(n<sup>2</sup>). The reason is this. For every person you introduce into the group, that person has to greet everyone already in the group. So if the group consists of n people, and you add another person, right there that's n more introductions. But *in addition*, every person in the group also has to greet the new person; so that's *another* n more introductions. In total, the number of introductions will always be n<sup>2</sup> (every person greeting every other person), minus n since you don't greet yourself. So in the example I gave, 4 people made 12 introductions, which is 16 (4 squared) minus 4 since Jack did not introduce himself to Jack, etc.</sub>
+[^complexity-explanation]: Unless I'm mistaken, the greeting procedure really is O(n<sup>2</sup>). The reason is this. For every person you introduce into the group, that person has to greet everyone already in the group. So if the group consists of n people, and you add another person, right there that's n more introductions. But *in addition*, every person in the group also has to greet the new person; so that's *another* n more introductions. In total, the number of introductions will always be n<sup>2</sup> (every person greeting every other person), minus n since you don't greet yourself. So in the example I gave, 4 people made 12 introductions, which is 16 (4 squared) minus 4 since Jack did not introduce himself to Jack, etc.

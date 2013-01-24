@@ -21,12 +21,12 @@ cannibalizing-yourself-on-purpose:
 brushing-up-on-cs-part-1-algorithmic-complexity:
   date: 2012-09-15
   title: "Brushing up on C.S. - Part 1: Algorithmic Complexity"
-  published: false
+  published: true
 
 magical-optimization-of-the-+=-operator-with-strings:
   date: 2012-08-25
   title: A magical optimization of the += operator with strings
-  published: false
+  published: true
 
 value-of-a-detached-perspective:
   date: 2012-08-21
