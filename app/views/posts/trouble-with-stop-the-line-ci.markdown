@@ -1,6 +1,6 @@
 [Continuous Integration](http://en.wikipedia.org/wiki/Continuous_integration) is a powerful technique used by a growing number of software teams. Personally, I have issues with the way CI is done on a lot of software projects. I've [tried to write about this once before](http://philosopherdeveloper.wordpress.com/2012/01/27/being-agile-with-continuous-integration/), but at the time the ideas bouncing around in my head hadn't really crystalized. To be honest, they *still* haven't fully (if you've ever worked and/or debated with me, you'd be right to wonder if they ever will); but I figured it was time to give it another shot anyway. And in typical me fashion, I'd like to start with an analogy.
 
-## The Sad Factory Owner
+## The Puzzled Factory Owner
 
 Imagine a factory owner wants to reduce the occurrence of defects and thereby improve the consistency and quality of the products manufactured at his factory. So he brings in an expert, who advises him there's a new technique called "Constant Validation" --or CV for short--that can notify him whenever a defect is found. This sounds great to the factory owner, so he decides to install CV at his factory immediately.
 
