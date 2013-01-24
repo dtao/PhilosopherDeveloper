@@ -16,7 +16,7 @@ This assumption is, I believe, deeply rooted in our consciousness: that **the ul
 
 To understand what I mean, imagine you come home one day and you find that your things are strewn about and something valuable--say, an expensive watch--is missing. What is your assumption? Naturally, that someone broke into your home and rifled through your things, then absconded with the watch. It's perfectly sensible to draw this conclusion, based on the evidence; furthermore, viewing the situation in this way would prompt you to take what would very likely be a useful next step: contacting the police, and working with them to apprehend the thief.
 
-I say "useful next step" rather than "logical next step" very deliberately. We give our minds a lot of credit for being logical; but I really view them more as being pragmatic. A baby may learn through trial and error how to persuade its parents into giving [COMPLETE THIS PARAGRAPH].
+I say "useful next step" rather than "logical next step" very deliberately. We give our minds a lot of credit for being logical; but I really view them more as being pragmatic. A baby may learn through trial and error how to persuade its parents into giving \[COMPLETE THIS PARAGRAPH\].
 
 This will sound absurd, I know. But rather than assuming a person (or an *agent*) were responsible, you *could* just throw your hands in the air and say, "Well shucks! I wish that didn't happen, but it did," without questioning the matter any further. I am not suggesting that this would be a reasonable reaction, only pointing out that it is one way that you *could* react: **by not looking for a cause at all**.
 

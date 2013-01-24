@@ -34,6 +34,7 @@ group :development do
   gem "guard", :platform => :ruby
   gem "guard-less", :platform => :ruby
   gem "guard-sass", :platform => :ruby
+  gem "maruku"
   gem "shotgun"
 end
 

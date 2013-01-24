@@ -1,0 +1,74 @@
+<p>Today I felt like writing something more low-level than I&#8217;ve written in a while&#8230; and since C# is about the lowest I go (yeah, pretty sad&#8211;I haven&#8217;t really earned my beard yet), that will be my language of choice for this post.</p>
+
+<p>But we start with JavaScript, actually. A couple of months ago, shortly after joining <a href='http://www.cardpool.com/'>Cardpool</a>&#8211;a topic <em>definitely</em> deserving of its own post, in due time&#8211;I started working on a top-secret new project. Without giving too much away (as if it really matters), I&#8217;ll just say that my work on this project involved writing a library to process a sequence of data from an input device which emulated a computer keyboard. Essentially this input sequence would ultimately be interpreted as a string; but unlike your typical scenario of taking user input from, e.g., a text field&#8211;where the string is given to you all at once&#8211;in this case the library had to <em>assemble</em> the string from bytes fed to it one-by-one.</p>
+
+<p>In a language like Java or C# (or even Ruby), this would be totally easy, albeit unconventional. The data structure for a string is <a href='http://philosopherdeveloper.wordpress.com/2010/05/28/are-strings-really-immutable-in-net/'>more or less</a> immutable in Java and C#, but both have the concept of a mutable <code>StringBuilder</code> for precisely the case where you need to construct a string by concatenating many segments. And in Ruby, strings are mutable to begin with (you use the <code>&lt;&lt;</code> operator to append to an existing string).</p>
+
+<p>But this library I was working on was in <em>JavaScript</em>&#8211;a language that I love, but one without any specialized options for concatenating strings quickly. JavaScript strings are immutable, and there is no concept of a <code>StringBuilder</code>. If you want to concatenate many strings together, you have two options:</p>
+
+<ul>
+<li>The good ol&#8217; <code>+=</code> operator</li>
+
+<li>Storing the elements in an array, and then calling <code>join()</code></li>
+</ul>
+
+<p>Before bothering to profile anything, here was my guess: I figured that on small strings, the two options would be roughly equivalent. But given that strings in JavaScript are immutable, I assumed that even on modern browsers the array-based concatenation strategy would prove superior pretty much across the board. That would make sense, right?</p>
+
+<p>To my surprise, after <a href='http://jsperf.com/concatenating-lots-of-little-strings/2'>profiling the two options on a variety of browsers</a>, I found that the <code>+=</code> operator beats the pants off the array method on Chrome.</p>
+
+<p><img alt='The performance of += on Chrome is pretty astonishing' src='http://i.imgur.com/wIYN7.png' /></p>
+
+<p><em>How could this be?</em> I thought. Given an immutable data structure for strings, it seemed to me any use of <code>+</code> would necessitate the allocation of an entirely new block of memory to hold a copy of the original data plus the appended data. The only obvious alternative I could think of was to use some sort of <a href='http://en.wikipedia.org/wiki/Rope_\(computer_science\'>rope</a>), which felt like a totally unwarranted compromise for a language like JavaScript given that it would make random access O(log N) instead of O(1) and would hardly ever be useful (not to mention that appends would still be O(log N), so they almost certainly still wouldn&#8217;t beat the array method).</p>
+
+<p>Obviously the Chrome developers cooked up some crazy optimization for the <code>+=</code> operator; but what <em>was</em> it? (Incidentally, it seems that some engineers at Microsoft must have done something similar for Windows 8, since IE 10 shows a similar performance disparity between using <code>+=</code> and the array method). It got me thinking: if I were to optimize for this case&#8211;and it does make some sense, considering how <code>+=</code> is really your only option in JavaScript, or at least by far the most obvious one that JavaScript developers are likely to use&#8211;how might I do it?</p>
+
+<p>Well, perhaps the pay-off won&#8217;t be worth my long-winded exposition thus far. But here&#8217;s what I came up with. I actually quite like it. (Though to be clear: this is really just a proof of concept, and I would almost certainly not have any use for it in any production code.)</p>
+
+<p>The challenge, just to reiterate one last time, was to create <strong>an immutable implementation of strings optimized for very fast appends using the <code>+</code> operator</strong>. I came up with a solution in C#. Obviously the Chrome devs did not use C#&#8211;nor did the Microsoft devs, for that matter&#8211;but I&#8217;m sure they could have taken a similar approach in whatever language they used. I&#8217;m not saying they <em>did</em>&#8211;chances are their solution is much smarter than mine&#8211;just that they <em>could</em> have.</p>
+
+<h2 id='the_basic_idea'>The Basic Idea</h2>
+
+<p>Here&#8217;s what I came up with. For starters, I needed to forget about what a string &#8220;is&#8221;&#8211;or anyway, what my notion of one was prior to thinking about this optimization: as a particular <em>data structure</em> comprising a contiguous sequence of characters&#8211;and focus on the <em>concept</em> of a string, which I would say is more closely related to <em>the interface it provides</em>: random access to such a sequence, along with the total length of the sequence. From these basic building blocks all other aspects of a string&#8217;s interface can be derived: iteration, substring operations, replace, search, the whole shebang. (If you think about it, you could actually implement the entire interface for, say, .NET&#8217;s <code>System.String</code> class using only an <code>IList&lt;char&gt;</code> as the backing data structure. But I&#8217;ll leave that to you as an exercise.)</p>
+
+<p>Fine, so you&#8217;re with me so far. I&#8217;m sure most of you already knew that anyway. But what does this shift in focus give us? Essentially, it allows us to conjure <strong>an immutable <em>concept</em> with a mutable <em>data structure</em> underneath it</strong>. And this is the basis for <a href='https://gist.github.com/3471636'>my <code>FastString</code> class</a>.</p>
+
+<h2 id='the_implementation'>The Implementation</h2>
+
+<p>At the heart of a <code>FastString</code> object there are two parts: <code>buffer</code>, an underlying <code>StringBuilder</code> (the mutable data structure underneath), and <code>length</code>, an integer. In addition to these fields, there is the concept of <strong>buffer ownership</strong>: if a <code>FastString</code> has the same length (not to be confused with <em>capacity</em>) as its buffer, that means it is the &#8220;owner&#8221; of the buffer:</p>
+
+<pre><code>private bool OwnsBuffer
+{
+    get { return this.buffer.Length == this.length; }
+}</code></pre>
+
+<p>Now, the idea here is that if you use <code>+</code> to append to a <code>FastString</code>, two things can happen. If the <code>FastString</code> is the owner of its underlying buffer, that means that you can safely append directly to the buffer. This is because no other <code>FastString</code> instances can be referencing any characters past the current end of the buffer, and so the immutability of every existing instance is maintained. Then the <code>+</code> operator returns a new <code>FastString</code> instance pointing to the same buffer but with the new length. At this point, this new instance becomes the buffer&#8217;s new owner.</p>
+
+<p>It is a bit of a strange approach, I grant you. But it is perfect for a particularly common use case: concatenating many strings in a loop:</p>
+
+<pre><code>FastString whole = &quot;&quot;;
+foreach (string part in parts)
+{
+    whole += part;
+}</code></pre>
+
+<p>Here, every time a new <code>FastString</code> is instantiated via the <code>+=</code> operator, the previous owner (which is essentially discarded in the above loop) cedes ownership and the new instance inherits it. Notably, this will have the same performance characteristics as using a <code>StringBuilder</code>, because, after all, that&#8217;s basically what it is doing. But the proof is in the pudding: here&#8217;s example output from a sample run concatenating 20,000 strings:</p>
+
+<pre><code>Finished concatenating 20000 strings the &#39;fast&#39; way in 2.7935 ms.
+Finished concatenating 20000 strings the &#39;slow&#39; way in 4832.8853 ms.
+Output equal? True</code></pre>
+
+<p>A <strong>1730x</strong> speed-up? I&#8217;d say that&#8217;s not bad! (And this would of course only increase as the number of strings increased&#8211;since the <code>FastString</code> approach should have amortized O(1) complexity versus the O(N) that <code>String</code> provides.)</p>
+
+<p>Is this what the Chrome devs did? Like I said, I doubt it. I would actually be very curious to know what approach they used. (I&#8217;m guessing that since I don&#8217;t have much experience in lower-level languages than C#, there are probably a whole collection of tricks I would never even think of.) And if <em>you</em> can think of any other optimizations, leave a comment and let me know!</p>
+
+<p>Anyway, as I wrote already, this is not really useful in any real-world application I can imagine. But it was a fun challenge to take on, and I hope it was interesting to read about. Also, it&#8217;s nice to write about something relatively low-level (at least compared to my usual fare) every once in a while. This is the stuff that got me into programming in the first place.</p>
+
+<p>But that&#8217;s the topic of another, much higher-level post. Speaking of which, I should probably write soon about a couple of fairly major events in my personal and professional life:</p>
+
+<ol>
+<li>Leaving ThoughtWorks</li>
+
+<li>Graduating from CMU</li>
+</ol>
+
+<p>Let that be a reminder to myself, for next time.</p>

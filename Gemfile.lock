@@ -79,6 +79,8 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    maruku (0.6.1)
+      syntax (>= 1.0.0)
     method_source (0.8.1)
     mime-types (1.19)
     multi_json (1.5.0)
@@ -145,6 +147,7 @@ GEM
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
     slop (3.3.3)
+    syntax (1.0.0)
     therubyracer (0.10.2)
       libv8 (~> 3.3.10)
     thin (1.5.0)
@@ -183,6 +186,7 @@ DEPENDENCIES
   guard-less
   guard-sass
   haml
+  maruku
   padrino (= 0.10.6)
   rack-test
   rake

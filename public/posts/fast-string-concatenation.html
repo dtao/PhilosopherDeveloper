@@ -1,0 +1,13 @@
+<p>There are a couple of &#8220;bigger&#8221; topics that I&#8217;ve been wanting to write about lately (not big as in <em>important</em>, of course&#8211;more big as in being more work to write about); but I can&#8217;t seem to find the time (read: make the effort). So here&#8217;s a fun little challenge for now.</p>
+
+<p>The background is that I recently discovered an interesting performance optimization in Chrome. It has to do with concatenating strings in JavaScript. Those of us with backgrounds in Java or C# will immediately recollect the hard lesson we&#8217;ve all learned at some point (and those of you who haven&#8217;t yet: you are about to!) about concatenating strings with <code>+=</code>:</p>
+
+<pre><code>function String joinStrings(List&lt;String&gt; strings) {
+    String joined = &quot;&quot;;
+    for (String str : strings) {
+        joined += str;
+    }
+    return joined;
+}</code></pre>
+
+<p>I would wager we&#8217;ve <em>all</em>, at some point or another, written a function similar to the Java snippet above. Maybe it was when we were in class; hopefully it wasn&#8217;t while we were writing production software where performance is a major priority. In any case, sooner or later, every developer finds out that the code above is extremely inefficient</p>

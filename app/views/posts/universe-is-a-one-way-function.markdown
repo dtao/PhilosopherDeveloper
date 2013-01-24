@@ -1,6 +1,6 @@
 Recently my friend Chuck reminded me of a conversation he and I had ages ago about a company called [Steorn](http://steorn.com/). This is a company that publicly claimed, back in 2007, to have developed an [overunity](http://en.wikipedia.org/wiki/Overunity) technology. Chuck chastised me for having persuaded him to take the company seriously; to this day, despite their refusal to back down, they have still not convincingly [broken the second law of thermodynamics](http://en.wikipedia.org/wiki/Second_law_of_thermodynamics).
 
-<iframe width="480" height="360" src="http://www.youtube.com/embed/Xy0UBpagsu8" frameborder="0" allowfullscreen></iframe>
+<iframe width="480" height="360" src="http://www.youtube.com/embed/Xy0UBpagsu8" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 
 Most of my acquaintances with a modest amount of scientific knowledge, of course, dismissed Steorn from the very start. What the company claims to do violates a known law of physics, they argued; therefore it is impossible; therefore they are either lying or confused. Personally, I never did and probably never will fully sympathize with this attitude. While I agree that Steorn probably do not have what they have claimed (and I certainly have no intention of arguing with the laws of thermodynamics!), I disagree with the premise that we can be *so sure* of things like this that we are justified in rejecting them immediately.
 
