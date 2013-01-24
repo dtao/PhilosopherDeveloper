@@ -81,6 +81,8 @@ article.post {
   article.post section.content {
     border-bottom: 1px solid black;
     margin-bottom: 25px; }
+    article.post section.content .footnotes {
+      font-size: 14px; }
   article.post section.comments {
     font-size: 16px;
     margin-top: 50px; }

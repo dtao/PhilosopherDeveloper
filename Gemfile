@@ -12,8 +12,9 @@ gem "sinatra-flash", :require => "sinatra/flash"
 
 # Component requirements
 gem "haml"
-gem "glorify"
-gem "redcarpet"
+gem "maruku", :git => "git://github.com/bhollis/maruku.git"
+gem "nokogiri"
+gem "pygments.rb"
 gem "sass"
 gem "dm-validations"
 gem "dm-timestamps"
@@ -34,7 +35,6 @@ group :development do
   gem "guard", :platform => :ruby
   gem "guard-less", :platform => :ruby
   gem "guard-sass", :platform => :ruby
-  gem "maruku"
   gem "shotgun"
 end
 

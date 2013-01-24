@@ -1,10 +1,32 @@
-<p>Recently my friend Chuck reminded me of a conversation he and I had ages ago about a company called <a href='http://steorn.com/'>Steorn</a>. This is a company that publicly claimed, back in 2007, to have developed an <a href='http://en.wikipedia.org/wiki/Overunity'>overunity</a> technology. Chuck chastised me for having persuaded him to take the company seriously; to this day, despite their refusal to back down, they have still not convincingly <a href='http://en.wikipedia.org/wiki/Second_law_of_thermodynamics'>broken the second law of thermodynamics</a>.</p>
-<iframe allowfullscreen='allowfullscreen' frameborder='0' height='360' src='http://www.youtube.com/embed/Xy0UBpagsu8' width='480' />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title>The Philosopher Developer</title>
+  <meta content='initial-scale=1.0, width=device-width, height=device-height' name='viewport' />
+  <link href='/stylesheets/application.responsive.css' rel='stylesheet' />
+  <link href='/stylesheets/pygments.css' rel='stylesheet' />
+</head>
+<body>
+  <div id='header'>
+    <h1><a href="/">The Philosopher Developer</a></h1>
+    <h2>half-sound logic, half-decent code</h2>
+  </div>
+  <article class='post'>
+  <section class='heading'>
+    <h1>
+      <span class='title'>The universe is a one-way function</span>
+      <span class='date'>October 03, 2012</span>
+    </h1>
+  </section>
+  <section class='content'>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+<p>Recently my friend Chuck reminded me of a conversation he and I had ages ago about a company called <a href="http://steorn.com/">Steorn</a>. This is a company that publicly claimed, back in 2007, to have developed an <a href="http://en.wikipedia.org/wiki/Overunity">overunity</a> technology. Chuck chastised me for having persuaded him to take the company seriously; to this day, despite their refusal to back down, they have still not convincingly <a href="http://en.wikipedia.org/wiki/Second_law_of_thermodynamics">broken the second law of thermodynamics</a>.</p>
+<iframe width="480" height="360" src="http://www.youtube.com/embed/Xy0UBpagsu8" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 <p>Most of my acquaintances with a modest amount of scientific knowledge, of course, dismissed Steorn from the very start. What the company claims to do violates a known law of physics, they argued; therefore it is impossible; therefore they are either lying or confused. Personally, I never did and probably never will fully sympathize with this attitude. While I agree that Steorn probably do not have what they have claimed (and I certainly have no intention of arguing with the laws of thermodynamics!), I disagree with the premise that we can be <em>so sure</em> of things like this that we are justified in rejecting them immediately.</p>
 
-<p>This is actually the same topic I covered in <a href='http://philosopherdeveloper.wordpress.com/2009/12/19/the-myth-of-the-myth-of-perpetual-motion/'>my very first post on this blog</a>. But it&#8217;s something I feel quite strongly about, so I&#8217;ll probably write about it again, and again, until I&#8217;m satisfied I&#8217;ve fully covered the topic in the way I want (i.e., never). This time around, I want to relate my skepticism* in these sorts of matters to the concept of <em>one-way-functions</em>&#8211;a mathematical term that I&#8217;ll define later in this post. But first, I&#8217;ll start with a simple problem.</p>
+<p>This is actually the same topic I covered in <a href="http://philosopherdeveloper.wordpress.com/2009/12/19/the-myth-of-the-myth-of-perpetual-motion/">my very first post on this blog</a>. But it’s something I feel quite strongly about, so I’ll probably write about it again, and again, until I’m satisfied I’ve fully covered the topic in the way I want (i.e., never). This time around, I want to relate my skepticism* in these sorts of matters to the concept of <em>one-way-functions</em>–a mathematical term that I’ll define later in this post. But first, I’ll start with a simple problem.</p>
 
-<h2 id='recognizing_patterns'>Recognizing patterns</h2>
+<h2 id="recognizing_patterns_1">Recognizing patterns</h2>
 
 <p>Back in the old K–12 days, I remember sometimes taking tests with <em>pattern recognition</em> questions. As a kid, I was always frustrated by these questions because I felt that they generally had no right answer. For example, consider this sequence:</p>
 
@@ -12,7 +34,7 @@
 
 <p>What is the next element in the above sequence?</p>
 
-<p>If you say <em>8</em>, you&#8217;re most likely thinking that the &#8220;pattern&#8221; illustrated above involves every value in the sequence doubling the previous value:</p>
+<p>If you say <em>8</em>, you’re most likely thinking that the “pattern” illustrated above involves every value in the sequence doubling the previous value:</p>
 
 <pre><code>1, 2, 4, 8, 16, 32, ...</code></pre>
 
@@ -24,35 +46,34 @@
 
 <pre><code>1, 2, 4, 1, 2, 4, ...</code></pre>
 
-<p>These are all <em>patterns</em>; and they all start the same way, which means that there is no &#8220;right&#8221; answer to a question like this. There is, in fact, an infinite number of possible patterns I could imagine that would begin with <em>1, 2, 4</em>, and then proceed in an endless variety of ways. So there are infinitely many equally &#8220;right&#8221; answers to the question.</p>
+<p>These are all <em>patterns</em>; and they all start the same way, which means that there is no “right” answer to a question like this. There is, in fact, an infinite number of possible patterns I could imagine that would begin with <em>1, 2, 4</em>, and then proceed in an endless variety of ways. So there are infinitely many equally “right” answers to the question.</p>
 
-<h2 id='the_problem_of_deduction'>The problem of deduction</h2>
+<h2 id="the_problem_of_deduction_2">The problem of deduction</h2>
 
 <p>The human ability to recognize patterns and predict outcomes based on those patterns is <em>deduction</em>.</p>
 
 <p>There is a game of deduction that a few of my friends like to play called <em>Zendo</em>.</p>
 
-<p><img alt='Zendo' src='/images/zendo.jpeg' /></p>
+<p><img src="/images/zendo.jpeg" alt="Zendo"></p>
 
-<p>In Zendo, one player&#8211;the Master&#8211;devises a rule involving the game pieces, which he then illustrates via two examples: one embodying the rule, and one not. These examples are designated <em>true</em> and <em>false</em>. The players then take turns assembling their own game pieces in different formations, asking the master whether or not their formations comply with the master&#8217;s rule. Eventually, one or more of the players will <em>deduce</em> the rule by observing a <em>pattern</em> across the examples.</p>
+<p>In Zendo, one player—the Master—devises a rule involving the game pieces, which he then illustrates via two examples: one embodying the rule, and one not. These examples are designated <em>true</em> and <em>false</em>. The players then take turns assembling their own game pieces in different formations, asking the master whether or not their formations comply with the master’s rule. Eventually, one or more of the players will <em>deduce</em> the rule by observing a <em>pattern</em> across the examples.</p>
 
 <p>I was recently surprised** when, during a game, after the master had given his initial two examples, one of my friends announced that he knew the rule already.</p>
 
 <p>This declaration of having the answer so early in the game seemed absurd to me. And I think you can understand why, from my earlier thoughts on pattern recognition. There was no way my friend already <em>knew</em> the rule at this stage, given that there were many possible rules that would be consistent with the examples given.</p>
 
 <p>Put another way: my friend had not narrowed down the possibilities enough to justify his feeling of certainty, at least to my thinking. He was guilty of <strong>overeager deduction</strong>.</p>
-<img alt='Overeager deduction' src='/images/premature_deduction.jpg' style='border: 1px solid black; height: 384px; width: 512px;' />
-<p>That said, I can&#8217;t really blame him. We humans do this all the time. We <em>have</em> to, because the alternative&#8211;i.e., basing our beliefs on logical certainties&#8211;is completely impractical. But I&#8217;ll get to that. Time to shift gears.</p>
+<img alt="Overeager deduction" src="/images/premature_deduction.jpg" style="border: 1px solid black; height: 384px; width: 512px;"><p>That said, I can’t really blame him. We humans do this all the time. We <em>have</em> to, because the alternative—i.e., basing our beliefs on logical certainties—is completely impractical. But I’ll get to that. Time to shift gears.</p>
 
-<h2 id='oneway_functions'>One-way functions</h2>
+<h2 id="oneway_functions_3">One-way functions</h2>
 
-<p>In mathematics, a <a href='http://en.wikipedia.org/wiki/One-way_function'>one-way function</a> is one where computing the <em>output</em> for a given <em>input</em> is easy; but performing the reverse is much harder.</p>
+<p>In mathematics, a <a href="http://en.wikipedia.org/wiki/One-way_function">one-way function</a> is one where computing the <em>output</em> for a given <em>input</em> is easy; but performing the reverse is much harder.</p>
 
-<p>This is in contrast to a <em>two-way</em> function, which is easy to reverse. An example of a two-way function would be multiplication. Given an equation like <em>y = 3x</em>, when we apply the <em>input</em> of 5, we simply multiply 3 &#215; 5 and get the <em>output</em> 15. Likewise, if we know the <em>output</em> is 15, we divide 15 &div; 3 and conclude that the <em>input</em> must have been 5.</p>
+<p>This is in contrast to a <em>two-way</em> function, which is easy to reverse. An example of a two-way function would be multiplication. Given an equation like <em>y = 3x</em>, when we apply the <em>input</em> of 5, we simply multiply 3 × 5 and get the <em>output</em> 15. Likewise, if we know the <em>output</em> is 15, we divide 15 &amp;div; 3 and conclude that the <em>input</em> must have been 5.</p>
 
-<p>An example of a <em>one-way</em> function is <a href='http://en.wikipedia.org/wiki/Prime_factorization'>prime factorization</a>. Take some large non-prime number&#8211;say, 946,905,102,747. Can you tell me this number&#8217;s prime factors, i.e., what prime numbers divide it evenly?</p>
+<p>An example of a <em>one-way</em> function is <a href="http://en.wikipedia.org/wiki/Prime_factorization">prime factorization</a>. Take some large non-prime number—say, 946,905,102,747. Can you tell me this number’s prime factors, i.e., what prime numbers divide it evenly?</p>
 
-<p>This is not an easy problem to solve efficiently. The only obvious way is to just go through prime numbers, one by one, until you&#8217;ve found all the factors. Finding an answer in this way would obviously take a very long time for a human being.</p>
+<p>This is not an easy problem to solve efficiently. The only obvious way is to just go through prime numbers, one by one, until you’ve found all the factors. Finding an answer in this way would obviously take a very long time for a human being.</p>
 
 <p>However, it is very <em>easy</em> to <em>verify</em> when I tell you that these are the factors:</p>
 
@@ -62,111 +83,135 @@
 
 <p>Here, the function in question might be worded in plain English as: <em>What do you get when you multiply all of these prime numbers together?</em> It is very easy to compute the <em>output</em> of this function given the above factors as <em>input</em>. The reverse might be worded: <em>What prime numbers would you have to multiply together to get this number?</em> From the <em>output</em>, figuring out the <em>input</em> is much harder.</p>
 
-<h3 id='data_encryption'>Data encryption</h3>
+<h3 id="data_encryption_4">Data encryption</h3>
 
 <p>With one-way functions, then, what we effectively have are problems that are difficult to <em>solve</em>, yet whose solutions are easy to <em>verify</em>. It turns out that these are highly useful properties in the context of software security. One-way functions constitute one of the fundamental building blocks of data encryption.</p>
 
 <p>An illustration of this is the way passwords are stored. If you create an account with my website, and I then save your password <em>directly</em> in my database, then a hacker who breaks onto my servers can easily read your password.</p>
 
-<p><img alt='Plaintext password' src='/images/plaintext_password.png' /></p>
+<p><img src="/images/plaintext_password.png" alt="Plaintext password"></p>
 
-<p>But suppose instead of storing your password itself, I store the output of some cryptographic (one-way) function, using your password (and perhaps a <a href='http://en.wikipedia.org/wiki/Password_salting'>salt</a>) as input.</p>
+<p>But suppose instead of storing your password itself, I store the output of some cryptographic (one-way) function, using your password (and perhaps a <a href="http://en.wikipedia.org/wiki/Password_salting">salt</a>) as input.</p>
 
-<p><img alt='Encrypted password' src='/images/encrypted_password.png' /></p>
+<p><img src="/images/encrypted_password.png" alt="Encrypted password"></p>
 
-<p>Now, even if a hacker breaks into my system and sees your <em>encrypted</em> password, it will be very difficult for him or her to figure out what your password actually <em>is</em>&#8211;much in the same way it would be difficult for you to factor the number 946,905,102,747. However, it&#8217;s very easy for my system to <em>authenticate</em> you when you enter your <em>real</em> password, just as it is easy for you to multiply the factors of that number together once I tell them to you.</p>
+<p>Now, even if a hacker breaks into my system and sees your <em>encrypted</em> password, it will be very difficult for him or her to figure out what your password actually <em>is</em>–much in the same way it would be difficult for you to factor the number 946,905,102,747. However, it’s very easy for my system to <em>authenticate</em> you when you enter your <em>real</em> password, just as it is easy for you to multiply the factors of that number together once I tell them to you.</p>
 
-<h3 id='oneway_functions_and_black_boxes'>One-way functions and black boxes</h3>
+<h3 id="oneway_functions_and_black_boxes_5">One-way functions and black boxes</h3>
 
-<p>It might seem that I&#8217;ve veered off topic a bit. How are pattern recognition, Zendo, and one-way functions all related?</p>
+<p>It might seem that I’ve veered off topic a bit. How are pattern recognition, Zendo, and one-way functions all related?</p>
 
 <p>I believe the concept of a one-way function is broader than you might think from my initial examples.</p>
 
 <p>In Zendo, we can think of a <em>rule</em> as its own kind of function. The input to this function is a formation of game pieces, and the ouput is either true or false.</p>
 
-<p><img alt='Zendo as a one-way function' src='/images/zendo_function.png' /></p>
+<p><img src="/images/zendo_function.png" alt="Zendo as a one-way function"></p>
 
-<p>Clearly, this function is itself one-way. Given either <em>true</em> or <em>false</em>&#8211;even if you already <em>knew</em> the rule&#8211;how could you possibly deduce which formation led to that result?</p>
+<p>Clearly, this function is itself one-way. Given either <em>true</em> or <em>false</em>–even if you already <em>knew</em> the rule—how could you possibly deduce which formation led to that result?</p>
 
-<p>Of course, that isn&#8217;t quite the challenge of the game. In Zendo, the players don&#8217;t even know what the function <em>is</em>. This is why in the diagram above I&#8217;ve depicted the rule as a <a href='http://en.wikipedia.org/wiki/Black_box'>black box</a>.</p>
+<p>Of course, that isn’t quite the challenge of the game. In Zendo, the players don’t even know what the function <em>is</em>. This is why in the diagram above I’ve depicted the rule as a <a href="http://en.wikipedia.org/wiki/Black_box">black box</a>.</p>
 
-<p>One way*** of thinking about <strong>black boxes</strong> is that they are a de facto special case of one-way functions: by convention, they only compute results in one direction; and since their internals are unknown, reversing this process&#8211;i.e., working out what the <em>input</em> must have been for a given <em>output</em>&#8211;is, in the best case scenario, really a challenge of deducing the inner workings of the box.</p>
+<p>One way*** of thinking about <strong>black boxes</strong> is that they are a de facto special case of one-way functions: by convention, they only compute results in one direction; and since their internals are unknown, reversing this process—i.e., working out what the <em>input</em> must have been for a given <em>output</em>–is, in the best case scenario, really a challenge of deducing the inner workings of the box.</p>
 
-<p>I think you can also think of a black box as a kind of &#8220;shifted&#8221; one-way function. Consider my earlier multiplication example: if we have a function <em>y = 3x</em>, then the <em>forward</em> case (multiplication) takes a value for <em>x</em> as input and produces a value for <em>y</em>, while the <em>reverse</em> case (division) takes a value for <em>y</em> as &#8220;output&#8221; and <em>deduces</em> a value for <em>x</em>. What is <em>fixed</em> in this example is the function itself.</p>
+<p>I think you can also think of a black box as a kind of “shifted” one-way function. Consider my earlier multiplication example: if we have a function <em>y = 3x</em>, then the <em>forward</em> case (multiplication) takes a value for <em>x</em> as input and produces a value for <em>y</em>, while the <em>reverse</em> case (division) takes a value for <em>y</em> as “output” and <em>deduces</em> a value for <em>x</em>. What is <em>fixed</em> in this example is the function itself.</p>
 
-<p>Remember that in the case of a black box, we don&#8217;t know what the function is. What we do know is what both the inputs <em>and</em> the outputs are given our firsthand experience. So we could reframe our puzzle-solving problem as a one-way function where the &#8220;input&#8221; is actually itself a <em>function</em> (or &#8220;rule&#8221;, or &#8220;law&#8221;), and the &#8220;output&#8221; is a set of known results from applying this function to a known set of inputs. In this case, it is the <em>inputs and outputs</em>&#8211;our observations&#8211;that are fixed.</p>
+<p>Remember that in the case of a black box, we don’t know what the function is. What we do know is what both the inputs <em>and</em> the outputs are given our firsthand experience. So we could reframe our puzzle-solving problem as a one-way function where the “input” is actually itself a <em>function</em> (or “rule”, or “law”), and the “output” is a set of known results from applying this function to a known set of inputs. In this case, it is the <em>inputs and outputs</em>–our observations—that are fixed.</p>
 
-<p><img alt='A shifted one-way function' src='/images/shifted_one_way_function.png' /></p>
+<p><img src="/images/shifted_one_way_function.png" alt="A shifted one-way function"></p>
 
-<p>And we&#8217;re now back to pattern recognition. What I&#8217;ve just described is a shifted one-way function in the same way that Zendo is: the inputs are fixed, and outputs may be observed, but the function itself is unknown. Furthermore, while it is easy to &#8220;verify&#8221; that a theoretical function does indeed produce the observed outputs for the known, fixed set of inputs, going the other way is near impossible&#8211;in the same way that there is no right answer to a pattern recognition problem.</p>
+<p>And we’re now back to pattern recognition. What I’ve just described is a shifted one-way function in the same way that Zendo is: the inputs are fixed, and outputs may be observed, but the function itself is unknown. Furthermore, while it is easy to “verify” that a theoretical function does indeed produce the observed outputs for the known, fixed set of inputs, going the other way is near impossible—in the same way that there is no right answer to a pattern recognition problem.</p>
 
-<h2 id='the_sherlock_tendency_or_humans_and_overeager_deduction'>The Sherlock tendency, or: humans and overeager deduction</h2>
+<h2 id="the_sherlock_tendency_or_humans_and_overeager_deduction_6">The Sherlock tendency, or: humans and overeager deduction</h2>
 
 <p>Have you ever noticed that in detective stories, when the brilliant detective protagonist finally cracks the case, he generally reveals the full narrative of what happened to a room full of mesmerized listeners? In this narrative, he paints a vivid picture of how the villain prepared, all of the meticulous steps he took to avoid detection, and all of the little mistakes he made leaving clues that ultimately led the detective to expose him.</p>
 
-<p>Here&#8217;s why these stories, though I generally quite like them as entertainment, nonetheless fall short for me in terms of logical satisfaction. They are illustrations of what I will call the &#8220;Sherlock tendency&#8221;, which is this: as human beings, <strong>once we have identified a <em>plausible explanation</em> for some event, we think we have uncovered the truth</strong>.</p>
+<p>Here’s why these stories, though I generally quite like them as entertainment, nonetheless fall short for me in terms of logical satisfaction. They are illustrations of what I will call the “Sherlock tendency”, which is this: as human beings, <strong>once we have identified a <em>plausible explanation</em> for some event, we think we have uncovered the truth</strong>.</p>
 
-<p><img alt='The Sherlock tendency' src='/images/sherlock_tendency.png' /></p>
+<p><img src="/images/sherlock_tendency.png" alt="The Sherlock tendency"></p>
 
-<p>In the abstract, this is not any different from the &#8220;overeager deduction&#8221; I accused my friend of in Zendo. It is also the same as observing a sequence such as <em>1, 2, 4</em> and feeling certain at having recognized the underlying pattern.</p>
+<p>In the abstract, this is not any different from the “overeager deduction” I accused my friend of in Zendo. It is also the same as observing a sequence such as <em>1, 2, 4</em> and feeling certain at having recognized the underlying pattern.</p>
 
-<p>This is all a <em>plausible explanation</em> really is&#8211;a proposal for a function which, when applied to the known, fixed inputs of a situation, is consistent with the observed outputs.</p>
+<p>This is all a <em>plausible explanation</em> really is—a proposal for a function which, when applied to the known, fixed inputs of a situation, is consistent with the observed outputs.</p>
 
-<p>Let me try rewording that. Sometimes, we know certain things that happened at one time, and we also know things that happened at a later time; but we aren&#8217;t sure what happened in between.</p>
+<p>Let me try rewording that. Sometimes, we know certain things that happened at one time, and we also know things that happened at a later time; but we aren’t sure what happened in between.</p>
 
-<p><img alt='Unknown events' src='/images/unknown_events.png' /></p>
+<p><img src="/images/unknown_events.png" alt="Unknown events"></p>
 
 <p>Any murder mystery is an example of this. The victim was alive at one point; later he was discovered dead. The <em>mystery</em> is what happened to him.</p>
 
 <p>A plausible explanation is an attempt to solve the mystery by proposing what the unknown events above <em>might have been</em> while remaining consistent with the events that <em>did</em> happen. This is <strong>clearly not the same as a certainty</strong>. And yet I seem to observe it over and over again, in practically every aspect of the world we live in: history, economics, politics, etc. As long as we can construct a narrative which is <em>consistent</em> with the experiences of our lives and the information we believe we have about the past, we feel justified in subscribing to all that narrative implies.</p>
 
-<p>It&#8217;s an easy trap to fall into, because when an explanation is <em>inconsistent</em> with what we know, we can generally rule it out. I guess our natural instinct is to therefore run with consistency when we find it.</p>
+<p>It’s an easy trap to fall into, because when an explanation is <em>inconsistent</em> with what we know, we can generally rule it out. I guess our natural instinct is to therefore run with consistency when we find it.</p>
 
-<h2 id='why_are_we_like_this'>Why are we like this?</h2>
+<h2 id="why_are_we_like_this_7">Why are we like this?</h2>
 
 <p>Not that it particularly matters, but I do have a hypothesis as to why we humans tend to think in this way.****</p>
 
-<p>In the very beginning of my explanation of one-way functions, I mentioned that they are hard to solve in one direction. This is fundamentally where the term comes from. And so when we think of the mystery of life as a one-way function, where we know what we&#8217;ve experienced and we are compelled to make sense of it, we find ourselves in a predicament. It is <em>very hard</em> to solve this problem. In fact, it may be impossible. So our brains aren&#8217;t up to the task.</p>
+<p>In the very beginning of my explanation of one-way functions, I mentioned that they are hard to solve in one direction. This is fundamentally where the term comes from. And so when we think of the mystery of life as a one-way function, where we know what we’ve experienced and we are compelled to make sense of it, we find ourselves in a predicament. It is <em>very hard</em> to solve this problem. In fact, it may be impossible. So our brains aren’t up to the task.</p>
 
-<p>And yet there is a tremendous advantage to understanding the world&#8211;both practically and emotionally. Practically speaking, we&#8217;re better able to predict and manipulate our environment when we understand its rules&#8211;so a greater capacity for understanding is an advantage. I also think we&#8217;re biologically hard-wired to feel rewarded or even euphoric whenever we&#8217;re able to solve difficult mental problems, for just this reason. It&#8217;s a kind of positive reinforcement, encouraging us to pursue even deeper understanding. (It&#8217;s one of the reasons I believe humanity has advanced so far in science and technology.) And so emotionally, I think it makes sense for humans to crave this experience: of figuring things out, of &#8220;solving&#8221; the mysteries of this world and of our lives.</p>
+<p>And yet there is a tremendous advantage to understanding the world—both practically and emotionally. Practically speaking, we’re better able to predict and manipulate our environment when we understand its rules—so a greater capacity for understanding is an advantage. I also think we’re biologically hard-wired to feel rewarded or even euphoric whenever we’re able to solve difficult mental problems, for just this reason. It’s a kind of positive reinforcement, encouraging us to pursue even deeper understanding. (It’s one of the reasons I believe humanity has advanced so far in science and technology.) And so emotionally, I think it makes sense for humans to crave this experience: of figuring things out, of “solving” the mysteries of this world and of our lives.</p>
 
-<p><img alt='Eureka!' src='/images/eureka.jpg' /></p>
+<p><img src="/images/eureka.jpg" alt="Eureka!"></p>
 
-<h3 id='heuristics_in_software'>Heuristics in software</h3>
+<h3 id="heuristics_in_software_8">Heuristics in software</h3>
 
-<p>In computer science (and other fields as well) there are classes of very hard problems that cannot&#8211;at least <a href='http://www.claymath.org/millennium/P_vs_NP/'>not yet</a>&#8211;be solved efficiently. One such class of problems is known as <a href='http://en.wikipedia.org/wiki/Np_complete'>NP Complete</a>. The <em>NP</em> stands for <em>non-polynomial</em> (time), which basically means that these problems take so long to solve, the time required&#8211;as a function of the size of the input&#8211;cannot even be expressed by a polynomial expression (e.g., <em>t = n<sup>2</sup></em>).</p>
+<p>In computer science (and other fields as well) there are classes of very hard problems that cannot—at least <a href="http://www.claymath.org/millennium/P_vs_NP/">not yet</a>–be solved efficiently. One such class of problems is known as <a href="http://en.wikipedia.org/wiki/Np_complete">NP Complete</a>. The <em>NP</em> stands for <em>non-polynomial</em> (time), which basically means that these problems take so long to solve, the time required—as a function of the size of the input—cannot even be expressed by a polynomial expression (e.g., <em>t = n<sup>2</sup></em>).</p>
 
-<p>One of the easier-to-explain***** examples of an NP Complete problem is a famous one known as the <a href='http://en.wikipedia.org/wiki/Knapsack_problem'>Knapsack Problem</a>, which is this: given some container of finite capacity and a set of items with differing weights (or sizes) and values, find the optimal assortment of items that can be stored in the container.</p>
+<p>One of the easier-to-explain***** examples of an NP Complete problem is a famous one known as the <a href="http://en.wikipedia.org/wiki/Knapsack_problem">Knapsack Problem</a>, which is this: given some container of finite capacity and a set of items with differing weights (or sizes) and values, find the optimal assortment of items that can be stored in the container.</p>
 
-<p><img alt='The so-called Knapsack Problem' src='/images/knapsack.png' /></p>
+<p><img src="/images/knapsack.png" alt="The so-called Knapsack Problem"></p>
 
-<p>I happen to have a bit of firsthand experience with this problem, believe it or not, because at <a href='http://www.cardpool.com/buy-gift-cards'>Cardpool</a> I recently implemented a feature that allows customers to specify a total card value they&#8217;d like to purchase and then automatically populates their cart from available inventory******. This is essentially a special case of the knapsack problem where every item&#8217;s &#8220;weight&#8221; happens to also be its value (in fact, internally we still refer to the feature as the &#8220;knapsack&#8221; feature).</p>
+<p>I happen to have a bit of firsthand experience with this problem, believe it or not, because at <a href="http://www.cardpool.com/buy-gift-cards">Cardpool</a> I recently implemented a feature that allows customers to specify a total card value they’d like to purchase and then automatically populates their cart from available inventory******. This is essentially a special case of the knapsack problem where every item’s “weight” happens to also be its value (in fact, internally we still refer to the feature as the “knapsack” feature).</p>
 
-<p>Why do I bring this up? Well, in building this functionality, I was already aware that it&#8217;s really an NP problem. Therefore I knew it wouldn&#8217;t be realistic to try to solve with 100% accuracy or correctness; taking on a famously hard computer science problem for a simple convenience feature on a retail website would be a bit overkill. Instead, what we software developers do in situations like this is figure out <a href='http://en.wikipedia.org/wiki/Heuristic'>heuristics</a>, or rough solutions that are <em>good enough</em> for practical use.</p>
+<p>Why do I bring this up? Well, in building this functionality, I was already aware that it’s really an NP problem. Therefore I knew it wouldn’t be realistic to try to solve with 100% accuracy or correctness; taking on a famously hard computer science problem for a simple convenience feature on a retail website would be a bit overkill. Instead, what we software developers do in situations like this is figure out <a href="http://en.wikipedia.org/wiki/Heuristic">heuristics</a>, or rough solutions that are <em>good enough</em> for practical use.</p>
 
-<p>That&#8217;s what I did. I wrote a very basic algorithm&#8211;which is absolutely <em>not</em> a complete or strictly &#8220;correct&#8221; solution&#8211;and from my tests, sampling thousands of randomized carts, I found that it generally filled them to about 94% of the desired total value. My team and I agreed that this was good enough, and we moved on.</p>
+<p>That’s what I did. I wrote a very basic algorithm—which is absolutely <em>not</em> a complete or strictly “correct” solution—and from my tests, sampling thousands of randomized carts, I found that it generally filled them to about 94% of the desired total value. My team and I agreed that this was good enough, and we moved on.</p>
 
-<h3 id='heuristics_in_the_brain'>Heuristics in the brain</h3>
+<h3 id="heuristics_in_the_brain_9">Heuristics in the brain</h3>
 
 <p>This is <strong>what we all do</strong>. This is how our brains work. In this world, full of so many competing ideas and possible explanations for the experiences we have, it is not feasible to comprehensively consider every possibility, with all of its nuances, any more than it is possible to efficiently solve an NP Complete problem. There are just too many ideas and not enough time.</p>
-<img alt='Too many ideas' src='/images/too_many_ideas.jpg' style='border: 1px solid black; height: 384px; width: 512px;' />
-<p>So we exercise our internal <em>heuristics</em>, however we may have formed them over our lifetimes&#8211;forged by some mysterious blend of instinct, intuition, education, and so on&#8211;and we narrow down the options that our brains subconsciously deem worthy of consideration. The more we refine this ability, the more quickly we&#8217;re able to arrive at a final decision; this in turn gives us the emotional reward we&#8217;re after and propels us forward.</p>
-<img alt='Just one idea' src='/images/just_one_idea.jpg' style='border: 1px solid black; height: 384px; width: 512px;' />
-<p>Some of us are able to do this quite quickly, which can be advantageous even when it doesn&#8217;t lead to the truth, or to a &#8220;correct&#8221; result. We get away with it, I believe, because most of the time this strategy leads us to an understanding that is <em>good enough</em>&#8211;just like my knapsack algorithm was good enough, or like Newtownian physics was good enough until Einstein came along, or how if you pick any sufficiently controversial topic chances are you&#8217;ll be able to find <a href='http://intelligencesquaredus.org/debates'>intelligent, well-reasoned arguments on either side</a>&#8211;because the truth is complicated, and it&#8217;s not possible for our brains to weigh every available piece of evidence and arrive at complete <em>certainty</em> with respect to such issues (that&#8217;s why they&#8217;re controversial). They are <em>really tough</em> one-way functions; the best debaters among us simply have the best heuristics, albeit ones that have could well led them in opposite directions.</p>
+<img alt="Too many ideas" src="/images/too_many_ideas.jpg" style="border: 1px solid black; height: 384px; width: 512px;"><p>So we exercise our internal <em>heuristics</em>, however we may have formed them over our lifetimes—forged by some mysterious blend of instinct, intuition, education, and so on—and we narrow down the options that our brains subconsciously deem worthy of consideration. The more we refine this ability, the more quickly we’re able to arrive at a final decision; this in turn gives us the emotional reward we’re after and propels us forward.</p>
+<img alt="Just one idea" src="/images/just_one_idea.jpg" style="border: 1px solid black; height: 384px; width: 512px;"><p>Some of us are able to do this quite quickly, which can be advantageous even when it doesn’t lead to the truth, or to a “correct” result. We get away with it, I believe, because most of the time this strategy leads us to an understanding that is <em>good enough</em>–just like my knapsack algorithm was good enough, or like Newtownian physics was good enough until Einstein came along, or how if you pick any sufficiently controversial topic chances are you’ll be able to find <a href="http://intelligencesquaredus.org/debates">intelligent, well-reasoned arguments on either side</a>–because the truth is complicated, and it’s not possible for our brains to weigh every available piece of evidence and arrive at complete <em>certainty</em> with respect to such issues (that’s why they’re controversial). They are <em>really tough</em> one-way functions; the best debaters among us simply have the best heuristics, albeit ones that have could well led them in opposite directions.</p>
 
-<h2 id='conclusion'>Conclusion</h2>
+<h2 id="conclusion_10">Conclusion</h2>
 
-<p>I think it&#8217;s important to realize that, at a very fundamental level, we actually <em>know</em> very little. The views we have adopted throughout our lives are informed by plenty of experience, sure; but there is so much universe out there, and our experience covers a relatively miniscule portion it. Our brains adapted to this early in our history, and as a species we developed a knack for using <em>heuristics</em> to form a <em>good enough</em> understanding of the world, so as not to end up paralyzed in deep contemplation our entire lives.</p>
+<p>I think it’s important to realize that, at a very fundamental level, we actually <em>know</em> very little. The views we have adopted throughout our lives are informed by plenty of experience, sure; but there is so much universe out there, and our experience covers a relatively miniscule portion it. Our brains adapted to this early in our history, and as a species we developed a knack for using <em>heuristics</em> to form a <em>good enough</em> understanding of the world, so as not to end up paralyzed in deep contemplation our entire lives.</p>
 
-<p>Of course I&#8217;m speculating a bit here! But can you blame me? I am after all saying that some form of speculation is all that any of us <em>ever</em> does.</p>
+<p>Of course I’m speculating a bit here! But can you blame me? I am after all saying that some form of speculation is all that any of us <em>ever</em> does.</p>
 
-<p>I&#8217;ll leave you with one final analogy. Have you ever played Sudoku? It&#8217;s a great game, though it can be rather maddening when it&#8217;s too hard (my wife got me a book of <em>Extreme Sudoku</em> and it kills me). Have you ever had that <em>sinking feeling</em> when you&#8217;re most of the way through a Sudoku puzzle and suddenly you realize you&#8217;ve hit a contradition&#8211;there must have been a mistake (probably on your part)?</p>
+<p>I’ll leave you with one final analogy. Have you ever played Sudoku? It’s a great game, though it can be rather maddening when it’s too hard (my wife got me a book of <em>Extreme Sudoku</em> and it kills me). Have you ever had that <em>sinking feeling</em> when you’re most of the way through a Sudoku puzzle and suddenly you realize you’ve hit a contradition—there must have been a mistake (probably on your part)?</p>
 
-<p><img alt='Sudoku' src='/images/sudoku.jpg' /></p>
+<p><img src="/images/sudoku.jpg" alt="Sudoku"></p>
 
 <p>This can be very easy to miss when it happens, especially if it occurs early in the puzzle. With so much unknown, a slip-up or illogical move may well not result in any obvious contradictions.</p>
 
-<p>Now think of life as a Sudoku puzzle, but obviously much larger&#8211;with a grid extending as far as the eye can see in any direction: hundreds, thousands, millions of squares. You&#8217;re <em>never</em> going to fill in the whole grid; that would be tantamount to fully understanding the entire universe. But you&#8217;ll still make gradual progress, coming to understand more and more with age. However, you&#8217;ll also make mistakes once in a while, even if you&#8217;re good; and these mistakes will eventually lead to <em>more</em> mistakes, as happens in Sudoku. If you&#8217;re honest with yourself, you&#8217;ll therefore have to accept two things: that some of the grid you&#8217;ve already filled in is wrong (though you hope it&#8217;s a small fraction), and thus if you ever compare your grid to someone else&#8217;s and notice a discrepancy, you must be open to the possibility that theirs could be right.</p>
+<p>Now think of life as a Sudoku puzzle, but obviously much larger—with a grid extending as far as the eye can see in any direction: hundreds, thousands, millions of squares. You’re <em>never</em> going to fill in the whole grid; that would be tantamount to fully understanding the entire universe. But you’ll still make gradual progress, coming to understand more and more with age. However, you’ll also make mistakes once in a while, even if you’re good; and these mistakes will eventually lead to <em>more</em> mistakes, as happens in Sudoku. If you’re honest with yourself, you’ll therefore have to accept two things: that some of the grid you’ve already filled in is wrong (though you hope it’s a small fraction), and thus if you ever compare your grid to someone else’s and notice a discrepancy, you must be open to the possibility that theirs could be right.</p>
 
 <p>And so the next time someone insists to me that Steorn cannot <em>possibly</em> have achieved overunity, or my friend claims to have <em>immediately</em> identified a rule in Zendo, or I see a detective movie with a resolution that neatly ties up all the details of the crime, I will remain skeptical. The universe is a one-way function; and while it may be easy for us to recognize when ideas are <em>plausible</em>, it is much, much harder to ever find the truth.</p>
-<hr /><sub>\*Ironically, with Steorn, I'd argue that *disbelief* is the default attitude and therefore those who dismiss the company outright are not really skeptics. Rather, those like myself who disagree (or at least did originally) that the company can be *immediately dismissed* are the skeptical ones--i.e., the ones skeptical of others' certainty.</sub><sub>\*\*To be clear: my friend believed that he understood the master *personally* so well that he had a strong intuitive sense of the sort of rules he would think of. I remain skeptical.</sub><sub>\*\*\*No pun intended--I swear!</sub><sub>\*\*\*\*Notice that this hypothesis is itself a demonstration of the Sherlock tendency! Recursion, anyone?</sub><sub>\*\*\*\*\*By which I mean, the only example I know of off the top of my head besides [Traveling Salesman](http://en.wikipedia.org/wiki/Traveling_salesman_problem).</sub><sub>\*\*\*\*\*\*If you'd like to see this feature in action, [try using the "Bulk Purchase" button on Cardpool's Home Depot page](http://www.cardpool.com/buy/home-depot-gift-cards) and searching for, say, $2000 of cards.</sub>
+<hr>
+<sub>\*Ironically, with Steorn, I'd argue that *disbelief* is the default attitude and therefore those who dismiss the company outright are not really skeptics. Rather, those like myself who disagree (or at least did originally) that the company can be *immediately dismissed* are the skeptical ones—i.e., the ones skeptical of others' certainty.</sub><sub>\*\*To be clear: my friend believed that he understood the master *personally* so well that he had a strong intuitive sense of the sort of rules he would think of. I remain skeptical.</sub><sub>\*\*\*No pun intended—I swear!</sub><sub>\*\*\*\*Notice that this hypothesis is itself a demonstration of the Sherlock tendency! Recursion, anyone?</sub><sub>\*\*\*\*\*By which I mean, the only example I know of off the top of my head besides [Traveling Salesman](http://en.wikipedia.org/wiki/Traveling_salesman_problem).</sub><sub>\*\*\*\*\*\*If you'd like to see this feature in action, [try using the "Bulk Purchase" button on Cardpool's Home Depot page](http://www.cardpool.com/buy/home-depot-gift-cards) and searching for, say, $2000 of cards.</sub>
+</body></html>
+  </section>
+  <section class='comments'></section>
+</article>
+  <div id='footer'>
+    <ul class='menu'>
+      <li><a href="/posts">All Posts</a></li>
+      <li>
+        <a href='http://stackoverflow.com/users/105570' target='_blank'>
+          <img alt='StackOverflow' src='/icons/stackoverflow-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://github.com/dtao' target='_blank'>
+          <img alt='GitHub' src='/icons/github-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://twitter.com/dan_tao' target='_blank'>
+          <img alt='Twitter' src='/icons/twitter-small.png' />
+        </a>
+      </li>
+    </ul>
+  </div>
+</body>

@@ -2,8 +2,8 @@
 %head
   %title The Philosopher Developer
   %meta(name="viewport" content="initial-scale=1.0, width=device-width, height=device-height")
-  = stylesheet_link_tag("application.responsive")
-  = stylesheet_link_tag("/pygments")
+  %link(rel="stylesheet" href="/stylesheets/application.responsive.css")
+  %link(rel="stylesheet" href="/stylesheets/pygments.css")
 
 %body
   #header
@@ -17,10 +17,10 @@
       %li <a href="/posts">All Posts</a>
       %li
         %a(href="http://stackoverflow.com/users/105570" target="_blank")
-          = image_tag("/icons/stackoverflow-small.png", :alt => "StackOverflow")
+          %img(alt="StackOverflow" src="/icons/stackoverflow-small.png")
       %li
         %a(href="https://github.com/dtao" target="_blank")
-          = image_tag("/icons/github-small.png", :alt => "GitHub")
+          %img(alt="GitHub" src="/icons/github-small.png")
       %li
         %a(href="https://twitter.com/dan_tao" target="_blank")
-          = image_tag("/icons/twitter-small.png", :alt => "Twitter")
+          %img(alt="Twitter" src="/icons/twitter-small.png")

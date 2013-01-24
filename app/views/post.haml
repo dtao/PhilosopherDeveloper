@@ -1,12 +1,10 @@
 %article.post
   %section.heading
-    = partial(:heading, :locals => { :post => @post })
+    %h1
+      %span.title= post.title
+      %span.date= post.friendly_date
 
   %section.content
-    = markdown(:"posts/#{@post.identifier}").gsub("--", "&mdash;")
+    = yield
 
   %section.comments
-    - @post.comments.each do |comment|
-      = partial(:comment, :locals => { :comment => comment })
-
-    = partial(:comment_form, :locals => { :post => @post })
