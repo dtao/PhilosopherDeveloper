@@ -11,17 +11,17 @@ optimize-for-comprehensibility:
 universe-is-a-one-way-function:
   date: 2012-10-03
   title: The universe is a one-way function
-  published: true
+  published: false
 
 brushing-up-on-cs-part-1-algorithmic-complexity:
   date: 2012-09-15
   title: "Brushing up on C.S. - Part 1: Algorithmic Complexity"
-  published: true
+  published: false
 
 magical-optimization-of-the-+=-operator-with-strings:
   date: 2012-08-25
   title: A magical optimization of the += operator with strings
-  published: true
+  published: false
 
 value-of-a-detached-perspective:
   date: 2012-08-21
@@ -31,7 +31,7 @@ value-of-a-detached-perspective:
 to-start-over-or-continue:
   date: 2012-06-15
   title: To start over or continue
-  published: true
+  published: false
 
 fast-string-concatenation:
   date: 2012-06-11
@@ -41,7 +41,7 @@ fast-string-concatenation:
 trouble-with-stop-the-line-ci:
   date: 2012-05-07
   title: The trouble with stop-the-line CI
-  published: true
+  published: false
 
 conflation-of-cause-and-responsibility:
   date: 2012-02-19
@@ -51,14 +51,14 @@ conflation-of-cause-and-responsibility:
 optimizing-mind:
   date: 2012-02-19
   title: The Optimizing Mind
-  published: true
+  published: false
 
 trick-to-good-ballpark-estimates:
   date: 2012-02-02
   title: The trick to good ballpark estimates
-  published: true
+  published: false
 
 am-i-being-obnoxious:
   date: 2012-02-02
   title: Am I being obnoxious?
-  published: true
+  published: false
