@@ -4,7 +4,7 @@ Recently my friend Chuck reminded me of a conversation he and I had ages ago abo
 
 Most of my acquaintances with a modest amount of scientific knowledge, of course, dismissed Steorn from the very start. What the company claims to do violates a known law of physics, they argued; therefore it is impossible; therefore they are either lying or confused. Personally, I never did and probably never will fully sympathize with this attitude. While I agree that Steorn probably do not have what they have claimed (and I certainly have no intention of arguing with the laws of thermodynamics!), I disagree with the premise that we can be *so sure* of things like this that we are justified in rejecting them immediately.
 
-This is actually the same topic I covered in [my very first post on this blog](http://philosopherdeveloper.wordpress.com/2009/12/19/the-myth-of-the-myth-of-perpetual-motion/). But it's something I feel quite strongly about, so I'll probably write about it again, and again, until I'm satisfied I've fully covered the topic in the way I want (i.e., never). This time around, I want to relate my skepticism\* in these sorts of matters to the concept of *one-way-functions*--a mathematical term that I'll define later in this post. But first, I'll start with a simple problem.
+This is actually the same topic I covered in [my very first post on this blog](http://philosopherdeveloper.wordpress.com/2009/12/19/the-myth-of-the-myth-of-perpetual-motion/). But it's something I feel quite strongly about, so I'll probably write about it again, and again, until I'm satisfied I've fully covered the topic in the way I want (i.e., never). This time around, I want to relate my skepticism[^skepticism] in these sorts of matters to the concept of *one-way-functions*--a mathematical term that I'll define later in this post. But first, I'll start with a simple problem.
 
 Recognizing patterns
 --------------------
@@ -40,7 +40,7 @@ There is a game of deduction that a few of my friends like to play called *Zendo
 
 In Zendo, one player--the Master--devises a rule involving the game pieces, which he then illustrates via two examples: one embodying the rule, and one not. These examples are designated *true* and *false*. The players then take turns assembling their own game pieces in different formations, asking the master whether or not their formations comply with the master's rule. Eventually, one or more of the players will *deduce* the rule by observing a *pattern* across the examples.
 
-I was recently surprised\*\* when, during a game, after the master had given his initial two examples, one of my friends announced that he knew the rule already.
+I was recently surprised[^surprised] when, during a game, after the master had given his initial two examples, one of my friends announced that he knew the rule already.
 
 This declaration of having the answer so early in the game seemed absurd to me. And I think you can understand why, from my earlier thoughts on pattern recognition. There was no way my friend already *knew* the rule at this stage, given that there were many possible rules that would be consistent with the examples given.
 
@@ -97,7 +97,7 @@ Clearly, this function is itself one-way. Given either *true* or *false*--even i
 
 Of course, that isn't quite the challenge of the game. In Zendo, the players don't even know what the function *is*. This is why in the diagram above I've depicted the rule as a [black box](http://en.wikipedia.org/wiki/Black_box).
 
-One way\*\*\* of thinking about **black boxes** is that they are a de facto special case of one-way functions: by convention, they only compute results in one direction; and since their internals are unknown, reversing this process--i.e., working out what the *input* must have been for a given *output*--is, in the best case scenario, really a challenge of deducing the inner workings of the box.
+One way[^one-way-pun] of thinking about **black boxes** is that they are a de facto special case of one-way functions: by convention, they only compute results in one direction; and since their internals are unknown, reversing this process--i.e., working out what the *input* must have been for a given *output*--is, in the best case scenario, really a challenge of deducing the inner workings of the box.
 
 I think you can also think of a black box as a kind of "shifted" one-way function. Consider my earlier multiplication example: if we have a function *y = 3x*, then the *forward* case (multiplication) takes a value for *x* as input and produces a value for *y*, while the *reverse* case (division) takes a value for *y* as "output" and *deduces* a value for *x*. What is *fixed* in this example is the function itself.
 
@@ -133,7 +133,7 @@ It's an easy trap to fall into, because when an explanation is *inconsistent* wi
 Why are we like this?
 ---------------------
 
-Not that it particularly matters, but I do have a hypothesis as to why we humans tend to think in this way.\*\*\*\*
+Not that it particularly matters, but I do have a hypothesis as to why we humans tend to think in this way.[^sherlock-hypothesis]
 
 In the very beginning of my explanation of one-way functions, I mentioned that they are hard to solve in one direction. This is fundamentally where the term comes from. And so when we think of the mystery of life as a one-way function, where we know what we've experienced and we are compelled to make sense of it, we find ourselves in a predicament. It is *very hard* to solve this problem. In fact, it may be impossible. So our brains aren't up to the task.
 
@@ -145,11 +145,11 @@ And yet there is a tremendous advantage to understanding the world--both practic
 
 In computer science (and other fields as well) there are classes of very hard problems that cannot--at least [not yet](http://www.claymath.org/millennium/P_vs_NP/)--be solved efficiently. One such class of problems is known as [NP Complete](http://en.wikipedia.org/wiki/Np_complete). The *NP* stands for *non-polynomial* (time), which basically means that these problems take so long to solve, the time required--as a function of the size of the input--cannot even be expressed by a polynomial expression (e.g., *t = n<sup>2</sup>*).
 
-One of the easier-to-explain\*\*\*\*\* examples of an NP Complete problem is a famous one known as the [Knapsack Problem](http://en.wikipedia.org/wiki/Knapsack_problem), which is this: given some container of finite capacity and a set of items with differing weights (or sizes) and values, find the optimal assortment of items that can be stored in the container.
+One of the easier-to-explain[^knapsack-example] examples of an NP Complete problem is a famous one known as the [Knapsack Problem](http://en.wikipedia.org/wiki/Knapsack_problem), which is this: given some container of finite capacity and a set of items with differing weights (or sizes) and values, find the optimal assortment of items that can be stored in the container.
 
 ![The so-called Knapsack Problem](/images/knapsack.png)
 
-I happen to have a bit of firsthand experience with this problem, believe it or not, because at [Cardpool](http://www.cardpool.com/buy-gift-cards) I recently implemented a feature that allows customers to specify a total card value they'd like to purchase and then automatically populates their cart from available inventory\*\*\*\*\*\*. This is essentially a special case of the knapsack problem where every item's "weight" happens to also be its value (in fact, internally we still refer to the feature as the "knapsack" feature).
+I happen to have a bit of firsthand experience with this problem, believe it or not, because at [Cardpool](http://www.cardpool.com/buy-gift-cards) I recently implemented a feature that allows customers to specify a total card value they'd like to purchase and then automatically populates their cart from available inventory[^see-it-in-action]. This is essentially a special case of the knapsack problem where every item's "weight" happens to also be its value (in fact, internally we still refer to the feature as the "knapsack" feature).
 
 Why do I bring this up? Well, in building this functionality, I was already aware that it's really an NP problem. Therefore I knew it wouldn't be realistic to try to solve with 100% accuracy or correctness; taking on a famously hard computer science problem for a simple convenience feature on a retail website would be a bit overkill. Instead, what we software developers do in situations like this is figure out [heuristics](http://en.wikipedia.org/wiki/Heuristic), or rough solutions that are *good enough* for practical use.
 
@@ -165,7 +165,7 @@ So we exercise our internal *heuristics*, however we may have formed them over o
 
 <img alt="Just one idea" src="/images/just_one_idea.jpg" style="border: 1px solid black; height: 384px; width: 512px;" />
 
-Some of us are able to do this quite quickly, which can be advantageous even when it doesn't lead to the truth, or to a "correct" result. We get away with it, I believe, because most of the time this strategy leads us to an understanding that is *good enough*--just like my knapsack algorithm was good enough, or like Newtownian physics was good enough until Einstein came along, or how if you pick any sufficiently controversial topic chances are you'll be able to find [intelligent, well-reasoned arguments on either side](http://intelligencesquaredus.org/debates)--because the truth is complicated, and it's not possible for our brains to weigh every available piece of evidence and arrive at complete *certainty* with respect to such issues (that's why they're controversial). They are *really tough* one-way functions; the best debaters among us simply have the best heuristics, albeit ones that have could well led them in opposite directions.
+Some of us are able to do this quite quickly, which can be advantageous even when it doesn't lead to the truth, or to a "correct" result. We get away with it, I believe, because most of the time this strategy leads us to an understanding that is *good enough*--just like my knapsack algorithm was good enough, or like Newtownian physics was good enough until Einstein came along, or how if you pick any sufficiently controversial topic chances are you'll be able to find [intelligent, well-reasoned arguments on either side](http://intelligencesquaredus.org/debates)--because the truth is complicated, and it's not possible for our brains to weigh every available piece of evidence and arrive at complete *certainty* with respect to such issues (that's why they're controversial). They are *really tough* one-way functions; the best debaters among us simply have the best heuristics, albeit ones that could well have led them in opposite directions.
 
 Conclusion
 ----------
@@ -174,7 +174,7 @@ I think it's important to realize that, at a very fundamental level, we actually
 
 Of course I'm speculating a bit here! But can you blame me? I am after all saying that some form of speculation is all that any of us *ever* does.
 
-I'll leave you with one final analogy. Have you ever played Sudoku? It's a great game, though it can be rather maddening when it's too hard (my wife got me a book of *Extreme Sudoku* and it kills me). Have you ever had that *sinking feeling* when you're most of the way through a Sudoku puzzle and suddenly you realize you've hit a contradition--there must have been a mistake (probably on your part)?
+I'll leave you with one final analogy. Have you ever played Sudoku? It's a great game, though it can be rather maddening when it's too hard (my wife got me a book of [*Nasty Sudoku*](http://www.amazon.com/Absolutely-Nasty-Sudoku-Official-Puzzle/dp/1402743963) and it kills me). Have you ever had that *sinking feeling* when you're most of the way through a Sudoku puzzle and suddenly you realize you've hit a contradition--there must have been a mistake (probably on your part)?
 
 ![Sudoku](/images/sudoku.jpg)
 
@@ -184,16 +184,14 @@ Now think of life as a Sudoku puzzle, but obviously much larger--with a grid ext
 
 And so the next time someone insists to me that Steorn cannot *possibly* have achieved overunity, or my friend claims to have *immediately* identified a rule in Zendo, or I see a detective movie with a resolution that neatly ties up all the details of the crime, I will remain skeptical. The universe is a one-way function; and while it may be easy for us to recognize when ideas are *plausible*, it is much, much harder to ever find the truth.
 
-***
+[^skepticism]: Ironically, with Steorn, I'd argue that *disbelief* is the default attitude and therefore those who dismiss the company outright are not really skeptics. Rather, those like myself who disagree (or at least did originally) that the company can be *immediately dismissed* are the skeptical ones--i.e., the ones skeptical of others' certainty.
 
-<sub>\*Ironically, with Steorn, I'd argue that *disbelief* is the default attitude and therefore those who dismiss the company outright are not really skeptics. Rather, those like myself who disagree (or at least did originally) that the company can be *immediately dismissed* are the skeptical ones--i.e., the ones skeptical of others' certainty.</sub>
+[^surprised]: To be clear: my friend believed that he understood the master *personally* so well that he had a strong intuitive sense of the sort of rules he would think of. I remain skeptical.
 
-<sub>\*\*To be clear: my friend believed that he understood the master *personally* so well that he had a strong intuitive sense of the sort of rules he would think of. I remain skeptical.</sub>
+[^one-way-pun]: No pun intended--I swear!
 
-<sub>\*\*\*No pun intended--I swear!</sub>
+[^sherlock-hypothesis]: Notice that this hypothesis is itself a demonstration of the Sherlock tendency! Recursion, anyone?
 
-<sub>\*\*\*\*Notice that this hypothesis is itself a demonstration of the Sherlock tendency! Recursion, anyone?</sub>
+[^knapsack-example]: By which I mean, the only example I know of off the top of my head besides [Traveling Salesman](http://en.wikipedia.org/wiki/Traveling_salesman_problem).
 
-<sub>\*\*\*\*\*By which I mean, the only example I know of off the top of my head besides [Traveling Salesman](http://en.wikipedia.org/wiki/Traveling_salesman_problem).</sub>
-
-<sub>\*\*\*\*\*\*If you'd like to see this feature in action, [try using the "Bulk Purchase" button on Cardpool's Home Depot page](http://www.cardpool.com/buy/home-depot-gift-cards) and searching for, say, $2000 of cards.</sub>
+[^see-it-in-action]: If you'd like to see this feature in action, [try using the "Bulk Purchase" button on Cardpool's Home Depot page](http://www.cardpool.com/buy/home-depot-gift-cards) and searching for, say, $2000 of cards.

@@ -11,7 +11,12 @@ optimize-for-comprehensibility:
 universe-is-a-one-way-function:
   date: 2012-10-03
   title: The universe is a one-way function
-  published: false
+  published: true
+
+cannibalizing-yourself-on-purpose:
+  date: 2012-09-24
+  title: Cannibalizing yourself on purpose
+  published: true
 
 brushing-up-on-cs-part-1-algorithmic-complexity:
   date: 2012-09-15
