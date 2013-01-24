@@ -7,13 +7,15 @@
   %section.content
     = yield
 
-  %section.comments
-    #disqus_thread
+  - if post.allow_comments
+    %section.comments
+      #disqus_thread
 
-    %script(type="text/javascript" src="/javascripts/disqus.js")
+      %script(type="text/javascript" src="/javascripts/disqus.js")
 
-    %noscript
-      Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-    %a.dsq-brlink(href="http://disqus.com")
-      comments powered by
-      %span.logo-disqus Disqus
+      %noscript
+        Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+
+      %a.dsq-brlink(href="http://disqus.com")
+        comments powered by
+        %span.logo-disqus Disqus

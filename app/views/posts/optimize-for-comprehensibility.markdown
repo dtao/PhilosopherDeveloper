@@ -19,7 +19,7 @@ What I *did* say was something to the effect that we are all LEGO makers in the 
 A lesson on refactoring
 =======================
 
-On that same project, I became friends with a fellow ThoughtWorks developer named Yujun. I really enjoyed [pairing](http://en.wikipedia.org/wiki/Pair_programming) with Yujun; he and I both understood each other fairly quickly[^communication-in-pairing], and we got along quite well.
+On that same project, I became friends with a fellow ThoughtWorks developer, [Yujun Liang](http://seleniumcapsules.blogspot.com). I really enjoyed [pairing](http://en.wikipedia.org/wiki/Pair_programming) with Yujun; he and I both understood each other fairly quickly[^communication-in-pairing], and we got along quite well.
 
 One habit of Yujun's that bugged me, though, was that he *loved* to refactor code. In contrast, I had a tendency (at the time) to prefer moving more quickly and building more features. I did understand the value of refactoring in many cases, such as to reduce code duplication. However, Yujun consistently engaged in a particular type of refactoring that I, at the time, found somewhat maddening.
 

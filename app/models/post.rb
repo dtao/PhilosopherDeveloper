@@ -86,6 +86,7 @@ class Post
   end
 
   attr_reader :identifier, :date, :title, :published
+  attr_accessor :allow_comments
 
   def comments
     Comment.all(:post_identifier => self.identifier)
@@ -110,5 +111,6 @@ class Post
     @date = info["date"]
     @title = info["title"]
     @published = info["published"]
+    @allow_comments = true
   end
 end

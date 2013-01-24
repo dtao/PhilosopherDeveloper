@@ -48,6 +48,17 @@ def compile_post(post, filename=nil)
   end
 end
 
+def compile_about
+  about_post = Post.new(:about, {
+    "title" => "Dan Tao",
+    "date"  => Date.parse("2013-01-24")
+  })
+
+  about_post.allow_comments = false
+
+  compile_post(about_post, "about.html")
+end
+
 def compile_index
   layout_haml = read_view_file("layouts", "application.haml")
   index_haml  = read_view_file("index.haml")
@@ -77,5 +88,6 @@ desc "Compile static website"
 task :compile do
   Post.each { |post| compile_post(post) }
   compile_post(Post.latest, "index.html")
+  compile_about()
   compile_index()
 end

@@ -13,4 +13,8 @@ class Blog < Padrino::Application
   get "/posts" do
     redirect("/posts/index.html")
   end
+
+  get "/about" do
+    redirect("/about.html")
+  end
 end
