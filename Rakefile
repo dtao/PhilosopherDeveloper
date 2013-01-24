@@ -33,7 +33,7 @@ def compile_post(post, filename=nil)
 
   # The HAML library's got a weird-ass interface.
   post_html = Haml::Engine.new(post_haml).render(Object.new, :post => post) do
-    document.to_html
+    document.css("body").inner_html
   end
 
   # Render w/ final layout using HAML.
