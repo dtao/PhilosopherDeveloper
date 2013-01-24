@@ -82,7 +82,8 @@ article.post {
     border-bottom: 1px solid black;
     margin-bottom: 25px; }
   article.post section.comments {
-    font-size: 16px; }
+    font-size: 16px;
+    margin-top: 50px; }
     article.post section.comments .field {
       margin-bottom: 10px; }
       article.post section.comments .field label {
