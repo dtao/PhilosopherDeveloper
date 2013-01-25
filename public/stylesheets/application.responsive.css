@@ -136,6 +136,7 @@ article.post {
           color: #a6e5dd;
           text-decoration: underline; }
         #footer ul.menu li a img {
+          border: none;
           vertical-align: middle; }
 
 @media all and (max-width: 640px) {
