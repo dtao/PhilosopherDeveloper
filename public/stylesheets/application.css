@@ -124,7 +124,8 @@ article.post {
     list-style: none;
     width: 67%;
     margin: 0 auto;
-    padding-left: 0; }
+    padding-left: 0;
+    overflow: hidden; }
     #footer ul.menu li {
       font-family: Segoe, Helvetica, Arial, sans-serif;
       display: inline-block;
