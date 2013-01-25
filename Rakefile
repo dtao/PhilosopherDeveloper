@@ -41,7 +41,7 @@ def compile_index(posts)
 end
 
 def compile_about
-  about_post = Post.new(:about, {
+  about_post = Post.new("about", {
     "title" => "Dan Tao",
     "date"  => Date.parse("2013-01-24")
   })

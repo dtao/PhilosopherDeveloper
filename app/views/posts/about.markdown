@@ -1,8 +1,6 @@
 I was a Philosophy major in college, but I've been a software developer since 2009.
 
-In 2012 I graduated from [CMU Silicon Valley](http://www.cmu.edu/silicon-valley) with an M.S. in Software Engineering.
-
-As my final project as a grad student, I developed [InstaPie](http://www.instapie.net), a fun way to settle arguments with friends.
+In 2012 I graduated from [CMU Silicon Valley](http://www.cmu.edu/silicon-valley) with an M.S. in Software Engineering. As my final project as a grad student, I developed [InstaPie](http://www.instapie.net), a fun way to settle arguments with friends.
 
 For about a year I worked at [ThoughtWorks](http://www.thoughtworks.com), which was a really great experience. It seems almost every day I apply lessons I learned from my brilliant coworkers there to my current job.
 
