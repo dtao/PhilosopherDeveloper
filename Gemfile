@@ -11,6 +11,7 @@ gem "rake"
 gem "sinatra-flash", :require => "sinatra/flash"
 
 # Component requirements
+gem "maruku", :git => "git://github.com/bhollis/maruku.git"
 gem "sass"
 
 # Padrino Stable Gem
@@ -19,7 +20,6 @@ gem "padrino", "0.10.6"
 group :development do
   gem "builder"
   gem "haml"
-  gem "maruku", :git => "git://github.com/bhollis/maruku.git"
   gem "nokogiri"
   gem "pygments.rb"
 end
