@@ -32,8 +32,7 @@
 
 <li>Storing the elements in an array, and then calling <code>join()</code>
 </li>
-</ul>
-<p>Before bothering to profile anything, here was my guess: I figured that on small strings, the two options would be roughly equivalent. But given that strings in JavaScript are immutable, I assumed that even on modern browsers the array-based concatenation strategy would prove superior pretty much across the board. That would make sense, right?</p>
+</ul><p>Before bothering to profile anything, here was my guess: I figured that on small strings, the two options would be roughly equivalent. But given that strings in JavaScript are immutable, I assumed that even on modern browsers the array-based concatenation strategy would prove superior pretty much across the board. That would make sense, right?</p>
 
 <p>To my surprise, after <a href="http://jsperf.com/concatenating-lots-of-little-strings/2">profiling the two options on a variety of browsers</a>, I found that the <code>+=</code> operator beats the pants off the array method on Chrome.</p>
 
@@ -92,8 +91,7 @@ Output equal? True</code></pre>
 <li>Leaving ThoughtWorks</li>
 
 <li>Graduating from CMU</li>
-</ol>
-<p>Let that be a reminder to myself, for next time.</p>
+</ol><p>Let that be a reminder to myself, for next time.</p>
   </section>
   <section class='comments'>
     <div id='disqus_thread'></div>

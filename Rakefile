@@ -20,7 +20,7 @@ def compile_post(post, filename=nil)
   post_body_html = Maruku.new(markdown).to_html
 
   # Parse and do syntax highlighting of code blocks w/ Pygments.
-  document = Nokogiri::HTML.parse(post_body_html)
+  document = Nokogiri::HTML.fragment(post_body_html)
   document.css("code").each do |node|
     node = node.parent
     language_attr = node.attribute("lang")
@@ -33,7 +33,7 @@ def compile_post(post, filename=nil)
 
   # The HAML library's got a weird-ass interface.
   post_html = Haml::Engine.new(post_haml).render(Object.new, :post => post) do
-    document.css("body").inner_html
+    document.inner_html
   end
 
   # Render w/ final layout using HAML.
