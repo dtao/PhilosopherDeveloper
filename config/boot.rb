@@ -17,7 +17,6 @@ end
 # Add your after load hooks here
 #
 Padrino.after_load do
-  Post.load_all(File.join(PADRINO_ROOT, "config", "posts.yml"))
 end
 
 Padrino.load!
