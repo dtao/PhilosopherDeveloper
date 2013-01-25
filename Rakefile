@@ -1,5 +1,6 @@
 require File.join(File.dirname(__FILE__), "config", "boot")
 
+require "builder"
 require "haml"
 require "maruku"
 
@@ -62,6 +63,12 @@ def compile_posts_index
   end
 end
 
+def build_xml
+  builder = Builder::XmlMarkup.new
+  yield builder
+  builder.target!
+end
+
 namespace :db do
   desc "Reset the database out"
   task :reset do
@@ -76,10 +83,41 @@ namespace :db do
   end
 end
 
-desc "Compile static website"
-task :compile do
-  Post.each { |post| compile_post(post) }
-  compile_index(Post.all.take(5))
-  compile_about()
-  compile_posts_index()
+namespace :compile do
+  desc "Compile static website"
+  task :html do
+    Post.each { |post| compile_post(post) }
+    compile_index(Post.all.take(5))
+    compile_about()
+    compile_posts_index()
+  end
+
+  desc "Compile RSS feed"
+  task :rss do
+    # Basically stolen from http://recipes.sinatrarb.com/p/views/rss
+    rss = build_xml do |xml|
+      xml.instruct! :xml, :version => "1.0"
+      xml.rss :version => "2.0" do
+        xml.channel do
+          xml.title "The Philosopher Developer"
+          xml.description "Dan Tao's blog, The Philosopher Developer"
+          xml.link "http://www.philosopherdeveloper.com/"
+
+          Post.each do |post|
+            xml.item do
+              xml.title post.title
+              xml.link "http://www.philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
+              xml.description { xml.cdata!(post.to_html) }
+              xml.pubDate post.date.rfc822()
+              xml.guid "http://www.philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
+            end
+          end
+        end
+      end
+    end
+
+    File.open(File.join(File.dirname(__FILE__), "public", "rss.xml"), "w") do |io|
+      io.write(rss)
+    end
+  end
 end
