@@ -1,11 +1,12 @@
 %article.post
   %section.heading
     %h1
-      %span.title= post.title
+      %span.title
+        %a(href="/posts/#{CGI.escape(post.identifier)}.html")= post.title
       %span.date= post.friendly_date
 
   %section.content
-    = yield
+    = post.to_html
 
   - if post.allow_comments
     %section.comments

@@ -74,6 +74,10 @@ article.post {
     font-size: 48px;
     letter-spacing: -2px;
     margin-bottom: 0; }
+    article.post section.heading h1 .title a {
+      color: black; }
+      article.post section.heading h1 .title a:hover {
+        color: #36bcab; }
   article.post section.heading h1 .date {
     color: #555555;
     font-size: 24px;
@@ -85,22 +89,7 @@ article.post {
       font-size: 14px; }
   article.post section.comments {
     font-size: 16px;
-    margin-top: 50px; }
-    article.post section.comments .field {
-      margin-bottom: 10px; }
-      article.post section.comments .field label {
-        display: inline-block;
-        vertical-align: top;
-        width: 250px; }
-      article.post section.comments .field input[type="text"] {
-        font-size: 20px;
-        margin: 0;
-        padding: 5px; }
-      article.post section.comments .field textarea {
-        font-size: 20px;
-        margin: 0;
-        height: 100px;
-        width: 300px; }
+    margin-top: 20px; }
 
 .index {
   width: 67%;

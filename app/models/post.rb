@@ -1,3 +1,6 @@
+require "maruku"
+require "nokogiri"
+require "pygments"
 require "yaml"
 
 class Post
@@ -40,6 +43,10 @@ class Post
 
     @@months ||= @@posts_by_month.keys.sort.reverse
     @@periods ||= @@posts_by_period.keys.sort.reverse
+  end
+
+  def self.all
+    @@posts
   end
 
   def self.each
@@ -103,6 +110,28 @@ class Post
 
   def friendly_date
     @date.strftime("%B %d, %Y")
+  end
+
+  def to_html
+    # Get raw post in MMD format.
+    markdown = File.read(File.join(File.dirname(__FILE__), "..", "views", "posts", "#{self.identifier}.markdown")).gsub(/\b\-\-\b/, "&mdash;")
+
+    # Translate to HTML w/ Maruku.
+    post_body_html = Maruku.new(markdown).to_html
+
+    # Parse and do syntax highlighting of code blocks w/ Pygments.
+    fragment = Nokogiri::HTML.fragment(post_body_html)
+    fragment.css("code").each do |node|
+      node = node.parent
+      language_attr = node.attribute("lang")
+      if language_attr
+        language = language_attr.value
+        replacement = Nokogiri::HTML::fragment(Pygments.highlight(node.content, :lexer => language))
+        node.replace(replacement)
+      end
+    end
+
+    fragment.inner_html
   end
 
   private

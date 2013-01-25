@@ -1,0 +1,13 @@
+- posts.each do |post|
+  %article.post
+    %section.heading
+      %h1
+        %span.title
+          %a(href="/posts/#{CGI.escape(post.identifier)}.html")= post.title
+        %span.date= post.friendly_date
+
+    %section.content
+      = post.to_html
+
+    %section.comments
+      %a(href="/posts/#{CGI.escape(post.identifier)}.html#disqus_thread") Comments
