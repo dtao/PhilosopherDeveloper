@@ -86,6 +86,7 @@ end
 namespace :compile do
   desc "Compile static website"
   task :html do
+    Post.load_all(File.join(File.dirname(__FILE__), "config", "posts.yml"))
     Post.each { |post| compile_post(post) }
     compile_index(Post.all.take(5))
     compile_about()
