@@ -69,20 +69,6 @@ def build_xml
   builder.target!
 end
 
-namespace :db do
-  desc "Reset the database out"
-  task :reset do
-    DataMapper.auto_migrate!
-    puts "Database reset."
-  end
-
-  desc "Update the database without deleting existing records"
-  task :update do
-    DataMapper.auto_upgrade!
-    puts "Database updated."
-  end
-end
-
 namespace :compile do
   desc "Compile static website"
   task :html do
