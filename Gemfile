@@ -18,8 +18,3 @@ group :development do
   gem "sass"
   gem "yui-compressor"
 end
-
-group :test do
-  gem "rspec", :group => "test"
-  gem "rack-test", :group => "test", :require => "rack/test"
-end
