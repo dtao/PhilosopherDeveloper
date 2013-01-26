@@ -139,3 +139,41 @@ article.post {
         #footer ul.menu li a img {
           border: none;
           vertical-align: middle; }
+
+@media all and (max-width: 640px) {
+  blockquote {
+    font-size: 14px;
+    margin: 0; }
+    blockquote p {
+      padding: 0; }
+
+  pre {
+    font-size: 12px; }
+
+  #header h1 {
+    font-size: 48px; }
+  #header h2 {
+    font-size: 24px; }
+
+  article.post {
+    width: auto;
+    font-size: 16px;
+    padding: 10px; }
+    article.post .heading h1 .title {
+      font-size: 32px; }
+    article.post .heading h1 .date {
+      font-size: 16px; }
+
+  .index {
+    width: auto; }
+    .index ul.posts li.post {
+      font-size: 16px; }
+      .index ul.posts li.post .date {
+        width: 150px; }
+
+  #footer ul.menu {
+    width: 100%;
+    padding: 0 10px; } }
+@media all and (max-width: 480px) {
+  body {
+    zoom: 0.75; } }

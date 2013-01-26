@@ -114,7 +114,7 @@ class Post
 
   def to_html
     # Get raw post in MMD format.
-    markdown = File.read(File.join(File.dirname(__FILE__), "..", "views", "posts", "#{self.identifier}.markdown")).gsub(/\b\-\-\b/, "&mdash;")
+    markdown = File.read(File.join(SINATRA_ROOT, "app", "views", "posts", "#{self.identifier}.markdown")).gsub(/\b\-\-\b/, "&mdash;")
 
     # Translate to HTML w/ Maruku.
     post_body_html = Maruku.new(markdown).to_html

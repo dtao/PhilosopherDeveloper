@@ -1,11 +1,27 @@
 require File.join(File.dirname(__FILE__), "config", "boot")
 
+require "post"
 require "builder"
 require "haml"
-require "maruku"
+require "sass"
+require "yui/compressor"
+
+def read_file(*args)
+  File.read(File.join(File.dirname(__FILE__), *args))
+end
 
 def read_view_file(*args)
-  File.read(File.join(File.dirname(__FILE__), "app", "views", *args))
+  read_file("app", "views", *args)
+end
+
+def read_stylesheet_file(*args)
+  read_file("app", "stylesheets", *args)
+end
+
+def write_file(*args)
+  File.open(File.join(File.dirname(__FILE__), *args), "w") do |io|
+    io.write(yield)
+  end
 end
 
 def compile_post(post, filename=nil)
@@ -20,9 +36,7 @@ def compile_post(post, filename=nil)
 
   # Save that puppy to file!
   filename ||= File.join("posts", "#{post.identifier}.html")
-  File.open(File.join(File.dirname(__FILE__), "public", filename), "w") do |io|
-    io.write(final_html)
-  end
+  write_file("public", filename) { final_html }
 end
 
 def compile_index(posts)
@@ -36,9 +50,7 @@ def compile_index(posts)
   end
 
   # Save that puppy to file!
-  File.open(File.join(File.dirname(__FILE__), "public", "index.html"), "w") do |io|
-    io.write(final_html)
-  end
+  write_file("public", "index.html") { final_html }
 end
 
 def compile_about
@@ -58,9 +70,17 @@ def compile_posts_index
   index_html  = Haml::Engine.new(index_haml).render(Object.new, :posts => Post.all_by_period)
   final_html  = Haml::Engine.new(layout_haml).render { index_html }
 
-  File.open(File.join(File.dirname(__FILE__), "public", "posts", "index.html"), "w") do |io|
-    io.write(final_html)
-  end
+  write_file("public", "posts", "index.html") { final_html }
+end
+
+def compile_stylesheets
+  sass = [
+    read_stylesheet_file("application.sass"),
+    read_stylesheet_file("application.responsive.sass")
+  ].join("\n")
+
+  css = Sass.compile(sass, :syntax => :sass)
+  write_file("public", "stylesheets", "application.css") { css }
 end
 
 def build_xml
@@ -70,6 +90,12 @@ def build_xml
 end
 
 namespace :compile do
+  desc "Compile everything"
+  task :all do
+    Rake::Task["compile:html"].invoke()
+    Rake::Task["compile:rss"].invoke()
+  end
+
   desc "Compile static website"
   task :html do
     Post.load_all(File.join(File.dirname(__FILE__), "config", "posts.yml"))
@@ -77,6 +103,7 @@ namespace :compile do
     compile_index(Post.all.take(5))
     compile_about()
     compile_posts_index()
+    compile_stylesheets()
   end
 
   desc "Compile RSS feed"
@@ -103,8 +130,6 @@ namespace :compile do
       end
     end
 
-    File.open(File.join(File.dirname(__FILE__), "public", "rss.xml"), "w") do |io|
-      io.write(rss)
-    end
+    write_file("public", "rss.xml") { rss }
   end
 end
