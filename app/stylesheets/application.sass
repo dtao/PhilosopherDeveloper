@@ -116,6 +116,17 @@ article.post
     border-bottom: 1px solid black
     margin-bottom: 25px
 
+    .post-link
+      @include headingFont
+      font-size: 75%
+
+      a
+        color: lighten($darkGray, 20%)
+
+        &:hover
+          color: lighten($darkGray, 10%)
+          text-decoration: underline
+
     .footnotes
       font-size: 14px
 

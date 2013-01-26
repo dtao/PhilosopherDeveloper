@@ -10,6 +10,7 @@ gem "sinatra"
 group :development do
   gem "builder"
   gem "haml"
+  gem "html_truncator"
   gem "maruku", :git => "git://github.com/bhollis/maruku.git"
   gem "nokogiri"
   gem "pygments.rb"

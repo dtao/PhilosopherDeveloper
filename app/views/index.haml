@@ -7,5 +7,5 @@
       - posts.each do |post|
         %li.post
           .title
-            %a(href="/posts/#{CGI.escape(post.identifier)}.html")= post.title
+            %a(href="#{post.link}")= post.title
           .date= post.friendly_date

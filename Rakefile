@@ -3,6 +3,7 @@ require File.join(File.dirname(__FILE__), "config", "boot")
 require "post"
 require "builder"
 require "haml"
+require "html_truncator"
 require "sass"
 require "yui/compressor"
 

@@ -112,12 +112,23 @@ class Post
     @date.strftime("%B %d, %Y")
   end
 
-  def to_html
+  def link
+    "/posts/#{CGI.escape(self.identifier)}.html"
+  end
+
+  def to_html(max_length=nil)
     # Get raw post in MMD format.
-    markdown = File.read(File.join(SINATRA_ROOT, "app", "views", "posts", "#{self.identifier}.markdown")).gsub(/\b\-\-\b/, "&mdash;")
+    markdown = File.read(File.join(SINATRA_ROOT, "app", "views", "posts", "#{self.identifier}.markdown"))
+    markdown.gsub!(/\b\-{2}\b/, "&mdash;")
 
     # Translate to HTML w/ Maruku.
     post_body_html = Maruku.new(markdown).to_html
+
+    if max_length
+      post_body_html = HTML_Truncator.truncate(post_body_html, max_length, {
+        :ellipsis => ' <span class="post-link">... (<a href="#{link}">read the full post</a>)</span>'
+      })
+    end
 
     # Parse and do syntax highlighting of code blocks w/ Pygments.
     fragment = Nokogiri::HTML.fragment(post_body_html)

@@ -86,6 +86,14 @@ article.post {
   article.post section.content {
     border-bottom: 1px solid black;
     margin-bottom: 25px; }
+    article.post section.content .post-link {
+      font-family: Segoe, Helvetica, Arial, sans-serif;
+      font-size: 75%; }
+      article.post section.content .post-link a {
+        color: #888888; }
+        article.post section.content .post-link a:hover {
+          color: #6e6e6e;
+          text-decoration: underline; }
     article.post section.content .footnotes {
       font-size: 14px; }
   article.post section.comments {
