@@ -1,3 +1,4 @@
+require "rack-canonical-host"
 require "sinatra"
 
 get "/" do
