@@ -18,3 +18,7 @@ group :development do
   gem "sass"
   gem "yui-compressor"
 end
+
+group :production do
+  gem "rack-canonical-host"
+end

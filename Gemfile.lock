@@ -12,6 +12,7 @@ GEM
       Platform (>= 0.4.0)
       open4
     Platform (0.4.0)
+    addressable (2.3.2)
     builder (3.1.4)
     daemons (1.1.9)
     eventmachine (1.0.0)
@@ -32,6 +33,9 @@ GEM
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
     rack (1.4.4)
+    rack-canonical-host (0.0.8)
+      addressable
+      rack (~> 1.0)
     rack-protection (1.3.2)
       rack
     rake (10.0.3)
@@ -64,6 +68,7 @@ DEPENDENCIES
   maruku!
   nokogiri
   pygments.rb
+  rack-canonical-host
   rake
   sass
   sinatra

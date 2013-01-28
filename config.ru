@@ -3,4 +3,6 @@
 
 require File.expand_path("../app.rb", __FILE__)
 
+use Rack::CanonicalHost, "www.philosopherdeveloper.com" if ENV["RACK_ENV"] == "production"
+
 run Sinatra::Application
