@@ -81,6 +81,7 @@ def compile_stylesheets
   ].join("\n")
 
   css = Sass.compile(sass, :syntax => :sass)
+  css = YUI::CssCompressor.new.compress(css)
   write_file("public", "stylesheets", "application.css") { css }
 end
 
