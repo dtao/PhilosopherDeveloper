@@ -126,7 +126,7 @@ class Post
 
     if max_length
       post_body_html = HTML_Truncator.truncate(post_body_html, max_length, {
-        :ellipsis => ' <span class="post-link">... (<a href="#{link}">read the full post</a>)</span>'
+        :ellipsis => " <span class=\"post-link\">... (<a href=\"#{link}\">read the full post</a>)</span>"
       })
     end
 
