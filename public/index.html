@@ -17,13 +17,13 @@
       <span class='title'>
         <a href='/posts/unbreaking-datamapper.html'>Unbreaking DataMapper</a>
       </span>
-      <span class='date'>January 28, 2013</span>
+      <span class='date'>January 29, 2013</span>
     </h1>
   </section>
   <section class='content'>
     <h2 id="is_datamapper_inherently_broken_1">Is DataMapper inherently broken?</h2>
 
-<p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects slipping unnoticed through testing, resulting in buggier software.</p>
+<p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects going unnoticed during development and testing, resulting in buggier software.</p>
 
 <p>Borrowing from MacIver’s post<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, the below is a boilerplate example of how one might attempt to save a record and report any failures using DataMapper:</p>
 
@@ -53,7 +53,7 @@
 
 <p>It’s really a shame that such a “fundamental flaw”<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> exists in DataMapper. Otherwise, I find it to be quite a nice ORM, with at least a couple of (admittedly subjective) advantages over the more popular <a href="https://github.com/rails/rails/tree/master/activerecord">ActiveRecord</a>:</p>
 
-<ol><li>With DataMapper, your database schema is defined in your models themselves. The ActiveRecord approach uses a <span class="post-link">... (<a href="/posts/unbreaking-datamapper.html">read the full post</a>)</span>
+<ol><li>With DataMapper, your database schema is defined in your models themselves. The ActiveRecord approach <span class="post-link">... (<a href="/posts/unbreaking-datamapper.html">read the full post</a>)</span>
 </li></ol>
   </section>
 </article>

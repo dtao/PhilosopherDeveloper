@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://www.philosopherdeveloper.com/</link><item><title>Unbreaking DataMapper</title><link>http://www.philosopherdeveloper.com/posts/unbreaking-datamapper.html</link><description><![CDATA[<h2 id="is_datamapper_inherently_broken_1">Is DataMapper inherently broken?</h2>
 
-<p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects slipping unnoticed through testing, resulting in buggier software.</p>
+<p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects going unnoticed during development and testing, resulting in buggier software.</p>
 
 <p>Borrowing from MacIver’s post<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, the below is a boilerplate example of how one might attempt to save a record and report any failures using DataMapper:</p>
 
@@ -38,7 +38,9 @@
 
 <p>While I understand where MacIver was coming from when he wrote that original post, when I first read it I found myself scratching my head and wondering, <em>Why didn’t he do something about it?</em> This is particularly vexing given that MacIver mentioned having worked with DataMapper for at least “several months” and bemoaned encountering the same flaw “time and time again.” As a software developer, whenever I find myself repeatedly struggling with a tool–<em>especially</em> <a href="https://github.com/datamapper">an open source one</a>–I inevitably end up trying to patch it or otherwise find some way around its (perceived) shortcomings.</p>
 
-<p>The kicker here is that it turns out a solution to this problem isn’t even particularly complicated. It’s true that wrapping the above snippet into a helper in a <em>client application</em> doesn’t solve the problem; but wrapping it in <em>DataMapper</em> does.</p>
+<p>It should be noted that, probably at some point after MacIver’s post, DataMapper <em>did</em> introduce <a href="http://datamapper.org/docs/create_and_destroy.html">a <code>raise_on_save_failure</code> option</a> which (obviously) raises exceptions on save failures. However, these exceptions still don’t include any useful information; and it seems <a href="http://datamapper.lighthouseapp.com/projects/20609/tickets/1322-show-objecterrors-when-raise_on_save_failure-is-set">the DataMapper developers aren’t receptive to the idea that they should</a><sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>.</p>
+
+<p>Luckily, it turns out that a solution to this problem isn’t even particularly complicated. It’s true that wrapping the above snippet into a helper in a <em>client application</em> doesn’t solve the problem; but wrapping it in <em>DataMapper</em> does.</p>
 
 <div class="highlight"><pre><span class="k">module</span> <span class="nn">DataMapper</span>
   <span class="k">module</span> <span class="nn">Resource</span>
@@ -53,7 +55,7 @@
 <span class="k">end</span>
 </pre></div>
 
-<p>How is the above any different from writing a wrapper in your application? Simple: every time a resource is saved in DataMapper, the <code>save</code> method is called (internally). This means that in the simple case—where saving a record fails because of it is invalid—the exception raised will be informative by reporting the record’s validation errors. In the more complex case—where saving a record fails because its child is invalid—the exception raised will be informative by reporting the child’s validation errors.</p>
+<p>How is the above any different from writing a wrapper in your application? Simple: every time a resource is saved in DataMapper, the <code>save</code> method is called (internally). This means that in the simple case—where saving a record fails because it is invalid—the exception raised will be informative by reporting the record’s validation errors. In the more complex case—where saving a record fails because its child is invalid—the exception raised will be informative by reporting the <em>child’s</em> validation errors.</p>
 
 <h2 id="enter_dmnoisyfailures_4">Enter dm-noisy-failures</h2>
 
@@ -74,8 +76,11 @@
 <li id="fn:3">
 <p>I happen to agree with most of MacIver’s points, so I do view DataMapper’s API as flawed. But I’m also quite sure the library’s developers had reasons for designing it that way—or anyway, I haven’t seen any evidence to the contrary—so it’s clearly debatable to some extent. Hence my use of quotes. <a href="#fnref:3" rev="footnote">↩</a></p>
 </li>
+<li id="fn:4">
+<p>As far as I can tell, the DataMapper team’s reasoning for excluding validation errors from exceptions is that “[the] #save command can return false for reasons other than validations being invalid.” This seems to me like an unfortunate case of <a href="http://en.wikipedia.org/wiki/Perfect_is_the_enemy_of_good"><em>the perfect is the enemy of the good</em></a>. <a href="#fnref:4" rev="footnote">↩</a></p>
+</li>
 </ol>
-</div>]]></description><pubDate>Mon, 28 Jan 2013 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/unbreaking-datamapper.html</guid></item><item><title>Making YAML safe again</title><link>http://www.philosopherdeveloper.com/posts/making-yaml-safe-again.html</link><description><![CDATA[<p>TL;DR: Check out my new gem, <a href="http://dtao.github.com/safe_yaml">SafeYAML</a>. It lets you parse YAML without exposing your app to security exploits via arbitrary object deserialization.</p>
+</div>]]></description><pubDate>Tue, 29 Jan 2013 23:21:00 -0800</pubDate><guid>http://www.philosopherdeveloper.com/posts/unbreaking-datamapper.html</guid></item><item><title>Making YAML safe again</title><link>http://www.philosopherdeveloper.com/posts/making-yaml-safe-again.html</link><description><![CDATA[<p>TL;DR: Check out my new gem, <a href="http://dtao.github.com/safe_yaml">SafeYAML</a>. It lets you parse YAML without exposing your app to security exploits via arbitrary object deserialization.</p>
 <hr><p>There was <a href="http://news.ycombinator.com/item?id=5028218">quite a stir in the Rails community recently</a> about a serious security vulnerability in Rails. To be more specific: <a href="https://groups.google.com/forum/#!topic/rubyonrails-security/61bkgvnSGTQ/discussion"><em>every version of Rails</em></a>. We found out about this right away at <a href="http://www.cardpool.com/">Cardpool</a>, in part because Cardpool is a YC company and Paul Graham forwarded an e-mail from Thomas Ptacek to all YC alums warning of the vulnerability pretty much as soon as it was discovered.</p>
 
 <p>Without getting too caught up in the weeds, I will just say the vulnerability was ultimately a consequence of the fact that Ruby’s <a href="http://www.yaml.org/">YAML</a> library by default permits the deserialization of arbitrary Ruby objects. This is a problem for Rails—as well as many other Ruby frameworks, to be fair—because, until patches were released to address this problem, any Rails app could be “tricked” into parsing malicious YAML by basically anybody, without any special credentials. The key weakness in Rails, specifically, was that Rails would automatically parse the parameters of any XML request, including parameters like this:</p>

@@ -1,7 +1,7 @@
 Is DataMapper inherently broken?
 --------------------------------
 
-In a [strongly-worded blog post back in 2010](http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/), David MacIver asserted that there is fundamental flaw in [DataMapper](http://datamapper.org/), an ORM library for Ruby. The core of his complaint is[^present-tense] that DataMapper's default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects slipping unnoticed through testing, resulting in buggier software.
+In a [strongly-worded blog post back in 2010](http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/), David MacIver asserted that there is fundamental flaw in [DataMapper](http://datamapper.org/), an ORM library for Ruby. The core of his complaint is[^present-tense] that DataMapper's default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects going unnoticed during development and testing, resulting in buggier software.
 
 Borrowing from MacIver's post[^borrowing], the below is a boilerplate example of how one might attempt to save a record and report any failures using DataMapper:
 
@@ -42,7 +42,9 @@ Addressing the problem
 
 While I understand where MacIver was coming from when he wrote that original post, when I first read it I found myself scratching my head and wondering, *Why didn't he do something about it?* This is particularly vexing given that MacIver mentioned having worked with DataMapper for at least "several months" and bemoaned encountering the same flaw "time and time again." As a software developer, whenever I find myself repeatedly struggling with a tool[^struggling-with-a-tool]--*especially* [an open source one](https://github.com/datamapper)--I inevitably end up trying to patch it or otherwise find some way around its (perceived) shortcomings.
 
-The kicker here is that it turns out a solution to this problem isn't even particularly complicated. It's true that wrapping the above snippet into a helper in a *client application* doesn't solve the problem; but wrapping it in *DataMapper* does.
+It should be noted that, probably at some point after MacIver's post, DataMapper *did* introduce [a `raise_on_save_failure` option](http://datamapper.org/docs/create_and_destroy.html) which (obviously) raises exceptions on save failures. However, these exceptions still don't include any useful information; and it seems [the DataMapper developers aren't receptive to the idea that they should](http://datamapper.lighthouseapp.com/projects/20609/tickets/1322-show-objecterrors-when-raise_on_save_failure-is-set)[^developer-pushback].
+
+Luckily, it turns out that a solution to this problem isn't even particularly complicated. It's true that wrapping the above snippet into a helper in a *client application* doesn't solve the problem; but wrapping it in *DataMapper* does.
 
 ~~~{: lang=ruby }
 module DataMapper
@@ -58,7 +60,7 @@ module DataMapper
 end
 ~~~
 
-How is the above any different from writing a wrapper in your application? Simple: every time a resource is saved in DataMapper, the `save` method is called (internally). This means that in the simple case--where saving a record fails because of it is invalid--the exception raised will be informative by reporting the record's validation errors. In the more complex case--where saving a record fails because its child is invalid--the exception raised will be informative by reporting the child's validation errors.
+How is the above any different from writing a wrapper in your application? Simple: every time a resource is saved in DataMapper, the `save` method is called (internally). This means that in the simple case--where saving a record fails because it is invalid--the exception raised will be informative by reporting the record's validation errors. In the more complex case--where saving a record fails because its child is invalid--the exception raised will be informative by reporting the *child's* validation errors.
 
 Enter dm-noisy-failures
 -----------------------
@@ -74,3 +76,5 @@ As [he still seems to be active](http://www.drmaciver.com/blog), and he also see
 [^borrowing]: Which in turn borrows from the [official DataMapper documentation](http://datamapper.org/docs/validations).
 
 [^flaw-or-not]: I happen to agree with most of MacIver's points, so I do view DataMapper's API as flawed. But I'm also quite sure the library's developers had reasons for designing it that way--or anyway, I haven't seen any evidence to the contrary--so it's clearly debatable to some extent. Hence my use of quotes.
+
+[^developer-pushback]: As far as I can tell, the DataMapper team's reasoning for excluding validation errors from exceptions is that "\[the\] #save command can return false for reasons other than validations being invalid." This seems to me like an unfortunate case of [*the perfect is the enemy of the good*](http://en.wikipedia.org/wiki/Perfect_is_the_enemy_of_good).

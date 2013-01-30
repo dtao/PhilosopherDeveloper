@@ -30,7 +30,7 @@ class Post
       end
 
       # Order from newest to oldest.
-      all_posts.select(&:published).sort { |x, y| y.date <=> x.date }.freeze
+      all_posts.select(&:published).sort { |x, y| y.date.to_time <=> x.date.to_time }.freeze
     end
 
     @@table ||= @@posts.inject({}) do |hash, post|
