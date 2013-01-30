@@ -15,6 +15,52 @@
   <section class='heading'>
     <h1>
       <span class='title'>
+        <a href='/posts/unbreaking-datamapper.html'>Unbreaking DataMapper</a>
+      </span>
+      <span class='date'>January 28, 2013</span>
+    </h1>
+  </section>
+  <section class='content'>
+    <h2 id="is_datamapper_inherently_broken_1">Is DataMapper inherently broken?</h2>
+
+<p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects slipping unnoticed through testing, resulting in buggier software.</p>
+
+<p>Borrowing from MacIver’s post<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, the below is a boilerplate example of how one might attempt to save a record and report any failures using DataMapper:</p>
+
+<div class="highlight"><pre><span class="n">my_account</span> <span class="o">=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"Jose"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">my_account</span><span class="o">.</span><span class="n">save</span>
+  <span class="c1"># my_account is valid and has been saved</span>
+<span class="k">else</span>
+  <span class="n">my_account</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="n">e</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>The above can be pretty annoying to anyone who expects conciseness from an API. Most developers don’t like the idea of having to write several lines of code just to save a record to a database.</p>
+
+<p>Why not wrap the above into a common helper? This still won’t consistently work, as MacIvers points out with the following example:</p>
+
+<div class="highlight"><pre><span class="n">my_account</span> <span class="o">=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:customer</span> <span class="o">=&gt;</span> <span class="no">Customer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"jose"</span><span class="p">))</span>
+<span class="n">my_account</span><span class="o">.</span><span class="n">save</span>
+</pre></div>
+
+<p>In this case, an error could occur when saving <em>either</em> the <code>Account</code> object <em>or</em> the <code>Customer</code> object. And so a general-purpose helper wouldn’t be enough; one would have to write a special helper for every model, accounting for each of that model’s associations, in every application.</p>
+
+<p>I certainly sympathize with MacIver’s frustration.</p>
+
+<h2 id="why_use_datamapper_at_all_then_2">Why use DataMapper at all, then?</h2>
+
+<p>It’s really a shame that such a “fundamental flaw”<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> exists in DataMapper. Otherwise, I find it to be quite a nice ORM, with at least a couple of (admittedly subjective) advantages over the more popular <a href="https://github.com/rails/rails/tree/master/activerecord">ActiveRecord</a>:</p>
+
+<ol><li>With DataMapper, your database schema is defined in your models themselves. The ActiveRecord approach uses a <span class="post-link">... (<a href="/posts/unbreaking-datamapper.html">read the full post</a>)</span>
+</li></ol>
+  </section>
+</article>
+<article class='post'>
+  <section class='heading'>
+    <h1>
+      <span class='title'>
         <a href='/posts/making-yaml-safe-again.html'>Making YAML safe again</a>
       </span>
       <span class='date'>January 24, 2013</span>
@@ -97,23 +143,6 @@
 <h2 id="recognizing_patterns_1">Recognizing patterns</h2>
 
 <p>Back in the old K–12 days, I remember sometimes taking tests with <em>pattern recognition</em> questions. As a kid, I was always frustrated by these questions because I felt that they generally had no right answer. <span class="post-link">... (<a href="/posts/universe-is-a-one-way-function.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='post'>
-  <section class='heading'>
-    <h1>
-      <span class='title'>
-        <a href='/posts/cannibalizing-yourself-on-purpose.html'>Cannibalizing yourself on purpose</a>
-      </span>
-      <span class='date'>September 24, 2012</span>
-    </h1>
-  </section>
-  <section class='content'>
-    <p>I read an article in the New York Times recently entitled <a href="http://www.nytimes.com/2012/09/22/opinion/nocera-has-apple-peaked.html">Has Apple Peaked?</a> and found myself nodding my head to a lot of the author’s points. The basic premise of the article was this: <em>maybe</em> Apple has peaked, and maybe it isn’t because Steve Jobs has passed away but rather because, as a company on top of the world, they now have everything to lose and can no longer take big risks.</p>
-
-<p>I think there’s something to this, and I’d add another source of inertia for consideration: <strong>hubris</strong> (big surprise to those of you familiar with my general dislike for Apple, I’m sure!). At Apple’s scale, given the massive success they’ve enjoyed over the past several years, I have no doubt that the company’s sense of self-importance is extraordinarily high. Which is obviously justified to a significant degree. But one common observation I have about human nature—and I am increasingly convinced that it applies to businesses the same way it applies to individuals—is that it is very easy to pat yourself on the back for a job well done and claim more credit for your success than you <em>really</em> deserve. Put another way: it can be very easy to miss what an important role <em>luck</em> has played in your life, and thus to take full credit for your good fortune.</p>
-
-<p>Which means that if you’re a company like Apple, you start to get complacent. You watch every product you release hit record-breaking sales, you see your competitors struggling to gain any kind of momentum, you notice the lines stretching for blocks outside every one of your retail stores, and… you start to relax. You think, <em>no one can touch us right now</em>. You feel invincible. You take for granted that everything you do is ground-breaking. Of course it <span class="post-link">... (<a href="/posts/cannibalizing-yourself-on-purpose.html">read the full post</a>)</span></p>
   </section>
 </article>
   <div id='footer'>

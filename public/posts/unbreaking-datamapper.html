@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title>The Philosopher Developer</title>
+  <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+  <link href='/stylesheets/application.css' rel='stylesheet' />
+  <link href='/stylesheets/pygments.css' rel='stylesheet' />
+  <script src='/javascripts/ga.js' type='text/javascript'></script>
+</head>
+<body>
+  <div id='header'>
+    <h1><a href="/">The Philosopher Developer</a></h1>
+    <h2>half-sound logic, half-decent code</h2>
+  </div>
+  <article class='post'>
+  <section class='heading'>
+    <h1>
+      <span class='title'>
+        <a href='/posts/unbreaking-datamapper.html'>Unbreaking DataMapper</a>
+      </span>
+      <span class='date'>January 28, 2013</span>
+    </h1>
+  </section>
+  <section class='content'>
+    <h2 id="is_datamapper_inherently_broken_1">Is DataMapper inherently broken?</h2>
+
+<p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects slipping unnoticed through testing, resulting in buggier software.</p>
+
+<p>Borrowing from MacIver’s post<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, the below is a boilerplate example of how one might attempt to save a record and report any failures using DataMapper:</p>
+
+<div class="highlight"><pre><span class="n">my_account</span> <span class="o">=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"Jose"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">my_account</span><span class="o">.</span><span class="n">save</span>
+  <span class="c1"># my_account is valid and has been saved</span>
+<span class="k">else</span>
+  <span class="n">my_account</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
+    <span class="nb">puts</span> <span class="n">e</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>The above can be pretty annoying to anyone who expects conciseness from an API. Most developers don’t like the idea of having to write several lines of code just to save a record to a database.</p>
+
+<p>Why not wrap the above into a common helper? This still won’t consistently work, as MacIvers points out with the following example:</p>
+
+<div class="highlight"><pre><span class="n">my_account</span> <span class="o">=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:customer</span> <span class="o">=&gt;</span> <span class="no">Customer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"jose"</span><span class="p">))</span>
+<span class="n">my_account</span><span class="o">.</span><span class="n">save</span>
+</pre></div>
+
+<p>In this case, an error could occur when saving <em>either</em> the <code>Account</code> object <em>or</em> the <code>Customer</code> object. And so a general-purpose helper wouldn’t be enough; one would have to write a special helper for every model, accounting for each of that model’s associations, in every application.</p>
+
+<p>I certainly sympathize with MacIver’s frustration.</p>
+
+<h2 id="why_use_datamapper_at_all_then_2">Why use DataMapper at all, then?</h2>
+
+<p>It’s really a shame that such a “fundamental flaw”<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> exists in DataMapper. Otherwise, I find it to be quite a nice ORM, with at least a couple of (admittedly subjective) advantages over the more popular <a href="https://github.com/rails/rails/tree/master/activerecord">ActiveRecord</a>:</p>
+
+<ol>
+<li>With DataMapper, your database schema is defined in your models themselves. The ActiveRecord approach uses a separate file to define table schemas (schema.rb), making it sometimes awkward to reason about code in the classes used to interact with those tables. (The existence of gems such as <a href="https://github.com/ctran/annotate_models">annotate</a> attests to this awkwardness.)</li>
+
+<li>DataMapper adopts the philosophy of having a 1:1 mapping between database records and objects in memory. Whereas in ActiveRecord you might have multiple <code>Account</code> instances referencing the same record (with different dirty local states), in DataMapper this is not the case. The upshot is the elimination of an entire category of bugs (<em>what happened to my attributes?</em>).</li>
+</ol><h2 id="addressing_the_problem_3">Addressing the problem</h2>
+
+<p>While I understand where MacIver was coming from when he wrote that original post, when I first read it I found myself scratching my head and wondering, <em>Why didn’t he do something about it?</em> This is particularly vexing given that MacIver mentioned having worked with DataMapper for at least “several months” and bemoaned encountering the same flaw “time and time again.” As a software developer, whenever I find myself repeatedly struggling with a tool–<em>especially</em> <a href="https://github.com/datamapper">an open source one</a>–I inevitably end up trying to patch it or otherwise find some way around its (perceived) shortcomings.</p>
+
+<p>The kicker here is that it turns out a solution to this problem isn’t even particularly complicated. It’s true that wrapping the above snippet into a helper in a <em>client application</em> doesn’t solve the problem; but wrapping it in <em>DataMapper</em> does.</p>
+
+<div class="highlight"><pre><span class="k">module</span> <span class="nn">DataMapper</span>
+  <span class="k">module</span> <span class="nn">Resource</span>
+    <span class="n">alias_method</span> <span class="ss">:save?</span><span class="p">,</span> <span class="ss">:save</span>
+
+    <span class="k">def</span> <span class="nf">save</span>
+      <span class="k">return</span> <span class="k">if</span> <span class="nb">self</span><span class="o">.</span><span class="n">save?</span> <span class="o">||</span> <span class="nb">self</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">empty?</span>
+      <span class="n">error_message</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">e</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">"; "</span><span class="p">)</span>
+      <span class="k">raise</span> <span class="no">SaveFailureError</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">error_message</span><span class="p">,</span> <span class="nb">self</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>How is the above any different from writing a wrapper in your application? Simple: every time a resource is saved in DataMapper, the <code>save</code> method is called (internally). This means that in the simple case—where saving a record fails because of it is invalid—the exception raised will be informative by reporting the record’s validation errors. In the more complex case—where saving a record fails because its child is invalid—the exception raised will be informative by reporting the child’s validation errors.</p>
+
+<h2 id="enter_dmnoisyfailures_4">Enter dm-noisy-failures</h2>
+
+<p>I’m sure you saw this one coming from a mile away. Yes, I wrote a gem to do what I’m describing: <a href="http://dtao.github.com/dm-noisy-failures">dm-noisy-failures</a> (the excerpt above is taken directly from the library). This gem overwrites DataMapper’s <code>save</code>, <code>update</code>, <code>create</code>, and <code>destroy</code> methods with variations that throw exceptions (with descriptive error messages) on failure. The original methods returning true and false are aliased as <code>save?</code>, <code>update?</code>, <code>create?</code>, and <code>destroy?</code>–a nice resolution, in my opinion, as it conforms to existing Ruby idioms.</p>
+
+<p><a href="https://github.com/dtao/dm-noisy-failures">Check it out</a> and let me know what you think. <small>My quest to <a href="/making-yaml-safe-again.html">actually publicize my open source projects</a> continues!</small></p>
+
+<p>As <a href="http://www.drmaciver.com/blog">he still seems to be active</a>, and he also seems like a smart and thoughtful guy, I plan on contacting MacIver about my little gem to see what he thinks. It’s very possible he’s not even doing anything with DataMapper anymore; but it can’t hurt to seek his feedback. While I’m at it I should probably get in touch with the DataMapper folks, who <a href="http://solnic.eu/2012/12/20/datamapper-2-status-and-roadmap.html">are currently working on a major update</a>.</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>To be fair, as the article was written in 2010, MacIver may have changed his stance between then and now. However, I did a brief search for any sort of retraction and couldn’t find one; so I’m sticking with the present tense here. <a href="#fnref:1" rev="footnote">↩</a></p>
+</li>
+<li id="fn:2">
+<p>Which in turn borrows from the <a href="http://datamapper.org/docs/validations">official DataMapper documentation</a>. <a href="#fnref:2" rev="footnote">↩</a></p>
+</li>
+<li id="fn:3">
+<p>I happen to agree with most of MacIver’s points, so I do view DataMapper’s API as flawed. But I’m also quite sure the library’s developers had reasons for designing it that way—or anyway, I haven’t seen any evidence to the contrary—so it’s clearly debatable to some extent. Hence my use of quotes. <a href="#fnref:3" rev="footnote">↩</a></p>
+</li>
+</ol>
+</div>
+  </section>
+  <section class='comments'>
+    <div id='disqus_thread'></div>
+    <script src='/javascripts/disqus.js' type='text/javascript'></script>
+    <noscript>
+      Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+    <a class='dsq-brlink' href='http://disqus.com'>
+      comments powered by
+      <span class='logo-disqus'>Disqus</span>
+    </a>
+  </section>
+</article>
+  <div id='footer'>
+    <ul class='menu'>
+      <li><a href="/posts">All Posts</a></li>
+      <li><a href="/about">About</a></li>
+      <li>
+        <a href='http://stackoverflow.com/users/105570' target='_blank'>
+          <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://github.com/dtao' target='_blank'>
+          <img alt='GitHub' src='/images/icons/github-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://twitter.com/dan_tao' target='_blank'>
+          <img alt='Twitter' src='/images/icons/twitter-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='/rss.xml'>
+          <img alt='RSS' src='/images/icons/rss-small.png' />
+        </a>
+      </li>
+    </ul>
+  </div>
+</body>
