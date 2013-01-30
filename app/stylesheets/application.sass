@@ -1,8 +1,9 @@
 // Colors
+$darkGray:   #555
+$lightBlue:  #dfefff
+$lightGray:  #eee
 $lightGreen: #36BCAB
-$lightBlue: #dfefff
-$darkGray: #555
-$lightGray: #eee
+$pink:       #d14
 
 // Fonts
 @font-face
@@ -49,6 +50,17 @@ a
   &:hover
     color: darken($lightGreen, 20%)
 
+sup
+  display: inline-block
+  margin-left: 3px
+
+  a
+    @include codeFont
+    color: darken($lightGray, 20%)
+    font-weight: 300
+    &:hover
+      color: lighten($darkGray, 10%)
+
 blockquote
   background-color: $lightGray
   border-left: 5px solid darken($lightGray, 20%)
@@ -63,6 +75,10 @@ pre
   background-color: $lightGray
   font-size: 16px
   padding: 10px
+
+code
+  @include codeFont
+  color: $pink
 
 #header
   border-bottom: 1px solid black
