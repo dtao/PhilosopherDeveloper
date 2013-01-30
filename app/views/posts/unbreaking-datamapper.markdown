@@ -1,7 +1,7 @@
 Is DataMapper inherently broken?
 --------------------------------
 
-In a [strongly-worded blog post back in 2010](http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/), David MacIver asserted that there is fundamental flaw in [DataMapper](http://datamapper.org/), an ORM library for Ruby. The core of his complaint is[^present-tense] that DataMapper's default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects going unnoticed during development and testing, resulting in buggier software.
+In a [strongly-worded blog post back in 2010](http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/), David MacIver asserted that there is a fundamental flaw in [DataMapper](http://datamapper.org/), an ORM library for Ruby. The core of his complaint is[^present-tense] that DataMapper's default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects going unnoticed during development and testing, resulting in buggier software.
 
 Borrowing from MacIver's post[^borrowing], the below is a boilerplate example of how one might attempt to save a record and report any failures using DataMapper:
 
@@ -69,7 +69,7 @@ I'm sure you saw this one coming from a mile away. Yes, I wrote a gem to do what
 
 [Check it out](https://github.com/dtao/dm-noisy-failures) and let me know what you think. <small>My quest to <a href="/posts/making-yaml-safe-again.html">actually publicize my open source projects</a> continues!</small>
 
-As [he still seems to be active](http://www.drmaciver.com/blog), and he also seems like a smart and thoughtful guy, I plan on contacting MacIver about my little gem to see what he thinks. It's very possible he's not even doing anything with DataMapper anymore; but it can't hurt to seek his feedback. While I'm at it I should probably get in touch with the DataMapper folks, who [are currently working on a major update](http://solnic.eu/2012/12/20/datamapper-2-status-and-roadmap.html).
+As [he still seems to be active](http://www.drmaciver.com/blog), and he also seems like a smart and thoughtful guy, I plan on contacting MacIver about my little gem to see what he thinks. It's very possible he's not even doing anything with DataMapper anymore; but it can't hurt to seek his feedback. While I'm at it I should probably also get in touch with the DataMapper folks, who [are currently working on a major update](http://solnic.eu/2012/12/20/datamapper-2-status-and-roadmap.html).
 
 [^present-tense]: To be fair, as the article was written in 2010, MacIver may have changed his stance between then and now. However, I did a brief search for any sort of retraction and couldn't find one; so I'm sticking with the present tense here.
 

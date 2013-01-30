@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://www.philosopherdeveloper.com/</link><item><title>Unbreaking DataMapper</title><link>http://www.philosopherdeveloper.com/posts/unbreaking-datamapper.html</link><description><![CDATA[<h2 id="is_datamapper_inherently_broken_1">Is DataMapper inherently broken?</h2>
 
-<p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects going unnoticed during development and testing, resulting in buggier software.</p>
+<p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is a fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects going unnoticed during development and testing, resulting in buggier software.</p>
 
 <p>Borrowing from MacIver’s post<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, the below is a boilerplate example of how one might attempt to save a record and report any failures using DataMapper:</p>
 
@@ -63,7 +63,7 @@
 
 <p><a href="https://github.com/dtao/dm-noisy-failures">Check it out</a> and let me know what you think. <small>My quest to <a href="/posts/making-yaml-safe-again.html">actually publicize my open source projects</a> continues!</small></p>
 
-<p>As <a href="http://www.drmaciver.com/blog">he still seems to be active</a>, and he also seems like a smart and thoughtful guy, I plan on contacting MacIver about my little gem to see what he thinks. It’s very possible he’s not even doing anything with DataMapper anymore; but it can’t hurt to seek his feedback. While I’m at it I should probably get in touch with the DataMapper folks, who <a href="http://solnic.eu/2012/12/20/datamapper-2-status-and-roadmap.html">are currently working on a major update</a>.</p>
+<p>As <a href="http://www.drmaciver.com/blog">he still seems to be active</a>, and he also seems like a smart and thoughtful guy, I plan on contacting MacIver about my little gem to see what he thinks. It’s very possible he’s not even doing anything with DataMapper anymore; but it can’t hurt to seek his feedback. While I’m at it I should probably also get in touch with the DataMapper folks, who <a href="http://solnic.eu/2012/12/20/datamapper-2-status-and-roadmap.html">are currently working on a major update</a>.</p>
 <div class="footnotes">
 <hr>
 <ol>
