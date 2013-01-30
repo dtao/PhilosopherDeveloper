@@ -67,7 +67,7 @@ Enter dm-noisy-failures
 
 I'm sure you saw this one coming from a mile away. Yes, I wrote a gem to do what I'm describing: [dm-noisy-failures](http://dtao.github.com/dm-noisy-failures) (the excerpt above is taken directly from the library). This gem overwrites DataMapper's `save`, `update`, `create`, and `destroy` methods with variations that throw exceptions (with descriptive error messages) on failure. The original methods returning true and false are aliased as `save?`, `update?`, `create?`, and `destroy?`--a nice resolution, in my opinion, as it conforms to existing Ruby idioms.
 
-[Check it out](https://github.com/dtao/dm-noisy-failures) and let me know what you think. <small>My quest to <a href="/making-yaml-safe-again.html">actually publicize my open source projects</a> continues!</small>
+[Check it out](https://github.com/dtao/dm-noisy-failures) and let me know what you think. <small>My quest to <a href="/posts/making-yaml-safe-again.html">actually publicize my open source projects</a> continues!</small>
 
 As [he still seems to be active](http://www.drmaciver.com/blog), and he also seems like a smart and thoughtful guy, I plan on contacting MacIver about my little gem to see what he thinks. It's very possible he's not even doing anything with DataMapper anymore; but it can't hurt to seek his feedback. While I'm at it I should probably get in touch with the DataMapper folks, who [are currently working on a major update](http://solnic.eu/2012/12/20/datamapper-2-status-and-roadmap.html).
 

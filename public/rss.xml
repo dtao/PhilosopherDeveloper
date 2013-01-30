@@ -61,7 +61,7 @@
 
 <p>I’m sure you saw this one coming from a mile away. Yes, I wrote a gem to do what I’m describing: <a href="http://dtao.github.com/dm-noisy-failures">dm-noisy-failures</a> (the excerpt above is taken directly from the library). This gem overwrites DataMapper’s <code>save</code>, <code>update</code>, <code>create</code>, and <code>destroy</code> methods with variations that throw exceptions (with descriptive error messages) on failure. The original methods returning true and false are aliased as <code>save?</code>, <code>update?</code>, <code>create?</code>, and <code>destroy?</code>–a nice resolution, in my opinion, as it conforms to existing Ruby idioms.</p>
 
-<p><a href="https://github.com/dtao/dm-noisy-failures">Check it out</a> and let me know what you think. <small>My quest to <a href="/making-yaml-safe-again.html">actually publicize my open source projects</a> continues!</small></p>
+<p><a href="https://github.com/dtao/dm-noisy-failures">Check it out</a> and let me know what you think. <small>My quest to <a href="/posts/making-yaml-safe-again.html">actually publicize my open source projects</a> continues!</small></p>
 
 <p>As <a href="http://www.drmaciver.com/blog">he still seems to be active</a>, and he also seems like a smart and thoughtful guy, I plan on contacting MacIver about my little gem to see what he thinks. It’s very possible he’s not even doing anything with DataMapper anymore; but it can’t hurt to seek his feedback. While I’m at it I should probably get in touch with the DataMapper folks, who <a href="http://solnic.eu/2012/12/20/datamapper-2-status-and-roadmap.html">are currently working on a major update</a>.</p>
 <div class="footnotes">
