@@ -7,19 +7,19 @@
   <script src='/javascripts/ga.js' type='text/javascript'></script>
 </head>
 <body>
-  <div id='header'>
+  <header id='header'>
     <h1><a href="/">The Philosopher Developer</a></h1>
     <h2>half-sound logic, half-decent code</h2>
-  </div>
-  <article class='post'>
-  <section class='heading'>
+  </header>
+  <article>
+  <header>
     <h1>
       <span class='title'>
         <a href='/posts/making-yaml-safe-again.html'>Making YAML safe again</a>
       </span>
       <span class='date'>January 24, 2013</span>
     </h1>
-  </section>
+  </header>
   <section class='content'>
     <p>TL;DR: Check out my new gem, <a href="http://dtao.github.com/safe_yaml">SafeYAML</a>. It lets you parse YAML without exposing your app to security exploits via arbitrary object deserialization.</p>
 <hr><p>There was <a href="http://news.ycombinator.com/item?id=5028218">quite a stir in the Rails community recently</a> about a serious security vulnerability in Rails. To be more specific: <a href="https://groups.google.com/forum/#!topic/rubyonrails-security/61bkgvnSGTQ/discussion"><em>every version of Rails</em></a>. We found out about this right away at <a href="http://www.cardpool.com/">Cardpool</a>, in part because Cardpool is a YC company and Paul Graham forwarded an e-mail from Thomas Ptacek to all YC alums warning of the vulnerability pretty much as soon as it was discovered.</p>
@@ -68,7 +68,7 @@
     </a>
   </section>
 </article>
-  <div id='footer'>
+  <footer>
     <ul class='menu'>
       <li><a href="/posts">All Posts</a></li>
       <li><a href="/about">About</a></li>
@@ -93,5 +93,5 @@
         </a>
       </li>
     </ul>
-  </div>
+  </footer>
 </body>
