@@ -132,6 +132,6 @@ namespace :compile do
       end
     end
 
-    write_file("public", "rss.xml") { rss }
+    write_file("public", "feedburner.xml") { rss }
   end
 end

@@ -12,3 +12,7 @@ end
 get "/about" do
   redirect("/about.html")
 end
+
+get "/rss.xml" do
+  redirect("http://feeds.feedburner.com/philosopherdeveloper")
+end
