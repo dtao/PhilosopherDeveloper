@@ -116,31 +116,10 @@ class Post
   end
 
   def to_html(max_length=nil)
-    # Get raw post in MMD format.
-    markdown = File.read(File.join(SINATRA_ROOT, "app", "views", "posts", "#{self.identifier}.markdown"))
-    markdown.gsub!(/\b\-{2}\b/, "&mdash;")
-
-    # Translate to HTML w/ Maruku.
-    post_body_html = Maruku.new(markdown).to_html
-
-    if max_length
-      post_body_html = HTML_Truncator.truncate(post_body_html, max_length, {
-        :ellipsis => " <span class=\"post-link\">... (<a href=\"#{link}\">read the full post</a>)</span>"
-      })
-    end
-
-    # Parse and do syntax highlighting of code blocks w/ Pygments.
-    fragment = Nokogiri::HTML.fragment(post_body_html)
-    fragment.css("code").each do |node|
-      node = node.parent
-      language_attr = node.attribute("lang")
-      if language_attr
-        language = language_attr.value
-        replacement = Nokogiri::HTML::fragment(Pygments.highlight(node.content, :lexer => language))
-        node.replace(replacement)
-      end
-    end
-
+    fragment = get_html_fragment(max_length)
+    resize_images(fragment)
+    style_images(fragment)
+    do_syntax_highlighting(fragment)
     fragment.inner_html
   end
 
@@ -151,5 +130,82 @@ class Post
     @title = info["title"]
     @published = info["published"]
     @allow_comments = true
+  end
+
+  def get_html_fragment(max_length=nil)
+    # Get raw post in MMD format.
+    markdown = File.read(File.join(SINATRA_ROOT, "app", "views", "posts", "#{self.identifier}.markdown"))
+    markdown.gsub!(/\b\-{2}\b/, "&mdash;")
+
+    # Translate to HTML w/ Maruku.
+    raw_html = Maruku.new(markdown).to_html
+
+    if max_length
+      raw_html = HTML_Truncator.truncate(raw_html, max_length, {
+        :ellipsis => " <span class=\"post-link\">... (<a href=\"#{link}\">read the full post</a>)</span>"
+      })
+    end
+
+    Nokogiri::HTML.fragment(raw_html)
+  end
+
+  def resize_images(html)
+    html.css("img").each do |node|
+      src = node["src"]
+
+      # I can only work w/ my own images.
+      if !src.start_with?("/")
+        next
+      end
+
+      filename = File.join(SINATRA_ROOT, "public", src)
+      img = Magick::Image.read(filename).first
+
+      # Aim for no larger than 400 wide x 300 tall.
+      max_dimensions = [400, 300]
+
+      # But if it's a portrait image, we'll do 300 x 400 instead.
+      if img.rows > img.columns
+        max_dimensions.reverse!
+      end
+
+      # Check if we've already resized this image.
+      if img.columns <= max_dimensions[0] && img.rows <= max_dimensions[1]
+        next
+      end
+
+      ext = File.extname(filename)
+
+      # Save the original.
+      img.write("#{filename.chomp(ext)}.orig#{ext}")
+
+      # Create the resized version.
+      thumb = img.resize_to_fit(*max_dimensions)
+      thumb.write(filename)
+    end
+  end
+
+  def style_images(html)
+    html.css("img").each do |node|
+      p = node.parent
+      p.name = "figure"
+      alt = node["alt"]
+      if alt
+        caption = Nokogiri::XML::Node.new("figcaption", html)
+        caption.content = alt
+        p.children.last.add_next_sibling(caption)
+      end
+    end
+  end
+
+  def do_syntax_highlighting(html)
+    html.css("code").each do |node|
+      node = node.parent
+      language = node["lang"]
+      if language
+        replacement = Nokogiri::HTML::fragment(Pygments.highlight(node.content, :lexer => language))
+        node.replace(replacement)
+      end
+    end
   end
 end

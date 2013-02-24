@@ -46,7 +46,7 @@
 
 <p>To my surprise, after <a href="http://jsperf.com/concatenating-lots-of-little-strings/2">profiling the two options on a variety of browsers</a>, I found that the <code>+=</code> operator beats the pants off the array method on Chrome.</p>
 
-<p><img src="http://i.imgur.com/wIYN7.png" alt="The performance of += on Chrome is pretty astonishing"></p>
+<figure><img src="http://i.imgur.com/wIYN7.png" alt="The performance of += on Chrome is pretty astonishing"><figcaption>The performance of += on Chrome is pretty astonishing</figcaption></figure>
 
 <p><em>How could this be?</em> I thought. Given an immutable data structure for strings, it seemed to me any use of <code>+</code> would necessitate the allocation of an entirely new block of memory to hold a copy of the original data plus the appended data. The only obvious alternative I could think of was to use some sort of <a href="http://en.wikipedia.org/wiki/Rope_%5C(computer_science%5C">rope</a>), which felt like a totally unwarranted compromise for a language like JavaScript given that it would make random access O(log N) instead of O(1) and would hardly ever be useful (not to mention that appends would still be O(log N), so they almost certainly still wouldn’t beat the array method).</p>
 

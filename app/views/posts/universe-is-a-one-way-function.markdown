@@ -46,7 +46,7 @@ This declaration of having the answer so early in the game seemed absurd to me. 
 
 Put another way: my friend had not narrowed down the possibilities enough to justify his feeling of certainty, at least to my thinking. He was guilty of **overeager deduction**.
 
-<img alt="Overeager deduction" src="/images/premature_deduction.jpg" style="border: 1px solid black; height: 384px; width: 512px;" />
+![Overeager deduction](/images/premature_deduction.jpg)
 
 That said, I can't really blame him. We humans do this all the time. We *have* to, because the alternative--i.e., basing our beliefs on logical certainties--is completely impractical. But I'll get to that. Time to shift gears.
 
@@ -159,11 +159,11 @@ That's what I did. I wrote a very basic algorithm--which is absolutely *not* a c
 
 This is **what we all do**. This is how our brains work. In this world, full of so many competing ideas and possible explanations for the experiences we have, it is not feasible to comprehensively consider every possibility, with all of its nuances, any more than it is possible to efficiently solve an NP Complete problem. There are just too many ideas and not enough time.
 
-<img alt="Too many ideas" src="/images/too_many_ideas.jpg" style="border: 1px solid black; height: 384px; width: 512px;" />
+![Too many ideas](/images/too_many_ideas.jpg)
 
 So we exercise our internal *heuristics*, however we may have formed them over our lifetimes--forged by some mysterious blend of instinct, intuition, education, and so on--and we narrow down the options that our brains subconsciously deem worthy of consideration. The more we refine this ability, the more quickly we're able to arrive at a final decision; this in turn gives us the emotional reward we're after and propels us forward.
 
-<img alt="Just one idea" src="/images/just_one_idea.jpg" style="border: 1px solid black; height: 384px; width: 512px;" />
+![Just one idea](/images/just_one_idea.jpg)
 
 Some of us are able to do this quite quickly, which can be advantageous even when it doesn't lead to the truth, or to a "correct" result. We get away with it, I believe, because most of the time this strategy leads us to an understanding that is *good enough*--just like my knapsack algorithm was good enough, or like Newtownian physics was good enough until Einstein came along, or how if you pick any sufficiently controversial topic chances are you'll be able to find [intelligent, well-reasoned arguments on either side](http://intelligencesquaredus.org/debates)--because the truth is complicated, and it's not possible for our brains to weigh every available piece of evidence and arrive at complete *certainty* with respect to such issues (that's why they're controversial). They are *really tough* one-way functions; the best debaters among us simply have the best heuristics, albeit ones that could well have led them in opposite directions.
 

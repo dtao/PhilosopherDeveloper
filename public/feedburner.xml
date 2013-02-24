@@ -1,4 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://www.philosopherdeveloper.com/</link><item><title>Your brain is a liability</title><link>http://www.philosopherdeveloper.com/posts/your-brain-is-a-liability.html</link><description><![CDATA[<p>It’s natural to think of <em>being smart</em> as an asset. This is obvious in many ways, so I don’t feel I need to enumerate them. But there are also ways that it can be a liability; and since this is the contrarian view, I naturally want to talk about it<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://www.philosopherdeveloper.com/</link><item><title>Automate yourself</title><link>http://www.philosopherdeveloper.com/posts/automate-yourself.html</link><description><![CDATA[<p>When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.</p>
+
+<figure><img src="/images/espresso_machine_thumb.jpg" alt="Our espresso machine"><figcaption>Our espresso machine</figcaption></figure>
+
+<p>Back in Philly, we’d had a modest kitchen with just enough counter space for the machine. On lazy weekend mornings, I’d often turn it on and prepare us each a latte drink. It was a nice little ritual.</p>
+
+<p>So we brought it to San Francisco with us. But our first apartment, a little studio rented to us by a friend of a friend, didn’t have the room for it. So the machine went into storage.</p>
+
+<p>Then in 2011, we moved to our current apartment in the Mission. The espresso machine is back; but we don’t have quite the counter space that we did in Philadelphia, so it’s sitting on a little cart underneath our microwave, unplugged.</p>
+
+<figure><img src="/images/espresso_machine2.jpg" alt="Our espresso machine now"><figcaption>Our espresso machine now</figcaption></figure>
+
+<p>Of course, this isn’t terribly inconvenient; to use it, I only need to pick it up and set it somewhere—say, on our table—then put it back when I’m finished. Still, the fact remains: I haven’t used it once<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+
+<p>How strange, that such a small and seemingly insignificant detail (the location of the espresso machine: plugged in and on the counter as opposed to unplugged and just a few feet lower) can have such a disproportionate impact on our lives (using the machine every week or so compared to <em>never</em> using it).</p>
+
+<p>I’ve pondered this from time to time, and an idea that seems to keep recurring to me is that <strong>we humans are programmable</strong>. At least to an extent. Simply by recognizing that my internal decision-making circuitry seems to ignore the espresso machine when it’s near the ground but will actually commit to using it when it’s on the counter, I can alter my behavior by changing the machine’s location.</p>
+
+<p>It’s a silly example, but I think this is actually a really important point. The distinction that I particularly want to highlight in this case is that between <em>manual</em> and <em>automatic</em> processes. We are most effective when we are able to <em>automate</em> processes rather than performing them manually. This sounds obvious; but I’m not just talking about getting software or robots to do all of our grunt work for us. I’m also talking about processes that we ourselves carry out, but in a way that we can predict and control.</p>
+<div class="footnotes">
+<hr>
+<ol><li id="fn:1">
+<p>That actually isn’t the full story. The real reason I <em>still</em> haven’t used it is that there’s a part that we apparently lost somewhere between Philadelphia and here. But I’ve only included this detail in a footnote because it doesn’t really change my argument; I only even <em>noticed</em> this part was missing after we’d already been in our new apartment for several months. So it’s clear that I am not using the machine nearly as often as I used to. In addition, I’m hoping that by writing this post I will motivate myself to finally order a replacement for that part! <a href="#fnref:1" rev="footnote">↩</a></p>
+</li></ol>
+</div>]]></description><pubDate>Sun, 24 Feb 2013 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/automate-yourself.html</guid></item><item><title>Your brain is a liability</title><link>http://www.philosopherdeveloper.com/posts/your-brain-is-a-liability.html</link><description><![CDATA[<p>It’s natural to think of <em>being smart</em> as an asset. This is obvious in many ways, so I don’t feel I need to enumerate them. But there are also ways that it can be a liability; and since this is the contrarian view, I naturally want to talk about it<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
 
 <p>Before I start, though, a note about the word “smart”: it can mean many things. What I am specifically referring to now is what I will call raw <strong>brain power</strong>: the capacity of a person’s mind to think quickly, grasp tricky concepts, store a lot of information at once, and so on. If the mind were a computer, in other words, I’d be talking about <em>hardware</em> (CPU, memory, etc.) as opposed to software.</p>
 
@@ -359,7 +383,7 @@
 
 <p>There is a game of deduction that a few of my friends like to play called <em>Zendo</em>.</p>
 
-<p><img src="/images/zendo.jpeg" alt="Zendo"></p>
+<figure><img src="/images/zendo.jpeg" alt="Zendo"><figcaption>Zendo</figcaption></figure>
 
 <p>In Zendo, one player—the Master—devises a rule involving the game pieces, which he then illustrates via two examples: one embodying the rule, and one not. These examples are designated <em>true</em> and <em>false</em>. The players then take turns assembling their own game pieces in different formations, asking the master whether or not their formations comply with the master’s rule. Eventually, one or more of the players will <em>deduce</em> the rule by observing a <em>pattern</em> across the examples.</p>
 
@@ -368,7 +392,10 @@
 <p>This declaration of having the answer so early in the game seemed absurd to me. And I think you can understand why, from my earlier thoughts on pattern recognition. There was no way my friend already <em>knew</em> the rule at this stage, given that there were many possible rules that would be consistent with the examples given.</p>
 
 <p>Put another way: my friend had not narrowed down the possibilities enough to justify his feeling of certainty, at least to my thinking. He was guilty of <strong>overeager deduction</strong>.</p>
-<img alt="Overeager deduction" src="/images/premature_deduction.jpg" style="border: 1px solid black; height: 384px; width: 512px;"><p>That said, I can’t really blame him. We humans do this all the time. We <em>have</em> to, because the alternative—i.e., basing our beliefs on logical certainties—is completely impractical. But I’ll get to that. Time to shift gears.</p>
+
+<figure><img src="/images/premature_deduction.jpg" alt="Overeager deduction"><figcaption>Overeager deduction</figcaption></figure>
+
+<p>That said, I can’t really blame him. We humans do this all the time. We <em>have</em> to, because the alternative—i.e., basing our beliefs on logical certainties—is completely impractical. But I’ll get to that. Time to shift gears.</p>
 
 <h2 id="oneway_functions_3">One-way functions</h2>
 
@@ -394,11 +421,11 @@
 
 <p>An illustration of this is the way passwords are stored. If you create an account with my website, and I then save your password <em>directly</em> in my database, then a hacker who breaks onto my servers can easily read your password.</p>
 
-<p><img src="/images/plaintext_password.png" alt="Plaintext password"></p>
+<figure><img src="/images/plaintext_password.png" alt="Plaintext password"><figcaption>Plaintext password</figcaption></figure>
 
 <p>But suppose instead of storing your password itself, I store the output of some cryptographic (one-way) function, using your password (and perhaps a <a href="http://en.wikipedia.org/wiki/Password_salting">salt</a>) as input.</p>
 
-<p><img src="/images/encrypted_password.png" alt="Encrypted password"></p>
+<figure><img src="/images/encrypted_password.png" alt="Encrypted password"><figcaption>Encrypted password</figcaption></figure>
 
 <p>Now, even if a hacker breaks into my system and sees your <em>encrypted</em> password, it will be very difficult for him or her to figure out what your password actually <em>is</em>–much in the same way it would be difficult for you to factor the number 946,905,102,747. However, it’s very easy for my system to <em>authenticate</em> you when you enter your <em>real</em> password, just as it is easy for you to multiply the factors of that number together once I tell them to you.</p>
 
@@ -410,7 +437,7 @@
 
 <p>In Zendo, we can think of a <em>rule</em> as its own kind of function. The input to this function is a formation of game pieces, and the ouput is either true or false.</p>
 
-<p><img src="/images/zendo_function.png" alt="Zendo as a one-way function"></p>
+<figure><img src="/images/zendo_function.png" alt="Zendo as a one-way function"><figcaption>Zendo as a one-way function</figcaption></figure>
 
 <p>Clearly, this function is itself one-way. Given either <em>true</em> or <em>false</em>–even if you already <em>knew</em> the rule—how could you possibly deduce which formation led to that result?</p>
 
@@ -422,7 +449,7 @@
 
 <p>Remember that in the case of a black box, we don’t know what the function is. What we do know is what both the inputs <em>and</em> the outputs are given our firsthand experience. So we could reframe our puzzle-solving problem as a one-way function where the “input” is actually itself a <em>function</em> (or “rule”, or “law”), and the “output” is a set of known results from applying this function to a known set of inputs. In this case, it is the <em>inputs and outputs</em>–our observations—that are fixed.</p>
 
-<p><img src="/images/shifted_one_way_function.png" alt="A shifted one-way function"></p>
+<figure><img src="/images/shifted_one_way_function.png" alt="A shifted one-way function"><figcaption>A shifted one-way function</figcaption></figure>
 
 <p>And we’re now back to pattern recognition. What I’ve just described is a shifted one-way function in the same way that Zendo is: the inputs are fixed, and outputs may be observed, but the function itself is unknown. Furthermore, while it is easy to “verify” that a theoretical function does indeed produce the observed outputs for the known, fixed set of inputs, going the other way is near impossible—in the same way that there is no right answer to a pattern recognition problem.</p>
 
@@ -432,7 +459,7 @@
 
 <p>Here’s why these stories, though I generally quite like them as entertainment, nonetheless fall short for me in terms of logical satisfaction. They are illustrations of what I will call the “Sherlock tendency”, which is this: as human beings, <strong>once we have identified a <em>plausible explanation</em> for some event, we think we have uncovered the truth</strong>.</p>
 
-<p><img src="/images/sherlock_tendency.png" alt="The Sherlock tendency"></p>
+<figure><img src="/images/sherlock_tendency.png" alt="The Sherlock tendency"><figcaption>The Sherlock tendency</figcaption></figure>
 
 <p>In the abstract, this is not any different from the “overeager deduction” I accused my friend of in Zendo. It is also the same as observing a sequence such as <em>1, 2, 4</em> and feeling certain at having recognized the underlying pattern.</p>
 
@@ -440,7 +467,7 @@
 
 <p>Let me try rewording that. Sometimes, we know certain things that happened at one time, and we also know things that happened at a later time; but we aren’t sure what happened in between.</p>
 
-<p><img src="/images/unknown_events.png" alt="Unknown events"></p>
+<figure><img src="/images/unknown_events.png" alt="Unknown events"><figcaption>Unknown events</figcaption></figure>
 
 <p>Any murder mystery is an example of this. The victim was alive at one point; later he was discovered dead. The <em>mystery</em> is what happened to him.</p>
 
@@ -456,7 +483,7 @@
 
 <p>And yet there is a tremendous advantage to understanding the world—both practically and emotionally. Practically speaking, we’re better able to predict and manipulate our environment when we understand its rules—so a greater capacity for understanding is an advantage. I also think we’re biologically hard-wired to feel rewarded or even euphoric whenever we’re able to solve difficult mental problems, for just this reason. It’s a kind of positive reinforcement, encouraging us to pursue even deeper understanding. (It’s one of the reasons I believe humanity has advanced so far in science and technology.) And so emotionally, I think it makes sense for humans to crave this experience: of figuring things out, of “solving” the mysteries of this world and of our lives.</p>
 
-<p><img src="/images/eureka.jpg" alt="Eureka!"></p>
+<figure><img src="/images/eureka.jpg" alt="Eureka!"><figcaption>Eureka!</figcaption></figure>
 
 <h3 id="heuristics_in_software_8">Heuristics in software</h3>
 
@@ -464,7 +491,7 @@
 
 <p>One of the easier-to-explain<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup> examples of an NP Complete problem is a famous one known as the <a href="http://en.wikipedia.org/wiki/Knapsack_problem">Knapsack Problem</a>, which is this: given some container of finite capacity and a set of items with differing weights (or sizes) and values, find the optimal assortment of items that can be stored in the container.</p>
 
-<p><img src="/images/knapsack.png" alt="The so-called Knapsack Problem"></p>
+<figure><img src="/images/knapsack.png" alt="The so-called Knapsack Problem"><figcaption>The so-called Knapsack Problem</figcaption></figure>
 
 <p>I happen to have a bit of firsthand experience with this problem, believe it or not, because at <a href="http://www.cardpool.com/buy-gift-cards">Cardpool</a> I recently implemented a feature that allows customers to specify a total card value they’d like to purchase and then automatically populates their cart from available inventory<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup>. This is essentially a special case of the knapsack problem where every item’s “weight” happens to also be its value (in fact, internally we still refer to the feature as the “knapsack” feature).</p>
 
@@ -475,8 +502,14 @@
 <h3 id="heuristics_in_the_brain_9">Heuristics in the brain</h3>
 
 <p>This is <strong>what we all do</strong>. This is how our brains work. In this world, full of so many competing ideas and possible explanations for the experiences we have, it is not feasible to comprehensively consider every possibility, with all of its nuances, any more than it is possible to efficiently solve an NP Complete problem. There are just too many ideas and not enough time.</p>
-<img alt="Too many ideas" src="/images/too_many_ideas.jpg" style="border: 1px solid black; height: 384px; width: 512px;"><p>So we exercise our internal <em>heuristics</em>, however we may have formed them over our lifetimes—forged by some mysterious blend of instinct, intuition, education, and so on—and we narrow down the options that our brains subconsciously deem worthy of consideration. The more we refine this ability, the more quickly we’re able to arrive at a final decision; this in turn gives us the emotional reward we’re after and propels us forward.</p>
-<img alt="Just one idea" src="/images/just_one_idea.jpg" style="border: 1px solid black; height: 384px; width: 512px;"><p>Some of us are able to do this quite quickly, which can be advantageous even when it doesn’t lead to the truth, or to a “correct” result. We get away with it, I believe, because most of the time this strategy leads us to an understanding that is <em>good enough</em>–just like my knapsack algorithm was good enough, or like Newtownian physics was good enough until Einstein came along, or how if you pick any sufficiently controversial topic chances are you’ll be able to find <a href="http://intelligencesquaredus.org/debates">intelligent, well-reasoned arguments on either side</a>–because the truth is complicated, and it’s not possible for our brains to weigh every available piece of evidence and arrive at complete <em>certainty</em> with respect to such issues (that’s why they’re controversial). They are <em>really tough</em> one-way functions; the best debaters among us simply have the best heuristics, albeit ones that could well have led them in opposite directions.</p>
+
+<figure><img src="/images/too_many_ideas.jpg" alt="Too many ideas"><figcaption>Too many ideas</figcaption></figure>
+
+<p>So we exercise our internal <em>heuristics</em>, however we may have formed them over our lifetimes—forged by some mysterious blend of instinct, intuition, education, and so on—and we narrow down the options that our brains subconsciously deem worthy of consideration. The more we refine this ability, the more quickly we’re able to arrive at a final decision; this in turn gives us the emotional reward we’re after and propels us forward.</p>
+
+<figure><img src="/images/just_one_idea.jpg" alt="Just one idea"><figcaption>Just one idea</figcaption></figure>
+
+<p>Some of us are able to do this quite quickly, which can be advantageous even when it doesn’t lead to the truth, or to a “correct” result. We get away with it, I believe, because most of the time this strategy leads us to an understanding that is <em>good enough</em>–just like my knapsack algorithm was good enough, or like Newtownian physics was good enough until Einstein came along, or how if you pick any sufficiently controversial topic chances are you’ll be able to find <a href="http://intelligencesquaredus.org/debates">intelligent, well-reasoned arguments on either side</a>–because the truth is complicated, and it’s not possible for our brains to weigh every available piece of evidence and arrive at complete <em>certainty</em> with respect to such issues (that’s why they’re controversial). They are <em>really tough</em> one-way functions; the best debaters among us simply have the best heuristics, albeit ones that could well have led them in opposite directions.</p>
 
 <h2 id="conclusion_10">Conclusion</h2>
 
@@ -486,7 +519,7 @@
 
 <p>I’ll leave you with one final analogy. Have you ever played Sudoku? It’s a great game, though it can be rather maddening when it’s too hard (my wife got me a book of <a href="http://www.amazon.com/Absolutely-Nasty-Sudoku-Official-Puzzle/dp/1402743963"><em>Nasty Sudoku</em></a> and it kills me). Have you ever had that <em>sinking feeling</em> when you’re most of the way through a Sudoku puzzle and suddenly you realize you’ve hit a contradition—there must have been a mistake (probably on your part)?</p>
 
-<p><img src="/images/sudoku.jpg" alt="Sudoku"></p>
+<figure><img src="/images/sudoku.jpg" alt="Sudoku"><figcaption>Sudoku</figcaption></figure>
 
 <p>This can be very easy to miss when it happens, especially if it occurs early in the puzzle. With so much unknown, a slip-up or illogical move may well not result in any obvious contradictions.</p>
 
@@ -724,7 +757,7 @@
 
 <p>To my surprise, after <a href="http://jsperf.com/concatenating-lots-of-little-strings/2">profiling the two options on a variety of browsers</a>, I found that the <code>+=</code> operator beats the pants off the array method on Chrome.</p>
 
-<p><img src="http://i.imgur.com/wIYN7.png" alt="The performance of += on Chrome is pretty astonishing"></p>
+<figure><img src="http://i.imgur.com/wIYN7.png" alt="The performance of += on Chrome is pretty astonishing"><figcaption>The performance of += on Chrome is pretty astonishing</figcaption></figure>
 
 <p><em>How could this be?</em> I thought. Given an immutable data structure for strings, it seemed to me any use of <code>+</code> would necessitate the allocation of an entirely new block of memory to hold a copy of the original data plus the appended data. The only obvious alternative I could think of was to use some sort of <a href="http://en.wikipedia.org/wiki/Rope_%5C(computer_science%5C">rope</a>), which felt like a totally unwarranted compromise for a language like JavaScript given that it would make random access O(log N) instead of O(1) and would hardly ever be useful (not to mention that appends would still be O(log N), so they almost certainly still wouldn’t beat the array method).</p>
 
@@ -779,18 +812,4 @@ Output equal? True</code></pre>
 <li>Leaving ThoughtWorks</li>
 
 <li>Graduating from CMU</li>
-</ol><p>Let that be a reminder to myself, for next time.</p>]]></description><pubDate>Sat, 25 Aug 2012 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/magical-optimization-of-the-%2B%3D-operator-with-strings.html</guid></item><item><title>To start over or continue</title><link>http://www.philosopherdeveloper.com/posts/to-start-over-or-continue.html</link><description><![CDATA[<p>When I was a kid I played a lot of video games. And there was this funny thing about the way I played them: sometimes, even if the game was going well, I had this impulse to <em>restart</em>. Maybe because I hadn’t played the level perfectly—I had lost some health, or hadn’t collected all the coins, or missed the secret passageway. Or maybe it was just because I liked the beginning of the game so much I wanted to play it again. In any case, it’s an impulse I remember quite clearly, and one which carries over into real life now that I’m an adult.</p>
-
-<p>An interesting byproduct of this tendency of mine to replay levels in video games is that it made me <strong>very good at the early stages</strong>. If I played level X over and over in order to collect all the coins, eventually I would get to a point where I could basically breeze through most of the level. This isn’t altogether too surprising, of course, given the existence of the phrase “practice makes perfect.” But there is a flip side to that coin as well. The more I repeated the early levels of a game, the longer I postponed actually getting to the <em>end</em> of the game; and when I did I was relatively unprepared for it. The final stages always seemed really hard compared to the earlier parts that I repeated so often.</p>
-
-<p>I see a tie-in to this childhood dilemma—fundamentally, to restart or keep going—in the world of software, particularly here in Silicon Valley. In an industry where everyone’s dream seems to be founding a start-up and either bringing it to IPO or getting acquired by some larger company, where a litany of 1-year engagements at VC-funded and possibly failed start-ups is an asset on your résumé, I believe we are, as a community, basically following the same pattern that I did as a child sitting cross-legged on my basement floor with a Nintendo controller in my hand.</p>
-
-<p>I wonder how many of this area’s successful entrepreneurs, all craving “the exit” and a few fortunate enough to actually make it happen, could be as successful steering a company for 10 or 20 years. My suspicion is that as a whole your average start-up founder is <em>very good</em> at establishing an MVP, recruiting talent, securing funding, generating buzz, and all the other 1st-year and 2nd-year challenges that any young company must face. But I also suspect that quite a few such founders, even those who have gone on to enjoy great success, would be ill-equipped to face the new set of challenges that must befall a company that enters its second or third decade of existence.</p>
-
-<p>On a more personal level, I still find myself struggling with the choice of starting over or continuing on a fairly regular basis. On my own software projects, for instance, I am <em>ridiculously</em> guilty of starting lots of projects and never really “finishing” any of them. (And don’t misunderstand; I am fully aware that no software project is ever really “finished.” But I mean even relative to <em>other</em> software projects—I basically never get past the honeymoon stage. I throw something together, make a big to-do list of features I want to add and bugs I want to fix; and then I move on.)</p>
-
-<p>It seems to me this is something we all approach differently, but I don’t think anyone can answer the question completely. When do you restart, and when do you keep going? On any project—not just software projects, <em>any</em> project—there is the inevitable temptation to start over. We can learn from our mistakes; the time we spent heading in the wrong direction is not lost if we put our hard-earned knowledge to work making better choices the second time around. I am fairly certain most successful entrepreneurs and investors would put <em>Know when to start over</em> somewhere on their things-every-business-owner-should-know list. But I think this is perhaps too suggestive. It is equally important to know when <em>not</em> to start over.</p>
-
-<p>So there are these two competing urges. One is to chronically start over, as with the serial start-up founder who is obsessed with forming companies and getting them acquired, and cares little about what happens next. And the other is to avoid it fanatically, as one might (perhaps unfairly) take Joel Spolsky to be recommending in <a href="http://www.joelonsoftware.com/articles/fog0000000069.html">a famous post 12 years ago</a>, in which he advised <em>never</em> to rewrite software from scratch.</p>
-
-<p>As with just about everything else in this world, something tells me the truth lies somewhere between the two. The tricky part is identifying that point. Maybe that’s part of the wisdom that only experience can bring. I, for one, hope not to rob myself of this wisdom by getting caught up in an endless pursuit of the successful start, without ever figuring out how to swing a successful continuation.</p>]]></description><pubDate>Fri, 15 Jun 2012 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/to-start-over-or-continue.html</guid></item></channel></rss>
+</ol><p>Let that be a reminder to myself, for next time.</p>]]></description><pubDate>Sat, 25 Aug 2012 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/magical-optimization-of-the-%2B%3D-operator-with-strings.html</guid></item></channel></rss>
