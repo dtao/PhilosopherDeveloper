@@ -34,14 +34,13 @@ class Post
     end
 
     @@table ||= @@posts.inject({}) do |hash, post|
-      hash[post.identifier] = post
-      hash
+      hash[post.identifier] = post; hash
     end
 
-    @@posts_by_month ||= @@posts.group_by(&:month)
+    @@posts_by_month  ||= @@posts.group_by(&:month)
     @@posts_by_period ||= @@posts.group_by(&:period)
 
-    @@months ||= @@posts_by_month.keys.sort.reverse
+    @@months  ||= @@posts_by_month.keys.sort.reverse
     @@periods ||= @@posts_by_period.keys.sort.reverse
   end
 

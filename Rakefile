@@ -119,7 +119,7 @@ namespace :compile do
           xml.description "Dan Tao's blog, The Philosopher Developer"
           xml.link "http://www.philosopherdeveloper.com/"
 
-          Post.each do |post|
+          Post.all.take(10).each do |post|
             xml.item do
               xml.title post.title
               xml.link "http://www.philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
