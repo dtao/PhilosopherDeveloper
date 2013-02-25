@@ -174,6 +174,7 @@ class Post
         next
       end
 
+      puts "Resizing #{filename}..."
       ext = File.extname(filename)
 
       # Save the original.

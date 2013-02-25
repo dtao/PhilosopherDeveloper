@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://www.philosopherdeveloper.com/</link><item><title>Automate yourself</title><link>http://www.philosopherdeveloper.com/posts/automate-yourself.html</link><description><![CDATA[<p>When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.</p>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://www.philosopherdeveloper.com/</link><item><title>Automating yourself</title><link>http://www.philosopherdeveloper.com/posts/automating-yourself.html</link><description><![CDATA[<p>When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.</p>
 
 <figure><img src="/images/espresso_machine_thumb.jpg" alt="Our espresso machine"><figcaption>Our espresso machine</figcaption></figure>
 
@@ -10,19 +10,48 @@
 
 <figure><img src="/images/espresso_machine2.jpg" alt="Our espresso machine now"><figcaption>Our espresso machine now</figcaption></figure>
 
-<p>Of course, this isn’t terribly inconvenient; to use it, I only need to pick it up and set it somewhere—say, on our table—then put it back when I’m finished. Still, the fact remains: I haven’t used it once<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+<p>This isn’t terribly inconvenient. To use it, I only need to pick it up and set it somewhere—say, on our table—then put it back when I’m finished. Still, the fact remains: <strong>I haven’t used it once</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
 
-<p>How strange, that such a small and seemingly insignificant detail (the location of the espresso machine: plugged in and on the counter as opposed to unplugged and just a few feet lower) can have such a disproportionate impact on our lives (using the machine every week or so compared to <em>never</em> using it).</p>
+<p>How strange, that such a small and seemingly insignificant detail can have such a disproportionate impact on our lives! Instead of plugged in and on the counter, the espresso machine is unplugged and a few feet lower. That’s a small change. But now instead of using the machine every week or so, I <em>never</em> use it. That’s a comparatively <em>big</em> change.</p>
 
-<p>I’ve pondered this from time to time, and an idea that seems to keep recurring to me is that <strong>we humans are programmable</strong>. At least to an extent. Simply by recognizing that my internal decision-making circuitry seems to ignore the espresso machine when it’s near the ground but will actually commit to using it when it’s on the counter, I can alter my behavior by changing the machine’s location.</p>
+<h2 id="our_programmable_selves_1">Our programmable selves</h2>
 
-<p>It’s a silly example, but I think this is actually a really important point. The distinction that I particularly want to highlight in this case is that between <em>manual</em> and <em>automatic</em> processes. We are most effective when we are able to <em>automate</em> processes rather than performing them manually. This sounds obvious; but I’m not just talking about getting software or robots to do all of our grunt work for us. I’m also talking about processes that we ourselves carry out, but in a way that we can predict and control.</p>
+<p>I’ve pondered this from time to time, and an idea that seems to keep recurring to me is that <strong>we humans are programmable</strong>. At least to an extent. Simply by recognizing that my internal decision-making circuitry seems to ignore the espresso machine when it’s near the ground but will actually commit to using it when it’s on the counter, I can alter my behavior by changing its location.</p>
+
+<p>It’s a silly example, but I think this is actually a really important point. The distinction that I particularly want to highlight in this case is that between <em>manual</em> and <em>automatic</em> processes. We are most effective when we are able to automate the things we do; this sounds obvious. But I’m not just talking about getting software or robots to do all of our grunt work for us. I’m also talking about processes that we ourselves carry out, but in a way that we can predict and control.</p>
+
+<p>Just recently a conversation with one of my teammates brought up an interesting example of this: <a href="http://www.nicorette.com/">Nicorette gum</a>. In case you’ve been living under a rock and haven’t heard of it, Nicorette is a product that’s supposed to help curb nicotine addiction by providing a controlled amount of the drug in chewable form to manage cravings. From the company’s website:</p>
+
+<blockquote>
+<p>By helping to relieve cravings, Nicorette lets you focus on disrupting the patterns that link cigarettes to so many of your daily activities.</p>
+</blockquote>
+
+<p>When you think about it, this is exactly the kind of self-programming I’m talking about. And it’s another case of preferring an automatic process over a manual one. In the case of cigarette smoking, the manual process of quitting is to exert self-control over your desires whenever your body develops a craving. This requires serious deliberate work. The idea behind Nicorette and other similar products is to minimize the number of times you actually have to do this. Sound familiar? It’s a lot like automation, isn’t it?</p>
+
+<h2 id="delegation_as_automation_2">Delegation as automation</h2>
+
+<p>Imagine you’re the CEO of a young company, and you find yourself scheduling meetings on a regular basis. Eventually, you will find that you are spending too much time looking at your calendar and working out scheduling conflicts, and not enough time making decisions that actually affect your business. This is exactly why executives generally have assistants—to <em>delegate</em> these tasks, so that the executive can focus on whatever he or she is actually <em>supposed</em> to focus on.</p>
+
+<p>There’s a similar trend taking place in the software development world, though in a decidedly different flavor. Software engineers are increasingly turning to external services to take care of everything from authentication<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> to application deployment<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> to back-end development<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>. Using these kinds of services gives developers the freedom to focus on what we (supposedly) do best: actually building applications.</p>
+
+<p>These are both cases of <em>delegation</em>–using some agent to accomplish a task for you—but in some ways this is also just like automation. The <em>result</em> is the same, for the delegator: the elimination of a manual process.</p>
 <div class="footnotes">
 <hr>
-<ol><li id="fn:1">
+<ol>
+<li id="fn:1">
 <p>That actually isn’t the full story. The real reason I <em>still</em> haven’t used it is that there’s a part that we apparently lost somewhere between Philadelphia and here. But I’ve only included this detail in a footnote because it doesn’t really change my argument; I only even <em>noticed</em> this part was missing after we’d already been in our new apartment for several months. So it’s clear that I am not using the machine nearly as often as I used to. In addition, I’m hoping that by writing this post I will motivate myself to finally order a replacement for that part! <a href="#fnref:1" rev="footnote">↩</a></p>
-</li></ol>
-</div>]]></description><pubDate>Sun, 24 Feb 2013 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/automate-yourself.html</guid></item><item><title>Your brain is a liability</title><link>http://www.philosopherdeveloper.com/posts/your-brain-is-a-liability.html</link><description><![CDATA[<p>It’s natural to think of <em>being smart</em> as an asset. This is obvious in many ways, so I don’t feel I need to enumerate them. But there are also ways that it can be a liability; and since this is the contrarian view, I naturally want to talk about it<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+</li>
+<li id="fn:2">
+<p>Google, Facebook, Twitter. <a href="#fnref:2" rev="footnote">↩</a></p>
+</li>
+<li id="fn:3">
+<p><a href="http://www.heroku.com/">Heroku</a>, <a href="https://appharbor.com/">AppHarbor</a>. <a href="#fnref:3" rev="footnote">↩</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://parse.com/">Parse</a>. <a href="#fnref:4" rev="footnote">↩</a></p>
+</li>
+</ol>
+</div>]]></description><pubDate>Sun, 24 Feb 2013 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/automating-yourself.html</guid></item><item><title>Your brain is a liability</title><link>http://www.philosopherdeveloper.com/posts/your-brain-is-a-liability.html</link><description><![CDATA[<p>It’s natural to think of <em>being smart</em> as an asset. This is obvious in many ways, so I don’t feel I need to enumerate them. But there are also ways that it can be a liability; and since this is the contrarian view, I naturally want to talk about it<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
 
 <p>Before I start, though, a note about the word “smart”: it can mean many things. What I am specifically referring to now is what I will call raw <strong>brain power</strong>: the capacity of a person’s mind to think quickly, grasp tricky concepts, store a lot of information at once, and so on. If the mind were a computer, in other words, I’d be talking about <em>hardware</em> (CPU, memory, etc.) as opposed to software.</p>
 
