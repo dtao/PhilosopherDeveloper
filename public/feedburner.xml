@@ -14,34 +14,19 @@
 
 <p>How strange, that such a small and seemingly insignificant detail could have such a disproportionate impact on our lives! Instead of plugged in and on the counter, the espresso machine is unplugged and a few feet lower. That’s a small change. But now instead of using the machine every week or so, I <em>never</em> use it. That’s a comparatively <em>big</em> change.</p>
 
-<h2 id="our_programmable_selves_1">Our programmable selves</h2>
-
 <p>I’ve pondered this from time to time, and an idea that keeps recurring to me is that <strong>we humans are programmable</strong>. At least to an extent. Simply by recognizing that my internal decision-making circuitry seems to ignore the espresso machine when it’s near the ground but will actually commit to using it when it’s on the counter, I can alter my behavior by changing its location.</p>
 
-<p>It’s a silly example, but I think this is actually a really important point. The distinction here is essentially the difference between <em>manual</em> and <em>automatic</em> processes. We are most effective when we are able to automate the things we do; that much is obvious. But getting software or robots to do all of our grunt work for us isn’t the only kind of automation. I would define<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> automation as the act of replacing any process requiring manual input with one that does not, but yields acceptable (often better) results.</p>
+<p>It’s a silly example, but I think this is actually a really important lesson. The distinction here is essentially the difference between <em>manual</em> and <em>automatic</em> processes. With the espresso machine where it is now, making an espresso is a highly <em>manual</em> process for me—not just the act itself, but even <em>having the idea</em> to make one. Back in Philadelphia, because it was right there in front of me, the idea tended to just pop into my head. Automatically.</p>
 
-<p>A few years ago, a friend asked me to help him out with an idea for a software product. I offered to help without payment, but he insisted on paying me. He explained that if he paid me, he knew I would force myself to do the work. Otherwise, I might view our agreement as little more than me doing him a favor, in which case I’d be more likely to drag my feet. Cynical or not, it was a totally legitimate view, and another perfect example of what I’m talking about. Effectively my friend wanted to replace a <em>manual</em> process—me consciously taking the time to help out a friend—with an <em>automatic</em> one—me responding to an internal, and basically involuntary, sense of obligation.</p>
+<p>We are most effective when we are able to automate the things we do; that much is obvious. But getting software or robots to do all of our grunt work for us isn’t the only kind of automation. The more we can reduce manual deliberation, and say to ourselves less and less, “Remember to do that”–i.e., the more we can automate the way we <em>think</em>–the more we can achieve.</p>
 
-<p>This kind of self-programming is hugely powerful, and is something I think we need to spend more time thinking about.</p>
-
-<h2 id="how_we_get_it_wrong_2">How we get it wrong</h2>
-
-<p>An interesting obstacle to self-automation that I’ve noticed among people I’ve worked with is the tendency to <strong>value manual effort</strong>. We appreciate when others take the time to stop what they’re doing and help us with something. And so there’s a sense of pride that comes with being asked to help out somewhere. We all love to feel needed, after all.</p>
-
-<p>This makes it very easy to miss cases when the effort we spend is actually wasteful.</p>
-
-<p>Imagine that my espresso machine were incredibly heavy, so heavy that I couldn’t even lift it. And suppose I had some much stronger friend who was capable of lifting it. Then whenever my friend was around and I was in the mood for some espresso, I would ask him to pick up the machine and put it on the table for me, so I could plug it in and use it. This arrangement might feel good to my friend as it would make him feel useful.</p>
+<p>I realize that aside from the espresso machine example this may sound a bit hand-wavy. I intend to address this notion in more concrete terms in a future post; for now I just wanted to get the idea out there.</p>
 <div class="footnotes">
 <hr>
-<ol>
-<li id="fn:1">
+<ol><li id="fn:1">
 <p>That actually isn’t the full story. The real reason I <em>still</em> haven’t used it is that there’s a part that we apparently lost somewhere between Philadelphia and here. But I’ve only included this detail in a footnote because it doesn’t really change my argument; I only even <em>noticed</em> this part was missing after we’d already been in our new apartment for several months. So it’s clear that I am not using the machine nearly as often as I used to. In addition, I’m hoping that by writing this post I will motivate myself to finally order a replacement for that part! <a href="#fnref:1" rev="footnote">↩</a></p>
-</li>
-<li id="fn:2">
-<p>And don’t bother pointing me to an actual dictionary definition; I tend to be fairly dismissive of such things. But that’s a topic for a future post! <a href="#fnref:2" rev="footnote">↩</a></p>
-</li>
-</ol>
-</div>]]></description><pubDate>Sun, 24 Feb 2013 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/automating-yourself.html</guid></item><item><title>Your brain is a liability</title><link>http://www.philosopherdeveloper.com/posts/your-brain-is-a-liability.html</link><description><![CDATA[<p>It’s natural to think of <em>being smart</em> as an asset. This is obvious in many ways, so I don’t feel I need to enumerate them. But there are also ways that it can be a liability; and since this is the contrarian view, I naturally want to talk about it<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+</li></ol>
+</div>]]></description><pubDate>Thu, 28 Feb 2013 06:53:00 -0800</pubDate><guid>http://www.philosopherdeveloper.com/posts/automating-yourself.html</guid></item><item><title>Your brain is a liability</title><link>http://www.philosopherdeveloper.com/posts/your-brain-is-a-liability.html</link><description><![CDATA[<p>It’s natural to think of <em>being smart</em> as an asset. This is obvious in many ways, so I don’t feel I need to enumerate them. But there are also ways that it can be a liability; and since this is the contrarian view, I naturally want to talk about it<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
 
 <p>Before I start, though, a note about the word “smart”: it can mean many things. What I am specifically referring to now is what I will call raw <strong>brain power</strong>: the capacity of a person’s mind to think quickly, grasp tricky concepts, store a lot of information at once, and so on. If the mind were a computer, in other words, I’d be talking about <em>hardware</em> (CPU, memory, etc.) as opposed to software.</p>
 
