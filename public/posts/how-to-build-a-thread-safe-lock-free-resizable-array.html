@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title>How to build a thread-safe lock-free resizable "array" - The Philosopher Developer</title>
+  <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+  <link href='/stylesheets/application.css' rel='stylesheet' />
+  <link href='/stylesheets/pygments.css' rel='stylesheet' />
+  <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
+  <script src='/javascripts/ga.js' type='text/javascript'></script>
+  <script src='/javascripts/shareThis.js' type='text/javascript'></script>
+</head>
+<body>
+  <header id='header'>
+    <h1><a href="/">The Philosopher Developer</a></h1>
+    <h2>half-sound logic, half-decent code</h2>
+  </header>
+  <article>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html'>How to build a thread-safe lock-free resizable "array"</a>
+      </span>
+      <span class='date'>February 23, 2011</span>
+    </h1>
+    <div class='social'>
+      <span class='st_facebook_hcount' displayText='Facebook'></span>
+      <span class='st_googleplus_hcount' displayText='Google+'></span>
+      <span class='st_twitter_hcount' displayText='Tweet'></span>
+      <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+    </div>
+  </header>
+  <section class='content'>
+    <p><strong>Update: I’ve finally (nearly two years later) created a <a href="http://dtao.github.com/ConcurrentList/">dedicated GitHub repo</a> for this.</strong></p>
+<hr><p>Inspired by <a href="http://stackoverflow.com/questions/5070495/lock-free-thread-safe-ilistt-for-net">this Stack Overflow question</a>, I started thinking about possible ways of implementing the <code>IList&lt;T&gt;</code> interface in a lock-free <em>concurrent</em> data structure, with the following notes:</p>
+
+<ol>
+<li>I highly doubt a lock-free <code>Insert</code> or <code>RemoveAt</code> implementation is possible. I could be wrong, of course; but I don’t think so. So I would implement those explicitly (and throw a <code>NotSupportedException</code>).</li>
+
+<li>I would want guaranteed O(1) random access, at least. (Otherwise, the whole point of implementing <code>IList&lt;T&gt;</code> seems kind of questionable.)</li>
+</ol><p>OK, so, <strong>how do we do it</strong>?</p>
+
+<p>Before I even describe my idea (still a work in progress), I should disclose the fact that, to my simultaneous disappointment and delight, it appears I managed to come up with a concept on my own that is <em>remarkably</em> similar to what researchers at Texas A&amp;M University, including <a href="http://en.wikipedia.org/wiki/Bjarne_Stroustrup">Bjarne Stroustrup</a>, <a href="http://www.stroustrup.com/lock-free-vector.pdf">designed and published</a>.</p>
+
+<p>Here’s the basic idea. Clearly utilizing a single array that is resized on certain Add operations would be problematic: allocating a new array and copying all elements to it in a lock-free way would be, at least I have to speculate, quite costly (imagine multiple concurrent threads all copying elements concurrently—seems very wasteful). So I considered using a <em>linked list</em> of arrays, where when an Add call requires additional storage, a new array could be allocated and appended to the linked list. But once you introduce a linked list, random access in O(1) becomes, well, less possible.</p>
+
+<p>I was <em>thinking</em> you probably couldn’t do it with a simple array of arrays (e.g., a <code>List&lt;T[]&gt;</code>) simply because then you’d eventually run into the problem of having to resize the “outer” array eventually. But then it dawned on me: <strong>assuming <code>Count</code> is bounded at <code>int.MaxValue</code>, we could actually use a <em>fixed-size</em> array of arrays.</strong></p>
+
+<p>If each array is twice the size of the previous one, this means we’d only need an array big enough to reach a total capacity of <code>int.MaxValue</code>, which ends up being a measly 32 (quite reasonable for a concurrent data structure, if you ask me)!</p>
+
+<p>This is assuming the first array has a <code>Length</code> of 1. How do I figure? Believe it or not, I didn’t have to do any fancy math. The answer is actually quite simple when you visualize array sizes as binary numbers.</p>
+
+<p>That is, if the first array’s <code>Length</code> is 1, then its size is:</p>
+
+<pre><code>00000000000000000000000000000001</code></pre>
+
+<p>Then, if the second array’s <code>Length</code> is 2 (twice the previous), then its size is:</p>
+
+<pre><code>00000000000000000000000000000010</code></pre>
+
+<p>And, of course, 1 + 2 = 3, or:</p>
+
+<pre><code>00000000000000000000000000000011</code></pre>
+
+<p>Now, if the next array’s <code>Length</code> is 4 (again, twice the previous), then that’s:</p>
+
+<pre><code>00000000000000000000000000000100</code></pre>
+
+<p>And 4 + 3 (the capacity of the previous two arrays) = 7, or:</p>
+
+<pre><code>00000000000000000000000000000111</code></pre>
+
+<p>See a pattern?</p>
+
+<p>So the first six elements (just for illustration) of this “outer” array would look like this:</p>
+
+<figure><img src="/images/bigarray.png" alt="An array of arrays"><figcaption>An array of arrays</figcaption></figure>
+
+<p>The beauty of this design is that it facilitates O(1) random access, when you consider the following: the starting “index” of each array is the sum of the lengths of all previous arrays, which is in turn the sum of a <a href="http://en.wikipedia.org/wiki/Geometric_progression"><strong>geometric sequence</strong></a>:</p>
+
+<figure><img src="/images/sumgeometricsequence.png" alt="Formula for the sum of a geometric sequence"><figcaption>Formula for the sum of a geometric sequence</figcaption></figure>
+
+<p>Determining <em>which array</em> a particular index falls into, then, requires simply rearranging the above formula to solve for <em>n</em>:</p>
+
+<figure><img src="/images/termgeometricsequence.png" alt="Formula to find the term in a geometric sequence"><figcaption>Formula to find the term in a geometric sequence</figcaption></figure>
+
+<p>With an <em>a<sub>1</sub></em> of 1 and an <em>r</em> of 2, this translates to the following code:</p>
+
+<div class="highlight"><pre><span class="kt">int</span> <span class="nf">GetArrayIndex</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">n</span> <span class="p">=</span> <span class="n">Math</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">index</span> <span class="p">+</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">Math</span><span class="p">.</span><span class="n">Truncate</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Pretty simple, right?</p>
+
+<p>Believe it or not, the main issue I’ve encountered so far is <strong>having an <em>accurate</em> O(1) <code>Count</code> operation</strong>. To understand why, consider this implementation of <code>Add</code>:</p>
+
+<div class="highlight"><pre><span class="k">public</span> <span class="k">void</span> <span class="nf">Add</span><span class="p">(</span><span class="n">T</span> <span class="n">element</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">index</span> <span class="p">=</span> <span class="n">Interlocked</span><span class="p">.</span><span class="n">Increment</span><span class="p">(</span><span class="k">ref</span> <span class="n">m_index</span><span class="p">)</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span>
+ 
+    <span class="kt">int</span> <span class="n">arrayIndex</span> <span class="p">=</span> <span class="n">GetArrayIndex</span><span class="p">(</span><span class="n">index</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">arrayIndex</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">index</span> <span class="p">-=</span> <span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">Math</span><span class="p">.</span><span class="n">Pow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="n">arrayIndex</span><span class="p">)</span> <span class="p">-</span> <span class="m">1</span><span class="p">);</span>
+    <span class="p">}</span>
+ 
+    <span class="k">if</span> <span class="p">(</span><span class="n">m_array</span><span class="p">[</span><span class="n">arrayIndex</span><span class="p">]</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">previousArrayLength</span> <span class="p">=</span> <span class="n">m_array</span><span class="p">[</span><span class="n">arrayIndex</span> <span class="p">-</span> <span class="m">1</span><span class="p">].</span><span class="n">Length</span><span class="p">;</span>
+        <span class="n">Interlocked</span><span class="p">.</span><span class="n">CompareExchange</span><span class="p">(</span><span class="k">ref</span> <span class="n">m_array</span><span class="p">[</span><span class="n">arrayIndex</span><span class="p">],</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">previousArrayLength</span> <span class="p">*</span> <span class="m">2</span><span class="p">],</span> <span class="k">null</span><span class="p">);</span>
+    <span class="p">}</span>
+ 
+    <span class="n">m_array</span><span class="p">[</span><span class="n">arrayIndex</span><span class="p">][</span><span class="n">index</span><span class="p">]</span> <span class="p">=</span> <span class="n">element</span><span class="p">;</span>
+ 
+    <span class="n">Interlocked</span><span class="p">.</span><span class="n">Increment</span><span class="p">(</span><span class="k">ref</span> <span class="n">m_count</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Notice anything fishy? The call to <code>Interlocked.Increment(ref m_index)</code> happens <em>before</em> <code>element</code> is inserted into the array, which means using <code>m_index</code> as <code>Count</code> will result in “false positives,” by which I mean values <em>higher</em> than the actual number of elements inserted. However, the “workaround” in the above implementation—maintaining a separate <code>m_count</code> field and calling <code>Interlocked.Increment(ref m_count)</code> at the end of the <code>Add</code> method—also has a flaw: if two <code>Add</code> operations take place concurrently, <code>m_count</code> may be incremented after the <em>higher</em> index <strong>first</strong>, resulting in the following problem:</p>
+
+<div class="highlight"><pre><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">list</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// This element may not have been set yet!</span>
+    <span class="n">T</span> <span class="n">element</span> <span class="p">=</span> <span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>This is something I haven’t worked out 100% yet. The structure designed by Stroustrup et al. resolves this issue by utilizing a <code>Descriptor</code> object which describes the most recent operation performed on the array and is updated with a single <em>CAS</em> (compare-and-swap) instruction. What I don’t like about this is that it means <em>every</em> call to Add allocates a new object. A small one, yes, but an object nonetheless.</p>
+
+<p>Personally, I like the idea of a <code>ConcurrentList&lt;T&gt;</code> class that allows thread-safe appends, O(1) random acccess, and does not produce (much) garbage. What I have so far seems to meet these requirements, while exhibiting some “iffy” behavior surrounding the Count property.</p>
+
+<p>And honestly, I’m wondering if that’s OK; maybe we can just embrace <a href="http://en.wikipedia.org/wiki/Eventual_consistency">eventual consistency</a> and say this implementation is efficient and just has a “fuzzy” Count.</p>
+
+<p>Anyway, like I said, it’s still a work in progress. But once I’ve gotten it to a state that I like (with unit tests, etc.), I will push it to my GitHub repo!</p>
+
+<p>Try not to get too excited ;)</p>
+  </section>
+  <section class='comments'>
+    <div id='disqus_thread'></div>
+    <script src='/javascripts/disqus.js' type='text/javascript'></script>
+    <noscript>
+      Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+    <a class='dsq-brlink' href='http://disqus.com'>
+      comments powered by
+      <span class='logo-disqus'>Disqus</span>
+    </a>
+  </section>
+</article>
+  <footer>
+    <ul class='menu'>
+      <li><a href="/posts">All Posts</a></li>
+      <li><a href="/about">About</a></li>
+      <li>
+        <a href='http://stackoverflow.com/users/105570' target='_blank'>
+          <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://github.com/dtao' target='_blank'>
+          <img alt='GitHub' src='/images/icons/github-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://twitter.com/dan_tao' target='_blank'>
+          <img alt='Twitter' src='/images/icons/twitter-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='http://feeds.feedburner.com/philosopherdeveloper'>
+          <img alt='RSS' src='/images/icons/rss-small.png' />
+        </a>
+      </li>
+    </ul>
+  </footer>
+</body>
