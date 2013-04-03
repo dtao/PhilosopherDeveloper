@@ -29,6 +29,14 @@
         .date
           font-size: 16px
 
+    figure
+      margin-left: 0
+      padding-left: 0
+      text-align: left
+
+      img
+        max-width: 480px
+
   .index
     width: auto
     padding: 10px
@@ -50,6 +58,11 @@
     padding: 10px
     text-align: left
 
+  article
+    figure
+      img
+        max-width: 400px
+
   .index
     ul.posts
       display: block
@@ -69,3 +82,10 @@
         .date
           font-size: 14px
           color: $darkGray
+
+// Does this happen?
+@media all and (max-width: 360px)
+  article
+    figure
+      img
+        max-width: 320px
