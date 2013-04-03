@@ -1,11 +1,11 @@
-I was a Philosophy major in college, but I've been a software developer since 2009.
+I'm a software developer with experience building web and mobile applications in Ruby, JavaScript, .NET, Java, and Objective-C.
 
-In 2012 I graduated from [CMU Silicon Valley](http://www.cmu.edu/silicon-valley) with an M.S. in Software Engineering. As my final project as a grad student, I developed [InstaPie](http://www.instapie.net), a fun way to settle arguments with friends.
+I originally studied Philosophy at [Duke](http://duke.edu/), then entered the software development profession shortly after graduating in 2007.
 
-For about a year I worked at [ThoughtWorks](http://www.thoughtworks.com), which was a really great experience. It seems almost every day I apply lessons I learned from my brilliant coworkers there to my current job.
+In 2008, my wife and I joined [WorldTeach](http://worldteach.org/) and spent the year teaching English in [Namibia](http://en.wikipedia.org/wiki/Namibia). It's a beautiful country with many wonderful cultures, and I would recommend it to anyone.
 
-Now I'm an engineer at [Cardpool](http://www.cardpool.com), an online exchange for pre-paid gift cards.
+In 2009 we returned to the States, where I began work at a trading firm in Philadelphia (.NET). Eventually we moved to San Francisco in 2010, where I entered the Software Engineering program at [CMU Silicon Valley](http://www.cmu.edu/silicon-valley).
 
-Most of my experience is in .NET (particularly C#), Ruby, and JavaScript. I can also find my way around Java, Objective-C, Python, or PHP relatively well; and I have a bit of a soft spot for VB.NET! I guess I would describe myself as a "generalist," eager to pick up new technologies whenever I can find a good excuse to.
+While at CMU I also worked at [ThoughtWorks](http://www.thoughtworks.com) (Java, Ruby, JavaScript, Objective-C), a software consultancy full of amazing people. I later worked at [Cardpool](http://www.cardpool.com) (Ruby on Rails), an online exchange for pre-paid gift cards.
 
-I also like to pretend I have any idea what I'm talking about when it comes to C++ (but to be honest, I totally don't).
+Currently I work at Google, on the Ads team (Java, JavaScript).
