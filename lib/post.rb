@@ -161,8 +161,8 @@ class Post
       filename = File.join(SINATRA_ROOT, "public", src)
       img = Magick::Image.read(filename).first
 
-      # Aim for no larger than 400 wide x 300 tall.
-      max_dimensions = [400, 300]
+      # Aim for no larger than 640 wide x 480 tall.
+      max_dimensions = [640, 480]
 
       # But if it's a portrait image, we'll do 300 x 400 instead.
       if img.rows > img.columns

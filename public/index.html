@@ -17,6 +17,29 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/am-i-an-engineer.html'>Am I an engineer?</a>
+      </span>
+      <span class='date'>March 27, 2013</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>Most people outside of the software development profession (and even many on the inside) may not realize that there is some disagreement within the community as to whether or not software development is a form of <em>engineering</em>.</p>
+
+<p>Let’s say you placed software developers along a spectrum, where at one end “engineering” might as well be a foreign word, and at the other end writing software is <em>obviously</em> a form of engineering, in much the same way that painting or sculpture is obviously a form of art.</p>
+
+<figure><img class="plain" src="/images/engineering-spectrum.png" alt="Is software development a form of engineering?"><figcaption>Is software development a form of engineering?</figcaption></figure>
+
+<p>Personally, I have worked at various points along this spectrum. My first software development job was at a trading company in Philadelphia, which would have falled pretty close to the extreme left end (we had one teammate who would have preferred otherwise, but the rest of us were far too hacky for him to shift the culture to the right). At <a href="http://www.thoughtworks.com">ThoughtWorks</a> I would say the culture was somewhere in the middle, with plenty of developers leaning in both directions (I definitely worked with self-professed “engineers” at ThoughtWorks, as well as individuals who vehemently rejected that label).</p>
+
+<p>More recently I’ve worked in environments that fall much closer to the right side of the spectrum. The culture at <a href="http://www.cardpool.com">Cardpool</a>–founded by two former Microsoft employees and with its first two hires from Google—was, not surprisingly, firmly in the software-as-engineering camp. I would expect no different from most large software companies (or developers from large-software-company roots). And a couple of weeks ago I started at Google, which I’m will be about as far to the right as I’ll ever get at in my career.</p>
+
+<p>(By the way, it’s probably not a coincidence that I chose to assign the left and right sides of the spectrum to the viewpoints that I did; read <a href="https://plus.google.com/110981030061712822816/posts/KaSKeg4vQtz">Steve Yegge’s argument</a> <span class="post-link">... (<a href="/posts/am-i-an-engineer.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/automating-yourself.html'>Automating yourself</a>
       </span>
       <span class='date'>February 28, 2013</span>
@@ -130,21 +153,6 @@
 <p>I’m not giving anything away here; exploits <a href="https://community.rapid7.com/community/metasploit/blog/2013/01/09/serialization-mischief-in-ruby-land-cve-2013-0156">have already been made public</a>. The important takeaway is pretty simple: never parse YAML from untrusted user input. Not in an application, and <em>definitely</em> not in a framework. Which means, in the case of Rails, don’t automatically parse params as YAML. The patches that were released (and which we quickly deployed, obviously) addressed this issue by disabling XML parameter parsing by default. (Less aggressive patches were also made available for sites that needed to parse XML params by simply removing YAML from the list of types that could be embedded in an XML request.)</p>
 
 <p>While this is probably fine <span class="post-link">... (<a href="/posts/making-yaml-safe-again.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/ab-testing-and-irreducible-complexity.html'>A/B testing and irreducible complexity</a>
-      </span>
-      <span class='date'>January 13, 2013</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>I was raised in a devout Christian family, which resulted in a fair amount of inner conflict and soul-searching throughout my academic life, <em>particularly</em> with respect to my ninth-grade education on evolution<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. This in turn ultimately led me to read a book called <a href="http://www.amazon.com/Darwins-Black-Box-Biochemical-Challenge/dp/0743290313">Darwin’s Black Box</a> by Michael Behe, which argues in favor of <a href="http://en.wikipedia.org/wiki/Intelligent_design">intelligent design</a><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> on the basis of a concept called <a href="http://en.wikipedia.org/wiki/Irreducible_complexity"><strong>irreducible complexity</strong></a>. It is actually a pretty reasonable argument, in my opinion—though I’m admittedly no expert on the subject—at least in that its premise seems plausible. To summarize in one sentence: Behe argues that there are systems in present-day organisms consisting of interacting parts, each of which on its own would provide no reproductive advantage to an individual and so cannot be explained purely by Darwinian natural selection. Only taken <em>as a whole</em> do these systems provide reproductive advantages; and so some other process must have generated them (where intelligent design enters the picture).</p>
-
-<p>Behe provides plenty of low-level biochemical examples that I won’t bother you with, primarily because I don’t remember them. But whether or not you agree with his argument—and my limited research leads me to believe that (surprise!) most of the scientific community does <strong>not</strong>–I think the <em>concept</em> of irreducible complexity is a useful one. Even if Behe is wrong with respect to evolution, we all know and probably to some extent accept the idea behind <em>the whole is greater than the sum of its parts</em>. Not everything in this world is the end result of some sequence of perfectly incremental changes, each coherent and explicable in its own right. Morever, if a whole could be greater than the sum of its parts, this leaves open the possibility that any given part on its own could even have <span class="post-link">... (<a href="/posts/ab-testing-and-irreducible-complexity.html">read the full post</a>)</span></p>
   </section>
 </article>
   <footer>

@@ -1,4 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://www.philosopherdeveloper.com/</link><item><title>Automating yourself</title><link>http://www.philosopherdeveloper.com/posts/automating-yourself.html</link><description><![CDATA[<p>When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.</p>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://www.philosopherdeveloper.com/</link><item><title>Am I an engineer?</title><link>http://www.philosopherdeveloper.com/posts/am-i-an-engineer.html</link><description><![CDATA[<p>Most people outside of the software development profession (and even many on the inside) may not realize that there is some disagreement within the community as to whether or not software development is a form of <em>engineering</em>.</p>
+
+<p>Let’s say you placed software developers along a spectrum, where at one end “engineering” might as well be a foreign word, and at the other end writing software is <em>obviously</em> a form of engineering, in much the same way that painting or sculpture is obviously a form of art.</p>
+
+<figure><img class="plain" src="/images/engineering-spectrum.png" alt="Is software development a form of engineering?"><figcaption>Is software development a form of engineering?</figcaption></figure>
+
+<p>Personally, I have worked at various points along this spectrum. My first software development job was at a trading company in Philadelphia, which would have falled pretty close to the extreme left end (we had one teammate who would have preferred otherwise, but the rest of us were far too hacky for him to shift the culture to the right). At <a href="http://www.thoughtworks.com">ThoughtWorks</a> I would say the culture was somewhere in the middle, with plenty of developers leaning in both directions (I definitely worked with self-professed “engineers” at ThoughtWorks, as well as individuals who vehemently rejected that label).</p>
+
+<p>More recently I’ve worked in environments that fall much closer to the right side of the spectrum. The culture at <a href="http://www.cardpool.com">Cardpool</a>–founded by two former Microsoft employees and with its first two hires from Google—was, not surprisingly, firmly in the software-as-engineering camp. I would expect no different from most large software companies (or developers from large-software-company roots). And a couple of weeks ago I started at Google, which I’m will be about as far to the right as I’ll ever get at in my career.</p>
+
+<p>(By the way, it’s probably not a coincidence that I chose to assign the left and right sides of the spectrum to the viewpoints that I did; read <a href="https://plus.google.com/110981030061712822816/posts/KaSKeg4vQtz">Steve Yegge’s argument</a> that software developers fall into “liberal” and “conservative” groups to get an interesting view on a related subject. And while you’re at it, also read Richard Gabriel’s <a href="http://www.dreamsongs.com/RiseOfWorseIsBetter.html">The Rise of <em>Worse is Better</em></a> for a much older but very similar perspective on two approaches to software, which he deems the “MIT approach” versus the “New Jersey approach”.)</p>
+
+<p>A term that seems to have grown in popularity since I’ve been working is <em>software craftsman</em>. I don’t know that this term is always intended to be in direct opposition to the idea of “software engineering”; but I think it is nonetheless a handy go-to comparison for serving as a counterpoint to the perspective that software is definitely engineering.</p>
+
+<p>Which brings me to a disclaimer I probably should have made earlier: I myself find myself leaning towards the left on this spectrum, so I am certainly biased. That said, I don’t consider either side to be the “correct” way of viewing software; and in fact, I believe the very attitude that holds one side to be superior to another is probably the most “incorrect” of all possible views on the matter. My primary reason for bringing this up is simply to point out that these different perspectives exist and to do my best to highlight some important ways in which they are similar, despite their obvious differences.</p>
+
+<p>But before I continue: <strong>what am I talking about?</strong> I’m sure at least <em>someone</em> reading this has no idea what I’m suggesting by the terms “engineer” or “craftsman.” So let me provide a (relatively) quick, totally oversimplified contrast between these two ideas.</p>
+
+<h2 id="what_is_an_engineer_1">What is an engineer?</h2>
+
+<figure><img src="/images/engineer-at-work.jpg" alt="An engineers at work"><figcaption>An engineers at work</figcaption></figure>
+
+<p>In <strong>broad, overly general terms</strong>, here’s how I’d describe a software engineer.</p>
+
+<p>Her <strong>code is the product</strong>. She takes pride in its quality and thinks through her designs carefully.</p>
+
+<p>Of course, she wants her code to lead to useful software, which is why it is important that significant thought goes into writing requirements for it. Sometimes an engineer will take ownership of a project’s requirements, but sometimes that will be someone else’s job. If her code is written well and meets requirements, but those requirements turned out to be wrong or poorly defined, an engineer may still feel proud of her work. Her code could still be elegant, even if the product as a whole didn’t turn out to be a success for other reasons.</p>
+
+<p>To an engineer, <strong>the practice of writing software is a discipline</strong>. There is a right way to do it; and although it’s naturally impossible to ever be 100% there, knowledge and experience equip good engineers to get closer and closer over time, as they learn from experience and apply what they’ve learned to their future work.</p>
+
+<p>If I may be abstract for a moment, I picture an engineer’s development—not of code, but of herself—as being like the growth of a redwood: up and up, better and better.</p>
+
+<figure><img src="/images/redwood-tree.jpg" alt="An engineer grows like a redwood."><figcaption>An engineer grows like a redwood.</figcaption></figure>
+
+<p>More experience → more knowledge.</p>
+
+<h2 id="what_is_a_craftsman_2">What is a craftsman?</h2>
+
+<figure><img src="/images/craftsman-at-work.jpg" alt="A craftsman at work"><figcaption>A craftsman at work</figcaption></figure>
+
+<p>Just a reminder: I am biased here. But this is how I’d describe a so-called “craftsman.”</p>
+
+<p>His <strong>code is a tool</strong>. A tool degrades and becomes blunt over time; this is unavoidable. But naturally, if a tool is useful then you sharpen it periodically to ensure that it continues to be useful. Tools that are seldom used and have worn out or rusted can be discarded or replaced.</p>
+
+<p>He cares more that his code leads to useful software than that it is elegant or well designed. In fact, if he spent a time making his code elegant but the requirements were poorly designed and the resulting software is not useful, a craftsman will be deeply upset because his time was wasted. For this reason a craftsman will almost always take at least partial ownership in ensuring that the requirements for a project make sense.</p>
+
+<p>To a craftsman, <strong>writing software is a craft</strong>, based on creativity and technique. There is not a “right” way; there are many ways. Experience alone does not necessarily bring one closer to an ideal (because there is no single ideal). Instead, the more a craftsman learns, the more diverse his set of tools becomes; and his craft is more colorful as a result.</p>
+
+<p>I imagine a craftsman’s growth as more like that of baobab tree: out and out, broader and broader.</p>
+
+<figure><img src="/images/baobab-tree.jpg" alt="A craftsman grows like a baobab."><figcaption>A craftsman grows like a baobab.</figcaption></figure>
+
+<p>More experience → more perspective.</p>]]></description><pubDate>Wed, 27 Mar 2013 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/am-i-an-engineer.html</guid></item><item><title>Automating yourself</title><link>http://www.philosopherdeveloper.com/posts/automating-yourself.html</link><description><![CDATA[<p>When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.</p>
 
 <figure><img src="/images/espresso_machine_thumb.jpg" alt="Our espresso machine"><figcaption>Our espresso machine</figcaption></figure>
 
@@ -744,76 +796,4 @@
 <p>Unless I’m mistaken, the greeting procedure really is O(n<sup>2</sup>). The reason is this. For every person you introduce into the group, that person has to greet everyone already in the group. So if the group consists of n people, and you add another person, right there that’s n more introductions. But <em>in addition</em>, every person in the group also has to greet the new person; so that’s <em>another</em> n more introductions. In total, the number of introductions will always be n<sup>2</sup> (every person greeting every other person), minus n since you don’t greet yourself. So in the example I gave, 4 people made 12 introductions, which is 16 (4 squared) minus 4 since Jack did not introduce himself to Jack, etc. <a href="#fnref:3" rev="footnote">↩</a></p>
 </li>
 </ol>
-</div>]]></description><pubDate>Sat, 15 Sep 2012 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html</guid></item><item><title>A magical optimization of the += operator with strings</title><link>http://www.philosopherdeveloper.com/posts/magical-optimization-of-the-%2B%3D-operator-with-strings.html</link><description><![CDATA[<p>Today I felt like writing something more low-level than I’ve written in a while… and since C# is about the lowest I go (yeah, pretty sad—I haven’t really earned my beard yet), that will be my language of choice for this post.</p>
-
-<p>But we start with JavaScript, actually. A couple of months ago, shortly after joining <a href="http://www.cardpool.com/">Cardpool</a>–a topic <em>definitely</em> deserving of its own post, in due time—I started working on a top-secret new project. Without giving too much away (as if it really matters), I’ll just say that my work on this project involved writing a library to process a sequence of data from an input device which emulated a computer keyboard. Essentially this input sequence would ultimately be interpreted as a string; but unlike your typical scenario of taking user input from, e.g., a text field—where the string is given to you all at once—in this case the library had to <em>assemble</em> the string from bytes fed to it one-by-one.</p>
-
-<p>In a language like Java or C# (or even Ruby), this would be totally easy, albeit unconventional. The data structure for a string is <a href="http://philosopherdeveloper.wordpress.com/2010/05/28/are-strings-really-immutable-in-net/">more or less</a> immutable in Java and C#, but both have the concept of a mutable <code>StringBuilder</code> for precisely the case where you need to construct a string by concatenating many segments. And in Ruby, strings are mutable to begin with (you use the <code>&lt;&lt;</code> operator to append to an existing string).</p>
-
-<p>But this library I was working on was in <em>JavaScript</em>–a language that I love, but one without any specialized options for concatenating strings quickly. JavaScript strings are immutable, and there is no concept of a <code>StringBuilder</code>. If you want to concatenate many strings together, you have two options:</p>
-
-<ul>
-<li>The good ol’ <code>+=</code> operator</li>
-
-<li>Storing the elements in an array, and then calling <code>join()</code>
-</li>
-</ul><p>Before bothering to profile anything, here was my guess: I figured that on small strings, the two options would be roughly equivalent. But given that strings in JavaScript are immutable, I assumed that even on modern browsers the array-based concatenation strategy would prove superior pretty much across the board. That would make sense, right?</p>
-
-<p>To my surprise, after <a href="http://jsperf.com/concatenating-lots-of-little-strings/2">profiling the two options on a variety of browsers</a>, I found that the <code>+=</code> operator beats the pants off the array method on Chrome.</p>
-
-<figure><img src="http://i.imgur.com/wIYN7.png" alt="The performance of += on Chrome is pretty astonishing"><figcaption>The performance of += on Chrome is pretty astonishing</figcaption></figure>
-
-<p><em>How could this be?</em> I thought. Given an immutable data structure for strings, it seemed to me any use of <code>+</code> would necessitate the allocation of an entirely new block of memory to hold a copy of the original data plus the appended data. The only obvious alternative I could think of was to use some sort of <a href="http://en.wikipedia.org/wiki/Rope_%5C(computer_science%5C">rope</a>), which felt like a totally unwarranted compromise for a language like JavaScript given that it would make random access O(log N) instead of O(1) and would hardly ever be useful (not to mention that appends would still be O(log N), so they almost certainly still wouldn’t beat the array method).</p>
-
-<p>Obviously the Chrome developers cooked up some crazy optimization for the <code>+=</code> operator; but what <em>was</em> it? (Incidentally, it seems that some engineers at Microsoft must have done something similar for Windows 8, since IE 10 shows a similar performance disparity between using <code>+=</code> and the array method). It got me thinking: if I were to optimize for this case—and it does make some sense, considering how <code>+=</code> is really your only option in JavaScript, or at least by far the most obvious one that JavaScript developers are likely to use—how might I do it?</p>
-
-<p>Well, perhaps the pay-off won’t be worth my long-winded exposition thus far. But here’s what I came up with. I actually quite like it. (Though to be clear: this is really just a proof of concept, and I would almost certainly not have any use for it in any production code.)</p>
-
-<p>The challenge, just to reiterate one last time, was to create <strong>an immutable implementation of strings optimized for very fast appends using the <code>+</code> operator</strong>. I came up with a solution in C#. Obviously the Chrome devs did not use C#–nor did the Microsoft devs, for that matter—but I’m sure they could have taken a similar approach in whatever language they used. I’m not saying they <em>did</em>–chances are their solution is much smarter than mine—just that they <em>could</em> have.</p>
-
-<h2 id="the_basic_idea_1">The Basic Idea</h2>
-
-<p>Here’s what I came up with. For starters, I needed to forget about what a string “is”–or anyway, what my notion of one was prior to thinking about this optimization: as a particular <em>data structure</em> comprising a contiguous sequence of characters—and focus on the <em>concept</em> of a string, which I would say is more closely related to <em>the interface it provides</em>: random access to such a sequence, along with the total length of the sequence. From these basic building blocks all other aspects of a string’s interface can be derived: iteration, substring operations, replace, search, the whole shebang. (If you think about it, you could actually implement the entire interface for, say, .NET’s <code>System.String</code> class using only an <code>IList&lt;char&gt;</code> as the backing data structure. But I’ll leave that to you as an exercise.)</p>
-
-<p>Fine, so you’re with me so far. I’m sure most of you already knew that anyway. But what does this shift in focus give us? Essentially, it allows us to conjure <strong>an immutable <em>concept</em> with a mutable <em>data structure</em> underneath it</strong>. And this is the basis for <a href="https://gist.github.com/3471636">my <code>FastString</code> class</a>.</p>
-
-<h2 id="the_implementation_2">The Implementation</h2>
-
-<p>At the heart of a <code>FastString</code> object there are two parts: <code>buffer</code>, an underlying <code>StringBuilder</code> (the mutable data structure underneath), and <code>length</code>, an integer. In addition to these fields, there is the concept of <strong>buffer ownership</strong>: if a <code>FastString</code> has the same length (not to be confused with <em>capacity</em>) as its buffer, that means it is the “owner” of the buffer:</p>
-
-<div class="highlight"><pre><span class="k">private</span> <span class="kt">bool</span> <span class="n">OwnsBuffer</span>
-<span class="p">{</span>
-    <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="n">buffer</span><span class="p">.</span><span class="n">Length</span> <span class="p">==</span> <span class="k">this</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>Now, the idea here is that if you use <code>+</code> to append to a <code>FastString</code>, two things can happen. If the <code>FastString</code> is the owner of its underlying buffer, that means that you can safely append directly to the buffer. This is because no other <code>FastString</code> instances can be referencing any characters past the current end of the buffer, and so the immutability of every existing instance is maintained. Then the <code>+</code> operator returns a new <code>FastString</code> instance pointing to the same buffer but with the new length. At this point, this new instance becomes the buffer’s new owner.</p>
-
-<p>It is a bit of a strange approach, I grant you. But it is perfect for a particularly common use case: concatenating many strings in a loop:</p>
-
-<div class="highlight"><pre><span class="n">FastString</span> <span class="n">whole</span> <span class="p">=</span> <span class="s">""</span><span class="p">;</span>
-<span class="k">foreach</span> <span class="p">(</span><span class="kt">string</span> <span class="n">part</span> <span class="k">in</span> <span class="n">parts</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">whole</span> <span class="p">+=</span> <span class="n">part</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>Here, every time a new <code>FastString</code> is instantiated via the <code>+=</code> operator, the previous owner (which is essentially discarded in the above loop) cedes ownership and the new instance inherits it. Notably, this will have the same performance characteristics as using a <code>StringBuilder</code>, because, after all, that’s basically what it is doing. But the proof is in the pudding: here’s example output from a sample run concatenating 20,000 strings:</p>
-
-<pre><code>Finished concatenating 20000 strings the 'fast' way in 2.7935 ms.
-Finished concatenating 20000 strings the 'slow' way in 4832.8853 ms.
-Output equal? True</code></pre>
-
-<p>A <strong>1730x</strong> speed-up? I’d say that’s not bad! (And this would of course only increase as the number of strings increased—since the <code>FastString</code> approach should have amortized O(1) complexity versus the O(N) that <code>String</code> provides.)</p>
-
-<p>Is this what the Chrome devs did? Like I said, I doubt it. I would actually be very curious to know what approach they used. (I’m guessing that since I don’t have much experience in lower-level languages than C#, there are probably a whole collection of tricks I would never even think of.) And if <em>you</em> can think of any other optimizations, leave a comment and let me know!</p>
-
-<p>Anyway, as I wrote already, this is not really useful in any real-world application I can imagine. But it was a fun challenge to take on, and I hope it was interesting to read about. Also, it’s nice to write about something relatively low-level (at least compared to my usual fare) every once in a while. This is the stuff that got me into programming in the first place.</p>
-
-<p>But that’s the topic of another, much higher-level post. Speaking of which, I should probably write soon about a couple of fairly major events in my personal and professional life:</p>
-
-<ol>
-<li>Leaving ThoughtWorks</li>
-
-<li>Graduating from CMU</li>
-</ol><p>Let that be a reminder to myself, for next time.</p>]]></description><pubDate>Sat, 25 Aug 2012 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/magical-optimization-of-the-%2B%3D-operator-with-strings.html</guid></item></channel></rss>
+</div>]]></description><pubDate>Sat, 15 Sep 2012 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html</guid></item></channel></rss>
