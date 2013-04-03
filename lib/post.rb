@@ -115,6 +115,10 @@ class Post
     "/posts/#{CGI.escape(self.identifier)}.html"
   end
 
+  def local_path
+    ["app", "views", "posts", "#{self.identifier}.markdown"]
+  end
+
   def to_html(max_length=nil)
     fragment = get_html_fragment(max_length)
     resize_images(fragment)

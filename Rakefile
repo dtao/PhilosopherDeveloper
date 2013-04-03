@@ -86,6 +86,23 @@ def compile_stylesheets
   write_file("public", "stylesheets", "application.css") { css }
 end
 
+# Set the README file to the most recent blog post (this is basically just for
+# someone who takes a gander at the repo on GitHub.)
+def update_readme
+  post = Post.latest
+
+  post_content = <<-EOS.unindent
+    The following is the most recent post from my blog, **The Philosopher Developer**, written on #{post.friendly_date}.
+    
+    ***
+    
+    #{post.title}
+    #{'=' * post.title.length}
+  EOS
+
+  write_file("README.md") { [post_content, read_file(*post.local_path)].join("\n") }
+end
+
 def build_xml
   builder = Builder::XmlMarkup.new
   yield builder
@@ -107,6 +124,7 @@ namespace :compile do
     compile_about()
     compile_posts_index()
     compile_stylesheets()
+    update_readme()
   end
 
   desc "Compile RSS feed"
