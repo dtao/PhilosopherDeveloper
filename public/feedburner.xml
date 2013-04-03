@@ -74,11 +74,26 @@
 <li>As I said, people can adapt. This includes craftsman-style developers. Assigned to a large project with a sizable team, I’m confident that any good team—on either side of the spectrum—would adopt a fairly disciplined approach to building the software, with much more structure than perhaps they would on a smaller project.</li>
 
 <li>However, the question implies (at least in tone, the way I hear it in my head) a certain inevitability to the need for a team to work on a large-scale project. I would challenge this assumption, and return to my earlier point about requirements. I suspect that in many cases, software projects that end up becoming large have little justification for getting that way. Sometimes the size and complexity of a piece of software inflates with the size of the team, forming a harmful feedback loop that leads to bloat. But that’s a topic for another post.</li>
-</ol><div class="footnotes">
+</ol><p>In any case, it is probably true that sometimes large software projects are justifiable<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>; and these require a great deal of organization and collaboration to run smoothly. And so an engineering culture is likely to emerge on these projects, regardless of the sort of software developers working on them. That said, it may sometimes also be possible to break a large project down into smaller projects, in which case semi-autonomous teams might still flourish with a craftsmanship culture.</p>
+
+<h2 id="closing_thoughts_5">Closing thoughts</h2>
+
+<p>I’ve said that it can be difficult for these two kinds of software developers to work together. Regardless, I still believe we have a lot to learn from one another by crossing from one side of the spectrum to the other on a regular basis, at least socially if not professionally. So think about whether you’re more like a “craftsman” or more like an “engineer” as I’ve described them<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>, and seek out people that you think are different from you.</p>
+
+<p>The fact that Richard Gabriel wrote about the MIT approach and the New Jersey approach <em>decades</em> ago—and it still applies today—says something. I really love it.</p>
+<div class="footnotes">
 <hr>
-<ol><li id="fn:1">
+<ol>
+<li id="fn:1">
 <p>OK, maybe not <em>worst</em> case scenario. But it would still be unfortunate. <a href="#fnref:1" rev="footnote">↩</a></p>
-</li></ol>
+</li>
+<li id="fn:2">
+<p>It seems pretty clear to me that Google is a perfect example of this. <a href="#fnref:2" rev="footnote">↩</a></p>
+</li>
+<li id="fn:3">
+<p>I almost worded this, “whether you <em>are</em> a craftsman or an engineer”; but let’s not get caught up in the idea that these terms actually define individuals. It is a convenient mental grouping, for me; but we are all obviously different and how you define yourself may not jive with the division I’ve drawn here at all—in which case, let me know! Leave a comment, or write an e-mail, or just come talk to me some time if we work together. <a href="#fnref:3" rev="footnote">↩</a></p>
+</li>
+</ol>
 </div>]]></description><pubDate>Wed, 27 Mar 2013 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/am-i-an-engineer.html</guid></item><item><title>Automating yourself</title><link>http://www.philosopherdeveloper.com/posts/automating-yourself.html</link><description><![CDATA[<p>When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.</p>
 
 <figure><img src="/images/espresso_machine_thumb.jpg" alt="Our espresso machine"><figcaption>Our espresso machine</figcaption></figure>
