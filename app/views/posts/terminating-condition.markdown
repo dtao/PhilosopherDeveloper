@@ -47,10 +47,12 @@ So you can see why I compared recursion to Ouroboros. In order to progress along
 To illustrate this fact, consider the following "simplified" version of the above formula, in which I have eliminated the *n = 1* branch:
 
 ![A recursive formula with a bit of a problem](/images/oversimplified-recursive-formula.png)
+{: .plain }
 
 At first, this formula appears to behave no differently from the first one. If *n = 5*, then we have:
 
 ![Revealing the flaw in the oversimplified recursive formula](/images/expanded-oversimplified-recursive-formula.png)
+{: .plain }
 
 But wait... when does that formula *end*? **It doesn't**. It goes to *f(1)*, then to *f(0)*, then to *f(-1)*, on and on, infinitely.
 
@@ -73,13 +75,13 @@ I promise I am going somewhere with this; bear with me just a bit longer. Below 
 > > > A boy opened a storybook and started to read. In the book was written:
 > > > > *\[...\]*
 
-**Whoa** there, let's stop that before it gets out of hand. The above story (in case you didn't catch this) is about a boy who reads* a story about himself reading the very story he's in*. In this way it is remarkably similar to the recursive formula described above: it never ends. What are the implications of this with respect to your ability to *follow* the story? Is it possible?
+**Whoa** there, let's stop that before it gets out of hand. The above story (in case you didn't catch this) is about a boy who reads *a story about himself reading the very story he's in*. In this way it is remarkably similar to the recursive formula described above: it never ends. What are the implications of this with respect to your ability to *follow* the story? Is it possible?
 
 Remember the "stack" I talked about. If you could hypothetically follow a story such as the one above, this would mean you could continue adding layer upon layer to your mental stack *indefinitely*. Obviously, this is not possible, unless you have an infinitely large brain. In the same way, as computers do not have infinite resources, executing a program consisting of a recursive function which never terminates is **not possible**. It causes what is called a **stack overflow**. (Starting to make sense?)
 
 Now at last let's return to the subject of conflicts. When two people argue, it is not like the simplistic "loop" diagram above illustrating a neverending back-and-forth between `Provoke` and `Respond`. It is more like the stories above, where each exchange--each *layer*--takes the conflict deeper, brings both parties further into an ever-growing *stack* of insults and bitter words. I believe that a more accurate visualization of personal conflict, then, would look like this:
 
-![Provoke &amp; Respond (recursive)](provoke-respond-recursive.png)
+![Provoke &amp; Respond (recursive)](/images/provoke-respond-recursive.png)
 
 The above diagram *could* go on forever, except that we don't have an infinite space to put it in; therefore, just like a recursive function, it has to stop somewhere. In software this stopping point is *part of the design* of any properly-implemented recursive function; it's called a **terminating condition** (like the *n = 1* branch of the first recursive formula above). The terminating condition should be specified by the developer to ensure that his or her recursive function has a defined *end*; otherwise, the environment has to enforce its *own* terminating condition (by throwing a stack overflow error, for example) to avoid the undesirable outcome of simply crashing.
 
