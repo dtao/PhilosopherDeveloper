@@ -112,3 +112,8 @@ how-to-build-a-thread-safe-lock-free-resizable-array:
   date: 2011-02-23
   title: How to build a thread-safe lock-free resizable "array"
   published: true
+
+terminating-condition:
+  date: 2011-01-15
+  title: "Resolution: the need for a terminating condition"
+  published: true
