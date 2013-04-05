@@ -32,7 +32,7 @@ def compile_post(post, filename=nil)
   layout_haml = read_view_file("layouts", "application.haml")
 
   # Render w/ final layout using HAML.
-  final_html = Haml::Engine.new(layout_haml).render(Object.new, :title => post.title) do
+  final_html = Haml::Engine.new(layout_haml).render(Object.new, :title => post.title, :post => post) do
     post_html
   end
 
@@ -47,7 +47,7 @@ def compile_index(posts)
   layout_haml = read_view_file("layouts", "application.haml")
 
   # Render w/ final layout using HAML.
-  final_html = Haml::Engine.new(layout_haml).render(Object.new, :title => nil) do
+  final_html = Haml::Engine.new(layout_haml).render(Object.new, :post => nil) do
     posts_html
   end
 
@@ -61,6 +61,7 @@ def compile_about
     "date"  => Date.parse("2013-01-24")
   })
 
+  about_post.include_social_links = false
   about_post.allow_comments = false
 
   compile_post(about_post, "about.html")
@@ -70,7 +71,7 @@ def compile_posts_index
   layout_haml = read_view_file("layouts", "application.haml")
   index_haml  = read_view_file("index.haml")
   index_html  = Haml::Engine.new(index_haml).render(Object.new, :posts => Post.all_by_period)
-  final_html  = Haml::Engine.new(layout_haml).render(Object.new, :title => "All Posts") { index_html }
+  final_html  = Haml::Engine.new(layout_haml).render(Object.new, :title => "All Posts", :post => nil) { index_html }
 
   write_file("public", "posts", "index.html") { final_html }
 end

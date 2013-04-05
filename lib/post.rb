@@ -92,7 +92,7 @@ class Post
   end
 
   attr_reader :identifier, :date, :title, :published
-  attr_accessor :allow_comments
+  attr_accessor :include_social_links, :allow_comments
 
   def comments
     Comment.all(:post_identifier => self.identifier)
@@ -112,7 +112,10 @@ class Post
   end
 
   def link
-    "/posts/#{CGI.escape(self.identifier)}.html"
+    # Yes, this is hacky. Leave me alone.
+    self.title == "Dan Tao" ?
+      "/about.html" :
+      "/posts/#{CGI.escape(self.identifier)}.html"
   end
 
   def local_path
@@ -133,6 +136,7 @@ class Post
     @date = info["date"]
     @title = info["title"]
     @published = info["published"]
+    @include_social_links = true
     @allow_comments = true
   end
 

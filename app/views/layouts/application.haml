@@ -1,6 +1,6 @@
 !!!
 %head
-  %title= title ? "#{title} - The Philosopher Developer" : "The Philosopher Developer"
+  %title= defined?(title) ? "#{title} - The Philosopher Developer" : "The Philosopher Developer"
   %meta(name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no")
   %link(rel="stylesheet" href="/stylesheets/application.css")
   %link(rel="stylesheet" href="/stylesheets/pygments.css")
@@ -10,8 +10,13 @@
 
 %body
   %header#header
-    %h1 <a href="/">The Philosopher Developer</a>
-    %h2 half-sound logic, half-decent code
+    - if post
+      %h1
+        %a(href="#{post.link}")= post.title
+      %h2 <a href="/">the philosopher developer</a>
+    - else
+      %h1 <a href="/">The Philosopher Developer</a>
+      %h2 half-sound logic, half-decent code
 
   = yield
 

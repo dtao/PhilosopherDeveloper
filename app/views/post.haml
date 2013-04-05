@@ -1,14 +1,13 @@
 %article
   %header
-    %h1
-      %span.title
-        %a(href="#{post.link}")= post.title
-      %span.date= post.friendly_date
-    .social
-      %span.st_facebook_hcount(displayText='Facebook')
-      %span.st_googleplus_hcount(displayText='Google+')
-      %span.st_twitter_hcount(displayText='Tweet')
-      %span.st_linkedin_hcount(displayText='LinkedIn')
+    %h1= post.friendly_date
+
+    - if post.include_social_links
+      .social
+        %span.st_facebook_hcount(displayText='Facebook')
+        %span.st_googleplus_hcount(displayText='Google+')
+        %span.st_twitter_hcount(displayText='Tweet')
+        %span.st_linkedin_hcount(displayText='LinkedIn')
 
   %section.content
     = post.to_html
