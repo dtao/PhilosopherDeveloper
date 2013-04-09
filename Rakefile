@@ -4,7 +4,6 @@ require "post"
 require "builder"
 require "haml"
 require "html_truncator"
-require "RMagick"
 require "sass"
 require "yui/compressor"
 
