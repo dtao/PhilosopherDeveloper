@@ -1,6 +1,7 @@
 When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.
 
 ![Our espresso machine](/images/espresso_machine_thumb.jpg)
+{: .hidden-in-abbreviated-version }
 
 Back in Philly, we'd had a modest kitchen with just enough counter space for the machine. On lazy weekend mornings, I'd often turn it on and prepare us each a latte drink. It was a nice little ritual.
 
@@ -9,6 +10,7 @@ So we brought it to San Francisco with us. But our first apartment, a little stu
 Then in 2011, we moved to our current apartment in the Mission. The espresso machine is back; but we don't have quite the counter space that we did in Philadelphia, so it's sitting on a little cart underneath our microwave, unplugged.
 
 ![Our espresso machine now](/images/espresso_machine2.jpg)
+{: .hidden-in-abbreviated-version }
 
 This isn't terribly inconvenient. To use it, I only need to pick it up and set it somewhere--say, on our table--then put it back when I'm finished. Still, the fact remains: **I haven't used it once**[^unused-espresso-machine] since moving here.
 

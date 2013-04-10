@@ -1,5 +1,5 @@
 - posts.each do |post|
-  %article
+  %article.abbreviated
     %header
       %h1
         %span.title
@@ -7,4 +7,4 @@
         %span.date= post.friendly_date
 
     %section.content
-      = post.to_html(300)
+      = post.to_html(:max_length => 300)

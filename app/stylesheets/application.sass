@@ -4,6 +4,7 @@ $lightBlue:  #dfefff
 $lightGray:  #eee
 $lightGreen: #36BCAB
 $pink:       #d14
+$yellow:     #ffe
 
 // Fonts
 @font-face
@@ -33,7 +34,15 @@ $pink:       #d14
 @mixin codeFont
   font-family: Consolas, Inconsolata, monospace
 
+@mixin transition($property, $duration)
+  -moz-transition: $property $duration
+  -o-transition: $property $duration
+  -webkit-transition: $property $duration
+  transition: $property $duration
+
+// Top-level styling
 body
+  background-image: linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px)
   background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px)
   background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px)
   background-repeat: repeat-x
@@ -50,6 +59,24 @@ a
   text-decoration: none
   &:hover
     color: darken($lightGreen, 20%)
+
+table
+  border-collapse: collapse
+  width: 100%
+
+  th, td
+    padding: 5px
+  tr:nth-child(even)
+    th, td
+      background-color: $lightGray
+
+  thead
+    th
+      border-bottom: 1px solid black
+
+  tbody
+    tr:hover td
+      background-color: $yellow
 
 ol
   list-style-type: decimal
@@ -88,6 +115,10 @@ pre
 code
   @include codeFont
   color: $pink
+
+// My own little classes
+.hidden
+  display: none
 
 #header
   border-bottom: 1px solid black
@@ -187,6 +218,10 @@ article
   section.comments
     font-size: 16px
     margin-top: 20px
+
+  &.abbreviated
+    .hidden-in-abbreviated-version
+      display: none
 
 .index
   width: 67%

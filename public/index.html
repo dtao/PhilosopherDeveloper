@@ -13,7 +13,45 @@
     <h1><a href="/">The Philosopher Developer</a></h1>
     <h2>half-sound logic, half-decent code</h2>
   </header>
-  <article>
+  <article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/charts-made-dead-simple-with-hightables.html'>Charts made dead simple with HighTables</a>
+      </span>
+      <span class='date'>April 10, 2013</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>In a footnote to <a href="/posts/making-yaml-safe-again.html">my post a while ago on SafeYAML</a>, I established a goal of writing more about my many open source projects, which I have a bad habit of abandoning and not telling anyone about—sometimes after they’re basically finished!</p>
+
+<p>So today I want to write about a pretty good one that’s relatively polished and full-featured. It’s called <a href="http://dtao.github.io/HighTables/">HighTables</a>, and it’s a JavaScript library that makes adding charts to existing sites with HTML tables <em>extremely</em> easy.</p>
+
+<p>For what it’s worth, HighTables itself isn’t all that impressive. It leverages the power of two existing libraries, <a href="http://www.highcharts.com/">Highcharts</a> and <a href="http://jquery.com/">jQuery</a>. If you don’t know about Highcharts, it’s a great library that lets you render all kinds of charts (line, area, bar, pie, etc.) in JavaScript. And if you don’t know about jQuery, and you’re a JavaScript developer, you should probably blow the dust off your keyboard and <a href="http://www.doxdesk.com/img/updates/20091116-so-large.gif">ask any JS-related question on the internet</a> to learn more about it.</p>
+
+<p>My problem with Highcharts in the past was that it has <a href="http://api.highcharts.com/highcharts">a <em>behemoth</em> API</a>. Rendering a chart was never a simple matter of calling <code>pieChart()</code>; instead, any chart-creation logic requires a whole ton of options that an average person is very unlikely to remember from one use to the next. And so I always found myself returning to the Highcharts website, perusing documentation, and following examples to ever get a chart to display on sites I’ve worked on.</p>
+<figure class="hidden-in-abbreviated-version"><figcaption>Notice any discrepancy?</figcaption></figure><table id="activity-value-vs-time-table" class="hidden">
+<thead><tr>
+<th>Activity</th>
+<th>Relative Value of activity</th>
+<th>Hours spent on activity</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Implementing reporting backend</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Fiddling with chart rendering</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+</tr>
+</tbody>
+</table><p>Of course, like any good developer, I eventually would get around to writing reusable methods with easier-to-remember interfaces and use <em>those</em> to render my charts. But at some point I noticed a pattern: mostly I was putting <span class="post-link">... (<a href="/posts/charts-made-dead-simple-with-hightables.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
@@ -36,7 +74,7 @@
 <p>(By the way, it’s probably not a coincidence that I chose to assign the left and right sides of the spectrum to the viewpoints that I did; read <a href="https://plus.google.com/110981030061712822816/posts/KaSKeg4vQtz">Steve Yegge’s argument</a> that software developers fall into “liberal” and “conservative” groups to get an interesting view on a related subject. And while you’re at it, also read Richard <span class="post-link">... (<a href="/posts/am-i-an-engineer.html">read the full post</a>)</span></p>
   </section>
 </article>
-<article>
+<article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
@@ -48,7 +86,7 @@
   <section class='content'>
     <p>When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.</p>
 
-<figure><img src="/images/espresso_machine_thumb.jpg" alt="Our espresso machine"><figcaption>Our espresso machine</figcaption></figure>
+<figure class="hidden-in-abbreviated-version"><img src="/images/espresso_machine_thumb.jpg" alt="Our espresso machine"><figcaption>Our espresso machine</figcaption></figure>
 
 <p>Back in Philly, we’d had a modest kitchen with just enough counter space for the machine. On lazy weekend mornings, I’d often turn it on and prepare us each a latte drink. It was a nice little ritual.</p>
 
@@ -56,7 +94,7 @@
 
 <p>Then in 2011, we moved to our current apartment in the Mission. The espresso machine is back; but we don’t have quite the counter space that we did in Philadelphia, so it’s sitting on a little cart underneath our microwave, unplugged.</p>
 
-<figure><img src="/images/espresso_machine2.jpg" alt="Our espresso machine now"><figcaption>Our espresso machine now</figcaption></figure>
+<figure class="hidden-in-abbreviated-version"><img src="/images/espresso_machine2.jpg" alt="Our espresso machine now"><figcaption>Our espresso machine now</figcaption></figure>
 
 <p>This isn’t terribly inconvenient. To use it, I only need to pick it up and set it somewhere—say, on our table—then put it back when I’m finished. Still, the fact remains: <strong>I haven’t used it once</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> since moving here.</p>
 
@@ -65,7 +103,7 @@
 <p>I’ve pondered this from time to time, and an idea that keeps recurring to me is that <strong>we humans are programmable</strong>. At least to an extent. Simply by recognizing that my internal decision-making circuitry seems to ignore the espresso machine when it’s near the ground but will actually commit to using it when it’s on the counter, I can alter my behavior by <span class="post-link">... (<a href="/posts/automating-yourself.html">read the full post</a>)</span></p>
   </section>
 </article>
-<article>
+<article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
@@ -86,7 +124,7 @@
     <p>Maybe you don’t <span class="post-link">... (<a href="/posts/your-brain-is-a-liability.html">read the full post</a>)</span></p>
   </section>
 </article>
-<article>
+<article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
@@ -130,29 +168,6 @@
 
 <ol><li>With DataMapper, your database schema is defined in your models themselves. The ActiveRecord <span class="post-link">... (<a href="/posts/unbreaking-datamapper.html">read the full post</a>)</span>
 </li></ol>
-  </section>
-</article>
-<article>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/making-yaml-safe-again.html'>Making YAML safe again</a>
-      </span>
-      <span class='date'>January 24, 2013</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>TL;DR: Check out my new gem, <a href="http://dtao.github.com/safe_yaml">SafeYAML</a>. It lets you parse YAML without exposing your app to security exploits via arbitrary object deserialization.</p>
-<hr><p>There was <a href="http://news.ycombinator.com/item?id=5028218">quite a stir in the Rails community recently</a> about a serious security vulnerability in Rails. To be more specific: <a href="https://groups.google.com/forum/#!topic/rubyonrails-security/61bkgvnSGTQ/discussion"><em>every version of Rails</em></a>. We found out about this right away at <a href="http://www.cardpool.com/">Cardpool</a>, in part because Cardpool is a YC company and Paul Graham forwarded an e-mail from Thomas Ptacek to all YC alums warning of the vulnerability pretty much as soon as it was discovered.</p>
-
-<p>Without getting too caught up in the weeds, I will just say the vulnerability was ultimately a consequence of the fact that Ruby’s <a href="http://www.yaml.org/">YAML</a> library by default permits the deserialization of arbitrary Ruby objects. This is a problem for Rails—as well as many other Ruby frameworks, to be fair—because, until patches were released to address this problem, any Rails app could be “tricked” into parsing malicious YAML by basically anybody, without any special credentials. The key weakness in Rails, specifically, was that Rails would automatically parse the parameters of any XML request, including parameters like this:</p>
-
-<div class="highlight"><pre><span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">"yaml"</span><span class="nt">&gt;</span>--- !ruby/object {}<span class="nt">&lt;/data&gt;</span>
-</pre></div>
-
-<p>I’m not giving anything away here; exploits <a href="https://community.rapid7.com/community/metasploit/blog/2013/01/09/serialization-mischief-in-ruby-land-cve-2013-0156">have already been made public</a>. The important takeaway is pretty simple: never parse YAML from untrusted user input. Not in an application, and <em>definitely</em> not in a framework. Which means, in the case of Rails, don’t automatically parse params as YAML. The patches that were released (and which we quickly deployed, obviously) addressed this issue by disabling XML parameter parsing by default. (Less aggressive patches were also made available for sites that needed to parse XML params by simply removing YAML from the list of types that could be embedded in an XML request.)</p>
-
-<p>While this is probably fine <span class="post-link">... (<a href="/posts/making-yaml-safe-again.html">read the full post</a>)</span></p>
   </section>
 </article>
   <footer>

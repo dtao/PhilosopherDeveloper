@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title>Charts made dead simple with HighTables - The Philosopher Developer</title>
+  <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+  <link href='/stylesheets/application.css' rel='stylesheet' />
+  <link href='/stylesheets/pygments.css' rel='stylesheet' />
+  <link href='/stylesheets/charts-made-dead-simple-with-hightables.css' rel='stylesheet' />
+  <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
+  <script src='/javascripts/ga.js' type='text/javascript'></script>
+  <script src='/javascripts/shareThis.js' type='text/javascript'></script>
+</head>
+<body>
+  <header id='header'>
+    <h1>
+      <a href='/posts/charts-made-dead-simple-with-hightables.html'>Charts made dead simple with HighTables</a>
+    </h1>
+    <h2><a href="/">the philosopher developer</a></h2>
+  </header>
+  <article>
+  <header>
+    <h1>April 10, 2013</h1>
+    <div class='social'>
+      <span class='st_facebook_hcount' displayText='Facebook'></span>
+      <span class='st_googleplus_hcount' displayText='Google+'></span>
+      <span class='st_twitter_hcount' displayText='Tweet'></span>
+      <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+    </div>
+  </header>
+  <section class='content'>
+    <script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript"></script><script src="/javascripts/highcharts-3.1.min.js" type="text/javascript"></script><script src="/javascripts/hightables.js" type="text/javascript"></script><p>In a footnote to <a href="/posts/making-yaml-safe-again.html">my post a while ago on SafeYAML</a>, I established a goal of writing more about my many open source projects, which I have a bad habit of abandoning and not telling anyone about—sometimes after they’re basically finished!</p>
+
+<p>So today I want to write about a pretty good one that’s relatively polished and full-featured. It’s called <a href="http://dtao.github.io/HighTables/">HighTables</a>, and it’s a JavaScript library that makes adding charts to existing sites with HTML tables <em>extremely</em> easy.</p>
+
+<p>For what it’s worth, HighTables itself isn’t all that impressive. It leverages the power of two existing libraries, <a href="http://www.highcharts.com/">Highcharts</a> and <a href="http://jquery.com/">jQuery</a>. If you don’t know about Highcharts, it’s a great library that lets you render all kinds of charts (line, area, bar, pie, etc.) in JavaScript. And if you don’t know about jQuery, and you’re a JavaScript developer, you should probably blow the dust off your keyboard and <a href="http://www.doxdesk.com/img/updates/20091116-so-large.gif">ask any JS-related question on the internet</a> to learn more about it.</p>
+
+<p>My problem with Highcharts in the past was that it has <a href="http://api.highcharts.com/highcharts">a <em>behemoth</em> API</a>. Rendering a chart was never a simple matter of calling <code>pieChart()</code>; instead, any chart-creation logic requires a whole ton of options that an average person is very unlikely to remember from one use to the next. And so I always found myself returning to the Highcharts website, perusing documentation, and following examples to ever get a chart to display on sites I’ve worked on.</p>
+<figure class="hidden-in-abbreviated-version"><div class="pie-chart" data-title="Value" data-source="#activity-value-vs-time-table" data-value-columns="2"></div>
+  <div class="pie-chart" data-title="Time Investment" data-source="#activity-value-vs-time-table" data-value-columns="3"></div>
+  <figcaption>Notice any discrepancy?</figcaption></figure><table id="activity-value-vs-time-table" class="hidden">
+<thead><tr>
+<th>Activity</th>
+<th>Relative Value of activity</th>
+<th>Hours spent on activity</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Implementing reporting backend</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;">Fiddling with chart rendering</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+</tr>
+</tbody>
+</table><p>Of course, like any good developer, I eventually would get around to writing reusable methods with easier-to-remember interfaces and use <em>those</em> to render my charts. But at some point I noticed a pattern: mostly I was putting charts <strong>where tables already were</strong>. The point of the chart was to display the data in a visual form, to make it a bit easier to parse for a human. The work of translating the data in the table to JavaScript code to render the chart was tedious, but easily repeatable.</p>
+
+<p>And from there came the realization that I could (and probably should) just automate every bit of the process, and write a <em>library</em> to <em>always</em> render a chart from a table—provided that table had some class (like <code>render-to-line-chart</code>) associated with it. So that’s exactly how HighTables works: you add one class to your table, include the library in your page, and charts display automatically. (The charts above are rendered from <a href="javascript:revealTable();">a hidden table</a>, by the way, in case you were confused!)</p>
+
+<p>So, by all means, <a href="https://github.com/dtao/HighTables">try out HighTables</a> and let me know what you think! I’ve already used it a good deal myself, and I can honestly say it’s been really useful to me. But the more use it gets, the more useful it should become as bugs are fixed, features are introduced, yada yada. At least that’s the hope.</p>
+<script type="text/javascript">
+  function revealTable() {
+    $("#activity-value-vs-time-table").toggleClass("hidden");
+  }
+</script>
+  </section>
+  <section class='comments'>
+    <div id='disqus_thread'></div>
+    <script src='/javascripts/disqus.js' type='text/javascript'></script>
+    <noscript>
+      Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+    <a class='dsq-brlink' href='http://disqus.com'>
+      comments powered by
+      <span class='logo-disqus'>Disqus</span>
+    </a>
+  </section>
+</article>
+  <footer>
+    <ul class='menu'>
+      <li><a href="/posts">All Posts</a></li>
+      <li><a href="/about">About</a></li>
+      <li>
+        <a href='http://stackoverflow.com/users/105570' target='_blank'>
+          <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://github.com/dtao' target='_blank'>
+          <img alt='GitHub' src='/images/icons/github-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://twitter.com/dan_tao' target='_blank'>
+          <img alt='Twitter' src='/images/icons/twitter-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='http://feeds.feedburner.com/philosopherdeveloper'>
+          <img alt='RSS' src='/images/icons/rss-small.png' />
+        </a>
+      </li>
+    </ul>
+  </footer>
+</body>

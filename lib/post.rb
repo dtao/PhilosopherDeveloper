@@ -118,15 +118,24 @@ class Post
       "/posts/#{CGI.escape(self.identifier)}.html"
   end
 
+  def has_custom_stylesheet?
+    File.exist?(File.join(SINATRA_ROOT, *local_stylesheet_path))
+  end
+
   def local_path
     ["app", "views", "posts", "#{self.identifier}.markdown"]
   end
 
-  def to_html(max_length=nil)
-    fragment = get_html_fragment(max_length)
+  def local_stylesheet_path
+    ["app", "stylesheets", "#{self.identifier}.sass"]
+  end
+
+  def to_html(options={})
+    fragment = get_html_fragment(options[:max_length])
     resize_images(fragment)
     style_images(fragment)
     do_syntax_highlighting(fragment)
+    remove_scripts(fragment) if options[:remove_scripts]
     fragment.inner_html
   end
 
@@ -216,5 +225,9 @@ class Post
         node.replace(replacement)
       end
     end
+  end
+
+  def remove_scripts(html)
+    html.css("script").remove
   end
 end

@@ -1,10 +1,3 @@
-The following is the most recent post from my blog, **The Philosopher Developer**, written on April 10, 2013.
-
-***
-
-Charts made dead simple with HighTables
-=======================================
-
 <script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/javascripts/highcharts-3.1.min.js" type="text/javascript"></script>
 <script src="/javascripts/hightables.js" type="text/javascript"></script>
