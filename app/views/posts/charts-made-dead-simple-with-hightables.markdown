@@ -1,6 +1,6 @@
 <script src="/javascripts/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/javascripts/highcharts-3.1.min.js" type="text/javascript"></script>
-<script src="/javascripts/hightables.js" type="text/javascript"></script>
+<script src="/javascripts/hightables.min.js" type="text/javascript"></script>
 
 In a footnote to [my post a while ago on SafeYAML](/posts/making-yaml-safe-again.html)[^safe-yaml], I established a goal of writing more about my many open source projects, which I have a bad habit of not telling anyone about--sometimes even long after they're finished!
 
