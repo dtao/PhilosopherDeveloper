@@ -7,7 +7,7 @@ Here, I'll give you an example (**note**: this is probably not going to display 
 ~~~{: lang=html }
 <table class="render-to-bar-chart">
   <tr>
-    <th>How easy it is to render a chart</th>
+    <th>Method of rendering a chart</th>
     <th>How easy it is (scale from 1 to 10)</th>
   </tr>
   <tr>
@@ -25,7 +25,7 @@ And the result:
 
 <table class="render-to-bar-chart">
   <tr>
-    <th>How easy it is to render a chart</th>
+    <th>Method of rendering a chart</th>
     <th>How easy it is (scale from 1 to 10)</th>
   </tr>
   <tr>
