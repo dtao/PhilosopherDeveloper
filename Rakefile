@@ -38,6 +38,11 @@ def compile_post(post, filename=nil)
   # Save that puppy to file!
   filename ||= File.join("posts", "#{post.identifier}.html")
   write_file("public", filename) { final_html }
+
+  # Also compile any custom stylesheets that are only for this post.
+  if post.has_custom_stylesheet?
+    compile_stylesheet_from_sass(read_file(*post.local_stylesheet_path), post.identifier)
+  end
 end
 
 def compile_index(posts)
@@ -81,9 +86,13 @@ def compile_stylesheets
     read_stylesheet_file("application.responsive.sass")
   ].join("\n")
 
+  compile_stylesheet_from_sass(sass, "application")
+end
+
+def compile_stylesheet_from_sass(sass, filename)
   css = Sass.compile(sass, :syntax => :sass)
   css = YUI::CssCompressor.new.compress(css)
-  write_file("public", "stylesheets", "application.css") { css }
+  write_file("public", "stylesheets", "#{filename}.css") { css }
 end
 
 # Set the README file to the most recent blog post (this is basically just for
@@ -142,7 +151,7 @@ namespace :compile do
             xml.item do
               xml.title post.title
               xml.link "http://www.philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
-              xml.description { xml.cdata!(post.to_html) }
+              xml.description { xml.cdata!(post.to_html(:remove_scripts => true)) }
               xml.pubDate post.date.rfc822()
               xml.guid "http://www.philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
             end
