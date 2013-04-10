@@ -146,6 +146,7 @@ class Post
     resize_images(fragment)
     style_images(fragment)
     do_syntax_highlighting(fragment)
+    fix_absolute_links(fragment)
     remove_scripts(fragment) if options[:remove_scripts]
     fragment.inner_html
   end
@@ -234,6 +235,16 @@ class Post
       if language
         replacement = Nokogiri::HTML::fragment(Pygments.highlight(node.content, :lexer => language))
         node.replace(replacement)
+      end
+    end
+  end
+
+  # If the posts contains any links like "<a href='/...>" make sure they're
+  # properly prefixed w/ SITE_ROOT.
+  def fix_absolute_links(html)
+    html.css("a").each do |link|
+      if link["href"].start_with?("/")
+        link["href"] = "#{SITE_ROOT}#{link['href']}"
       end
     end
   end
