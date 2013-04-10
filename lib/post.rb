@@ -114,8 +114,8 @@ class Post
   def link
     # Yes, this is hacky. Leave me alone.
     self.title == "Dan Tao" ?
-      "/about.html" :
-      "/posts/#{CGI.escape(self.identifier)}.html"
+      "#{SITE_ROOT}/about.html" :
+      "#{SITE_ROOT}/posts/#{CGI.escape(self.identifier)}.html"
   end
 
   def has_custom_javascript?
@@ -134,7 +134,7 @@ class Post
   # format rather than a JavaScript file. Let's hope this doesn't confuse me
   # later (whatever, it's just a blog)!
   def local_javascript_path
-    ["app", "views", "javascript", "#{self.identifier}.html"]
+    ["app", "views", "javascript", "#{self.identifier}.haml"]
   end
 
   def local_stylesheet_path

@@ -7,6 +7,18 @@ require "html_truncator"
 require "sass"
 require "yui/compressor"
 
+# This is for updating all URLs in case the entire site is hosted within a
+# subfolder, e.g. for GitHub Pages.
+SITE_ROOT = ""
+
+# Get that guy into SASS.
+module Sass::Script::Functions
+  def site_root
+    Sass::Script::String.new(SITE_ROOT)
+  end
+  declare :site_root, :args => []
+end
+
 def read_file(*args)
   File.read(File.join(File.dirname(__FILE__), *args))
 end
@@ -31,7 +43,8 @@ def compile_post(post, filename=nil)
   layout_haml = read_view_file("layouts", "application.haml")
 
   extra_javascript = if post.has_custom_javascript?
-    read_file(*post.local_javascript_path)
+    haml = read_file(*post.local_javascript_path)
+    Haml::Engine.new(haml).render(Object.new)
   else
     ""
   end
@@ -57,7 +70,8 @@ def compile_index(posts)
   layout_haml = read_view_file("layouts", "application.haml")
 
   extra_javascript = posts.select(&:has_custom_javascript?).inject("") do |s, p|
-    s << read_file(*p.local_javascript_path)
+    haml = read_file(*p.local_javascript_path)
+    s << Haml::Engine.new(haml).render(Object.new)
   end
 
   # Render w/ final layout using HAML.
