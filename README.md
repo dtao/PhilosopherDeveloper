@@ -13,6 +13,44 @@ In a footnote to [my post a while ago on SafeYAML](/posts/making-yaml-safe-again
 
 So today I want to write about a pretty good one that's relatively polished and full-featured. It's called [HighTables](http://dtao.github.io/HighTables/), and it's a JavaScript library that makes adding charts to existing sites with HTML tables *extremely* easy.
 
+Here, I'll give you an example:
+
+~~~{: lang=html }
+<table class="render-to-bar-chart">
+  <tr>
+    <th>How easy it is to render a chart</th>
+    <th>How easy it is (scale from 1 to 10)</th>
+  </tr>
+  <tr>
+    <td>Using Highcharts directly</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>Using HighTables</td>
+    <td>10</td>
+  </tr>
+</table>
+~~~
+
+And the result:
+
+<table class="render-to-bar-chart">
+  <tr>
+    <th>How easy it is to render a chart</th>
+    <th>How easy it is (scale from 1 to 10)</th>
+  </tr>
+  <tr>
+    <td>Using Highcharts directly</td>
+    <td>3</td>
+  </tr>
+  <tr>
+    <td>Using HighTables</td>
+    <td>10</td>
+  </tr>
+</table>
+
+Pretty cool, right?
+
 For what it's worth, HighTables itself isn't all that complicated. It leverages the power of two existing libraries, [Highcharts](http://www.highcharts.com/) and [jQuery](http://jquery.com/). If you don't know about Highcharts, it's a great library that lets you render all kinds of charts (line, area, bar, pie, etc.) in JavaScript. And if you don't know about jQuery, and you're a JavaScript developer, you should probably blow the dust off your keyboard and [ask any JS-related question on the internet](http://www.doxdesk.com/img/updates/20091116-so-large.gif) to learn more about it.
 
 My problem with Highcharts in the past was that it has [a *behemoth* API](http://api.highcharts.com/highcharts). Rendering a chart was never a simple matter of calling `pieChart()`; instead, any chart-creation logic requires a whole ton of options that an average person is very unlikely to remember from one use to the next. And so I always found myself returning to the Highcharts website, perusing documentation, and following examples to ever get a chart to display on sites I've worked on.
