@@ -9,11 +9,11 @@ Charts made dead simple with HighTables
 <script src="/javascripts/highcharts-3.1.min.js" type="text/javascript"></script>
 <script src="/javascripts/hightables.js" type="text/javascript"></script>
 
-In a footnote to [my post a while ago on SafeYAML](/posts/making-yaml-safe-again.html)[^safe-yaml], I established a goal of writing more about my many open source projects, which I have a bad habit of abandoning and not telling anyone about--sometimes after they're basically finished!
+In a footnote to [my post a while ago on SafeYAML](/posts/making-yaml-safe-again.html)[^safe-yaml], I established a goal of writing more about my many open source projects, which I have a bad habit of not telling anyone about--sometimes even long after they're finished!
 
 So today I want to write about a pretty good one that's relatively polished and full-featured. It's called [HighTables](http://dtao.github.io/HighTables/), and it's a JavaScript library that makes adding charts to existing sites with HTML tables *extremely* easy.
 
-For what it's worth, HighTables itself isn't all that impressive. It leverages the power of two existing libraries, [Highcharts](http://www.highcharts.com/) and [jQuery](http://jquery.com/). If you don't know about Highcharts, it's a great library that lets you render all kinds of charts (line, area, bar, pie, etc.) in JavaScript. And if you don't know about jQuery, and you're a JavaScript developer, you should probably blow the dust off your keyboard and [ask any JS-related question on the internet](http://www.doxdesk.com/img/updates/20091116-so-large.gif) to learn more about it.
+For what it's worth, HighTables itself isn't all that complicated. It leverages the power of two existing libraries, [Highcharts](http://www.highcharts.com/) and [jQuery](http://jquery.com/). If you don't know about Highcharts, it's a great library that lets you render all kinds of charts (line, area, bar, pie, etc.) in JavaScript. And if you don't know about jQuery, and you're a JavaScript developer, you should probably blow the dust off your keyboard and [ask any JS-related question on the internet](http://www.doxdesk.com/img/updates/20091116-so-large.gif) to learn more about it.
 
 My problem with Highcharts in the past was that it has [a *behemoth* API](http://api.highcharts.com/highcharts). Rendering a chart was never a simple matter of calling `pieChart()`; instead, any chart-creation logic requires a whole ton of options that an average person is very unlikely to remember from one use to the next. And so I always found myself returning to the Highcharts website, perusing documentation, and following examples to ever get a chart to display on sites I've worked on.
 
@@ -40,3 +40,5 @@ So, by all means, [try out HighTables](https://github.com/dtao/HighTables) and l
     $("#activity-value-vs-time-table").toggleClass("hidden");
   }
 </script>
+
+[^safe-yaml]: Which [has come a long way](http://rubygems.org/gems/safe_yaml)!
