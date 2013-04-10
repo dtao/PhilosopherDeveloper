@@ -62,6 +62,7 @@ a
 
 table
   border-collapse: collapse
+  margin: auto
   width: 100%
 
   th, td
@@ -77,6 +78,8 @@ table
   tbody
     tr:hover td
       background-color: $yellow
+    tr td:nth-child(n+2)
+      text-align: right
 
 ol
   list-style-type: decimal

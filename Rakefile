@@ -30,8 +30,14 @@ def compile_post(post, filename=nil)
   post_html   = Haml::Engine.new(post_haml).render(Object.new, :post => post)
   layout_haml = read_view_file("layouts", "application.haml")
 
+  extra_javascript = if post.has_custom_javascript?
+    read_file(*post.local_javascript_path)
+  else
+    ""
+  end
+
   # Render w/ final layout using HAML.
-  final_html = Haml::Engine.new(layout_haml).render(Object.new, :title => post.title, :post => post) do
+  final_html = Haml::Engine.new(layout_haml).render(Object.new, :title => post.title, :post => post, :extra_javascript => extra_javascript) do
     post_html
   end
 
@@ -50,8 +56,12 @@ def compile_index(posts)
   posts_html  = Haml::Engine.new(posts_haml).render(Object.new, :posts => posts)
   layout_haml = read_view_file("layouts", "application.haml")
 
+  extra_javascript = posts.select(&:has_custom_javascript?).inject("") do |s, p|
+    s << read_file(*p.local_javascript_path)
+  end
+
   # Render w/ final layout using HAML.
-  final_html = Haml::Engine.new(layout_haml).render(Object.new, :post => nil) do
+  final_html = Haml::Engine.new(layout_haml).render(Object.new, :post => nil, :extra_javascript => extra_javascript) do
     posts_html
   end
 

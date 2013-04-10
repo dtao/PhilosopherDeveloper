@@ -9,6 +9,8 @@
   %script(type="text/javascript" src="http://w.sharethis.com/button/buttons.js")
   %script(type="text/javascript" src="/javascripts/ga.js")
   %script(type="text/javascript" src="/javascripts/shareThis.js")
+  - if defined?(extra_javascript) && !extra_javascript.empty?
+    = extra_javascript
 
 %body
   %header#header

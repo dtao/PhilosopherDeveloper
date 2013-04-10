@@ -118,12 +118,23 @@ class Post
       "/posts/#{CGI.escape(self.identifier)}.html"
   end
 
+  def has_custom_javascript?
+    File.exist?(File.join(SINATRA_ROOT, *local_javascript_path))
+  end
+
   def has_custom_stylesheet?
     File.exist?(File.join(SINATRA_ROOT, *local_stylesheet_path))
   end
 
   def local_path
     ["app", "views", "posts", "#{self.identifier}.markdown"]
+  end
+
+  # Yeah, this is kind of misleading because it's really JS *includes* in HTML
+  # format rather than a JavaScript file. Let's hope this doesn't confuse me
+  # later (whatever, it's just a blog)!
+  def local_javascript_path
+    ["app", "views", "javascript", "#{self.identifier}.html"]
   end
 
   def local_stylesheet_path
