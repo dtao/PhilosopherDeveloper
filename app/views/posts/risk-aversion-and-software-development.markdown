@@ -1,10 +1,3 @@
-The following is the most recent post from my blog, **The Philosopher Developer**, written on April 11, 2013.
-
-***
-
-Risk aversion and software development
-======================================
-
 A few years ago my parents gave me and my wife this knife as a Christmas present:
 
 ![The Shun Classic Utility Knife](/images/shun-utility-knife.jpg)

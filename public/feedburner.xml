@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://www.philosopherdeveloper.com/</link><item><title>Charts made dead simple with HighTables</title><link>http://www.philosopherdeveloper.com/posts/charts-made-dead-simple-with-hightables.html</link><description><![CDATA[<p>In a footnote to <a href="/posts/making-yaml-safe-again.html">my post a while ago on SafeYAML</a><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, I established a goal of writing more about my many open source projects, which I have a bad habit of not telling anyone about—sometimes even long after they’re finished!</p>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://www.philosopherdeveloper.com/</link><item><title>Risk aversion and software development</title><link>http://www.philosopherdeveloper.com/posts/risk-aversion-and-software-development.html</link><description><![CDATA[<p>A few years ago my parents gave me and my wife this knife as a Christmas present:</p>
+
+<figure><img src="/images/shun-utility-knife.jpg" alt="The Shun Classic Utility Knife"><figcaption>The Shun Classic Utility Knife</figcaption></figure>
+
+<p>We weren’t quite sure what to make of it at first, but it wasn’t long before we both loved it. It is a <em>very</em> sharp knife, which makes it a breeze to cut through just about anything. Unfortunately, that <em>anything</em> includes human flesh. I know this because a few months after receiving the knife I was cutting an avocado and the knife slipped in my hand. It was quite a bad cut.</p>
+
+<p>Obviously—I still have all ten fingers—my wound healed eventually. But I still have a pretty clear memory of the incident, which makes me quite fearful of repeating it. Here are two ways I could protect myself from future self-inflicted injury:</p>
+
+<ol>
+<li>Decide <strong>the knife is too sharp</strong>. I replace the Shun knife with a duller one, so that if my hand ever slips while cutting again the injury won’t be so bad.</li>
+
+<li>Decide <strong>I was too careless</strong>. In the future I could cut more slowly and be very cautious whenever I’m using it.</li>
+</ol><p>I believe these are the same two options many developers choose between when building software.</p>
+
+<p>In the first camp, you have the mentality that our tools must be safe and protect us from harm. This is a classic reason to prefer statically typed languages like Java or C#: the compiler can tell when I’ve done something wrong! A significant number of potential bugs are eliminated before human consideration even enters the picture. This makes it nearly impossible to actually ship code with boneheaded mistakes like typos, syntax errors, etc.</p>
+
+<p>In the second camp, there’s the philosophy that we must practice restraint in our development efforts. Teams with this attitude may use dynamic languages like Ruby or JavaScript, for example, but still might enforce strict guidelines as to how code should be written, reviewed, and deployed. They might require code reviews before every push. Maybe they’ll even write their own static analysis tools to gain back some of the safety (and performance) of statically typed languages. And they will almost certainly have a process in place that establishes <em>some</em> safeguards before code is deployed.</p>
+
+<p>Besides these two approaches, I propose that there is a third option.</p>
+
+<figure><img src="/images/better-way.gif" alt="Or at least, a different way"><figcaption>Or at least, a different way</figcaption></figure>
+
+<p><strong>I could just continue to use the knife as before.</strong> Sure, I cut myself, and it hurt; but in the end, I healed. It was a pretty minor wound<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, in the grand scheme of things. And in software, except in some rare cases, we’re not talking life or death. Even at large companies with a great deal on the line I’d argue this applies in most everyday cases; but it’s <em>especially</em> true at smaller companies, where remaining nimble—and responding quickly to change—is so much more important than avoiding risk.</p>
+
+<p>Put another way: I could spend the rest of my life cutting very slowly to reduce the risk of injuring myself; or I could let myself move quickly and live with the risk of sometimes drawing a little blood. Over time I believe the latter approach leads to greater total progress<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>.</p>
+<iframe src="http://charter.herokuapp.com/embed/136BV6U4" style="height: 450px; width: 600px;"></iframe>
+<p>I recognize that my knife analogy starts to break down right about now, because the total amount of time we’re talking about here over the course of my life is pretty insignificant. If I were a <em>professional chef</em>, on the other hand, I think the literal lesson would probably still apply. As it happens, I’m a professional software developer; and the <em>figurative</em> lesson applies as much to those in our field as to anybody, if not more so.</p>
+
+<p>I’m not saying don’t be careful. Of course you could easily take this argument too far. But I suspect that many companies have already gone too far down one of the first two paths I described; and I think it’s important to always remember the third option exists.</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Don’t get me wrong; it was actually a very bad cut that took nearly a month to heal. But the fact remains that it <em>did</em> heal. It isn’t like I lost a limb. So I maintain that, relatively speaking, it was quite minor. <a href="#fnref:1" rev="footnote">↩</a></p>
+</li>
+<li id="fn:2">
+<p>Hey by the way, that chart was made using a tool called <a href="http://charter.herokuapp.com">Charter</a>, <em>another</em> one of my open source projects! (And Charter itself uses <a href="http://dtao.github.io/HighTables/">HighTables</a>–that’s what they call dogfooding, my friends.) <a href="#fnref:2" rev="footnote">↩</a></p>
+</li>
+</ol>
+</div>]]></description><pubDate>Thu, 11 Apr 2013 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/risk-aversion-and-software-development.html</guid></item><item><title>Charts made dead simple with HighTables</title><link>http://www.philosopherdeveloper.com/posts/charts-made-dead-simple-with-hightables.html</link><description><![CDATA[<p>In a footnote to <a href="/posts/making-yaml-safe-again.html">my post a while ago on SafeYAML</a><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, I established a goal of writing more about my many open source projects, which I have a bad habit of not telling anyone about—sometimes even long after they’re finished!</p>
 
 <p>So today I want to write about a pretty good one that’s relatively polished and full-featured. It’s called <a href="http://dtao.github.io/HighTables/">HighTables</a>, and it’s a JavaScript library that makes adding charts to existing sites with HTML tables <em>extremely</em> easy.</p>
 
@@ -722,74 +761,4 @@
 <p>If you’d like to see this feature in action, <a href="http://www.cardpool.com/buy/home-depot-gift-cards">try using the “Bulk Purchase” button on Cardpool’s Home Depot page</a> and searching for, say, $2000 of cards. <a href="#fnref:6" rev="footnote">↩</a></p>
 </li>
 </ol>
-</div>]]></description><pubDate>Wed, 3 Oct 2012 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/universe-is-a-one-way-function.html</guid></item><item><title>Cannibalizing yourself on purpose</title><link>http://www.philosopherdeveloper.com/posts/cannibalizing-yourself-on-purpose.html</link><description><![CDATA[<p>I read an article in the New York Times recently entitled <a href="http://www.nytimes.com/2012/09/22/opinion/nocera-has-apple-peaked.html">Has Apple Peaked?</a> and found myself nodding my head to a lot of the author’s points. The basic premise of the article was this: <em>maybe</em> Apple has peaked, and maybe it isn’t because Steve Jobs has passed away but rather because, as a company on top of the world, they now have everything to lose and can no longer take big risks.</p>
-
-<p>I think there’s something to this, and I’d add another source of inertia for consideration: <strong>hubris</strong> (big surprise to those of you familiar with my general dislike for Apple, I’m sure!). At Apple’s scale, given the massive success they’ve enjoyed over the past several years, I have no doubt that the company’s sense of self-importance is extraordinarily high. Which is obviously justified to a significant degree. But one common observation I have about human nature—and I am increasingly convinced that it applies to businesses the same way it applies to individuals—is that it is very easy to pat yourself on the back for a job well done and claim more credit for your success than you <em>really</em> deserve. Put another way: it can be very easy to miss what an important role <em>luck</em> has played in your life, and thus to take full credit for your good fortune.</p>
-
-<p>Which means that if you’re a company like Apple, you start to get complacent. You watch every product you release hit record-breaking sales, you see your competitors struggling to gain any kind of momentum, you notice the lines stretching for blocks outside every one of your retail stores, and… you start to relax. You think, <em>no one can touch us right now</em>. You feel invincible. You take for granted that everything you do is ground-breaking. Of course it is—how could it not be? You’re Apple!</p>
-
-<p>But we’ve seen this before. Isn’t that how Microsoft felt for much of the past couple decades? And IBM before them? Now Microsoft, despite being a huge and profitable company, is nonetheless considered an underdog in some respects. And whether or not they see themselves that way, I guarantee they <em>feel</em> the pressure of public perception weighing on them. And so for the first time in a long time, Microsoft is now the one taking a big risk—with Windows 8. And you see Nokia in a similar position, taking a big risk with their Lumia phones now that their North American presence has eroded.</p>
-
-<p>All of this has got me thinking: is this the inevitable trajectory of a successful company, or is there a way to mitigate this pattern of risk-taking followed by complacency?</p>
-
-<p>An idea I’ve had for some time now is that of <strong>deliberate self-cannibalization as a strategy</strong>. I wonder if this is an established concept and one that many businesses have tried. Perhaps it’s an age-old idea that was debunked long ago; I don’t know. But the basic concept is this: if you’re Apple today, or Microsoft ten years ago, why not <strong>become your own competitor</strong>, and develop products that take on your existing ones?</p>
-
-<p>Here’s my thinking. While I can completely understand that in a perfect world (for your company), your product would be perfect and gain 100% market share and nobody else could ever chip away at that, you <em>know</em> that will never be true. In fact, the bigger and more dominant you are, the more motivated emerging young entrepreneurs will be to take you on and, if they’re lucky, bring you down. So competition is a given.</p>
-
-<p>The traditional approach for dealing with this seems to be, as far as I can tell, taking one of two paths:</p>
-
-<ol>
-<li>
-<strong>Litigation</strong>: sue, or threaten to sue, any up-and-coming players and overpower them with your massive legal team before they’re big enough to stand a chance in court.</li>
-
-<li>
-<strong>Acquisition</strong>: just buy them up so you can control what they do.</li>
-</ol><p>In either case, the sad reality is that it rarely seems the larger company’s intention is actually to leverage any of the smaller company’s innovation. I’ve only ever seen litigation used as a means to protect existing interests. (This is opposed to, say, a company defending a legitimately innovative idea that they still need time to develop before copycats with deeper pockets can come along and beat them to market. I’ve seriously never heard of that, at least in software.) And nine times out of ten<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, it seems acquisition is followed by either total dissolution of the acquired company (<em>Whew! Defused that bomb!</em>) or something spectacularly boring, like integration of the purchased product into the parent’s larger product suite.</p>
-
-<p>Now consider what I’m suggesting as an alternative. I don’t want to pick exclusively on Apple and Microsoft, so let’s talk about somebody else: Google.</p>
-
-<p>Let’s say I’m Google. I have this massively profitable product: AdWords, which relies primarily on my search engine. Then there are a number of other products that are considered core products to my company: Android, YouTube, Gmail, Google Maps, Google+ (I don’t know, I’m just giving examples—let’s say that’s a realistic list). Maybe they’re not all making money, but they’re all major players in their respective markets, all of which are either already huge or growing, or at least have great potential.</p>
-
-<p>What else do I have? Some 30,000 employees, including a significant share of the very best engineers in the world. Also, <em>millions</em> of man hours of hard-earned knowledge and understanding about the types of products we make, the technical challenges associated with them, the needs and wants of the people who use them, and the unspoken rules and tribal knowledge of the industry we’re a part of. Oh yeah, and billions of dollars in cash to fund whatever crazy ideas I want.</p>
-
-<p>These are all things any startup or new competitor is not going to have—at least not to the extent that I do. So why not assemble a new team within Google, consisting of employees who have proven their value in any number of ways and are itching to work on something new or otherwise break out a bit from the existing structure of the company, and ask them to work on… a totally different take on search? Or a completely new format for sharing video content? Or any number of other products that <strong>I know are going to come along anyway, and so I might as well build them myself</strong>?</p>
-
-<p>It seems to me the traditional thinking here is that this would be bad because it would eat into existing business. But to me, turning a blind eye to the <strike>possibility</strike> inevitability that someone else is going to come after my core business—aggressively—is delusional. And expecting that just because I’m the best at what I do now, no one else will ever be able to beat me at my own game… well, that strikes me as wishful thinking.</p>
-
-<p>Of course, I’m not suggesting that it makes sense to do this in all cases, nor that it should necessarily be one of your biggest investments if you’re a large company with many successful products. My intuitive feeling is that something like what I’m describing would make the most sense framed in the following way: whatever you are most fearful of, <strong>whatever you see as the biggest potential threat to your business: <em>build it yourself</em>.</strong></p>
-
-<p>I can’t remember where, but I recently read an article suggesting that Google’s greatest fear right now is Amazon. The author’s reasoning was that Google makes the majority of their revenue through advertising on the kind of searches that lead directly to purchases; i.e., Google’s most profitable searches are for things like shoes and handbags and laptops and tablets, because those are the ones that allow them to display sponsored links to retailers who directly benefit from clicks and thus are willing to pay the most. Which means, basically, that Google relies on users searching through Google for things that they <em>could</em> be searching for on <em>Amazon</em>. Which in turn means that Amazon stands to gain quite a lot by improving their search capabilities and getting aggressive about taking on Google in that arena.</p>
-
-<p>I actually don’t know whether or not this is true (even if it is I’m sure it’s only half the picture), but let’s assume for argument’s sake that it is. In that case, then what I would suggest is that Google start asking themselves questions like: <em>What is it that we’re afraid Amazon might make?</em> And: <em>What would that product look like?</em> And finally: <em>How can we build it before them?</em></p>
-
-<p>Lest you think I’m just talking about Google Shopping—a product that has already existed for quite some time—let me clarify something. I actually think one of the most important aspects of this idea of self-cannibalization is that it should <em>not</em> be treated as a new component of an existing product suite or brand. Remember, my suggestion is to build the thing you’re <em>afraid</em> of. And Google is certainly not afraid of a product called “Google Shopping” (or “Froogle”, or whatever else it used to be called).</p>
-
-<p>So I am talking about creating an entirely new brand, for one thing, and even possibly a whole new company. In fact I’d expect that distancing this new venture publicly from the original company as much as possible would be wise. But the crucial differentiator from any other startup would be that, internally, this project would have access to the same resources, the same engineering know-how, the same marketing muscle, and—perhaps most importantly—the same <em>data</em> as its parent. And it would be run by a team with the incredible advantage of knowing exactly what their “competitor” feared.</p>
-
-<p>Meanwhile, <em>of course</em> you’d still be working as hard as ever on your core product, the one that’s now under friendly fire—just like you would be if an <em>actual</em> competitor had come on the scene and started chipping away at you. But this way, there are two equally good potential outcomes. One is that the core product comes out victorious, and your new internal “competitor” product is either scrapped or consumed for its most worthwhile ideas. The other is that the competitor actually does start eating away at the main business, in which case:</p>
-
-<ul>
-<li>That’s exactly what you feared, right? So, that’s bad? Except:</li>
-
-<li>The revenue is actually coming to you anyway. So maybe it’s OK. Plus:</li>
-
-<li>Since both products are yours, you don’t need to become embroiled in a price war. <strong>And</strong>:</li>
-
-<li>If a legitimate outside competitor does come along, now they’ve got to beat <em>two</em> major players—who are working together!–instead of one.</li>
-</ul><p>OK, so now that I’ve written at length about this idea, I acknowledge that there are some obvious problems with it. (And probably a lot more problems than I can even think of.) The most obvious is simply that what I’m talking about is, in theory, hugely inefficient. I’m sure there aren’t a lot of executives out there who’d be thrilled at the idea of basically throwing twice the resources at the same problem in anticipation of a nonexistent competitor.</p>
-
-<p>But I see the issue a bit differently. In my experience, doubling the resources invested in a product falls far short of doubling the output (ever heard of the <a href="http://www.amazon.com/The-Mythical-Man-Month-Engineering-Anniversary/dp/0201835959">Mythical Man Month</a>?); and so the perceived “inefficiency” of duplicating effort on a separate project is likely to be seriously exaggerated. In fact, it could very well be more efficient to create a new <a href="http://www.zurb.com/word/two-pizza-team">two-pizza team</a> and put them on a new project, where each individual can make an enormous contribution, than it would be to assign those same individuals to an existing 40-person project, where the communication and coordination overhead of managing such a large team would reduce the proportional effectiveness of each individual and weigh the whole thing down.</p>
-
-<p>Another objection I could easily see to the self-cannibalization idea is that it would dilute the brand and/or fragment the company in a harmful way. This seems like a legitimate danger to me, and one that I believe it would take great care and good judgment to defend against. On some level I suppose a company’s vulnerability to this threat depends on culture, morale, and public perception. But I’d still argue that, in some cases, it’s a challenge worth tackling. Especially when the alternative is resting on your laurels while others are plotting ways to disrupt your business.</p>
-
-<p>Obviously I am no expert on any of this. It’s just an idea. I will close, though, by making just a few sweeping generalizations.</p>
-
-<p>Innovation requires risk. Dominance in technology relies <em>at least in part</em> on innovation, which means that you cannot be a technology company and not expect to take risks. If you are successful, and you want to continue to be successful, but you are no longer willing to take risks, it is only natural that others <em>will</em> be; and for some non-zero fraction of them, those risks will likely pay off. So in the end, I think what I’ve described as “self-cannibalization” is really just smart risk management, though perhaps I could have done a better job defining it.</p>
-
-<p>Anyway, it’s a thought.</p>
-<div class="footnotes">
-<hr>
-<ol><li id="fn:1">
-<p>I did not research this figure. <a href="#fnref:1" rev="footnote">↩</a></p>
-</li></ol>
-</div>]]></description><pubDate>Mon, 24 Sep 2012 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/cannibalizing-yourself-on-purpose.html</guid></item></channel></rss>
+</div>]]></description><pubDate>Wed, 3 Oct 2012 00:00:00 +0000</pubDate><guid>http://www.philosopherdeveloper.com/posts/universe-is-a-one-way-function.html</guid></item></channel></rss>

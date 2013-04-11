@@ -27,6 +27,35 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/risk-aversion-and-software-development.html'>Risk aversion and software development</a>
+      </span>
+      <span class='date'>April 11, 2013</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>A few years ago my parents gave me and my wife this knife as a Christmas present:</p>
+
+<figure><img src="/images/shun-utility-knife.jpg" alt="The Shun Classic Utility Knife"><figcaption>The Shun Classic Utility Knife</figcaption></figure>
+
+<p>We weren’t quite sure what to make of it at first, but it wasn’t long before we both loved it. It is a <em>very</em> sharp knife, which makes it a breeze to cut through just about anything. Unfortunately, that <em>anything</em> includes human flesh. I know this because a few months after receiving the knife I was cutting an avocado and the knife slipped in my hand. It was quite a bad cut.</p>
+
+<p>Obviously—I still have all ten fingers—my wound healed eventually. But I still have a pretty clear memory of the incident, which makes me quite fearful of repeating it. Here are two ways I could protect myself from future self-inflicted injury:</p>
+
+<ol>
+<li>Decide <strong>the knife is too sharp</strong>. I replace the Shun knife with a duller one, so that if my hand ever slips while cutting again the injury won’t be so bad.</li>
+
+<li>Decide <strong>I was too careless</strong>. In the future I could cut more slowly and be very cautious whenever I’m using it.</li>
+</ol><p>I believe these are the same two options many developers choose between when building software.</p>
+
+<p>In the first camp, you have the mentality that our tools must be safe and protect us from harm. This is a classic reason to prefer statically typed languages like Java or C#: the compiler can tell when I’ve done something wrong! A significant number of potential bugs are eliminated before human consideration even enters the picture. This makes it nearly impossible to actually ship code with boneheaded mistakes like typos, syntax errors, etc.</p>
+
+<p>In the second camp, there’s the philosophy that we must practice restraint in our development efforts. Teams with this attitude may use dynamic languages like Ruby or JavaScript, <span class="post-link">... (<a href="/posts/risk-aversion-and-software-development.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/charts-made-dead-simple-with-hightables.html'>Charts made dead simple with HighTables</a>
       </span>
       <span class='date'>April 10, 2013</span>
@@ -147,52 +176,6 @@
     <p>With this analogy in mind I think it makes some sense to conceptualize the brain as, quite simply, a <em>tool</em>. And framed in that way, I pose to you the question: if you were a carpenter<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, and you had a top-of-the-line but rare and expensive tool—I don’t know; let’s say some custom-built <em>screwdriver</em>–would it be a wise idea to build cabinets that <em>required</em> your special tool to repair or disassemble? Or would it be better to build them with regular old screws that any ordinary screwdriver could tighten and loosen?</p>
     
     <p>Maybe you don’t <span class="post-link">... (<a href="/posts/your-brain-is-a-liability.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/unbreaking-datamapper.html'>Unbreaking DataMapper</a>
-      </span>
-      <span class='date'>January 29, 2013</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <h2 id="is_datamapper_inherently_broken_1">Is DataMapper inherently broken?</h2>
-
-<p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is a fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects going unnoticed during development and testing, resulting in buggier software.</p>
-
-<p>Borrowing from MacIver’s post<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, the below is a boilerplate example of how one might attempt to save a record and report any failures using DataMapper:</p>
-
-<div class="highlight"><pre><span class="n">my_account</span> <span class="o">=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"Jose"</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">my_account</span><span class="o">.</span><span class="n">save</span>
-  <span class="c1"># my_account is valid and has been saved</span>
-<span class="k">else</span>
-  <span class="n">my_account</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
-    <span class="nb">puts</span> <span class="n">e</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</pre></div>
-
-<p>The above can be pretty annoying to anyone who expects conciseness from an API. Most developers don’t like the idea of having to write several lines of code just to save a record to a database.</p>
-
-<p>Why not wrap the above into a common helper? This still won’t consistently work, as MacIvers points out with the following example:</p>
-
-<div class="highlight"><pre><span class="n">my_account</span> <span class="o">=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:customer</span> <span class="o">=&gt;</span> <span class="no">Customer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"jose"</span><span class="p">))</span>
-<span class="n">my_account</span><span class="o">.</span><span class="n">save</span>
-</pre></div>
-
-<p>In this case, an error could occur when saving <em>either</em> the <code>Account</code> object <em>or</em> the <code>Customer</code> object. And so a general-purpose helper wouldn’t be enough; one would have to write a special helper for every model, accounting for each of that model’s associations, in every application.</p>
-
-<p>I certainly sympathize with MacIver’s frustration.</p>
-
-<h2 id="why_use_datamapper_at_all_then_2">Why use DataMapper at all, then?</h2>
-
-<p>It’s really a shame that such a “fundamental flaw”<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> exists in DataMapper. Otherwise, I find it to be quite a nice ORM, with at least a couple of (admittedly subjective) advantages over the more popular <a href="https://github.com/rails/rails/tree/master/activerecord">ActiveRecord</a>:</p>
-
-<ol><li>With DataMapper, your database schema is defined in your models themselves. The ActiveRecord <span class="post-link">... (<a href="/posts/unbreaking-datamapper.html">read the full post</a>)</span>
-</li></ol>
   </section>
 </article>
   <footer>
