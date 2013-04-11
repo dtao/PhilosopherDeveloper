@@ -30,22 +30,22 @@ class Post
       end
 
       # Order from newest to oldest.
-      all_posts.select(&:published).sort { |x, y| y.date.to_time <=> x.date.to_time }.freeze
+      all_posts.sort { |x, y| y.date.to_time <=> x.date.to_time }.freeze
     end
 
     @@table ||= @@posts.inject({}) do |hash, post|
       hash[post.identifier] = post; hash
     end
 
-    @@posts_by_month  ||= @@posts.group_by(&:month)
-    @@posts_by_period ||= @@posts.group_by(&:period)
+    @@posts_by_month  ||= @@posts.select(&:published).group_by(&:month)
+    @@posts_by_period ||= @@posts.select(&:published).group_by(&:period)
 
     @@months  ||= @@posts_by_month.keys.sort.reverse
     @@periods ||= @@posts_by_period.keys.sort.reverse
   end
 
   def self.all
-    @@posts
+    @@posts.select(&:published)
   end
 
   def self.each
@@ -67,7 +67,7 @@ class Post
   end
 
   def self.latest
-    @@posts.first
+    @@posts.select(&:published).first
   end
 
   def self.get(identifier)
