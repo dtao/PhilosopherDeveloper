@@ -146,7 +146,7 @@ class Post
     resize_images(fragment)
     style_images(fragment)
     do_syntax_highlighting(fragment)
-    fix_absolute_links(fragment)
+    fix_absolute_refs(fragment)
     remove_scripts(fragment) if options[:remove_scripts]
     fragment.inner_html
   end
@@ -239,12 +239,19 @@ class Post
     end
   end
 
-  # If the posts contains any links like "<a href='/...>" make sure they're
-  # properly prefixed w/ SITE_ROOT.
-  def fix_absolute_links(html)
+  def fix_absolute_refs(html)
+    # If the posts contains any links like "<a href='/...>" make sure they're properly prefixed
+    # w/ SITE_ROOT.
     html.css("a").each do |link|
       if link["href"].start_with?("/")
         link["href"] = "#{SITE_ROOT}#{link['href']}"
+      end
+    end
+
+    # Same w/ images like "<img src='/...>".
+    html.css("img").each do |img|
+      if img["src"].start_with?("/")
+        img["src"] = "#{SITE_ROOT}#{img['src']}"
       end
     end
   end
