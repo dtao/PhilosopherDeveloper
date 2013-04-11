@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title>The Philosopher Developer</title>
+  <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+  <link href='/stylesheets/application.css' rel='stylesheet' />
+  <link href='/stylesheets/pygments.css' rel='stylesheet' />
+  <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
+  <script src='/javascripts/posts.js' type='text/javascript'></script>
+  <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
+  <script src='/javascripts/ga.js' type='text/javascript'></script>
+  <script src='/javascripts/shareThis.js' type='text/javascript'></script>
+</head>
+<body>
+  <header id='header'>
+    <h1><a href="/">The Philosopher Developer</a></h1>
+    <h2>half-sound logic, half-decent code</h2>
+  </header>
+  <article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/littlest-ruby-debugger.html'>The littlest Ruby debugger</a>
+      </span>
+      <span class='date'>March 16, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>It is a well-known fact among my teammates that my tolerance for hacks is higher than most developers’. And so it is that sometimes I write code that others find horrifying.</p>
+
+<p>Here’s one that I personally like, and which has caused more than one of my teammates to chuckle in half-approval. It came up again just today, as we are using <a href="http://www.padrinorb.com/">Padrino</a> on my current project and a coworker wanted to know if Sinatra and/or Padrino had an equivalent to the Rails console (to allow a dev to poke around the system at some arbitrary point during the program’s execution—say, in the middle of handling a request at the controller level).</p>
+
+<p>Frankly, I’m no Sinatra expert. For all I know there <em>is</em><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> an equivalent to the Rails console in Sinatra. I’ve never really cared, because if I want to poke around the code mid-request I just whip up something like this, which I shall call the <strong>littlest Ruby debugger</strong>:</p>
+
+<div class="highlight"><pre><span class="nb">puts</span> <span class="s2">"Start typing away."</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">line</span> <span class="o">=</span> <span class="no">STDIN</span><span class="o">.</span><span class="n">readline</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span> <span class="o">!=</span> <span class="s2">""</span>
+  <span class="nb">puts</span> <span class="nb">eval</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+<p>Yes, yes, I know. Any developer who lets something like that slip into production code deserves to be shot. But I would honestly argue that the chances of that are so close to zero as to be completely unworthy of any serious consideration.</p>
+
+<p>Here’s an example of the above hack in action, responding to a request on my local machine (with my commands highlighted):</p>
+<pre>  DEBUG -      GET (0.0120ms) /layouts/ - 200
+0:0:0:0:0:0:0:1%0 - - [16/Mar/2012 16:22:44] "GET /layouts/ HTTP/1.1" 200 - 0.0160
+Start typing away.
+<span class="highlight-special">params.inspect</span>
+{:layout_id=&gt;"1"}
+<span class="highlight-special">params[:layout_id]</span>
+1
+<span class="highlight-special">self.methods.select { |m| m.start_with?("c") }</span>
+current_user
+cache_action
+check_box_tag
+content_tag
+content_for
+concat_content
+content_for?
+concat
+capture_html
+capture
+content_blocks
+content_type
+current_engine
+current_path
+call!
+call
+coffee
+creole
+cache_control
+client_error?
+com
+class
+clone
+class_eval
+
+  DEBUG - TEMPLATE (0.0010ms) /layouts/application
+  DEBUG -      GET</pre> <span class="post-link">... (<a href="/posts/littlest-ruby-debugger.html">read the full post</a>)</span>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/optimizing-mind.html'>The Optimizing Mind</a>
+      </span>
+      <span class='date'>February 19, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>I noticed something funny about myself this morning while making coffee.</p>
+    
+    <p>The kitchen in my wife’s and my apartment is divided into a main area and a <a href="http://en.wikipedia.org/wiki/Scullery_(room)">scullery</a> (yep, we’re old fashioned). The scullery holds our silverware, dishes, coffee, tea, and other things. But the coffee <em>maker</em> is in the main area, on a cart.</p>
+    
+    <p>This morning I went into the kitchen, put a filter in the coffee maker, took the carafe and brought it with me into the scullery. In the scullery I filled the carafe with water, took the coffee and walked back to the cart in the kitchen. I filled the machine with enough water for two cups of coffee, collected an emptied sugar packet that was sitting on the cart, and tossed it into the trash on my way back to the scullery, where I poured out the excess water from the carafe and picked up a mug and a spoon before heading back to the cart.</p>
+    
+    <p>What I noticed about this whole procedure (after having gone through it, of course) is that I had <strong>optimized</strong> my trips to and from the scullery—not perfectly, by any means, but to some extent. That is, rather than making a trip for one purpose (e.g., filling the carafe with water), I <em>combined</em> tasks so as to reduce the total number of trips back and forth. And what was particularly noteworthy to me was that I had done this <em>without really thinking about it</em>.</p>
+    
+    <p>Recently I interviewed an engineer<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> for ThoughtWorks. It was a technical phone interview, so much of the conversation was relatively high-level (I figured, save the whiteboard problems for in-office interviews). Even so, I did throw in a few problems, emphasizing to the candidate that the goal of the exercise was for her to share <span class="post-link">... (<a href="/posts/optimizing-mind.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/trick-to-good-ballpark-estimates.html'>The trick to good ballpark estimates</a>
+      </span>
+      <span class='date'>February 02, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>When I was younger my grandpa taught me and my sister a little trick. He said to me, “I can calculate how many hairs are on your sister’s head.” It seemed preposterous to my young mind; the number was surely so astronomical as to be beyond any intelligent guess. But I was curious.</p>
+
+<p>What my grandpa did was to start with individual hairs. He counted 1, 2, up to ten, and held that many strands between two fingers. “This is ten,” he said. Then, using roughly that many strands now as a unit, he counted out 9 more units of similar size, collecting them between the same two fingers. He now held roughly ten times the number of hairs from before. “This,” he said, very seriously as he wanted to make sure we were paying attention, “is about a hundred.”</p>
+
+<p>I may have been a kid, but I immediately saw where he was going. Next, he counted by approximate hundreds, covering more and more area on my sister’s head. He didn’t have to keep holding it all between his fingers; it became reasonable at a certain point (maybe 100, maybe 1000) to eyeball it.</p>
+
+<p>Of course, I have no memory of what the actual end result was. And obviously, it was not a precisely accurate number. But there’s no doubt in my mind that it was an <strong>accurate ballpark</strong> estimate. My grandpa never studied human anatomy, but he figured out within an order of magnitude how many hairs were on my head with <strike>a minimal</strike> an <em>optimal</em> amount of effort.</p>
+
+<p>Often, in software, ballpark estimates are exactly what we want. Particularly in your stereotypical “agile” project, where the client understands that absolute estimates are tough to produce but relative estimates are easy and that’s why we use story points, <em>yada</em> <span class="post-link">... (<a href="/posts/trick-to-good-ballpark-estimates.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/sometimes-the-best-strategy-is-to-retreat.html'>Sometimes the best strategy is to retreat</a>
+      </span>
+      <span class='date'>February 28, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>I have a few remarks to make about <a href="http://dtao.github.com/ConcurrentList/">my <code>ConcurrentList&lt;T&gt;</code> class</a>, which I have written about a <a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">couple</a> of <a href="/posts/boy-can-dream.html">times</a> already.</p>
+
+<p><em>What, are you “retreating” from your concurrent list idea?</em> In a way, yes. Let me explain. From the beginning, my concept of the usefulness of a lock-free <code>IList&lt;T&gt;</code> implementation was that it would scale better than using a <code>List&lt;T&gt;</code> plus <code>lock</code> statements by eliminating contention when many threads are accessing the list concurrently.</p>
+
+<p>Is this actually true? Accessing the list <code>how</code>?</p>
+
+<p>Since a concurrent implementation of <code>Insert</code>, <code>RemoveAt</code> etc. is not supported in <code>ConcurrentList&lt;T&gt;</code>, there are really only a few operations that need to be considered:</p>
+
+<ul>
+<li>Getting/setting an item at a specified index</li>
+
+<li>Adding to the list</li>
+
+<li>Iterating over the list</li>
+</ul><p>Critically, I think the assumption is that one would need a lock-free data structure to optimize the scenario where multiple threads may be <em>reading</em> from the list (via accessing items at random indexes) while one or more other threads are <em>adding</em> to it. <strong>I actually don’t think you need a lock-free data structure for this at all.</strong></p>
+
+<p>Here’s the thing: if you’ve got a <code>List&lt;T&gt;</code>, and you synchronize all calls to <code>Add</code> with, e.g., a <code>lock</code> statement, <strong>you don’t need to also synchronize reads</strong>. They will <em>always</em> be thread-safe. Accessing an element at an index of a <code>List&lt;T&gt;</code> that is <em>only</em> growing with calls to <code>Add</code> <em>will</em> work from multiple threads. If you are skeptical, consider what actually happens when <code>Add</code> is called (<strong>warning: reliance upon specific implementation details ahead!</strong>):</p>
+
+<ol>
+<li>
+<p>The <code>List&lt;T&gt;</code> gets the next available index in its internal array.</p>
+</li>
+
+<li>
+<p>If the index is beyond the end of the array:</p>
+
+<ol>
+<li>A new array is allocated.</li>
+
+<li>The elements of the current array are copied over.</li>
+
+<li>A reference to this new <span class="post-link">... (<a href="/posts/sometimes-the-best-strategy-is-to-retreat.html">read the full post</a>)</span>
+</li>
+</ol>
+</li>
+</ol>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/boy-can-dream.html'>A boy can dream...</a>
+      </span>
+      <span class='date'>February 24, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>Well, I’ve finished an initial implementation of a <code>ConcurrentList&lt;T&gt;</code> data structure. It implements the <code>IList&lt;T&gt;</code> interface (partially—no <code>Insert</code>, <code>RemoveAt</code>, etc.–it is an append-only structure) and is both <strong>thread-safe</strong> and <strong>lock-free</strong>.</p>
+
+<p>(I also came up with a few different ways to resolve the <code>Count</code> issue mentioned in my previous post; what I’ve settled on for now is basically the most obvious and straightforward version.)</p>
+
+<p>The source code for the class itself is available to view in my GitHub repository here:</p>
+
+<p><a href="https://github.com/dtao/ConcurrentList"><strong>Check out the source code.</strong></a></p>
+
+<p>Now for the somewhat disheartening part: thus far, based on my own performance benchmarks, I see little evidence that this actually outperforms a simple <code>List&lt;T&gt;</code> with synchronized calls to <code>Add</code> (using, e.g., a <code>lock</code> statement). So that’s a bit disappointing. But I figured I’d share the source code, in case some hackers out there might be able to figure out how to make it better.</p>
+
+<p>Also, I feel like part of the issue I may be having is that it’s tough to really create a lot of thread contention on a puny little laptop with such a lightweight method (I’d wager <code>List&lt;T&gt;.Add</code> couldn’t be much more than 10 lines). So maybe if this could get tested on a 32-core server somewhere, the results would be more noteworthy. I don’t know!</p>
+
+<p>Anyway, at least it passes the unit tests. That’s got to be worth something, right?</p>
+  </section>
+</article>
+<div class='next-page'>
+  <a href='/index5.html'>View older posts</a>
+</div>
+  <footer>
+    <ul class='menu'>
+      <li><a href="/posts">All Posts</a></li>
+      <li><a href="/about">About</a></li>
+      <li>
+        <a href='http://stackoverflow.com/users/105570' target='_blank'>
+          <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://github.com/dtao' target='_blank'>
+          <img alt='GitHub' src='/images/icons/github-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://twitter.com/dan_tao' target='_blank'>
+          <img alt='Twitter' src='/images/icons/twitter-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='http://feeds.feedburner.com/philosopherdeveloper'>
+          <img alt='RSS' src='/images/icons/rss-small.png' />
+        </a>
+      </li>
+    </ul>
+  </footer>
+</body>

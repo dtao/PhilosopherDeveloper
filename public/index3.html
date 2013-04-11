@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+  <title>The Philosopher Developer</title>
+  <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+  <link href='/stylesheets/application.css' rel='stylesheet' />
+  <link href='/stylesheets/pygments.css' rel='stylesheet' />
+  <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
+  <script src='/javascripts/posts.js' type='text/javascript'></script>
+  <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
+  <script src='/javascripts/ga.js' type='text/javascript'></script>
+  <script src='/javascripts/shareThis.js' type='text/javascript'></script>
+</head>
+<body>
+  <header id='header'>
+    <h1><a href="/">The Philosopher Developer</a></h1>
+    <h2>half-sound logic, half-decent code</h2>
+  </header>
+  <article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/cannibalizing-yourself-on-purpose.html'>Cannibalizing yourself on purpose</a>
+      </span>
+      <span class='date'>September 24, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>I read an article in the New York Times recently entitled <a href="http://www.nytimes.com/2012/09/22/opinion/nocera-has-apple-peaked.html">Has Apple Peaked?</a> and found myself nodding my head to a lot of the author’s points. The basic premise of the article was this: <em>maybe</em> Apple has peaked, and maybe it isn’t because Steve Jobs has passed away but rather because, as a company on top of the world, they now have everything to lose and can no longer take big risks.</p>
+
+<p>I think there’s something to this, and I’d add another source of inertia for consideration: <strong>hubris</strong> (big surprise to those of you familiar with my general dislike for Apple, I’m sure!). At Apple’s scale, given the massive success they’ve enjoyed over the past several years, I have no doubt that the company’s sense of self-importance is extraordinarily high. Which is obviously justified to a significant degree. But one common observation I have about human nature—and I am increasingly convinced that it applies to businesses the same way it applies to individuals—is that it is very easy to pat yourself on the back for a job well done and claim more credit for your success than you <em>really</em> deserve. Put another way: it can be very easy to miss what an important role <em>luck</em> has played in your life, and thus to take full credit for your good fortune.</p>
+
+<p>Which means that if you’re a company like Apple, you start to get complacent. You watch every product you release hit record-breaking sales, you see your competitors struggling to gain any kind of momentum, you notice the lines stretching for blocks outside every one of your retail stores, and… you start to relax. You think, <em>no one can touch us right now</em>. You feel invincible. You take for granted that everything you do is ground-breaking. Of course it <span class="post-link">... (<a href="/posts/cannibalizing-yourself-on-purpose.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html'>Brushing up on C.S. - Part 1: Algorithmic Complexity</a>
+      </span>
+      <span class='date'>September 15, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <h1 id="preamble_1">Preamble</h1>
+
+<p>As I’m sure plenty of you already know (the title of this blog is a bit of a giveaway), I was a <strong>philosophy</strong> major in college. Which means I was <em>not</em> a C.S. major. But that’s not the full extent of it: I didn’t <em>minor</em> in C.S., either; I actually took <em>absolutely no computer sciences courses at all</em> in college.</p>
+
+<p>I did recently receive an M.S. in software engineering from <a href="http://www.cmu.edu/silicon-valley/">Carnegie Mellon</a>; but the courses in that program were higher-level in nature: software architecture, process management, software metrics, entrepreneurship—that sort of thing. And so I’ve still never really had an academic foundation for a lot of the more theoretical stuff that those with bachelor’s degrees in computer science have.</p>
+
+<p>To clarify: I <em>do</em> know a decent amount of C.S. stuff in practice, because:</p>
+
+<ul>
+<li>I worked for two years at an algorithmic trading company, where performance was a key concern (use of optimal data structures was critical) and the software was highly concurrent (so I got plenty of hands-on experience with things like synchronization, mutexes, semaphores, etc.)</li>
+
+<li>I am a huge nerd who spends way too much time reading about <a href="http://en.wikipedia.org/wiki/Skip_list">skip lists</a> and <a href="http://en.wikipedia.org/wiki/Red_black_tree">red-black trees</a> and all that good stuff on Wikipedia</li>
+</ul><p>Anyway, all this is my long-winded way of introducing a little series of blog posts I’m going to be doing, starting with this one. The basic idea behind it should already be obvious: I’m going to “brush up” on (in some cases, learn entirely from scratch) some of the fun theoretical stuff that I missed by never going through a college C.S. program.</p>
+
+<p>Those of you already well-versed with theoretical C.S. stuff will probably not be all that intrigued by this or the next few posts. Then again, maybe you will. My goal is actually two-fold here:</p><ol><li> <span class="post-link">... (<a href="/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html">read the full post</a>)</span>
+</li></ol>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/magical-optimization-of-the-%2B%3D-operator-with-strings.html'>A magical optimization of the += operator with strings</a>
+      </span>
+      <span class='date'>August 25, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>Today I felt like writing something more low-level than I’ve written in a while… and since C# is about the lowest I go (yeah, pretty sad—I haven’t really earned my beard yet), that will be my language of choice for this post.</p>
+
+<p>But we start with JavaScript, actually. A couple of months ago, shortly after joining <a href="http://www.cardpool.com/">Cardpool</a>–a topic <em>definitely</em> deserving of its own post, in due time—I started working on a top-secret new project. Without giving too much away (as if it really matters), I’ll just say that my work on this project involved writing a library to process a sequence of data from an input device which emulated a computer keyboard. Essentially this input sequence would ultimately be interpreted as a string; but unlike your typical scenario of taking user input from, e.g., a text field—where the string is given to you all at once—in this case the library had to <em>assemble</em> the string from bytes fed to it one-by-one.</p>
+
+<p>In a language like Java or C# (or even Ruby), this would be totally easy, albeit unconventional. The data structure for a string is <a href="http://philosopherdeveloper.wordpress.com/2010/05/28/are-strings-really-immutable-in-net/">more or less</a> immutable in Java and C#, but both have the concept of a mutable <code>StringBuilder</code> for precisely the case where you need to construct a string by concatenating many segments. And in Ruby, strings are mutable to begin with (you use the <code>&lt;&lt;</code> operator to append to an existing string).</p>
+
+<p>But this library I was working on was in <em>JavaScript</em>–a language that I love, but one without any specialized options for concatenating strings quickly. JavaScript strings are immutable, and there is no concept of a <code>StringBuilder</code>. If you want to concatenate many strings together, you have two options:</p>
+
+<ul>
+<li>The good ol’ <code>+=</code> operator</li>
+
+<li>Storing the elements in an array, and <span class="post-link">... (<a href="/posts/magical-optimization-of-the-%2B%3D-operator-with-strings.html">read the full post</a>)</span>
+</li>
+</ul>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/to-start-over-or-continue.html'>To start over or continue</a>
+      </span>
+      <span class='date'>June 15, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>When I was a kid I played a lot of video games. And there was this funny thing about the way I played them: sometimes, even if the game was going well, I had this impulse to <em>restart</em>. Maybe because I hadn’t played the level perfectly—I had lost some health, or hadn’t collected all the coins, or missed the secret passageway. Or maybe it was just because I liked the beginning of the game so much I wanted to play it again. In any case, it’s an impulse I remember quite clearly, and one which carries over into real life now that I’m an adult.</p>
+
+<p>An interesting byproduct of this tendency of mine to replay levels in video games is that it made me <strong>very good at the early stages</strong>. If I played level X over and over in order to collect all the coins, eventually I would get to a point where I could basically breeze through most of the level. This isn’t altogether too surprising, of course, given the existence of the phrase “practice makes perfect.” But there is a flip side to that coin as well. The more I repeated the early levels of a game, the longer I postponed actually getting to the <em>end</em> of the game; and when I did I was relatively unprepared for it. The final stages always seemed really hard compared to the earlier parts that I repeated so often.</p>
+
+<p>I see a tie-in to this childhood dilemma—fundamentally, to restart or keep going—in the world of software, particularly here in Silicon Valley. In an industry where everyone’s dream seems to be founding a start-up and either bringing it to IPO or getting acquired by some larger company, where a litany of 1-year engagements at VC-funded and possibly failed start-ups is <span class="post-link">... (<a href="/posts/to-start-over-or-continue.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/trouble-with-stop-the-line-ci.html'>The trouble with stop-the-line CI</a>
+      </span>
+      <span class='date'>May 07, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p><a href="http://en.wikipedia.org/wiki/Continuous_integration">Continuous Integration</a> is a powerful technique used by a growing number of software teams. Personally, I have issues with the way CI is done on a lot of software projects. I’ve <a href="http://philosopherdeveloper.wordpress.com/2012/01/27/being-agile-with-continuous-integration/">tried to write about this once before</a>, but at the time the ideas bouncing around in my head hadn’t really crystalized. To be honest, they <em>still</em> haven’t fully (if you’ve ever worked and/or debated with me, you’d be right to wonder if they ever will); but I figured it was time to give it another shot anyway. And in typical me fashion, I’d like to start with an analogy.</p>
+
+<h2 id="the_puzzled_factory_owner_1">The Puzzled Factory Owner</h2>
+
+<p>Imagine a factory owner wants to reduce the occurrence of defects and thereby improve the consistency and quality of the products manufactured at his factory. So he brings in an expert, who advises him there’s a new technique called “Constant Validation” –or CV for short—that can notify him whenever a defect is found. This sounds great to the factory owner, so he decides to install CV at his factory immediately.</p>
+
+<p>Before he leaves, the expert also informs the owner that he should have his workers stop whenever a defect is found and wait for it to be resolved before resuming work. Otherwise, tracing the defect back to its source can become very difficult, as additional errors might be introduced during the investigation. This makes a lot of sense to the factory owner; he thanks the expert for his time and bids him farewell.</p>
+
+<p>Initially, business is going well for the factory owner. The CV system enables him to react as soon as a defect is found, taking corrective action at once to prevent further damages. For the first couple of weeks following the CV installation, he is extremely pleased with his investment.</p>
+
+<p>Over time, however, <span class="post-link">... (<a href="/posts/trouble-with-stop-the-line-ci.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<div class='next-page'>
+  <a href='/index4.html'>View older posts</a>
+</div>
+  <footer>
+    <ul class='menu'>
+      <li><a href="/posts">All Posts</a></li>
+      <li><a href="/about">About</a></li>
+      <li>
+        <a href='http://stackoverflow.com/users/105570' target='_blank'>
+          <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://github.com/dtao' target='_blank'>
+          <img alt='GitHub' src='/images/icons/github-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='https://twitter.com/dan_tao' target='_blank'>
+          <img alt='Twitter' src='/images/icons/twitter-small.png' />
+        </a>
+      </li>
+      <li>
+        <a href='http://feeds.feedburner.com/philosopherdeveloper'>
+          <img alt='RSS' src='/images/icons/rss-small.png' />
+        </a>
+      </li>
+    </ul>
+  </footer>
+</body>

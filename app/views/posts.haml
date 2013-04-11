@@ -8,3 +8,7 @@
 
     %section.content
       = post.to_html(:max_length => 300)
+
+- if next_page
+  .next-page
+    %a(href="/index#{next_page + 1}.html") View older posts

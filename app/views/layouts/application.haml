@@ -6,6 +6,8 @@
   %link(rel="stylesheet" href="#{SITE_ROOT}/stylesheets/pygments.css")
   - if post && post.has_custom_stylesheet?
     %link(rel="stylesheet" href="#{SITE_ROOT}/stylesheets/#{post.identifier}.css")
+  %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/jquery-1.9.1.min.js")
+  %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/posts.js")
   %script(type="text/javascript" src="http://w.sharethis.com/button/buttons.js")
   %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/ga.js")
   %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/shareThis.js")

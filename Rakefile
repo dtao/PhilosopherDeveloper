@@ -64,9 +64,9 @@ def compile_post(post, filename=nil)
   end
 end
 
-def compile_index(posts)
+def compile_index(posts, page_number, next_page_number=nil)
   posts_haml  = read_view_file("posts.haml")
-  posts_html  = Haml::Engine.new(posts_haml).render(Object.new, :posts => posts)
+  posts_html  = Haml::Engine.new(posts_haml).render(Object.new, :posts => posts, :next_page => next_page_number)
   layout_haml = read_view_file("layouts", "application.haml")
 
   extra_javascript = posts.select(&:has_custom_javascript?).inject("") do |s, p|
@@ -80,7 +80,8 @@ def compile_index(posts)
   end
 
   # Save that puppy to file!
-  write_file("public", "index.html") { final_html }
+  page_number = page_number > 0 ? page_number + 1 : nil
+  write_file("public", "index#{page_number}.html") { final_html }
 end
 
 def compile_about
@@ -153,7 +154,12 @@ namespace :compile do
   task :html do
     Post.load_all(File.join(File.dirname(__FILE__), "config", "posts.yml"))
     Post.each { |post| compile_post(post) }
-    compile_index(Post.all.take(5))
+
+    pages = Post.all.each_slice(5).to_a
+    pages.each_with_index do |posts, i|
+      compile_index(posts, i,  (i < pages.count - 1) ? i + 1 : nil)
+    end
+
     compile_about()
     compile_posts_index()
     compile_stylesheets()
