@@ -45,8 +45,16 @@ For what it's worth, HighTables itself isn't all that complicated. It leverages 
 My problem with Highcharts in the past was that it has [a *behemoth* API](http://api.highcharts.com/highcharts). Rendering a chart was never a simple matter of calling `pieChart()`; instead, any chart-creation logic requires a whole ton of options that an average person is very unlikely to remember from one use to the next. And so I always found myself returning to the Highcharts website, perusing documentation, and following examples to ever get a chart to display on sites I've worked on.
 
 <figure class="hidden-in-abbreviated-version">
-  <div class="pie-chart" data-title="Value" data-source="#activity-value-vs-time-table" data-value-columns="2"></div>
-  <div class="pie-chart" data-title="Time Investment" data-source="#activity-value-vs-time-table" data-value-columns="3"></div>
+  <div class="pie-chart"
+       data-title="Value of activity"
+       data-source="#activity-value-vs-time-table"
+       data-value-columns="2"
+       data-options="getChartOptions"></div>
+  <div class="pie-chart"
+       data-title="Time invested in activity"
+       data-source="#activity-value-vs-time-table"
+       data-value-columns="3"
+       data-options="getChartOptions"></div>
   <figcaption>Notice any discrepancy?</figcaption>
 </figure>
 

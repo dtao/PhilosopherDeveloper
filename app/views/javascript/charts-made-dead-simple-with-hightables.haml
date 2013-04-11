@@ -3,6 +3,14 @@
 %script(src="#{SITE_ROOT}/javascripts/hightables.min.js" type="text/javascript")
 
 :javascript
+  function getChartOptions() {
+    return {
+      plotOptions: {
+        pie: { size: "75%" }
+      }
+    };
+  }
+
   function revealTable() {
     $("#activity-value-vs-time-table").toggleClass("hidden");
   }
