@@ -189,7 +189,7 @@ class Post
       end
 
       # Don't resize special-case images.
-      if node.matches?(".full-size")
+      if node.parent["class"] =~ /full\-size/
         next
       end
 
