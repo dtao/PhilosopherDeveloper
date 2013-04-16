@@ -1,44 +1,13 @@
-- idea of old, temperamental server
-- old hardware problem largely gone
-  - servers anonymous, managed by someone else (e.g. Amazon)
-  - problem of scale solved by simply adding hardware
-  - "lever" system the dream of architects/execs
-    - show Heroku: https://www.heroku.com/pricing
-    - show AppHarbor: https://appharbor.com/pricing
-- same dream applied to engineers
-  - iOS example: OSX developers brought in to speed up job
-  - Mythical Man Month
-  - but dream remains: want to add manpower as necessary to meet objectives
-- for larger companies: seems unavoidable to *some* extent
-  - people will come and go
-  - solid, well-defined policies, conventions, approved technologies, etc. for predictability
-  - good documentation and onboarding process for dealing w/ employee turnover
-  - consistent process, culture for employee "liquidity", ability to transition between teams
+I never actually worked in an environment like this, but I've read enough articles on [The Daily WTF](http://thedailywtf.com/) to have an image in my head of the old, dusty, temperamental server that companies used to have back in the 90s and early 2000s. Those were dark days, from what I hear--when your business was victimized at the whim of an unpredictable piece of hardware. If the power went out, or the hard drive failed (and they all do), your site went down. It was as simple as that.
 
-- for smaller companies:
-  - problem with this mentality
-  - say you want "the best people", coming from premium mindset
-  - discrepancy between hiring demands and actual needs
-  - people-as-resources means you should be striving for *value*, not quality
-  - think like Google: commodity hardware gives better CPU power per $
-- rebuttal:
-  - personally i disagree with the sentiment
-  - best people easily worth 10x "average" people
-  - yet conventions, processes, etc. largely exist to equalize value - to facilitate lever system
-  - equalize means lift worse people up, drag better people down
-  - so why attempt this when you are aiming to only hire best people?
-  - big-company structures are specifically in place because of this scalability/value mindset
+We live in a different era now, with PaaS and IaaS and all that cloudy good stuff. Your average tech-savvy business owner is going to know there's no particularly good reason to run your own server anymore if you're a small company. And if you're one of the large companes providing these services like Amazon or Google, you have been on top of the hardware problem for a long time, with data centers distributed around the country (or the world) connected in a controllable and reliable way. It's not an issue anymore.
 
-maybe leave this part off...
+This is a dream come true, in many ways, for executives and architects and everyone else at or near the top of the corporate food chain. The last thing you want in a top-down role is to be brought to your knees by a problem at the bottom, far below eye level. The infrastructures that exist now for tech companies abstract servers into basically a sea of computing potential, which can be drawn from predictably as needed. (And on those rare occasions when outages *do* occur, it's still nothing to lose sleep over. It's Amazon's problem; they'll deal with it and apologize profusely in the morning.)
 
-- how i would (will?) run a company:
-  - best people are the ones you want to give the most autonomy to (just ask Daniel Pink)
-  - firstly, top-of-market salary should be given
-    - golden rule: treat others how you want to be treated
-    - if goal is to get good "value" from individuals (by negotiating lower salary),
-      they will have same goal for the job and just leave once they've learned what
-      they could
-  - freedom should be maximized, product ideas encouraged
-- not to be confused with democratic system
-  - actually deeply skeptical of group-based decision-making
-  - again: individuals should be as *autonomous* as possible
+Essentially hardware is now a **lever system**, where increased scalability demands call for sliding a lever up, at which point additional hardware is automatically provisioned and dedicated to storing your data, hosting your applications, etc. This is evident on sites like [Heroku](https://www.heroku.com/pricing) and [AppHarbor](https://appharbor.com/pricing), which literally give you levers to adjust how much computing power you want for your application servers and background works.
+
+![Heroku's sliders for "web dynos" and "worker dynos"](/images/heroku-levers.png)
+{: .full-size}
+
+![AppHarbor's sliders for "web workers" and "background workers"](/images/appharbor-levers.png)
+{: .full-size}

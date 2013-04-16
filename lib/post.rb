@@ -187,6 +187,11 @@ class Post
         next
       end
 
+      # Don't resize special-case images.
+      if node.matches?(".full-size")
+        next
+      end
+
       filename = File.join(SINATRA_ROOT, "public", src)
       img = Magick::Image.read(filename).first
 
