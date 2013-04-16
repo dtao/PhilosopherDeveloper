@@ -144,10 +144,10 @@ class Post
   def to_html(options={})
     fragment = get_html_fragment(options[:max_length])
     resize_images(fragment)
-    style_images(fragment)
+    style_images(fragment, options)
     do_syntax_highlighting(fragment)
     fix_absolute_refs(fragment)
-    remove_scripts(fragment) if options[:remove_scripts]
+    remove_scripts(fragment) if options[:feed]
     remove_footnotes(fragment) if options[:footnotes] == false
     fragment.inner_html
   end
@@ -221,15 +221,22 @@ class Post
     end
   end
 
-  def style_images(html)
+  def style_images(html, options={})
     html.css("img").each do |node|
       p = node.parent
-      p.name = "figure"
       alt = node["alt"]
+
       if alt
-        caption = Nokogiri::XML::Node.new("figcaption", html)
-        caption.content = alt
-        p.children.last.add_next_sibling(caption)
+        if options[:feed]
+          caption = Nokogiri::XML::Node.new("p", html)
+          caption.content = alt
+          p.add_next_sibling(caption)
+        else
+          p.name = "figure"
+          caption = Nokogiri::XML::Node.new("figcaption", html)
+          caption.content = alt
+          p.children.last.add_next_sibling(caption)
+        end
       end
     end
   end

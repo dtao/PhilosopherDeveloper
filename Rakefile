@@ -187,15 +187,15 @@ namespace :compile do
         xml.channel do
           xml.title "The Philosopher Developer"
           xml.description "Dan Tao's blog, The Philosopher Developer"
-          xml.link "http://www.philosopherdeveloper.com/"
+          xml.link "http://philosopherdeveloper.com/"
 
           Post.all.take(10).each do |post|
             xml.item do
               xml.title post.title
-              xml.link "http://www.philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
-              xml.description { xml.cdata!(post.to_html(:remove_scripts => true)) }
+              xml.link "http://philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
+              xml.description { xml.cdata!(post.to_html(:feed => true)) }
               xml.pubDate post.date.rfc822()
-              xml.guid "http://www.philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
+              xml.guid "http://philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
             end
           end
         end
