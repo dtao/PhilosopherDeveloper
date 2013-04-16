@@ -19,9 +19,6 @@ $yellow:     #ffe
   font-weight: 400
   src: local("Segoe UI"), local("Segoe-UI"), url("#{site_root()}/fonts/SegoeUI.woff") format("woff")
 
-@mixin contentFont
-  font-family: Cambria, Georgia, serif
-
 // Borrowed from Wordpress "Chunk" theme
 @mixin titleFont
   font-family: Oswald, Helvetica, Arial, sans-serif
@@ -31,9 +28,60 @@ $yellow:     #ffe
 @mixin headingFont
   font-family: Segoe, Helvetica, Arial, sans-serif
 
+@mixin contentFont
+  font-family: Cambria, Georgia, serif
+
 @mixin codeFont
   font-family: Consolas, Inconsolata, monospace
 
+@mixin setFontSizes($baseFontSize)
+  blockquote
+    font-size: $baseFontSize * (5 / 6)
+
+  pre
+    font-size: $baseFontSize * (2 / 3)
+
+  figure
+    figcaption
+      font-size: $baseFontSize * (2 / 3)
+
+  #header
+    h1
+      font-size: $baseFontSize * 4
+    h2
+      font-size: $baseFontSize * (4 / 3)
+
+  article
+    font-size: $baseFontSize
+
+    small
+      font-size: $baseFontSize * (2 / 3)
+
+    header
+      h1
+        .title
+          font-size: $baseFontSize * 2
+        .date
+          font-size: $baseFontSize
+
+    section.content
+      .footnotes
+        font-size: $baseFontSize * (7 / 12)
+
+    section.comments
+      font-size: $baseFontSize * (2 / 3)
+
+  .index
+    ul.posts
+      li.post
+        font-size: $baseFontSize
+
+@mixin capImageSizes($width)
+  figure img,
+  iframe
+    max-width: $width
+
+// Stupid vendor prefixes!
 @mixin transition($property, $duration)
   -moz-transition: $property $duration
   -o-transition: $property $duration
@@ -100,7 +148,6 @@ sup
 blockquote
   background-color: $lightGray
   border-left: 5px solid darken($lightGray, 20%)
-  font-size: 20px
   padding: 5px
 
   p
@@ -109,7 +156,6 @@ blockquote
 pre
   @include codeFont
   background-color: $lightGray
-  font-size: 16px
   padding: 10px
 
   .highlight-special
@@ -124,12 +170,13 @@ code
   display: none
 
 #header
+  width: 90%
   border-bottom: 1px solid black
+  margin: auto
   text-align: center
 
   h1
     @include titleFont
-    font-size: 96px
     letter-spacing: -1px
     margin-bottom: 0
     text-transform: uppercase
@@ -143,7 +190,6 @@ code
   h2
     @include titleFont
     color: $darkGray
-    font-size: 32px
     margin-top: 0
 
     a
@@ -164,7 +210,6 @@ figure
 
   figcaption
     @include headingFont
-    font-size: 16px
 
   &.plain
     img
@@ -173,18 +218,13 @@ figure
 
 article
   @include contentFont
-  font-size: 24px
   margin: auto
-
-  small
-    font-size: 16px
 
   header
     h1
       margin-bottom: 10px
 
       .title
-        font-size: 48px
         letter-spacing: -2px
         margin-bottom: 0
 
@@ -197,7 +237,6 @@ article
 
       .date
         color: $darkGray
-        font-size: 24px
         white-space: nowrap
 
   section.content
@@ -215,11 +254,7 @@ article
           color: lighten($darkGray, 10%)
           text-decoration: underline
 
-    .footnotes
-      font-size: 14px
-
   section.comments
-    font-size: 16px
     margin-top: 20px
 
   &.abbreviated
@@ -247,7 +282,6 @@ article
 
     li.post
       display: table-row
-      font-size: 24px
       &:hover
         background-color: $lightBlue
 

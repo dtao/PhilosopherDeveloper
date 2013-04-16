@@ -1,55 +1,35 @@
 @media all and (min-width: 1200px)
+  @include setFontSizes(24px)
+
   article,
-  .next-page
+  .next-page,
+  footer ul.menu
     min-width: 1080px
     width: 75%
-
-  footer
-    ul.menu
-      min-width: 1080px
-      width: 75%
 
   table
     width: 75%
 
 @media all and (max-width: 1199px)
+  @include setFontSizes(20px)
+
   article,
-  .next-page
+  .next-page,
+  footer ul.menu
     width: 90%
 
-  footer
-    ul.menu
-      width: 90%
-
 @media all and (max-width: 640px)
+  @include setFontSizes(16px)
+  @include capImageSizes(480px)
+
   blockquote
-    font-size: 14px
     margin: 0
 
     p
       padding: 0
 
-  pre
-    font-size: 12px
-
-  #header
-    h1
-      font-size: 48px
-
-    h2
-      font-size: 24px
-
   article
-    font-size: 16px
     padding: 10px
-
-    header
-      h1
-        .title
-          font-size: 32px
-
-        .date
-          font-size: 16px
 
     figure
       margin-left: 0
@@ -58,7 +38,6 @@
 
       img
         padding: 0
-        width: 480px
 
   .index
     width: auto
@@ -66,8 +45,6 @@
 
     ul.posts
       li.post
-        font-size: 16px
-
         .date
           width: 150px
 
@@ -77,14 +54,11 @@
       padding: 0 10px
 
 @media all and (max-width: 480px)
+  @include capImageSizes(100%)
+
   #header
     padding: 10px
     text-align: left
-
-  article
-    figure
-      img
-        max-width: 100%
 
   .index
     ul.posts
