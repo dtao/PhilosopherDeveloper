@@ -7,7 +7,7 @@
         %span.date= post.friendly_date
 
     %section.content
-      = post.to_html(:max_length => 300)
+      = post.to_html(:max_length => 300, :footnotes => false)
 
 - if next_page
   .next-page

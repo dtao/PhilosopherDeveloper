@@ -1,21 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<head>
-  <title>The Philosopher Developer</title>
-  <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
-  <link href='/stylesheets/application.css' rel='stylesheet' />
-  <link href='/stylesheets/pygments.css' rel='stylesheet' />
-  <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
-  <script src='/javascripts/ga.js' type='text/javascript'></script>
-  <script src='/javascripts/shareThis.js' type='text/javascript'></script>
-  <script type='text/javascript' src='/javascripts/jquery-1.9.1.min.js'></script>
-  <script type='text/javascript' src='/javascripts/posts.js'></script>
-</head>
-<body>
-  <header id='header'>
-    <h1><a href="/">The Philosopher Developer</a></h1>
-    <h2>half-sound logic, half-decent code</h2>
-  </header>
-  <article class='abbreviated'>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Philosopher Developer</title>
+    <meta charset='utf-8' />
+    <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+    <link href='/stylesheets/application.css' rel='stylesheet' />
+    <link href='/stylesheets/pygments.css' rel='stylesheet' />
+    <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
+    <script src='/javascripts/ga.js' type='text/javascript'></script>
+    <script src='/javascripts/shareThis.js' type='text/javascript'></script>
+    <script type='text/javascript' src='/javascripts/jquery-1.9.1.min.js'></script>
+    <script type='text/javascript' src='/javascripts/posts.js'></script>
+  </head>
+  <body>
+    <header id='header'>
+      <h1><a href="/">The Philosopher Developer</a></h1>
+      <h2>half-sound logic, half-decent code</h2>
+    </header>
+    <article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
@@ -27,9 +29,9 @@
   <section class='content'>
     <h2 id="is_datamapper_inherently_broken_1">Is DataMapper inherently broken?</h2>
 
-<p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is a fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects going unnoticed during development and testing, resulting in buggier software.</p>
+<p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is a fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects going unnoticed during development and testing, resulting in buggier software.</p>
 
-<p>Borrowing from MacIver’s post<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, the below is a boilerplate example of how one might attempt to save a record and report any failures using DataMapper:</p>
+<p>Borrowing from MacIver’s post, the below is a boilerplate example of how one might attempt to save a record and report any failures using DataMapper:</p>
 
 <div class="highlight"><pre><span class="n">my_account</span> <span class="o">=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"Jose"</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">my_account</span><span class="o">.</span><span class="n">save</span>
@@ -55,7 +57,7 @@
 
 <h2 id="why_use_datamapper_at_all_then_2">Why use DataMapper at all, then?</h2>
 
-<p>It’s really a shame that such a “fundamental flaw”<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> exists in DataMapper. Otherwise, I find it to be quite a nice ORM, with at least a couple of (admittedly subjective) advantages over the more popular <a href="https://github.com/rails/rails/tree/master/activerecord">ActiveRecord</a>:</p>
+<p>It’s really a shame that such a “fundamental flaw” exists in DataMapper. Otherwise, I find it to be quite a nice ORM, with at least a couple of (admittedly subjective) advantages over the more popular <a href="https://github.com/rails/rails/tree/master/activerecord">ActiveRecord</a>:</p>
 
 <ol><li>With DataMapper, your database schema is defined in your models themselves. The ActiveRecord <span class="post-link">... (<a href="/posts/unbreaking-datamapper.html">read the full post</a>)</span>
 </li></ol>
@@ -94,7 +96,7 @@
     </h1>
   </header>
   <section class='content'>
-    <p>I was raised in a devout Christian family, which resulted in a fair amount of inner conflict and soul-searching throughout my academic life, <em>particularly</em> with respect to my ninth-grade education on evolution<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. This in turn ultimately led me to read a book called <a href="http://www.amazon.com/Darwins-Black-Box-Biochemical-Challenge/dp/0743290313">Darwin’s Black Box</a> by Michael Behe, which argues in favor of <a href="http://en.wikipedia.org/wiki/Intelligent_design">intelligent design</a><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> on the basis of a concept called <a href="http://en.wikipedia.org/wiki/Irreducible_complexity"><strong>irreducible complexity</strong></a>. It is actually a pretty reasonable argument, in my opinion—though I’m admittedly no expert on the subject—at least in that its premise seems plausible. To summarize in one sentence: Behe argues that there are systems in present-day organisms consisting of interacting parts, each of which on its own would provide no reproductive advantage to an individual and so cannot be explained purely by Darwinian natural selection. Only taken <em>as a whole</em> do these systems provide reproductive advantages; and so some other process must have generated them (where intelligent design enters the picture).</p>
+    <p>I was raised in a devout Christian family, which resulted in a fair amount of inner conflict and soul-searching throughout my academic life, <em>particularly</em> with respect to my ninth-grade education on evolution. This in turn ultimately led me to read a book called <a href="http://www.amazon.com/Darwins-Black-Box-Biochemical-Challenge/dp/0743290313">Darwin’s Black Box</a> by Michael Behe, which argues in favor of <a href="http://en.wikipedia.org/wiki/Intelligent_design">intelligent design</a> on the basis of a concept called <a href="http://en.wikipedia.org/wiki/Irreducible_complexity"><strong>irreducible complexity</strong></a>. It is actually a pretty reasonable argument, in my opinion—though I’m admittedly no expert on the subject—at least in that its premise seems plausible. To summarize in one sentence: Behe argues that there are systems in present-day organisms consisting of interacting parts, each of which on its own would provide no reproductive advantage to an individual and so cannot be explained purely by Darwinian natural selection. Only taken <em>as a whole</em> do these systems provide reproductive advantages; and so some other process must have generated them (where intelligent design enters the picture).</p>
 
 <p>Behe provides plenty of low-level biochemical examples that I won’t bother you with, primarily because I don’t remember them. But whether or not you agree with his argument—and my limited research leads me to believe that (surprise!) most of the scientific community does <strong>not</strong>–I think the <em>concept</em> of irreducible complexity is a useful one. Even if Behe is wrong with respect to evolution, we all know and probably to some extent accept the idea behind <em>the whole is greater than the sum of its parts</em>. Not everything in this world is the end result of some sequence of perfectly incremental changes, each coherent and explicable in its own right. Morever, if a whole could be greater than the sum of its parts, this leaves open the possibility that any given part on its own could even have <span class="post-link">... (<a href="/posts/ab-testing-and-irreducible-complexity.html">read the full post</a>)</span></p>
   </section>
@@ -142,7 +144,7 @@
 
 <p>Most of my acquaintances with a modest amount of scientific knowledge, of course, dismissed Steorn from the very start. What the company claims to do violates a known law of physics, they argued; therefore it is impossible; therefore they are either lying or confused. Personally, I never did and probably never will fully sympathize with this attitude. While I agree that Steorn probably do not have what they have claimed (and I certainly have no intention of arguing with the laws of thermodynamics!), I disagree with the premise that we can be <em>so sure</em> of things like this that we are justified in rejecting them immediately.</p>
 
-<p>This is actually the same topic I covered in <a href="http://philosopherdeveloper.wordpress.com/2009/12/19/the-myth-of-the-myth-of-perpetual-motion/">my very first post on this blog</a>. But it’s something I feel quite strongly about, so I’ll probably write about it again, and again, until I’m satisfied I’ve fully covered the topic in the way I want (i.e., never). This time around, I want to relate my skepticism<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> in these sorts of matters to the concept of <em>one-way-functions</em>–a mathematical term that I’ll define later in this post. But first, I’ll start with a simple problem.</p>
+<p>This is actually the same topic I covered in <a href="http://philosopherdeveloper.wordpress.com/2009/12/19/the-myth-of-the-myth-of-perpetual-motion/">my very first post on this blog</a>. But it’s something I feel quite strongly about, so I’ll probably write about it again, and again, until I’m satisfied I’ve fully covered the topic in the way I want (i.e., never). This time around, I want to relate my skepticism in these sorts of matters to the concept of <em>one-way-functions</em>–a mathematical term that I’ll define later in this post. But first, I’ll start with a simple problem.</p>
 
 <h2 id="recognizing_patterns_1">Recognizing patterns</h2>
 
@@ -152,30 +154,31 @@
 <div class='next-page'>
   <a href='/index3.html'>View older posts</a>
 </div>
-  <footer>
-    <ul class='menu'>
-      <li><a href="/posts">All Posts</a></li>
-      <li><a href="/about">About</a></li>
-      <li>
-        <a href='http://stackoverflow.com/users/105570' target='_blank'>
-          <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
-        </a>
-      </li>
-      <li>
-        <a href='https://github.com/dtao' target='_blank'>
-          <img alt='GitHub' src='/images/icons/github-small.png' />
-        </a>
-      </li>
-      <li>
-        <a href='https://twitter.com/dan_tao' target='_blank'>
-          <img alt='Twitter' src='/images/icons/twitter-small.png' />
-        </a>
-      </li>
-      <li>
-        <a href='http://feeds.feedburner.com/philosopherdeveloper'>
-          <img alt='RSS' src='/images/icons/rss-small.png' />
-        </a>
-      </li>
-    </ul>
-  </footer>
-</body>
+    <footer>
+      <ul class='menu'>
+        <li><a href="/posts">All Posts</a></li>
+        <li><a href="/about">About</a></li>
+        <li>
+          <a href='http://stackoverflow.com/users/105570' target='_blank'>
+            <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://github.com/dtao' target='_blank'>
+            <img alt='GitHub' src='/images/icons/github-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://twitter.com/dan_tao' target='_blank'>
+            <img alt='Twitter' src='/images/icons/twitter-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='http://feeds.feedburner.com/philosopherdeveloper'>
+            <img alt='RSS' src='/images/icons/rss-small.png' />
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

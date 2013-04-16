@@ -148,6 +148,7 @@ class Post
     do_syntax_highlighting(fragment)
     fix_absolute_refs(fragment)
     remove_scripts(fragment) if options[:remove_scripts]
+    remove_footnotes(fragment) if options[:footnotes] == false
     fragment.inner_html
   end
 
@@ -263,5 +264,11 @@ class Post
 
   def remove_scripts(html)
     html.css("script").remove
+  end
+
+  def remove_footnotes(html)
+    html.css("a[rel='footnote']").each do |a|
+      a.parent.remove
+    end
   end
 end
