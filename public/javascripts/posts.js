@@ -1,9 +1,18 @@
 $(document).ready(function() {
+  // Hack to make browser load spinner image in advance.
+  document.createElement("img").src = "/images/loading.gif";
+
   var $nextPageSection = $(".next-page");
   var $nextPageLink = $("a", $nextPageSection);
 
+  function parseHtmlBody(html) {
+    return $(html.substring(html.indexOf("<body>"), html.lastIndexOf("</body>") + 7));
+  }
+
   $nextPageLink.click(function() {
-    var page = $nextPageLink.hide().attr("href");
+    var page = $nextPageLink.attr("href");
+
+    $nextPageSection.addClass("loading");
 
     $.get(page, function(html) {
       var $page = $(html);
@@ -12,7 +21,8 @@ $(document).ready(function() {
 
       $articles.insertBefore($nextPageSection);
       if ($nextNextPageSection.length > 0) {
-        $nextPageLink.show().attr("href", $("a", $nextNextPageSection).attr("href"));
+        $nextPageLink.attr("href", $("a", $nextNextPageSection).attr("href"));
+        $nextPageSection.removeClass("loading");
       } else {
         $nextPageSection.remove();
         $nextPageSection = null;
