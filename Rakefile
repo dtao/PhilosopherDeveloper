@@ -6,6 +6,7 @@ require "haml"
 require "html_truncator"
 require "sass"
 require "yui/compressor"
+require "benchmark"
 
 # This is for updating all URLs in case the entire site is hosted within a
 # subfolder, e.g. for GitHub Pages.
@@ -158,8 +159,12 @@ end
 namespace :compile do
   desc "Compile everything"
   task :all do
-    Rake::Task["compile:html"].invoke()
-    Rake::Task["compile:rss"].invoke()
+    benchmark = Benchmark.measure do
+      Rake::Task["compile:html"].invoke()
+      Rake::Task["compile:rss"].invoke()
+    end
+
+    puts "Finished in #{benchmark.total} seconds."
   end
 
   desc "Compile static website"

@@ -194,6 +194,12 @@ class Post
       end
 
       filename = File.join(SINATRA_ROOT, "public", src)
+
+      # If there's a *.orig.jpg (or whatever) file, we've already done this.
+      if File.exist?(orig_filename(filename))
+        next
+      end
+
       img = Magick::Image.read(filename).first
 
       # Aim for no larger than 640 wide x 480 tall.
@@ -277,5 +283,13 @@ class Post
     html.css("a[rel='footnote']").each do |a|
       a.parent.remove
     end
+  end
+
+  protected
+
+  def orig_filename(filename)
+    filename_and_extension = filename.split(".")
+    extension = filename_and_extension.pop
+    filename_and_extension.concat(["orig", extension]).join(".")
   end
 end
