@@ -88,6 +88,10 @@ $yellow:     #ffe
   -webkit-transition: $property $duration
   transition: $property $duration
 
+@mixin translucent($opacity)
+  opacity: $opacity
+  filter: alpha(opacity=$opacity * 100)
+
 // Top-level styling
 body
   background-image: linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px)
@@ -325,3 +329,89 @@ footer
         img
           border: none
           vertical-align: middle
+
+.dialog
+  position: fixed
+  top: 15%
+  bottom: 15%
+  left: 15%
+  right: 15%
+  margin: 0
+  padding: 0
+  background-color: white
+  border: 3px solid $darkGray
+  z-index: 1
+
+  &.loading
+    background: white url("/images/loading.gif") no-repeat center
+
+  &.finished:before
+    @include headingFont
+
+    content: "If you're seeing this, it's because the frame failed to load."
+    display: block
+    position: absolute
+    top: 50%
+    left: 0
+    right: 0
+    line-height: 40px
+    margin: -20px auto 0
+    font-size: 28px
+    text-align: center
+    z-index: -1
+
+  iframe
+    height: 100%
+    width: 100%
+    margin: 0
+    padding: 0
+    border: none
+
+  a.close-dialog
+    @include headingFont
+    @include translucent(0.75)
+
+    position: absolute
+    top: 10px
+    right: 10px
+    height: 40px
+    width: 40px
+    line-height: 40px
+    background-color: black
+    color: white
+    cursor: pointer
+    text-align: center
+    text-decoration: none
+
+    &:after
+      content: "\00d7"
+
+    &:hover
+      @include translucent(0.90)
+
+  a.link-away
+    @include headingFont
+    @include translucent(0.75)
+
+    display: block
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    height: 40px
+    line-height: 40px
+    padding: 0 10px
+    background-color: black
+    color: white
+    text-align: right
+    text-decoration: none
+
+    &:before
+      content: "Go to "
+
+    &:after
+      content: attr(href)
+      color: darken($yellow, 10%)
+
+    &:hover
+      @include translucent(0.9)

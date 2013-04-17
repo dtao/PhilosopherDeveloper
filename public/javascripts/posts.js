@@ -1,7 +1,4 @@
 $(document).ready(function() {
-  // Hack to make browser load spinner image in advance.
-  document.createElement("img").src = "/images/loading.gif";
-
   var $nextPageSection = $(".next-page");
   var $nextPageLink = $("a", $nextPageSection);
 

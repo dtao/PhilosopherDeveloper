@@ -75,11 +75,6 @@ def compile_index(posts, page_number, next_page_number=nil)
     s << Haml::Engine.new(haml).render(Object.new)
   end
 
-  # Hack! Prepend jQuery to extra JS if it isn't already in there.
-  unless extra_javascript.include?("jquery-1.9.1.min.js")
-    extra_javascript = "<script type='text/javascript' src='#{SITE_ROOT}/javascripts/jquery-1.9.1.min.js'></script>" + extra_javascript
-  end
-
   # Include posts.js in these pages.
   # BTW, seriously, WTF am I doing?
   extra_javascript = [
