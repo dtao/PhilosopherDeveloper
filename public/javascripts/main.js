@@ -17,7 +17,18 @@ $(document).ready(function() {
     var href    = $anchor.attr("href");
 
     // Skip links to pages this site.
-    if (!href.match(/^https?:\/\//) || href.charAt(0) === "/") {
+    if (!href.match(/^https?:\/\//) || href.match(/^https?:\/\/(?:www\.)?philosopherdeveloper\.com/)) {
+      return;
+    }
+
+    // Skip links w/ associated JavaScript.
+    if (href.match(/^javascript:/) || $anchor.attr("onclick")) {
+      return;
+    }
+
+    // Skip links w/ explicit targets.
+    // TODO: figure out how to add targets w/ Maruku.
+    if ($anchor.is(".new-window") || $anchor.attr("target")) {
       return;
     }
 
