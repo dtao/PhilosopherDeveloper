@@ -1,4 +1,4 @@
-I never actually worked in an environment like this, but I've read enough articles on [The Daily WTF](http://thedailywtf.com/) to have an image in my head of the old, dusty, temperamental server that companies used to have back in the 90s and early 2000s.
+I never actually worked in an environment like this, but I've read enough articles on [The Daily WTF](http://thedailywtf.com/) to have an image in my head of the old dusty, temperamental server that companies used to have back in the 90s and early 2000s.
 
 ![Ye olde server](/images/ye-olde-server.jpg)
 
@@ -6,7 +6,7 @@ Those were dark days, from what I hear--when your business was victimized at the
 
 We live in a different era now, with PaaS and IaaS and all that cloudy good stuff. Your average tech-savvy business owner is going to know there's no particularly good reason to run your own server anymore if you're a small company. And if you're one of the large companes providing these services like Amazon or Google, you have been on top of the hardware problem for a long time, with data centers distributed around the country (or the world) connected in a controllable and reliable way. It's not an issue anymore.
 
-This is a dream come true, in many ways, for executives and architects and everyone else at or near the top of the corporate food chain. The last thing you want in a high-up role is to be embarrassed by a problem at the bottom, far below eye level. The infrastructures that exist now for tech companies abstract servers into basically a sea of computing potential, which can be drawn from predictably as needed. (And on those rare occasions when outages *do* occur, it's still nothing to lose sleep over. It's Amazon's problem; they'll deal with it and apologize profusely in the morning.)
+This is a dream come true, in many ways, for executives and architects and everyone else at or near the top of the corporate food chain. The last thing you want in a high-up role is to be embarrassed by a problem at the bottom, far below eye level. The infrastructures that exist now for tech companies abstract servers into basically a sea of computing potential, which can be drawn from, predictably, as needed. (And on those rare occasions when outages *do* occur, it's still nothing to lose sleep over. It's Amazon's problem; they'll deal with it and apologize profusely in the morning.)
 
 The lever system
 ----------------
@@ -21,7 +21,7 @@ Essentially hardware is now a **lever system**, where increased scalability dema
 
 I think there's a similar dream a-brewin' in the industry when it comes to people. I also think it's dead wrong. But let me explain.
 
-A couple of weeks ago, I read in the news that Apple [was assigning some OS X engineers to work on iOS](http://www.techspot.com/news/52134-rumor-ios-7-behind-schedule-os-x-109-engineers-moved-to-help.html) to help get the next version of the operating system back on schedule. It reminded me of a famous essay by Fred Brooks called [The Mythical Man Month](www.amazon.com/The-Mythical-Man-Month-Engineering-Anniversary/dp/0201835959), which is essentially a direct rebuttal of the notion that adding people to a software project speeds it up. Written in 1975 from experience on the development of [OS/360 at IBM](http://en.wikipedia.org/wiki/OS/360), the essay provides a compelling argument that adding bodies to a delayed software project *actually delays it further*. This is now known as **Brooks's Law**:
+A couple of weeks ago, I read in the news that Apple [was assigning some OS X engineers to work on iOS](http://www.techspot.com/news/52134-rumor-ios-7-behind-schedule-os-x-109-engineers-moved-to-help.html) to help get the next version of the mobile operating system back on schedule (apparently it was falling behind). It reminded me of a famous essay by Fred Brooks called [The Mythical Man Month](www.amazon.com/The-Mythical-Man-Month-Engineering-Anniversary/dp/0201835959), which is essentially a direct rebuttal of the notion that adding people to a software project speeds it up. Written in 1975 from experience on the development of [OS/360 at IBM](http://en.wikipedia.org/wiki/OS/360), the essay provides a compelling argument that adding bodies to a delayed software project *actually delays it further*. This is now known as **Brooks's Law**:
 
 > Adding manpower to a late software project makes it later.
 
@@ -38,7 +38,7 @@ Remember that "sea of computing potential" I described with hardware? This is wh
 The problem with viewing people as resources
 --------------------------------------------
 
-I recognize that to a certain extent, the strategies I just described make some sense for large companies with hundreds or thousands of employees. If you *know* developers are going to come and go, you want to minimize the cost you pay each time that happens. It's also good to give people as much mobility between projects as possible, not just for the company's good but for theirs as well: no one wants to feel *stuck* on a project.
+I recognize that to a certain extent, the strategies I just described make some sense for large companies with hundreds or thousands of employees. If you *know* developers are going to come and go--and [unless you're GitHub](https://twitter.com/holman/status/303576839132164097), you're kidding yourself to believe otherwise--you want to minimize the cost you pay each time that happens. It's also good to give people as much mobility between projects as possible, not just for the company's good but for theirs as well: no one wants to feel *stuck* on a project.
 
 But I still think there's a pretty big problem with this people-as-resources fantasy, and it impacts smaller teams most of all. Let me know if this sounds right to you: ambitious young entrepreneur has a great idea for a product, bends over backwards to recruit some of the best engineers she can find, then outlines her vision and asks the engineers to execute.
 
