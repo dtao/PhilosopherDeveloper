@@ -59,10 +59,7 @@ $yellow:     #ffe
 
     header
       h1
-        .title
-          font-size: $baseFontSize * 2
-        .date
-          font-size: $baseFontSize
+        font-size: $baseFontSize * 2
 
     section.content
       .footnotes
@@ -393,25 +390,25 @@ footer
     @include headingFont
     @include translucent(0.75)
 
-    display: block
+    display: inline-block
     position: absolute
     bottom: 0
-    left: 0
     right: 0
     height: 40px
     line-height: 40px
     padding: 0 10px
     background-color: black
-    color: white
+    color: darken($yellow, 10%)
     text-align: right
     text-decoration: none
 
     &:before
-      content: "Go to "
+      content: "Load "
+      color: white
 
     &:after
-      content: attr(href)
-      color: darken($yellow, 10%)
+      content: " in the main window"
+      color: white
 
     &:hover
       @include translucent(0.9)

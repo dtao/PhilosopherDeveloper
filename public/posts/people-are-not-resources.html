@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>People are not resources - The Philosopher Developer</title>
+    <meta charset='utf-8' />
+    <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+    <link href='/stylesheets/application.css' rel='stylesheet' />
+    <link href='/stylesheets/pygments.css' rel='stylesheet' />
+    <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
+    <script src='/javascripts/ga.js' type='text/javascript'></script>
+    <script src='/javascripts/shareThis.js' type='text/javascript'></script>
+    <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
+    <script src='/javascripts/main.js' type='text/javascript'></script>
+    
+  </head>
+  <body>
+    <header id='header'>
+      <h1>
+        <a href='/posts/people-are-not-resources.html'>People are not resources</a>
+      </h1>
+      <h2><a href="/">the philosopher developer</a></h2>
+    </header>
+    <article>
+  <header>
+    <h1>April 17, 2013</h1>
+    <div class='social'>
+      <span class='st_facebook_hcount' displayText='Facebook'></span>
+      <span class='st_googleplus_hcount' displayText='Google+'></span>
+      <span class='st_twitter_hcount' displayText='Tweet'></span>
+      <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+    </div>
+  </header>
+  <section class='content'>
+    <p>I never actually worked in an environment like this, but I’ve read enough articles on <a href="http://thedailywtf.com/">The Daily WTF</a> to have an image in my head of the old dusty, temperamental server that companies used to have back in the 90s and early 2000s.</p>
+
+<figure><img src="/images/ye-olde-server.jpg" alt="Ye olde server"><figcaption>Ye olde server</figcaption></figure>
+
+<p>Those were dark days, from what I hear—when your business was victimized at the whim of an unpredictable piece of hardware. If the power went out, or the hard drive failed (and they all do), your site went down. It was as simple as that.</p>
+
+<p>We live in a different era now, with PaaS and IaaS and all that cloudy good stuff. Your average tech-savvy business owner is going to know there’s no particularly good reason to run your own server anymore if you’re a small company. And if you’re one of the large companes providing these services like Amazon or Google, you have been on top of the hardware problem for a long time, with data centers distributed around the country (or the world) connected in a controllable and reliable way. It’s not an issue anymore.</p>
+
+<p>This is a dream come true, in many ways, for executives and architects and everyone else at or near the top of the corporate food chain. The last thing you want in a high-up role is to be embarrassed by a problem at the bottom, far below eye level. The infrastructures that exist now for tech companies abstract servers into basically a sea of computing potential, which can be drawn from, predictably, as needed. (And on those rare occasions when outages <em>do</em> occur, it’s still nothing to lose sleep over. It’s Amazon’s problem; they’ll deal with it and apologize profusely in the morning.)</p>
+
+<h2 id="the_lever_system_1">The lever system</h2>
+
+<p>Essentially hardware is now a <strong>lever system</strong>, where increased scalability demands call for sliding a lever up, at which point additional hardware is automatically provisioned and dedicated to storing your data, hosting your applications, etc. This is evident on sites like <a href="https://www.heroku.com/pricing">Heroku</a> and <a href="https://appharbor.com/pricing">AppHarbor</a>, which literally give you levers to adjust how much computing power you want.</p>
+
+<figure class="full-size"><img src="/images/heroku-levers.png" alt="Herokus sliders for web dynos and worker dynos"><figcaption>Herokus sliders for web dynos and worker dynos</figcaption></figure>
+
+<figure class="full-size"><img src="/images/appharbor-levers.png" alt="AppHarbors sliders for web workers and background workers"><figcaption>AppHarbors sliders for web workers and background workers</figcaption></figure>
+
+<p>I think there’s a similar dream a-brewin’ in the industry when it comes to people. I also think it’s dead wrong. But let me explain.</p>
+
+<p>A couple of weeks ago, I read in the news that Apple <a href="http://www.techspot.com/news/52134-rumor-ios-7-behind-schedule-os-x-109-engineers-moved-to-help.html">was assigning some OS X engineers to work on iOS</a> to help get the next version of the mobile operating system back on schedule (apparently it was falling behind). It reminded me of a famous essay by Fred Brooks called <a href="http://www.amazon.com/The-Mythical-Man-Month-Engineering-Anniversary/dp/0201835959">The Mythical Man Month</a>, which is essentially a direct rebuttal of the notion that adding people to a software project speeds it up. Written in 1975 from experience on the development of <a href="http://en.wikipedia.org/wiki/OS/360">OS/360 at IBM</a>, the essay provides a compelling argument that adding bodies to a delayed software project <em>actually delays it further</em>. This is now known as <strong>Brooks’s Law</strong>:</p>
+
+<blockquote>
+<p>Adding manpower to a late software project makes it later.</p>
+</blockquote>
+
+<p>It has amazed me, ever since reading Brooks’s essay, how almost universally it seems companies ignore this principle<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. They want <em>so badly</em> to be able to speed up software projects by adding engineers—to have greater control over their outcomes—that they’d rather believe Brooks’s Law is wrong, or pretend to have never heard of it, than take it seriously.</p>
+
+<figure><img src="/images/lalala.jpg" alt="I cant hear you!"><figcaption>I cant hear you!</figcaption></figure>
+
+<p>Because that’s the dream: <strong>companies want a lever system when it comes to people</strong>. Software project running behind schedule? Got cash to burn? No problem! Just push the <em>manpower</em> lever up another 50% or so, and the project will zip right along up to your desired velocity.</p>
+
+<p>A lot of what larger companies do (including Google) is meant to facilitate this dream. Companies employ software architects to design systems for engineers to build, like construction workers assembling a building according to a (real) architect’s vision. They set well-defined processes for software development. They choose approved tools and technologies. The goal of all this being to establish a baseline that applies to every engineer, so that anyone who understands this baseline can be easily allocated to any project within the company with minimal ramp-up costs. (I am reminded of tools like <a href="http://www.opscode.com/chef/">Chef</a> and <a href="https://puppetlabs.com/">Puppet</a> that serve a similar function with respect to servers: establishing a baseline configuration so that machines can be seamlessly allocated to provide greater capacity for a hosted application.)</p>
+
+<p>Remember that “sea of computing potential” I described with hardware? This is what many companies want with people, too. It’s why the terms “human resources” or “human capital” exist: the more human resources I stockpile, the more manpower I have to throw at any project that I want done quickly.</p>
+
+<h2 id="the_problem_with_viewing_people_as_resources_2">The problem with viewing people as resources</h2>
+
+<p>I recognize that to a certain extent, the strategies I just described make some sense for large companies with hundreds or thousands of employees. If you <em>know</em> developers are going to come and go—and <a href="https://twitter.com/holman/status/303576839132164097">unless you’re GitHub</a>, you’re kidding yourself to believe otherwise—you want to minimize the cost you pay each time that happens. It’s also good to give people as much mobility between projects as possible, not just for the company’s good but for theirs as well: no one wants to feel <em>stuck</em> on a project.</p>
+
+<p>But I still think there’s a pretty big problem with this people-as-resources fantasy, and it impacts smaller teams most of all. Whenever I hear startup founders lament being low on “engineering resources,” I can’t help but feel their perspective is tragically distorted.</p>
+
+<p>Startups traditionally seek out the best and brightest developers they can snag, and they’re often prepared to offer them substantial compensation (money, if they have funding, or equity) to do so. Most of the time, I believe this is a waste of money. Why? Because of this people-as-resources notion, which is about abstracting engineers into a sea of “engineering resources”–so that when the business needs to scale, it can push up on the recruiting lever, get those engineers in the door, and really start cranking out product features (or whatever).</p>
+
+<figure><img src="/images/conch-shell.jpg" alt="Summon the developers!"><figcaption>Summon the developers!</figcaption></figure>
+
+<p>To be honest: I actually do buy into <a href="http://www.slideshare.net/slideshow/embed_code/8469957">the whole 10x thing</a>: the best are 10x better than average. Which implies it’s worth paying a lot for the best people. So why is it a waste of money, again? Because for this abstraction to work—this idea that people are resources—indivudals need to be <em>equalized</em> somehow, so that adding and subtracting them from the “pool” has predictable results. And <strong>equalization by definition requires dragging the top down while lifting the bottom up</strong>. When you hire based on 10x but then establish policies based on the “resources” fantasy, you’re basically throwing money away.</p>
+
+<p>An interesting comparison I’d make here is to how Google famously uses commodity hardware in their data centers. At one point in history this seemed counterintuitive to a lot of people; but I think by now enough other companies have scaled to the extent that many have learned the same lesson: in terms of cost per CPU power, you get a lot more bang for your buck—more <em>value</em>–by buying cheap servers and scaling horizontally. If you want to do the same with people, you need to <a href="http://www.imdb.com/title/tt1210166/">Moneyball</a> it: seek the most under-valued individuals you can find, knowing they aren’t “star” players but confident that you’re equalization strategy will whip them into shape and netting your company another <a href="https://devcenter.heroku.com/articles/dynos#the-dyno-manifold">dyno to add to the manifold</a>.</p>
+
+<h2 id="which_is_it_going_to_be_3">Which is it going to be?</h2>
+
+<p>I suspect there are many who would argue with me on this point, insisting that hiring the best people still delivers good value because, proportionally, if someone is 10x average but I’m only paying 2x average, I’m actually coming out ahead. Of course, this does make sense mathematically; but I think it’s kind of missing the whole point of what I’m saying.</p>
+
+<p>If your goal is to get a good <em>value</em> out of someone, that essentially means you’re looking to under-compensate them. Maybe that means paying less than they deserve, maybe it means giving them less responsibility. This sets up the relationship from the very beginning in a bad direction. Either this person will catch on to the imbalance in the arrangement (you hired them because they’re smart, after all) and leave, or they’ll simply become complacent and start performing way below their potential—at which point, you’re not getting a good value anymore.</p>
+
+<figure><img src="/images/dilbert-life-suck.gif" alt="What happens to people treated like resources"><figcaption>What happens to people treated like resources</figcaption></figure>
+
+<p>So I think you need to pick one: either view people as <em>teammates</em> that you’re going to bring on for their creativity and their ideas in <em>addition</em> to their skills; or view them as resources and give up on going for the “best”, because you’ll just end up overpaying.</p>
+<div class="footnotes">
+<hr>
+<ol><li id="fn:1">
+<p>For this reason Brooks has lovingly referred to <em>The Mythical Man Month</em> as “the Bible of software engineering”: “everybody quotes it, some people read it, and a few people go by it.” <a href="#fnref:1" rev="footnote">↩</a></p>
+</li></ol>
+</div>
+  </section>
+  <section class='comments'>
+    <div id='disqus_thread'></div>
+    <script src='/javascripts/disqus.js' type='text/javascript'></script>
+    <noscript>
+      Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+    <a class='dsq-brlink' href='http://disqus.com'>
+      comments powered by
+      <span class='logo-disqus'>Disqus</span>
+    </a>
+  </section>
+</article>
+    <footer>
+      <ul class='menu'>
+        <li><a href="/posts">All Posts</a></li>
+        <li><a href="/about">About</a></li>
+        <li>
+          <a href='http://stackoverflow.com/users/105570' target='_blank'>
+            <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://github.com/dtao' target='_blank'>
+            <img alt='GitHub' src='/images/icons/github-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://twitter.com/dan_tao' target='_blank'>
+            <img alt='Twitter' src='/images/icons/twitter-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='http://feeds.feedburner.com/philosopherdeveloper'>
+            <img alt='RSS' src='/images/icons/rss-small.png' />
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

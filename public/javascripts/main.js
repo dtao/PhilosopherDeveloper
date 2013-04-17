@@ -36,7 +36,7 @@ $(document).ready(function() {
       var $dialog = $("<div>").addClass("dialog loading").appendTo($body);
       var $iframe = $("<iframe>").attr("src", href).appendTo($dialog);
       var $xLink  = $("<a>").addClass("close-dialog").appendTo($dialog);
-      var $goLink = $("<a>").addClass("link-away").attr("href", href).appendTo($dialog);
+      var $goLink = $("<a>").addClass("link-away").attr("href", href).text(href).appendTo($dialog);
 
       $iframe.one("load", function() {
         $dialog.removeClass("loading").addClass("finished");

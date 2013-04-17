@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>A boy can dream... - The Philosopher Developer</title>
+    <title>Paradoxes in the software world - The Philosopher Developer</title>
     <meta charset='utf-8' />
     <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
     <link href='/stylesheets/application.css' rel='stylesheet' />
@@ -16,13 +16,13 @@
   <body>
     <header id='header'>
       <h1>
-        <a href='/posts/boy-can-dream.html'>A boy can dream...</a>
+        <a href='/posts/paradoxes-in-the-software-world.html'>Paradoxes in the software world</a>
       </h1>
       <h2><a href="/">the philosopher developer</a></h2>
     </header>
     <article>
   <header>
-    <h1>February 24, 2011</h1>
+    <h1>April 15, 2013</h1>
     <div class='social'>
       <span class='st_facebook_hcount' displayText='Facebook'></span>
       <span class='st_googleplus_hcount' displayText='Google+'></span>
@@ -31,19 +31,19 @@
     </div>
   </header>
   <section class='content'>
-    <p>Well, I’ve finished an initial implementation of a <code>ConcurrentList&lt;T&gt;</code> data structure. It implements the <code>IList&lt;T&gt;</code> interface (partially—no <code>Insert</code>, <code>RemoveAt</code>, etc.–it is an append-only structure) and is both <strong>thread-safe</strong> and <strong>lock-free</strong>.</p>
+    <p>There are a lot of things I find counterintuitive in the world of software<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. For no particular reason, I decided I’d make a short list of them.</p>
 
-<p>(I also came up with a few different ways to resolve the <code>Count</code> issue mentioned in my previous post; what I’ve settled on for now is basically the most obvious and straightforward version.)</p>
+<h2 id="large_distributed_teams_use_centralized_version_control_and_vice_versa_1">Large, distributed teams use centralized version control and vice versa</h2>
 
-<p>The source code for the class itself is available to view in my GitHub repository here:</p>
+<p><em>Version control</em> (or VC) is an umbrella term for a whole category of software tools that provide a history of a code base and allow teams to collaborate and keep their work synchronized more easily. Non-developers are used to some form of this with things like “Track Changes” in Microsoft Word, the revision history in Google Docs, or more recent products like Dropbox and Box.net. The tools developers use are significantly more sophisticated and even have entire services (e.g., <a href="https://github.com/">GitHub</a>, <a href="https://bitbucket.org/">BitBucket</a>) built around them.</p>
 
-<p><a href="https://github.com/dtao/ConcurrentList"><strong>Check out the source code.</strong></a></p>
-
-<p>Now for the somewhat disheartening part: thus far, based on my own performance benchmarks, I see little evidence that this actually outperforms a simple <code>List&lt;T&gt;</code> with synchronized calls to <code>Add</code> (using, e.g., a <code>lock</code> statement). So that’s a bit disappointing. But I figured I’d share the source code, in case some hackers out there might be able to figure out how to make it better.</p>
-
-<p>Also, I feel like part of the issue I may be having is that it’s tough to really create a lot of thread contention on a puny little laptop with such a lightweight method (I’d wager <code>List&lt;T&gt;.Add</code> couldn’t be much more than 10 lines). So maybe if this could get tested on a 32-core server somewhere, the results would be more noteworthy. I don’t know!</p>
-
-<p>Anyway, at least it passes the unit tests. That’s got to be worth something, right?</p>
+<p>The original VC systems followed a client/server model, where a central server would host the entire history of a team’s code base (repository) and individual team members download changes to their local clients, which are essentially up-to-date snapshots. <a href="http://subversion.apache.org/">Subversion</a> is probably the most popular existing VC system within this lineage. A newer breed of systems is known as distributed version control, which—as the name implies—is based on a decentralized model where every contributor to a project maintains a full copy of the entire repository. The most popular distributed system is Git, though Mercurial and Bazaar are also popular options.</p>
+<iframe src="http://charter.herokuapp.com/embed/KBOKGNE6" style="height: 450px; width: 600px;"></iframe><div class="footnotes">
+<hr>
+<ol><li id="fn:1">
+<p>After writing that sentence I felt very strongly that I was writing the introduction to a 5th grade essay. <a href="#fnref:1" rev="footnote">↩</a></p>
+</li></ol>
+</div>
   </section>
   <section class='comments'>
     <div id='disqus_thread'></div>

@@ -9,7 +9,9 @@
     <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
     <script src='/javascripts/ga.js' type='text/javascript'></script>
     <script src='/javascripts/shareThis.js' type='text/javascript'></script>
-    <script type='text/javascript' src='/javascripts/jquery-1.9.1.min.js'></script>
+    <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
+    <script src='/javascripts/main.js' type='text/javascript'></script>
+    
     <script type='text/javascript' src='/javascripts/posts.js'></script>
   </head>
   <body>
@@ -18,6 +20,31 @@
       <h2>half-sound logic, half-decent code</h2>
     </header>
     <article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/boy-can-dream.html'>A boy can dream...</a>
+      </span>
+      <span class='date'>February 24, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>Well, I’ve finished an initial implementation of a <code>ConcurrentList&lt;T&gt;</code> data structure. It implements the <code>IList&lt;T&gt;</code> interface (partially—no <code>Insert</code>, <code>RemoveAt</code>, etc.–it is an append-only structure) and is both <strong>thread-safe</strong> and <strong>lock-free</strong>.</p>
+
+<p>(I also came up with a few different ways to resolve the <code>Count</code> issue mentioned in my previous post; what I’ve settled on for now is basically the most obvious and straightforward version.)</p>
+
+<p>The source code for the class itself is available to view in my GitHub repository here:</p>
+
+<p><a href="https://github.com/dtao/ConcurrentList"><strong>Check out the source code.</strong></a></p>
+
+<p>Now for the somewhat disheartening part: thus far, based on my own performance benchmarks, I see little evidence that this actually outperforms a simple <code>List&lt;T&gt;</code> with synchronized calls to <code>Add</code> (using, e.g., a <code>lock</code> statement). So that’s a bit disappointing. But I figured I’d share the source code, in case some hackers out there might be able to figure out how to make it better.</p>
+
+<p>Also, I feel like part of the issue I may be having is that it’s tough to really create a lot of thread contention on a puny little laptop with such a lightweight method (I’d wager <code>List&lt;T&gt;.Add</code> couldn’t be much more than 10 lines). So maybe if this could get tested on a 32-core server somewhere, the results would be more noteworthy. I don’t know!</p>
+
+<p>Anyway, at least it passes the unit tests. That’s got to be worth something, right?</p>
+  </section>
+</article>
+<article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>

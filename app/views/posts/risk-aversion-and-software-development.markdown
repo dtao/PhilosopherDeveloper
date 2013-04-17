@@ -31,4 +31,7 @@ I'm not saying don't be careful. Of course you could easily take this argument t
 
 [^minor-wound]: Don't get me wrong; it was actually a very bad cut that took nearly a month to heal. But the fact remains that it *did* heal. It isn't like I lost a limb. So I maintain that, relatively speaking, it was quite minor.
 
-[^charter]: Hey by the way, that chart was made using a tool called [Charter](http://charter.herokuapp.com), *another* one of my open source projects! (And Charter itself uses [HighTables](http://dtao.github.io/HighTables/)--that's what they call dogfooding, my friends.)
+[^charter]: Hey by the way, that chart was made using a tool called [Charter][1]{: .new-window }, *another* one of my open source projects! (And Charter itself uses [HighTables][2]{: .new-window }--that's what they call dogfooding, my friends.)
+
+[1]: http://charter.herokuapp.com/
+[2]: http://dtao.github.io/HighTables/

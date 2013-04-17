@@ -21,7 +21,7 @@ Essentially hardware is now a **lever system**, where increased scalability dema
 
 I think there's a similar dream a-brewin' in the industry when it comes to people. I also think it's dead wrong. But let me explain.
 
-A couple of weeks ago, I read in the news that Apple [was assigning some OS X engineers to work on iOS](http://www.techspot.com/news/52134-rumor-ios-7-behind-schedule-os-x-109-engineers-moved-to-help.html) to help get the next version of the mobile operating system back on schedule (apparently it was falling behind). It reminded me of a famous essay by Fred Brooks called [The Mythical Man Month](www.amazon.com/The-Mythical-Man-Month-Engineering-Anniversary/dp/0201835959), which is essentially a direct rebuttal of the notion that adding people to a software project speeds it up. Written in 1975 from experience on the development of [OS/360 at IBM](http://en.wikipedia.org/wiki/OS/360), the essay provides a compelling argument that adding bodies to a delayed software project *actually delays it further*. This is now known as **Brooks's Law**:
+A couple of weeks ago, I read in the news that Apple [was assigning some OS X engineers to work on iOS](http://www.techspot.com/news/52134-rumor-ios-7-behind-schedule-os-x-109-engineers-moved-to-help.html) to help get the next version of the mobile operating system back on schedule (apparently it was falling behind). It reminded me of a famous essay by Fred Brooks called [The Mythical Man Month](http://www.amazon.com/The-Mythical-Man-Month-Engineering-Anniversary/dp/0201835959), which is essentially a direct rebuttal of the notion that adding people to a software project speeds it up. Written in 1975 from experience on the development of [OS/360 at IBM](http://en.wikipedia.org/wiki/OS/360), the essay provides a compelling argument that adding bodies to a delayed software project *actually delays it further*. This is now known as **Brooks's Law**:
 
 > Adding manpower to a late software project makes it later.
 
@@ -40,10 +40,25 @@ The problem with viewing people as resources
 
 I recognize that to a certain extent, the strategies I just described make some sense for large companies with hundreds or thousands of employees. If you *know* developers are going to come and go--and [unless you're GitHub](https://twitter.com/holman/status/303576839132164097), you're kidding yourself to believe otherwise--you want to minimize the cost you pay each time that happens. It's also good to give people as much mobility between projects as possible, not just for the company's good but for theirs as well: no one wants to feel *stuck* on a project.
 
-But I still think there's a pretty big problem with this people-as-resources fantasy, and it impacts smaller teams most of all. Let me know if this sounds right to you: ambitious young entrepreneur has a great idea for a product, bends over backwards to recruit some of the best engineers she can find, then outlines her vision and asks the engineers to execute.
+But I still think there's a pretty big problem with this people-as-resources fantasy, and it impacts smaller teams most of all. Whenever I hear startup founders lament being low on "engineering resources," I can't help but feel their perspective is tragically distorted.
 
-Or how about this one: young engineer catches the attention of a few tech companies, gets recruited, goes through interviews, then finally gets to negotiating salary and ends up with lower pay than he'd like.
+Startups traditionally seek out the best and brightest developers they can snag, and they're often prepared to offer them substantial compensation (money, if they have funding, or equity) to do so. Most of the time, I believe this is a waste of money. Why? Because of this people-as-resources notion, which is about abstracting engineers into a sea of "engineering resources"--so that when the business needs to scale, it can push up on the recruiting lever, get those engineers in the door, and really start cranking out product features (or whatever).
 
+![Summon the developers!](/images/conch-shell.jpg)
 
+To be honest: I actually do buy into [the whole 10x thing](http://www.slideshare.net/slideshow/embed_code/8469957): the best are 10x better than average. Which implies it's worth paying a lot for the best people. So why is it a waste of money, again? Because for this abstraction to work--this idea that people are resources--indivudals need to be *equalized* somehow, so that adding and subtracting them from the "pool" has predictable results. And **equalization by definition requires dragging the top down while lifting the bottom up**. When you hire based on 10x but then establish policies based on the "resources" fantasy, you're basically throwing money away.
+
+An interesting comparison I'd make here is to how Google famously uses commodity hardware in their data centers. At one point in history this seemed counterintuitive to a lot of people; but I think by now enough other companies have scaled to the extent that many have learned the same lesson: in terms of cost per CPU power, you get a lot more bang for your buck--more *value*--by buying cheap servers and scaling horizontally. If you want to do the same with people, you need to [Moneyball](http://www.imdb.com/title/tt1210166/) it: seek the most under-valued individuals you can find, knowing they aren't "star" players but confident that you're equalization strategy will whip them into shape and netting your company another [dyno to add to the manifold](https://devcenter.heroku.com/articles/dynos#the-dyno-manifold).
+
+Which is it going to be?
+------------------------
+
+I suspect there are many who would argue with me on this point, insisting that hiring the best people still delivers good value because, proportionally, if someone is 10x average but I'm only paying 2x average, I'm actually coming out ahead. Of course, this does make sense mathematically; but I think it's kind of missing the whole point of what I'm saying.
+
+If your goal is to get a good *value* out of someone, that essentially means you're looking to under-compensate them. Maybe that means paying less than they deserve, maybe it means giving them less responsibility. This sets up the relationship from the very beginning in a bad direction. Either this person will catch on to the imbalance in the arrangement (you hired them because they're smart, after all) and leave, or they'll simply become complacent and start performing way below their potential--at which point, you're not getting a good value anymore.
+
+![What happens to people treated like resources](/images/dilbert-life-suck.gif)
+
+So I think you need to pick one: either view people as *teammates* that you're going to bring on for their creativity and their ideas in *addition* to their skills; or view them as resources and give up on going for the "best", because you'll just end up overpaying.
 
 [^bible-of-software-engineering]: For this reason Brooks has lovingly referred to *The Mythical Man Month* as "the Bible of software engineering": "everybody quotes it, some people read it, and a few people go by it."
