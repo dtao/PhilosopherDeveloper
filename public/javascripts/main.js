@@ -33,6 +33,12 @@ $(document).ready(function() {
     }
 
     $anchor.click(function() {
+      // Skip this whole iframe silliness if the window is too small for it to be
+      // sensible anyway.
+      if (window.innerWidth < 1024 || window.innerHeight < 768) {
+        return;
+      }
+
       var $dialog = $("<div>").addClass("dialog loading").appendTo($body);
       var $iframe = $("<iframe>").attr("src", href).appendTo($dialog);
       var $xLink  = $("<a>").addClass("close-dialog").appendTo($dialog);
