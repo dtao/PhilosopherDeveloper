@@ -23,6 +23,51 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/being-agile-with-continuous-integration.html'>Being agile with continuous integration</a>
+      </span>
+      <span class='date'>January 27, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>Something’s been stirring around in my head lately, and it’s going to seem somewhat heretical to those firmly planted in a particular school of thought. Essentially I’ve been questioning the way continuous integration is done on some of the software projects I’ve seen, at ThoughtWorks and elsewhere.</p>
+    
+    <p>More broadly, I guess my skepticism isn’t specifically about continuous integration, but rather about test-driven development with TDD and, more importantly, BDD (i.e., with a language like Gherkin/Cucumber for defining feature requirements and a UI automation tool such as Selenium for driving acceptance tests).</p>
+    
+    <p>To be clear, I view TDD and BDD as extremely useful techniques; and CI is a powerful tool to maximize their effectiveness. I would even accept that we are better off using a test-driven approach for 100% of development than we would be if we used no TDD. But that isn’t the same as saying 100% TDD is optimal or that we should get started with BDD immediately on every project. Like most everything else in life, I believe it is ultimately a matter of achieving the right balance, which requires good judgment.</p>
+    
+    <p>As a bit of background, I have had conversations with colleagues who have agreed with me that sometimes testing is not necessary or appropriate. The attitude I have picked up as a general rule of thumb is that for spiking out software prototypes—throwaway versions that we acknowledge in advance will probably differ dramatically from any actual release—we can often move faster by coding features without testing them. TDD might still be useful in this context, however, as one of its benefits is that it assists the developer in thinking through the implementation of a tricky piece of logic. But its usefulness here is actually in <em>increasing</em> development speed (which is important for a prototype), not in <span class="post-link">... (<a href="/posts/being-agile-with-continuous-integration.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/ghost-clicks-in-jquery-mobile.html'>Ghost clicks in jQuery Mobile</a>
+      </span>
+      <span class='date'>November 01, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>I know it’s been a long time since I’ve written (<em>especially</em> for someone who’s repeatedly claimed he will write daily posts). I’ve got some more substantial ideas to discuss in the near future (honest!)<strike>, but this particular post is going to be a short one</strike>. [Correction: this post ended up being kinda long.]</p>
+
+<p>On my current project we’re in the process of wrapping up a mobile website we built using <a href="http://jquerymobile.com/">jQuery Mobile</a>. One issue we encountered during development was that on certain pages, a strange “ghost click” behavior was observed: the user would click a button, the page would change, and then a button on the destination page (positioned at the same location as the original button) would seem to be automatically clicked as if the user had clicked twice—or as if a <em>ghost</em> had clicked it.</p>
+
+<p>It turns out that this is a known issue for mobile web browsers, which <a href="http://code.google.com/mobile/articles/fast_buttons.html">Google wrote about back in January</a>. In the article, Ryan Fioravanti explains that most mobile browsers introduce a delay of ~300 ms before every <code>click</code> event, for the reason that they want to account for the possibility that the user might be double-clicking to zoom in on the page. So what can happen on a mobile web project this:</p>
+
+<ul>
+<li>Someone notices that the UI seems sluggish. In particular, clicking on buttons feels very slow.</li>
+
+<li>A developer looks into the problem and finds that the issue can be mitigated by handling an event other than <code>click</code>, such as <code>touchstart</code> (jQuery Mobile has a <code>vclick</code> event).</li>
+
+<li>Now that the clickable element in question handles a non-<code>click</code> event, when it is clicked, <strong>there is still a <code>click</code> event waiting to be triggered within the next ~300 ms</strong>; and so if a page <span class="post-link">... (<a href="/posts/ghost-clicks-in-jquery-mobile.html">read the full post</a>)</span>
+</li>
+</ul>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/sometimes-the-best-strategy-is-to-retreat.html'>Sometimes the best strategy is to retreat</a>
       </span>
       <span class='date'>February 28, 2011</span>
@@ -118,42 +163,9 @@
 <p>I was <em>thinking</em> you probably couldn’t do it with a simple array of arrays (e.g., a <code>List&lt;T[]&gt;</code>) simply because then you’d eventually run into the problem of having to resize the “outer” array eventually. But then it dawned on me: <strong>assuming <code>Count</code> is bounded</strong> <span class="post-link">... (<a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">read the full post</a>)</span></p>
   </section>
 </article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/terminating-condition.html'>Resolution: the need for a terminating condition</a>
-      </span>
-      <span class='date'>January 15, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>For reasons not relevant to this blog, I have been thinking a lot lately about personal conflicts and how they evolve. In particular, my mind has been concentrating a great deal on the scenario of conflicts <em>escalating</em>: for example, the phenomenon where two people are having a regular conversation, and this somehow leads to a disagreement, and eventually the situation develops into an all-out shouting match with both parties so angry with each other that it’s often baffling to recall how the conversation began.</p>
-
-<p>This can happen over a short or a long period of <strong>time</strong>. It can take place within a single ten-minute conversation; it can also span days, months, even <em>years</em> (in this case it might be the cause of a friendship’s disintegration). It can also occur on a small or large <strong>scale</strong>. It might occur between friends, families, communities, even <em>nations</em> (throughout history, what war has not started as a smaller disagreement that eventually grew to something much larger?). I think we’ve all seen it happen, sadly, probably numerous times.</p>
-
-<p>As I am a software developer, I often perceive parallels between <em>real-world phenomena</em> and <em>software concepts</em>. What I want to do right now is to discuss one such parallel: the similarity between <strong>escalating conflict</strong> (the real-world phenomenon) and <strong>mutual recursion</strong> (the software concept).</p>
-
-<p><strong>A note to those readers who aren’t programmers: I will be including some source code in this post, but don’t stop reading! I promise that this discussion is of a general nature and not strictly programming-related.</strong></p>
-
-<p>For those who can read it, consider the following code snippet:</p>
-
-<div class="highlight"><pre><span class="k">void</span> <span class="nf">Provoke</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"Provoke!"</span><span class="p">);</span>
-    <span class="n">Respond</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="k">void</span> <span class="nf">Respond</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"Respond!"</span><span class="p">);</span>
-    <span class="n">Provoke</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>If I were to ask you, <em>What does the above code do?</em>, an initial response might be that <span class="post-link">... (<a href="/posts/terminating-condition.html">read the full post</a>)</span></p>
-  </section>
-</article>
+<div class='next-page'>
+  <a href='/index6.html'>View older posts</a>
+</div>
     <footer>
       <ul class='menu'>
         <li><a href="/posts">All Posts</a></li>

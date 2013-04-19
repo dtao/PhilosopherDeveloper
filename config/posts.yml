@@ -143,6 +143,16 @@ am-i-being-obnoxious:
   title: Am I being obnoxious?
   published: true
 
+being-agile-with-continuous-integration:
+  date: 2012-01-27
+  title: Being agile with continuous integration
+  published: true
+
+ghost-clicks-in-jquery-mobile:
+  date: 2011-11-01
+  title: Ghost clicks in jQuery Mobile
+  published: true
+
 terminating-condition:
   date: 2011-01-15
   title: "Resolution: the need for a terminating condition"
