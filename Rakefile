@@ -20,6 +20,12 @@ module Sass::Script::Functions
   declare :site_root, :args => []
 end
 
+def measure(description, &block)
+  print "#{description}... "; STDOUT.flush
+  measurement = Benchmark.measure(&block)
+  puts "took #{'%0.2f' % measurement.total} seconds."
+end
+
 def read_file(*args)
   File.read(File.join(File.dirname(__FILE__), *args))
 end
@@ -159,49 +165,56 @@ namespace :compile do
       Rake::Task["compile:rss"].invoke()
     end
 
-    puts "Finished in #{benchmark.total} seconds."
+    puts "Finished in #{'%0.2f' % benchmark.total} seconds."
   end
 
   desc "Compile static website"
   task :html do
     Post.load_all(File.join(File.dirname(__FILE__), "config", "posts.yml"))
-    Post.each { |post| compile_post(post) }
 
-    pages = Post.all.each_slice(5).to_a
-    pages.each_with_index do |posts, i|
-      compile_index(posts, i,  (i < pages.count - 1) ? i + 1 : nil)
+    measure("Compiling posts") do
+      Post.each { |post| compile_post(post) }
     end
 
-    compile_about()
-    compile_posts_index()
-    compile_stylesheets()
-    update_readme()
+    measure("Compiling front page") do
+      pages = Post.all.each_slice(5).to_a
+      pages.each_with_index do |posts, i|
+        compile_index(posts, i,  (i < pages.count - 1) ? i + 1 : nil)
+      end
+    end
+
+    measure("Compiling about page") { compile_about() }
+    measure("Compiling posts index") { compile_posts_index() }
+    measure("Compiling stylesheets") { compile_stylesheets() }
+    measure("Updating README") { update_readme() }
   end
 
   desc "Compile RSS feed"
   task :rss do
-    # Basically stolen from http://recipes.sinatrarb.com/p/views/rss
-    rss = build_xml do |xml|
-      xml.instruct! :xml, :version => "1.0"
-      xml.rss :version => "2.0" do
-        xml.channel do
-          xml.title "The Philosopher Developer"
-          xml.description "Dan Tao's blog, The Philosopher Developer"
-          xml.link "http://philosopherdeveloper.com/"
+    measure("Compiling RSS") do
+      # Basically stolen from http://recipes.sinatrarb.com/p/views/rss
+      rss = build_xml do |xml|
+        xml.instruct! :xml, :version => "1.0"
+        xml.rss :version => "2.0" do
+          xml.channel do
+            xml.title "The Philosopher Developer"
+            xml.description "Dan Tao's blog, The Philosopher Developer"
+            xml.link "http://philosopherdeveloper.com/"
 
-          Post.all.take(10).each do |post|
-            xml.item do
-              xml.title post.title
-              xml.link "http://philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
-              xml.description { xml.cdata!(post.to_html(:feed => true)) }
-              xml.pubDate post.date.rfc822()
-              xml.guid "http://philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
+            Post.all.take(10).each do |post|
+              xml.item do
+                xml.title post.title
+                xml.link "http://philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
+                xml.description { xml.cdata!(post.to_html(:feed => true)) }
+                xml.pubDate post.date.rfc822()
+                xml.guid "http://philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
+              end
             end
           end
         end
       end
-    end
 
-    write_file("public", "feedburner.xml") { rss }
+      write_file("public", "feedburner.xml") { rss }
+    end
   end
 end
