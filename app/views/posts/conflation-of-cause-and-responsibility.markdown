@@ -1,11 +1,3 @@
-1. Thinking a law needs a lawmaker
-2. General rule we have about agency as a fundamental cause
-  ex: ?
-3. Connection to belief that we have free will
-4. Natural association between responsibility and cause
-5. Suggestion that these things might be separate
-  ex: car part
-
 My wife told me recently about a conversation she had with a coworker regarding morality and religion. It was essentially a disagreement about where the concepts of *good* and *evil* come from. They both believe rather strongly that these are real things; but my wife's coworker, being a Christian, believes that good and evil are based on a supernatural reality (God), whereas my wife views them as notions that evolved along with our species and helped us to form prosperous societies.
 
 One thing that got me thinking is a point that my wife's coworker made in support of his view. I am probably not doing it justice, but from what I understand he basically said this. If we accept the existence of good and evil, then we must acknowledge that it had to come from somewhere. "A law needs a lawmaker" was the way he put it.

@@ -123,11 +123,6 @@ trick-to-good-ballpark-estimates:
   title: The trick to good ballpark estimates
   published: true
 
-am-i-being-obnoxious:
-  date: 2012-02-02
-  title: Am I being obnoxious?
-  published: false
-
 sometimes-the-best-strategy-is-to-retreat:
   date: 2011-02-28
   title: Sometimes the best strategy is to retreat
@@ -141,6 +136,11 @@ boy-can-dream:
 how-to-build-a-thread-safe-lock-free-resizable-array:
   date: 2011-02-23
   title: How to build a thread-safe lock-free resizable "array"
+  published: true
+
+am-i-being-obnoxious:
+  date: 2012-01-31
+  title: Am I being obnoxious?
   published: true
 
 terminating-condition:

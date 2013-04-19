@@ -150,48 +150,25 @@ class_eval
   <header>
     <h1>
       <span class='title'>
-        <a href='/posts/sometimes-the-best-strategy-is-to-retreat.html'>Sometimes the best strategy is to retreat</a>
+        <a href='/posts/am-i-being-obnoxious.html'>Am I being obnoxious?</a>
       </span>
-      <span class='date'>February 28, 2011</span>
+      <span class='date'>January 31, 2012</span>
     </h1>
   </header>
   <section class='content'>
-    <p>I have a few remarks to make about <a href="http://dtao.github.com/ConcurrentList/">my <code>ConcurrentList&lt;T&gt;</code> class</a>, which I have written about a <a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">couple</a> of <a href="/posts/boy-can-dream.html">times</a> already.</p>
-
-<p><em>What, are you “retreating” from your concurrent list idea?</em> In a way, yes. Let me explain. From the beginning, my concept of the usefulness of a lock-free <code>IList&lt;T&gt;</code> implementation was that it would scale better than using a <code>List&lt;T&gt;</code> plus <code>lock</code> statements by eliminating contention when many threads are accessing the list concurrently.</p>
-
-<p>Is this actually true? Accessing the list <code>how</code>?</p>
-
-<p>Since a concurrent implementation of <code>Insert</code>, <code>RemoveAt</code> etc. is not supported in <code>ConcurrentList&lt;T&gt;</code>, there are really only a few operations that need to be considered:</p>
-
-<ul>
-<li>Getting/setting an item at a specified index</li>
-
-<li>Adding to the list</li>
-
-<li>Iterating over the list</li>
-</ul><p>Critically, I think the assumption is that one would need a lock-free data structure to optimize the scenario where multiple threads may be <em>reading</em> from the list (via accessing items at random indexes) while one or more other threads are <em>adding</em> to it. <strong>I actually don’t think you need a lock-free data structure for this at all.</strong></p>
-
-<p>Here’s the thing: if you’ve got a <code>List&lt;T&gt;</code>, and you synchronize all calls to <code>Add</code> with, e.g., a <code>lock</code> statement, <strong>you don’t need to also synchronize reads</strong>. They will <em>always</em> be thread-safe. Accessing an element at an index of a <code>List&lt;T&gt;</code> that is <em>only</em> growing with calls to <code>Add</code> <em>will</em> work from multiple threads. If you are skeptical, consider what actually happens when <code>Add</code> is called (<strong>warning: reliance upon specific implementation details ahead!</strong>):</p>
-
-<ol>
-<li>
-<p>The <code>List&lt;T&gt;</code> gets the next available index in its internal array.</p>
-</li>
-
-<li>
-<p>If the index is beyond the end of the array:</p>
-
-<ol>
-<li>A new array is allocated.</li>
-
-<li>The elements of the current array are copied over.</li>
-
-<li>A reference to this new <span class="post-link">... (<a href="/posts/sometimes-the-best-strategy-is-to-retreat.html">read the full post</a>)</span>
-</li>
-</ol>
-</li>
-</ol>
+    <p>I’ve noticed I tend to have two conflicting inclinations in a lot of day-to-day situations at work:</p>
+    
+    <ol>
+    <li>I have a lot of opinions about how things could be done better</li>
+    
+    <li>I strongly believe that in order to effect change, it’s important not to turn people against you</li>
+    </ol><p>The latter seems like a no-brainer, and yet it frequently gets in the way of the former.</p>
+    
+    <p>For example, I often participate in meetings during which the discussion becomes derailed on a side tangent, or the group loses focus making jokes or telling stories. Sometimes one-on-one dialogues emerge while the rest of the room sits quietly, waiting politely for the two individuals who are monopolizing the meeting to check themselves. Invariably, <em>after</em> meetings such as this there are grumblings amongst a few of the participants about how unnecessarily long and pointless the meeting was. (Though I’m not proud of it, I am generally a part of this group.)</p>
+    
+    <p>Why should this happen? I ask myself this on a regular basis. It seems that if not one but <em>multiple</em> people are aware that the meeting is veering off track, or that it is somehow not running effectively, surely someone ought to speak up. But no one does, and it’s because of the second point above. Speaking for myself, at least, I don’t want to disrupt the flow of things just to voice my discontent at how the conversation is progressing. I could do more damage than good. People might get defensive. I could inadvertently harm team morale. Besides, just because <em>I</em> am not engaged in the conversation, that doesn’t mean it’s a waste of <em>everyone’s</em> time.</p>
+    
+    <p>Of course, these fears reflect a risk-averse attitude that is perhaps not particularly beneficial to whatever project I’m on. In general, I do think it’s valuable to ask <span class="post-link">... (<a href="/posts/am-i-being-obnoxious.html">read the full post</a>)</span></p>
   </section>
 </article>
 <div class='next-page'>
