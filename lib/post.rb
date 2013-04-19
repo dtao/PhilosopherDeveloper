@@ -30,7 +30,16 @@ class Post
       end
 
       # Order from newest to oldest.
-      all_posts.sort { |x, y| y.date.to_time <=> x.date.to_time }.freeze
+      all_posts.sort! { |x, y| y.date.to_time <=> x.date.to_time }
+
+      # Assign 'next' and 'previous' for forward/backward links.
+      all_posts.each_with_index do |post, i|
+        post.previous = all_posts[i + 1] if i + 1 < all_posts.count
+        post.next = all_posts[i - 1] if i - 1 >= 0
+      end
+
+      # Make the result immutable (why not?).
+      all_posts.freeze
     end
 
     @@table ||= @@posts.inject({}) do |hash, post|
@@ -92,7 +101,7 @@ class Post
   end
 
   attr_reader :identifier, :date, :title, :published
-  attr_accessor :include_social_links, :allow_comments
+  attr_accessor :include_social_links, :allow_comments, :previous, :next
 
   def comments
     Comment.all(:post_identifier => self.identifier)

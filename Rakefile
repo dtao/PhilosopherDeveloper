@@ -162,6 +162,7 @@ namespace :compile do
   task :all do
     benchmark = Benchmark.measure do
       Rake::Task["compile:html"].invoke()
+      Rake::Task["compile:css"].invoke()
       Rake::Task["compile:rss"].invoke()
     end
 
@@ -185,8 +186,12 @@ namespace :compile do
 
     measure("Compiling about page") { compile_about() }
     measure("Compiling posts index") { compile_posts_index() }
-    measure("Compiling stylesheets") { compile_stylesheets() }
     measure("Updating README") { update_readme() }
+  end
+
+  desc "Compile CSS"
+  task :css do
+    measure("Compiling stylesheets") { compile_stylesheets() }
   end
 
   desc "Compile RSS feed"

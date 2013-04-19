@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>How I discovered a bug in the C# compiler, part 2 - The Philosopher Developer</title>
+    <meta charset='utf-8' />
+    <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+    <link href='/stylesheets/application.css' rel='stylesheet' />
+    <link href='/stylesheets/pygments.css' rel='stylesheet' />
+    <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
+    <script src='/javascripts/ga.js' type='text/javascript'></script>
+    <script src='/javascripts/shareThis.js' type='text/javascript'></script>
+    <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
+    <script src='/javascripts/main.js' type='text/javascript'></script>
+    
+  </head>
+  <body>
+    <header id='header'>
+      <h1>
+        <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compile-part-2.html'>How I discovered a bug in the C# compiler, part 2</a>
+      </h1>
+      <h2><a href="/">the philosopher developer</a></h2>
+    </header>
+    <article>
+  <header>
+    <h1>April 03, 2011</h1>
+    <div class='social'>
+      <span class='st_facebook_hcount' displayText='Facebook'></span>
+      <span class='st_googleplus_hcount' displayText='Google+'></span>
+      <span class='st_twitter_hcount' displayText='Tweet'></span>
+      <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+    </div>
+  </header>
+  <section class='content'>
+    <p>This post continues from where <a href="http://philosopherdeveloper.wordpress.com/2011/03/31/how-i-discovered-a-bug-in-the-c-compiler-part-1/">my last one</a> left off; but don’t worry—I swear I’ll make this one more less rambling and more comprehensible. And rest assured that I will actually get to the explanation this time!</p>
+
+<p>So where did we leave off? We witnessed some truly bizarre behavior of a <strong>mutable value type</strong> within a <strong>using statement</strong> which also happens to include a <strong>closure</strong>. What does this look like?</p>
+
+<p>How about instead of using a custom value type to illustrate, this time I’ll show you what I mean with a type straight from the BCL itself (meaning, this guy was written by Microsoft folks, so you know it’s not just something weird about the way <em>I</em> did things):</p>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span> <span class="p">};</span>
+
+<span class="c1">// Criterion 1: within a using statement...</span>
+<span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">e</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="c1">// Criterion 2: ...which includes a closure...</span>
+    <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">closure</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+    
+    <span class="c1">// Criterion 3: ...a mutable value type...</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><strong>What do you think the above program will print?</strong></p>
+
+<p>Well, if you were paying <em>attention</em> to my last post (and if not—honestly, I totally understand), you’d know the answer already. The above program outputs:</p>
+
+<pre><code>0
+0
+0
+0
+0</code></pre>
+
+<p>…and on and on, ad infinitum.</p>
+
+<p>Remember, this happens <em>specifically</em> when all three of the above criteria (reiterated in the code comments) are met. It does <em>not</em> happen when only one or two of those criteria are met.</p>
+
+<p>Now let’s get to the bottom of this. In order to do so, there are a few puzzle pieces we need to understand.</p>
+
+<h2 id="puzzle_piece_1_how_does_the_c_compiler_implement_closures_1">Puzzle Piece #1: How does the C# compiler implement closures?</h2>
+
+<p>This one’s a head-scratcher for a lot of C# developers who’ve never really looked into the inner workings of closures. I’d say it’s right up there with <a href="http://msdn.microsoft.com/en-us/library/dscyy5s0.aspx">iterator blocks</a> when it comes to features that many .NET developers regard as “magical”; unlike, say, <code>foreach</code> or <code>using</code>, it isn’t immediately <em>obvious</em> how such a feature could be built.</p>
+
+<p>Well, this is how it works. Say I have a piece of code with a closure like this:</p>
+
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+
+<span class="n">Action</span> <span class="n">incrementX</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">x</span> <span class="p">+=</span> <span class="m">1</span><span class="p">;</span>
+
+<span class="n">incrementX</span><span class="p">();</span>
+<span class="n">incrementX</span><span class="p">();</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</pre></div>
+
+<p>As you can probably guess, the above code prints <code>2</code> to the console. How does this work? How does <code>incrementX</code> actually affect the value of <code>x</code>? If you’re not scratching your head over this, you probably should be (unless you already know how closures work, in which case, you can just skip right ahead to the next section)! After all, suppose instead of using a closure, I used a method group:</p>
+
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+
+<span class="n">Action</span> <span class="n">incrementX</span> <span class="p">=</span> <span class="n">IncrementX</span><span class="p">;</span>
+
+<span class="n">incrementX</span><span class="p">();</span>
+<span class="n">incrementX</span><span class="p">();</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+</pre></div>
+
+<p>Now ask yourself: is there <strong>any conceivable way</strong> that this slightly modified version of the first code snippet could do the same thing? <strong>No</strong>, absolutely not! No external method <code>IncrementX</code> could access the <strong>local variable</strong> <code>x</code> and modify its value (without taking <code>x</code> as a <code>ref</code> or <code>out</code> parameter, that is); so how does the <em>closure</em> do it?</p>
+
+<p>The answer is that the C# compiler <strong>transforms</strong> the first code snippet in a very clever way, by “lifting” the variable <code>x</code> into a <strong>field</strong> of a <strong>compiler-generated type</strong>, like so:</p>
+
+<div class="highlight"><pre><span class="c1">// This is just an example; in reality the compiler would choose a much more</span>
+<span class="c1">// strange-looking name.</span>
+<span class="k">class</span> <span class="nc">IncrementXType</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">IncrementX</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">x</span> <span class="p">+=</span> <span class="m">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ...elsewhere</span>
+<span class="kt">var</span> <span class="n">obj</span> <span class="p">=</span> <span class="k">new</span> <span class="n">IncrementXType</span><span class="p">();</span>
+
+<span class="n">Action</span> <span class="n">incrementX</span> <span class="p">=</span> <span class="n">obj</span><span class="p">.</span><span class="n">IncrementX</span><span class="p">;</span>
+
+<span class="n">incrementX</span><span class="p">();</span>
+<span class="n">incrementX</span><span class="p">();</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+</pre></div>
+
+<p>See how that works? Now, instead of a <em>local</em> variable, <code>x</code> is a <strong>field</strong> of the compiler-generated <code>IncrementXType</code> class; meanwhile, the <code>incrementX</code> action becomes a simple call to the <code>IncrementXType.IncrementX</code> method.</p>
+
+<p>Pretty clever, yet simple once you understand it. So that’s the first piece of the puzzle.</p>
+
+<h2 id="puzzle_piece_2_how_exactly_does_a__statement_work_2">Puzzle Piece #2: How <em>exactly</em> does a <code>using</code> statement work?</h2>
+
+<p>The typical C# developer’s understanding of a <code>using</code> statement is that it takes a piece of code like this:</p>
+
+<div class="highlight"><pre><span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">r</span> <span class="p">=</span> <span class="n">GetResource</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="c1">// Do something with r.</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>…and translates it to something like this:</p>
+
+<div class="highlight"><pre><span class="n">Resource</span> <span class="n">r</span><span class="p">;</span> <span class="c1">// where Resource implements IDisposable</span>
+<span class="k">try</span>
+<span class="p">{</span>
+    <span class="n">r</span> <span class="p">=</span> <span class="n">GetResource</span><span class="p">();</span>
+    <span class="c1">// Do something with r.</span>
+<span class="p">}</span>
+<span class="k">finally</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">r</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">r</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Well, that’s <em>basically</em> correct; but there’s a limitation on the <code>using</code> statement a lot of developers don’t know about. It’s in section 8.13 of the C# specification—the section on <code>using</code> statements:</p>
+
+<blockquote>
+<p>Local variables declared in a resource-acquisition are read-only, and must include an initializer. A compile-time error occurs if the embedded statement attempts to modify these local variables (via assignment or the <code>++</code> and <code>--</code> operators), take the address of them, or pass them as <code>ref</code> or <code>out</code> parameters.</p>
+</blockquote>
+
+<p>Hmm, so what does that tell us? Clearly, I can’t do this…</p>
+
+<div class="highlight"><pre><span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">r</span> <span class="p">=</span> <span class="n">GetResource</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="n">r</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Resource</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>That is explicitly disallowed in the spec (I’m not allowed to modify the variable <code>r</code> via assignment). I also couldn’t do <code>r++</code> or <code>r--</code> (if I’d defined those operators). <strong>But there’s a hole here.</strong> The spec doesn’t say anything about mutating the state of <code>r</code> through a method (like <code>MoveNext</code>!). Therefore this <em>is</em> allowed:</p>
+
+<div class="highlight"><pre><span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">e</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="m">1</span> <span class="p">}.</span><span class="n">GetEnumerator</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="n">e</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">();</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The above code works just fine. The value stored at <code>e</code> is modified, and the output is <code>1</code>.</p>
+
+<p>So how is this even a piece of the puzzle? It seems the restrictions on <code>using</code> quoted above don’t actually contribute to an explanation of the odd behavior we’ve seen.</p>
+
+<p>Well, they do. But in order to understand how, we need to reveal the third and final piece of the puzzle.</p>
+
+<h2 id="puzzle_piece_3_what_happens_with__value_type_fields_3">Puzzle Piece #3: What happens with <code>readonly</code> value type fields?</h2>
+
+<p>Let’s say I have <em>this</em> piece of code now:</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">EnumeratorBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">readonly</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">Enumerator</span> <span class="n">Enumerator</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nf">EnumeratorBox</span><span class="p">(</span><span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">list</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Enumerator</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ...elsewhere</span>
+<span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span> <span class="p">};</span>
+<span class="kt">var</span> <span class="n">box</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EnumeratorBox</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;(</span><span class="n">list</span><span class="p">);</span>
+
+<span class="c1">// Note: box.Enumerator is a FIELD, not a PROPERTY, so we are theoretically</span>
+<span class="c1">// accessing the field directly here (not a copy of it).</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">box</span><span class="p">.</span><span class="n">Enumerator</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">box</span><span class="p">.</span><span class="n">Enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>In a somewhat mysterious fashion, the above code does <em>not</em> print <code>123</code> like you might expect (I know <em>I</em> would). The fact that the <code>Enumerator</code> field is <code>readonly</code> means that all method calls on that “field” actually operate on a <em>copy</em>, and not on the “field” itself (in a way, this makes perfect sense, as it ensures that the field really <em>is</em> read-only). So calling <code>box.Enumerator.MoveNext</code> actually <em>does nothing</em> to <code>box.Enumerator</code> itself.</p>
+
+<p>In this sense it’s almost as if declaring a field <code>readonly</code> is like doing this:</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">TypeWithReadonlyField</span>
+<span class="p">{</span>
+    <span class="c1">// Obviously this keyword does not exist; let's just pretend that it does</span>
+    <span class="c1">// and that it means "only accessible by the compiler."</span>
+    <span class="n">superprivate</span> <span class="kt">int</span> <span class="n">__readOnlyField</span><span class="p">;</span>
+    
+    <span class="k">private</span> <span class="kt">int</span> <span class="n">_readOnlyField</span>
+    <span class="p">{</span>
+        <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">__readOnlyField</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The key takeaway here is that when a field is <code>readonly</code>, you can’t really <em>get</em> at it directly. If you <em>could</em>, it wouldn’t <em>really</em> be read-only, since you could call a method on it that might mutate its state.</p>
+
+<h2 id="how_it_all_fits_together_4">How it all fits together</h2>
+
+<p>By now you may have put these puzzle pieces together in your head already; but in case you haven’t, or you’re still sort of working it out, here’s the full picture. It’s actually quite straightforward, now that the above puzzles pieces are all laid out.</p>
+
+<p><strong>First</strong>, we go back to the way closures are implemented. Remember that local variables are “lifted” to fields of compiler-generated classes.</p>
+
+<p><strong>Second</strong>, recall that the <code>using</code> statement is defined such that the local variable used to point to the acquired resource is <em>read-only</em> within the <code>using</code> statement itself.</p>
+
+<p><em>Therefore</em>, when the compiler sees a closure within a <code>using</code> statement, <strong>it "lifts" the local variable referenced within the closure to a `readonly` field of a compiler-generate class!</strong></p>
+
+<p>So this:</p>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span> <span class="p">};</span>
+
+<span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">e</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">closure</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+    
+    <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>…becomes (something like) <em>this</em>:</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">EnumeratorBox</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">readonly</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">Enumerator</span> <span class="n">Enumerator</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nf">EnumeratorBox</span><span class="p">(</span><span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">list</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Enumerator</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ...elsewhere</span>
+<span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span> <span class="p">};</span>
+
+<span class="n">EnumeratorBox</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">box</span><span class="p">;</span>
+<span class="k">try</span>
+<span class="p">{</span>
+    <span class="c1">// The closure below caused e to be "lifted" to a field</span>
+    <span class="c1">// of box.</span>
+    <span class="n">box</span> <span class="p">=</span> <span class="k">new</span> <span class="n">EnumeratorBox</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;(</span><span class="n">list</span><span class="p">);</span>
+    
+    <span class="c1">// Then the closure accesses this field, which is readonly</span>
+    <span class="c1">// (because we're in a using statement).</span>
+    <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">closure</span> <span class="p">=</span> <span class="n">box</span><span class="p">.</span><span class="n">Enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+    
+    <span class="c1">// Subsequently, method calls actually operate on a COPY</span>
+    <span class="c1">// of this field.</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">box</span><span class="p">.</span><span class="n">Enumerator</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">box</span><span class="p">.</span><span class="n">Enumerator</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">finally</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">box</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="p">((</span><span class="n">IDisposable</span><span class="p">)</span><span class="n">box</span><span class="p">.</span><span class="n">Enumerator</span><span class="p">).</span><span class="n">Dispose</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Did you follow all that? Yeah, it’s pretty complicated. But like I said, once all the pieces are in place, it’s actually not so hard to see what’s happening.</p>
+
+<p>How do I know this is what’s actually happening? Because <a href="http://stackoverflow.com/questions/4642665/why-does-capturing-a-mutable-struct-variable-inside-a-closure-within-a-using-stat/4688670#4688670">it was confirmed by Eric Lippert</a>, of course!</p>
+
+<p>And thus ends my story of discovering a bug in the C# compiler. So basically, if you ever find yourself debugging some piece of code where your local value type variable refuses to be mutated, <em>and</em> you’re inside a <code>using</code> statement, <em>and</em> you’ve got a closure in there that closes over that local variable, now you’ll know why!</p>
+
+<p>Truly epic, I know.</p>
+    <div class='navigation'>
+      <a class='previous' href='/posts/how-i-discovered-a-bug-in-the-csharp-compile-part-1.html'>How I discovered a bug in the C# compiler, part 1</a>
+      <a class='next' href='/posts/acquired-needs-of-software-engineers.html'>The acquired needs of software engineers</a>
+    </div>
+  </section>
+  <section class='comments'>
+    <div id='disqus_thread'></div>
+    <script src='/javascripts/disqus.js' type='text/javascript'></script>
+    <noscript>
+      Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+    <a class='dsq-brlink' href='http://disqus.com'>
+      comments powered by
+      <span class='logo-disqus'>Disqus</span>
+    </a>
+  </section>
+</article>
+    <footer>
+      <ul class='menu'>
+        <li><a href="/posts">All Posts</a></li>
+        <li><a href="/about">About</a></li>
+        <li>
+          <a href='http://stackoverflow.com/users/105570' target='_blank'>
+            <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://github.com/dtao' target='_blank'>
+            <img alt='GitHub' src='/images/icons/github-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://twitter.com/dan_tao' target='_blank'>
+            <img alt='Twitter' src='/images/icons/twitter-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='http://feeds.feedburner.com/philosopherdeveloper'>
+            <img alt='RSS' src='/images/icons/rss-small.png' />
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

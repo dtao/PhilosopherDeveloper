@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Philosopher Developer</title>
+    <meta charset='utf-8' />
+    <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+    <link href='/stylesheets/application.css' rel='stylesheet' />
+    <link href='/stylesheets/pygments.css' rel='stylesheet' />
+    <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
+    <script src='/javascripts/ga.js' type='text/javascript'></script>
+    <script src='/javascripts/shareThis.js' type='text/javascript'></script>
+    <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
+    <script src='/javascripts/main.js' type='text/javascript'></script>
+    
+    <script type='text/javascript' src='/javascripts/posts.js'></script>
+  </head>
+  <body>
+    <header id='header'>
+      <h1><a href="/">The Philosopher Developer</a></h1>
+      <h2>half-sound logic, half-decent code</h2>
+    </header>
+    <article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/such-a-thing-as-too-much-abstraction.html'>There's such a thing as too much abstraction, you know</a>
+      </span>
+      <span class='date'>March 17, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>A couple days ago I was <a href="http://en.wikipedia.org/wiki/Pair_programming">pairing</a> with another developer on my team, and at one point we had code with these characteristics:</p>
+
+<ul>
+<li>A class called <code>Stuff</code>
+</li>
+
+<li>A method (which utilized this class) called <code>doStuff</code>
+</li>
+</ul><p>Naturally, we changed these names later. The placeholder names were just that: <strong>placeholders</strong>, allowing us to get down to writing code right away without having to deliberate too much about names first.</p>
+
+<p>However, we both kind of agreed that when the time finally <em>did</em> come for us to give names to this class and its accompanying method, we were a bit sad to say goodbye to <code>Stuff</code> and <code>doStuff</code>. This is because software engineers are <strong>obsessed with abstraction</strong>: the less we have to know about the implementation details of any particular software component, the happier we are. We just want to be able to view code as consisting of big functional blobs with no nitty gritty details exposed and very simple mechanisms for interaction.</p>
+
+<p>In a software engineer’s dream world, every software library would consist of extraordinarily simple APIs comprising, I don’t know, two or three classes with three or four methods each. So the idea of having a class called <code>Stuff</code> and being able to call a method simply named <code>doStuff</code> is kind of tantalizing, in a way:</p>
+
+<p>Engineer 1: So what does this piece of code do? Engineer 2: It starts doing some stuff for a while, then it stops. Engineer 1: OK… but what does it <em>actually</em> do? Engineer 2: Are you asking me for implementation details? Get out of my face!</p>
+
+<p>Why do I bring this up? Well, just today <a href="http://stackoverflow.com/questions/5326874/why-would-i-use-enumerable-elementat-versus-the-operator">a user on Stack Overflow asked</a> about the <a href="http://msdn.microsoft.com/en-us/library/bb299233.aspx"><code>ElementAt</code></a> method, specifically wondering when it should or should not be used in place of the indexer for a collection <span class="post-link">... (<a href="/posts/such-a-thing-as-too-much-abstraction.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/how-do-you-know-something-for-sure.html'>How do you know something for sure?</a>
+      </span>
+      <span class='date'>March 16, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>Earlier today a user on Stack Overflow posted the question, <a href="http://stackoverflow.com/questions/5318912/does-c-operator-short-circuit">“Does the <code>??</code> operator short circuit?”</a></p>
+
+<p>A fair number of users responded with the obvious jab: “Why don’t you just write a test and see for yourself?” It’s a pretty reasonable question. To find the answer one way or another would only require a few lines of code in a simple tool (like <a href="https://github.com/dtao/SimpleDevelop">SimpleDevelop</a>!) and less than a minute.</p>
+
+<figure class="no-caption"><img src="/images/lock-and-key.jpg" alt="Lock and key"><figcaption>Lock and key</figcaption></figure>
+
+<p>But the user replied, “I wanted to know authoritatively.”</p>
+
+<p>Now <em>that</em> is a tricky notion. And it actually relates to one of the strongest arguments for <a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD (test-driven development)</a> and <a href="http://en.wikipedia.org/wiki/Continuous_integration">CI (continuous integration)</a> out there.</p>
+
+<p>Here’s the million-dollar question: how do you know something <em>authoritatively</em> (in software)? How can you ever be <strong>sure</strong> that something works?</p>
+
+<p>The accepted answer to the Stack Overflow question cited the C# spec, providing a concrete, <em>documented</em> answer. And this certainly seems like the “final” say, especially with documentation as “official” as the MSDN documentation for .NET.</p>
+
+<p>The user who posted the answer had this to say:</p>
+
+<blockquote>
+<p>If you only <em>try</em> it, you can never be sure if the behavior you observe is (a) something you can always rely on or (b) just some implementation detail of the compiler (e.g. some optimization). To be on the safe side, you need to check the documentation for the specified behavior.</p>
+</blockquote>
+
+<p>Now, before I go any further, I just want to be clear: I <em>basically</em> agree with this, and I don’t intend to in any way imply that it’s wrong—only that it is just one way of looking at things.</p>
+
+<p>Here’s another: maybe <strong>documentation</strong> doesn’t give us the final say <em>either</em>. After all, those of us who’ve been in the software industry for more than a week know that <em>specified behavior</em> and <em>actual behavior</em> are <span class="post-link">... (<a href="/posts/how-do-you-know-something-for-sure.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/ridiculous-time-waster-that-is-code-aesthetics.html'>The ridiculous time waster that is code aesthetics</a>
+      </span>
+      <span class='date'>March 15, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>Sometimes it drives me nuts how passionate software engineers can be about things that have nothing to do with the functionality of their software.</p>
+
+<p><em>Code aesthetics</em> is one such thing. (Those of you non-programmers out there: yes, believe it or not, this <em>is</em> a big deal to some engineers.) Developers will argue for hours about whether one way or another of writing code is “better,” for all sorts of absurdly subjective reasons. Among them:</p>
+
+<ul>
+<li>“It’s more readable.” I always find this one kind of funny as it completely <a href="http://begthequestion.info/">begs the question</a>. It’s like saying, “I personally prefer the way this one looks because it’s better-looking.” Of course <em>you</em> think the code is more readable your way; that’s why we’re arguing!</li>
+
+<li>“It’s more concise.” This is another popular one. Interestingly, it is often (though not always) in direct opposition to the preceding point.</li>
+
+<li>“It’s more obvious.” This one I actually can sympathize with. However, I <em>do</em> hate it (give me a few more years in the industry and maybe I’ll change my mind) when the “more obvious” version of a routine is preferred despite the fact that it’s also the “more stupid” version. I only agree with going with the “obvious” approach when the difference between <em>it</em> and an alternative with superior performance (for example) is negligble, <em>or</em> when the “superior” version is incredibly nasty (e.g., uses pointer hacks or some obscure implementation detail to accomplish a goal).</li>
+</ul><p>Here are some common examples of aesthetic issues which .NET developers argue about:</p>
+
+<div class="highlight"><pre><span class="c1">// Whether or not to use var for locals.</span>
+<span class="kt">var</span> <span class="n">puppy</span> <span class="p">=</span> <span class="n">GetPuppy</span><span class="p">();</span>
+<span class="n">Puppy</span> <span class="n">puppy</span> <span class="p">=</span> <span class="n">GetPuppy</span><span class="p">();</span>
+
+<span class="c1">// Whether to put the statement in a one-line block on the same line,</span>
+<span class="c1">// on the next line, or within braces.</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">someCondition</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">someCondition</span><span class="p">)</span>
+    <span class="k">break</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">someCondition</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">break</span><span class="p">;</span>
+</pre></div> <span class="post-link">... (<a href="/posts/ridiculous-time-waster-that-is-code-aesthetics.html">read the full post</a>)</span>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/sometimes-the-best-strategy-is-to-retreat.html'>Sometimes the best strategy is to retreat</a>
+      </span>
+      <span class='date'>February 28, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>I have a few remarks to make about <a href="http://dtao.github.com/ConcurrentList/">my <code>ConcurrentList&lt;T&gt;</code> class</a>, which I have written about a <a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">couple</a> of <a href="/posts/boy-can-dream.html">times</a> already.</p>
+
+<p><em>What, are you “retreating” from your concurrent list idea?</em> In a way, yes. Let me explain. From the beginning, my concept of the usefulness of a lock-free <code>IList&lt;T&gt;</code> implementation was that it would scale better than using a <code>List&lt;T&gt;</code> plus <code>lock</code> statements by eliminating contention when many threads are accessing the list concurrently.</p>
+
+<p>Is this actually true? Accessing the list <code>how</code>?</p>
+
+<p>Since a concurrent implementation of <code>Insert</code>, <code>RemoveAt</code> etc. is not supported in <code>ConcurrentList&lt;T&gt;</code>, there are really only a few operations that need to be considered:</p>
+
+<ul>
+<li>Getting/setting an item at a specified index</li>
+
+<li>Adding to the list</li>
+
+<li>Iterating over the list</li>
+</ul><p>Critically, I think the assumption is that one would need a lock-free data structure to optimize the scenario where multiple threads may be <em>reading</em> from the list (via accessing items at random indexes) while one or more other threads are <em>adding</em> to it. <strong>I actually don’t think you need a lock-free data structure for this at all.</strong></p>
+
+<p>Here’s the thing: if you’ve got a <code>List&lt;T&gt;</code>, and you synchronize all calls to <code>Add</code> with, e.g., a <code>lock</code> statement, <strong>you don’t need to also synchronize reads</strong>. They will <em>always</em> be thread-safe. Accessing an element at an index of a <code>List&lt;T&gt;</code> that is <em>only</em> growing with calls to <code>Add</code> <em>will</em> work from multiple threads. If you are skeptical, consider what actually happens when <code>Add</code> is called (<strong>warning: reliance upon specific implementation details ahead!</strong>):</p>
+
+<ol>
+<li>
+<p>The <code>List&lt;T&gt;</code> gets the next available index in its internal array.</p>
+</li>
+
+<li>
+<p>If the index is beyond the end of the array:</p>
+
+<ol>
+<li>A new array is allocated.</li>
+
+<li>The elements of the current array are copied over.</li>
+
+<li>A reference to this new <span class="post-link">... (<a href="/posts/sometimes-the-best-strategy-is-to-retreat.html">read the full post</a>)</span>
+</li>
+</ol>
+</li>
+</ol>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/boy-can-dream.html'>A boy can dream...</a>
+      </span>
+      <span class='date'>February 24, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>Well, I’ve finished an initial implementation of a <code>ConcurrentList&lt;T&gt;</code> data structure. It implements the <code>IList&lt;T&gt;</code> interface (partially—no <code>Insert</code>, <code>RemoveAt</code>, etc.–it is an append-only structure) and is both <strong>thread-safe</strong> and <strong>lock-free</strong>.</p>
+
+<p>(I also came up with a few different ways to resolve the <code>Count</code> issue mentioned in my previous post; what I’ve settled on for now is basically the most obvious and straightforward version.)</p>
+
+<p>The source code for the class itself is available to view in my GitHub repository here:</p>
+
+<p><a href="https://github.com/dtao/ConcurrentList"><strong>Check out the source code.</strong></a></p>
+
+<p>Now for the somewhat disheartening part: thus far, based on my own performance benchmarks, I see little evidence that this actually outperforms a simple <code>List&lt;T&gt;</code> with synchronized calls to <code>Add</code> (using, e.g., a <code>lock</code> statement). So that’s a bit disappointing. But I figured I’d share the source code, in case some hackers out there might be able to figure out how to make it better.</p>
+
+<p>Also, I feel like part of the issue I may be having is that it’s tough to really create a lot of thread contention on a puny little laptop with such a lightweight method (I’d wager <code>List&lt;T&gt;.Add</code> couldn’t be much more than 10 lines). So maybe if this could get tested on a 32-core server somewhere, the results would be more noteworthy. I don’t know!</p>
+
+<p>Anyway, at least it passes the unit tests. That’s got to be worth something, right?</p>
+  </section>
+</article>
+<div class='next-page'>
+  <a href='/index8.html'>View older posts</a>
+</div>
+    <footer>
+      <ul class='menu'>
+        <li><a href="/posts">All Posts</a></li>
+        <li><a href="/about">About</a></li>
+        <li>
+          <a href='http://stackoverflow.com/users/105570' target='_blank'>
+            <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://github.com/dtao' target='_blank'>
+            <img alt='GitHub' src='/images/icons/github-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://twitter.com/dan_tao' target='_blank'>
+            <img alt='Twitter' src='/images/icons/twitter-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='http://feeds.feedburner.com/philosopherdeveloper'>
+            <img alt='RSS' src='/images/icons/rss-small.png' />
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

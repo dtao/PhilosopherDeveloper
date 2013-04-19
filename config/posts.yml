@@ -153,6 +153,61 @@ ghost-clicks-in-jquery-mobile:
   title: Ghost clicks in jQuery Mobile
   published: true
 
+best-dependency-is-no-dependency:
+  date: 2011-09-20
+  title: The best dependency is no dependency
+  published: true
+
+were-all-going-to-die-because-you-dont-know-what-a-binary-tree-is:
+  date: 2011-08-13
+  title: We're all going to die because you don't know what a binary tree is
+  published: true
+
+paradox-of-free-will:
+  date: 2011-07-30
+  title: The paradox of free will
+  published: true
+
+does-jquery-turn-programmers-into-babies:
+  date: 2011-07-29
+  title: Does jQuery turn programmers into babies?
+  published: true
+
+not-solved-here-syndrome:
+  date: 2011-07-24
+  title: Not solved here syndrome
+  published: true
+
+acquired-needs-of-software-engineers:
+  date: 2011-04-26
+  title: The acquired needs of software engineers
+  published: true
+
+how-i-discovered-a-bug-in-the-csharp-compile-part-2:
+  date: 2011-04-03
+  title: How I discovered a bug in the C# compiler, part 2
+  published: true
+
+how-i-discovered-a-bug-in-the-csharp-compile-part-1:
+  date: 2011-03-31
+  title: How I discovered a bug in the C# compiler, part 1
+  published: true
+
+such-a-thing-as-too-much-abstraction:
+  date: 2011-03-17
+  title: There's such a thing as too much abstraction, you know
+  published: true
+
+how-do-you-know-something-for-sure:
+  date: 2011-03-16
+  title: How do you know something for sure?
+  published: true
+
+ridiculous-time-waster-that-is-code-aesthetics:
+  date: 2011-03-15
+  title: The ridiculous time waster that is code aesthetics
+  published: true
+
 terminating-condition:
   date: 2011-01-15
   title: "Resolution: the need for a terminating condition"

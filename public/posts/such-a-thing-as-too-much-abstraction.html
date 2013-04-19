@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>There's such a thing as too much abstraction, you know - The Philosopher Developer</title>
+    <meta charset='utf-8' />
+    <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+    <link href='/stylesheets/application.css' rel='stylesheet' />
+    <link href='/stylesheets/pygments.css' rel='stylesheet' />
+    <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
+    <script src='/javascripts/ga.js' type='text/javascript'></script>
+    <script src='/javascripts/shareThis.js' type='text/javascript'></script>
+    <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
+    <script src='/javascripts/main.js' type='text/javascript'></script>
+    
+  </head>
+  <body>
+    <header id='header'>
+      <h1>
+        <a href='/posts/such-a-thing-as-too-much-abstraction.html'>There's such a thing as too much abstraction, you know</a>
+      </h1>
+      <h2><a href="/">the philosopher developer</a></h2>
+    </header>
+    <article>
+  <header>
+    <h1>March 17, 2011</h1>
+    <div class='social'>
+      <span class='st_facebook_hcount' displayText='Facebook'></span>
+      <span class='st_googleplus_hcount' displayText='Google+'></span>
+      <span class='st_twitter_hcount' displayText='Tweet'></span>
+      <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+    </div>
+  </header>
+  <section class='content'>
+    <p>A couple days ago I was <a href="http://en.wikipedia.org/wiki/Pair_programming">pairing</a> with another developer on my team, and at one point we had code with these characteristics:</p>
+
+<ul>
+<li>A class called <code>Stuff</code>
+</li>
+
+<li>A method (which utilized this class) called <code>doStuff</code>
+</li>
+</ul><p>Naturally, we changed these names later. The placeholder names were just that: <strong>placeholders</strong>, allowing us to get down to writing code right away without having to deliberate too much about names first.</p>
+
+<p>However, we both kind of agreed that when the time finally <em>did</em> come for us to give names to this class and its accompanying method, we were a bit sad to say goodbye to <code>Stuff</code> and <code>doStuff</code>. This is because software engineers are <strong>obsessed with abstraction</strong>: the less we have to know about the implementation details of any particular software component, the happier we are. We just want to be able to view code as consisting of big functional blobs with no nitty gritty details exposed and very simple mechanisms for interaction.</p>
+
+<p>In a software engineer’s dream world, every software library would consist of extraordinarily simple APIs comprising, I don’t know, two or three classes with three or four methods each. So the idea of having a class called <code>Stuff</code> and being able to call a method simply named <code>doStuff</code> is kind of tantalizing, in a way:</p>
+
+<p>Engineer 1: So what does this piece of code do? Engineer 2: It starts doing some stuff for a while, then it stops. Engineer 1: OK… but what does it <em>actually</em> do? Engineer 2: Are you asking me for implementation details? Get out of my face!</p>
+
+<p>Why do I bring this up? Well, just today <a href="http://stackoverflow.com/questions/5326874/why-would-i-use-enumerable-elementat-versus-the-operator">a user on Stack Overflow asked</a> about the <a href="http://msdn.microsoft.com/en-us/library/bb299233.aspx"><code>ElementAt</code></a> method, specifically wondering when it should or should not be used in place of the indexer for a collection type implementing <code>IList&lt;T&gt;</code>. <em>My</em> opinion is that <code>ElementAt</code> does not make sense in this case, since it is not needed. My view is that it makes sense to use <code>ElementAt</code> in those (fairly rare) cases when you want to access a specific item in a non-indexed collection, such as the <em>second</em> item in a <code>Queue&lt;T&gt;</code> (so, if you want the equivalent of <code>Peek</code> for the item <em>after</em> the next item in the queue):</p>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">random</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span>
+<span class="kt">var</span> <span class="n">queue</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Queue</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">10</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">queue</span><span class="p">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="n">Next</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">firstUp</span> <span class="p">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">Peek</span><span class="p">();</span>
+<span class="kt">int</span> <span class="n">nextUp</span> <span class="p">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">ElementAt</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
+</pre></div>
+
+<p>Not surprisingly, <a href="http://stackoverflow.com/questions/5326874/why-would-i-use-enumerable-elementat-versus-the-operator/5326989#5326989">mine was not the only viewpoint on the subject</a>. An opposing view was that <code>ElementAt</code> provides a nice abstraction around the concept of random indexed access, which is actually optimized to take advantage of the <code>IList&lt;T&gt;</code> interface when available; and so it makes sense to use it <em>whenever you want</em>.</p>
+
+<p>Whoa, whoa, whoa! There comes a point when abstractions stop being useful, you know! Let me ask you this: when, aside from something like the scenario I described above, would you want to use <code>ElementAt</code> purely as an abstraction? When you want indexed access, right? And when does it make sense to use indexed access, but it <em>doesn’t</em> make sense to require an <code>IList&lt;T&gt;</code>?</p>
+
+<p>I have trouble imagining code where using <code>ElementAt</code> as an abstraction provides any benefit over defining a method to accept an <code>IList&lt;T&gt;</code> and use its indexer directly. But I can <em>definitely</em> think of some scenarios where it would be <strong>a terrible idea</strong>.</p>
+
+<p>For instance, say I wrote a <code>BinarySearch</code> method for any sorted <code>IList&lt;T&gt;</code> (I <a href="http://philosopherdeveloper.wordpress.com/2010/05/24/whats-annoying-about-sortedlisttkey-tvalue-indexofkey-a-k-a-whats-sweet-about-reflector/">sort of did, actually</a>):</p>
+
+<div class="highlight"><pre><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">BinarySearch</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">this</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">list</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="kt">int</span> <span class="n">length</span><span class="p">,</span> <span class="n">T</span> <span class="k">value</span><span class="p">,</span> <span class="n">IComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">comparer</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Argument validation</span>
+
+    <span class="kt">int</span> <span class="n">lower</span> <span class="p">=</span> <span class="n">index</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">upper</span> <span class="p">=</span> <span class="p">(</span><span class="n">index</span> <span class="p">+</span> <span class="n">length</span><span class="p">)</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">lower</span> <span class="p">&lt;=</span> <span class="n">upper</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">adjustedIndex</span> <span class="p">=</span> <span class="n">lower</span> <span class="p">+</span> <span class="p">((</span><span class="n">upper</span> <span class="p">-</span> <span class="n">lower</span><span class="p">)</span> <span class="p">&gt;&gt;</span> <span class="m">1</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">comparison</span> <span class="p">=</span> <span class="n">comparer</span><span class="p">.</span><span class="n">Compare</span><span class="p">(</span><span class="n">list</span><span class="p">[</span><span class="n">adjustedIndex</span><span class="p">],</span> <span class="k">value</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">comparison</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">adjustedIndex</span><span class="p">;</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">comparison</span> <span class="p">&lt;</span> <span class="m">0</span><span class="p">)</span>
+            <span class="n">lower</span> <span class="p">=</span> <span class="n">adjustedIndex</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="n">upper</span> <span class="p">=</span> <span class="n">adjustedIndex</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="p">~</span><span class="n">lower</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Useful overloads</span>
+</pre></div>
+
+<p>Now, let’s think about what it means to use <code>ElementAt</code> as an abstraction. It would allow us to define <code>BinarySearch</code> to take a less specific colletion type, right? Just <code>IEnumerable&lt;T&gt;</code>? Cool!</p>
+
+<p>So:</p>
+
+<div class="highlight"><pre><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">BinarySearch</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">this</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">list</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="kt">int</span> <span class="n">length</span><span class="p">,</span> <span class="n">T</span> <span class="k">value</span><span class="p">,</span> <span class="n">IComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">comparer</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Argument validation</span>
+
+    <span class="kt">int</span> <span class="n">lower</span> <span class="p">=</span> <span class="n">index</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">upper</span> <span class="p">=</span> <span class="p">(</span><span class="n">index</span> <span class="p">+</span> <span class="n">length</span><span class="p">)</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">lower</span> <span class="p">&lt;=</span> <span class="n">upper</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">adjustedIndex</span> <span class="p">=</span> <span class="n">lower</span> <span class="p">+</span> <span class="p">((</span><span class="n">upper</span> <span class="p">-</span> <span class="n">lower</span><span class="p">)</span> <span class="p">&gt;&gt;</span> <span class="m">1</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">comparison</span> <span class="p">=</span> <span class="n">comparer</span><span class="p">.</span><span class="n">Compare</span><span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="n">ElementAt</span><span class="p">(</span><span class="n">adjustedIndex</span><span class="p">),</span> <span class="k">value</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">comparison</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">adjustedIndex</span><span class="p">;</span>
+        <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">comparison</span> <span class="p">&lt;</span> <span class="m">0</span><span class="p">)</span>
+            <span class="n">lower</span> <span class="p">=</span> <span class="n">adjustedIndex</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="n">upper</span> <span class="p">=</span> <span class="n">adjustedIndex</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="p">~</span><span class="n">lower</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Useful overloads</span>
+</pre></div>
+
+<p>Nice, so now I can perform a binary search on any sequence! Sweet…</p>
+
+<p>…</p>
+
+<p>…except…</p>
+
+<p>…hmm, does this actually make sense?</p>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">linkedList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">1000000</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">linkedList</span><span class="p">.</span><span class="n">AddLast</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// How long will this take?</span>
+<span class="kt">int</span> <span class="n">index</span> <span class="p">=</span> <span class="n">linkedList</span><span class="p">.</span><span class="n">BinarySearch</span><span class="p">(</span><span class="k">new</span> <span class="n">Random</span><span class="p">().</span><span class="n">Next</span><span class="p">(</span><span class="m">1000000</span><span class="p">));</span>
+</pre></div>
+
+<p>Running the equivalent of the above code 10 times for a <code>LinkedList&lt;T&gt;</code> took about <strong>14 seconds</strong>. For a <code>List&lt;T&gt;</code> it took <strong>17 <em>milliseconds</em>.</strong></p>
+
+<p><em>Yeah, so it’s optimized for <code>IList&lt;T&gt;</code>, like I already said. What’s your point?</em></p>
+
+<p>My <em>point</em> is that <strong>it never makes sense to perform a binary search unless you’ve got random access</strong>; the whole <em>purpose</em> of it is that it beats a linear search. If for a particular data structure it is <em>guaranteed</em> to perform the same or <em>worse</em> than a linear search, <strong>don’t allow it for that data structure</strong>. Just require an <code>IList&lt;T&gt;</code> and be done with it.</p>
+
+<p>This might seem like a contrived example, but I challenge you to come up with a counterexample—even a contrived one!—where the abstraction of using <code>ElementAt</code> is actually <em>useful</em>. That is, when <em>would</em> it make sense to rewrite code that would ordinarily require an <code>IList&lt;T&gt;</code> to instead require only an <code>IEnumerable&lt;T&gt;</code>?</p>
+
+<p>Here’s another way I can explain where I’m coming from (by analogy—surprise!).</p>
+
+<p>Let’s say you live across the street from a place called <strong>The Everything Store</strong>. This is a warehouse where they pride themselves on selling basically <em>everything</em> (like Target or Walmart, only <em>better</em>). The funny thing about this store is that if you walk in, they actually just stock household goods: lamps, picture frames, clocks, etc. That’s all they’ve got on their shelves. If you want anything <em>else</em>, then yeah, you can <em>get</em> it; but you have to order it through their extensive electronic catalog and then come back a few days later to pick it up.</p>
+
+<p>You might say, “This store is great! I can buy everything I could possibly want from them! <em>And</em>, if I actually want household goods, they’re optimized for that scenario: I can just walk into the store, find what I want right there on the shelf, and walk out with it on the same day!”</p>
+
+<p>Uh, yeah, but… what you’ve just described doesn’t really deserve the title “Everything Store”; it’s really just a <em>household goods store</em> that, through a monumental feat of abstraction, has positioned itself as something far more general than it really is. If you want a new lamp or a clock, then sure, go there. Otherwise, go to a store that actually <em>has</em> the stuff you want to buy.</p>
+
+<p>So I disagree that it makes sense to use <code>ElementAt</code> in general as a way of abstracting indexed access without requiring an <code>IList&lt;T&gt;</code> implementation. It’s just like the “Everything Store”: it looks great from the outside, but the abstraction it provides is really just a disguise allowing it to masquerade as something it’s not.</p>
+    <div class='navigation'>
+      <a class='previous' href='/posts/how-do-you-know-something-for-sure.html'>How do you know something for sure?</a>
+      <a class='next' href='/posts/how-i-discovered-a-bug-in-the-csharp-compile-part-1.html'>How I discovered a bug in the C# compiler, part 1</a>
+    </div>
+  </section>
+  <section class='comments'>
+    <div id='disqus_thread'></div>
+    <script src='/javascripts/disqus.js' type='text/javascript'></script>
+    <noscript>
+      Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+    <a class='dsq-brlink' href='http://disqus.com'>
+      comments powered by
+      <span class='logo-disqus'>Disqus</span>
+    </a>
+  </section>
+</article>
+    <footer>
+      <ul class='menu'>
+        <li><a href="/posts">All Posts</a></li>
+        <li><a href="/about">About</a></li>
+        <li>
+          <a href='http://stackoverflow.com/users/105570' target='_blank'>
+            <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://github.com/dtao' target='_blank'>
+            <img alt='GitHub' src='/images/icons/github-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://twitter.com/dan_tao' target='_blank'>
+            <img alt='Twitter' src='/images/icons/twitter-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='http://feeds.feedburner.com/philosopherdeveloper'>
+            <img alt='RSS' src='/images/icons/rss-small.png' />
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

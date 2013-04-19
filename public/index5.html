@@ -68,99 +68,102 @@
   <header>
     <h1>
       <span class='title'>
-        <a href='/posts/sometimes-the-best-strategy-is-to-retreat.html'>Sometimes the best strategy is to retreat</a>
+        <a href='/posts/best-dependency-is-no-dependency.html'>The best dependency is no dependency</a>
       </span>
-      <span class='date'>February 28, 2011</span>
+      <span class='date'>September 20, 2011</span>
     </h1>
   </header>
   <section class='content'>
-    <p>I have a few remarks to make about <a href="http://dtao.github.com/ConcurrentList/">my <code>ConcurrentList&lt;T&gt;</code> class</a>, which I have written about a <a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">couple</a> of <a href="/posts/boy-can-dream.html">times</a> already.</p>
+    <p>I recently caught wind of an exciting new project that claims to be “the world’s smallest and fastest JavaScript library”: <a href="http://vaporjs.com/">Vapor.js</a>.</p>
 
-<p><em>What, are you “retreating” from your concurrent list idea?</em> In a way, yes. Let me explain. From the beginning, my concept of the usefulness of a lock-free <code>IList&lt;T&gt;</code> implementation was that it would scale better than using a <code>List&lt;T&gt;</code> plus <code>lock</code> statements by eliminating contention when many threads are accessing the list concurrently.</p>
+<p>We developers are always excited about small &amp; fast libraries, so naturally I was intrigued. Taking a look at the project’s homepage, you immediately see the following tantalizing graph:</p>
 
-<p>Is this actually true? Accessing the list <code>how</code>?</p>
+<figure><img src="/images/vaporjs.jpg" alt="The worlds smallest &amp; fastest JavaScript library"><figcaption>The worlds smallest &amp; fastest JavaScript library</figcaption></figure>
 
-<p>Since a concurrent implementation of <code>Insert</code>, <code>RemoveAt</code> etc. is not supported in <code>ConcurrentList&lt;T&gt;</code>, there are really only a few operations that need to be considered:</p>
+<p>Wow. Now <em>that’s</em> fast (off the charts, <em>literally!</em>)… but wait a minute. How can this be? Let’s take a look at the source code…</p>
 
-<ul>
-<li>Getting/setting an item at a specified index</li>
+<p>On its GitHub page, the Vapor.js README file starts off as follows:</p>
 
-<li>Adding to the list</li>
+<blockquote>
+<p><strong>vapor.js is a new amazing JavaScript framework.</strong></p>
 
-<li>Iterating over the list</li>
-</ul><p>Critically, I think the assumption is that one would need a lock-free data structure to optimize the scenario where multiple threads may be <em>reading</em> from the list (via accessing items at random indexes) while one or more other threads are <em>adding</em> to it. <strong>I actually don’t think you need a lock-free data structure for this at all.</strong></p>
+<p>In just 0 lines of code it provides:</p>
 
-<p>Here’s the thing: if you’ve got a <code>List&lt;T&gt;</code>, and you synchronize all calls to <code>Add</code> with, e.g., a <code>lock</code> statement, <strong>you don’t need to also synchronize reads</strong>. They will <em>always</em> be thread-safe. Accessing an element at an index of a <code>List&lt;T&gt;</code> that is <em>only</em> growing with calls to <code>Add</code> <em>will</em> work from multiple threads. If you are skeptical, consider what actually happens when <code>Add</code> is called (<strong>warning: reliance upon specific implementation details ahead!</strong>):</p>
+<p>[The README ends there.]</p>
+</blockquote>
 
-<ol>
-<li>
-<p>The <code>List&lt;T&gt;</code> gets the next available index in its internal array.</p>
-</li>
+<p>Ah. <em>I</em> get it now. It’s a joke.</p>
 
-<li>
-<p>If the index is beyond the end of the array:</p>
+<p>But you know what? I actually think there’s something to this. A couple of things, actually.</p>
 
-<ol>
-<li>A new array is allocated.</li>
+<p>First, there’s the “fastest” claim and that absurd graph. Obviously, if the library does <em>nothing</em>, it’s as “fast” as it can possibly get. But, you know, I say “obviously”; yet it’s very easy to forget this fundamental axiom:</p>
 
-<li>The elements of the current array are copied over.</li>
+<p class="large">You make software <em>faster</em> by making it <em>do less</em>.</p>
 
-<li>A reference to this new <span class="post-link">... (<a href="/posts/sometimes-the-best-strategy-is-to-retreat.html">read the full post</a>)</span>
-</li>
-</ol>
-</li>
-</ol>
+<p>(This concept is clearly not original to me. I’m sure I’ve read an article or blog post specifically about this idea somewhere else; unfortunately, I was not able to find a reference with a quick Google search.)</p>
+
+<p>CPUs aren’t creatures; you can’t magically make them perform more operations per second by cracking a whip or digging in your spurs (although <em>like</em> many animals, they <em>can</em> be sped up by reducing their load). Your processor is a <strong>machine</strong>, executing instructions at a (basically) constant rate. It’s the <strong>number of instructions</strong> that affects how “fast” or “slow” your software feels.</p>
+
+<p>Note that I am not just talking about <em>features</em>. The same feature can be implemented in countless ways, <span class="post-link">... (<a href="/posts/best-dependency-is-no-dependency.html">read the full post</a>)</span></p>
   </section>
 </article>
 <article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
-        <a href='/posts/boy-can-dream.html'>A boy can dream...</a>
+        <a href='/posts/were-all-going-to-die-because-you-dont-know-what-a-binary-tree-is.html'>We're all going to die because you don't know what a binary tree is</a>
       </span>
-      <span class='date'>February 24, 2011</span>
+      <span class='date'>August 13, 2011</span>
     </h1>
   </header>
   <section class='content'>
-    <p>Well, I’ve finished an initial implementation of a <code>ConcurrentList&lt;T&gt;</code> data structure. It implements the <code>IList&lt;T&gt;</code> interface (partially—no <code>Insert</code>, <code>RemoveAt</code>, etc.–it is an append-only structure) and is both <strong>thread-safe</strong> and <strong>lock-free</strong>.</p>
+    <p>Guys, I’m worried about <strong><a href="http://en.wikipedia.org/wiki/Technological_singularity">The Singularity</a></strong>.</p>
 
-<p>(I also came up with a few different ways to resolve the <code>Count</code> issue mentioned in my previous post; what I’ve settled on for now is basically the most obvious and straightforward version.)</p>
+<figure><img src="/images/skynet.jpg" alt="The Singularity"><figcaption>The Singularity</figcaption></figure>
 
-<p>The source code for the class itself is available to view in my GitHub repository here:</p>
+<p>OK, wait. Let me take a step back. And explain.</p>
 
-<p><a href="https://github.com/dtao/ConcurrentList"><strong>Check out the source code.</strong></a></p>
+<p>At one point on my last project I dealt with a bug that involved certain records for a certain bank <em>disappearing</em>. Not from the internal database, mind you—only from the in-memory storage of a particular application. To my astonishment, I eventually traced the cause of the bug to the following Java code:</p>
 
-<p>Now for the somewhat disheartening part: thus far, based on my own performance benchmarks, I see little evidence that this actually outperforms a simple <code>List&lt;T&gt;</code> with synchronized calls to <code>Add</code> (using, e.g., a <code>lock</code> statement). So that’s a bit disappointing. But I figured I’d share the source code, in case some hackers out there might be able to figure out how to make it better.</p>
+<div class="highlight"><pre><span class="kd">public</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">sortList</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Collection</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">sortedList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;(</span><span class="k">this</span><span class="o">.</span><span class="na">comparator</span><span class="o">);</span>
+    <span class="n">sortedList</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">sortedList</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
 
-<p>Also, I feel like part of the issue I may be having is that it’s tough to really create a lot of thread contention on a puny little laptop with such a lightweight method (I’d wager <code>List&lt;T&gt;.Add</code> couldn’t be much more than 10 lines). So maybe if this could get tested on a 32-core server somewhere, the results would be more noteworthy. I don’t know!</p>
+<p>Non-programmers, I understand that is gibberish to you. Now here’s the scary part: <strong>it’s gibberish to most <em>programmers</em> too</strong>.</p>
 
-<p>Anyway, at least it passes the unit tests. That’s got to be worth something, right?</p>
+<p>All right, maybe not exactly <em>gibberish</em>, but… not properly understood. I was surprised when I found this bug for a number of reasons, but the most startling of these was that a genuinely <em>good</em> developer wrote it. And other genuinely good developers thought it was right.</p>
+
+<p>What the code is apparently <em>supposed</em> to do is this: take a list and give back a sorted version of it (based on some potentially-custom comparator). What it <em>actually</em> does is: exactly that, plus <strong>remove duplicates</strong>. In other words, if you gave it the list <code>[3, 2, 1, 2]</code>, rather then return <code>[1, 2, 2, 3]</code> (the same list, only sorted, right?), it would return <code>[1, 2, 3]</code>, having removed the duplicate <code>2</code>.</p>
+
+<p>So it’s pretty obvious how this could cause a bug, yes? You have a bunch of records, you try to display them in sorted order, and suddenly a bunch of them are missing.</p>
+
+<p>To my dismay, none of the other developers on my team could see what I was talking about when I first pointed this out. “So what if it removes duplicates?” was the general response. “That’ll only happen <span class="post-link">... (<a href="/posts/were-all-going-to-die-because-you-dont-know-what-a-binary-tree-is.html">read the full post</a>)</span></p>
   </section>
 </article>
 <article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
-        <a href='/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html'>How to build a thread-safe lock-free resizable "array"</a>
+        <a href='/posts/paradox-of-free-will.html'>The paradox of free will</a>
       </span>
-      <span class='date'>February 23, 2011</span>
+      <span class='date'>July 30, 2011</span>
     </h1>
   </header>
   <section class='content'>
-    <p><strong>Update: I’ve finally (nearly two years later) created a <a href="http://dtao.github.com/ConcurrentList/">dedicated GitHub repo</a> for this.</strong></p>
-<hr><p>Inspired by <a href="http://stackoverflow.com/questions/5070495/lock-free-thread-safe-ilistt-for-net">this Stack Overflow question</a>, I started thinking about possible ways of implementing the <code>IList&lt;T&gt;</code> interface in a lock-free <em>concurrent</em> data structure, with the following notes:</p>
-
-<ol>
-<li>I highly doubt a lock-free <code>Insert</code> or <code>RemoveAt</code> implementation is possible. I could be wrong, of course; but I don’t think so. So I would implement those explicitly (and throw a <code>NotSupportedException</code>).</li>
-
-<li>I would want guaranteed O(1) random access, at least. (Otherwise, the whole point of implementing <code>IList&lt;T&gt;</code> seems kind of questionable.)</li>
-</ol><p>OK, so, <strong>how do we do it</strong>?</p>
-
-<p>Before I even describe my idea (still a work in progress), I should disclose the fact that, to my simultaneous disappointment and delight, it appears I managed to come up with a concept on my own that is <em>remarkably</em> similar to what researchers at Texas A&amp;M University, including <a href="http://en.wikipedia.org/wiki/Bjarne_Stroustrup">Bjarne Stroustrup</a>, <a href="http://www.stroustrup.com/lock-free-vector.pdf">designed and published</a>.</p>
-
-<p>Here’s the basic idea. Clearly utilizing a single array that is resized on certain Add operations would be problematic: allocating a new array and copying all elements to it in a lock-free way would be, at least I have to speculate, quite costly (imagine multiple concurrent threads all copying elements concurrently—seems very wasteful). So I considered using a <em>linked list</em> of arrays, where when an Add call requires additional storage, a new array could be allocated and appended to the linked list. But once you introduce a linked list, random access in O(1) becomes, well, less possible.</p>
-
-<p>I was <em>thinking</em> you probably couldn’t do it with a simple array of arrays (e.g., a <code>List&lt;T[]&gt;</code>) simply because then you’d eventually run into the problem of having to resize the “outer” array eventually. But then it dawned on me: <strong>assuming <code>Count</code> is bounded</strong> <span class="post-link">... (<a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">read the full post</a>)</span></p>
+    <p>I recently read an excellent piece by Raymond Smullyan entitled <em><a href="http://www.mit.edu/people/dpolicar/writing/prose/text/godTaoist.html">Is God a Taoist?</a></em> I particularly like what Smullyan has to say about the concept of free will; here is an excerpt:</p>
+    
+    <blockquote>
+    <p>Of course, you might well say that the doctrine of free will says that it is you who are doing the determining, whereas the doctrine of determinism appears to say that your acts are determined by something apparently outside you. But the confusion is largely caused by your bifurcation of reality into the “you” and the “not you.” Really now, just where do you leave off and the rest of the universe begin? Or where does the rest of the universe leave off and you begin? Once you can see the so-called “you” and the so-called “nature” as a continuous whole, then you can never again be bothered by such questions as whether it is you who are controlling nature or nature who is controlling you. Thus the muddle of free will versus determinism will vanish.</p>
+    </blockquote>
+    
+    <p>I like that way of thinking about the question of free will: it’s quite simple, actually, and yet it provides resolution to what is for so many people a truly vexing and even infuriating puzzle.</p>
+    
+    <p>That said, here’s a totally different thought on the same subject that I myself recently had. It’s actually a bit of a paradox.</p>
+    
+    <p>Consider the question of whether we have free will or our actions are determined by forces outside of our control. Imagine that you have access to every fact about the physical universe—and I mean <em>everything</em>, down to the location and velocity of every individual particle, or <a href="http://en.wikipedia.org/wiki/Electron_density">probability density</a>, or whatever it takes to be able to say that <strong>the conditions are completely known</strong> at a particular moment in time—including, of course, the <span class="post-link">... (<a href="/posts/paradox-of-free-will.html">read the full post</a>)</span></p>
   </section>
 </article>
 <div class='next-page'>

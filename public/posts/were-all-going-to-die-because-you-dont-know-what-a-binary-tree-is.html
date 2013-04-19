@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>We're all going to die because you don't know what a binary tree is - The Philosopher Developer</title>
+    <meta charset='utf-8' />
+    <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+    <link href='/stylesheets/application.css' rel='stylesheet' />
+    <link href='/stylesheets/pygments.css' rel='stylesheet' />
+    <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
+    <script src='/javascripts/ga.js' type='text/javascript'></script>
+    <script src='/javascripts/shareThis.js' type='text/javascript'></script>
+    <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
+    <script src='/javascripts/main.js' type='text/javascript'></script>
+    
+  </head>
+  <body>
+    <header id='header'>
+      <h1>
+        <a href='/posts/were-all-going-to-die-because-you-dont-know-what-a-binary-tree-is.html'>We're all going to die because you don't know what a binary tree is</a>
+      </h1>
+      <h2><a href="/">the philosopher developer</a></h2>
+    </header>
+    <article>
+  <header>
+    <h1>August 13, 2011</h1>
+    <div class='social'>
+      <span class='st_facebook_hcount' displayText='Facebook'></span>
+      <span class='st_googleplus_hcount' displayText='Google+'></span>
+      <span class='st_twitter_hcount' displayText='Tweet'></span>
+      <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+    </div>
+  </header>
+  <section class='content'>
+    <p>Guys, I’m worried about <strong><a href="http://en.wikipedia.org/wiki/Technological_singularity">The Singularity</a></strong>.</p>
+
+<figure><img src="/images/skynet.jpg" alt="The Singularity"><figcaption>The Singularity</figcaption></figure>
+
+<p>OK, wait. Let me take a step back. And explain.</p>
+
+<p>At one point on my last project I dealt with a bug that involved certain records for a certain bank <em>disappearing</em>. Not from the internal database, mind you—only from the in-memory storage of a particular application. To my astonishment, I eventually traced the cause of the bug to the following Java code:</p>
+
+<div class="highlight"><pre><span class="kd">public</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">sortList</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Collection</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">sortedList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;(</span><span class="k">this</span><span class="o">.</span><span class="na">comparator</span><span class="o">);</span>
+    <span class="n">sortedList</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">sortedList</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>Non-programmers, I understand that is gibberish to you. Now here’s the scary part: <strong>it’s gibberish to most <em>programmers</em> too</strong>.</p>
+
+<p>All right, maybe not exactly <em>gibberish</em>, but… not properly understood. I was surprised when I found this bug for a number of reasons, but the most startling of these was that a genuinely <em>good</em> developer wrote it<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. And other genuinely good developers thought it was right.</p>
+
+<p>What the code is apparently <em>supposed</em> to do is this: take a list and give back a sorted version of it (based on some potentially-custom comparator). What it <em>actually</em> does is: exactly that, plus <strong>remove duplicates</strong>. In other words, if you gave it the list <code>[3, 2, 1, 2]</code>, rather then return <code>[1, 2, 2, 3]</code> (the same list, only sorted, right?), it would return <code>[1, 2, 3]</code>, having removed the duplicate <code>2</code>.</p>
+
+<p>So it’s pretty obvious how this could cause a bug, yes? You have a bunch of records, you try to display them in sorted order, and suddenly a bunch of them are missing.</p>
+
+<p>To my dismay, none of the other developers on my team could see what I was talking about when I first pointed this out. “So what if it removes duplicates?” was the general response. “That’ll only happen if two objects have the same <a href="http://en.wikipedia.org/wiki/Hash_function">hash code</a>.”</p>
+
+<p>Uhh, yeah… if a <a href="http://download.oracle.com/javase/6/docs/api/java/util/TreeSet.html"><code>TreeSet&lt;E&gt;</code></a> were a <a href="http://download.oracle.com/javase/6/docs/api/java/util/HashMap.html"><code>HashMap&lt;K,V&gt;</code></a>. But it ain’t, folks. It’s a <a href="http://en.wikipedia.org/wiki/Red%E2%80%93black_tree">Red-black tree</a>!</p>
+
+<figure><img src="/images/red-black-tree.png" alt="Red-Black Tree"><figcaption>Red-Black Tree</figcaption></figure>
+
+<p>I realize you non-programmers are probably on the verge of changing the page in disgust (<em>yuck, another one of these self-indulgent code show &amp; tell sessions!</em>); so let me try to back up and reduce the geekiness a bit.</p>
+
+<p>Basically what scares me about this is that it demonstrates a <a href="http://en.wikipedia.org/wiki/Software_Craftsmanship">craftsman’s</a> basic lack of understanding of one of his tools.</p>
+
+<p>Suppose you had a carpenter come to your house to install some cabinets, and part of the job required him to fasten some screws. And now suppose that in order to do this part of the job, he pulled out a <strong>hammer</strong>. You would be surprised, right? Maybe a little concerned, even? You might have a quick exchange like this:</p>
+
+<blockquote>
+<p><strong>You</strong>: I couldn’t help but notice you seem to be planning on using a <em>hammer</em> to fasten those screws.<br><strong>Carpenter</strong>: Yeah, I think it’ll work. Normally this hammer’s pretty good at putting little things like these <em>[eyeing the &gt; screws]</em> into wood and such.<br><strong>You</strong>: Yes… I suppose it is…<br><strong>Carpenter</strong>: So I figure I’ll just, you know, drive ‘em on in with this.<br><strong>You</strong>: Hmm. But won’t that… strip the holes?<br><strong>Carpenter</strong>: Why would that happen? It’s never happened when I’ve used it to drive nails!</p>
+</blockquote>
+
+<p>Something <em>very much like this</em> happens with an unfortunate regularity in the software industry. I know it doesn’t make you happy to hear that, what with software affecting basically every aspect of your life from your <a href="http://technorati.com/blogging/article/anonymous-facebook-will-be-destroyed-by/">social life</a> to your <a href="http://online.wsj.com/article/SB10001424052702304778304576375911873193624.html">bank accounts</a> to your <a href="http://en.wikipedia.org/wiki/2003_North_America_blackout">electricity</a> to your <a href="http://en.wikipedia.org/wiki/Therac-25">healthcare</a>. But it’s true.</p>
+
+<p>I attribute it to the fact that a lot of us software developers are—and I <em>know</em> I’ve said this before, multiple times—basically <strong>tinkerers</strong>. We fiddle around with stuff. Yeah, we like to understand the theoretical parts; but sometimes it’s faster to just dive in and play with something, and eventually you come to develop a basic idea of how it works.</p>
+
+<figure><img src="/images/tinkering.jpg" alt="Tinkering"><figcaption>Tinkering</figcaption></figure>
+
+<p>The key words in the above sentence, of course, are <strong>basic idea</strong>. The developer who decided to implement a <code>ListSorter&lt;E&gt;</code> using a <code>TreeSet&lt;E&gt;</code> had the following basic concepts in mind:</p>
+
+<ul>
+<li>A <code>TreeSet&lt;E&gt;</code> is sorted.</li>
+
+<li>A <em>set</em> implies only unique items; but that doesn’t matter because…</li>
+
+<li>…in Java, <em>uniqueness</em> is defined by hash codes.</li>
+</ul><p>Again, the non-programmers are nodding off. Those of you who <em>do</em> understand the above three points can maybe, hopefully, sort of sympathize with the poor guy who put them together and came up with a flawed implementation<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>. But that doesn’t change the fact that even though his <em>basic</em> understanding of the pieces might have been generally OK, like the fictional carpenter, he fundamentally misunderstood one of his tools. And that’s the problem.</p>
+
+<p><em>Shut up about the stupid Java bug!</em> I can almost hear you shouting at me, through time and space! OK, OK, so <strong>what does all this have to do with the Singularity?</strong></p>
+
+<p>For those of you who were too lazy (!) to click on the link up top, the idea behind the Singularity is basically that we are approaching a historic moment<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> when humans develop machines (or, to view the subject through my personal lens, <em>software</em> is the thing we’re really talking about) that are <strong>more intelligent than ourselves</strong>, at which point we as a species basically forfeit control of the world.</p>
+
+<p>In a way, this idea suggests that humankind is doomed to be succeeded by a new evolution of intelligent beings on Earth.</p>
+
+<figure><img src="/images/evolution-to-machines.jpg" alt="Evolution to machines"><figcaption>Evolution to machines</figcaption></figure>
+
+<p><em>Preposterous!</em> you say? I’m not so sure. What makes this seemingly far-fetched concept actually <em>plausible</em>, in my mind, is exactly what I’ve been talking about. Software developers <em>don’t</em> fully understand the systems they build. The Java snippet above is actually a disturbingly <em>micro-level</em> example of this; typically, we do at least understand the <em>individual lines of code</em> we write. When you get to the scale of an entire software <em>system</em>, built by a team of maybe a dozen or more developers, then the level of comprehension by any single individual of the system as a whole drops from “rough” to <strong>downright scary</strong>.</p>
+
+<p>Which, let’s be honest, is nothing special about the software industry <em>per se</em>. In our technological age, <strong>no one is an expert in everything</strong>, which has some pretty far-reaching implications. Your typical plumber probably doesn’t have a comprehensive understanding of the sewer system, while the civil engineers who <em>do</em> understand it may well not know how to fix a toilet. Your average bricklayer probably doesn’t have much knowledge of large-scale architecture, while the architects who design modern structures are unlikely to be particularly knowledgeable about laying bricks.</p>
+
+<p>But these are micro- to macro-level comparisons. The actual conceptual divides among us are much more fine-grained. I consider myself a <em>software engineer</em> (for those of you who object to the term “engineer” to refer to developers, just pretend I said <em>code monkey</em>); yet my knowledge in this field is <strong>extremely limited</strong>.</p>
+
+<p>Ask me to write a simple <a href="http://en.wikipedia.org/wiki/Hello_World">Hello World program</a> in C or Python or, I don’t know, <a href="http://en.wikipedia.org/wiki/Fortran"><em>Fortran</em></a>; and sure, I can probably manage that. Heck, I might even be able to whip up a <a href="http://www.codinghorror.com/blog/2007/02/why-cant-programmers-program.html">Fizz-Buzz</a> program in just about any language, given a cursory overview of its basic syntax and control structures. But that doesn’t mean much.</p>
+
+<p>When it comes to working on a serious piece of software, I would be next to useless in all but a relatively small handful of technologies. Device drivers or OS kernel-level stuff in C or (<em>gasp</em>) <a href="http://en.wikipedia.org/wiki/Assembly_language">Assembly language</a>? Heck, no! (I mean, don’t get me wrong; I’d <em>love</em> to get a chance to work on that stuff, but it would take me a <em>while</em> to get a handle on it and be able to contribute.)</p>
+
+<figure><img src="/images/robot-army.jpg" alt="Robot Army"><figcaption>Robot Army</figcaption></figure>
+
+<p>This is why I think the Singularity could actually happen. It isn’t that any one person would ever intentionally design a system capable of enslaving humanity (nor do I actually think <em>that’s</em> what will happen if and when the so-called “Singularity” occurs); it’s that <strong>we as a species</strong>, <em>collectively</em>, are on the path towards creating something amazingly advanced without anyone really knowing how the pieces all fit together. The genetic engineers, the nanotechnologists, the <a href="http://en.wikipedia.org/wiki/Biocomputers">biological computing</a> folks, the <a href="http://en.wikipedia.org/wiki/Quantum_computer"><em>quantum</em> computing</a> folks, and—scariest of all, if you ask me—the people working in <a href="http://en.wikipedia.org/wiki/Genetic_algorithm">genetic algorithms</a> are <em>all</em> doing <strong>crazy stuff</strong> right now. Who knows what it will all add up to, taken together?</p>
+
+<p>There’s no doubt that the people working in these fields are ridiculously smart. I’m not trying to say they’re clueless. <strong>But that doesn’t mean that each group understands the work of every other group.</strong> They’re <em>tinkerers</em>, and, as with me and most other software developers, their curiosity can sometimes (perhaps even <em>most</em> of the time) outpace their understanding. It’s only a matter of time before somebody puts it all together in a way he or she doesn’t fully grasp, and then <strong>boom</strong>.</p>
+
+<p class="huge">Robot Apocalypse.</p>
+
+<p>That’s right, I said it. <em>We’re all doomed.</em></p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>And no, I’m not talking about myself (though that would be pretty funny). <a href="#fnref:1" rev="footnote">↩</a></p>
+</li>
+<li id="fn:2">
+<p>It has just occurred to me that I haven’t explicitly stated why the implementation is wrong. Does anyone care to offer an explanation in the comments? <a href="#fnref:2" rev="footnote">↩</a></p>
+</li>
+<li id="fn:3">
+<p>I refuse to type “an historic” because I just think it’s wrong. If you disagree, I’m sorry that you’re confused. <a href="#fnref:3" rev="footnote">↩</a></p>
+</li>
+</ol>
+</div>
+    <div class='navigation'>
+      <a class='previous' href='/posts/paradox-of-free-will.html'>The paradox of free will</a>
+      <a class='next' href='/posts/best-dependency-is-no-dependency.html'>The best dependency is no dependency</a>
+    </div>
+  </section>
+  <section class='comments'>
+    <div id='disqus_thread'></div>
+    <script src='/javascripts/disqus.js' type='text/javascript'></script>
+    <noscript>
+      Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+    <a class='dsq-brlink' href='http://disqus.com'>
+      comments powered by
+      <span class='logo-disqus'>Disqus</span>
+    </a>
+  </section>
+</article>
+    <footer>
+      <ul class='menu'>
+        <li><a href="/posts">All Posts</a></li>
+        <li><a href="/about">About</a></li>
+        <li>
+          <a href='http://stackoverflow.com/users/105570' target='_blank'>
+            <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://github.com/dtao' target='_blank'>
+            <img alt='GitHub' src='/images/icons/github-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://twitter.com/dan_tao' target='_blank'>
+            <img alt='Twitter' src='/images/icons/twitter-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='http://feeds.feedburner.com/philosopherdeveloper'>
+            <img alt='RSS' src='/images/icons/rss-small.png' />
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

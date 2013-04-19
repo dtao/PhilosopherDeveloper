@@ -23,38 +23,251 @@
   <header>
     <h1>
       <span class='title'>
-        <a href='/posts/terminating-condition.html'>Resolution: the need for a terminating condition</a>
+        <a href='/posts/does-jquery-turn-programmers-into-babies.html'>Does jQuery turn programmers into babies?</a>
       </span>
-      <span class='date'>January 15, 2011</span>
+      <span class='date'>July 29, 2011</span>
     </h1>
   </header>
   <section class='content'>
-    <p>For reasons not relevant to this blog, I have been thinking a lot lately about personal conflicts and how they evolve. In particular, my mind has been concentrating a great deal on the scenario of conflicts <em>escalating</em>: for example, the phenomenon where two people are having a regular conversation, and this somehow leads to a disagreement, and eventually the situation develops into an all-out shouting match with both parties so angry with each other that it’s often baffling to recall how the conversation began.</p>
+    <p>Part of me kind of hates<a href="http://jquery.com/">jQuery</a>. Let me tell you why.</p>
 
-<p>This can happen over a short or a long period of <strong>time</strong>. It can take place within a single ten-minute conversation; it can also span days, months, even <em>years</em> (in this case it might be the cause of a friendship’s disintegration). It can also occur on a small or large <strong>scale</strong>. It might occur between friends, families, communities, even <em>nations</em> (throughout history, what war has not started as a smaller disagreement that eventually grew to something much larger?). I think we’ve all seen it happen, sadly, probably numerous times.</p>
+<p>The other day I was wondering if there’s a good way to take an element and put another element around it at the same location in the DOM. For example:</p>
 
-<p>As I am a software developer, I often perceive parallels between <em>real-world phenomena</em> and <em>software concepts</em>. What I want to do right now is to discuss one such parallel: the similarity between <strong>escalating conflict</strong> (the real-world phenomenon) and <strong>mutual recursion</strong> (the software concept).</p>
+<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"outer"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"inner"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
 
-<p><strong>A note to those readers who aren’t programmers: I will be including some source code in this post, but don’t stop reading! I promise that this discussion is of a general nature and not strictly programming-related.</strong></p>
+<p>The goal would be to enclose <code>inner</code> within a <code>&lt;div&gt;</code> so that the resulting DOM looks like this:</p>
 
-<p>For those who can read it, consider the following code snippet:</p>
+<div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"outer"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"middle"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"inner"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
 
-<div class="highlight"><pre><span class="k">void</span> <span class="nf">Provoke</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"Provoke!"</span><span class="p">);</span>
-    <span class="n">Respond</span><span class="p">();</span>
-<span class="p">}</span>
+<p>So I did a quick Google search and… guess what? There’s already <a href="http://api.jquery.com/wrap/">a jQuery method to do exactly this</a>!</p>
 
-<span class="k">void</span> <span class="nf">Respond</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"Respond!"</span><span class="p">);</span>
-    <span class="n">Provoke</span><span class="p">();</span>
+<div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">".inner"</span><span class="p">).</span><span class="nx">wrap</span><span class="p">(</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'&lt;div class="middle"&gt;'</span><span class="p">)</span> <span class="p">);</span>
+</pre></div>
+
+<p>But <a href="http://philosopherdeveloper.wordpress.com/2011/07/25/a-little-jquery-mobile-trick/">you guys already knew about that</a>, of course. (There’s also, naturally, <a href="http://api.jquery.com/unwrap/">a method to do the exact opposite</a>.)</p>
+
+<p>Some time later, I found myself writing code that I wanted to be executed the <em>first</em> time a page was shown (in jQuery Mobile—big surprise!); what I came up with looked something like this:</p>
+
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">doSomethingWhenPageShows</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">$page</span><span class="p">.</span><span class="nx">is</span><span class="p">(</span><span class="s2">":visible"</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">doSomething</span><span class="p">(</span><span class="nx">$page</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">$page</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="s2">"pageshow"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">doSomething</span><span class="p">(</span><span class="nx">$page</span><span class="p">);</span>
+      <span class="nx">$page</span><span class="p">.</span><span class="nx">unbind</span><span class="p">(</span><span class="s2">"pageshow"</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
-<p>If I were to ask you, <em>What does the above code do?</em>, an initial response might be that <span class="post-link">... (<a href="/posts/terminating-condition.html">read the full post</a>)</span></p>
+<p>Pretty clever, yeah? (And yeah, yeah, I <em>know</em> that’s reckless as it unbinds all handlers attached to the <code>"pageshow"</code> event… <strong>whatever</strong>. It was fine in this context! Trust me! Now leave me alone.)</p>
+
+<p>That is, it seemed clever <strong>until I realized <a href="http://api.jquery.com/one/">there’s already a jQuery method to do this too</a>!</strong></p>
+
+<div class="highlight"><pre><span class="nx">$page</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="s2">"pageshow"</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">doSomething</span><span class="p">(</span><span class="nx">$page</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>OK, awesome, jQuery is magical and does everything I could ever possibly need. Here’s why I <em>kinda</em> don’t like that.</p>
+
+<figure><img src="/images/silver-spoon.jpg" alt="The ol silver spoon"><figcaption>The ol silver spoon</figcaption></figure>
+
+<p>It’s what I’ll call a <strong>Silver Spoon API</strong>. It does <em>so much</em> for me, it’s almost at the point where I’m <em>surprised</em> when I have to write something myself. And that just turns me into a <strong>baby</strong>.</p>
+
+<p>Don’t get me wrong; I’ve got nothing against the makers <span class="post-link">... (<a href="/posts/does-jquery-turn-programmers-into-babies.html">read the full post</a>)</span></p>
   </section>
 </article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/not-solved-here-syndrome.html'>Not solved here syndrome</a>
+      </span>
+      <span class='date'>July 24, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>I’m not even going to flatter myself with the whole <em>You must have been wondering where I was!</em> spiel this time. For those of you out there who actually haven’t given up on me completely by now: thanks! As you might have suspected, I’ve been both busy (with work and school) <em>and</em> lazy (with this blog)—a pretty deadly combination.</p>
+
+<p>This does not bode well for my goal of <a href="http://dailypost.wordpress.com/">posting every day in 2011</a>.</p>
+
+<figure><img src="/images/boo-hoo.jpg" alt="Boo hoo!"><figcaption>Boo hoo!</figcaption></figure>
+
+<p>Oh well. There’s no sense regretting the past; all I can do is move forward, right? Whether I’m able to get back to daily posts or not, I guess time will tell.</p>
+
+<p>One thing that’s been keeping me occupied lately (and trust me, this is a <em>totally</em> legitimate reason not to be productive) is <a href="http://wiki.xkcd.com/irc/Puzzles">logic puzzles</a>. I used to love these things when I was younger, and then I don’t know what happened. It’s like I forgot they existed. But then <a href="http://evservations.blogspot.com/">a friend</a> recently texted me this out of the blue:</p>
+
+<blockquote>
+<p>25 racehorses, no stopwatch, 5 tracks.<br>Figure out the 3 fastest horses in the fewest number of races.</p>
+</blockquote>
+
+<p>Oh man, I was immediately fixated on that problem. I think he got it from a magazine article about common interview questions or something (<a href="http://blogs.msdn.com/b/ericlippert/archive/2011/02/14/what-would-feynman-do.aspx">not that anyone actually believes in the value of such questions these days</a>). Sadly, I tricked myself into thinking I had the right answer when I actually didn’t. Here’s what I thought:</p>
+
+<ol>
+<li>Race all 25 horses in 5 groups of 5. (5 races)</li>
+
+<li>Race all the first-place horses together. (+1 = 6 races)</li>
+
+<li>Race all the second-place horses together. (7 races)</li>
+
+<li>Race all the third-place horses together. (8 races)</li>
+
+<li>Race the top three horses from #2, and the top horse from each of #3 and #4, all in one final <span class="post-link">... (<a href="/posts/not-solved-here-syndrome.html">read the full post</a>)</span>
+</li>
+</ol>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/acquired-needs-of-software-engineers.html'>The acquired needs of software engineers</a>
+      </span>
+      <span class='date'>April 26, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>There is something that’s been on my mind recently, and it’s what I’ll call the <strong>Acquired Needs of Software Engineers</strong>. Keep in mind this is a very young concept in my own brain, yet to reach maturity and certainly still vulnerable at this point to drastic changes in my opinion. It’s really just an <em>inkling</em>, but one that’s been nagging at me. Who knows? Maybe by writing about it, however briefly and incoherently, I’ll improve my own understanding of what it is I’m talking about.</p>
+    
+    <p>So, to understand what I mean by <strong>acquired need</strong>, consider a caveman.</p>
+    
+    <figure><img src="/images/caveman.jpg" alt="Caveman"><figcaption>Caveman</figcaption></figure>
+    
+    <p>What does this guy <strong>need</strong>? Not a whole lot, right? I mean, the <em>essentials</em>, sure: food, water, shelter… anything else? Not really. A caveman needs basically those three things, and that’s it.</p>
+    
+    <p>Now consider a “modern” man.</p>
+    
+    <figure><img src="/images/modern-man.jpg" alt="Ooh, a MODERN man!"><figcaption>Ooh, a MODERN man!</figcaption></figure>
+    
+    <p>What does <em>this</em> guy need? Or let me rephrase that: what would he <em>say</em> he needs? Probably something like…</p>
+    
+    <ul>
+    <li>His mobile phone</li>
+    
+    <li>His computer</li>
+    
+    <li>His car</li>
+    
+    <li>His business clothes</li>
+    
+    <li>His gym membership</li>
+    
+    <li>His <em>GQ</em> subscription</li>
+    
+    <li>etc.</li>
+    </ul><p>OK, maybe not all that stuff exactly; but you get what I’m saying. Those things—at least <em>some</em> of them—feel like needs nowadays. Certainly, smart phones (for those of us fortunate/unfortunate enough to have them) and mobile internet access are feeling more and more that way (internet access is <a href="http://en.wikipedia.org/wiki/Right_to_Internet_access">already considered a human right by some nations</a>).</p>
+    
+    <p>But they’re not really needs, are they? In fact, before these things were invented, <strong>we never missed them</strong>. And that’s why I refer to them as <em>acquired</em> needs.</p>
+    
+    <p><em>(Note: Apparently there is an actual <a href="http://www.netmba.com/mgmt/ob/motivation/mcclelland/">Theory of Acquired Needs</a> developed by a guy named McClelland; I am not referring to that theory. When I use the term, I am really not utilizing any formalized concept—just a notion of</em> <span class="post-link">... (<a href="/posts/acquired-needs-of-software-engineers.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compile-part-2.html'>How I discovered a bug in the C# compiler, part 2</a>
+      </span>
+      <span class='date'>April 03, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>This post continues from where <a href="http://philosopherdeveloper.wordpress.com/2011/03/31/how-i-discovered-a-bug-in-the-c-compiler-part-1/">my last one</a> left off; but don’t worry—I swear I’ll make this one more less rambling and more comprehensible. And rest assured that I will actually get to the explanation this time!</p>
+
+<p>So where did we leave off? We witnessed some truly bizarre behavior of a <strong>mutable value type</strong> within a <strong>using statement</strong> which also happens to include a <strong>closure</strong>. What does this look like?</p>
+
+<p>How about instead of using a custom value type to illustrate, this time I’ll show you what I mean with a type straight from the BCL itself (meaning, this guy was written by Microsoft folks, so you know it’s not just something weird about the way <em>I</em> did things):</p>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span> <span class="p">};</span>
+
+<span class="c1">// Criterion 1: within a using statement...</span>
+<span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">e</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="c1">// Criterion 2: ...which includes a closure...</span>
+    <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">closure</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+    
+    <span class="c1">// Criterion 3: ...a mutable value type...</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><strong>What do you think the above program will print?</strong></p>
+
+<p>Well, if you were paying <em>attention</em> to my last post (and if not—honestly, I totally understand), you’d know the answer already. The above program outputs:</p>
+
+<pre><code>0
+0
+0
+0
+0</code></pre>
+
+<p>…and on and on, ad infinitum.</p>
+
+<p>Remember, this happens <em>specifically</em> when all three of the above criteria (reiterated in the code comments) are met. It does <em>not</em> happen when only one or two of those criteria are met.</p>
+
+<p>Now let’s get to the bottom of this. In order to do so, there are a few puzzle pieces we need to understand.</p>
+
+<h2 id="puzzle_piece_1_how_does_the_c_compiler_implement_closures_1">Puzzle Piece #1: How does the C# compiler implement closures?</h2>
+
+<p>This one’s a head-scratcher for a lot of C# developers who’ve never really looked into the inner workings of closures. I’d <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compile-part-2.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compile-part-1.html'>How I discovered a bug in the C# compiler, part 1</a>
+      </span>
+      <span class='date'>March 31, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>Well, <a href="http://philosopherdeveloper.wordpress.com/2011/03/25/poll-what-should-my-next-blog-topic-be/">a few of you voted</a>, and this topic came out on top. So, without further ado, I give you the story of <strong>my epic adventure in discovering a bug in</strong> (the latest version of) <strong>the C# compiler</strong>.</p>
+
+<p>First of all, some background. I was working on a library, mostly for personal use, which was to include an enumerable collection type similar to <code>List&lt;T&gt;</code> or <code>T[]</code>. One of the goals of this library was to be <em>efficient</em>; so, naturally, for this type’s enumerator I made the decision to create a mutable value type.</p>
+
+<p><strong><em>Wait a minute!</em></strong> What’s that, you say? <em>Mutable value types are <strong>evil</strong>!</em> Oh?</p>
+
+<p>This is a topic for a whole other blog post; but just to give a mini-argument in <em>defense</em> of this decision, by way of example, let me point out one simple fact: <strong>if you make the return value of <code>GetEnumerator</code> a <em>reference type</em>, then every <code>foreach</code> loop creates a new object to be garbage collected later</strong>. Don’t care? That’s fine; I <em>did</em> care, so I took an alternate approach (which, incidentally, is the same approach utilized by the designers of the collections in the <code>System.Collections.Generic</code> namespace in the BCL).</p>
+
+<p>For <em>my</em> <code>GetEnumerator</code>, I explicitly implemented both <code>IEnumerable.GetEnumerator</code> <em>and</em> <code>IEnumerable&lt;T&gt;.GetEnumerator</code> and made a public version of the method returning an <code>Enumerator&lt;T&gt;</code> struct, like this:</p>
+
+<div class="highlight"><pre><span class="k">public</span> <span class="n">Enumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">Enumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">IEnumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerator</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerable</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>This allowed my <code>Enumerator&lt;T&gt;</code> type to behave quite well when used in <code>foreach</code> loops without causing unnecessary garbage collection. And the fact that it was a mutable value type hardly mattered—just like it hardly matters for <code>List&lt;T&gt;.Enumerator</code>, <code>Dictionary&lt;TKey, TValue&gt;.Enumerator</code>, etc. (The only times when it hypothetically matters is when you pass <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compile-part-1.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<div class='next-page'>
+  <a href='/index7.html'>View older posts</a>
+</div>
     <footer>
       <ul class='menu'>
         <li><a href="/posts">All Posts</a></li>

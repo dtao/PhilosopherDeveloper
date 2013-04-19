@@ -12,6 +12,12 @@
   %section.content
     = post.to_html
 
+    .navigation
+      - if post.previous
+        %a.previous(href="#{post.previous.link}")= post.previous.title
+      - if post.next
+        %a.next(href="#{post.next.link}")= post.next.title
+
   - if post.allow_comments
     %section.comments
       #disqus_thread

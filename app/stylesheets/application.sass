@@ -219,6 +219,10 @@ figure
       background-color: #fff
       padding: 0
 
+  &.no-caption
+    figcaption
+      display: none
+
 article
   @include contentFont
   margin: auto
@@ -256,6 +260,28 @@ article
         &:hover
           color: lighten($darkGray, 10%)
           text-decoration: underline
+
+    .navigation
+      height: 30px
+      line-height: 30px
+      margin-top: 25px
+      margin-bottom: 10px
+      font-size: 75%
+
+      .previous
+        float: left
+        &:before
+          content: "Older: "
+
+      .next
+        float: right
+        &:before
+          content: "Newer: "
+
+      &:after
+        content: ""
+        display: block
+        clear: both
 
   section.comments
     margin-top: 20px
