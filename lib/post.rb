@@ -32,14 +32,15 @@ class Post
       # Order from newest to oldest.
       all_posts.sort! { |x, y| y.date.to_time <=> x.date.to_time }
 
-      # Assign 'next' and 'previous' for forward/backward links.
-      all_posts.each_with_index do |post, i|
-        post.previous = all_posts[i + 1] if i + 1 < all_posts.count
-        post.next = all_posts[i - 1] if i - 1 >= 0
-      end
-
       # Make the result immutable (why not?).
       all_posts.freeze
+    end
+
+    # Assign 'next' and 'previous' for forward/backward links.
+    published_posts = @@posts.select(&:published)
+    published_posts.each_with_index do |post, i|
+      post.previous = published_posts[i + 1] if i + 1 < published_posts.count
+      post.next = published_posts[i - 1] if i - 1 >= 0
     end
 
     @@table ||= @@posts.inject({}) do |hash, post|
