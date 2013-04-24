@@ -1,4 +1,124 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://philosopherdeveloper.com/</link><item><title>People are not resources</title><link>http://philosopherdeveloper.com/posts/people-are-not-resources.html</link><description><![CDATA[<p>I never actually worked in an environment like this, but I’ve read enough articles on <a href="http://thedailywtf.com/">The Daily WTF</a> to have an image in my head of the old dusty, temperamental servers that companies used to have back in the 90s and early 2000s.</p>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://philosopherdeveloper.com/</link><item><title>In defense of global state</title><link>http://philosopherdeveloper.com/posts/in-defense-of-global-state.html</link><description><![CDATA[<p>I bet you weren’t expecting any sane developer to make this argument!</p>
+
+<p>Well, to be fair, the title of this post is somewhat intentionally provocative<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. But anyway, you’re here now; so it served its purpose. And make no mistake: I <em>am</em> going to defend global state—just possibly not in quite the way you might be expecting.</p>
+
+<h2 id="what_we_mean_by_global_state_1">What we mean by global state</h2>
+
+<p>First, some background. If you’re reading this, there’s a good chance you’re a developer so I probably don’t have to explain this; but I think there are at least two forms of <strong>global state</strong> that come to mind in software. One form is global <strong>variables</strong>–values that are accessible and can be changed, globally, anywhere, by all of the code in a project. The other is <strong>constants</strong>–values that may be <em>accessible</em> to potentially every part of a program, but cannot be changed.</p>
+
+<p>These aren’t the only kinds of global state, though. I would argue that <em>globality</em>–apparently that’s <a href="http://dictionary.reference.com/browse/globality">actually a word</a><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>–is a <em>continuous</em> (as opposed to discrete or binary) property. Meaning: it isn’t just variables and constants; there are things in between as well. There are some values that will <em>definitely</em> change (e.g., a global cache), there are some that <em>might</em> (e.g., a feature flag), others that probably won’t (static configuration values), and so on. There is also the question of a variable’s <em>impact</em>, which is not the same as its <em>scope</em>, or how widely it happens to be accessible. One bit of state might define the language or dialect in which an entire UI is presented, for example, while another may simply indicate whether or not to display a certain dialog when an application loads.</p>
+
+<p>So there’s some sort of spectrum here (you know <a href="/posts/am-i-an-engineer.html">how I like spectrums</a>), or at the very least there’s more than just one or two kinds of global state.</p>
+
+<h2 id="whats_wrong_with_global_state_2">What’s wrong with global state?</h2>
+
+<p>Global state has got a pretty bad rap in most of the software development community. For one, use of global state can make it difficult to reason about a section of code: what’s happening <em>locally</em> may be clear, but the far-reaching <em>ramifications</em> of the code probably aren’t. Global state also tends to fuel the proliferation of implicit dependencies between software components, making it increasingly difficult to “pull apart” those components down the line and resulting in code that less testable and less reusable.</p>
+
+<p>There are plenty more reasons. I’m not going to claim they’re invalid. But a recent tweet by my old teammate <a href="http://scottmuc.com/">Scott Muc</a> got me thinking on this topic, and it compelled me to consider the dissenting opinion<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</p>
+<blockquote class="twitter-tweet">
+<p>Sometimes convention based frameworks feel like it's just 0 param methods using hidden global variables.</p>— Scott Muc (@ScottMuc) <a href="https://twitter.com/ScottMuc/status/326481455804997632">April 22, 2013</a>
+</blockquote><p>Embedded in Scott’s statement is the shared understanding that global variables are A Bad Thing<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>. When everyone takes that for granted, then you can say things like “blah blah blah global variables” and your audience will intuitively grasp that <em>global variables</em> is just a proxy for <em>something bad</em>. Similarly, if I said, “Feature X is the <code>goto</code> of Language Y,” you would understand I’m saying <a href="http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html">something bad about Feature X</a>.</p>
+
+<p>Now, regarding the kinds of global state I described earlier: I would guess that most of us are much more sympathetic to <em>constants</em> than to global <em>variables</em>. Constants, at least don’t cause the same action-at-a-distance confusion that variables can. However, they still exhibit the other drawback I mentioned of global state: that dependence may spread through a code base, inhibiting reusability.</p>
+
+<p>So we like constants more than global variables, but we’re not exactly thrilled about either of them. What does this imply about the spectrum of globality? Do we start at “good” and gradually move towards “bad” the more scope and impact some bit of global state has?</p>
+
+<p>More to the point: if I acknowledge the drawbacks of global state, why do I also like convention-based frameworks? What might I disagree with about Scott’s tweet?<sup id="fnref:5"><a href="#fn:5" rel="footnote">5</a></sup></p>
+
+<h2 id="deciding_what_should_be_global_3">Deciding what should be global</h2>
+
+<p>I think the real question with global state comes down to considering a section of code, and deciding <em>what should be flexible</em>. That may sound obvious on one hand—variables are things that change, so we use variables where we want to allow flexibility—but on the other, I suspect the idea of making this decision feels somewhat foreign to lots of developers. Many of us have come to accept, almost without thinking, that flexibility is an inherent good. Invariant, inflexible aspects of a software system are perceived as weaknesses or poor design. Flexibility, modularity, reusability: these are all sort of rolled up into one big bundle of attributes we automatically ascribe to any “good” or “well-written” software.</p>
+
+<p>But fundamentally, we human beings are limited in our mental capacity. Infinitely flexible systems are not in our best interest, for the simple reason that flexibility demands our attention<sup id="fnref:6"><a href="#fn:6" rel="footnote">6</a></sup>. And so choosing the scope of a variable is really a matter of deciding <strong>at what point some information should require our attention</strong>, and at what point we should be able to take it for granted.</p>
+
+<p>There’s a great section of <a href="http://www.amazon.com/G%C3%B6del-Escher-Bach-Eternal-Golden/dp/0465026567/">Gödel, Escher, Bach</a> by Douglas Hofstadter that I think captures this idea quite beautifully. It is a chapter in which some characters tinker with a magical TV set that can alter the reality of a football game they’re watching. By turning some knobs, they can see players alternately catching the ball or fumbling, scoring a touchdown or getting blocked, etc. One character fiddles with the knobs very aggressively and the game changes much more dramatically, to everyone’s surprise.</p>
+
+<p>Hofstadter goes on to compare the functioning of these knobs on the TV to “constants,” “parameters,” and “variables”–terms that should be quite familiar to any software developer:</p>
+
+<blockquote>
+<p>We build up our mental representation of a situation layer by layer. The lowest layer establishes the deepest aspect of the context—sometimes being so low that it cannot vary at all. For instance, the three-dimensionality of our world is so ingrained that most of us never would imagine letting it slip mentally. It is a constant constant. Then there are layers which establish temporarily, though not permanently, fixed aspects of situations, which could be called background assumptions—things which, in the back of your mind, you know can vary, but which most of the time you unquestioningly accept as unchanging aspects. These could still be called “constants”. For instance, when you go to a football game, the rules of the game are constants of that sort. Then there are “parameters”: you think of them as more variable, but you temporarily hold them constant. At a football game, parameters might include the weather, the opposing team, and so forth. There could be—and probably are—several layers of parameters. Finally, we reach the “shakiest” aspects of your mental representation of the situation—the variables. These are things such as [a player] stepping out of bounds, which are mentally “loose” and which you don’t mind letting slip away from their real values, for a short moment.</p>
+</blockquote>
+
+<p>Really, I probably could have skipped everything I’ve written so far and just started with that Hofstadter quote. But what’s done is done, so let’s move on now.</p>
+
+<h2 id="the_relationship_between_explicit_and_global_4">The relationship between explicit and global</h2>
+
+<p>It’s very common for developers coming from more “conventional” backgrounds (har har) to be initially perplexed by the “magic”<sup id="fnref:7"><a href="#fn:7" rel="footnote">7</a></sup> of convention-based frameworks such as <a href="http://rubyonrails.org/">Rails</a>. This is a natural reaction for many of us with previous experience working on <a href="http://en.wikipedia.org/wiki/Big_ball_of_mud">big balls of mud</a>, with enough global state to give us nightmares. But when you consider the opposite approach—explicit configuration at every level—I think what you’ll find is a lot of boilerplate<sup id="fnref:8"><a href="#fn:8" rel="footnote">8</a></sup> and an indefensible number of <a href="http://www.xprogramming.com/Practices/PracNotNeed.html">YAGNI</a> violations.</p>
+
+<p>Which brings me to an objection I’ve been sensing through the ether while writing this. Somewhere out there, one of you is yelling at the screen: <em>Global values and implicit values are not the same thing!</em> If it seems to you that I’ve been conflating the ideas of “global state” with “hidden information” until now, that’s probably fair. But now chew on this for a second: <strong>the more global something is, the less explicit it should have to be</strong>.</p>
+
+<p>Here’s one of probably millions of examples I could give: when you walk up to someone in the U.S., I’m guessing you don’t start the conversation by asking, “Do you speak English?” The vast majority of people here speak English—it is effectively a <em>global value</em> in our country—which means we can be <em>implicit</em> in that knowledge when we interact. It saves time, and removes one potential variable of consideration–<em>What language(s) does this individual speak?</em>–from our minds, reducing cognitive load.</p>
+
+<h2 id="the_pitfalls_of_always_being_explicit_5">The pitfalls of always being explicit</h2>
+
+<p>Of course, implicitly understood global state unavoidably involves a learning curve. There is no way you can just walk into a foreign culture and expect to internally understand that culture without making a serious time investment, for example. But we all know that. It’s why <a href="http://en.wikipedia.org/wiki/Language_immersion">language immersion</a> is widely accepted (last I checked) as by far the most effective way to become fluent in a natural language.</p>
+
+<p>Imagine someone from another culture who “masters” English, perfectly grasping the vocabulary and all of the grammatical rules of the language, then visits the United States and becomes frustrated by all of our idioms (“beat a dead horse”, “break a leg”, etc.), cultural references (“good thinking, Sherlock”), and other random phrases whose meanings aren’t obvious at the surface level. To such a person I’d say: “Look, it just takes time.” That’s the cost of really learning the language.</p>
+
+<p>But let’s take a step back and imagine what life would be like if we insisted on being explicit about everything instead. I might have an exchange like this with a coworker:</p>
+
+<blockquote>
+<p>Coworker: How’s Kathryn doing?<br>Me: Which Kathryn? <em>[Kathryn is my wife’s name.]</em></p>
+</blockquote>
+
+<p>Or you might have this odd encounter with a stranger on the sidewalk:</p>
+
+<blockquote>
+<p>You: What time is it?<br>Stranger: In which time zone?</p>
+</blockquote>
+
+<p>A doctor might be vexed by an overly-explicit patient:</p>
+
+<blockquote>
+<p>Doctor: How much do you weigh?<br>Patient: On which planet?</p>
+</blockquote>
+
+<p>These things are what Hofstadter called “constants”; we may be able to <em>imagine</em> them changing—in some cases much more readily than others (e.g., changing time zones vs. changing planets)–but, generally speaking, we expect them not to. At the very least, they’re certainly not going to change mid-conversation.</p>
+
+<p>More importantly, there are <em>very sensible defaults</em> for the “ambiguous” values in these examples. If someone refers to “Kathryn” in a conversation with me, he or she is almost certainly referring to the Kathryn most important to me: my wife. If you ask someone what time it is, you’re very likely asking about the time zone where you currently are. And in almost <em>every</em> conversation, when referring to properties of objects, we’re specifically talking about how things are on Earth. All of this can remain <em>implicit</em>; we don’t have to think about these things at all.</p>
+
+<h2 id="hidden_global_variables_can_be_our_friends_6">Hidden global variables can be our friends</h2>
+
+<p>I believe many of us have been trained to be overly explicit in developing software, preferring dependency injection and local configuration at every level of depth throughout a system. The classic example, which has <a href="http://david.heinemeierhansson.com/2012/dependency-injection-is-not-a-virtue.html">received some criticism</a>, is the common practice of writing any time-related code with an explicit dependency on an external <code>Time</code> or <code>Clock</code> object, making something as seemingly universal as <strong>time</strong> configurable. Adam Keys has <a href="http://therealadam.com/2013/01/03/design-for-test-vs-design-for-api/">an excellent blog post on this point</a>, in which I think he gets to the heart of my argument pretty concisely:</p>
+
+<blockquote>
+<p>Even <strong>adding one optional parameter to a method carries “mass”</strong>.</p>
+</blockquote>
+
+<p>The “mass” is, of course, the cognitive load I mentioned of having to think about things that are flexible and non-global. My gut tells me that this predilection is particularly egregious in the Java and .NET communities, but I’ve seen it in Ruby land and elsewhere as well. And what this does is force undue attention on all of this configuration, much of which, most of the time, we ought to be taking for granted so that our minds can concentrate on more interesting issues.</p>
+
+<p>This is why I enjoy working with convention-based frameworks. They shed much of this extra “mass,” enabling developers to take things for granted that would otherwise weigh us down.</p>
+
+<p>So yes, maybe at its core <a href="http://en.wikipedia.org/wiki/Convention_over_configuration">convention over configuration</a> is just a fancy name for hidden global variables. But they’re carefully chosen variables, which—after an admittedly necessary learning curve—establish a deeper level of shared knowledge, freeing us to be more implicit and less explicit. And just like in real life, that’s often a good thing.</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>And yes, I realize that to any non-programmer that sounds completely absurd. <a href="#fnref:1" rev="footnote">↩</a></p>
+</li>
+<li id="fn:2">
+<p>Think: the opposite of <em>locality</em>. <a href="#fnref:2" rev="footnote">↩</a></p>
+</li>
+<li id="fn:3">
+<p>Scott, if you’re reading this, you know how it is: I will always disagree with you about everything. <a href="#fnref:3" rev="footnote">↩</a></p>
+</li>
+<li id="fn:4">
+<p>Or whatever the expression-coiners are saying these days. <a href="#fnref:4" rev="footnote">↩</a></p>
+</li>
+<li id="fn:5">
+<p>I interpreted Scott’s tweet as essentially a playful expression of mild concern as opposed to an outright attack on convention-based frameworks. I wrote this post more in response to that embedded assumption about global variables being bad than to the tweet directly. <a href="#fnref:5" rev="footnote">↩</a></p>
+</li>
+<li id="fn:6">
+<p>An interesting discrepancy I have noticed between Linux enthusiasts and, say, Mac users (curiously, I find Windows users to be theoretically somewhere in between, even though that seems totally wrong) is in these users’ desire to configure their systems. Linux is extremely flexible in that you can change almost any aspect of the operating system to suit your needs. However, with this flexibility comes greater demand on the user to fully understand the system. OS X, in contrast, is extremely inflexible and therefore demands very little from the user, other than to learn its basic idioms, which Apple believes users will like. (What fools! Oh wait.) <a href="#fnref:6" rev="footnote">↩</a></p>
+</li>
+<li id="fn:7">
+<p>If the stages of <em>grief</em> are denial, anger, bargaining, depression, and acceptance, the stages of using a convention-based framework might be: wonder, perplexity, anger, disgust, and finally enlightenment. Or something like that. <a href="#fnref:7" rev="footnote">↩</a></p>
+</li>
+<li id="fn:8">
+<p>Here’s a fun exercise if you want to get really depressed: write a script (maybe you already have one) to count the lines of code on your software project. Now figure out how many of those lines are <em>application logic</em>–i.e., what your software is actually supposed to <em>do</em>–and compare that with the number that are just configuring factories, binding dependency injections, wiring up controllers and event buses and logging infrastructure and all that other good stuff. Feel good? <a href="#fnref:8" rev="footnote">↩</a></p>
+</li>
+</ol>
+</div>]]></description><pubDate>Tue, 23 Apr 2013 12:49:00 -0700</pubDate><guid>http://philosopherdeveloper.com/posts/in-defense-of-global-state.html</guid></item><item><title>People are not resources</title><link>http://philosopherdeveloper.com/posts/people-are-not-resources.html</link><description><![CDATA[<p>I never actually worked in an environment like this, but I’ve read enough articles on <a href="http://thedailywtf.com/">The Daily WTF</a> to have an image in my head of the old dusty, temperamental servers that companies used to have back in the 90s and early 2000s.</p>
 
 <p><img src="/images/ye-olde-server.jpg" alt="Ye olde server"></p><p>Ye olde server</p>
 
@@ -483,152 +603,4 @@
 <p>Not necessarily of theistic origin. <a href="#fnref:2" rev="footnote">↩</a></p>
 </li>
 </ol>
-</div>]]></description><pubDate>Sun, 13 Jan 2013 00:00:00 +0000</pubDate><guid>http://philosopherdeveloper.com/posts/ab-testing-and-irreducible-complexity.html</guid></item><item><title>Optimize for comprehensibility</title><link>http://philosopherdeveloper.com/posts/optimize-for-comprehensibility.html</link><description><![CDATA[<h1 id="starting_with_an_outline_1">Starting with an outline</h1>
-
-<p>More than one of my high school English teachers taught us that when you’re writing a paper, you should start by making an outline of your high-level points. This way, they told us, you would have a “skeleton” paper already written, which you could then “flesh out” by filling in appropriate details here and there.</p>
-
-<p>I never much internalized this process of starting off with an outline. I wish I had.</p>
-
-<h1 id="to_design_or_assemble_2">To design or assemble</h1>
-
-<p>My first project at <a href="http://www.thoughtworks.com/">ThoughtWorks</a> was in Dallas, TX. During a car ride back to the office after lunch one day, I was having a conversation with Billy, one of the client company’s developers; and he mentioned that he had recently been to a Google conference to learn about <a href="https://developers.google.com/web-toolkit/">Google Web Toolkit</a> (one of the technologies we were using on the project), among other things. I can’t recall everything we talked about, but something that Billy said during that conversation has stuck with me ever since:</p>
-
-<blockquote>
-<p>Companies like Google, Microsoft, Apple—they are the LEGO makers. We are just the assemblers.</p>
-</blockquote>
-
-<p>At the time, I strongly disagreed with Billy on this point. Part of me wanted to blurt out, “Speak for yourself!” I didn’t say that, of course; in fact I wasn’t even sure why I felt so strongly in opposition to this statement. Probably more than any other reason, I was just feeling defensive against what I felt was a belittling thing to say about being a software developer.</p>
-
-<p>What I <em>did</em> say was something to the effect that we are all LEGO makers in the sense that we should strive to write clean code, to design clear interfaces, to build reusable components, etc. Billy smiled but clearly didn’t agree with me. In retrospect, he probably thought I was being naïve.</p>
-
-<h1 id="a_lesson_on_refactoring_3">A lesson on refactoring</h1>
-
-<p>On that same project, I became friends with a fellow ThoughtWorks developer, <a href="http://seleniumcapsules.blogspot.com">Yujun Liang</a>. I really enjoyed <a href="http://en.wikipedia.org/wiki/Pair_programming">pairing</a> with Yujun; he and I both understood each other fairly quickly<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, and we got along quite well.</p>
-
-<p>One habit of Yujun’s that bugged me, though, was that he <em>loved</em> to refactor code. In contrast, I had a tendency (at the time) to prefer moving more quickly and building more features. I did understand the value of refactoring in many cases, such as to reduce code duplication. However, Yujun consistently engaged in a particular type of refactoring that I, at the time, found somewhat maddening.</p>
-
-<p>Since a code snippet will probably better illustrate this type of refactoring than I could with words, here’s an example. Suppose we came across this (completely fabricated) code on our project:</p>
-
-<div class="highlight"><pre><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendNotifications</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Notification</span><span class="o">&gt;</span> <span class="n">pendingNotifications</span> <span class="o">=</span> <span class="n">getPendingNotifications</span><span class="o">();</span>
-
-    <span class="c1">// Group notifications by recipient.</span>
-    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Notification</span><span class="o">&gt;&gt;</span> <span class="n">notificationsByRecipient</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Notification</span><span class="o">&gt;&gt;();</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">Notification</span> <span class="n">n</span> <span class="o">:</span> <span class="n">pendingNotifications</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">recipient</span> <span class="o">=</span> <span class="n">n</span><span class="o">.</span><span class="na">getRecipient</span><span class="o">();</span>
-        <span class="k">if</span> <span class="o">(!</span><span class="n">notificationsByRecipient</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">recipient</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">notificationsByRecipient</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">recipient</span><span class="o">,</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Notification</span><span class="o">&gt;());</span>
-        <span class="o">}</span>
-        <span class="n">notificationsByRecipient</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">recipient</span><span class="o">).</span><span class="na">add</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="c1">// For each recipient, create a new notification task to be executed by the scheduler.</span>
-    <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">recipients</span> <span class="o">=</span> <span class="n">notificationsByRecipient</span><span class="o">.</span><span class="na">keySet</span><span class="o">();</span>
-    <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">recipient</span> <span class="o">:</span> <span class="n">recipients</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">List</span><span class="o">&lt;</span><span class="n">Notification</span><span class="o">&gt;</span> <span class="n">notificationsForRecipient</span> <span class="o">=</span> <span class="n">notificationsByRecipient</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">recipient</span><span class="o">);</span>
-        <span class="n">NotificationTask</span> <span class="n">task</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NotificationTask</span><span class="o">(</span><span class="n">recipient</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="n">Notification</span> <span class="n">n</span> <span class="o">:</span> <span class="n">notificationsForRecipient</span><span class="o">)</span> <span class="o">{</span>
-          <span class="n">task</span><span class="o">.</span><span class="na">addNotification</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="n">task</span><span class="o">.</span><span class="na">scheduleForDelivery</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-
-<p>Yujun would refactor the above into something like this:</p>
-
-<div class="highlight"><pre><span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendNotifications</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Notification</span><span class="o">&gt;&gt;</span> <span class="n">notificationGroups</span> <span class="o">=</span> <span class="n">groupNotificationsByRecipient</span><span class="o">(</span><span class="n">getPendingNotifications</span><span class="o">());</span>
-    <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">NotificationTask</span><span class="o">&gt;</span> <span class="n">tasks</span> <span class="o">=</span> <span class="n">createNotificationTasksFromGroups</span><span class="o">(</span><span class="n">notificationGroups</span><span class="o">);</span>
-    <span class="n">scheduleNotificationTasksForDelivery</span><span class="o">(</span><span class="n">tasks</span><span class="o">);</span>
-<span class="o">}</span>
-
-<span class="c1">// same implementation as above, just broken up into methods</span>
-</pre></div>
-
-<p>Here’s what bothered me about this kind of refactoring at the time: <em>there was still functionality to build.</em> While I would have conceded that Yujun’s refactoring arguably made the code more <em>readable</em>, it did not get us any closer to completing the <a href="http://en.wikipedia.org/wiki/User_stories">stories</a> we needed to finish that iteration. For me, that meant it was not an appropriate use of our time as (expensive) consultants. It was not even reducing code duplication, as the code in question only appeared in one place. I felt this sort of thing belonged at the bottom of a prioritized list of work.</p>
-
-<h1 id="the_limited_value_of_locality_4">The limited value of locality</h1>
-
-<p>You have probably picked up from my careful use of past-tense verbs that my stance on this has changed in the time since that project with Yujun. It has—but not in such a simplistic way that I’d say, “I was wrong, he was right, end of story.” I now think there’s a more nuanced way of looking at how code should read and the value of this style of refactoring. To explain what I mean, let me fast forward to my more recent experience at <a href="http://www.cardpool.com/">Cardpool</a>.</p>
-
-<p>When I first joined the company, every commit I made was code reviewed by a fellow engineer. Very early on—probably within my first couple of weeks—my teammate commented to me that he noticed I tend to write lots of short methods whereas the rest of the engineers on the team generally wrote longer methods. It wasn’t a criticism, just an observation. We agreed that we all have different styles and that there’s an argument that can be made either way: a higher number of shorter methods can lead to more reusable code that’s easier to unit test; whereas favoring fewer, longer methods offers the advantage of greater <strong>locality</strong>: you can see everything the code is doing in one place, without having to navigate back and forth between multiple places in a file (or between multiple files).</p>
-
-<p>I would still say this is true to some extent. But curiously, the longer I’ve been at Cardpool, working in a codebase where this <em>fewer-longer-methods</em> style is the prevailing one, the more I’ve started to doubt one of the supposedly greatest benefits of locality: that it makes code easier to understand. I’ve found that long methods can have the opposite effect: when you have to scroll multiple times the height of your screen to read the entirety of a method’s code, locality falls apart. There’s so much to hold in your brain at once, it becomes difficult to reason about what the code is doing, where changes should be made, and what impact they’ll have.</p>
-
-<p>I think there’s certainly some point at which you can go too far in the opposite direction; i.e., to make the <em>reductio ad absurdum</em> argument, suppose you committed to never writing methods longer than a single line. Reading such code would be like trekking through a treacherous jungle, a veritable nightmare. So, as with most things in life, there’s a balance to be reached. I just happen to believe that the optimal balance is pretty far down towards the “shorter” end of the spectrum.</p>
-
-<h1 id="details_are_irrelevant_yet_responsible_5">Details are irrelevant yet responsible</h1>
-
-<p>I just started reading the book <em>I am a Strange Loop</em> by Douglas Hofstadter (easily one of my favorite authors after reading <a href="http://en.wikipedia.org/wiki/Godel_escher_bach"><em>Gödel, Escher, Bach</em></a>); and in one of the earlier chapters he discusses the notion that <strong>the low-level details of a system are simultaneously <em>responsible</em> for the system functioning yet <em>irrelevant</em> to how the system works</strong>. I think it was while reading this passage that the idea I’m working towards truly started to crystallize for me:</p>
-
-<blockquote>
-<p>[L]et us think for a moment about […] a gas in a cylinder with a movable piston. If the gas suddenly heats up (as occurs in any cylinder in your car engine when its spark plug fires), then its pressure suddenly increases and <em>therefore</em> (note the causal word) the piston is suddenly shoved outwards. Thus combustion engines can be built.</p>
-
-<p>What I just told is the story at a gross (thermodynamic) level. Nobody who designs combustion engines worries about the fine-grained level—that of molecules. No engineer tries to figure out the exact trajectories of 1023 molecules banging into each other! The locations and velocities of individual molecules are simply irrelevant. All that matters is that they can be counted on to <em>collectively</em> push the piston out. Indeed, it doesn’t matter whether they are molecules of type X or type Y or type Z—pressure is pressure, and that’s all that matters. The explosion—a high-level event—will do its job in heating the gas, and the gas will do its job in pushing the piston. This high-level description of what happens is the <em>only</em> level of description that is relevant, because all the microdetails could be changed and exactly the same thing (at least from the human engineer’s point of view) would still happen.</p>
-</blockquote>
-
-<p>I love this, and I think it covers a concept that is extremely useful for us software engineers. Embrace the notion that the low-level <em>implementation</em> (details) of software, while indisputably <em>responsible</em> for how that software works, can be at the same time irrelevant, extraneous, unimportant—however you want to put it—to understanding the software at a higher level.</p>
-
-<p>Elsewhere in the book, Hofstadter makes this more general point about how much of our understanding of the world actually relies on, essentially, <em>ignoring</em> lower-level details:</p>
-
-<blockquote>
-<p>To describe a gas’s behavior by writing a gigantic piece of text having Avogadro’s number of equations in it (assuming such a herculean feat were possible) would not lead to anyone’s understanding of anything. But throwing away huge amounts of information and making a statistical summary could do a lot for comprehensibility. Just as I feel comfortable referring to “a pile of autumn leaves” without specifying the exact shape and orientation and color of each leaf, so I feel comfortable referring to a gas by specifying just its temperature, pressure, and volume, and nothing else.</p>
-</blockquote>
-
-<h1 id="the_importance_of_a_consistent_abstraction_6">The importance of a consistent abstraction</h1>
-
-<p>Through experience, reading, and thinking a lot on my own I’ve come to appreciate Yujun’s style of refactoring much more over time. I think I understand better now how important such work is to the sustained health of a codebase. But even though I appreciate the <em>intent</em>, there remains the question of what the end result should be.</p>
-
-<p>A mantra that many of us have heard is that “good code should read like prose”–a quote I want to attribute to <a href="http://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a>, but I could be wrong—and I’m inclined to <em>sort of</em> agree with that. It’s right in line with another mantra we’ve all heard: that when writing code, you should “optimize for readability” (as opposed to, e.g., performance). These are good guidelines, but in my opinion they only get us about halfway to where we should be.</p>
-
-<p>I was fortunate enough to work with <a href="http://blog.thepete.net">Pete Hodgson</a>, another former ThoughtWorks teammate, on multiple projects. On our first project together, Pete took up the burden of teaching me a valuable lesson about how <em>not</em> to write code, in response—to my embarrassment—to a rather clumsy bit of work I had done.</p>
-
-<p>Pete noticed that in one of my commits I had added a snippet of code in a place where, from an organizational standpoint, it simply didn’t belong. <em>Functionally</em> the code did what I intended; but its placement was haphazard, something I hadn’t put any reasonable amount of thought into. I would compare my process for picking its location to spinning a globe and landing your finger on a random spot and declaring: “That’s where I’ll build my house!”</p>
-
-<p>The problem actually went beyond the poor placement of a code snippet within a larger codebase, though. I really can’t recall what the actual code was, so I’ll just write another little fabrication to illustrate the problem:</p>
-
-<div class="highlight"><pre><span class="c1">// what was already there</span>
-<span class="nx">updateListContents</span><span class="p">();</span>
-<span class="nx">attachEventHandlers</span><span class="p">();</span>
-<span class="nx">refreshStyles</span><span class="p">();</span>
-
-<span class="c1">// what I added</span>
-<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">pages</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nx">pageIsHidden</span><span class="p">(</span><span class="nx">pages</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span> <span class="p">{</span>
-    <span class="nx">hideDialogs</span><span class="p">(</span><span class="nx">pages</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>Again, that isn’t the actual code I wrote; but I’m pretty confident it was something like that. In retrospect, I’m pretty ashamed to admit that I <em>ever</em> failed to see the problem there. But as Pete was kind enough to articulate for me, and as I quickly understood, there most certainly is a problem: the above code fails to maintain a <strong>consistent abstraction level</strong>.</p>
-
-<p>It was as if Yujun had started to refactor the code, then got pulled away to work on something else. Or, to return to Hofstadter’s point about irrelevant details, it was as though I started to tell you a story by describing some events that occurred and the actions different characters performed, then got to a scene where two characters play a game of chess and suddenly started listing every single move. This has a jarring, botched effect—in code <em>or</em> in prose. Such inconsistency pulls you out from a level of understanding and plunges you “into the weeds”–as apt a metaphor as I’ve heard to describe this sort of thing—by providing <em>detail that is irrelevant to a high-level understanding of what’s important</em>.</p>
-
-<h1 id="what_comprehensible_code_looks_like_7">What comprehensible code looks like</h1>
-
-<p>I mentioned that I only half-agree with the assertion that code should read like good prose. Actually, it might have made sense to say that at the time, whoever first said it. But I would argue that with the advent of <a href="http://en.wikipedia.org/wiki/Hypertext">hypertext</a> we’ve gained an even better way to present information than prose, which is generally linear. The more I think on this idea, the more I like it: <strong>unlike prose, good code should read like Wikipedia</strong>.</p>
-
-<p>Some of you probably instinctively know what I mean by this, but let me explain. When you read an article on Wikipedia (in hypertext), you get a high-level description of some subject—a historical event or figure, a technology, a scientific theory, etc. This description maintains what I’ll call a consistent “altitude”–that is, let’s say, a 10,000-foot view. A well-written article keeps this altitude without diving much deeper; that is left to the reader who wants to find out more about some subtopic of the current subject.</p>
-
-<p>When you <em>do</em> find some part of an article on Wikipedia fascinating, what normally happens (at least with me) is you find yourself clicking on links which take you to more details or otherwise provide greater context on whatever you happen to be reading about. This is a great way to provide information, as it is easy to comprehend—thanks to a consistent altitude—while it also empowers the reader to explore ideas in a way that naturally follows his or her own curiosity. (Incidentally, this also makes Wikipedia a very dangerous place if you can’t afford to waste a lot of time!)</p>
-
-<p>And of course, I could replace the word “altitude” in the above paragraphs with “abstraction level” and suddenly we’d be talking about code. Good code is written like a good Wikipedia article—at a consistently high level of abstraction, so that it can be easily understood, but also in a way that invites <em>exploration</em> to the curious developer who wants to know how this method is implemented, or what dependencies that class has, or how these interfaces fit together.</p>
-
-<p>(As a sort of unfortunate aside, I feel compelled to point out—or admit?–that what I’m saying does require a certain level of sophistication among developers’ tools, just as hypertext requires web browsers offering more functionality than simple text viewers. I’m a huge fan of “lean” editors such as <a href="http://www.sublimetext.com/">Sublime Text</a>, or to a lesser extent <a href="http://www.gnu.org/software/emacs/">emacs</a> or <a href="http://www.vim.org/">vim</a>; but with respect to the point I’m making about code reading like hypertext, I do think it’s worth calling out the advantage of both statically typed languages and beefier IDEs such <a href="http://www.eclipse.org/">Eclipse</a> and <a href="http://www.microsoft.com/visualstudio">Visual Studio</a>.)</p>
-
-<p>To provide one more example: if someone asks you what you do professionally, do you start by going through every task you perform on a daily basis at your job and explaining each one in detail? No, you start with a high-level answer, like ”I’m a software engineer” or ”I’m an investment banker” or ”I’m in sales.” If this person asks you follow-up questions, <em>then</em> you provide more information. The more interest someone shows in what you have to say, the more you can go into detail with the confidence he or she actually cares to hear it. In this sense writing code is similar to telling a story or having a conversation.</p>
-
-<h1 id="optimizing_for_the_right_thing_8">Optimizing for the right thing</h1>
-
-<p>This has really all been a long-winded way of saying: <em>absolutely</em> prefer shorter methods. I’m willing to put a stake in the ground on this one now. The more I write software, and the more I think about it, the more I become convinced that this is a crucial part of writing good code that others can understand. Start with the 10,000-foot view, maintain that altitude, and let the reader (i.e., your teammates) decide when to drill deeper for more detail. In this way your code will be <em>discoverable</em>, like a Wikipedia article, and not just <em>linear</em>, like standard prose.</p>
-
-<p>I should be clear about something at this point. I don’t think that writing long methods makes you a bad engineer, or that writing short methods makes you a good one. I do think I’m right on this issue; but I also know there are other engineers (including some of my current teammates) who would likely disagree with me, yet from whom I still have plenty to learn. Probably more importantly, I can’t even claim to be particularly effective at practicing what I preach, at least at the moment. It’s an opinion that has only recently solidified for me, and one that will require a lot of self-discipline for me to start applying consistently to my work.</p>
-
-<p>But there’s a reason I wrote all this, and it all comes back to what Billy said about being assemblers. I think this is at least partially wrong, because even if we are assemblers in some ways, we are also <em>designers</em>; and any system that is designed well must be comprehensible. That’s why I don’t think it’s enough to just write code that gets the job done, nor do I think that “readability” is the right word to describe how we make code accessible to others. Optimizing for <em>comprehensibility</em> is all about abstraction, or as Hofstadter put it: “throwing away huge amounts of information.” It’s about <em>hiding</em> detail, not revealing it all in one place.</p>
-<div class="footnotes">
-<hr>
-<ol><li id="fn:1">
-<p>As anyone who’s seriously worked in a pair programming environment before knows, the importance of clear communication between developers is absolutely critical to their ability to work effectively. I’ve sadly had the experience more than once of working with otherwise talented developers with whom I struggled to communicate; and our productivity inevitably suffered as a result. <a href="#fnref:1" rev="footnote">↩</a></p>
-</li></ol>
-</div>]]></description><pubDate>Sat, 29 Dec 2012 00:00:00 +0000</pubDate><guid>http://philosopherdeveloper.com/posts/optimize-for-comprehensibility.html</guid></item></channel></rss>
+</div>]]></description><pubDate>Sun, 13 Jan 2013 00:00:00 +0000</pubDate><guid>http://philosopherdeveloper.com/posts/ab-testing-and-irreducible-complexity.html</guid></item></channel></rss>

@@ -14,7 +14,7 @@ What we mean by global state
 
 First, some background. If you're reading this, there's a good chance you're a developer so I probably don't have to explain this; but I think there are at least two forms of **global state** that come to mind in software. One form is global **variables**--values that are accessible and can be changed, globally, anywhere, by all of the code in a project. The other is **constants**--values that may be *accessible* to potentially every part of a program, but cannot be changed.
 
-These aren't the only kinds of global state, though. I would argue that *globality*--apparently that's [actually a word](http://dictionary.reference.com/browse/globality)[^globality]--is a *continuous* (as opposed to discrete or binary) property. Meaning: it isn't just variables and constants; there are things in between as well. There are some values that will *definitely* change (e.g., a local variable called `sum`), there are some that *might* (e.g., instance variables), others that probably won't (static configuration values), and so on. There is also the question of the scope of a variable's *impact*, which is not the same as how widely it happens to be accessible. One bit of state might define the language or dialect in which an entire UI is presented, for example, while another may simply indicate whether or not to display a certain dialog when an application loads.
+These aren't the only kinds of global state, though. I would argue that *globality*--apparently that's [actually a word](http://dictionary.reference.com/browse/globality)[^globality]--is a *continuous* (as opposed to discrete or binary) property. Meaning: it isn't just variables and constants; there are things in between as well. There are some values that will *definitely* change (e.g., a global cache), there are some that *might* (e.g., a feature flag), others that probably won't (static configuration values), and so on. There is also the question of a variable's *impact*, which is not the same as its *scope*, or how widely it happens to be accessible. One bit of state might define the language or dialect in which an entire UI is presented, for example, while another may simply indicate whether or not to display a certain dialog when an application loads.
 
 So there's some sort of spectrum here (you know [how I like spectrums](/posts/am-i-an-engineer.html)), or at the very least there's more than just one or two kinds of global state.
 
@@ -23,14 +23,14 @@ What's wrong with global state?
 
 Global state has got a pretty bad rap in most of the software development community. For one, use of global state can make it difficult to reason about a section of code: what's happening *locally* may be clear, but the far-reaching *ramifications* of the code probably aren't. Global state also tends to fuel the proliferation of implicit dependencies between software components, making it increasingly difficult to "pull apart" those components down the line and resulting in code that less testable and less reusable.
 
-Those are a couple of reasons nobody likes global state, and there are plenty more. I'm not going to claim they're invalid. But a recent tweet by my old teammate [Scott Muc](http://scottmuc.com/) got me thinking on this topic, and it compelled me to write this post.
+There are plenty more reasons. I'm not going to claim they're invalid. But a recent tweet by my old teammate [Scott Muc](http://scottmuc.com/) got me thinking on this topic, and it compelled me to consider the dissenting opinion[^dissenting-opinion].
 
 <blockquote class="twitter-tweet"><p>Sometimes convention based frameworks feel like it's just 0 param methods using hidden global variables.</p>&mdash; Scott Muc (@ScottMuc) <a href="https://twitter.com/ScottMuc/status/326481455804997632">April 22, 2013</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 Embedded in Scott's statement is the shared understanding that global variables are A Bad Thing[^a-bad-thing]. When everyone takes that for granted, then you can say things like "blah blah blah global variables" and your audience will intuitively grasp that *global variables* is just a proxy for *something bad*. Similarly, if I said, "Feature X is the `goto` of Language Y," you would understand I'm saying [something bad about Feature X](http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html).
 
-Now, regarding the kinds of global state I described earlier: I would guess that most of us are much more sympathetic to *constants* than to global *variables*. They at least don't cause the same action-at-a-distance confusion that global variables can. However, they do still exhibit the other drawback I mentioned of global state: that dependence on it may spread through a code base, inhibiting reusability.
+Now, regarding the kinds of global state I described earlier: I would guess that most of us are much more sympathetic to *constants* than to global *variables*. Constants, at least don't cause the same action-at-a-distance confusion that variables can. However, they still exhibit the other drawback I mentioned of global state: that dependence may spread through a code base, inhibiting reusability.
 
 So we like constants more than global variables, but we're not exactly thrilled about either of them. What does this imply about the spectrum of globality? Do we start at "good" and gradually move towards "bad" the more scope and impact some bit of global state has?
 
@@ -115,9 +115,11 @@ So yes, maybe at its core [convention over configuration](http://en.wikipedia.or
 
 [^provocative-title]: And yes, I realize that to any non-programmer that sounds completely absurd.
 
-[^to-be-fair-to-scott]: Scott, if you're reading this: I interpreted your tweet as essentially a playful expression of mild concern as opposed to an outright attack on convention-based frameworks. That said, you know how it is: I will never agree with you about anything.
+[^dissenting-opinion]: Scott, if you're reading this, you know how it is: I will always disagree with you about everything.
 
 [^a-bad-thing]: Or whatever the expression-coiners are saying these days.
+
+[^to-be-fair-to-scott]: I interpreted Scott's tweet as essentially a playful expression of mild concern as opposed to an outright attack on convention-based frameworks. I wrote this post more in response to that embedded assumption about global variables being bad than to the tweet directly.
 
 [^globality]: Think: the opposite of *locality*.
 
