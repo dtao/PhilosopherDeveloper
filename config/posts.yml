@@ -161,39 +161,39 @@ ghost-clicks-in-jquery-mobile:
 best-dependency-is-no-dependency:
   date: 2011-09-20
   title: The best dependency is no dependency
-  published: true
+  published: false
 
 were-all-going-to-die-because-you-dont-know-what-a-binary-tree-is:
   date: 2011-08-13
   title: We're all going to die because you don't know what a binary tree is
-  published: true
+  published: false
 
 paradox-of-free-will:
   date: 2011-07-30
   title: The paradox of free will
-  published: true
+  published: false
 
 does-jquery-turn-programmers-into-babies:
   date: 2011-07-29
   title: Does jQuery turn programmers into babies?
-  published: true
+  published: false
 
 not-solved-here-syndrome:
   date: 2011-07-24
   title: Not solved here syndrome
-  published: true
+  published: false
 
 acquired-needs-of-software-engineers:
   date: 2011-04-26
   title: The acquired needs of software engineers
-  published: true
+  published: false
 
-how-i-discovered-a-bug-in-the-csharp-compile-part-2:
+how-i-discovered-a-bug-in-the-csharp-compiler-part-2:
   date: 2011-04-03
   title: How I discovered a bug in the C# compiler, part 2
   published: true
 
-how-i-discovered-a-bug-in-the-csharp-compile-part-1:
+how-i-discovered-a-bug-in-the-csharp-compiler-part-1:
   date: 2011-03-31
   title: How I discovered a bug in the C# compiler, part 1
   published: true
@@ -201,17 +201,17 @@ how-i-discovered-a-bug-in-the-csharp-compile-part-1:
 such-a-thing-as-too-much-abstraction:
   date: 2011-03-17
   title: There's such a thing as too much abstraction, you know
-  published: true
+  published: false
 
 how-do-you-know-something-for-sure:
   date: 2011-03-16
   title: How do you know something for sure?
-  published: true
+  published: false
 
 ridiculous-time-waster-that-is-code-aesthetics:
   date: 2011-03-15
   title: The ridiculous time waster that is code aesthetics
-  published: true
+  published: false
 
 terminating-condition:
   date: 2011-01-15
