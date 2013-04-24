@@ -26,6 +26,10 @@ def measure(description, &block)
   puts "took #{'%0.2f' % measurement.total} seconds."
 end
 
+def load_posts
+  Post.load_all(File.join(File.dirname(__FILE__), "config", "posts.yml"))
+end
+
 def read_file(*args)
   File.read(File.join(File.dirname(__FILE__), *args))
 end
@@ -171,7 +175,7 @@ namespace :compile do
 
   desc "Compile static website"
   task :html do
-    Post.load_all(File.join(File.dirname(__FILE__), "config", "posts.yml"))
+    load_posts()
 
     measure("Compiling posts") do
       Post.each { |post| compile_post(post) }
@@ -187,6 +191,12 @@ namespace :compile do
     measure("Compiling about page") { compile_about() }
     measure("Compiling posts index") { compile_posts_index() }
     measure("Updating README") { update_readme() }
+  end
+
+  desc "Compile just the most recent post"
+  task :latest do
+    load_posts()
+    measure("Compiling latest post") { compile_post(Post.latest) }
   end
 
   desc "Compile CSS"
