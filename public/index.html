@@ -40,6 +40,29 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/in-defense-of-global-state.html'>In defense of global state</a>
+      </span>
+      <span class='date'>April 23, 2013</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>I bet you weren’t expecting any sane developer to make this argument!</p>
+
+<p>Well, to be fair, the title of this post is somewhat intentionally provocative. But anyway, you’re here now; so it served its purpose. And make no mistake: I <em>am</em> going to defend global state—just possibly not in quite the way you might be expecting.</p>
+
+<h2 id="what_we_mean_by_global_state_1">What we mean by global state</h2>
+
+<p>First, some background. If you’re reading this, there’s a good chance you’re a developer so I probably don’t have to explain this; but I think there are at least two forms of <strong>global state</strong> that come to mind in software. One form is global <strong>variables</strong>–values that are accessible and can be changed, globally, anywhere, by all of the code in a project. The other is <strong>constants</strong>–values that may be <em>accessible</em> to potentially every part of a program, but cannot be changed.</p>
+
+<p>These aren’t the only kinds of global state, though. I would argue that <em>globality</em>–apparently that’s <a href="http://dictionary.reference.com/browse/globality">actually a word</a>–is a <em>continuous</em> (as opposed to discrete or binary) property. Meaning: it isn’t just variables and constants; there are things in between as well. There are some values that will <em>definitely</em> change (e.g., a local variable called <code>sum</code>), there are some that <em>might</em> (e.g., instance variables), others that probably won’t (static configuration values), and so on. There is also the question of the scope of a variable’s <em>impact</em>, which is not the same as how widely it happens to be accessible. One bit of state might define the language or dialect in which an entire UI is presented, for example, while another may simply indicate whether or not to display a certain dialog when an application loads.</p>
+
+<p>So there’s some sort of spectrum here (you know <a href="/posts/am-i-an-engineer.html">how I like spectrums</a>), <span class="post-link">... (<a href="/posts/in-defense-of-global-state.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/people-are-not-resources.html'>People are not resources</a>
       </span>
       <span class='date'>April 17, 2013</span>
@@ -164,35 +187,6 @@
 <p>More recently I’ve worked in environments that fall much closer to the right side of the spectrum. The culture at <a href="http://www.cardpool.com">Cardpool</a>–founded by two former Microsoft employees and with its first two hires from Google—was, not surprisingly, firmly in the software-as-engineering camp. I would expect no different from most large software companies (or developers with large company roots). And a couple of weeks ago I started at Google myself, which I’m guessing will be about as far to the right as I’ll ever get in my career.</p>
 
 <p>(By the way, it’s probably not a coincidence that I chose to assign the left and right sides of the spectrum to the viewpoints that I did; read <a href="https://plus.google.com/110981030061712822816/posts/KaSKeg4vQtz">Steve Yegge’s argument</a> that software developers fall into “liberal” and “conservative” groups to get an interesting view on a related subject. And while you’re at it, also read Richard <span class="post-link">... (<a href="/posts/am-i-an-engineer.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/automating-yourself.html'>Automating yourself</a>
-      </span>
-      <span class='date'>February 28, 2013</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.</p>
-
-<figure class="hidden-in-abbreviated-version"><img src="/images/espresso_machine_thumb.jpg" alt="Our espresso machine"><figcaption>Our espresso machine</figcaption></figure>
-
-<p>Back in Philly, we’d had a modest kitchen with just enough counter space for the machine. On lazy weekend mornings, I’d often turn it on and prepare us each a latte drink. It was a nice little ritual.</p>
-
-<p>So we brought it to San Francisco with us. But our first apartment, a little studio we rented from a friend of a friend, didn’t have the room for it. So the machine went into storage.</p>
-
-<p>Then in 2011, we moved to our current apartment in the Mission. The espresso machine is back; but we don’t have quite the counter space that we did in Philadelphia, so it’s sitting on a little cart underneath our microwave, unplugged.</p>
-
-<figure class="hidden-in-abbreviated-version"><img src="/images/espresso_machine2.jpg" alt="Our espresso machine now"><figcaption>Our espresso machine now</figcaption></figure>
-
-<p>This isn’t terribly inconvenient. To use it, I only need to pick it up and set it somewhere—say, on our table—then put it back when I’m finished. Still, the fact remains: <strong>I haven’t used it once</strong> since moving here.</p>
-
-<p>How strange, that such a small and seemingly insignificant detail could have such a disproportionate impact on our lives! Instead of plugged in and on the counter, the espresso machine is unplugged and a few feet lower. That’s a small change. But now instead of using the machine every week or so, I <em>never</em> use it. That’s a comparatively <em>big</em> change.</p>
-
-<p>I’ve pondered this from time to time, and an idea that keeps recurring to me is that <strong>we humans are programmable</strong>. At least to an extent. Simply by recognizing that my internal decision-making circuitry seems to ignore the espresso machine when it’s near the ground but will actually commit to using it when it’s on the counter, I can alter my behavior by <span class="post-link">... (<a href="/posts/automating-yourself.html">read the full post</a>)</span></p>
   </section>
 </article>
 <div class='next-page'>

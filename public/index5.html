@@ -23,6 +23,31 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/am-i-being-obnoxious.html'>Am I being obnoxious?</a>
+      </span>
+      <span class='date'>January 31, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>I’ve noticed I tend to have two conflicting inclinations in a lot of day-to-day situations at work:</p>
+    
+    <ol>
+    <li>I have a lot of opinions about how things could be done better</li>
+    
+    <li>I strongly believe that in order to effect change, it’s important not to turn people against you</li>
+    </ol><p>The latter seems like a no-brainer, and yet it frequently gets in the way of the former.</p>
+    
+    <p>For example, I often participate in meetings during which the discussion becomes derailed on a side tangent, or the group loses focus making jokes or telling stories. Sometimes one-on-one dialogues emerge while the rest of the room sits quietly, waiting politely for the two individuals who are monopolizing the meeting to check themselves. Invariably, <em>after</em> meetings such as this there are grumblings amongst a few of the participants about how unnecessarily long and pointless the meeting was. (Though I’m not proud of it, I am generally a part of this group.)</p>
+    
+    <p>Why should this happen? I ask myself this on a regular basis. It seems that if not one but <em>multiple</em> people are aware that the meeting is veering off track, or that it is somehow not running effectively, surely someone ought to speak up. But no one does, and it’s because of the second point above. Speaking for myself, at least, I don’t want to disrupt the flow of things just to voice my discontent at how the conversation is progressing. I could do more damage than good. People might get defensive. I could inadvertently harm team morale. Besides, just because <em>I</em> am not engaged in the conversation, that doesn’t mean it’s a waste of <em>everyone’s</em> time.</p>
+    
+    <p>Of course, these fears reflect a risk-averse attitude that is perhaps not particularly beneficial to whatever project I’m on. In general, I do think it’s valuable to ask <span class="post-link">... (<a href="/posts/am-i-being-obnoxious.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/being-agile-with-continuous-integration.html'>Being agile with continuous integration</a>
       </span>
       <span class='date'>January 27, 2012</span>
@@ -68,102 +93,92 @@
   <header>
     <h1>
       <span class='title'>
-        <a href='/posts/best-dependency-is-no-dependency.html'>The best dependency is no dependency</a>
+        <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-2.html'>How I discovered a bug in the C# compiler, part 2</a>
       </span>
-      <span class='date'>September 20, 2011</span>
+      <span class='date'>April 03, 2011</span>
     </h1>
   </header>
   <section class='content'>
-    <p>I recently caught wind of an exciting new project that claims to be “the world’s smallest and fastest JavaScript library”: <a href="http://vaporjs.com/">Vapor.js</a>.</p>
+    <p>This post continues from where <a href="http://philosopherdeveloper.wordpress.com/2011/03/31/how-i-discovered-a-bug-in-the-c-compiler-part-1/">my last one</a> left off; but don’t worry—I swear I’ll make this one more less rambling and more comprehensible. And rest assured that I will actually get to the explanation this time!</p>
 
-<p>We developers are always excited about small &amp; fast libraries, so naturally I was intrigued. Taking a look at the project’s homepage, you immediately see the following tantalizing graph:</p>
+<p>So where did we leave off? We witnessed some truly bizarre behavior of a <strong>mutable value type</strong> within a <strong>using statement</strong> which also happens to include a <strong>closure</strong>. What does this look like?</p>
 
-<figure><img src="/images/vaporjs.jpg" alt="The worlds smallest &amp; fastest JavaScript library"><figcaption>The worlds smallest &amp; fastest JavaScript library</figcaption></figure>
+<p>How about instead of using a custom value type to illustrate, this time I’ll show you what I mean with a type straight from the BCL itself (meaning, this guy was written by Microsoft folks, so you know it’s not just something weird about the way <em>I</em> did things):</p>
 
-<p>Wow. Now <em>that’s</em> fast (off the charts, <em>literally!</em>)… but wait a minute. How can this be? Let’s take a look at the source code…</p>
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span> <span class="p">};</span>
 
-<p>On its GitHub page, the Vapor.js README file starts off as follows:</p>
-
-<blockquote>
-<p><strong>vapor.js is a new amazing JavaScript framework.</strong></p>
-
-<p>In just 0 lines of code it provides:</p>
-
-<p>[The README ends there.]</p>
-</blockquote>
-
-<p>Ah. <em>I</em> get it now. It’s a joke.</p>
-
-<p>But you know what? I actually think there’s something to this. A couple of things, actually.</p>
-
-<p>First, there’s the “fastest” claim and that absurd graph. Obviously, if the library does <em>nothing</em>, it’s as “fast” as it can possibly get. But, you know, I say “obviously”; yet it’s very easy to forget this fundamental axiom:</p>
-
-<p class="large">You make software <em>faster</em> by making it <em>do less</em>.</p>
-
-<p>(This concept is clearly not original to me. I’m sure I’ve read an article or blog post specifically about this idea somewhere else; unfortunately, I was not able to find a reference with a quick Google search.)</p>
-
-<p>CPUs aren’t creatures; you can’t magically make them perform more operations per second by cracking a whip or digging in your spurs (although <em>like</em> many animals, they <em>can</em> be sped up by reducing their load). Your processor is a <strong>machine</strong>, executing instructions at a (basically) constant rate. It’s the <strong>number of instructions</strong> that affects how “fast” or “slow” your software feels.</p>
-
-<p>Note that I am not just talking about <em>features</em>. The same feature can be implemented in countless ways, <span class="post-link">... (<a href="/posts/best-dependency-is-no-dependency.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/were-all-going-to-die-because-you-dont-know-what-a-binary-tree-is.html'>We're all going to die because you don't know what a binary tree is</a>
-      </span>
-      <span class='date'>August 13, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>Guys, I’m worried about <strong><a href="http://en.wikipedia.org/wiki/Technological_singularity">The Singularity</a></strong>.</p>
-
-<figure><img src="/images/skynet.jpg" alt="The Singularity"><figcaption>The Singularity</figcaption></figure>
-
-<p>OK, wait. Let me take a step back. And explain.</p>
-
-<p>At one point on my last project I dealt with a bug that involved certain records for a certain bank <em>disappearing</em>. Not from the internal database, mind you—only from the in-memory storage of a particular application. To my astonishment, I eventually traced the cause of the bug to the following Java code:</p>
-
-<div class="highlight"><pre><span class="kd">public</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">sortList</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">Collection</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">sortedList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeSet</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;(</span><span class="k">this</span><span class="o">.</span><span class="na">comparator</span><span class="o">);</span>
-    <span class="n">sortedList</span><span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">sortedList</span><span class="o">;</span>
-<span class="o">}</span>
+<span class="c1">// Criterion 1: within a using statement...</span>
+<span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">e</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="c1">// Criterion 2: ...which includes a closure...</span>
+    <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">closure</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+    
+    <span class="c1">// Criterion 3: ...a mutable value type...</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 
-<p>Non-programmers, I understand that is gibberish to you. Now here’s the scary part: <strong>it’s gibberish to most <em>programmers</em> too</strong>.</p>
+<p><strong>What do you think the above program will print?</strong></p>
 
-<p>All right, maybe not exactly <em>gibberish</em>, but… not properly understood. I was surprised when I found this bug for a number of reasons, but the most startling of these was that a genuinely <em>good</em> developer wrote it. And other genuinely good developers thought it was right.</p>
+<p>Well, if you were paying <em>attention</em> to my last post (and if not—honestly, I totally understand), you’d know the answer already. The above program outputs:</p>
 
-<p>What the code is apparently <em>supposed</em> to do is this: take a list and give back a sorted version of it (based on some potentially-custom comparator). What it <em>actually</em> does is: exactly that, plus <strong>remove duplicates</strong>. In other words, if you gave it the list <code>[3, 2, 1, 2]</code>, rather then return <code>[1, 2, 2, 3]</code> (the same list, only sorted, right?), it would return <code>[1, 2, 3]</code>, having removed the duplicate <code>2</code>.</p>
+<pre><code>0
+0
+0
+0
+0</code></pre>
 
-<p>So it’s pretty obvious how this could cause a bug, yes? You have a bunch of records, you try to display them in sorted order, and suddenly a bunch of them are missing.</p>
+<p>…and on and on, ad infinitum.</p>
 
-<p>To my dismay, none of the other developers on my team could see what I was talking about when I first pointed this out. “So what if it removes duplicates?” was the general response. “That’ll only happen <span class="post-link">... (<a href="/posts/were-all-going-to-die-because-you-dont-know-what-a-binary-tree-is.html">read the full post</a>)</span></p>
+<p>Remember, this happens <em>specifically</em> when all three of the above criteria (reiterated in the code comments) are met. It does <em>not</em> happen when only one or two of those criteria are met.</p>
+
+<p>Now let’s get to the bottom of this. In order to do so, there are a few puzzle pieces we need to understand.</p>
+
+<h2 id="puzzle_piece_1_how_does_the_c_compiler_implement_closures_1">Puzzle Piece #1: How does the C# compiler implement closures?</h2>
+
+<p>This one’s a head-scratcher for a lot of C# developers who’ve never really looked into the inner workings of closures. I’d <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-2.html">read the full post</a>)</span></p>
   </section>
 </article>
 <article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
-        <a href='/posts/paradox-of-free-will.html'>The paradox of free will</a>
+        <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html'>How I discovered a bug in the C# compiler, part 1</a>
       </span>
-      <span class='date'>July 30, 2011</span>
+      <span class='date'>March 31, 2011</span>
     </h1>
   </header>
   <section class='content'>
-    <p>I recently read an excellent piece by Raymond Smullyan entitled <em><a href="http://www.mit.edu/people/dpolicar/writing/prose/text/godTaoist.html">Is God a Taoist?</a></em> I particularly like what Smullyan has to say about the concept of free will; here is an excerpt:</p>
-    
-    <blockquote>
-    <p>Of course, you might well say that the doctrine of free will says that it is you who are doing the determining, whereas the doctrine of determinism appears to say that your acts are determined by something apparently outside you. But the confusion is largely caused by your bifurcation of reality into the “you” and the “not you.” Really now, just where do you leave off and the rest of the universe begin? Or where does the rest of the universe leave off and you begin? Once you can see the so-called “you” and the so-called “nature” as a continuous whole, then you can never again be bothered by such questions as whether it is you who are controlling nature or nature who is controlling you. Thus the muddle of free will versus determinism will vanish.</p>
-    </blockquote>
-    
-    <p>I like that way of thinking about the question of free will: it’s quite simple, actually, and yet it provides resolution to what is for so many people a truly vexing and even infuriating puzzle.</p>
-    
-    <p>That said, here’s a totally different thought on the same subject that I myself recently had. It’s actually a bit of a paradox.</p>
-    
-    <p>Consider the question of whether we have free will or our actions are determined by forces outside of our control. Imagine that you have access to every fact about the physical universe—and I mean <em>everything</em>, down to the location and velocity of every individual particle, or <a href="http://en.wikipedia.org/wiki/Electron_density">probability density</a>, or whatever it takes to be able to say that <strong>the conditions are completely known</strong> at a particular moment in time—including, of course, the <span class="post-link">... (<a href="/posts/paradox-of-free-will.html">read the full post</a>)</span></p>
+    <p>Well, <a href="http://philosopherdeveloper.wordpress.com/2011/03/25/poll-what-should-my-next-blog-topic-be/">a few of you voted</a>, and this topic came out on top. So, without further ado, I give you the story of <strong>my epic adventure in discovering a bug in</strong> (the latest version of) <strong>the C# compiler</strong>.</p>
+
+<p>First of all, some background. I was working on a library, mostly for personal use, which was to include an enumerable collection type similar to <code>List&lt;T&gt;</code> or <code>T[]</code>. One of the goals of this library was to be <em>efficient</em>; so, naturally, for this type’s enumerator I made the decision to create a mutable value type.</p>
+
+<p><strong><em>Wait a minute!</em></strong> What’s that, you say? <em>Mutable value types are <strong>evil</strong>!</em> Oh?</p>
+
+<p>This is a topic for a whole other blog post; but just to give a mini-argument in <em>defense</em> of this decision, by way of example, let me point out one simple fact: <strong>if you make the return value of <code>GetEnumerator</code> a <em>reference type</em>, then every <code>foreach</code> loop creates a new object to be garbage collected later</strong>. Don’t care? That’s fine; I <em>did</em> care, so I took an alternate approach (which, incidentally, is the same approach utilized by the designers of the collections in the <code>System.Collections.Generic</code> namespace in the BCL).</p>
+
+<p>For <em>my</em> <code>GetEnumerator</code>, I explicitly implemented both <code>IEnumerable.GetEnumerator</code> <em>and</em> <code>IEnumerable&lt;T&gt;.GetEnumerator</code> and made a public version of the method returning an <code>Enumerator&lt;T&gt;</code> struct, like this:</p>
+
+<div class="highlight"><pre><span class="k">public</span> <span class="n">Enumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">Enumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">IEnumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerator</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerable</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>This allowed my <code>Enumerator&lt;T&gt;</code> type to behave quite well when used in <code>foreach</code> loops without causing unnecessary garbage collection. And the fact that it was a mutable value type hardly mattered—just like it hardly matters for <code>List&lt;T&gt;.Enumerator</code>, <code>Dictionary&lt;TKey, TValue&gt;.Enumerator</code>, etc. (The only times when it hypothetically matters is when you pass <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html">read the full post</a>)</span></p>
   </section>
 </article>
 <div class='next-page'>

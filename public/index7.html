@@ -23,6 +23,45 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compile-part-1.html'>How I discovered a bug in the C# compiler, part 1</a>
+      </span>
+      <span class='date'>March 31, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>Well, <a href="http://philosopherdeveloper.wordpress.com/2011/03/25/poll-what-should-my-next-blog-topic-be/">a few of you voted</a>, and this topic came out on top. So, without further ado, I give you the story of <strong>my epic adventure in discovering a bug in</strong> (the latest version of) <strong>the C# compiler</strong>.</p>
+
+<p>First of all, some background. I was working on a library, mostly for personal use, which was to include an enumerable collection type similar to <code>List&lt;T&gt;</code> or <code>T[]</code>. One of the goals of this library was to be <em>efficient</em>; so, naturally, for this type’s enumerator I made the decision to create a mutable value type.</p>
+
+<p><strong><em>Wait a minute!</em></strong> What’s that, you say? <em>Mutable value types are <strong>evil</strong>!</em> Oh?</p>
+
+<p>This is a topic for a whole other blog post; but just to give a mini-argument in <em>defense</em> of this decision, by way of example, let me point out one simple fact: <strong>if you make the return value of <code>GetEnumerator</code> a <em>reference type</em>, then every <code>foreach</code> loop creates a new object to be garbage collected later</strong>. Don’t care? That’s fine; I <em>did</em> care, so I took an alternate approach (which, incidentally, is the same approach utilized by the designers of the collections in the <code>System.Collections.Generic</code> namespace in the BCL).</p>
+
+<p>For <em>my</em> <code>GetEnumerator</code>, I explicitly implemented both <code>IEnumerable.GetEnumerator</code> <em>and</em> <code>IEnumerable&lt;T&gt;.GetEnumerator</code> and made a public version of the method returning an <code>Enumerator&lt;T&gt;</code> struct, like this:</p>
+
+<div class="highlight"><pre><span class="k">public</span> <span class="n">Enumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">Enumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">IEnumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerator</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerable</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>This allowed my <code>Enumerator&lt;T&gt;</code> type to behave quite well when used in <code>foreach</code> loops without causing unnecessary garbage collection. And the fact that it was a mutable value type hardly mattered—just like it hardly matters for <code>List&lt;T&gt;.Enumerator</code>, <code>Dictionary&lt;TKey, TValue&gt;.Enumerator</code>, etc. (The only times when it hypothetically matters is when you pass <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compile-part-1.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/such-a-thing-as-too-much-abstraction.html'>There's such a thing as too much abstraction, you know</a>
       </span>
       <span class='date'>March 17, 2011</span>
@@ -166,31 +205,6 @@
 </ol>
 </li>
 </ol>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/boy-can-dream.html'>A boy can dream...</a>
-      </span>
-      <span class='date'>February 24, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>Well, I’ve finished an initial implementation of a <code>ConcurrentList&lt;T&gt;</code> data structure. It implements the <code>IList&lt;T&gt;</code> interface (partially—no <code>Insert</code>, <code>RemoveAt</code>, etc.–it is an append-only structure) and is both <strong>thread-safe</strong> and <strong>lock-free</strong>.</p>
-
-<p>(I also came up with a few different ways to resolve the <code>Count</code> issue mentioned in my previous post; what I’ve settled on for now is basically the most obvious and straightforward version.)</p>
-
-<p>The source code for the class itself is available to view in my GitHub repository here:</p>
-
-<p><a href="https://github.com/dtao/ConcurrentList"><strong>Check out the source code.</strong></a></p>
-
-<p>Now for the somewhat disheartening part: thus far, based on my own performance benchmarks, I see little evidence that this actually outperforms a simple <code>List&lt;T&gt;</code> with synchronized calls to <code>Add</code> (using, e.g., a <code>lock</code> statement). So that’s a bit disappointing. But I figured I’d share the source code, in case some hackers out there might be able to figure out how to make it better.</p>
-
-<p>Also, I feel like part of the issue I may be having is that it’s tough to really create a lot of thread contention on a puny little laptop with such a lightweight method (I’d wager <code>List&lt;T&gt;.Add</code> couldn’t be much more than 10 lines). So maybe if this could get tested on a 32-core server somewhere, the results would be more noteworthy. I don’t know!</p>
-
-<p>Anyway, at least it passes the unit tests. That’s got to be worth something, right?</p>
   </section>
 </article>
 <div class='next-page'>
