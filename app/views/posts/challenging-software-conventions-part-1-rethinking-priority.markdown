@@ -2,8 +2,8 @@ Looking back on some of my recent posts on this blog, I'm a bit annoyed at mysel
 
 I'd like to make an effort, at least in my next few posts, to get a bit more concrete and also to propose some hopefully more interesting ideas while I'm at it. But I'll start with one that I think is not all that radical, though it *would* mark a sigificant departure for most teams I've worked on.
 
-What's wrong with how we prioritize of work
--------------------------------------------
+What's wrong with how we prioritize work
+----------------------------------------
 
 The way most teams prioritize work seems totally sensible on the surface. Essentially, tasks are assigned some priority ranking such as "high", "medium" or "low"; and then the highest-ranked tasks actually get assigned to people. In a perfect world this would mean that the most important things always get done, and then when there's a surplus of time a team can "catch up" on issues that aren't quite as urgent. In practice I think a different reality tends to emerge.
 

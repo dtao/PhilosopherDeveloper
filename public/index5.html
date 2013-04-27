@@ -23,6 +23,27 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/trick-to-good-ballpark-estimates.html'>The trick to good ballpark estimates</a>
+      </span>
+      <span class='date'>February 02, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>When I was younger my grandpa taught me and my sister a little trick. He said to me, “I can calculate how many hairs are on your sister’s head.” It seemed preposterous to my young mind; the number was surely so astronomical as to be beyond any intelligent guess. But I was curious.</p>
+
+<p>What my grandpa did was to start with individual hairs. He counted 1, 2, up to ten, and held that many strands between two fingers. “This is ten,” he said. Then, using roughly that many strands now as a unit, he counted out 9 more units of similar size, collecting them between the same two fingers. He now held roughly ten times the number of hairs from before. “This,” he said, very seriously as he wanted to make sure we were paying attention, “is about a hundred.”</p>
+
+<p>I may have been a kid, but I immediately saw where he was going. Next, he counted by approximate hundreds, covering more and more area on my sister’s head. He didn’t have to keep holding it all between his fingers; it became reasonable at a certain point (maybe 100, maybe 1000) to eyeball it.</p>
+
+<p>Of course, I have no memory of what the actual end result was. And obviously, it was not a precisely accurate number. But there’s no doubt in my mind that it was an <strong>accurate ballpark</strong> estimate. My grandpa never studied human anatomy, but he figured out within an order of magnitude how many hairs were on my head with <strike>a minimal</strike> an <em>optimal</em> amount of effort.</p>
+
+<p>Often, in software, ballpark estimates are exactly what we want. Particularly in your stereotypical “agile” project, where the client understands that absolute estimates are tough to produce but relative estimates are easy and that’s why we use story points, <em>yada</em> <span class="post-link">... (<a href="/posts/trick-to-good-ballpark-estimates.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/am-i-being-obnoxious.html'>Am I being obnoxious?</a>
       </span>
       <span class='date'>January 31, 2012</span>
@@ -140,45 +161,6 @@
 <h2 id="puzzle_piece_1_how_does_the_c_compiler_implement_closures_1">Puzzle Piece #1: How does the C# compiler implement closures?</h2>
 
 <p>This one’s a head-scratcher for a lot of C# developers who’ve never really looked into the inner workings of closures. I’d <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-2.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html'>How I discovered a bug in the C# compiler, part 1</a>
-      </span>
-      <span class='date'>March 31, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>Well, <a href="http://philosopherdeveloper.wordpress.com/2011/03/25/poll-what-should-my-next-blog-topic-be/">a few of you voted</a>, and this topic came out on top. So, without further ado, I give you the story of <strong>my epic adventure in discovering a bug in</strong> (the latest version of) <strong>the C# compiler</strong>.</p>
-
-<p>First of all, some background. I was working on a library, mostly for personal use, which was to include an enumerable collection type similar to <code>List&lt;T&gt;</code> or <code>T[]</code>. One of the goals of this library was to be <em>efficient</em>; so, naturally, for this type’s enumerator I made the decision to create a mutable value type.</p>
-
-<p><strong><em>Wait a minute!</em></strong> What’s that, you say? <em>Mutable value types are <strong>evil</strong>!</em> Oh?</p>
-
-<p>This is a topic for a whole other blog post; but just to give a mini-argument in <em>defense</em> of this decision, by way of example, let me point out one simple fact: <strong>if you make the return value of <code>GetEnumerator</code> a <em>reference type</em>, then every <code>foreach</code> loop creates a new object to be garbage collected later</strong>. Don’t care? That’s fine; I <em>did</em> care, so I took an alternate approach (which, incidentally, is the same approach utilized by the designers of the collections in the <code>System.Collections.Generic</code> namespace in the BCL).</p>
-
-<p>For <em>my</em> <code>GetEnumerator</code>, I explicitly implemented both <code>IEnumerable.GetEnumerator</code> <em>and</em> <code>IEnumerable&lt;T&gt;.GetEnumerator</code> and made a public version of the method returning an <code>Enumerator&lt;T&gt;</code> struct, like this:</p>
-
-<div class="highlight"><pre><span class="k">public</span> <span class="n">Enumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">GetEnumerator</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="n">Enumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">this</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="n">IEnumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">GetEnumerator</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerator</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerable</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>This allowed my <code>Enumerator&lt;T&gt;</code> type to behave quite well when used in <code>foreach</code> loops without causing unnecessary garbage collection. And the fact that it was a mutable value type hardly mattered—just like it hardly matters for <code>List&lt;T&gt;.Enumerator</code>, <code>Dictionary&lt;TKey, TValue&gt;.Enumerator</code>, etc. (The only times when it hypothetically matters is when you pass <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html">read the full post</a>)</span></p>
   </section>
 </article>
 <div class='next-page'>

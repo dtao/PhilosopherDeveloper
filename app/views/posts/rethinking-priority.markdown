@@ -1,10 +1,3 @@
-The following is the most recent post from my blog, **The Philosopher Developer**, written on April 27, 2013.
-
-***
-
-Rethinking priority
-===================
-
 Looking back on some of my recent posts on this blog, I'm a bit annoyed at myself for being too hand-wavy and not saying anything all that original.
 
 I'd like to make an effort, at least in my next few posts, to get more concrete and challenge some of the conventions I've observes in the software world. I'll start with an idea that I think is not all that radical, though it *would* mark a sigificant departure for most teams I've worked on.
