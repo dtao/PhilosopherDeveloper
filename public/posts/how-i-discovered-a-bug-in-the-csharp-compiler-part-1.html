@@ -103,7 +103,9 @@
 <li>Make sure <code>Current</code> cannot be called before enumeration starts (throw an exception in this case).</li>
 
 <li>Move to the end of the enumerator, then call <code>Reset</code> and verify that you can start enumerating again.</li>
-</ol><p>So, the code is written to do just that. We take this local enumerator value, we use it to enumerate whatever (until <code>MoveNext</code> returns <code>false</code>), and then we call <code>Reset</code> and verify that we can enumerate again. So it’s a test on the <code>Reset</code> method, essentially. (Really, it’s not a proper <strong>unit</strong> test at all. But once again: a topic for another post!)</p>
+</ol>
+
+<p>So, the code is written to do just that. We take this local enumerator value, we use it to enumerate whatever (until <code>MoveNext</code> returns <code>false</code>), and then we call <code>Reset</code> and verify that we can enumerate again. So it’s a test on the <code>Reset</code> method, essentially. (Really, it’s not a proper <strong>unit</strong> test at all. But once again: a topic for another post!)</p>
 
 <p>Does it do what it’s supposed to do?</p>
 

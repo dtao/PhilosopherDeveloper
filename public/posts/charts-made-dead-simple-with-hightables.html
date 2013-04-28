@@ -72,26 +72,29 @@
 
 <p>And the result:</p>
 <table class="render-to-bar-chart">
-<tr>
-<th>Method of rendering a chart</th>
+  <tr>
+    <th>Method of rendering a chart</th>
     <th>How easy it is (scale from 1 to 10)</th>
   </tr>
-<tr>
-<td>Using Highcharts directly</td>
+  <tr>
+    <td>Using Highcharts directly</td>
     <td>3</td>
   </tr>
-<tr>
-<td>Using HighTables</td>
+  <tr>
+    <td>Using HighTables</td>
     <td>10</td>
   </tr>
-</table><p>Pretty cool, right?</p>
+</table>
+<p>Pretty cool, right?</p>
 
 <p>For what it’s worth, HighTables itself isn’t all that complicated. It leverages the power of two existing libraries, <a href="http://www.highcharts.com/">Highcharts</a> and <a href="http://jquery.com/">jQuery</a>. If you don’t know about Highcharts, it’s a great library that lets you render all kinds of charts (line, area, bar, pie, etc.) in JavaScript. And if you don’t know about jQuery, and you’re a JavaScript developer, you should probably blow the dust off your keyboard and <a href="http://www.doxdesk.com/img/updates/20091116-so-large.gif">ask any JS-related question on the internet</a> to learn more about it.</p>
 
 <p>My problem with Highcharts in the past was that it has <a href="http://api.highcharts.com/highcharts">a <em>behemoth</em> API</a>. Rendering a chart was never a simple matter of calling <code>pieChart()</code>; instead, any chart-creation logic requires a whole ton of options that an average person is very unlikely to remember from one use to the next. And so I always found myself returning to the Highcharts website, perusing documentation, and following examples to ever get a chart to display on sites I’ve worked on.</p>
-<figure class="hidden-in-abbreviated-version"><div class="pie-chart" data-title="Value of activity" data-source="#activity-value-vs-time-table" data-value-columns="2" data-options="getChartOptions"></div>
+<figure class="hidden-in-abbreviated-version">
+  <div class="pie-chart" data-title="Value of activity" data-source="#activity-value-vs-time-table" data-value-columns="2" data-options="getChartOptions"></div>
   <div class="pie-chart" data-title="Time invested in activity" data-source="#activity-value-vs-time-table" data-value-columns="3" data-options="getChartOptions"></div>
-  <figcaption>Notice any discrepancy?</figcaption></figure><table id="activity-value-vs-time-table" class="hidden">
+  <figcaption>Notice any discrepancy?</figcaption>
+</figure><table id="activity-value-vs-time-table" class="hidden">
 <thead><tr>
 <th>Activity</th>
 <th>Relative Value of activity</th>
@@ -109,7 +112,8 @@
 <td style="text-align: right;">5</td>
 </tr>
 </tbody>
-</table><p>Of course, like any good developer, I eventually would get around to writing reusable methods with easier-to-remember interfaces and use <em>those</em> to render my charts. But at some point I noticed a pattern: mostly I was putting charts <strong>where tables already were</strong>. The point of the chart was to display the data in a visual form, to make it a bit easier to parse for a human. The work of translating the data in the table to JavaScript code to render the chart was tedious, but easily repeatable.</p>
+</table>
+<p>Of course, like any good developer, I eventually would get around to writing reusable methods with easier-to-remember interfaces and use <em>those</em> to render my charts. But at some point I noticed a pattern: mostly I was putting charts <strong>where tables already were</strong>. The point of the chart was to display the data in a visual form, to make it a bit easier to parse for a human. The work of translating the data in the table to JavaScript code to render the chart was tedious, but easily repeatable.</p>
 
 <p>And from there came the realization that I could (and probably should) just automate every bit of the process, and write a <em>library</em> to <em>always</em> render a chart from a table—provided that table had some class (like <code>render-to-line-chart</code>) associated with it. So that’s exactly how HighTables works: you add one class to your table, include the library in your page, and charts display automatically. (The charts above are rendered from <a href="javascript:revealTable();">a hidden table</a>, by the way, in case you were confused!)</p>
 

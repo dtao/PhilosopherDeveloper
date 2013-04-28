@@ -32,13 +32,16 @@
   </header>
   <section class='content'>
     <p><strong>Update: I’ve finally (nearly two years later) created a <a href="http://dtao.github.com/ConcurrentList/">dedicated GitHub repo</a> for this.</strong></p>
-<hr><p>Inspired by <a href="http://stackoverflow.com/questions/5070495/lock-free-thread-safe-ilistt-for-net">this Stack Overflow question</a>, I started thinking about possible ways of implementing the <code>IList&lt;T&gt;</code> interface in a lock-free <em>concurrent</em> data structure, with the following notes:</p>
+<hr>
+<p>Inspired by <a href="http://stackoverflow.com/questions/5070495/lock-free-thread-safe-ilistt-for-net">this Stack Overflow question</a>, I started thinking about possible ways of implementing the <code>IList&lt;T&gt;</code> interface in a lock-free <em>concurrent</em> data structure, with the following notes:</p>
 
 <ol>
 <li>I highly doubt a lock-free <code>Insert</code> or <code>RemoveAt</code> implementation is possible. I could be wrong, of course; but I don’t think so. So I would implement those explicitly (and throw a <code>NotSupportedException</code>).</li>
 
 <li>I would want guaranteed O(1) random access, at least. (Otherwise, the whole point of implementing <code>IList&lt;T&gt;</code> seems kind of questionable.)</li>
-</ol><p>OK, so, <strong>how do we do it</strong>?</p>
+</ol>
+
+<p>OK, so, <strong>how do we do it</strong>?</p>
 
 <p>Before I even describe my idea (still a work in progress), I should disclose the fact that, to my simultaneous disappointment and delight, it appears I managed to come up with a concept on my own that is <em>remarkably</em> similar to what researchers at Texas A&amp;M University, including <a href="http://en.wikipedia.org/wiki/Bjarne_Stroustrup">Bjarne Stroustrup</a>, <a href="http://www.stroustrup.com/lock-free-vector.pdf">designed and published</a>.</p>
 

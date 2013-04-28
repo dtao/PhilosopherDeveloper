@@ -45,7 +45,9 @@
 <li>Adding to the list</li>
 
 <li>Iterating over the list</li>
-</ul><p>Critically, I think the assumption is that one would need a lock-free data structure to optimize the scenario where multiple threads may be <em>reading</em> from the list (via accessing items at random indexes) while one or more other threads are <em>adding</em> to it. <strong>I actually don’t think you need a lock-free data structure for this at all.</strong></p>
+</ul>
+
+<p>Critically, I think the assumption is that one would need a lock-free data structure to optimize the scenario where multiple threads may be <em>reading</em> from the list (via accessing items at random indexes) while one or more other threads are <em>adding</em> to it. <strong>I actually don’t think you need a lock-free data structure for this at all.</strong></p>
 
 <p>Here’s the thing: if you’ve got a <code>List&lt;T&gt;</code>, and you synchronize all calls to <code>Add</code> with, e.g., a <code>lock</code> statement, <strong>you don’t need to also synchronize reads</strong>. They will <em>always</em> be thread-safe. Accessing an element at an index of a <code>List&lt;T&gt;</code> that is <em>only</em> growing with calls to <code>Add</code> <em>will</em> work from multiple threads. If you are skeptical, consider what actually happens when <code>Add</code> is called (<strong>warning: reliance upon specific implementation details ahead!</strong>):</p>
 
@@ -69,7 +71,9 @@
 <li>
 <p>The element in the array at the index found in step 1 is assigned to the input value.</p>
 </li>
-</ol><p>Assuming an always-accurate return value for <code>Count</code>, and assuming the above process is always synchronized, <strong>there is no reason why threads reading from the list need to be synchronized</strong>.</p>
+</ol>
+
+<p>Assuming an always-accurate return value for <code>Count</code>, and assuming the above process is always synchronized, <strong>there is no reason why threads reading from the list need to be synchronized</strong>.</p>
 
 <p>To demonstrate this, I added the <code>SynchronizedList&lt;T&gt;</code> class to <a href="https://github.com/dtao/ConcurrentList">my GitHub repo</a>. Take a look and see for yourself: this class, which simply uses a <code>List&lt;T&gt;</code> internally and synchronizes calls to <code>Add</code> while exposing everything else <em>without synchronization</em>, passes all unit tests.</p>
 

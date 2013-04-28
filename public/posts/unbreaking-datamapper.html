@@ -22,7 +22,7 @@
     </header>
     <article>
   <header>
-    <h1>January 30, 2013</h1>
+    <h1>January 29, 2013</h1>
     <div class='social'>
       <span class='st_facebook_hcount' displayText='Facebook'></span>
       <span class='st_googleplus_hcount' displayText='Google+'></span>
@@ -67,7 +67,9 @@
 <li>With DataMapper, your database schema is defined in your models themselves. The ActiveRecord approach uses a separate file to define table schemas (schema.rb), making it sometimes awkward to reason about code in the classes used to interact with those tables. (The existence of gems such as <a href="https://github.com/ctran/annotate_models">annotate</a> attests to this awkwardness.)</li>
 
 <li>DataMapper adopts the philosophy of having a 1:1 mapping between database records and objects in memory. Whereas in ActiveRecord you might have multiple <code>Account</code> instances referencing the same record (with different dirty local states), in DataMapper this is not the case. The upshot is the elimination of an entire category of bugs (<em>what happened to my attributes?</em>).</li>
-</ol><h2 id="addressing_the_problem_3">Addressing the problem</h2>
+</ol>
+
+<h2 id="addressing_the_problem_3">Addressing the problem</h2>
 
 <p>While I understand where MacIver was coming from when he wrote that original post, when I first read it I found myself scratching my head and wondering, <em>Why didn’t he do something about it?</em> This is particularly vexing given that MacIver mentioned having worked with DataMapper for at least “several months” and bemoaned encountering the same flaw “time and time again.” As a software developer, whenever I find myself repeatedly struggling with a tool–<em>especially</em> <a href="https://github.com/datamapper">an open source one</a>–I inevitably end up trying to patch it or otherwise find some way around its (perceived) shortcomings.</p>
 
