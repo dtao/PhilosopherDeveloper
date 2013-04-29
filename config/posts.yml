@@ -238,6 +238,11 @@ terminating-condition:
   title: "Resolution: the need for a terminating condition"
   published: true
 
+unboxing-value-types:
+  date: 2011-01-07
+  title: For the last time, you can't unbox a value type as a diff--wait, what's this?
+  published: false
+
 white-angels-and-black-devils:
   date: 2011-01-01
   title: White angels & black devils
