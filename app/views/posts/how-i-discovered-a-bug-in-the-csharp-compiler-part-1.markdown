@@ -1,4 +1,4 @@
-Well, [a few of you voted](http://philosopherdeveloper.wordpress.com/2011/03/25/poll-what-should-my-next-blog-topic-be/), and this topic came out on top. So, without further ado, I give you the story of **my epic adventure in discovering a bug in** (the latest version of) **the C# compiler**.
+This is the story of **my epic adventure in discovering a bug in** (the latest version of) **the C# compiler**.
 
 First of all, some background. I was working on a library, mostly for personal use, which was to include an enumerable collection type similar to `List<T>` or `T[]`. One of the goals of this library was to be *efficient*; so, naturally, for this type's enumerator I made the decision to create a mutable value type.
 

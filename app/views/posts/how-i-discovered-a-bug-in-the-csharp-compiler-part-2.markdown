@@ -1,4 +1,4 @@
-This post continues from where [my last one](http://philosopherdeveloper.wordpress.com/2011/03/31/how-i-discovered-a-bug-in-the-c-compiler-part-1/) left off; but don't worry—I swear I'll make this one more less rambling and more comprehensible. And rest assured that I will actually get to the explanation this time!
+This post continues from where [my last one](/posts/how-i-discovered-a-bug-in-the-c-compiler-part-1.html) left off; but don't worry—I swear I'll make this one more less rambling and more comprehensible. And rest assured that I will actually get to the explanation this time!
 
 So where did we leave off? We witnessed some truly bizarre behavior of a **mutable value type** within a **using statement** which also happens to include a **closure**. What does this look like?
 
