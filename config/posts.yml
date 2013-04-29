@@ -233,6 +233,11 @@ garbage-garbage-everywhere:
   title: Garbage, garbage everywhere
   published: false
 
+tempted-by-linq:
+  date: 2011-02-09
+  title: Tempted by LINQ? Stop and think
+  published: true
+
 multithreading-and-multitasking:
   date: 2011-02-04
   title: Multithreading and multitasking
@@ -266,6 +271,11 @@ string-manipulation-in-net-epilogue:
 are-strings-really-immutable-in-net:
   date: 2010-05-28
   title: Are strings REALLY immutable in .NET?
+  published: true
+
+whats-annoying-about-sorted-list-index-of-key:
+  date: 2010-05-24
+  title: What's annoying about SortedList<TKey, TValue>.IndexOfKey
   published: true
 
 difference-between-converting-and-unboxing:

@@ -76,7 +76,7 @@
 
 <p>I have trouble imagining code where using <code>ElementAt</code> as an abstraction provides any benefit over defining a method to accept an <code>IList&lt;T&gt;</code> and use its indexer directly. But I can <em>definitely</em> think of some scenarios where it would be <strong>a terrible idea</strong>.</p>
 
-<p>For instance, say I wrote a <code>BinarySearch</code> method for any sorted <code>IList&lt;T&gt;</code> (I <a href="http://philosopherdeveloper.wordpress.com/2010/05/24/whats-annoying-about-sortedlisttkey-tvalue-indexofkey-a-k-a-whats-sweet-about-reflector/">sort of did, actually</a>):</p>
+<p>For instance, say I wrote a <code>BinarySearch</code> method for any sorted <code>IList&lt;T&gt;</code> (I <a href="/posts/whats-annoying-about-sortedlist.html">sort of did, actually</a>):</p>
 
 <div class="highlight"><pre><span class="k">public</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">BinarySearch</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">this</span> <span class="n">IList</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">list</span><span class="p">,</span> <span class="kt">int</span> <span class="n">index</span><span class="p">,</span> <span class="kt">int</span> <span class="n">length</span><span class="p">,</span> <span class="n">T</span> <span class="k">value</span><span class="p">,</span> <span class="n">IComparer</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">comparer</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Argument validation</span>

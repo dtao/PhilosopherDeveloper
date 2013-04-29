@@ -8,7 +8,7 @@ Next
 
 What's wrong with the above code? In most cases, **nothing, really**. It gets the job done in a somewhat obvious way, in a some readable line of code.
 
-That's *most* cases. But most cases don't take performance into consideration; and you may recall, in [the post in question](http://philosopherdeveloper.wordpress.com/2011/02/09/tempted-by-linq-stop-and-think/), I was specifically talking about performance.
+That's *most* cases. But most cases don't take performance into consideration; and you may recall, in [the post in question](/posts/tempted-by-linq.html), I was specifically talking about performance.
 
 In order to understand the performance impact of that code, it's necessary to first understand **garbage**.
 

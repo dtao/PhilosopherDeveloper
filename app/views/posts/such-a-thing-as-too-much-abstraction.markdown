@@ -34,7 +34,7 @@ Whoa, whoa, whoa! There comes a point when abstractions stop being useful, you k
 
 I have trouble imagining code where using `ElementAt` as an abstraction provides any benefit over defining a method to accept an `IList<T>` and use its indexer directly. But I can *definitely* think of some scenarios where it would be **a terrible idea**.
 
-For instance, say I wrote a `BinarySearch` method for any sorted `IList<T>` (I [sort of did, actually](http://philosopherdeveloper.wordpress.com/2010/05/24/whats-annoying-about-sortedlisttkey-tvalue-indexofkey-a-k-a-whats-sweet-about-reflector/)):
+For instance, say I wrote a `BinarySearch` method for any sorted `IList<T>` (I [sort of did, actually](/posts/whats-annoying-about-sortedlist.html)):
 
 ~~~{: lang=csharp }
 public static int BinarySearch<T>(this IList<T> list, int index, int length, T value, IComparer<T> comparer) {
