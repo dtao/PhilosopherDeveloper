@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The difference between converting and unboxing: read my mind, compiler! - The Philosopher Developer</title>
+    <meta charset='utf-8' />
+    <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+    <link href='/stylesheets/application.css' rel='stylesheet' />
+    <link href='/stylesheets/pygments.css' rel='stylesheet' />
+    <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
+    <script src='/javascripts/ga.js' type='text/javascript'></script>
+    <script src='/javascripts/shareThis.js' type='text/javascript'></script>
+    <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
+    <script src='/javascripts/main.js' type='text/javascript'></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var disqus_shortname = "philosopherdeveloper";
+        var disqus_title = "The difference between converting and unboxing: read my mind, compiler!";
+      //]]>
+    </script>
+    
+  </head>
+  <body>
+    <header id='header'>
+      <h1>
+        <a href='/posts/difference-between-converting-and-unboxing.html'>The difference between converting and unboxing: read my mind, compiler!</a>
+      </h1>
+      <h2><a href="/">the philosopher developer</a></h2>
+    </header>
+    <article>
+  <header>
+    <h1>
+      May 05, 2010
+      <span class='comments'><a href='#disqus_thread'></a></span>
+      <script src='/javascripts/disqusCount.js' type='text/javascript'></script>
+    </h1>
+    <div class='social'>
+      <span class='st_facebook_hcount' displayText='Facebook'></span>
+      <span class='st_googleplus_hcount' displayText='Google+'></span>
+      <span class='st_twitter_hcount' displayText='Tweet'></span>
+      <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+    </div>
+  </header>
+  <section class='content'>
+    <p>A <a href="http://stackoverflow.com/questions/2776130/c-implicit-conversions">developer on Stack Overflow</a> was recently perplexed by the fact that the implicit operator he’d defined for his custom type didn’t seem to be working.</p>
+
+<p>The scenario was this: the developer had a <code>DataTable</code> whose columns corresponded to the names of properties for a certain type of object. He had a bunch of <code>PropertyInfo</code> objects, one of which was of type <code>Currency</code> (his custom type with the implicit operator), and he was trying to read the table to get the value of each of his object’s properties. Obviously, since he couldn’t put a <code>Currency</code> object in the <code>DataTable</code>, he used <code>decimal</code> values instead, and defined an implicit conversion from <code>decimal</code> to <code>Currency</code>. Seems pretty smart, right?</p>
+
+<p>Here’s the code he posted:</p>
+
+<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="n">PropertyInfo</span> <span class="n">p</span> <span class="k">in</span> <span class="n">props</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">table</span><span class="p">.</span><span class="n">Rows</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">],</span> <span class="k">null</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>When it came to the <code>Currency</code> property, the program was throwing an <code>ArgumentException</code>. <em>WTF?</em> this developer thought. <em>What happened to my implicit operator?</em></p>
+
+<p>Well, here’s the first problem: the code above tries to pass a <code>decimal</code> to a call to <code>SetValue</code> for a <code>PropertyInfo</code> object whose <code>PropertyType</code> is <code>Currency</code>. So, presumably, the code could be fixed like this:</p>
+
+<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="n">PropertyInfo</span> <span class="n">p</span> <span class="k">in</span> <span class="n">props</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Currency</span> <span class="n">c</span> <span class="p">=</span> <span class="p">(</span><span class="n">Currency</span><span class="p">)</span><span class="n">table</span><span class="p">.</span><span class="n">Rows</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">];</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>That should work, right?</p>
+
+<p>Well, no. Here’s the thing: the <code>implicit</code> operator, as you may know, allows you to convert from one type to another without using an explicit cast. However, whenever you perform such a conversion, you’re still dealing with two fundamentally different types.</p>
+
+<p>When a value type is boxed inside a <code>System.Object</code>, <em>using</em> that value requires first <em>unboxing</em> it – <strong>as its original type</strong>. Many C# developers are surprised to learn that the following code throws an exception:</p>
+
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">int32</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+<span class="kt">object</span> <span class="n">boxedInt32</span> <span class="p">=</span> <span class="n">int32</span><span class="p">;</span>
+<span class="kt">long</span> <span class="n">int64</span> <span class="p">=</span> <span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="n">boxedInt32</span><span class="p">;</span>
+</pre></div>
+
+<p>Even though converting from <code>int</code> to <code>long</code> is totally doable, the compiler doesn’t <em>know</em> it’s supposed to do this if it’s just dealing with a <code>System.Object</code>.</p>
+
+<p>To make this all a little more concrete, here’s an obnoxious little dialogue I just wrote – a dramatization of the above code snippet:</p>
+
+<blockquote>
+<p><strong>Programmer</strong>: Here is an int.<br><strong>Compiler</strong>: Thank you!<br><strong>Programmer</strong>: Now please put that int in a box.<br><strong>Compiler</strong>: OK! Done!<br><strong>Programmer</strong>: Now, take a long out of that box.<br><strong>Compiler</strong>: OK – <strong>wait, WTF?</strong></p>
+</blockquote>
+
+<p>And here’s a similar dialogue depicting what happened with the Stack Overflow user’s code:</p>
+
+<blockquote>
+<p><strong>Programmer</strong>: Hey, Compiler, I’m sending you a box.<br><strong>Compiler</strong>: Oh boy! I wonder what’s in it?<br><strong>Programmer</strong>: I’ll give you a hint! It starts with “C” and rhymes with “urrency.”<br><strong>Compiler</strong>: A Currency! Sweet!<br><strong>Programmer</strong>: Yep, that’s right! Now here it is…<br><strong>Compiler</strong> (<em>opening box</em>): Yesss, a Cur – wait a second.<br><strong>Programmer</strong>: What’s wrong, Compiler?<br><strong>Compiler</strong>: You said this was going to be a Currency. It’s clearly a decimal.<br><strong>Programmer</strong>: So what? Aren’t they the same thing to you?<br><strong>Compiler</strong>: No. They’re not. Are they the same to <em>you</em>? Geez. If you had <em>told</em> me this was a decimal, I could’ve brought my tools to <em>convert</em> it to a Currency, but…<br><strong>Programmer</strong>: Come on, why didn’t you just <em>know</em> it was a decimal?<br><strong>Compiler</strong>: Screw you.</p>
+</blockquote>
+
+<p>Moral of the story: even though the syntax happens to be the same, unboxing a value and converting from one type to another are two different operations.</p>
+
+<p>Oh yeah, and here’s the code that actually <em>does</em> work:</p>
+
+<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="n">PropertyInfo</span> <span class="n">p</span> <span class="k">in</span> <span class="n">props</span><span class="p">)</span>
+<span class="p">{</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">PropertyType</span> <span class="p">==</span> <span class="k">typeof</span><span class="p">(</span><span class="n">Currency</span><span class="p">))</span>
+     <span class="p">{</span>
+         <span class="c1">// unbox, THEN use implicit operator</span>
+         <span class="n">Currency</span> <span class="n">c</span> <span class="p">=</span> <span class="p">(</span><span class="kt">decimal</span><span class="p">)</span><span class="n">table</span><span class="p">.</span><span class="n">Rows</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">];</span>
+         <span class="n">p</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+     <span class="p">}</span>
+     <span class="k">else</span>
+     <span class="p">{</span>
+         <span class="n">p</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">table</span><span class="p">.</span><span class="n">Rows</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">],</span> <span class="k">null</span><span class="p">);</span>
+     <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+    <div class='navigation'>
+      <a class='next' href='/posts/are-strings-really-immutable-in-net.html'>Are strings REALLY immutable in .NET?</a>
+    </div>
+  </section>
+  <section class='comments'>
+    <div id='disqus_thread'></div>
+    <script src='/javascripts/disqus.js' type='text/javascript'></script>
+    <noscript>
+      Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+    </noscript>
+    <a class='dsq-brlink' href='http://disqus.com'>
+      comments powered by
+      <span class='logo-disqus'>Disqus</span>
+    </a>
+  </section>
+</article>
+    <footer>
+      <ul class='menu'>
+        <li><a href="/posts">All Posts</a></li>
+        <li><a href="/about">About</a></li>
+        <li>
+          <a href='http://stackoverflow.com/users/105570' target='_blank'>
+            <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://github.com/dtao' target='_blank'>
+            <img alt='GitHub' src='/images/icons/github-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://twitter.com/dan_tao' target='_blank'>
+            <img alt='Twitter' src='/images/icons/twitter-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='http://feeds.feedburner.com/philosopherdeveloper'>
+            <img alt='RSS' src='/images/icons/rss-small.png' />
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

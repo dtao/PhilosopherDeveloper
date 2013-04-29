@@ -1,4 +1,4 @@
-Remember when I wrote [that post half a year ago](http://philosopherdeveloper.wordpress.com/2010/05/05/the-difference-between-converting-and-unboxing-read-my-mind-compiler/) about how converting and unboxing aren't the same thing, and you can only unbox value types as their original types, yada yada yada?
+Remember when I wrote [that post half a year ago](/posts/difference-between-converting-and-unboxing.html) about how converting and unboxing aren't the same thing, and you can only unbox value types as their original types, yada yada yada?
 
 Yeah, well. [**Not 100% true**](http://stackoverflow.com/questions/3775582/how-is-the-boxing-unboxing-behavior-of-nullablet-possible). Nullable value types get boxed as their non-nullable counterparts, which means *there is no way* to "unbox" a nullable value; or in other words, boxing a nullable might be considered [a form of lossy compression](http://en.wikipedia.org/wiki/Lossy).
 
