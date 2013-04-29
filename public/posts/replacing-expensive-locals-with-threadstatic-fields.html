@@ -174,15 +174,16 @@
 
 <p>Here is the output I got from the above test on a 24-core server:</p>
 
-<pre><code>CPU count: 24
+<div class="highlight"><pre>CPU count: 24
 Testing local array allocation...
 Testing ThreadStatic attribute...
 Finished! results:
 
 Results for '() =&gt; CalculateSum(AllocateArray())':
-**2183.7554 ms, GC[616/1/0]**
+2183.7554 ms, GC[616/1/0]
 Results for '() =&gt; CalculateSum(GetThreadStaticArray())':
-**70.9415 ms, GC[0/0/0]**</code></pre>
+70.9415 ms, GC[0/0/0]
+</pre></div>
 
 <p><em>Wow</em>, that’s a big difference. Using <code>[ThreadStatic]</code> fields performed something like <strong>30x faster</strong>, and without <em>any</em> garbage collections compared to using local arrays instantiated on every call (which also caused <strong>616</strong> generation-0 GCs and even a generation-1 GC!).</p>
 

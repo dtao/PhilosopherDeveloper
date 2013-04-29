@@ -132,15 +132,17 @@ namespace ThreadStaticTest
 
 Here is the output I got from the above test on a 24-core server:
 
-    CPU count: 24
-    Testing local array allocation...
-    Testing ThreadStatic attribute...
-    Finished! results:
+~~~{: lang=text }
+CPU count: 24
+Testing local array allocation...
+Testing ThreadStatic attribute...
+Finished! results:
 
-    Results for '() => CalculateSum(AllocateArray())':
-    **2183.7554 ms, GC[616/1/0]**
-    Results for '() => CalculateSum(GetThreadStaticArray())':
-    **70.9415 ms, GC[0/0/0]**
+Results for '() => CalculateSum(AllocateArray())':
+2183.7554 ms, GC[616/1/0]
+Results for '() => CalculateSum(GetThreadStaticArray())':
+70.9415 ms, GC[0/0/0]
+~~~
 
 *Wow*, that's a big difference. Using `[ThreadStatic]` fields performed something like **30x faster**, and without *any* garbage collections compared to using local arrays instantiated on every call (which also caused **616** generation-0 GCs and even a generation-1 GC!).
 
