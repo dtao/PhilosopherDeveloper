@@ -11,6 +11,13 @@
     <script src='/javascripts/shareThis.js' type='text/javascript'></script>
     <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
     <script src='/javascripts/main.js' type='text/javascript'></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var disqus_shortname = "philosopherdeveloper";
+        var disqus_identifier = "trouble-with-stop-the-line-ci";
+        var disqus_title = "The trouble with stop-the-line CI";
+      //]]>
+    </script>
     
   </head>
   <body>
@@ -22,7 +29,11 @@
     </header>
     <article>
   <header>
-    <h1>May 07, 2012</h1>
+    <h1>
+      May 07, 2012
+      <span class='comments'><a href='#disqus_thread' data-disqus-identifier='trouble-with-stop-the-line-ci'></a></span>
+      <script src='/javascripts/disqusCount.js' type='text/javascript'></script>
+    </h1>
     <div class='social'>
       <span class='st_facebook_hcount' displayText='Facebook'></span>
       <span class='st_googleplus_hcount' displayText='Google+'></span>
@@ -77,9 +88,7 @@
 <li>
 <p>They <strong>can manifest in multiple ways</strong>. Unlike your standard “bug,” which is typically an isolated logical error, these types of issues can occur over and over again <em>in different places</em>. Performance is again a perfect example. Even supposing the best possible scenario—let’s say you find a performance issue, isolate its cause, fix it, and even somehow manage to write a test for it—there’s no way you can ever solve “the performance issue” as a whole. Patching a hole in one spot does not prevent similar holes from appearing elsewhere. And so these can be difficult or impossible to guard against with CI.</p>
 </li>
-</ol>
-
-<h3 id="3_ci_can_provide_a_false_sense_of_confidence_5">3. CI can provide a false sense of confidence</h3>
+</ol><h3 id="3_ci_can_provide_a_false_sense_of_confidence_5">3. CI can provide a false sense of confidence</h3>
 
 <p>This is, to me, the most insidious of the three. Really, I probably could have skipped over the first two as I think we’re all at least somewhat aware of them; but this one is surprisingly easy to miss. I think the reason has to do with how we software developers think.</p>
 

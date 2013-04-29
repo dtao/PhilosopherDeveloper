@@ -11,6 +11,13 @@
     <script src='/javascripts/shareThis.js' type='text/javascript'></script>
     <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
     <script src='/javascripts/main.js' type='text/javascript'></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var disqus_shortname = "philosopherdeveloper";
+        var disqus_identifier = "magical-optimization-of-the-+=-operator-with-strings";
+        var disqus_title = "A magical optimization of the += operator with strings";
+      //]]>
+    </script>
     
   </head>
   <body>
@@ -22,7 +29,11 @@
     </header>
     <article>
   <header>
-    <h1>August 25, 2012</h1>
+    <h1>
+      August 25, 2012
+      <span class='comments'><a href='#disqus_thread' data-disqus-identifier='magical-optimization-of-the-+=-operator-with-strings'></a></span>
+      <script src='/javascripts/disqusCount.js' type='text/javascript'></script>
+    </h1>
     <div class='social'>
       <span class='st_facebook_hcount' displayText='Facebook'></span>
       <span class='st_googleplus_hcount' displayText='Google+'></span>
@@ -44,9 +55,7 @@
 
 <li>Storing the elements in an array, and then calling <code>join()</code>
 </li>
-</ul>
-
-<p>Before bothering to profile anything, here was my guess: I figured that on small strings, the two options would be roughly equivalent. But given that strings in JavaScript are immutable, I assumed that even on modern browsers the array-based concatenation strategy would prove superior pretty much across the board. That would make sense, right?</p>
+</ul><p>Before bothering to profile anything, here was my guess: I figured that on small strings, the two options would be roughly equivalent. But given that strings in JavaScript are immutable, I assumed that even on modern browsers the array-based concatenation strategy would prove superior pretty much across the board. That would make sense, right?</p>
 
 <p>To my surprise, after <a href="http://jsperf.com/concatenating-lots-of-little-strings/2">profiling the two options on a variety of browsers</a>, I found that the <code>+=</code> operator beats the pants off the array method on Chrome.</p>
 
@@ -105,9 +114,7 @@ Output equal? True</code></pre>
 <li>Leaving ThoughtWorks</li>
 
 <li>Graduating from CMU</li>
-</ol>
-
-<p>Let that be a reminder to myself, for next time.</p>
+</ol><p>Let that be a reminder to myself, for next time.</p>
     <div class='navigation'>
       <a class='previous' href='/posts/to-start-over-or-continue.html'>To start over or continue</a>
       <a class='next' href='/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html'>Brushing up on C.S. - Part 1: Algorithmic Complexity</a>

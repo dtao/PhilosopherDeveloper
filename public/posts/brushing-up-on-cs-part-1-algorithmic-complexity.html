@@ -11,6 +11,13 @@
     <script src='/javascripts/shareThis.js' type='text/javascript'></script>
     <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
     <script src='/javascripts/main.js' type='text/javascript'></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var disqus_shortname = "philosopherdeveloper";
+        var disqus_identifier = "brushing-up-on-cs-part-1-algorithmic-complexity";
+        var disqus_title = "Brushing up on C.S. - Part 1: Algorithmic Complexity";
+      //]]>
+    </script>
     
   </head>
   <body>
@@ -22,7 +29,11 @@
     </header>
     <article>
   <header>
-    <h1>September 15, 2012</h1>
+    <h1>
+      September 15, 2012
+      <span class='comments'><a href='#disqus_thread' data-disqus-identifier='brushing-up-on-cs-part-1-algorithmic-complexity'></a></span>
+      <script src='/javascripts/disqusCount.js' type='text/javascript'></script>
+    </h1>
     <div class='social'>
       <span class='st_facebook_hcount' displayText='Facebook'></span>
       <span class='st_googleplus_hcount' displayText='Google+'></span>
@@ -43,9 +54,7 @@
 <li>I worked for two years at an algorithmic trading company, where performance was a key concern (use of optimal data structures was critical) and the software was highly concurrent (so I got plenty of hands-on experience with things like synchronization, mutexes, semaphores, etc.)</li>
 
 <li>I am a huge nerd who spends way too much time reading about <a href="http://en.wikipedia.org/wiki/Skip_list">skip lists</a> and <a href="http://en.wikipedia.org/wiki/Red_black_tree">red-black trees</a> and all that good stuff on Wikipedia</li>
-</ul>
-
-<p>Anyway, all this is my long-winded way of introducing a little series of blog posts I’m going to be doing, starting with this one. The basic idea behind it should already be obvious: I’m going to “brush up” on (in some cases, learn entirely from scratch) some of the fun theoretical stuff that I missed by never going through a college C.S. program.</p>
+</ul><p>Anyway, all this is my long-winded way of introducing a little series of blog posts I’m going to be doing, starting with this one. The basic idea behind it should already be obvious: I’m going to “brush up” on (in some cases, learn entirely from scratch) some of the fun theoretical stuff that I missed by never going through a college C.S. program.</p>
 
 <p>Those of you already well-versed with theoretical C.S. stuff will probably not be all that intrigued by this or the next few posts. Then again, maybe you will. My goal is actually two-fold here:</p>
 
@@ -53,9 +62,7 @@
 <li>Obviously, to add to my own knowledge and study some of the things that fascinate me more in depth</li>
 
 <li>To do my best to explain these concepts in a straightforward and easily comprehensible way, so that even someone without a C.S. background can understand them (at least insofar as it’s feasible—I will readily admit some of this stuff may end up being too tricky for me to explain without requiring some lower level knowledge on the part of the reader)</li>
-</ol>
-
-<p>OK, now that I’ve written about five too many paragraphs <em>introducing</em> this series (not off to a good start!), let’s go ahead and dive in.</p>
+</ol><p>OK, now that I’ve written about five too many paragraphs <em>introducing</em> this series (not off to a good start!), let’s go ahead and dive in.</p>
 
 <h1 id="part_1_algorithmic_complexity_2">Part 1: Algorithmic Complexity</h1>
 
@@ -135,9 +142,7 @@
 <li>Bob-Jill</li>
 
 <li>Bob-Alice</li>
-</ol>
-
-<p>Whoa! We just went from two introductions to twelve! Clearly this method of greeting people would not be sustainable if the number of people grew much larger. (And yet, the Owambo people in Namibia greet one another in precisly this way—and to be honest, I quite like it. But that is a <em>completely</em> different topic.)</p>
+</ol><p>Whoa! We just went from two introductions to twelve! Clearly this method of greeting people would not be sustainable if the number of people grew much larger. (And yet, the Owambo people in Namibia greet one another in precisly this way—and to be honest, I quite like it. But that is a <em>completely</em> different topic.)</p>
 
 <p>So, clearly this situation is different from the case of Gym A from my earlier example. Whereas with Gym A, the cost of membership grew <em>linearly</em> (in a straight line) over time, the number of greetings above basically explodes out of control if you add many more people to the setting. This is an example of an <em>O(n<sup>2</sup>)</em> algorithm—one in which the performance cost of the procedure in question grows <em>exponentially</em> with input size.</p>
 

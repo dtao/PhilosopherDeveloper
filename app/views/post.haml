@@ -1,6 +1,10 @@
 %article
   %header
-    %h1= post.friendly_date
+    %h1
+      = post.friendly_date
+      - if post.allow_comments
+        %span.comments= "<a href='#disqus_thread' data-disqus-identifier='#{post.identifier}'></a>"
+        %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/disqusCount.js")
 
     - if post.include_social_links
       .social
@@ -21,7 +25,6 @@
   - if post.allow_comments
     %section.comments
       #disqus_thread
-
       %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/disqus.js")
 
       %noscript

@@ -11,6 +11,13 @@
     <script src='/javascripts/shareThis.js' type='text/javascript'></script>
     <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
     <script src='/javascripts/main.js' type='text/javascript'></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var disqus_shortname = "philosopherdeveloper";
+        var disqus_identifier = "making-yaml-safe-again";
+        var disqus_title = "Making YAML safe again";
+      //]]>
+    </script>
     
   </head>
   <body>
@@ -22,7 +29,11 @@
     </header>
     <article>
   <header>
-    <h1>January 24, 2013</h1>
+    <h1>
+      January 24, 2013
+      <span class='comments'><a href='#disqus_thread' data-disqus-identifier='making-yaml-safe-again'></a></span>
+      <script src='/javascripts/disqusCount.js' type='text/javascript'></script>
+    </h1>
     <div class='social'>
       <span class='st_facebook_hcount' displayText='Facebook'></span>
       <span class='st_googleplus_hcount' displayText='Google+'></span>
@@ -32,8 +43,7 @@
   </header>
   <section class='content'>
     <p>TL;DR: Check out my new gem, <a href="http://dtao.github.com/safe_yaml">SafeYAML</a>. It lets you parse YAML without exposing your app to security exploits via arbitrary object deserialization.</p>
-<hr>
-<p>There was <a href="http://news.ycombinator.com/item?id=5028218">quite a stir in the Rails community recently</a> about a serious security vulnerability in Rails. To be more specific: <a href="https://groups.google.com/forum/#!topic/rubyonrails-security/61bkgvnSGTQ/discussion"><em>every version of Rails</em></a>. We found out about this right away at <a href="http://www.cardpool.com/">Cardpool</a>, in part because Cardpool is a YC company and Paul Graham forwarded an e-mail from Thomas Ptacek to all YC alums warning of the vulnerability pretty much as soon as it was discovered.</p>
+<hr><p>There was <a href="http://news.ycombinator.com/item?id=5028218">quite a stir in the Rails community recently</a> about a serious security vulnerability in Rails. To be more specific: <a href="https://groups.google.com/forum/#!topic/rubyonrails-security/61bkgvnSGTQ/discussion"><em>every version of Rails</em></a>. We found out about this right away at <a href="http://www.cardpool.com/">Cardpool</a>, in part because Cardpool is a YC company and Paul Graham forwarded an e-mail from Thomas Ptacek to all YC alums warning of the vulnerability pretty much as soon as it was discovered.</p>
 
 <p>Without getting too caught up in the weeds, I will just say the vulnerability was ultimately a consequence of the fact that Ruby’s <a href="http://www.yaml.org/">YAML</a> library by default permits the deserialization of arbitrary Ruby objects. This is a problem for Rails—as well as many other Ruby frameworks, to be fair—because, until patches were released to address this problem, any Rails app could be “tricked” into parsing malicious YAML by basically anybody, without any special credentials. The key weakness in Rails, specifically, was that Rails would automatically parse the parameters of any XML request, including parameters like this:</p>
 
@@ -48,9 +58,7 @@
 <li>YAML is, to me at least, a really sweet data format<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</li>
 
 <li>This whole vulnerability nonsense <strong>could have been avoided in the first place</strong> if we were willing to give up one teensy weensy little feature of Ruby’s YAML library: the ability to deserialize arbitrary objects.</li>
-</ol>
-
-<p>Don’t get me wrong; I realize this can be a very useful feature, especially for tools that aim to hide away the details of sharing objects between processes (or entirely different machines). But in the context of a web service or an API, where you have an application and you want to send some information to my service, there’s no reason for you to even know what types <em>exist</em> within my application’s domain, let alone serialize or deserialize them. Strings, numbers, lists and maps are all we really need.</p>
+</ol><p>Don’t get me wrong; I realize this can be a very useful feature, especially for tools that aim to hide away the details of sharing objects between processes (or entirely different machines). But in the context of a web service or an API, where you have an application and you want to send some information to my service, there’s no reason for you to even know what types <em>exist</em> within my application’s domain, let alone serialize or deserialize them. Strings, numbers, lists and maps are all we really need.</p>
 
 <p>And so with this in mind—and after discovering that <a href="http://pyyaml.org/wiki/PyYAMLDocumentation#Loader">Python’s YAML module has a <code>safe_load</code> method</a>–I <a href="http://stackoverflow.com/questions/14348538/is-there-an-equivalent-to-yaml-safe-load-in-ruby">asked on StackOverflow</a> if there’s any way in Ruby to parse YAML without deserializing arbitrary objects. The answer I got led me to write a library that does precisely that: <a href="http://dtao.github.com/safe_yaml">SafeYAML</a><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>.</p>
 

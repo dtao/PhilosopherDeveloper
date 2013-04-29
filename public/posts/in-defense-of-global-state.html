@@ -11,6 +11,13 @@
     <script src='/javascripts/shareThis.js' type='text/javascript'></script>
     <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
     <script src='/javascripts/main.js' type='text/javascript'></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var disqus_shortname = "philosopherdeveloper";
+        var disqus_identifier = "in-defense-of-global-state";
+        var disqus_title = "In defense of global state";
+      //]]>
+    </script>
     
   </head>
   <body>
@@ -22,7 +29,11 @@
     </header>
     <article>
   <header>
-    <h1>April 23, 2013</h1>
+    <h1>
+      April 23, 2013
+      <span class='comments'><a href='#disqus_thread' data-disqus-identifier='in-defense-of-global-state'></a></span>
+      <script src='/javascripts/disqusCount.js' type='text/javascript'></script>
+    </h1>
     <div class='social'>
       <span class='st_facebook_hcount' displayText='Facebook'></span>
       <span class='st_googleplus_hcount' displayText='Google+'></span>
@@ -50,8 +61,7 @@
 <p>There are plenty more reasons. I’m not going to claim they’re invalid. But a recent tweet by my old teammate <a href="http://scottmuc.com/">Scott Muc</a> got me thinking on this topic, and it compelled me to consider the dissenting opinion<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</p>
 <blockquote class="twitter-tweet">
 <p>Sometimes convention based frameworks feel like it's just 0 param methods using hidden global variables.</p>— Scott Muc (@ScottMuc) <a href="https://twitter.com/ScottMuc/status/326481455804997632">April 22, 2013</a>
-</blockquote><script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-<p>Embedded in Scott’s statement is the shared understanding that global variables are A Bad Thing<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>. When everyone takes that for granted, then you can say things like “blah blah blah global variables” and your audience will intuitively grasp that <em>global variables</em> is just a proxy for <em>something bad</em>. Similarly, if I said, “Feature X is the <code>goto</code> of Language Y,” you would understand I’m saying <a href="http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html">something bad about Feature X</a>.</p>
+</blockquote><script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script><p>Embedded in Scott’s statement is the shared understanding that global variables are A Bad Thing<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>. When everyone takes that for granted, then you can say things like “blah blah blah global variables” and your audience will intuitively grasp that <em>global variables</em> is just a proxy for <em>something bad</em>. Similarly, if I said, “Feature X is the <code>goto</code> of Language Y,” you would understand I’m saying <a href="http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html">something bad about Feature X</a>.</p>
 
 <p>Now, regarding the kinds of global state I described earlier: I would guess that most of us are much more sympathetic to <em>constants</em> than to global <em>variables</em>. Constants, at least don’t cause the same action-at-a-distance confusion that variables can. However, they still exhibit the other drawback I mentioned of global state: that dependence may spread through a code base, inhibiting reusability.</p>
 

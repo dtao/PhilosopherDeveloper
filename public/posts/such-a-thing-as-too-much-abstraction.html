@@ -11,6 +11,13 @@
     <script src='/javascripts/shareThis.js' type='text/javascript'></script>
     <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
     <script src='/javascripts/main.js' type='text/javascript'></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var disqus_shortname = "philosopherdeveloper";
+        var disqus_identifier = "such-a-thing-as-too-much-abstraction";
+        var disqus_title = "There's such a thing as too much abstraction, you know";
+      //]]>
+    </script>
     
   </head>
   <body>
@@ -22,7 +29,11 @@
     </header>
     <article>
   <header>
-    <h1>March 17, 2011</h1>
+    <h1>
+      March 17, 2011
+      <span class='comments'><a href='#disqus_thread' data-disqus-identifier='such-a-thing-as-too-much-abstraction'></a></span>
+      <script src='/javascripts/disqusCount.js' type='text/javascript'></script>
+    </h1>
     <div class='social'>
       <span class='st_facebook_hcount' displayText='Facebook'></span>
       <span class='st_googleplus_hcount' displayText='Google+'></span>
@@ -39,9 +50,7 @@
 
 <li>A method (which utilized this class) called <code>doStuff</code>
 </li>
-</ul>
-
-<p>Naturally, we changed these names later. The placeholder names were just that: <strong>placeholders</strong>, allowing us to get down to writing code right away without having to deliberate too much about names first.</p>
+</ul><p>Naturally, we changed these names later. The placeholder names were just that: <strong>placeholders</strong>, allowing us to get down to writing code right away without having to deliberate too much about names first.</p>
 
 <p>However, we both kind of agreed that when the time finally <em>did</em> come for us to give names to this class and its accompanying method, we were a bit sad to say goodbye to <code>Stuff</code> and <code>doStuff</code>. This is because software engineers are <strong>obsessed with abstraction</strong>: the less we have to know about the implementation details of any particular software component, the happier we are. We just want to be able to view code as consisting of big functional blobs with no nitty gritty details exposed and very simple mechanisms for interaction.</p>
 

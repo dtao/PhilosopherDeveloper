@@ -11,6 +11,13 @@
     <script src='/javascripts/shareThis.js' type='text/javascript'></script>
     <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
     <script src='/javascripts/main.js' type='text/javascript'></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var disqus_shortname = "philosopherdeveloper";
+        var disqus_identifier = "ghost-clicks-in-jquery-mobile";
+        var disqus_title = "Ghost clicks in jQuery Mobile";
+      //]]>
+    </script>
     
   </head>
   <body>
@@ -22,7 +29,11 @@
     </header>
     <article>
   <header>
-    <h1>November 01, 2011</h1>
+    <h1>
+      November 01, 2011
+      <span class='comments'><a href='#disqus_thread' data-disqus-identifier='ghost-clicks-in-jquery-mobile'></a></span>
+      <script src='/javascripts/disqusCount.js' type='text/javascript'></script>
+    </h1>
     <div class='social'>
       <span class='st_facebook_hcount' displayText='Facebook'></span>
       <span class='st_googleplus_hcount' displayText='Google+'></span>
@@ -43,9 +54,7 @@
 <li>A developer looks into the problem and finds that the issue can be mitigated by handling an event other than <code>click</code>, such as <code>touchstart</code> (jQuery Mobile has a <code>vclick</code> event<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>).</li>
 
 <li>Now that the clickable element in question handles a non-<code>click</code> event, when it is clicked, <strong>there is still a <code>click</code> event waiting to be triggered within the next ~300 ms</strong>; and so if a page change occurs, an element on the next page could very well be ghost-clicked.</li>
-</ul>
-
-<p>It’s worth noting that this behavior is also found in <em>any</em> software that supports double-clicking, including basically every popular desktop OS. The <em>difference</em> is in the <strong>time interval</strong>: it’s far easier to click twice quite rapidly using a mouse (or touchpad) <strong>with your pointer finger</strong> than it is to tap twice quickly on a touchscreen <strong>with your thumb</strong>. My understanding is that on Windows, for example, the lag time for double clicks is somewhere in the vicinity of 70 ms (don’t quote me on that), which is relatively imperceptible for most people, as our <a href="http://en.wikipedia.org/wiki/Mental_chronometry">reaction time</a>—and hence the time it takes us to notice things—is <a href="http://www.humanbenchmark.com/tests/reactiontime/index.php">apparently something like 200 ms</a>. (Mine is a rather embarrassing 250 ms. Then again maybe that’s just because I’m running low on coffee.)</p>
+</ul><p>It’s worth noting that this behavior is also found in <em>any</em> software that supports double-clicking, including basically every popular desktop OS. The <em>difference</em> is in the <strong>time interval</strong>: it’s far easier to click twice quite rapidly using a mouse (or touchpad) <strong>with your pointer finger</strong> than it is to tap twice quickly on a touchscreen <strong>with your thumb</strong>. My understanding is that on Windows, for example, the lag time for double clicks is somewhere in the vicinity of 70 ms (don’t quote me on that), which is relatively imperceptible for most people, as our <a href="http://en.wikipedia.org/wiki/Mental_chronometry">reaction time</a>—and hence the time it takes us to notice things—is <a href="http://www.humanbenchmark.com/tests/reactiontime/index.php">apparently something like 200 ms</a>. (Mine is a rather embarrassing 250 ms. Then again maybe that’s just because I’m running low on coffee.)</p>
 
 <p>But 300 ms is actually a noticeable period of time. And so this delay introduced by mobile browsers dooms websites that rely exclusively on the <code>click</code> event to feel slightly less responsive than those that explore other means of handling clicks. This is especially frustrating to developers as it is <em>only</em> reproducible on actual devices, not in simulators and therefore not in automated acceptance tests.</p>
 

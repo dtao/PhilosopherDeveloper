@@ -11,6 +11,13 @@
     <script src='/javascripts/shareThis.js' type='text/javascript'></script>
     <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
     <script src='/javascripts/main.js' type='text/javascript'></script>
+    <script type='text/javascript'>
+      //<![CDATA[
+        var disqus_shortname = "philosopherdeveloper";
+        var disqus_identifier = "being-agile-with-continuous-integration";
+        var disqus_title = "Being agile with continuous integration";
+      //]]>
+    </script>
     
   </head>
   <body>
@@ -22,7 +29,11 @@
     </header>
     <article>
   <header>
-    <h1>January 27, 2012</h1>
+    <h1>
+      January 27, 2012
+      <span class='comments'><a href='#disqus_thread' data-disqus-identifier='being-agile-with-continuous-integration'></a></span>
+      <script src='/javascripts/disqusCount.js' type='text/javascript'></script>
+    </h1>
     <div class='social'>
       <span class='st_facebook_hcount' displayText='Facebook'></span>
       <span class='st_googleplus_hcount' displayText='Google+'></span>
@@ -47,9 +58,7 @@
 <li>Getting a fast start is important (e.g., for instilling confidence in the customer or building up a strong user base early), and</li>
 
 <li>Requirements are volatile (e.g., because the project is experimental and based on hypotheses that need to be challenged)</li>
-</ol>
-
-<p>Here is how I believe we can fall into a trap with CI. Even if we acknowledge the volatility of the requirements and the importance of moving quickly, it can be tempting to cling to BDD and CI as a safety net. These tools have served us well in the past on enterprise projects where regression failures and unstable builds are our mortal enemy. But we need to think about our priorities here, and consider whether we are getting the greatest return on investment for our time.</p>
+</ol><p>Here is how I believe we can fall into a trap with CI. Even if we acknowledge the volatility of the requirements and the importance of moving quickly, it can be tempting to cling to BDD and CI as a safety net. These tools have served us well in the past on enterprise projects where regression failures and unstable builds are our mortal enemy. But we need to think about our priorities here, and consider whether we are getting the greatest return on investment for our time.</p>
 
 <p>Think about what happens when the build goes from green to red. This is a stop-the-line event, requiring an expensive context switch for potentially every developer on the team. (Even if we adopt “he who broke it must fix it” as a rule, the rest of the team may still be blocked from checking in.) And of course, it <em>should</em> be disruptive to a team, in plenty of cases, on plenty of projects. But early on a project where requirements are in flux, what does it actually mean for the build to be red?</p>
 
