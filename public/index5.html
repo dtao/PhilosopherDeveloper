@@ -114,53 +114,45 @@
   <header>
     <h1>
       <span class='title'>
-        <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-2.html'>How I discovered a bug in the C# compiler, part 2</a>
+        <a href='/posts/jquery-mobile-trick-correction.html'>About that jQuery Mobile trick: Correction</a>
       </span>
-      <span class='date'>April 03, 2011</span>
+      <span class='date'>July 26, 2011</span>
     </h1>
   </header>
   <section class='content'>
-    <p>This post continues from where <a href="http://philosopherdeveloper.wordpress.com/2011/03/31/how-i-discovered-a-bug-in-the-c-compiler-part-1/">my last one</a> left off; but don’t worry—I swear I’ll make this one more less rambling and more comprehensible. And rest assured that I will actually get to the explanation this time!</p>
+    <p>Faithful readers. There was an <strong>error</strong> in my previous post about refreshing styles in a jQuery Mobile app!</p>
 
-<p>So where did we leave off? We witnessed some truly bizarre behavior of a <strong>mutable value type</strong> within a <strong>using statement</strong> which also happens to include a <strong>closure</strong>. What does this look like?</p>
+<p><em>Ahhh!!!</em> I can hear you screaming. Calm down; <strong>I have a fix!</strong></p>
 
-<p>How about instead of using a custom value type to illustrate, this time I’ll show you what I mean with a type straight from the BCL itself (meaning, this guy was written by Microsoft folks, so you know it’s not just something weird about the way <em>I</em> did things):</p>
+<p>(Warning: I’m not 100% sure I <em>understand</em> this fix; but hey, it’s JavaScript! <em>Nobody</em> really understands it, right?)</p>
 
-<div class="highlight"><pre><span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span> <span class="p">};</span>
+<p>A refresher: what I suggested was this:</p>
 
-<span class="c1">// Criterion 1: within a using statement...</span>
-<span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">e</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">())</span>
-<span class="p">{</span>
-    <span class="c1">// Criterion 2: ...which includes a closure...</span>
-    <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">closure</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
-    
-    <span class="c1">// Criterion 3: ...a mutable value type...</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">())</span>
-    <span class="p">{</span>
-        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
-    <span class="p">}</span>
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">refreshStyles</span><span class="p">(</span> <span class="nx">$element</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">$wrapper</span> <span class="o">=</span> <span class="nx">$element</span><span class="p">.</span><span class="nx">wrap</span><span class="p">(</span> <span class="s2">"&lt;div&gt;"</span> <span class="p">);</span> <span class="c1">// This is a mistake!</span>
+  <span class="nx">$wrapper</span><span class="p">.</span><span class="nx">page</span><span class="p">();</span>                         <span class="c1">// This doesn't work!</span>
+  <span class="nx">$element</span><span class="p">.</span><span class="nx">unwrap</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 
-<p><strong>What do you think the above program will print?</strong></p>
+<p>The above code doesn’t work because <code>wrap</code> returns the <em>wrapped</em> element (not the <em>wrapper</em> element).</p>
 
-<p>Well, if you were paying <em>attention</em> to my last post (and if not—honestly, I totally understand), you’d know the answer already. The above program outputs:</p>
+<p>Here’s that fix I mentioned (incidentally, this is how it was coded in our code base at work all along… go figure):</p>
 
-<pre><code>0
-0
-0
-0
-0</code></pre>
+<div class="highlight"><pre><span class="kd">function</span> <span class="nx">refreshStyles</span><span class="p">(</span> <span class="nx">$element</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$element</span><span class="p">.</span><span class="nx">wrap</span><span class="p">(</span> <span class="s1">'&lt;div id="refresh-styles-wrapper"&gt;'</span> <span class="p">);</span> <span class="c1">// Look Ma, no local!</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s2">"#refresh-styles-wrapper"</span><span class="p">).</span><span class="nx">page</span><span class="p">();</span>                  <span class="c1">// Egads! It works!</span>
+  <span class="nx">$element</span><span class="p">.</span><span class="nx">unwrap</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
 
-<p>…and on and on, ad infinitum.</p>
-
-<p>Remember, this happens <em>specifically</em> when all three of the above criteria (reiterated in the code comments) are met. It does <em>not</em> happen when only one or two of those criteria are met.</p>
-
-<p>Now let’s get to the bottom of this. In order to do so, there are a few puzzle pieces we need to understand.</p>
-
-<h2 id="puzzle_piece_1_how_does_the_c_compiler_implement_closures_1">Puzzle Piece #1: How does the C# compiler implement closures?</h2>
-
-<p>This one’s a head-scratcher for a lot of C# developers who’ve never really looked into the inner workings of closures. I’d <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-2.html">read the full post</a>)</span></p>
+<p>So yeah, somehow forcing jQuery to <em>re-find</em> the wrapper element makes everything honky dory. And if you don’t believe me, check it out:</p>
+<span style="font-size:large;">[Proof.](http://jsfiddle.net/tJwYs/1/)</span><div class="footnotes">
+<hr>
+<ol><li id="fn:1">
+<p>I have this theory that JavaScript is the language with the greatest percentage of <em>hackers</em>, as opposed to actual developers. By which I mean, most of us just <a href="http://jsfiddle.net/">fiddle around</a> with JS code until it works; but we don’t entirely <em>get</em> what we’re doing. At least that’s the case with me. (Don’t tell my employer.) <a href="#fnref:1" rev="footnote">↩</a></p>
+</li></ol>
+</div>
   </section>
 </article>
 <div class='next-page'>

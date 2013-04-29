@@ -23,6 +23,87 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html'>How to build a thread-safe lock-free resizable "array"</a>
+      </span>
+      <span class='date'>February 23, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p><strong>Update: I’ve finally (nearly two years later) created a <a href="http://dtao.github.com/ConcurrentList/">dedicated GitHub repo</a> for this.</strong></p>
+<hr><p>Inspired by <a href="http://stackoverflow.com/questions/5070495/lock-free-thread-safe-ilistt-for-net">this Stack Overflow question</a>, I started thinking about possible ways of implementing the <code>IList&lt;T&gt;</code> interface in a lock-free <em>concurrent</em> data structure, with the following notes:</p>
+
+<ol>
+<li>I highly doubt a lock-free <code>Insert</code> or <code>RemoveAt</code> implementation is possible. I could be wrong, of course; but I don’t think so. So I would implement those explicitly (and throw a <code>NotSupportedException</code>).</li>
+
+<li>I would want guaranteed O(1) random access, at least. (Otherwise, the whole point of implementing <code>IList&lt;T&gt;</code> seems kind of questionable.)</li>
+</ol><p>OK, so, <strong>how do we do it</strong>?</p>
+
+<p>Before I even describe my idea (still a work in progress), I should disclose the fact that, to my simultaneous disappointment and delight, it appears I managed to come up with a concept on my own that is <em>remarkably</em> similar to what researchers at Texas A&amp;M University, including <a href="http://en.wikipedia.org/wiki/Bjarne_Stroustrup">Bjarne Stroustrup</a>, <a href="http://www.stroustrup.com/lock-free-vector.pdf">designed and published</a>.</p>
+
+<p>Here’s the basic idea. Clearly utilizing a single array that is resized on certain Add operations would be problematic: allocating a new array and copying all elements to it in a lock-free way would be, at least I have to speculate, quite costly (imagine multiple concurrent threads all copying elements concurrently—seems very wasteful). So I considered using a <em>linked list</em> of arrays, where when an Add call requires additional storage, a new array could be allocated and appended to the linked list. But once you introduce a linked list, random access in O(1) becomes, well, less possible.</p>
+
+<p>I was <em>thinking</em> you probably couldn’t do it with a simple array of arrays (e.g., a <code>List&lt;T[]&gt;</code>) simply because then you’d eventually run into the problem of having to resize the “outer” array eventually. But then it dawned on me: <strong>assuming <code>Count</code> is bounded</strong> <span class="post-link">... (<a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/tempted-by-linq.html'>Tempted by LINQ? Stop and think</a>
+      </span>
+      <span class='date'>February 09, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>LINQ is a really awesome tool for .NET developers, just like a hammer is a really awesome tool for a carpenter. But here’s the thing.</p>
+
+<p>Sometimes I feel like, before LINQ, a .NET developer was akin to a carpenter without a hammer. And then the hammer came along, and carpenters the world over <em>totally</em> fell in love with it. It helped them get so many tasks done more quickly than they could before. But this led them to start using hammers in totally unintended ways.</p>
+
+<p>These carpenters would attend meetings where they would ask questions like, “Does anyone know how to use a hammer as a level?” and “Who can show me how to tighten bolts using my hammer?” Some of the older carpenters at these meetings would shake their heads knowingly, while others would enthusiastically chime in with their clever and novel uses for hammers.</p>
+
+<p>Guys, LINQ is just <strong>one tool</strong>. A carpenter wouldn’t use a hammer for every single task he needs to accomplish. Likewise, we should not be using this <em>one</em> feature of .NET to do everything having anything to do with collections within the language.</p>
+
+<p>This is <em>particularly</em> important to me, because I work on code that must be high-performance all the time at work. I remember when I first introduced my teammates to LINQ; one developer on the team in particular got very excited and started using LINQ extension methods all over the place. For example we would find code like this:</p>
+
+<div class="highlight"><pre><span class="k">For</span> <span class="k">Each</span> <span class="n">prod</span> <span class="ow">As</span> <span class="n">Product</span> <span class="ow">In</span> <span class="n">Products</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">Function</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">p</span><span class="p">.</span><span class="n">IsQuoting</span><span class="p">).</span><span class="n">OrderBy</span><span class="p">(</span><span class="n">Function</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">p</span><span class="p">.</span><span class="n">Expiration</span><span class="p">).</span><span class="n">ThenBy</span><span class="p">(</span><span class="n">Function</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">p</span><span class="p">.</span><span class="n">Strike</span><span class="p">)</span>
+    <span class="n">prod</span><span class="p">.</span><span class="n">SendQuotes</span><span class="p">()</span>
+<span class="k">Next</span>
+</pre></div>
+
+<p>Yeah, that’s <em>terrible</em>. <strong>It’s like using a hammer to perform brain surgery.</strong> But how was my teammate to know, or even suspect there was anything wrong with what he was doing?</p>
+
+<p>I think the .NET culture has embraced LINQ <span class="post-link">... (<a href="/posts/tempted-by-linq.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/multithreading-and-multitasking.html'>Multithreading and multitasking</a>
+      </span>
+      <span class='date'>February 04, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>Watch the following video and count how many times the players in white pass the basketball. Then scroll down to read the rest of this post.</p>
+    
+    <p class="centered">.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.</p>
+    
+    <p><strong>Did you see the gorilla?</strong> OK, the truth is: <em>I</em> did, but only because I was expecting it (the name of the website where I first saw the video, <a href="http://www.theinvisiblegorilla.com/">The Invisible Gorilla</a>, kind of gives it away). Apparently a lot of viewers do <em>not</em> see the gorilla, though, because they are too busy focusing on the people throwing and catching the ball to notice it.</p>
+    
+    <p>It’s a fairly well-documented fact at this point that <a href="http://www.npr.org/templates/story/story.php?storyId=95256794">human beings are not so good at multitasking</a> (the fact that that link points to a 2-year-old article right there tells you that this is not news). Rather, we are very quick at <a href="http://en.wikipedia.org/wiki/Context_switching"><em>context-switching</em></a>.</p>
+    
+    <p>Those of you software engineers reading this: does that term sound familiar? I thought so. <strong>Context switching</strong> is the process of suspending and restoring the state of different <a href="http://en.wikipedia.org/wiki/Thread_%28computer_science%29"><em>threads</em></a> or <em>processes</em> on a single CPU. More simply, it is akin to shifting one’s attention back and forth between multiple things. A good example would be driving while talking on the phone. It’s actually impossible to pay attention to both simultaneously, according to neuroscientists; rather, what you are likely able to do when driving while talking is <em>switch</em> between thinking about your driving and thinking about your phone conversation, very rapidly:</p>
+    
+    <figure><img src="/images/context-switching.png" alt="An illustration of context switching between driving and talking"><figcaption>An illustration of context switching between driving and talking</figcaption></figure>
+    
+    <p>Computers are exactly like this too. This is becoming less true now that dual-core, quad-core, even six-core processors (this will likely only keep increasing) have become the norm, at least on desktop computers (and <em>especially</em> on servers, where 24 cores or more is not at <span class="post-link">... (<a href="/posts/multithreading-and-multitasking.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/terminating-condition.html'>Resolution: the need for a terminating condition</a>
       </span>
       <span class='date'>January 15, 2011</span>
@@ -78,6 +159,9 @@
 <p>That’s not what I wanted to write about today at all, though. Perhaps I’ll write another post soon to discuss what I originally meant to discuss in this one: an interesting realization I recently had, and how it relates to my New Year’s resolution.</p>
   </section>
 </article>
+<div class='next-page'>
+  <a href='/index8.html'>View older posts</a>
+</div>
     <footer>
       <ul class='menu'>
         <li><a href="/posts">All Posts</a></li>

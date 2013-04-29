@@ -23,87 +23,195 @@
   <header>
     <h1>
       <span class='title'>
-        <a href='/posts/boy-can-dream.html'>A boy can dream...</a>
+        <a href='/posts/string-manipulation-in-net-epilogue.html'>String manipulation in .NET: Epilogue</a>
       </span>
-      <span class='date'>February 24, 2011</span>
+      <span class='date'>June 04, 2010</span>
     </h1>
   </header>
   <section class='content'>
-    <p>Well, I’ve finished an initial implementation of a <code>ConcurrentList&lt;T&gt;</code> data structure. It implements the <code>IList&lt;T&gt;</code> interface (partially—no <code>Insert</code>, <code>RemoveAt</code>, etc.–it is an append-only structure) and is both <strong>thread-safe</strong> and <strong>lock-free</strong>.</p>
+    <p>I’ve got a confession to make: I got a little carried away after <a href="/posts/are-strings-really-immutable-in-net.html">my last post</a>. In particular, I became somewhat obsessed with the following discovery: <strong>Not only can you manipulate strings in-place in .NET, you can do so without the <code>unsafe</code> switch, and without any performance penalty whatsoever (as would typically be associated with any form of reflection)</strong>.</p>
 
-<p>(I also came up with a few different ways to resolve the <code>Count</code> issue mentioned in my previous post; what I’ve settled on for now is basically the most obvious and straightforward version.)</p>
+<p>Seriously? Yes.</p>
 
-<p>The source code for the class itself is available to view in my GitHub repository here:</p>
+<p>There’s this little-known method in .NET (well, little-known to most developers who work on your run-of-the-mill business applications): <a href="http://msdn.microsoft.com/en-us/library/53cz7sc6.aspx"><code>Delegate.CreateDelegate</code></a>. What this method does, essentially, is provide direct access to a class method via a <code>MethodInfo</code> object, in the form of an appropriately-typed delegate.</p>
 
-<p><a href="https://github.com/dtao/ConcurrentList"><strong>Check out the source code.</strong></a></p>
+<p>In order to understand how this affects string manipulation in .NET, consider the fact that a <code>MethodInfo</code> object can represent <em>any</em> method: <strong>public or non-public</strong>.</p>
 
-<p>Now for the somewhat disheartening part: thus far, based on my own performance benchmarks, I see little evidence that this actually outperforms a simple <code>List&lt;T&gt;</code> with synchronized calls to <code>Add</code> (using, e.g., a <code>lock</code> statement). So that’s a bit disappointing. But I figured I’d share the source code, in case some hackers out there might be able to figure out how to make it better.</p>
+<p>In other words, this means you can access the <code>string.SetChar</code> method (totally private – remember, the <code>System.String</code> class was designed to be immutable) <em>directly</em>, without the performance hit of using reflection by calling <code>MethodInfo.Invoke</code>.</p>
 
-<p>Also, I feel like part of the issue I may be having is that it’s tough to really create a lot of thread contention on a puny little laptop with such a lightweight method (I’d wager <code>List&lt;T&gt;.Add</code> couldn’t be much more than 10 lines). So maybe if this could get tested on a 32-core server somewhere, the results would be more noteworthy. I don’t know!</p>
+<p>To illustrate how this can be done, take a look at this completely evil static helper class I wrote: <a href="https://gist.github.com/3371692">EvilStringHelper</a>.</p>
 
-<p>Anyway, at least it passes the unit tests. That’s got to be worth something, right?</p>
+<p>The <code>EvilStringHelper</code> class provides an extension method on <code>string</code> called <code>ReverseInPlace</code>. This method does exactly what it sounds like.</p>
+
+<p>Now, to illustrate how well this method performs, I thought I’d compare it to its most obvious legal analogue: <a href="http://msdn.microsoft.com/en-us/library/d3877932.aspx"><code>Array.Reverse</code></a> (on a <code>char[]</code> array).</p>
+
+<p>Take a look:</p>
+
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Program</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="p">=</span> <span class="m">10000</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">L</span> <span class="p">=</span> <span class="m">10</span><span class="p">;</span>
+
+    <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">immutableStrings</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">string</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+        <span class="kt">var</span> <span class="n">mutableStrings</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">string</span><span class="p">[</span><span class="n">N</span><span class="p">];</span>
+        <span class="kt">var</span> <span class="n">arrays</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="n">N</span><span class="p">][];</span>
+
+        <span class="kt">var</span> <span class="n">rand</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">var</span> <span class="n">s</span> <span class="p">=</span> <span class="n">GetRandomString</span><span class="p">(</span><span class="n">rand</span><span class="p">,</span> <span class="n">L</span><span class="p">);</span>
+
+            <span class="n">immutableStrings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">s</span><span class="p">;</span>
+            <span class="n">mutableStrings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">s</span><span class="p">;</span>
+            <span class="n">arrays</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">ToCharArray</span><span class="p">();</span>
+        <span class="p">}</span>
+</pre></div> <span class="post-link">... (<a href="/posts/string-manipulation-in-net-epilogue.html">read the full post</a>)</span>
   </section>
 </article>
 <article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
-        <a href='/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html'>How to build a thread-safe lock-free resizable "array"</a>
+        <a href='/posts/are-strings-really-immutable-in-net.html'>Are strings REALLY immutable in .NET?</a>
       </span>
-      <span class='date'>February 23, 2011</span>
+      <span class='date'>May 28, 2010</span>
     </h1>
   </header>
   <section class='content'>
-    <p><strong>Update: I’ve finally (nearly two years later) created a <a href="http://dtao.github.com/ConcurrentList/">dedicated GitHub repo</a> for this.</strong></p>
-<hr><p>Inspired by <a href="http://stackoverflow.com/questions/5070495/lock-free-thread-safe-ilistt-for-net">this Stack Overflow question</a>, I started thinking about possible ways of implementing the <code>IList&lt;T&gt;</code> interface in a lock-free <em>concurrent</em> data structure, with the following notes:</p>
+    <p><strong>Edit: <a href="/posts/string-manipulation-in-net-epilogue.html">I wrote a follow-up</a> to this.</strong></p>
 
-<ol>
-<li>I highly doubt a lock-free <code>Insert</code> or <code>RemoveAt</code> implementation is possible. I could be wrong, of course; but I don’t think so. So I would implement those explicitly (and throw a <code>NotSupportedException</code>).</li>
+<p class="large">True or false:<br>It’s possible to reverse a string in-place in .NET.</p>
 
-<li>I would want guaranteed O(1) random access, at least. (Otherwise, the whole point of implementing <code>IList&lt;T&gt;</code> seems kind of questionable.)</li>
-</ol><p>OK, so, <strong>how do we do it</strong>?</p>
+<p>The <strong>beginner</strong> says: True! I could do it like this:</p>
 
-<p>Before I even describe my idea (still a work in progress), I should disclose the fact that, to my simultaneous disappointment and delight, it appears I managed to come up with a concept on my own that is <em>remarkably</em> similar to what researchers at Texas A&amp;M University, including <a href="http://en.wikipedia.org/wiki/Bjarne_Stroustrup">Bjarne Stroustrup</a>, <a href="http://www.stroustrup.com/lock-free-vector.pdf">designed and published</a>.</p>
-
-<p>Here’s the basic idea. Clearly utilizing a single array that is resized on certain Add operations would be problematic: allocating a new array and copying all elements to it in a lock-free way would be, at least I have to speculate, quite costly (imagine multiple concurrent threads all copying elements concurrently—seems very wasteful). So I considered using a <em>linked list</em> of arrays, where when an Add call requires additional storage, a new array could be allocated and appended to the linked list. But once you introduce a linked list, random access in O(1) becomes, well, less possible.</p>
-
-<p>I was <em>thinking</em> you probably couldn’t do it with a simple array of arrays (e.g., a <code>List&lt;T[]&gt;</code>) simply because then you’d eventually run into the problem of having to resize the “outer” array eventually. But then it dawned on me: <strong>assuming <code>Count</code> is bounded</strong> <span class="post-link">... (<a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/terminating-condition.html'>Resolution: the need for a terminating condition</a>
-      </span>
-      <span class='date'>January 15, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>For reasons not relevant to this blog, I have been thinking a lot lately about personal conflicts and how they evolve. In particular, my mind has been concentrating a great deal on the scenario of conflicts <em>escalating</em>: for example, the phenomenon where two people are having a regular conversation, and this somehow leads to a disagreement, and eventually the situation develops into an all-out shouting match with both parties so angry with each other that it’s often baffling to recall how the conversation began.</p>
-
-<p>This can happen over a short or a long period of <strong>time</strong>. It can take place within a single ten-minute conversation; it can also span days, months, even <em>years</em> (in this case it might be the cause of a friendship’s disintegration). It can also occur on a small or large <strong>scale</strong>. It might occur between friends, families, communities, even <em>nations</em> (throughout history, what war has not started as a smaller disagreement that eventually grew to something much larger?). I think we’ve all seen it happen, sadly, probably numerous times.</p>
-
-<p>As I am a software developer, I often perceive parallels between <em>real-world phenomena</em> and <em>software concepts</em>. What I want to do right now is to discuss one such parallel: the similarity between <strong>escalating conflict</strong> (the real-world phenomenon) and <strong>mutual recursion</strong> (the software concept).</p>
-
-<p><strong>A note to those readers who aren’t programmers: I will be including some source code in this post, but don’t stop reading! I promise that this discussion is of a general nature and not strictly programming-related.</strong></p>
-
-<p>For those who can read it, consider the following code snippet:</p>
-
-<div class="highlight"><pre><span class="k">void</span> <span class="nf">Provoke</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"Provoke!"</span><span class="p">);</span>
-    <span class="n">Respond</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="k">void</span> <span class="nf">Respond</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"Respond!"</span><span class="p">);</span>
-    <span class="n">Provoke</span><span class="p">();</span>
+<div class="highlight"><pre><span class="k">static</span> <span class="k">void</span> <span class="nf">ReverseString</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="n">str</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span>
+    
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="p">&lt;</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">char</span> <span class="n">temp</span> <span class="p">=</span> <span class="n">str</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="n">str</span><span class="p">[</span><span class="n">j</span><span class="p">--]</span> <span class="p">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">++]</span> <span class="p">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 
-<p>If I were to ask you, <em>What does the above code do?</em>, an initial response might be that <span class="post-link">... (<a href="/posts/terminating-condition.html">read the full post</a>)</span></p>
+<p>I’ve got news for you, friend: <strong>that will not work</strong>. It won’t even <em>compile</em>, in fact. While you can <em>access</em> the characters in a string by index, you cannot <em>set</em> them.</p>
+
+<p>The <strong>intermediate developer</strong> says: False! <a href="http://msdn.microsoft.com/en-us/library/system.string.aspx#remarksToggle">Strings are immutable</a> in .NET.</p>
+
+<p>Good answer! It’s a well-known fact (among experienced .NET developers) that the <code>System.String</code> class is designed to be immutable; you cannot change an instance once it has been instantiated.</p>
+
+<p>This is what often confuses rookie developers who try to write code like the following and fail to understand why it doesn’t work:</p>
+
+<div class="highlight"><pre><span class="kt">string</span> <span class="n">str</span> <span class="p">=</span> <span class="s">"Hello!"</span><span class="p">;</span>
+
+<span class="n">str</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="sc">'H'</span><span class="p">,</span> <span class="sc">'J'</span><span class="p">);</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+</pre></div>
+
+<p>The above program outputs “Hello!”, not “Jello!” as some might expect. This is because the <code>String.Replace</code> method <em>returns a new string</em> resulting from the replacement operation. In other words, the program could be “fixed” as follows:</p>
+
+<div class="highlight"><pre><span class="kt">string</span> <span class="n">str</span> <span class="p">=</span> <span class="s">"Hello!"</span><span class="p">;</span>
+
+<span class="c1">// notice: here we are assigning str</span>
+<span class="c1">// to a new object</span>
+<span class="n">str</span> <span class="p">=</span> <span class="n">str</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="sc">'H'</span><span class="p">,</span> <span class="sc">'J'</span><span class="p">);</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+</pre></div>
+
+<p>This is standard behavior for any immutable type (which includes all of the primitive types in .NET such as <code>int</code>, <code>double</code>, <code>bool</code>, etc., as well as <code>DateTime</code> and <code>string</code>).</p>
+
+<p>OK, so, since strings are immutable, clearly you can’t reverse one in-place, right? So the answer must be false?</p>
+
+<p>The <strong>master</strong> says: <strong>True</strong>.</p>
+<strong><em>Whaaaaaaaaaaat?!?!?</em></strong>
+<p>OK, first of all, you can use the <code>fixed</code> keyword in C# to access a string from a char pointer. This <span class="post-link">... (<a href="/posts/are-strings-really-immutable-in-net.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/whats-annoying-about-sorted-list-index-of-key.html'>What's annoying about SortedList<TKey, TValue>.IndexOfKey</a>
+      </span>
+      <span class='date'>May 24, 2010</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p><strong>Update: Some time after writing this post, I created a <a href="http://dtao.github.com/NBinarySearch/">project on GitHub</a> for this.</strong></p>
+
+<p>Here’s a problem I’m sure tons of developers have run into, resulting in much frustration.</p>
+
+<p>Say you have a sorted list of some kind, but it’s not a <code>List(T)</code>, and it’s not an array. In other words, it’s an <code>IList(T)</code> that you know is sorted. If you want to search for an item within that list, it makes sense to utilize a <a href="http://en.wikipedia.org/wiki/Binary_search">binary search</a>, rather than a linear search; but guess what? That doesn’t exist in the .NET framework. There’s <code>List(T).BinarySearch</code>, and there’s <code>Array.BinarySearch(T)</code>, but there’s no general <code>BinarySearch</code> (just like there’s no general <code>Sort</code>).</p>
+
+<p>One data structure where this proves particularly frustrating is <code>SortedList(TKey, TValue)</code>, because, although <code>SortedList(TKey, Value)</code> <em>does</em> have an <code>IndexOfKey</code> method, and this method <em>is</em> a binary search, it returns -1 if the value passed isn’t found. This basically makes it a crippled version of <code>Array.BinarySearch(T)</code>, which actually returns the <strong>negative bitwise complement</strong> of the “next best” index (that of the first value greater than the value searched for) – a useful little piece of information that allows you to write code like this:</p>
+
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">closestIndex</span> <span class="p">=</span> <span class="n">Array</span><span class="p">.</span><span class="n">BinarySearch</span><span class="p">(</span><span class="n">myArray</span><span class="p">,</span> <span class="n">someValue</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">closestIndex</span> <span class="p">&lt;</span> <span class="m">0</span><span class="p">)</span>
+    <span class="n">closestIndex</span> <span class="p">=</span> <span class="p">~</span><span class="n">closestIndex</span><span class="p">;</span>
+</pre></div>
+
+<p>Now, why do you suppose <code>IndexOfKey</code> is inconsistent with <code>List(T).BinarySearch</code> and <code>Array.BinarySearch(T)</code>? Is it due to some subtle difference in implementation that is necessary for the internal structure of <code>SortedList(TKey, TValue)</code>?</p>
+
+<p>Buh, no. Take a look at the source code for the <code>IndexOfKey</code> method using <a href="http://www.red-gate.com/products/reflector/">Reflector</a>, and what you’ll find is this peculiar little bit of code:</p>
+
+<div class="highlight"><pre>    <span class="kt">int</span> <span class="n">num</span> <span class="p">=</span> <span class="n">Array</span><span class="p">.</span><span class="n">BinarySearch</span><span class="p">&lt;</span><span class="n">TKey</span><span class="p">&gt;(</span><span class="k">this</span><span class="p">.</span><span class="n">keys</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">_size</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">comparer</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="p">&lt;</span> <span class="m">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
+</pre></div>
+
+<p><strong>Seriously</strong>? You’re telling me <code>IndexOfKey</code> <em>actually uses <code>Array.BinarySearch(T)</code></em>, <span class="post-link">... (<a href="/posts/whats-annoying-about-sorted-list-index-of-key.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/difference-between-converting-and-unboxing.html'>The difference between converting and unboxing: read my mind, compiler!</a>
+      </span>
+      <span class='date'>May 05, 2010</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>A <a href="http://stackoverflow.com/questions/2776130/c-implicit-conversions">developer on Stack Overflow</a> was recently perplexed by the fact that the implicit operator he’d defined for his custom type didn’t seem to be working.</p>
+
+<p>The scenario was this: the developer had a <code>DataTable</code> whose columns corresponded to the names of properties for a certain type of object. He had a bunch of <code>PropertyInfo</code> objects, one of which was of type <code>Currency</code> (his custom type with the implicit operator), and he was trying to read the table to get the value of each of his object’s properties. Obviously, since he couldn’t put a <code>Currency</code> object in the <code>DataTable</code>, he used <code>decimal</code> values instead, and defined an implicit conversion from <code>decimal</code> to <code>Currency</code>. Seems pretty smart, right?</p>
+
+<p>Here’s the code he posted:</p>
+
+<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="n">PropertyInfo</span> <span class="n">p</span> <span class="k">in</span> <span class="n">props</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">table</span><span class="p">.</span><span class="n">Rows</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">],</span> <span class="k">null</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>When it came to the <code>Currency</code> property, the program was throwing an <code>ArgumentException</code>. <em>WTF?</em> this developer thought. <em>What happened to my implicit operator?</em></p>
+
+<p>Well, here’s the first problem: the code above tries to pass a <code>decimal</code> to a call to <code>SetValue</code> for a <code>PropertyInfo</code> object whose <code>PropertyType</code> is <code>Currency</code>. So, presumably, the code could be fixed like this:</p>
+
+<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="n">PropertyInfo</span> <span class="n">p</span> <span class="k">in</span> <span class="n">props</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Currency</span> <span class="n">c</span> <span class="p">=</span> <span class="p">(</span><span class="n">Currency</span><span class="p">)</span><span class="n">table</span><span class="p">.</span><span class="n">Rows</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">];</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>That should work, right?</p>
+
+<p>Well, no. Here’s the thing: the <code>implicit</code> operator, as you may know, allows you to convert from one type to another without using an explicit cast. However, whenever you perform such a conversion, you’re still dealing with two fundamentally different types.</p>
+
+<p>When a value type is boxed inside a <code>System.Object</code>, <em>using</em> that value requires first <em>unboxing</em> it – <strong>as its original type</strong>. Many C# developers are surprised to learn that the following code throws an exception:</p>
+
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">int32</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+<span class="kt">object</span> <span class="n">boxedInt32</span> <span class="p">=</span> <span class="n">int32</span><span class="p">;</span>
+<span class="kt">long</span> <span class="n">int64</span>
+</pre></div> <span class="post-link">... (<a href="/posts/difference-between-converting-and-unboxing.html">read the full post</a>)</span>
   </section>
 </article>
     <footer>

@@ -23,13 +23,89 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/little-jquery-mobile-trick.html'>A little jQuery Mobile trick</a>
+      </span>
+      <span class='date'>July 25, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>I don’t really have anything revolutionary to share with the world at the moment, but I <strong>do</strong> want to get back into writing regular posts; so I figured I’d share a little <a href="http://jquerymobile.com/">jQuery Mobile</a> trick, since I’ve been using this library quite a bit lately for work.</p>
+
+<p>Sometimes in JQM, you find that your page suddenly looks like garbage. Maybe you updated the data being displayed using a <a href="http://api.jquery.com/category/plugins/templates/">jQuery template</a>; or you rendered a form, navigated to a different page, then came back, and all of your JQM-provided styling mysteriously vanished.</p>
+
+<p>You’re <a href="http://stackoverflow.com/questions/5249250">not alone</a>; this problem seems to have affected quite a few web developers out there in the wild, giving jQuery Mobile the ol’ college try.</p>
+
+<p>Part of the problem here (which has driven more than a few of us to near-madness) is that the JQM team seem to have decided that calling <code>page()</code> on a jQuery object should… not actually <em>do</em> anything after the first time you call it. So maybe you tried adding a call to <code>page()</code> in your code, did your usual dance to reproduce the rendering problem, saw that everything was fine and thought, <em>Huzzah! All fixed!</em> And then the next day somehow you noticed the problem inexplicably resurface.</p>
+
+<p>My <em>guess</em> is that JQM does this for optimization purposes, since JavaScript can be relatively expensive to run on mobile devices, especially those a generation or two back. So the developers figured, <em>Hey, if somebody calls <code>page()</code> multiple times, everything should already look fine after the first call; so we’ll just do him/her a favor and ignore subsequent calls!</em> Which… I don’t know. Honestly, I can imagine myself making the same (wrong, in my opinion) decision.</p>
+
+<p><strong>Anyway</strong>, here’s the “trick” I promised: my coworkers and I found an <strong>ingenious</strong> solution to the “one <span class="post-link">... (<a href="/posts/little-jquery-mobile-trick.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-2.html'>How I discovered a bug in the C# compiler, part 2</a>
+      </span>
+      <span class='date'>April 03, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>This post continues from where <a href="/posts/how-i-discovered-a-bug-in-the-c-compiler-part-1.html">my last one</a> left off; but don’t worry—I swear I’ll make this one more less rambling and more comprehensible. And rest assured that I will actually get to the explanation this time!</p>
+
+<p>So where did we leave off? We witnessed some truly bizarre behavior of a <strong>mutable value type</strong> within a <strong>using statement</strong> which also happens to include a <strong>closure</strong>. What does this look like?</p>
+
+<p>How about instead of using a custom value type to illustrate, this time I’ll show you what I mean with a type straight from the BCL itself (meaning, this guy was written by Microsoft folks, so you know it’s not just something weird about the way <em>I</em> did things):</p>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span> <span class="p">};</span>
+
+<span class="c1">// Criterion 1: within a using statement...</span>
+<span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">e</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="c1">// Criterion 2: ...which includes a closure...</span>
+    <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">closure</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+    
+    <span class="c1">// Criterion 3: ...a mutable value type...</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><strong>What do you think the above program will print?</strong></p>
+
+<p>Well, if you were paying <em>attention</em> to my last post (and if not—honestly, I totally understand), you’d know the answer already. The above program outputs:</p>
+
+<pre><code>0
+0
+0
+0
+0</code></pre>
+
+<p>…and on and on, ad infinitum.</p>
+
+<p>Remember, this happens <em>specifically</em> when all three of the above criteria (reiterated in the code comments) are met. It does <em>not</em> happen when only one or two of those criteria are met.</p>
+
+<p>Now let’s get to the bottom of this. In order to do so, there are a few puzzle pieces we need to understand.</p>
+
+<h2 id="puzzle_piece_1_how_does_the_c_compiler_implement_closures_1">Puzzle Piece #1: How does the C# compiler implement closures?</h2>
+
+<p>This one’s a head-scratcher for a lot of C# developers who’ve never really looked into the inner workings of closures. I’d <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-2.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html'>How I discovered a bug in the C# compiler, part 1</a>
       </span>
       <span class='date'>March 31, 2011</span>
     </h1>
   </header>
   <section class='content'>
-    <p>Well, <a href="http://philosopherdeveloper.wordpress.com/2011/03/25/poll-what-should-my-next-blog-topic-be/">a few of you voted</a>, and this topic came out on top. So, without further ado, I give you the story of <strong>my epic adventure in discovering a bug in</strong> (the latest version of) <strong>the C# compiler</strong>.</p>
+    <p>This is the story of <strong>my epic adventure in discovering a bug in</strong> (the latest version of) <strong>the C# compiler</strong>.</p>
 
 <p>First of all, some background. I was working on a library, mostly for personal use, which was to include an enumerable collection type similar to <code>List&lt;T&gt;</code> or <code>T[]</code>. One of the goals of this library was to be <em>efficient</em>; so, naturally, for this type’s enumerator I made the decision to create a mutable value type.</p>
 
@@ -55,7 +131,7 @@
 <span class="p">}</span>
 </pre></div>
 
-<p>This allowed my <code>Enumerator&lt;T&gt;</code> type to behave quite well when used in <code>foreach</code> loops without causing unnecessary garbage collection. And the fact that it was a mutable value type hardly mattered—just like it hardly matters for <code>List&lt;T&gt;.Enumerator</code>, <code>Dictionary&lt;TKey, TValue&gt;.Enumerator</code>, etc. (The only times when it hypothetically matters is when you pass <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html">read the full post</a>)</span></p>
+<p>This allowed my <code>Enumerator&lt;T&gt;</code> type to behave quite well when used in <code>foreach</code> loops without causing unnecessary garbage collection. And the fact that it was a mutable value type hardly mattered—just like it hardly matters for <code>List&lt;T&gt;.Enumerator</code>, <code>Dictionary&lt;TKey, TValue&gt;.Enumerator</code>, etc. (The only times when it hypothetically matters is when you pass an <code>Enumerator&lt;T&gt;</code> value to a method and for some reason <em>expect</em> the code within the method to affect the <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html">read the full post</a>)</span></p>
   </section>
 </article>
 <article class='abbreviated'>
@@ -129,57 +205,6 @@
 <p>Also, I feel like part of the issue I may be having is that it’s tough to really create a lot of thread contention on a puny little laptop with such a lightweight method (I’d wager <code>List&lt;T&gt;.Add</code> couldn’t be much more than 10 lines). So maybe if this could get tested on a 32-core server somewhere, the results would be more noteworthy. I don’t know!</p>
 
 <p>Anyway, at least it passes the unit tests. That’s got to be worth something, right?</p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html'>How to build a thread-safe lock-free resizable "array"</a>
-      </span>
-      <span class='date'>February 23, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p><strong>Update: I’ve finally (nearly two years later) created a <a href="http://dtao.github.com/ConcurrentList/">dedicated GitHub repo</a> for this.</strong></p>
-<hr><p>Inspired by <a href="http://stackoverflow.com/questions/5070495/lock-free-thread-safe-ilistt-for-net">this Stack Overflow question</a>, I started thinking about possible ways of implementing the <code>IList&lt;T&gt;</code> interface in a lock-free <em>concurrent</em> data structure, with the following notes:</p>
-
-<ol>
-<li>I highly doubt a lock-free <code>Insert</code> or <code>RemoveAt</code> implementation is possible. I could be wrong, of course; but I don’t think so. So I would implement those explicitly (and throw a <code>NotSupportedException</code>).</li>
-
-<li>I would want guaranteed O(1) random access, at least. (Otherwise, the whole point of implementing <code>IList&lt;T&gt;</code> seems kind of questionable.)</li>
-</ol><p>OK, so, <strong>how do we do it</strong>?</p>
-
-<p>Before I even describe my idea (still a work in progress), I should disclose the fact that, to my simultaneous disappointment and delight, it appears I managed to come up with a concept on my own that is <em>remarkably</em> similar to what researchers at Texas A&amp;M University, including <a href="http://en.wikipedia.org/wiki/Bjarne_Stroustrup">Bjarne Stroustrup</a>, <a href="http://www.stroustrup.com/lock-free-vector.pdf">designed and published</a>.</p>
-
-<p>Here’s the basic idea. Clearly utilizing a single array that is resized on certain Add operations would be problematic: allocating a new array and copying all elements to it in a lock-free way would be, at least I have to speculate, quite costly (imagine multiple concurrent threads all copying elements concurrently—seems very wasteful). So I considered using a <em>linked list</em> of arrays, where when an Add call requires additional storage, a new array could be allocated and appended to the linked list. But once you introduce a linked list, random access in O(1) becomes, well, less possible.</p>
-
-<p>I was <em>thinking</em> you probably couldn’t do it with a simple array of arrays (e.g., a <code>List&lt;T[]&gt;</code>) simply because then you’d eventually run into the problem of having to resize the “outer” array eventually. But then it dawned on me: <strong>assuming <code>Count</code> is bounded</strong> <span class="post-link">... (<a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/multithreading-and-multitasking.html'>Multithreading and multitasking</a>
-      </span>
-      <span class='date'>February 04, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>Watch the following video and count how many times the players in white pass the basketball. Then scroll down to read the rest of this post.</p>
-    
-    <p class="centered">.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.</p>
-    
-    <p><strong>Did you see the gorilla?</strong> OK, the truth is: <em>I</em> did, but only because I was expecting it (the name of the website where I first saw the video, <a href="http://www.theinvisiblegorilla.com/">The Invisible Gorilla</a>, kind of gives it away). Apparently a lot of viewers do <em>not</em> see the gorilla, though, because they are too busy focusing on the people throwing and catching the ball to notice it.</p>
-    
-    <p>It’s a fairly well-documented fact at this point that <a href="http://www.npr.org/templates/story/story.php?storyId=95256794">human beings are not so good at multitasking</a> (the fact that that link points to a 2-year-old article right there tells you that this is not news). Rather, we are very quick at <a href="http://en.wikipedia.org/wiki/Context_switching"><em>context-switching</em></a>.</p>
-    
-    <p>Those of you software engineers reading this: does that term sound familiar? I thought so. <strong>Context switching</strong> is the process of suspending and restoring the state of different <a href="http://en.wikipedia.org/wiki/Thread_%28computer_science%29"><em>threads</em></a> or <em>processes</em> on a single CPU. More simply, it is akin to shifting one’s attention back and forth between multiple things. A good example would be driving while talking on the phone. It’s actually impossible to pay attention to both simultaneously, according to neuroscientists; rather, what you are likely able to do when driving while talking is <em>switch</em> between thinking about your driving and thinking about your phone conversation, very rapidly:</p>
-    
-    <figure><img src="/images/context-switching.png" alt="An illustration of context switching between driving and talking"><figcaption>An illustration of context switching between driving and talking</figcaption></figure>
-    
-    <p>Computers are exactly like this too. This is becoming less true now that dual-core, quad-core, even six-core processors (this will likely only keep increasing) have become the norm, at least on desktop computers (and <em>especially</em> on servers, where 24 cores or more is not at <span class="post-link">... (<a href="/posts/multithreading-and-multitasking.html">read the full post</a>)</span></p>
   </section>
 </article>
 <div class='next-page'>
