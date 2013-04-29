@@ -242,3 +242,13 @@ white-angels-and-black-devils:
   date: 2011-01-01
   title: White angels & black devils
   published: true
+
+string-manipulation-in-net-epilogue:
+  date: 2010-06-04
+  title: "String manipulation in .NET: Epilogue"
+  published: true
+
+are-strings-really-immutable-in-net:
+  date: 2010-05-28
+  title: Are strings REALLY immutable in .NET?
+  published: true
