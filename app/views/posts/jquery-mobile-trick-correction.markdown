@@ -28,6 +28,6 @@ function refreshStyles( $element ) {
 
 So yeah, somehow forcing jQuery to *re-find* the wrapper element makes everything honky dory. And if you don't believe me, check it out:
 
-<span style="font-size:large;">[Proof.](http://jsfiddle.net/tJwYs/1/)</span>
+[Proof.](http://jsfiddle.net/tJwYs/1/)
 
 [^nobody-understands-javascript]: I have this theory that JavaScript is the language with the greatest percentage of *hackers*, as opposed to actual developers. By which I mean, most of us just [fiddle around](http://jsfiddle.net/) with JS code until it works; but we don't entirely *get* what we're doing. At least that's the case with me. (Don't tell my employer.)
