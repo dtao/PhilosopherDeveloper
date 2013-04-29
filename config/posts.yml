@@ -228,6 +228,11 @@ multithreading-and-multitasking:
   title: Multithreading and multitasking
   published: true
 
+replacing-expensive-locals-with-threadstatic-fields:
+  date: 2011-02-01
+  title: "Performance trick: replacing expensive locals with [ThreadStatic] fields"
+  published: false
+
 terminating-condition:
   date: 2011-01-15
   title: "Resolution: the need for a terminating condition"
