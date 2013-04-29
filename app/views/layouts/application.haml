@@ -23,7 +23,7 @@
     %header#header
       - if post
         %h1
-          %a(href="#{post.link}")= post.title
+          %a(href="#{post.link}")= CGI.escape_html(post.title)
         %h2 <a href="#{SITE_ROOT}/">the philosopher developer</a>
       - else
         %h1 <a href="#{SITE_ROOT}/">The Philosopher Developer</a>
