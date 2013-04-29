@@ -26,7 +26,7 @@ So I did a quick Google search and... guess what? There's already [a jQuery meth
 $(".inner").wrap( $('<div class="middle">') );
 ~~~
 
-But [you guys already knew about that](http://philosopherdeveloper.wordpress.com/2011/07/25/a-little-jquery-mobile-trick/), of course. (There's also, naturally, [a method to do the exact opposite](http://api.jquery.com/unwrap/).)
+But [you guys already knew about that](/posts/little-jquery-mobile-trick.html), of course. (There's also, naturally, [a method to do the exact opposite](http://api.jquery.com/unwrap/).)
 
 Some time later, I found myself writing code that I wanted to be executed the *first* time a page was shown (in jQuery Mobile—big surprise!); what I came up with looked something like this:
 
