@@ -23,193 +23,61 @@
   <header>
     <h1>
       <span class='title'>
-        <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compile-part-1.html'>How I discovered a bug in the C# compiler, part 1</a>
+        <a href='/posts/terminating-condition.html'>Resolution: the need for a terminating condition</a>
       </span>
-      <span class='date'>March 31, 2011</span>
+      <span class='date'>January 15, 2011</span>
     </h1>
   </header>
   <section class='content'>
-    <p>Well, <a href="http://philosopherdeveloper.wordpress.com/2011/03/25/poll-what-should-my-next-blog-topic-be/">a few of you voted</a>, and this topic came out on top. So, without further ado, I give you the story of <strong>my epic adventure in discovering a bug in</strong> (the latest version of) <strong>the C# compiler</strong>.</p>
+    <p>For reasons not relevant to this blog, I have been thinking a lot lately about personal conflicts and how they evolve. In particular, my mind has been concentrating a great deal on the scenario of conflicts <em>escalating</em>: for example, the phenomenon where two people are having a regular conversation, and this somehow leads to a disagreement, and eventually the situation develops into an all-out shouting match with both parties so angry with each other that it’s often baffling to recall how the conversation began.</p>
 
-<p>First of all, some background. I was working on a library, mostly for personal use, which was to include an enumerable collection type similar to <code>List&lt;T&gt;</code> or <code>T[]</code>. One of the goals of this library was to be <em>efficient</em>; so, naturally, for this type’s enumerator I made the decision to create a mutable value type.</p>
+<p>This can happen over a short or a long period of <strong>time</strong>. It can take place within a single ten-minute conversation; it can also span days, months, even <em>years</em> (in this case it might be the cause of a friendship’s disintegration). It can also occur on a small or large <strong>scale</strong>. It might occur between friends, families, communities, even <em>nations</em> (throughout history, what war has not started as a smaller disagreement that eventually grew to something much larger?). I think we’ve all seen it happen, sadly, probably numerous times.</p>
 
-<p><strong><em>Wait a minute!</em></strong> What’s that, you say? <em>Mutable value types are <strong>evil</strong>!</em> Oh?</p>
+<p>As I am a software developer, I often perceive parallels between <em>real-world phenomena</em> and <em>software concepts</em>. What I want to do right now is to discuss one such parallel: the similarity between <strong>escalating conflict</strong> (the real-world phenomenon) and <strong>mutual recursion</strong> (the software concept).</p>
 
-<p>This is a topic for a whole other blog post; but just to give a mini-argument in <em>defense</em> of this decision, by way of example, let me point out one simple fact: <strong>if you make the return value of <code>GetEnumerator</code> a <em>reference type</em>, then every <code>foreach</code> loop creates a new object to be garbage collected later</strong>. Don’t care? That’s fine; I <em>did</em> care, so I took an alternate approach (which, incidentally, is the same approach utilized by the designers of the collections in the <code>System.Collections.Generic</code> namespace in the BCL).</p>
+<p><strong>A note to those readers who aren’t programmers: I will be including some source code in this post, but don’t stop reading! I promise that this discussion is of a general nature and not strictly programming-related.</strong></p>
 
-<p>For <em>my</em> <code>GetEnumerator</code>, I explicitly implemented both <code>IEnumerable.GetEnumerator</code> <em>and</em> <code>IEnumerable&lt;T&gt;.GetEnumerator</code> and made a public version of the method returning an <code>Enumerator&lt;T&gt;</code> struct, like this:</p>
+<p>For those who can read it, consider the following code snippet:</p>
 
-<div class="highlight"><pre><span class="k">public</span> <span class="n">Enumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">GetEnumerator</span><span class="p">()</span>
+<div class="highlight"><pre><span class="k">void</span> <span class="nf">Provoke</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="n">Enumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">this</span><span class="p">);</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"Provoke!"</span><span class="p">);</span>
+    <span class="n">Respond</span><span class="p">();</span>
 <span class="p">}</span>
 
-<span class="n">IEnumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="k">void</span> <span class="nf">Respond</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
-<span class="p">}</span>
-
-<span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerator</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerable</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">()</span>
-<span class="p">{</span>
-  <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"Respond!"</span><span class="p">);</span>
+    <span class="n">Provoke</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 
-<p>This allowed my <code>Enumerator&lt;T&gt;</code> type to behave quite well when used in <code>foreach</code> loops without causing unnecessary garbage collection. And the fact that it was a mutable value type hardly mattered—just like it hardly matters for <code>List&lt;T&gt;.Enumerator</code>, <code>Dictionary&lt;TKey, TValue&gt;.Enumerator</code>, etc. (The only times when it hypothetically matters is when you pass <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compile-part-1.html">read the full post</a>)</span></p>
+<p>If I were to ask you, <em>What does the above code do?</em>, an initial response might be that <span class="post-link">... (<a href="/posts/terminating-condition.html">read the full post</a>)</span></p>
   </section>
 </article>
 <article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
-        <a href='/posts/such-a-thing-as-too-much-abstraction.html'>There's such a thing as too much abstraction, you know</a>
+        <a href='/posts/white-angels-and-black-devils.html'>White angels & black devils</a>
       </span>
-      <span class='date'>March 17, 2011</span>
+      <span class='date'>January 01, 2011</span>
     </h1>
   </header>
   <section class='content'>
-    <p>A couple days ago I was <a href="http://en.wikipedia.org/wiki/Pair_programming">pairing</a> with another developer on my team, and at one point we had code with these characteristics:</p>
+    <p>I hope everyone had a joyful time last night—but not <em>too</em> joyful, of course. I myself attended a party where the man who owned the house was showing everyone in attendance this M.C. Escher painting and asking him to name the <em>first</em> thing he saw:</p>
 
-<ul>
-<li>A class called <code>Stuff</code>
-</li>
+<figure><img src="/images/white-angels-and-black-devils.jpg" alt="Who doesnt see the devils first?"><figcaption>Who doesnt see the devils first?</figcaption></figure>
 
-<li>A method (which utilized this class) called <code>doStuff</code>
-</li>
-</ul><p>Naturally, we changed these names later. The placeholder names were just that: <strong>placeholders</strong>, allowing us to get down to writing code right away without having to deliberate too much about names first.</p>
+<p>Basically, everyone said “bats” (apparently they’re devils?). The man would then pull the picture away, say “Now look between the bats,” and show the picture again. On the second look, viewers would see the angels.</p>
 
-<p>However, we both kind of agreed that when the time finally <em>did</em> come for us to give names to this class and its accompanying method, we were a bit sad to say goodbye to <code>Stuff</code> and <code>doStuff</code>. This is because software engineers are <strong>obsessed with abstraction</strong>: the less we have to know about the implementation details of any particular software component, the happier we are. We just want to be able to view code as consisting of big functional blobs with no nitty gritty details exposed and very simple mechanisms for interaction.</p>
+<p>My big issue with this was: is this really so surprising? In our culture, by <em>default</em> white is a “background” color; just think of every single book you’ve ever read. The <em>pages</em> are white; the <em>text</em> (the <em>content</em>) is black. Or consider any black &amp; white picture. Is white not virtually <em>always</em> the background, with black representing the content? Our eyes are drawn—whether by nature or simply by convention, I can’t say, but drawn nevertheless—to the black part of a black &amp; white visual.</p>
 
-<p>In a software engineer’s dream world, every software library would consist of extraordinarily simple APIs comprising, I don’t know, two or three classes with three or four methods each. So the idea of having a class called <code>Stuff</code> and being able to call a method simply named <code>doStuff</code> is kind of tantalizing, in a way:</p>
+<p>So I, personally, didn’t think it was that surprising. But I think it’s a really cool picture, just like everything else by Escher; and I’m glad the guy at the party was showing it to people.</p>
 
-<p>Engineer 1: So what does this piece of code do? Engineer 2: It starts doing some stuff for a while, then it stops. Engineer 1: OK… but what does it <em>actually</em> do? Engineer 2: Are you asking me for implementation details? Get out of my face!</p>
-
-<p>Why do I bring this up? Well, just today <a href="http://stackoverflow.com/questions/5326874/why-would-i-use-enumerable-elementat-versus-the-operator">a user on Stack Overflow asked</a> about the <a href="http://msdn.microsoft.com/en-us/library/bb299233.aspx"><code>ElementAt</code></a> method, specifically wondering when it should or should not be used in place of the indexer for a collection <span class="post-link">... (<a href="/posts/such-a-thing-as-too-much-abstraction.html">read the full post</a>)</span></p>
+<p>That’s not what I wanted to write about today at all, though. Perhaps I’ll write another post soon to discuss what I originally meant to discuss in this one: an interesting realization I recently had, and how it relates to my New Year’s resolution.</p>
   </section>
 </article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/how-do-you-know-something-for-sure.html'>How do you know something for sure?</a>
-      </span>
-      <span class='date'>March 16, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>Earlier today a user on Stack Overflow posted the question, <a href="http://stackoverflow.com/questions/5318912/does-c-operator-short-circuit">“Does the <code>??</code> operator short circuit?”</a></p>
-
-<p>A fair number of users responded with the obvious jab: “Why don’t you just write a test and see for yourself?” It’s a pretty reasonable question. To find the answer one way or another would only require a few lines of code in a simple tool (like <a href="https://github.com/dtao/SimpleDevelop">SimpleDevelop</a>!) and less than a minute.</p>
-
-<figure class="no-caption"><img src="/images/lock-and-key.jpg" alt="Lock and key"><figcaption>Lock and key</figcaption></figure>
-
-<p>But the user replied, “I wanted to know authoritatively.”</p>
-
-<p>Now <em>that</em> is a tricky notion. And it actually relates to one of the strongest arguments for <a href="http://en.wikipedia.org/wiki/Test-driven_development">TDD (test-driven development)</a> and <a href="http://en.wikipedia.org/wiki/Continuous_integration">CI (continuous integration)</a> out there.</p>
-
-<p>Here’s the million-dollar question: how do you know something <em>authoritatively</em> (in software)? How can you ever be <strong>sure</strong> that something works?</p>
-
-<p>The accepted answer to the Stack Overflow question cited the C# spec, providing a concrete, <em>documented</em> answer. And this certainly seems like the “final” say, especially with documentation as “official” as the MSDN documentation for .NET.</p>
-
-<p>The user who posted the answer had this to say:</p>
-
-<blockquote>
-<p>If you only <em>try</em> it, you can never be sure if the behavior you observe is (a) something you can always rely on or (b) just some implementation detail of the compiler (e.g. some optimization). To be on the safe side, you need to check the documentation for the specified behavior.</p>
-</blockquote>
-
-<p>Now, before I go any further, I just want to be clear: I <em>basically</em> agree with this, and I don’t intend to in any way imply that it’s wrong—only that it is just one way of looking at things.</p>
-
-<p>Here’s another: maybe <strong>documentation</strong> doesn’t give us the final say <em>either</em>. After all, those of us who’ve been in the software industry for more than a week know that <em>specified behavior</em> and <em>actual behavior</em> are <span class="post-link">... (<a href="/posts/how-do-you-know-something-for-sure.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/ridiculous-time-waster-that-is-code-aesthetics.html'>The ridiculous time waster that is code aesthetics</a>
-      </span>
-      <span class='date'>March 15, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>Sometimes it drives me nuts how passionate software engineers can be about things that have nothing to do with the functionality of their software.</p>
-
-<p><em>Code aesthetics</em> is one such thing. (Those of you non-programmers out there: yes, believe it or not, this <em>is</em> a big deal to some engineers.) Developers will argue for hours about whether one way or another of writing code is “better,” for all sorts of absurdly subjective reasons. Among them:</p>
-
-<ul>
-<li>“It’s more readable.” I always find this one kind of funny as it completely <a href="http://begthequestion.info/">begs the question</a>. It’s like saying, “I personally prefer the way this one looks because it’s better-looking.” Of course <em>you</em> think the code is more readable your way; that’s why we’re arguing!</li>
-
-<li>“It’s more concise.” This is another popular one. Interestingly, it is often (though not always) in direct opposition to the preceding point.</li>
-
-<li>“It’s more obvious.” This one I actually can sympathize with. However, I <em>do</em> hate it (give me a few more years in the industry and maybe I’ll change my mind) when the “more obvious” version of a routine is preferred despite the fact that it’s also the “more stupid” version. I only agree with going with the “obvious” approach when the difference between <em>it</em> and an alternative with superior performance (for example) is negligble, <em>or</em> when the “superior” version is incredibly nasty (e.g., uses pointer hacks or some obscure implementation detail to accomplish a goal).</li>
-</ul><p>Here are some common examples of aesthetic issues which .NET developers argue about:</p>
-
-<div class="highlight"><pre><span class="c1">// Whether or not to use var for locals.</span>
-<span class="kt">var</span> <span class="n">puppy</span> <span class="p">=</span> <span class="n">GetPuppy</span><span class="p">();</span>
-<span class="n">Puppy</span> <span class="n">puppy</span> <span class="p">=</span> <span class="n">GetPuppy</span><span class="p">();</span>
-
-<span class="c1">// Whether to put the statement in a one-line block on the same line,</span>
-<span class="c1">// on the next line, or within braces.</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">someCondition</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">someCondition</span><span class="p">)</span>
-    <span class="k">break</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">someCondition</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">break</span><span class="p">;</span>
-</pre></div> <span class="post-link">... (<a href="/posts/ridiculous-time-waster-that-is-code-aesthetics.html">read the full post</a>)</span>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/sometimes-the-best-strategy-is-to-retreat.html'>Sometimes the best strategy is to retreat</a>
-      </span>
-      <span class='date'>February 28, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>I have a few remarks to make about <a href="http://dtao.github.com/ConcurrentList/">my <code>ConcurrentList&lt;T&gt;</code> class</a>, which I have written about a <a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">couple</a> of <a href="/posts/boy-can-dream.html">times</a> already.</p>
-
-<p><em>What, are you “retreating” from your concurrent list idea?</em> In a way, yes. Let me explain. From the beginning, my concept of the usefulness of a lock-free <code>IList&lt;T&gt;</code> implementation was that it would scale better than using a <code>List&lt;T&gt;</code> plus <code>lock</code> statements by eliminating contention when many threads are accessing the list concurrently.</p>
-
-<p>Is this actually true? Accessing the list <code>how</code>?</p>
-
-<p>Since a concurrent implementation of <code>Insert</code>, <code>RemoveAt</code> etc. is not supported in <code>ConcurrentList&lt;T&gt;</code>, there are really only a few operations that need to be considered:</p>
-
-<ul>
-<li>Getting/setting an item at a specified index</li>
-
-<li>Adding to the list</li>
-
-<li>Iterating over the list</li>
-</ul><p>Critically, I think the assumption is that one would need a lock-free data structure to optimize the scenario where multiple threads may be <em>reading</em> from the list (via accessing items at random indexes) while one or more other threads are <em>adding</em> to it. <strong>I actually don’t think you need a lock-free data structure for this at all.</strong></p>
-
-<p>Here’s the thing: if you’ve got a <code>List&lt;T&gt;</code>, and you synchronize all calls to <code>Add</code> with, e.g., a <code>lock</code> statement, <strong>you don’t need to also synchronize reads</strong>. They will <em>always</em> be thread-safe. Accessing an element at an index of a <code>List&lt;T&gt;</code> that is <em>only</em> growing with calls to <code>Add</code> <em>will</em> work from multiple threads. If you are skeptical, consider what actually happens when <code>Add</code> is called (<strong>warning: reliance upon specific implementation details ahead!</strong>):</p>
-
-<ol>
-<li>
-<p>The <code>List&lt;T&gt;</code> gets the next available index in its internal array.</p>
-</li>
-
-<li>
-<p>If the index is beyond the end of the array:</p>
-
-<ol>
-<li>A new array is allocated.</li>
-
-<li>The elements of the current array are copied over.</li>
-
-<li>A reference to this new <span class="post-link">... (<a href="/posts/sometimes-the-best-strategy-is-to-retreat.html">read the full post</a>)</span>
-</li>
-</ol>
-</li>
-</ol>
-  </section>
-</article>
-<div class='next-page'>
-  <a href='/index8.html'>View older posts</a>
-</div>
     <footer>
       <ul class='menu'>
         <li><a href="/posts">All Posts</a></li>

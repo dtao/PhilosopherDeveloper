@@ -223,6 +223,11 @@ garbage-garbage-everywhere:
   title: Garbage, garbage everywhere
   published: false
 
+multithreading-and-multitasking:
+  date: 2011-02-04
+  title: Multithreading and multitasking
+  published: true
+
 terminating-condition:
   date: 2011-01-15
   title: "Resolution: the need for a terminating condition"
