@@ -41,7 +41,9 @@
     </div>
   </header>
   <section class='content'>
-    <p>Here’s a problem I’m sure tons of developers have run into, resulting in much frustration.</p>
+    <p><strong>Update: Some time after writing this post, I created a <a href="http://dtao.github.com/NBinarySearch/">project on GitHub</a> for this.</strong></p>
+
+<p>Here’s a problem I’m sure tons of developers have run into, resulting in much frustration.</p>
 
 <p>Say you have a sorted list of some kind, but it’s not a <code>List(T)</code>, and it’s not an array. In other words, it’s an <code>IList(T)</code> that you know is sorted. If you want to search for an item within that list, it makes sense to utilize a <a href="http://en.wikipedia.org/wiki/Binary_search">binary search</a>, rather than a linear search; but guess what? That doesn’t exist in the .NET framework. There’s <code>List(T).BinarySearch</code>, and there’s <code>Array.BinarySearch(T)</code>, but there’s no general <code>BinarySearch</code> (just like there’s no general <code>Sort</code>).</p>
 

@@ -1,3 +1,5 @@
+**Update: Some time after writing this post, I created a [project on GitHub](http://dtao.github.com/NBinarySearch/) for this.**
+
 Here's a problem I'm sure tons of developers have run into, resulting in much frustration.
 
 Say you have a sorted list of some kind, but it's not a `List(T)`, and it's not an array. In other words, it's an `IList(T)` that you know is sorted. If you want to search for an item within that list, it makes sense to utilize a [binary search](http://en.wikipedia.org/wiki/Binary_search), rather than a linear search; but guess what? That doesn't exist in the .NET framework. There's `List(T).BinarySearch`, and there's `Array.BinarySearch(T)`, but there's no general `BinarySearch` (just like there's no general `Sort`).
