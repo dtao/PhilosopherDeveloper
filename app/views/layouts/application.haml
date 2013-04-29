@@ -16,7 +16,6 @@
     - if post && post.allow_comments
       :javascript
         var disqus_shortname = "philosopherdeveloper";
-        var disqus_identifier = "#{post.identifier}";
         var disqus_title = "#{post.title}";
     = extra_javascript if defined?(extra_javascript) && !extra_javascript.empty?
 
