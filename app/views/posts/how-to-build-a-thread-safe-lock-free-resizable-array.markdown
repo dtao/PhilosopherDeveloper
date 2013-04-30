@@ -44,14 +44,17 @@ See a pattern?
 So the first six elements (just for illustration) of this "outer" array would look like this:
 
 ![An array of arrays](/images/bigarray.png)
+{: .plain }
 
 The beauty of this design is that it facilitates O(1) random access, when you consider the following: the starting "index" of each array is the sum of the lengths of all previous arrays, which is in turn the sum of a [**geometric sequence**](http://en.wikipedia.org/wiki/Geometric_progression):
 
 ![Formula for the sum of a geometric sequence](/images/sumgeometricsequence.png)
+{: .plain }
 
 Determining *which array* a particular index falls into, then, requires simply rearranging the above formula to solve for *n*:
 
 ![Formula to find the term in a geometric sequence](/images/termgeometricsequence.png)
+{: .plain }
 
 With an *a<sub>1</sub>* of 1 and an *r* of 2, this translates to the following code:
 
