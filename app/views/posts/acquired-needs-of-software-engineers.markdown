@@ -3,6 +3,7 @@ There is something that's been on my mind recently, and it's what I'll call the 
 So, to understand what I mean by **acquired need**, consider a caveman.
 
 ![Caveman](/images/caveman.jpg)
+{: .plain }
 
 What does this guy **need**? Not a whole lot, right? I mean, the *essentials*, sure: food, water, shelter... anything else? Not really. A caveman needs basically those three things, and that's it.
 
@@ -60,6 +61,7 @@ I'm actually not trying to say that my old job was great because we were so ligh
 Fast forward to now. Below is a crude diagram depicting the process followed by my current team for developing new functionality.
 
 ![Software process dependencies](/images/software-process-dependencies.png)
+{: .plain }
 
 Highlighted in blue are the only two steps we also followed at my previous job.
 

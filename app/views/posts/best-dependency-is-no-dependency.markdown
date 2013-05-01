@@ -34,6 +34,7 @@ But the other point this brought to my mind is not performance-related. It has t
 For a taste of what I'm talking about, here is a collage of the dependencies (that I can *think* of) we have on my current project:
 
 ![Dependencies](/images/dependency-overload.jpg)
+{: .plain .no-caption }
 
 (There's not really any good reason HAML goes in the center. [Picasa](http://http://picasa.google.com/) chose to put it there.)
 
