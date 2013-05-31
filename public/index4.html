@@ -10,7 +10,9 @@
     <script src='/javascripts/ga.js' type='text/javascript'></script>
     <script src='/javascripts/shareThis.js' type='text/javascript'></script>
     <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
-    <script src='/javascripts/main.js' type='text/javascript'></script>
+    <!-- I've decided this isn't really worth doing until I make exceptions for -->
+    <!-- sites that block iframes. -->
+    <!-- %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/main.js") -->
     
     <script type='text/javascript' src='/javascripts/posts.js'></script>
   </head>
@@ -20,6 +22,34 @@
       <h2>half-sound logic, half-decent code</h2>
     </header>
     <article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html'>Brushing up on C.S. - Part 1: Algorithmic Complexity</a>
+      </span>
+      <span class='date'>September 15, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <h1 id="preamble_1">Preamble</h1>
+
+<p>As I’m sure plenty of you already know (the title of this blog is a bit of a giveaway), I was a <strong>philosophy</strong> major in college. Which means I was <em>not</em> a C.S. major. But that’s not the full extent of it: I didn’t <em>minor</em> in C.S., either; I actually took <em>absolutely no computer sciences courses at all</em> in college.</p>
+
+<p>I did recently receive an M.S. in software engineering from <a href="http://www.cmu.edu/silicon-valley/">Carnegie Mellon</a>; but the courses in that program were higher-level in nature: software architecture, process management, software metrics, entrepreneurship—that sort of thing. And so I’ve still never really had an academic foundation for a lot of the more theoretical stuff that those with bachelor’s degrees in computer science have.</p>
+
+<p>To clarify: I <em>do</em> know a decent amount of C.S. stuff in practice, because:</p>
+
+<ul>
+<li>I worked for two years at an algorithmic trading company, where performance was a key concern (use of optimal data structures was critical) and the software was highly concurrent (so I got plenty of hands-on experience with things like synchronization, mutexes, semaphores, etc.)</li>
+
+<li>I am a huge nerd who spends way too much time reading about <a href="http://en.wikipedia.org/wiki/Skip_list">skip lists</a> and <a href="http://en.wikipedia.org/wiki/Red_black_tree">red-black trees</a> and all that good stuff on Wikipedia</li>
+</ul><p>Anyway, all this is my long-winded way of introducing a little series of blog posts I’m going to be doing, starting with this one. The basic idea behind it should already be obvious: I’m going to “brush up” on (in some cases, learn entirely from scratch) some of the fun theoretical stuff that I missed by never going through a college C.S. program.</p>
+
+<p>Those of you already well-versed with theoretical C.S. stuff will probably not be all that intrigued by this or the next few posts. Then again, maybe you will. My goal is actually two-fold here:</p><ol><li> <span class="post-link">... (<a href="/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html">read the full post</a>)</span>
+</li></ol>
+  </section>
+</article>
+<article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
@@ -145,27 +175,6 @@ class_eval
 
   DEBUG - TEMPLATE (0.0010ms) /layouts/application
   DEBUG -      GET</pre> <span class="post-link">... (<a href="/posts/littlest-ruby-debugger.html">read the full post</a>)</span>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/optimizing-mind.html'>The Optimizing Mind</a>
-      </span>
-      <span class='date'>February 19, 2012</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>I noticed something funny about myself this morning while making coffee.</p>
-    
-    <p>The kitchen in my wife’s and my apartment is divided into a main area and a <a href="http://en.wikipedia.org/wiki/Scullery_(room)">scullery</a> (yep, we’re old fashioned). The scullery holds our silverware, dishes, coffee, tea, and other things. But the coffee <em>maker</em> is in the main area, on a cart.</p>
-    
-    <p>This morning I went into the kitchen, put a filter in the coffee maker, took the carafe and brought it with me into the scullery. In the scullery I filled the carafe with water, took the coffee and walked back to the cart in the kitchen. I filled the machine with enough water for two cups of coffee, collected an emptied sugar packet that was sitting on the cart, and tossed it into the trash on my way back to the scullery, where I poured out the excess water from the carafe and picked up a mug and a spoon before heading back to the cart.</p>
-    
-    <p>What I noticed about this whole procedure (after having gone through it, of course) is that I had <strong>optimized</strong> my trips to and from the scullery—not perfectly, by any means, but to some extent. That is, rather than making a trip for one purpose (e.g., filling the carafe with water), I <em>combined</em> tasks so as to reduce the total number of trips back and forth. And what was particularly noteworthy to me was that I had done this <em>without really thinking about it</em>.</p>
-    
-    <p>Recently I interviewed an engineer for ThoughtWorks. It was a technical phone interview, so much of the conversation was relatively high-level (I figured, save the whiteboard problems for in-office interviews). Even so, I did throw in a few problems, emphasizing to the candidate that the goal of the exercise was for her to share <span class="post-link">... (<a href="/posts/optimizing-mind.html">read the full post</a>)</span></p>
   </section>
 </article>
 <div class='next-page'>

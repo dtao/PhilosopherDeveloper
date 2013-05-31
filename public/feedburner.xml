@@ -1,6 +1,143 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://philosopherdeveloper.com/</link><item><title>Rethinking priority</title><link>http://philosopherdeveloper.com/posts/rethinking-priority.html</link><description><![CDATA[<p>Looking back on some of my recent posts on this blog, I’m a bit annoyed at myself for being too hand-wavy and not saying anything all that original.</p>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://philosopherdeveloper.com/</link><item><title>Introducing Lazy.js</title><link>http://philosopherdeveloper.com/posts/introducing-lazy-js.html</link><description><![CDATA[<p>I recently started a JavaScript project called <strong>Lazy.js</strong> that’s been getting quite a lot of attention<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. Essentially the project is a utility library in a similar vein to <a href="http://underscorejs.org/">Underscore</a> or <a href="http://lodash.com/">Lo-Dash</a>, but with <a href="http://en.wikipedia.org/wiki/Lazy_evaluation">lazy evaluation</a> (hence the name).</p>
 
-<p>I’d like to make an effort, at least in my next few posts, to get more concrete and challenge some of the conventions I’ve observes in the software world. I’ll start with an idea that I think is not all that radical, though it <em>would</em> mark a sigificant departure for most teams I’ve worked on.</p>
+<p>The reason I think the project has been piquing the interest of so many JavaScript developers is that it offers the promise of some truly solid performance, even compared to Lo-Dash (which is itself highly optimized in comparison to Underscore). This chart shows the performance of Lazy.js compared to both of those libraries for several common operations on arrays of 10 elements each on Chrome:</p>
+
+<p class="plain"><img src="/images/lazy-performance.png" alt="Lazy.js performance versus Underscore and Lo-Dash"></p><p>Lazy.js performance versus Underscore and Lo-Dash</p>
+
+<p>You can read more about what Lazy.js <em>does</em> <a href="http://dtao.github.io/lazy.js/">on the project website</a> or in the README <a href="https://github.com/dtao/lazy.js">on its GitHub page</a>. In this blog post, I want to write a little bit about how it <em>works</em>, and what makes it different.</p>
+
+<h2 id="a_different_paradigm_1">A different paradigm</h2>
+
+<p>Fundamentally, Lazy.js represents a paradigm shift from the model of Underscore and Lo-Dash (starting now I’m just going to say “Underscore” for brevity), which provide a host of useful functions for what I’ll call <strong>array transformation</strong><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>: each function accepts an array as input, does something with it, and then gives back a new array:</p>
+
+<p class="plain"><img src="/images/array-transformation.png" alt="Array transformation"></p><p>Array transformation</p>
+
+<p>This isn’t how Lazy.js works. Instead, what is essentially happening at the core of Lazy.js is <strong>function composition</strong>: each function accepts a <em>function</em> as input, stores it, and gives back an object that can do the same. Then ultimately when <code>each(fn)</code> is called on the last object in the chain, it composes all of those functions together, effectively changing the behavior of <code>fn</code>.</p>
+
+<p>Let’s take <code>map</code> as an example. The idea of <em>mapping</em> is simple and something we do all the time; it basically means <em>translating</em> or <em>converting</em>.</p>
+
+<p>Here’s some code that uses <code>map</code> from Underscore:</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">array2</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">array1</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">array1</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="p">});</span>
+</pre></div>
+
+<p>In the above snippet, <code>array1</code> is <em>mapped</em> to <code>array2</code> using a function that shifts each value up by five. The process involves three significant parts:</p>
+
+<ol>
+<li>Look at every element in the array</li>
+
+<li>Apply the mapping function on it</li>
+
+<li>Store the result in a new array</li>
+</ol><p>This 3-step process is a core part of Underscore’s paradigm: again, arrays go in, arrays come out. With Lazy.js, parts 1 and 3 above are not a core part of the paradigm. You can get the equivalent of step 1 with <code>each</code>, and you can get the equivalent of step 3 with <code>toArray</code>; but you’re not <em>required</em> to do either of those things.</p>
+
+<p>To illustrate what I mean, let’s look at the <code>map</code> example again, this time using Lazy.js.</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">array</span>    <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">sequence</span> <span class="o">=</span> <span class="nx">Lazy</span><span class="p">(</span><span class="nx">array</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="p">});</span>
+</pre></div>
+
+<p>Remember that <code>sequence</code> above is not an array; none of the elements of <code>array</code> has been accessed at this point. Which means we can do this:</p>
+
+<div class="highlight"><pre><span class="c1">// Result: 8</span>
+<span class="kd">var</span> <span class="nx">middle</span> <span class="o">=</span> <span class="nx">sequence</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+
+<p>…and dive straight into the middle of the sequence without iterating. This is what I meant by saying step 1 from Underscore’s paradigm is not a core part of Lazy.js.</p>
+
+<p>Similarly, we can do this:</p>
+
+<div class="highlight"><pre><span class="cm">/* Output:</span>
+<span class="cm"> * 6</span>
+<span class="cm"> * 7</span>
+<span class="cm"> * 8</span>
+<span class="cm"> * 9</span>
+<span class="cm"> * 10</span>
+<span class="cm"> */</span>
+<span class="nx">sequence</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="p">});</span>
+</pre></div>
+
+<p>…and, <em>without creating any extra array</em>, we’ve viewed the results. This is why I said Underscore’s step 3 (storing results in a new array) is also not a core part of Lazy.js.</p>
+
+<h2 id="digging_a_bit_deeper_2">Digging a bit deeper</h2>
+
+<p>So I’ve said what makes Lazy.js different from Underscore, but I haven’t really explained how it works in much depth.</p>
+
+<p>I did mention function composition. Let’s take a look at a concrete example to make that a bit clearer.</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">array</span> <span class="o">=</span> <span class="nx">Lazy</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">).</span><span class="nx">toArray</span><span class="p">();</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"First 10 squares that are evenly divisible by of 3:"</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">sequence</span> <span class="o">=</span> <span class="nx">Lazy</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span><span class="p">;</span> <span class="p">})</span>
+  <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span> <span class="p">})</span>
+  <span class="p">.</span><span class="nx">take</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span> <span class="p">});</span>
+</pre></div>
+
+<p>Maybe that’s a bit noisy—I just wanted to have a full example program—so I’ll focus on just the <code>map</code>, <code>filter</code>, and <code>take</code> parts.</p>
+
+<p>As I said earlier, each function in Lazy.js accepts another function and then creates an object to store it. So the result of <code>map</code> is an object—a <code>MappedSequence</code>–that stores its argument and exposes the same API as the object originally returned by <code>Lazy(array)</code>.</p>
+
+<pre><code>MappedSequence(mapFn)</code></pre>
+
+<p>This object is then the “parent” of any objects <em>it</em> creates. The result of <code>filter</code>, then—a <code>FilteredSequence</code>–holds a reference to the mapped sequence as well as its filtering function:</p>
+
+<pre><code>MappedSequence(mapFn)
+  FilteredSequence(filterFn)</code></pre>
+
+<p>Next we have <code>take</code>, which creates a <code>TakeSequence</code> that stores the count we pass to it:</p>
+
+<pre><code>MappedSequence(mapFn)
+  FilteredSequence(filterFn)
+    TakeSequence(count)</code></pre>
+
+<p>Finally, when <code>each</code> is called, we compose everything together. In this example, the data underlying our nested sequences is an array; so <code>each(fn)</code> does just what you’d think: iterates over the source array, and…</p>
+
+<ul>
+<li>feeds each element to <code>mapFn</code>,</li>
+
+<li>feeds the result of <code>mapFn</code> into <code>filterFn</code>,</li>
+
+<li>feeds those elements with truthy results from <code>filterFn</code> to the <code>TakeSequence</code>, which…</li>
+
+<li>feeds the first 10 results to <code>fn</code>, then ends the iteration (by returning <code>false</code>)</li>
+</ul><p>Another way of looking at it is this. Let’s forget about arrays (or collections, or sequences) entirely for a moment. The core idea behind <code>map</code> is, as I said, <em>translation</em>. This is independent of the idea of iteration. It’s simply the idea of, for some value, mapping it to another value.</p>
+
+<p>Same with <code>filter</code>: it doesn’t necessarily have to do with iteration. The idea of filtering is, for some value, testing whether it satisfies some condition or not.</p>
+
+<p>And so, if we don’t think about arrays at all, we can still combine these concepts. For some value <em>x</em>, we can <em>map</em> it to <em>y</em>, and then we can <em>filter</em> that <em>y</em> to check whether it satisfies a condition.</p>
+
+<pre><code>// Looks like function composition to me!
+filter(map(x))</code></pre>
+
+<p>As a pure replacement for Underscore—which it can be—Lazy.js is basically an inversion of the 3-step process I described. Instead of doing 1-2-3, 1-2-3, &amp;c. for each operation, we can do 1 (for each element in the source…), then <em>all 2s combined</em> (every <code>map</code>, <code>filter</code>, etc. composed together), and finally 3 (store the results in a new array). You don’t <em>need</em> to use Lazy.js that way—as I hopefully have emphasized quite enough by now!–but you can, if you’re just looking for a drop-in Underscore replacement. And that wouldn’t be a bad call, given the performance difference!</p>
+
+<p>The reason I keep saying that isn’t all that Lazy.js is about, though, is that there’s a lot more you can do as a result of this different model. You can generate indefinite sequences, iterate asynchronously, map/reduce on DOM events (or any event type, really), lazily split strings, and more. Take a look at <a href="http://dtao.github.io/lazy.js">the Lazy.js website</a> or—better yet—actually <a href="https://github.com/dtao/lazy.js">give Lazy.js a try</a> and see for yourself what else you can do.</p>
+
+<h2 id="the_road_ahead_3">The road ahead</h2>
+
+<p>Thus far this project has received a much more enthusiastic response than I would’ve predicted, which is a bit daunting. That said, I’m not sure it’s actually being used much out in the wild yet. I only just recently <a href="https://npmjs.org/package/lazy.js">published it as a Node package</a>; and while I’ve started working on documenting the code properly, I haven’t quite settled on an approach yet. (In other words, the documentation is quite lacking at the moment.) Even the organization of the repository (names of folders, which files go where, etc.) is something I haven’t really ironed out. So a lot is in flux.</p>
+
+<p>That said, it would make me really happy if people start trying out Lazy.js for real and <a href="https://github.com/dtao/lazy.js/issues">submitting issues</a> to help me find bugs faster and prioritize working on the most useful real-world features.</p>
+
+<p>I also attribute some of the library’s sudden popularity to <a href="http://dtao.github.io/lazy.js/">the project website</a>, which includes a nice benchmark runner to compare Lazy.js against <a href="http://dtao.github.io/lazy.js/comparisons.html">several other libraries</a> and view the results in an intuitive and visually appealing format. In the back of my mind I’m planning to eventually refactor some code out of there and into another open source project specifically geared towards comparing the performance of competing libraries, or even standalone functions.</p>
+
+<p>For now, though, I’ll keep working on Lazy.js and hoping to get some feedback from users.</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>For me, anyway—as of the time I’m writing this, it has <a href="(https://github.com/dtao/lazy.js">865 stars on GitHub</a>! <a href="#fnref:1" rev="footnote">↩</a></p>
+</li>
+<li id="fn:2">
+<p>I <a href="/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html">don’t have a C.S. background</a>, so I don’t know if there’s a academic term for these ideas. Probably is. <a href="#fnref:2" rev="footnote">↩</a></p>
+</li>
+</ol>
+</div>]]></description><pubDate>Fri, 31 May 2013 00:00:00 +0000</pubDate><guid>http://philosopherdeveloper.com/posts/introducing-lazy-js.html</guid></item><item><title>Rethinking priority</title><link>http://philosopherdeveloper.com/posts/rethinking-priority.html</link><description><![CDATA[<p>Looking back on some of my recent posts on this blog, I’m a bit annoyed at myself for being too hand-wavy and not saying anything all that original.</p>
+
+<p>I’d like to make an effort, at least in my next few posts, to get more concrete and challenge some of the conventions I’ve observed in the software world. I’ll start with an idea that I think is not all that radical, though it <em>would</em> mark a sigificant departure for most teams I’ve worked on.</p>
 
 <h2 id="how_we_think_about_priority_1">How we think about priority</h2>
 
@@ -12,7 +149,7 @@
 
 <p>Other than the fact that it just doesn’t seem reasonable that such a curve could actually represent reality, I see two problems here. First, the accumulation of many small bugs over the life of a project brings the quality of the software down, which is a sad state of affairs. Have you ever encountered a bug for the 100th time in some application you use regularly, and suddenly it occurred to you that that bug has been around <em>forever</em>? The other problem, which is arguably even worse, is the technical debt that so many low-priority defects represent. Choosing to always plow forward with high-priority items while allowing all these little problems to pile up exerts drag on a team. It becomes harder to make forward progress.</p>
 
-<p>Just as there are two major problems, there are at least two mistakes that lead to this predicament. The first is a classic one that most of us are at least subconsciously already aware of, which is that we get too fixated on <em>adding features</em> to software when there are still minor issues to resolve. Quite simply, fixing bugs isn’t sexy. And so move towards buggy, bloated software with too many features instead of high-quality software with just the right features.</p>
+<p>Just as there are two major problems, there are at least two mistakes that lead to this predicament. The first is a classic one that most of us are at least subconsciously already aware of, which is that we get too fixated on <em>adding features</em> to software when there are still minor issues to resolve. Quite simply, fixing bugs isn’t sexy. And so we move towards buggy, bloated software with too many features instead of high-quality software with just the right features.</p>
 
 <p>The other mistake is more psychological. I can’t really prove this, but it’s my hypothesis that on strictly priority-based projects our minds come to think of <em>priority</em> as <em>likelihood of actually getting done</em>. Which makes sense, because the two end up being perfectly correlated. We therefore <strong>tend to over-prioritize new work that we’re excited about</strong> out of fear that it just won’t get done otherwise. And the cascading effect of this is that bugs we’ve been meaning to fix and little improvements we’ve been meaning to make get neglected over and over again.</p>
 
@@ -20,7 +157,7 @@
 
 <p>Here’s a different approach I would like to try some day. Instead of adopting the mindset that we will always work on high-priority items—logical though that may be in theory—what if we allocated our time <strong>in advance</strong> on a weighted basis, so that high-priority items get the most time but medium- and/or low-priority work gets some time as well? For example, we might say that out of every two weeks (10 working days), “high-priority” work gets 7 days, “medium” work gets 2, and “low” gets 1<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
 <iframe src="http://charter.herokuapp.com/embed/NBSU8ZSB" style="height: 450px; width: 600px;"></iframe>
-<p>Why take this approach? I acknowledge that it seems a bit counterintuitive to <em>force</em> work on lower-priority tasks, when there’s theoretically more important work do do. But I actually think this would get us closer to an ideal distribution of work than where most of us currently are. Instead of the mildly <a href="http://en.wikipedia.org/wiki/ADD">ADD</a> pattern of working on whatever seems important right now, and perpetually “forgetting” to do less-urgent work, a fixed allocation would nudge us back in the direction of refactoring, fixing bugs, and actually implementing some of those nice-to-haves we never seem to implement.</p>
+<p>Why take this approach? I acknowledge that it seems a bit counterintuitive to <em>force</em> work on lower-priority tasks, when there’s theoretically more important work to do. But I actually think this would get us closer to an ideal distribution of work than where most of us currently are. Instead of the mildly <a href="http://en.wikipedia.org/wiki/ADD">ADD</a> pattern of working on whatever seems important right now, and perpetually “forgetting” to do less-urgent work, a fixed allocation would nudge us back in the direction of refactoring, fixing bugs, and actually implementing some of those nice-to-haves we never seem to implement.</p>
 
 <p>More importantly, I think this strategy would allow us to be more honest with ourselves. The truth is that “high-priority” often doesn’t really mean high priority: it’s a stand-in for <em>probability of happening</em> (the psychological mistake I mentioned). Knowing that so-called “low priority” work <em>is</em> going to get done—that it <em>won’t</em> just get swept under the rug—might enable us to make more truthful decisions about what we should be spending the lion’s share of our time on.</p>
 
@@ -30,7 +167,7 @@
 <ol><li id="fn:1">
 <p>I’m just throwing these numbers out there. I would expect any team who attempted something like this to revisit the breakdown periodically in the beginning—say, every couple of months—to calibrate and figure out what works best. <a href="#fnref:1" rev="footnote">↩</a></p>
 </li></ol>
-</div>]]></description><pubDate>Sat, 27 Apr 2013 17:17:00 -0400</pubDate><guid>http://philosopherdeveloper.com/posts/rethinking-priority.html</guid></item><item><title>In defense of global state</title><link>http://philosopherdeveloper.com/posts/in-defense-of-global-state.html</link><description><![CDATA[<p>I bet you weren’t expecting any sane developer to make this argument!</p>
+</div>]]></description><pubDate>Sat, 27 Apr 2013 14:17:00 -0700</pubDate><guid>http://philosopherdeveloper.com/posts/rethinking-priority.html</guid></item><item><title>In defense of global state</title><link>http://philosopherdeveloper.com/posts/in-defense-of-global-state.html</link><description><![CDATA[<p>I bet you weren’t expecting any sane developer to make this argument!</p>
 
 <p>Well, to be fair, the title of this post is somewhat intentionally provocative<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. But anyway, you’re here now; so it served its purpose. And make no mistake: I <em>am</em> going to defend global state—just possibly not in quite the way you might be expecting.</p>
 
@@ -150,7 +287,7 @@
 <p>Here’s a fun exercise if you want to get really depressed: write a script (maybe you already have one) to count the lines of code on your software project. Now figure out how many of those lines are <em>application logic</em>–i.e., what your software is actually supposed to <em>do</em>–and compare that with the number that are just configuring factories, binding dependency injections, wiring up controllers and event buses and logging infrastructure and all that other good stuff. Feel good? <a href="#fnref:8" rev="footnote">↩</a></p>
 </li>
 </ol>
-</div>]]></description><pubDate>Tue, 23 Apr 2013 15:49:00 -0400</pubDate><guid>http://philosopherdeveloper.com/posts/in-defense-of-global-state.html</guid></item><item><title>People are not resources</title><link>http://philosopherdeveloper.com/posts/people-are-not-resources.html</link><description><![CDATA[<p>I never actually worked in an environment like this, but I’ve read enough articles on <a href="http://thedailywtf.com/">The Daily WTF</a> to have an image in my head of the old dusty, temperamental servers that companies used to have back in the 90s and early 2000s.</p>
+</div>]]></description><pubDate>Tue, 23 Apr 2013 12:49:00 -0700</pubDate><guid>http://philosopherdeveloper.com/posts/in-defense-of-global-state.html</guid></item><item><title>People are not resources</title><link>http://philosopherdeveloper.com/posts/people-are-not-resources.html</link><description><![CDATA[<p>I never actually worked in an environment like this, but I’ve read enough articles on <a href="http://thedailywtf.com/">The Daily WTF</a> to have an image in my head of the old dusty, temperamental servers that companies used to have back in the 90s and early 2000s.</p>
 
 <p><img src="/images/ye-olde-server.jpg" alt="Ye olde server"></p><p>Ye olde server</p>
 
@@ -219,7 +356,7 @@
 <p>Or, I don’t know, maybe not 10x. There’s just a big difference; that’s all I’m saying. <a href="#fnref:2" rev="footnote">↩</a></p>
 </li>
 </ol>
-</div>]]></description><pubDate>Wed, 17 Apr 2013 21:36:00 -0400</pubDate><guid>http://philosopherdeveloper.com/posts/people-are-not-resources.html</guid></item><item><title>Risk aversion and software development</title><link>http://philosopherdeveloper.com/posts/risk-aversion-and-software-development.html</link><description><![CDATA[<p>A few years ago my parents gave me and my wife this knife as a Christmas present:</p>
+</div>]]></description><pubDate>Wed, 17 Apr 2013 18:36:00 -0700</pubDate><guid>http://philosopherdeveloper.com/posts/people-are-not-resources.html</guid></item><item><title>Risk aversion and software development</title><link>http://philosopherdeveloper.com/posts/risk-aversion-and-software-development.html</link><description><![CDATA[<p>A few years ago my parents gave me and my wife this knife as a Christmas present:</p>
 
 <p><img src="/images/shun-utility-knife.jpg" alt="The Shun Classic Utility Knife"></p><p>The Shun Classic Utility Knife</p>
 
@@ -258,7 +395,7 @@
 <p>Hey by the way, that chart was made using a tool called <a class="new-window" href="http://charter.herokuapp.com/">Charter</a>, <em>another</em> one of my open source projects! (And Charter itself uses <a class="new-window" href="http://dtao.github.io/HighTables/">HighTables</a>–that’s what they call dogfooding, my friends.) <a href="#fnref:2" rev="footnote">↩</a></p>
 </li>
 </ol>
-</div>]]></description><pubDate>Thu, 11 Apr 2013 22:17:00 -0400</pubDate><guid>http://philosopherdeveloper.com/posts/risk-aversion-and-software-development.html</guid></item><item><title>Charts made dead simple with HighTables</title><link>http://philosopherdeveloper.com/posts/charts-made-dead-simple-with-hightables.html</link><description><![CDATA[<p>In a footnote to <a href="/posts/making-yaml-safe-again.html">my post a while ago on SafeYAML</a><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, I established a goal of writing more about my many open source projects, which I have a bad habit of not telling anyone about—sometimes even long after they’re finished!</p>
+</div>]]></description><pubDate>Thu, 11 Apr 2013 19:17:00 -0700</pubDate><guid>http://philosopherdeveloper.com/posts/risk-aversion-and-software-development.html</guid></item><item><title>Charts made dead simple with HighTables</title><link>http://philosopherdeveloper.com/posts/charts-made-dead-simple-with-hightables.html</link><description><![CDATA[<p>In a footnote to <a href="/posts/making-yaml-safe-again.html">my post a while ago on SafeYAML</a><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, I established a goal of writing more about my many open source projects, which I have a bad habit of not telling anyone about—sometimes even long after they’re finished!</p>
 
 <p>So today I want to write about a pretty good one that’s relatively polished and full-featured. It’s called <a href="http://dtao.github.io/HighTables/">HighTables</a>, and it’s a JavaScript library that makes adding charts to existing sites with HTML tables <em>extremely</em> easy.</p>
 
@@ -329,7 +466,7 @@
 <ol><li id="fn:1">
 <p>Which <a href="http://rubygems.org/gems/safe_yaml">has come a long way</a>! <a href="#fnref:1" rev="footnote">↩</a></p>
 </li></ol>
-</div>]]></description><pubDate>Wed, 10 Apr 2013 11:34:00 -0400</pubDate><guid>http://philosopherdeveloper.com/posts/charts-made-dead-simple-with-hightables.html</guid></item><item><title>Am I an engineer?</title><link>http://philosopherdeveloper.com/posts/am-i-an-engineer.html</link><description><![CDATA[<p>Most people outside of the software development profession (and even many on the inside) may not realize that there is some disagreement within the community as to whether or not software development is a form of <em>engineering</em>.</p>
+</div>]]></description><pubDate>Wed, 10 Apr 2013 08:34:00 -0700</pubDate><guid>http://philosopherdeveloper.com/posts/charts-made-dead-simple-with-hightables.html</guid></item><item><title>Am I an engineer?</title><link>http://philosopherdeveloper.com/posts/am-i-an-engineer.html</link><description><![CDATA[<p>Most people outside of the software development profession (and even many on the inside) may not realize that there is some disagreement within the community as to whether or not software development is a form of <em>engineering</em>.</p>
 
 <p>Let’s say you placed software developers along a spectrum, where at one end “engineering” might as well be a foreign word, and at the other end writing software is <em>obviously</em> a form of engineering, in much the same way that painting or sculpture is obviously a form of art.</p>
 
@@ -428,7 +565,7 @@
 <p>I almost worded this, “whether you <em>are</em> a craftsman or an engineer”; but let’s not get caught up in the idea that these terms actually define individuals. It is a convenient mental grouping, for me; but we are all obviously different and how you define yourself may not jive with the division I’ve drawn here at all—in which case, let me know! Leave a comment, or write an e-mail, or just come talk to me some time if we work together. <a href="#fnref:4" rev="footnote">↩</a></p>
 </li>
 </ol>
-</div>]]></description><pubDate>Wed, 03 Apr 2013 16:18:00 -0400</pubDate><guid>http://philosopherdeveloper.com/posts/am-i-an-engineer.html</guid></item><item><title>Automating yourself</title><link>http://philosopherdeveloper.com/posts/automating-yourself.html</link><description><![CDATA[<p>When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.</p>
+</div>]]></description><pubDate>Wed, 03 Apr 2013 13:18:00 -0700</pubDate><guid>http://philosopherdeveloper.com/posts/am-i-an-engineer.html</guid></item><item><title>Automating yourself</title><link>http://philosopherdeveloper.com/posts/automating-yourself.html</link><description><![CDATA[<p>When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.</p>
 
 <p class="hidden-in-abbreviated-version"><img src="/images/espresso_machine_thumb.jpg" alt="Our espresso machine"></p><p>Our espresso machine</p>
 
@@ -456,7 +593,7 @@
 <ol><li id="fn:1">
 <p>That actually isn’t the full story. The real reason I <em>still</em> haven’t used it is that there’s a part that we apparently lost somewhere between Philadelphia and here. But I’ve only included this detail in a footnote because it doesn’t really change my argument; I only even <em>noticed</em> this part was missing after we’d already been in our new apartment for several months. So it’s clear that I am not using the machine nearly as often as I used to. In addition, I’m hoping that by writing this post I will motivate myself to finally order a replacement for that part! <a href="#fnref:1" rev="footnote">↩</a></p>
 </li></ol>
-</div>]]></description><pubDate>Thu, 28 Feb 2013 09:53:00 -0500</pubDate><guid>http://philosopherdeveloper.com/posts/automating-yourself.html</guid></item><item><title>Your brain is a liability</title><link>http://philosopherdeveloper.com/posts/your-brain-is-a-liability.html</link><description><![CDATA[<p>It’s natural to think of <em>being smart</em> as an asset. This is obvious in many ways, so I don’t feel I need to enumerate them. But there are also ways that it can be a liability; and since this is the contrarian view, I naturally want to talk about it<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+</div>]]></description><pubDate>Thu, 28 Feb 2013 06:53:00 -0800</pubDate><guid>http://philosopherdeveloper.com/posts/automating-yourself.html</guid></item><item><title>Your brain is a liability</title><link>http://philosopherdeveloper.com/posts/your-brain-is-a-liability.html</link><description><![CDATA[<p>It’s natural to think of <em>being smart</em> as an asset. This is obvious in many ways, so I don’t feel I need to enumerate them. But there are also ways that it can be a liability; and since this is the contrarian view, I naturally want to talk about it<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
 
 <p>Before I start, though, a note about the word “smart”: it can mean many things. What I am specifically referring to now is what I will call raw <strong>brain power</strong>: the capacity of a person’s mind to think quickly, grasp tricky concepts, store a lot of information at once, and so on. If the mind were a computer, in other words, I’d be talking about <em>hardware</em> (CPU, memory, etc.) as opposed to software.</p>
 
@@ -501,7 +638,7 @@
 <p>This is generally not true at work, where I am quite possibly the dumbest person in the room. <a href="#fnref:4" rev="footnote">↩</a></p>
 </li>
 </ol>
-</div>]]></description><pubDate>Sat, 09 Feb 2013 01:11:00 -0500</pubDate><guid>http://philosopherdeveloper.com/posts/your-brain-is-a-liability.html</guid></item><item><title>Unbreaking DataMapper</title><link>http://philosopherdeveloper.com/posts/unbreaking-datamapper.html</link><description><![CDATA[<h2 id="is_datamapper_inherently_broken_1">Is DataMapper inherently broken?</h2>
+</div>]]></description><pubDate>Fri, 08 Feb 2013 22:11:00 -0800</pubDate><guid>http://philosopherdeveloper.com/posts/your-brain-is-a-liability.html</guid></item><item><title>Unbreaking DataMapper</title><link>http://philosopherdeveloper.com/posts/unbreaking-datamapper.html</link><description><![CDATA[<h2 id="is_datamapper_inherently_broken_1">Is DataMapper inherently broken?</h2>
 
 <p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is a fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects going unnoticed during development and testing, resulting in buggier software.</p>
 
@@ -583,37 +720,4 @@
 <p>As far as I can tell, the DataMapper team’s reasoning for excluding validation errors from exceptions is that “[the] #save command can return false for reasons other than validations being invalid.” This seems to me like an unfortunate case of <a href="http://en.wikipedia.org/wiki/Perfect_is_the_enemy_of_good"><em>the perfect is the enemy of the good</em></a>. <a href="#fnref:4" rev="footnote">↩</a></p>
 </li>
 </ol>
-</div>]]></description><pubDate>Wed, 30 Jan 2013 02:21:00 -0500</pubDate><guid>http://philosopherdeveloper.com/posts/unbreaking-datamapper.html</guid></item><item><title>Making YAML safe again</title><link>http://philosopherdeveloper.com/posts/making-yaml-safe-again.html</link><description><![CDATA[<p>TL;DR: Check out my new gem, <a href="http://dtao.github.com/safe_yaml">SafeYAML</a>. It lets you parse YAML without exposing your app to security exploits via arbitrary object deserialization.</p>
-<hr><p>There was <a href="http://news.ycombinator.com/item?id=5028218">quite a stir in the Rails community recently</a> about a serious security vulnerability in Rails. To be more specific: <a href="https://groups.google.com/forum/#!topic/rubyonrails-security/61bkgvnSGTQ/discussion"><em>every version of Rails</em></a>. We found out about this right away at <a href="http://www.cardpool.com/">Cardpool</a>, in part because Cardpool is a YC company and Paul Graham forwarded an e-mail from Thomas Ptacek to all YC alums warning of the vulnerability pretty much as soon as it was discovered.</p>
-
-<p>Without getting too caught up in the weeds, I will just say the vulnerability was ultimately a consequence of the fact that Ruby’s <a href="http://www.yaml.org/">YAML</a> library by default permits the deserialization of arbitrary Ruby objects. This is a problem for Rails—as well as many other Ruby frameworks, to be fair—because, until patches were released to address this problem, any Rails app could be “tricked” into parsing malicious YAML by basically anybody, without any special credentials. The key weakness in Rails, specifically, was that Rails would automatically parse the parameters of any XML request, including parameters like this:</p>
-
-<div class="highlight"><pre><span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">"yaml"</span><span class="nt">&gt;</span>--- !ruby/object {}<span class="nt">&lt;/data&gt;</span>
-</pre></div>
-
-<p>I’m not giving anything away here; exploits <a href="https://community.rapid7.com/community/metasploit/blog/2013/01/09/serialization-mischief-in-ruby-land-cve-2013-0156">have already been made public</a>. The important takeaway is pretty simple: never parse YAML from untrusted user input. Not in an application, and <em>definitely</em> not in a framework. Which means, in the case of Rails, don’t automatically parse params as YAML. The patches that were released (and which we quickly deployed, obviously) addressed this issue by disabling XML parameter parsing by default. (Less aggressive patches were also made available for sites that needed to parse XML params by simply removing YAML from the list of types that could be embedded in an XML request.)</p>
-
-<p>While this is probably fine for 9 out of 10 websites, and probably more than that since so few sites actually have any sort of API that accepts YAML—including Cardpool, I should add—it still felt a little frustrating to me, for a couple of reasons.</p>
-
-<ol>
-<li>YAML is, to me at least, a really sweet data format<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</li>
-
-<li>This whole vulnerability nonsense <strong>could have been avoided in the first place</strong> if we were willing to give up one teensy weensy little feature of Ruby’s YAML library: the ability to deserialize arbitrary objects.</li>
-</ol><p>Don’t get me wrong; I realize this can be a very useful feature, especially for tools that aim to hide away the details of sharing objects between processes (or entirely different machines). But in the context of a web service or an API, where you have an application and you want to send some information to my service, there’s no reason for you to even know what types <em>exist</em> within my application’s domain, let alone serialize or deserialize them. Strings, numbers, lists and maps are all we really need.</p>
-
-<p>And so with this in mind—and after discovering that <a href="http://pyyaml.org/wiki/PyYAMLDocumentation#Loader">Python’s YAML module has a <code>safe_load</code> method</a>–I <a href="http://stackoverflow.com/questions/14348538/is-there-an-equivalent-to-yaml-safe-load-in-ruby">asked on StackOverflow</a> if there’s any way in Ruby to parse YAML without deserializing arbitrary objects. The answer I got led me to write a library that does precisely that: <a href="http://dtao.github.com/safe_yaml">SafeYAML</a><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>.</p>
-
-<p>Basically what SafeYAML does is override Ruby’s built-in <code>YAML.load</code> method with an implementation that only deserializes a safe set of types: strings, numbers, arrays, hashes, and a few others. The beauty (in my humble opinion) of this approach is that it makes SafeYAML a great drop-in enhancement to any website that directly or indirectly parses user-supplied YAML. Simply by adding a dependency on the <a href="http://rubygems.org/gems/safe_yaml">gem</a>, without any additional code changes, you can have your cake and eat it too: re-enable YAML parsing in your application, without exposing yourself to a well-known exploit.</p>
-
-<p>Check it out and let me know what you think! Bug reports, pull requests, etc. all welcome <a href="https://github.com/dtao/safe_yaml">on GitHub</a>.</p>
-<div class="footnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>Even while I typed that sentence, I felt <em>sure</em> there are articles I could find pretty quickly on Google about why YAML sucks. I choose not to seek out these articles (yet). <a href="#fnref:1" rev="footnote">↩</a></p>
-</li>
-<li id="fn:2">
-<p>As a side note, one of my goals for 2013 (a little late to call it a resolution I suppose) is to actually maintain and publicize the growing number of mostly-open-source projects I’ve started and, in most cases, abandoned over the years. Some are pretty far along; others are still little seedlings; still others exist nowhere but in my brain. But I think a worthwhile aim for this year is to go back through all of these projects and either get back to work on them or scrap them for good. SafeYAML is just the first of many. <a href="#fnref:2" rev="footnote">↩</a></p>
-</li>
-</ol>
-</div>]]></description><pubDate>Thu, 24 Jan 2013 00:00:00 +0000</pubDate><guid>http://philosopherdeveloper.com/posts/making-yaml-safe-again.html</guid></item></channel></rss>
+</div>]]></description><pubDate>Tue, 29 Jan 2013 23:21:00 -0800</pubDate><guid>http://philosopherdeveloper.com/posts/unbreaking-datamapper.html</guid></item></channel></rss>

@@ -10,7 +10,9 @@
     <script src='/javascripts/ga.js' type='text/javascript'></script>
     <script src='/javascripts/shareThis.js' type='text/javascript'></script>
     <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
-    <script src='/javascripts/main.js' type='text/javascript'></script>
+    <!-- I've decided this isn't really worth doing until I make exceptions for -->
+    <!-- sites that block iframes. -->
+    <!-- %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/main.js") -->
     
     <script type='text/javascript' src='/javascripts/posts.js'></script>
   </head>
@@ -20,6 +22,29 @@
       <h2>half-sound logic, half-decent code</h2>
     </header>
     <article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/making-yaml-safe-again.html'>Making YAML safe again</a>
+      </span>
+      <span class='date'>January 24, 2013</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>TL;DR: Check out my new gem, <a href="http://dtao.github.com/safe_yaml">SafeYAML</a>. It lets you parse YAML without exposing your app to security exploits via arbitrary object deserialization.</p>
+<hr><p>There was <a href="http://news.ycombinator.com/item?id=5028218">quite a stir in the Rails community recently</a> about a serious security vulnerability in Rails. To be more specific: <a href="https://groups.google.com/forum/#!topic/rubyonrails-security/61bkgvnSGTQ/discussion"><em>every version of Rails</em></a>. We found out about this right away at <a href="http://www.cardpool.com/">Cardpool</a>, in part because Cardpool is a YC company and Paul Graham forwarded an e-mail from Thomas Ptacek to all YC alums warning of the vulnerability pretty much as soon as it was discovered.</p>
+
+<p>Without getting too caught up in the weeds, I will just say the vulnerability was ultimately a consequence of the fact that Ruby’s <a href="http://www.yaml.org/">YAML</a> library by default permits the deserialization of arbitrary Ruby objects. This is a problem for Rails—as well as many other Ruby frameworks, to be fair—because, until patches were released to address this problem, any Rails app could be “tricked” into parsing malicious YAML by basically anybody, without any special credentials. The key weakness in Rails, specifically, was that Rails would automatically parse the parameters of any XML request, including parameters like this:</p>
+
+<div class="highlight"><pre><span class="nt">&lt;data</span> <span class="na">type=</span><span class="s">"yaml"</span><span class="nt">&gt;</span>--- !ruby/object {}<span class="nt">&lt;/data&gt;</span>
+</pre></div>
+
+<p>I’m not giving anything away here; exploits <a href="https://community.rapid7.com/community/metasploit/blog/2013/01/09/serialization-mischief-in-ruby-land-cve-2013-0156">have already been made public</a>. The important takeaway is pretty simple: never parse YAML from untrusted user input. Not in an application, and <em>definitely</em> not in a framework. Which means, in the case of Rails, don’t automatically parse params as YAML. The patches that were released (and which we quickly deployed, obviously) addressed this issue by disabling XML parameter parsing by default. (Less aggressive patches were also made available for sites that needed to parse XML params by simply removing YAML from the list of types that could be embedded in an XML request.)</p>
+
+<p>While this is probably fine <span class="post-link">... (<a href="/posts/making-yaml-safe-again.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
@@ -99,34 +124,6 @@
 <p>I think there’s something to this, and I’d add another source of inertia for consideration: <strong>hubris</strong> (big surprise to those of you familiar with my general dislike for Apple, I’m sure!). At Apple’s scale, given the massive success they’ve enjoyed over the past several years, I have no doubt that the company’s sense of self-importance is extraordinarily high. Which is obviously justified to a significant degree. But one common observation I have about human nature—and I am increasingly convinced that it applies to businesses the same way it applies to individuals—is that it is very easy to pat yourself on the back for a job well done and claim more credit for your success than you <em>really</em> deserve. Put another way: it can be very easy to miss what an important role <em>luck</em> has played in your life, and thus to take full credit for your good fortune.</p>
 
 <p>Which means that if you’re a company like Apple, you start to get complacent. You watch every product you release hit record-breaking sales, you see your competitors struggling to gain any kind of momentum, you notice the lines stretching for blocks outside every one of your retail stores, and… you start to relax. You think, <em>no one can touch us right now</em>. You feel invincible. You take for granted that everything you do is ground-breaking. Of course it <span class="post-link">... (<a href="/posts/cannibalizing-yourself-on-purpose.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html'>Brushing up on C.S. - Part 1: Algorithmic Complexity</a>
-      </span>
-      <span class='date'>September 15, 2012</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <h1 id="preamble_1">Preamble</h1>
-
-<p>As I’m sure plenty of you already know (the title of this blog is a bit of a giveaway), I was a <strong>philosophy</strong> major in college. Which means I was <em>not</em> a C.S. major. But that’s not the full extent of it: I didn’t <em>minor</em> in C.S., either; I actually took <em>absolutely no computer sciences courses at all</em> in college.</p>
-
-<p>I did recently receive an M.S. in software engineering from <a href="http://www.cmu.edu/silicon-valley/">Carnegie Mellon</a>; but the courses in that program were higher-level in nature: software architecture, process management, software metrics, entrepreneurship—that sort of thing. And so I’ve still never really had an academic foundation for a lot of the more theoretical stuff that those with bachelor’s degrees in computer science have.</p>
-
-<p>To clarify: I <em>do</em> know a decent amount of C.S. stuff in practice, because:</p>
-
-<ul>
-<li>I worked for two years at an algorithmic trading company, where performance was a key concern (use of optimal data structures was critical) and the software was highly concurrent (so I got plenty of hands-on experience with things like synchronization, mutexes, semaphores, etc.)</li>
-
-<li>I am a huge nerd who spends way too much time reading about <a href="http://en.wikipedia.org/wiki/Skip_list">skip lists</a> and <a href="http://en.wikipedia.org/wiki/Red_black_tree">red-black trees</a> and all that good stuff on Wikipedia</li>
-</ul><p>Anyway, all this is my long-winded way of introducing a little series of blog posts I’m going to be doing, starting with this one. The basic idea behind it should already be obvious: I’m going to “brush up” on (in some cases, learn entirely from scratch) some of the fun theoretical stuff that I missed by never going through a college C.S. program.</p>
-
-<p>Those of you already well-versed with theoretical C.S. stuff will probably not be all that intrigued by this or the next few posts. Then again, maybe you will. My goal is actually two-fold here:</p><ol><li> <span class="post-link">... (<a href="/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html">read the full post</a>)</span>
-</li></ol>
   </section>
 </article>
 <div class='next-page'>

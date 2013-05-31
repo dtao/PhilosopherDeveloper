@@ -10,24 +10,9 @@
     <script src='/javascripts/ga.js' type='text/javascript'></script>
     <script src='/javascripts/shareThis.js' type='text/javascript'></script>
     <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
-    <script src='/javascripts/main.js' type='text/javascript'></script>
-    <script src='/javascripts/highcharts-3.1.min.js' type='text/javascript'></script>
-    <script src='/javascripts/hightables.min.js' type='text/javascript'></script>
-    <script type='text/javascript'>
-      //<![CDATA[
-        function getChartOptions() {
-          return {
-            plotOptions: {
-              pie: { size: "75%" }
-            }
-          };
-        }
-        
-        function revealTable() {
-          $("#activity-value-vs-time-table").toggleClass("hidden");
-        }
-      //]]>
-    </script>
+    <!-- I've decided this isn't really worth doing until I make exceptions for -->
+    <!-- sites that block iframes. -->
+    <!-- %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/main.js") -->
     
     <script type='text/javascript' src='/javascripts/posts.js'></script>
   </head>
@@ -37,6 +22,37 @@
       <h2>half-sound logic, half-decent code</h2>
     </header>
     <article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/introducing-lazy-js.html'>Introducing Lazy.js</a>
+      </span>
+      <span class='date'>May 31, 2013</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>I recently started a JavaScript project called <strong>Lazy.js</strong> that’s been getting quite a lot of attention. Essentially the project is a utility library in a similar vein to <a href="http://underscorejs.org/">Underscore</a> or <a href="http://lodash.com/">Lo-Dash</a>, but with <a href="http://en.wikipedia.org/wiki/Lazy_evaluation">lazy evaluation</a> (hence the name).</p>
+
+<p>The reason I think the project has been piquing the interest of so many JavaScript developers is that it offers the promise of some truly solid performance, even compared to Lo-Dash (which is itself highly optimized in comparison to Underscore). This chart shows the performance of Lazy.js compared to both of those libraries for several common operations on arrays of 10 elements each on Chrome:</p>
+
+<figure class="plain"><img src="/images/lazy-performance.png" alt="Lazy.js performance versus Underscore and Lo-Dash"><figcaption>Lazy.js performance versus Underscore and Lo-Dash</figcaption></figure>
+
+<p>You can read more about what Lazy.js <em>does</em> <a href="http://dtao.github.io/lazy.js/">on the project website</a> or in the README <a href="https://github.com/dtao/lazy.js">on its GitHub page</a>. In this blog post, I want to write a little bit about how it <em>works</em>, and what makes it different.</p>
+
+<h2 id="a_different_paradigm_1">A different paradigm</h2>
+
+<p>Fundamentally, Lazy.js represents a paradigm shift from the model of Underscore and Lo-Dash (starting now I’m just going to say “Underscore” for brevity), which provide a host of useful functions for what I’ll call <strong>array transformation</strong>: each function accepts an array as input, does something with it, and then gives back a new array:</p>
+
+<figure class="plain"><img src="/images/array-transformation.png" alt="Array transformation"><figcaption>Array transformation</figcaption></figure>
+
+<p>This isn’t how Lazy.js works. Instead, what is essentially happening at the core of Lazy.js is <strong>function composition</strong>: each function accepts a <em>function</em> as input, stores it, and gives back an object that can do the same. Then ultimately when <code>each(fn)</code> is called on the last object in the chain, it composes all of those functions together, effectively changing the behavior of <code>fn</code>.</p>
+
+<p>Let’s take <code>map</code> as an example. The idea of <em>mapping</em> is simple and something we do all the time; it basically means <em>translating</em> or <em>converting</em>.</p>
+
+<p>Here’s some <span class="post-link">... (<a href="/posts/introducing-lazy-js.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
   <header>
     <h1>
       <span class='title'>
@@ -136,59 +152,6 @@
 <p>In the first camp, you have the mentality that our tools must be safe and protect us from harm. This is a classic reason to prefer statically typed languages like Java or C#: the compiler can tell me when I’ve done something wrong! A significant number of potential bugs are eliminated before human consideration even enters the picture. This makes it nearly impossible to actually ship code with boneheaded mistakes like typos, syntax errors, etc.</p>
 
 <p>In the second camp, there’s the philosophy that we must practice restraint in our development efforts. Teams with this attitude may use dynamic languages like <span class="post-link">... (<a href="/posts/risk-aversion-and-software-development.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/charts-made-dead-simple-with-hightables.html'>Charts made dead simple with HighTables</a>
-      </span>
-      <span class='date'>April 10, 2013</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>In a footnote to <a href="/posts/making-yaml-safe-again.html">my post a while ago on SafeYAML</a>, I established a goal of writing more about my many open source projects, which I have a bad habit of not telling anyone about—sometimes even long after they’re finished!</p>
-
-<p>So today I want to write about a pretty good one that’s relatively polished and full-featured. It’s called <a href="http://dtao.github.io/HighTables/">HighTables</a>, and it’s a JavaScript library that makes adding charts to existing sites with HTML tables <em>extremely</em> easy.</p>
-
-<p>Here, I’ll give you an example (<strong>note</strong>: this is probably not going to display properly for those of you on RSS readers; <a href="http://philosopherdeveloper.com/posts/charts-made-dead-simple-with-hightables.html">visit the website</a> to see what I’m trying to show you!):</p>
-
-<div class="highlight"><pre><span class="nt">&lt;table</span> <span class="na">class=</span><span class="s">"render-to-bar-chart"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;tr&gt;</span>
-    <span class="nt">&lt;th&gt;</span>Method of rendering a chart<span class="nt">&lt;/th&gt;</span>
-    <span class="nt">&lt;th&gt;</span>How easy it is (scale from 1 to 10)<span class="nt">&lt;/th&gt;</span>
-  <span class="nt">&lt;/tr&gt;</span>
-  <span class="nt">&lt;tr&gt;</span>
-    <span class="nt">&lt;td&gt;</span>Using Highcharts directly<span class="nt">&lt;/td&gt;</span>
-    <span class="nt">&lt;td&gt;</span>3<span class="nt">&lt;/td&gt;</span>
-  <span class="nt">&lt;/tr&gt;</span>
-  <span class="nt">&lt;tr&gt;</span>
-    <span class="nt">&lt;td&gt;</span>Using HighTables<span class="nt">&lt;/td&gt;</span>
-    <span class="nt">&lt;td&gt;</span>10<span class="nt">&lt;/td&gt;</span>
-  <span class="nt">&lt;/tr&gt;</span>
-<span class="nt">&lt;/table&gt;</span>
-</pre></div>
-
-<p>And the result:</p>
-<table class="render-to-bar-chart">
-<tr>
-<th>Method of rendering a chart</th>
-    <th>How easy it is (scale from 1 to 10)</th>
-</tr>
-<tr>
-<td>Using Highcharts directly</td>
-    <td>3</td>
-</tr>
-<tr>
-<td>Using HighTables</td>
-    <td>10</td>
-</tr>
-</table><p>Pretty cool, right?</p>
-
-<p>For what it’s worth, HighTables itself isn’t all that complicated. It leverages the power of two existing libraries, <a href="http://www.highcharts.com/">Highcharts</a> and <a href="http://jquery.com/">jQuery</a>. If you don’t know about Highcharts, it’s a great library that lets you render all kinds of charts (line, area, bar, pie, etc.) in JavaScript. And if you don’t know about jQuery, and you’re a JavaScript developer, you should probably blow the dust off your keyboard and <a href="http://www.doxdesk.com/img/updates/20091116-so-large.gif">ask any JS-related question on the internet</a> to learn more about it.</p>
-
-<p>My problem with Highcharts in the past was that it has <a href="http://api.highcharts.com/highcharts">a <em>behemoth</em> API</a>. Rendering a chart was never a simple matter of calling <code>pieChart()</code>; instead, any chart-creation logic requires a whole ton of options that an average person is very unlikely to remember from one <span class="post-link">... (<a href="/posts/charts-made-dead-simple-with-hightables.html">read the full post</a>)</span></p>
   </section>
 </article>
 <div class='next-page'>
