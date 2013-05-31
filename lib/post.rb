@@ -19,6 +19,10 @@ class Post
     12 => 12
   }
 
+  # Check once whether we're on Windows to skip the RMagick shenanigans and
+  # notify the user (i.e., me) without spamming the console.
+  @@do_image_manipulation = nil
+
   def self.load_all(yaml_file)
     @@posts ||= begin
       all_posts = []
@@ -99,6 +103,19 @@ class Post
     when 12
       "Winter #{date.year} - #{date.year + 1}"
     end
+  end
+
+  def self.do_image_manipulation?
+    if @@do_image_manipulation.nil?
+      if RUBY_PLATFORM =~ /mingw/
+        puts "Skipping the image manipulation because we're on Windows."
+        @@do_image_manipulation = false
+      else
+        @@do_image_manipulation = true
+      end
+    end
+
+    @@do_image_manipulation
   end
 
   attr_reader :identifier, :date, :title, :published
@@ -190,6 +207,8 @@ class Post
   end
 
   def resize_images(html)
+    return if !Post.do_image_manipulation?
+
     html.css("img").each do |node|
       src = node["src"]
 

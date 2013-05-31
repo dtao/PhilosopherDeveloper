@@ -16,7 +16,7 @@ group :development do
   gem "nokogiri"
   gem "pygments.rb"
   gem "rake"
-  gem "rmagick", :require => "RMagick"
+  gem "rmagick", :require => "RMagick", :platforms => [:ruby]
   gem "sass"
   gem "yui-compressor"
 end

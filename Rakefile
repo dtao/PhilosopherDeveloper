@@ -5,7 +5,7 @@ require "builder"
 require "haml"
 require "html_truncator"
 require "sass"
-require "yui/compressor"
+require "yui/compressor" unless RUBY_PLATFORM =~ /mingw/
 require "benchmark"
 
 # This is for updating all URLs in case the entire site is hosted within a
@@ -21,9 +21,9 @@ module Sass::Script::Functions
 end
 
 def measure(description, &block)
-  print "#{description}... "; STDOUT.flush
+  puts "#{description}..."
   measurement = Benchmark.measure(&block)
-  puts "took #{'%0.2f' % measurement.total} seconds."
+  puts "    => took #{'%0.2f' % measurement.total} seconds"
 end
 
 def load_posts
@@ -134,7 +134,7 @@ end
 
 def compile_stylesheet_from_sass(sass, filename)
   css = Sass.compile(sass, :syntax => :sass)
-  css = YUI::CssCompressor.new.compress(css)
+  css = YUI::CssCompressor.new.compress(css) unless RUBY_PLATFORM =~ /mingw/
   write_file("public", "stylesheets", "#{filename}.css") { css }
 end
 
