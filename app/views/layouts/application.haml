@@ -12,7 +12,11 @@
     %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/ga.js")
     %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/shareThis.js")
     %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/jquery-1.9.1.min.js")
-    %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/main.js")
+
+    / I've decided this isn't really worth doing until I make exceptions for
+    / sites that block iframes.
+    / %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/main.js")
+
     - if post && post.allow_comments
       :javascript
         var disqus_shortname = "philosopherdeveloper";
