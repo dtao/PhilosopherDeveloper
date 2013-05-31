@@ -107,9 +107,9 @@ Finally, when `each` is called, we compose everything together. In this example,
 - feeds those elements with truthy results from `filterFn` to the `TakeSequence`, which...
 - feeds the first 10 results to `fn`, then ends the iteration (by returning `false`)
 
-Another way of looking at it is this. Let's forget about arrays (or collections, or sequences) *entirely* for a moment. The core idea behind `map` is, as I said, *translation*. This is independent of the idea of iteration. It's simply the idea of, for some value, mapping it to another value.
+Another way of looking at it is this. Let's forget about arrays (or collections, or sequences) entirely for a moment. The core idea behind `map` is, as I said, *translation*. This is independent of the idea of iteration. It's simply the idea of, for some value, mapping it to another value.
 
-Same with `filter`: it doesn't necessarily have to do with iteration. The idea of filtering is: for some value, testing whether it satisfies some condition or not.
+Same with `filter`: it doesn't necessarily have to do with iteration. The idea of filtering is, for some value, testing whether it satisfies some condition or not.
 
 And so, if we don't think about arrays at all, we can still combine these concepts. For some value *x*, we can *map* it to *y*, and then we can *filter* that *y* to check whether it satisfies a condition.
 
@@ -118,12 +118,12 @@ And so, if we don't think about arrays at all, we can still combine these concep
 
 As a pure replacement for Underscore--which it can be--Lazy.js is basically an inversion of the 3-step process I described. Instead of doing 1-2-3, 1-2-3, &c. for each operation, we can do 1 (for each element in the source...), then *all 2s combined* (every `map`, `filter`, etc. composed together), and finally 3 (store the results in a new array). You don't *need* to use Lazy.js that way--as I hopefully have emphasized quite enough by now!--but you can, if you're just looking for a drop-in Underscore replacement. And that wouldn't be a bad call, given the performance difference!
 
-The reason I keep saying that isn't all that Lazy.js is about, of course, is that there's a lot more you can do as a result of this different model. You can generate indefinite sequences, iterate asynchronously, map/reduce on DOM events (or any event type, really), lazily split strings, and more. Take a look at [the Lazy.js website](http://dtao.github.io/lazy.js) or--better yet--actually [give Lazy.js a try](https://github.com/dtao/lazy.js) and see for yourself what else you can do.
+The reason I keep saying that isn't all that Lazy.js is about, though, is that there's a lot more you can do as a result of this different model. You can generate indefinite sequences, iterate asynchronously, map/reduce on DOM events (or any event type, really), lazily split strings, and more. Take a look at [the Lazy.js website](http://dtao.github.io/lazy.js) or--better yet--actually [give Lazy.js a try](https://github.com/dtao/lazy.js) and see for yourself what else you can do.
 
 The road ahead
 --------------
 
-Thus far this project has received a much more enthusiastic response that I would've predicted, which is a bit daunting. That said, I'm not sure it's actually being used much out in the wild yet. I only just recently [published it as a Node package](https://npmjs.org/package/lazy.js); and while I've started working on documenting the code properly, I haven't quite settled on an approach yet. (In other words, the documentation is quite lacking at the moment.) Even the organization of the repository (names of folders, which files go where, etc.) is something I haven't really ironed out. So a lot is in flux.
+Thus far this project has received a much more enthusiastic response than I would've predicted, which is a bit daunting. That said, I'm not sure it's actually being used much out in the wild yet. I only just recently [published it as a Node package](https://npmjs.org/package/lazy.js); and while I've started working on documenting the code properly, I haven't quite settled on an approach yet. (In other words, the documentation is quite lacking at the moment.) Even the organization of the repository (names of folders, which files go where, etc.) is something I haven't really ironed out. So a lot is in flux.
 
 That said, it would make me really happy if people start trying out Lazy.js for real and [submitting issues](https://github.com/dtao/lazy.js/issues) to help me find bugs faster and prioritize working on the most useful real-world features.
 
