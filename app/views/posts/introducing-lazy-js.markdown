@@ -131,6 +131,6 @@ I also attribute some of the library's sudden popularity to [the project website
 
 For now, though, I'll keep working on Lazy.js and hoping to get some feedback from users.
 
-[^a-lot-of-attention]: For me, anyway--as of the time I'm writing this, it has [865 stars on GitHub]((https://github.com/dtao/lazy.js)!
+[^a-lot-of-attention]: For me, anyway--as of the time I'm writing this, it has [865 stars on GitHub](https://github.com/dtao/lazy.js)!
 
 [^array-transformation]: I [don't have a C.S. background](/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html), so I don't know if there's a academic term for these ideas. Probably is.
