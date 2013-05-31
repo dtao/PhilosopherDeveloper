@@ -41,6 +41,12 @@ $yellow:     #ffe
   pre
     font-size: $baseFontSize * (2 / 3)
 
+  code
+    font-size: $baseFontSize - 2
+
+  pre code
+    font-size: $baseFontSize * (2 / 3)
+
   figure
     figcaption
       font-size: $baseFontSize * (2 / 3)
@@ -56,9 +62,6 @@ $yellow:     #ffe
 
     small
       font-size: $baseFontSize * (2 / 3)
-
-    code
-      font-size: $baseFontSize - 2
 
     header
       h1
@@ -173,6 +176,9 @@ pre
 code
   @include codeFont
   color: $pink
+
+pre code
+  color: #444
 
 // My own little classes
 .hidden
