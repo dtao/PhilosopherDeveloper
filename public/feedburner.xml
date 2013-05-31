@@ -135,7 +135,7 @@ filter(map(x))</code></pre>
 <p>I <a href="/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html">don’t have a C.S. background</a>, so I don’t know if there’s a academic term for these ideas. Probably is. <a href="#fnref:2" rev="footnote">↩</a></p>
 </li>
 </ol>
-</div>]]></description><pubDate>Fri, 31 May 2013 00:00:00 +0000</pubDate><guid>http://philosopherdeveloper.com/posts/introducing-lazy-js.html</guid></item><item><title>Rethinking priority</title><link>http://philosopherdeveloper.com/posts/rethinking-priority.html</link><description><![CDATA[<p>Looking back on some of my recent posts on this blog, I’m a bit annoyed at myself for being too hand-wavy and not saying anything all that original.</p>
+</div>]]></description><pubDate>Fri, 31 May 2013 11:12:00 -0700</pubDate><guid>http://philosopherdeveloper.com/posts/introducing-lazy-js.html</guid></item><item><title>Rethinking priority</title><link>http://philosopherdeveloper.com/posts/rethinking-priority.html</link><description><![CDATA[<p>Looking back on some of my recent posts on this blog, I’m a bit annoyed at myself for being too hand-wavy and not saying anything all that original.</p>
 
 <p>I’d like to make an effort, at least in my next few posts, to get more concrete and challenge some of the conventions I’ve observed in the software world. I’ll start with an idea that I think is not all that radical, though it <em>would</em> mark a sigificant departure for most teams I’ve worked on.</p>
 
