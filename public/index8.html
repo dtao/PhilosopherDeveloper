@@ -25,6 +25,42 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/terminating-condition.html'>Resolution: the need for a terminating condition</a>
+      </span>
+      <span class='date'>January 15, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>For reasons not relevant to this blog, I have been thinking a lot lately about personal conflicts and how they evolve. In particular, my mind has been concentrating a great deal on the scenario of conflicts <em>escalating</em>: for example, the phenomenon where two people are having a regular conversation, and this somehow leads to a disagreement, and eventually the situation develops into an all-out shouting match with both parties so angry with each other that it’s often baffling to recall how the conversation began.</p>
+
+<p>This can happen over a short or a long period of <strong>time</strong>. It can take place within a single ten-minute conversation; it can also span days, months, even <em>years</em> (in this case it might be the cause of a friendship’s disintegration). It can also occur on a small or large <strong>scale</strong>. It might occur between friends, families, communities, even <em>nations</em> (throughout history, what war has not started as a smaller disagreement that eventually grew to something much larger?). I think we’ve all seen it happen, sadly, probably numerous times.</p>
+
+<p>As I am a software developer, I often perceive parallels between <em>real-world phenomena</em> and <em>software concepts</em>. What I want to do right now is to discuss one such parallel: the similarity between <strong>escalating conflict</strong> (the real-world phenomenon) and <strong>mutual recursion</strong> (the software concept).</p>
+
+<p><strong>A note to those readers who aren’t programmers: I will be including some source code in this post, but don’t stop reading! I promise that this discussion is of a general nature and not strictly programming-related.</strong></p>
+
+<p>For those who can read it, consider the following code snippet:</p>
+
+<div class="highlight"><pre><span class="k">void</span> <span class="nf">Provoke</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"Provoke!"</span><span class="p">);</span>
+    <span class="n">Respond</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">void</span> <span class="nf">Respond</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"Respond!"</span><span class="p">);</span>
+    <span class="n">Provoke</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>If I were to ask you, <em>What does the above code do?</em>, an initial response might be that <span class="post-link">... (<a href="/posts/terminating-condition.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/white-angels-and-black-devils.html'>White angels & black devils</a>
       </span>
       <span class='date'>January 01, 2011</span>
@@ -194,51 +230,9 @@
 <p><strong>Seriously</strong>? You’re telling me <code>IndexOfKey</code> <em>actually uses <code>Array.BinarySearch(T)</code></em>, <span class="post-link">... (<a href="/posts/whats-annoying-about-sorted-list-index-of-key.html">read the full post</a>)</span></p>
   </section>
 </article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/difference-between-converting-and-unboxing.html'>The difference between converting and unboxing: read my mind, compiler!</a>
-      </span>
-      <span class='date'>May 05, 2010</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>A <a href="http://stackoverflow.com/questions/2776130/c-implicit-conversions">developer on Stack Overflow</a> was recently perplexed by the fact that the implicit operator he’d defined for his custom type didn’t seem to be working.</p>
-
-<p>The scenario was this: the developer had a <code>DataTable</code> whose columns corresponded to the names of properties for a certain type of object. He had a bunch of <code>PropertyInfo</code> objects, one of which was of type <code>Currency</code> (his custom type with the implicit operator), and he was trying to read the table to get the value of each of his object’s properties. Obviously, since he couldn’t put a <code>Currency</code> object in the <code>DataTable</code>, he used <code>decimal</code> values instead, and defined an implicit conversion from <code>decimal</code> to <code>Currency</code>. Seems pretty smart, right?</p>
-
-<p>Here’s the code he posted:</p>
-
-<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="n">PropertyInfo</span> <span class="n">p</span> <span class="k">in</span> <span class="n">props</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">p</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">table</span><span class="p">.</span><span class="n">Rows</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">],</span> <span class="k">null</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>When it came to the <code>Currency</code> property, the program was throwing an <code>ArgumentException</code>. <em>WTF?</em> this developer thought. <em>What happened to my implicit operator?</em></p>
-
-<p>Well, here’s the first problem: the code above tries to pass a <code>decimal</code> to a call to <code>SetValue</code> for a <code>PropertyInfo</code> object whose <code>PropertyType</code> is <code>Currency</code>. So, presumably, the code could be fixed like this:</p>
-
-<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="n">PropertyInfo</span> <span class="n">p</span> <span class="k">in</span> <span class="n">props</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">Currency</span> <span class="n">c</span> <span class="p">=</span> <span class="p">(</span><span class="n">Currency</span><span class="p">)</span><span class="n">table</span><span class="p">.</span><span class="n">Rows</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">];</span>
-    <span class="n">p</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>That should work, right?</p>
-
-<p>Well, no. Here’s the thing: the <code>implicit</code> operator, as you may know, allows you to convert from one type to another without using an explicit cast. However, whenever you perform such a conversion, you’re still dealing with two fundamentally different types.</p>
-
-<p>When a value type is boxed inside a <code>System.Object</code>, <em>using</em> that value requires first <em>unboxing</em> it – <strong>as its original type</strong>. Many C# developers are surprised to learn that the following code throws an exception:</p>
-
-<div class="highlight"><pre><span class="kt">int</span> <span class="n">int32</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-<span class="kt">object</span> <span class="n">boxedInt32</span> <span class="p">=</span> <span class="n">int32</span><span class="p">;</span>
-<span class="kt">long</span> <span class="n">int64</span>
-</pre></div> <span class="post-link">... (<a href="/posts/difference-between-converting-and-unboxing.html">read the full post</a>)</span>
-  </section>
-</article>
+<div class='next-page'>
+  <a href='/index9.html'>View older posts</a>
+</div>
     <footer>
       <ul class='menu'>
         <li><a href="/posts">All Posts</a></li>

@@ -5,17 +5,11 @@ The following is the most recent post from my blog, **The Philosopher Developer*
 Hero culture vs. Borg culture
 =============================
 
-Hero culture
-------------
-
 Most of us in software (and probably in other fields) know about **hero culture**. It's a concept everybody loves to hate. The term refers to an environment where individuals work in isolation and thrive on receiving sole credit for their work. This is generally perceived as leading to inflated egos and poor cooperation among developers. It's the same phenomenon you see in professional sports, when star athletes are sometimes accused of not being good "team players" and getting greedy with the ball, wanting to be the center of attention.
 
 So there are social reasons to dislike hero culture. There are plenty of practical reasons, too. One involves a principle known as the [bus factor](http://en.wikipedia.org/wiki/Bus_factor): the more you rely on a hero, the more vulnerable you are in the event of losing him or her--e.g., if he or she is hit by a bus, or leaves for another company.
 
 But you guys know me. If everybody else is going left, I'm going to go right (a highly predictable trait that [my friend Sameer](http://www.skalb.com/) frequently reminds me of).
-
-Borg culture
-------------
 
 If you turn away from hero culture and sprint in the opposite direction, you'll eventually start getting into what I'll call **Borg culture**.
 
@@ -54,6 +48,6 @@ I actually left ThoughtWorks before the project was completed. Around that time,
 
 When you make people responsible for something, they tend to rise to the occasion. This is the real reason I think we need to shake up our biases, just a little bit, when it comes to hero culture. Of course, if we were to head back in that direction we wouldn't want to call it "hero culture" but something less self-congratulatory. No one wants to foster a team filled with arrogance. But we also don't want a scenario where there's no coherent vision and nobody takes personal responsibility for anything, right?
 
-So as it seems I'm always saying, aim for the middle. Hero culture has its fair share of problems, but so does borg culture. Let's not throw the baby out with the bathwater; personal ownership and accountability are actually *good* aspects of hero culture. And collaboration and humility are terrific aspects of Borg culture. Take the good from each, and try to avoid becoming so proud or so dogmatic that you start inheriting the bad.
+So as it seems I'm always saying, aim for the middle. Hero culture has its fair share of problems, but so does Borg culture. Let's not throw the baby out with the bathwater; personal ownership and accountability are actually *good* aspects of hero culture. And collaboration and humility are terrific aspects of Borg culture. Take the good from each, and try to avoid becoming so proud or so dogmatic that you start inheriting the bad.
 
 [^exclamation-points]: FYI, you might start seeing more exclamation points from me in the immediate future. I just finished reading [*Surely you're joking, Mr. Feynman!*](http://www.amazon.com/Surely-Feynman-Adventures-Curious-Character/dp/0393316041) and loved it! (Feynman makes liberal use of exclamation points. My high school English teacher would not have approved.)

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Philosopher Developer</title>
+    <meta charset='utf-8' />
+    <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport' />
+    <link href='/stylesheets/application.css' rel='stylesheet' />
+    <link href='/stylesheets/pygments.css' rel='stylesheet' />
+    <script src='http://w.sharethis.com/button/buttons.js' type='text/javascript'></script>
+    <script src='/javascripts/ga.js' type='text/javascript'></script>
+    <script src='/javascripts/shareThis.js' type='text/javascript'></script>
+    <script src='/javascripts/jquery-1.9.1.min.js' type='text/javascript'></script>
+    <!-- I've decided this isn't really worth doing until I make exceptions for -->
+    <!-- sites that block iframes. -->
+    <!-- %script(type="text/javascript" src="#{SITE_ROOT}/javascripts/main.js") -->
+    
+    <script type='text/javascript' src='/javascripts/posts.js'></script>
+  </head>
+  <body>
+    <header id='header'>
+      <h1><a href="/">The Philosopher Developer</a></h1>
+      <h2>half-sound logic, half-decent code</h2>
+    </header>
+    <article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
+        <a href='/posts/difference-between-converting-and-unboxing.html'>The difference between converting and unboxing: read my mind, compiler!</a>
+      </span>
+      <span class='date'>May 05, 2010</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>A <a href="http://stackoverflow.com/questions/2776130/c-implicit-conversions">developer on Stack Overflow</a> was recently perplexed by the fact that the implicit operator he’d defined for his custom type didn’t seem to be working.</p>
+
+<p>The scenario was this: the developer had a <code>DataTable</code> whose columns corresponded to the names of properties for a certain type of object. He had a bunch of <code>PropertyInfo</code> objects, one of which was of type <code>Currency</code> (his custom type with the implicit operator), and he was trying to read the table to get the value of each of his object’s properties. Obviously, since he couldn’t put a <code>Currency</code> object in the <code>DataTable</code>, he used <code>decimal</code> values instead, and defined an implicit conversion from <code>decimal</code> to <code>Currency</code>. Seems pretty smart, right?</p>
+
+<p>Here’s the code he posted:</p>
+
+<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="n">PropertyInfo</span> <span class="n">p</span> <span class="k">in</span> <span class="n">props</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">table</span><span class="p">.</span><span class="n">Rows</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">],</span> <span class="k">null</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>When it came to the <code>Currency</code> property, the program was throwing an <code>ArgumentException</code>. <em>WTF?</em> this developer thought. <em>What happened to my implicit operator?</em></p>
+
+<p>Well, here’s the first problem: the code above tries to pass a <code>decimal</code> to a call to <code>SetValue</code> for a <code>PropertyInfo</code> object whose <code>PropertyType</code> is <code>Currency</code>. So, presumably, the code could be fixed like this:</p>
+
+<div class="highlight"><pre><span class="k">foreach</span> <span class="p">(</span><span class="n">PropertyInfo</span> <span class="n">p</span> <span class="k">in</span> <span class="n">props</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Currency</span> <span class="n">c</span> <span class="p">=</span> <span class="p">(</span><span class="n">Currency</span><span class="p">)</span><span class="n">table</span><span class="p">.</span><span class="n">Rows</span><span class="p">[</span><span class="m">0</span><span class="p">][</span><span class="n">p</span><span class="p">.</span><span class="n">Name</span><span class="p">];</span>
+    <span class="n">p</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>That should work, right?</p>
+
+<p>Well, no. Here’s the thing: the <code>implicit</code> operator, as you may know, allows you to convert from one type to another without using an explicit cast. However, whenever you perform such a conversion, you’re still dealing with two fundamentally different types.</p>
+
+<p>When a value type is boxed inside a <code>System.Object</code>, <em>using</em> that value requires first <em>unboxing</em> it – <strong>as its original type</strong>. Many C# developers are surprised to learn that the following code throws an exception:</p>
+
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">int32</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+<span class="kt">object</span> <span class="n">boxedInt32</span> <span class="p">=</span> <span class="n">int32</span><span class="p">;</span>
+<span class="kt">long</span> <span class="n">int64</span>
+</pre></div> <span class="post-link">... (<a href="/posts/difference-between-converting-and-unboxing.html">read the full post</a>)</span>
+  </section>
+</article>
+    <footer>
+      <ul class='menu'>
+        <li><a href="/posts">All Posts</a></li>
+        <li><a href="/about">About</a></li>
+        <li>
+          <a href='http://stackoverflow.com/users/105570' target='_blank'>
+            <img alt='StackOverflow' src='/images/icons/stackoverflow-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://github.com/dtao' target='_blank'>
+            <img alt='GitHub' src='/images/icons/github-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='https://twitter.com/dan_tao' target='_blank'>
+            <img alt='Twitter' src='/images/icons/twitter-small.png' />
+          </a>
+        </li>
+        <li>
+          <a href='http://feeds.feedburner.com/philosopherdeveloper'>
+            <img alt='RSS' src='/images/icons/rss-small.png' />
+          </a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>

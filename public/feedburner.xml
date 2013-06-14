@@ -1,4 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://philosopherdeveloper.com/</link><item><title>Introducing Lazy.js</title><link>http://philosopherdeveloper.com/posts/introducing-lazy-js.html</link><description><![CDATA[<p>I recently started a JavaScript project called <strong>Lazy.js</strong> that’s been getting quite a lot of attention<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. Essentially the project is a utility library in a similar vein to <a href="http://underscorejs.org/">Underscore</a> or <a href="http://lodash.com/">Lo-Dash</a>, but with <a href="http://en.wikipedia.org/wiki/Lazy_evaluation">lazy evaluation</a> (hence the name).</p>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://philosopherdeveloper.com/</link><item><title>Hero culture vs. Borg culture</title><link>http://philosopherdeveloper.com/posts/hero-culture-vs-borg-culture.html</link><description><![CDATA[<p>Most of us in software (and probably in other fields) know about <strong>hero culture</strong>. It’s a concept everybody loves to hate. The term refers to an environment where individuals work in isolation and thrive on receiving sole credit for their work. This is generally perceived as leading to inflated egos and poor cooperation among developers. It’s the same phenomenon you see in professional sports, when star athletes are sometimes accused of not being good “team players” and getting greedy with the ball, wanting to be the center of attention.</p>
+
+<p>So there are social reasons to dislike hero culture. There are plenty of practical reasons, too. One involves a principle known as the <a href="http://en.wikipedia.org/wiki/Bus_factor">bus factor</a>: the more you rely on a hero, the more vulnerable you are in the event of losing him or her—e.g., if he or she is hit by a bus, or leaves for another company.</p>
+
+<p>But you guys know me. If everybody else is going left, I’m going to go right (a highly predictable trait that <a href="http://www.skalb.com/">my friend Sameer</a> frequently reminds me of).</p>
+
+<p>If you turn away from hero culture and sprint in the opposite direction, you’ll eventually start getting into what I’ll call <strong>Borg culture</strong>.</p>
+
+<p>Borg culture is the antithesis of hero culture, where every individual is functionally equivalent. In a Borg culture, there is no place for glory or arrogance. There’s also no pride and no personal ownership. I would argue that this isn’t really better.</p>
+
+<p>A while back I wrote about <a href="/posts/am-i-an-engineer.html">software engineering versus software craftsmanship</a>. In general, I think most of us would associate my description of “engineering” with what is typically done at larger corporations—less personal, more mechanical. That sounds like Borg culture. Actually, I think it’s just the opposite. Big companies are notoriously conducive to hero culture, because they have a tendency to become large and bloated, teeming with mediocrity. This encourages better-than-average individuals to rise above the fray and get a lot of recognition for not being mediocre.</p>
+
+<p>I suspect many of us have been in that situation at least once or twice. It can be a nice feeling, to have everyone impressed with you for something that really wasn’t so hard. It’s a dangerous place to be in, though, because after a while you get comfortable and stop improving. Without data to back it up, I nonetheless feel confident in saying that this happens all the time to “engineers” at big companies.</p>
+
+<p>Counterintuitively, I see those who fall much closer to the “craftsman” end of the spectrum often succumb to the allure of Borg culture. On first glance that doesn’t seem like it would be right. But it is, in my experience, for at least two reasons:</p>
+
+<ol>
+<li>A craftsman (in my personal, egregiously over-generalized opinion) is more humble. He is likely to reject labels like “hero” or “rock star” (ugh!) and downplay his own talents.</li>
+
+<li>Craftsmen put a lot of stock in practices that de-emphasize <em>personal</em> awesomeness: pair programming, TDD, CI, etc. These so-called agile methods embrace the inevitability of mistakes and focus on solving problems iteratively. There is a humility to this mindset as well.</li>
+</ol><p>Some of the outcomes of Borg culture are commonly viewed in a positive light, but I believe it would be wise to consider them more critically. One example is <strong>collective code ownership</strong>. Agile teams often sing the praises of this idea that we’re all responsible for all of the code. That can be a great thing, inasmuch as it encourages each of us to follow the <a href="http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule">Boy Scout Rule</a> and happily fix one another’s bugs. It can also be problematic.</p>
+
+<h2 id="a_borg_culture_anecdote_1">A Borg culture anecdote</h2>
+
+<p>On my last project at ThoughtWorks, I was pairing with our team’s tech lead on a pretty important piece of our project’s overall architecture. We set out to lay the groundwork for what would eventually become a public API. One of the decisions we made early on as a team was to be very disciplined about dogfooding our own API, building a front end that would operate as an ordinary client, with no special privileges. We didn’t want to go the standard website approach where your logic ends up being tightly coupled to your views. Everybody was more or less on board with this plan.</p>
+
+<p>We did a bit of work, but didn’t get all that much done before it was time to rotate pairs. (Another decision we had made as a team was to regularly rotate pairs, to maximize knowledge transfer among devs and get everybody exposed to everything. The project was an iPad app, with a Ruby back end as well as a mobile web UI. So we were all writing Objective-C, Ruby, and CoffeeScript—a great learning experience for most of us!<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>)</p>
+
+<p>One of us—I can’t remember who—stayed on the same story and worked alongside another dev. Some time later, the pairs rotated again. It turned out that this work took place over the course of several rotations. By the end, the two developers working on the story were quite far removed from the conversations we originally had about it. Context was lost, and it was a bit of a mess: the coupling we had hoped to avoid was quite strong, and the API was not shaping up at all.</p>
+
+<p>This wasn’t supposed to happen! The whole point of rotating pairs and having everybody work on everything was to ensure that context <em>not</em> be lost. What went wrong?</p>
+
+<p>In retrospect, recognizing that things had been going badly, the team acknowledged that we should have bent the rules with respect to pair rotation on this particular story. Looking back on the situation now, though, I think what happened is not so surprising. It comes back to what I said earlier about Borg culture: taken too far, it can cause a team to be deficient in personal pride and individual ownership. Then <a href="http://en.wikipedia.org/wiki/Broken_windows_theory">broken window theory</a> sets in: since the code is <em>everyone’s</em> responsibility, everybody thinks “surely someone else is keeping an eye on this.” It might as well be <em>no one’s</em> responsibility.</p>
+
+<h2 id="specialization_is_inevitable_2">Specialization is inevitable</h2>
+
+<p>Collective ownership is a great idea, but it has its limits. On large projects, it can be unrealistic. Imagine a small community where everyone knows each other and there’s a neighborhood watch. That sounds about right. If you tried to apply the same idea to a larger city it wouldn’t hold. A person can’t deeply, personally care about every street corner in a metropolis. So specialization needs to happen.</p>
+
+<p>I actually left ThoughtWorks before the project was completed. Around that time, the team was discussing the idea of splitting into specialized groups: one for the iOS app, one for the back end, one for the mobile web UI—or anyway, something like that. We had been tossing the idea around for a while, but none of us really <em>wanted</em> to do that. Over time, however, it was becoming clear that it was probably the right thing to do. We needed ourselves to take more ownership in what we were doing; and if it that wasn’t happening on its own, we needed to <a href="/posts/automating-yourself.html">program ourselves</a> to <em>make</em> it happen.</p>
+
+<p>When you make people responsible for something, they tend to rise to the occasion. This is the real reason I think we need to shake up our biases, just a little bit, when it comes to hero culture. Of course, if we were to head back in that direction we wouldn’t want to call it “hero culture” but something less self-congratulatory. No one wants to foster a team filled with arrogance. But we also don’t want a scenario where there’s no coherent vision and nobody takes personal responsibility for anything, right?</p>
+
+<p>So as it seems I’m always saying, aim for the middle. Hero culture has its fair share of problems, but so does Borg culture. Let’s not throw the baby out with the bathwater; personal ownership and accountability are actually <em>good</em> aspects of hero culture. And collaboration and humility are terrific aspects of Borg culture. Take the good from each, and try to avoid becoming so proud or so dogmatic that you start inheriting the bad.</p>
+<div class="footnotes">
+<hr>
+<ol><li id="fn:1">
+<p>FYI, you might start seeing more exclamation points from me in the immediate future. I just finished reading <a href="http://www.amazon.com/Surely-Feynman-Adventures-Curious-Character/dp/0393316041"><em>Surely you’re joking, Mr. Feynman!</em></a> and loved it! (Feynman makes liberal use of exclamation points. My high school English teacher would not have approved.) <a href="#fnref:1" rev="footnote">↩</a></p>
+</li></ol>
+</div>]]></description><pubDate>Fri, 14 Jun 2013 08:30:00 -0700</pubDate><guid>http://philosopherdeveloper.com/posts/hero-culture-vs-borg-culture.html</guid></item><item><title>Introducing Lazy.js</title><link>http://philosopherdeveloper.com/posts/introducing-lazy-js.html</link><description><![CDATA[<p>I recently started a JavaScript project called <strong>Lazy.js</strong> that’s been getting quite a lot of attention<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. Essentially the project is a utility library in a similar vein to <a href="http://underscorejs.org/">Underscore</a> or <a href="http://lodash.com/">Lo-Dash</a>, but with <a href="http://en.wikipedia.org/wiki/Lazy_evaluation">lazy evaluation</a> (hence the name).</p>
 
 <p>The reason I think the project has been piquing the interest of so many JavaScript developers is that it offers the promise of some truly solid performance, even compared to Lo-Dash (which is itself highly optimized in comparison to Underscore). This chart shows the performance of Lazy.js compared to both of those libraries for several common operations on arrays of 10 elements each on Chrome:</p>
 
@@ -129,7 +177,7 @@ filter(map(x))</code></pre>
 <hr>
 <ol>
 <li id="fn:1">
-<p>For me, anyway—as of the time I’m writing this, it has <a href="(https://github.com/dtao/lazy.js">865 stars on GitHub</a>! <a href="#fnref:1" rev="footnote">↩</a></p>
+<p>For me, anyway—as of the time I’m writing this, it has <a href="https://github.com/dtao/lazy.js">865 stars on GitHub</a>! <a href="#fnref:1" rev="footnote">↩</a></p>
 </li>
 <li id="fn:2">
 <p>I <a href="/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html">don’t have a C.S. background</a>, so I don’t know if there’s a academic term for these ideas. Probably is. <a href="#fnref:2" rev="footnote">↩</a></p>
@@ -638,86 +686,4 @@ filter(map(x))</code></pre>
 <p>This is generally not true at work, where I am quite possibly the dumbest person in the room. <a href="#fnref:4" rev="footnote">↩</a></p>
 </li>
 </ol>
-</div>]]></description><pubDate>Fri, 08 Feb 2013 22:11:00 -0800</pubDate><guid>http://philosopherdeveloper.com/posts/your-brain-is-a-liability.html</guid></item><item><title>Unbreaking DataMapper</title><link>http://philosopherdeveloper.com/posts/unbreaking-datamapper.html</link><description><![CDATA[<h2 id="is_datamapper_inherently_broken_1">Is DataMapper inherently broken?</h2>
-
-<p>In a <a href="http://www.drmaciver.com/2010/04/datamapper-is-inherently-broken/">strongly-worded blog post back in 2010</a>, David MacIver asserted that there is a fundamental flaw in <a href="http://datamapper.org/">DataMapper</a>, an ORM library for Ruby. The core of his complaint is<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> that DataMapper’s default API for saving records hides errors, making it difficult to diagnose what went wrong when something fails. This in turn increases the likelihood of defects going unnoticed during development and testing, resulting in buggier software.</p>
-
-<p>Borrowing from MacIver’s post<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, the below is a boilerplate example of how one might attempt to save a record and report any failures using DataMapper:</p>
-
-<div class="highlight"><pre><span class="n">my_account</span> <span class="o">=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"Jose"</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">my_account</span><span class="o">.</span><span class="n">save</span>
-  <span class="c1"># my_account is valid and has been saved</span>
-<span class="k">else</span>
-  <span class="n">my_account</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span>
-    <span class="nb">puts</span> <span class="n">e</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</pre></div>
-
-<p>The above can be pretty annoying to anyone who expects conciseness from an API. Most developers don’t like the idea of having to write several lines of code just to save a record to a database.</p>
-
-<p>Why not wrap the above into a common helper? This still won’t consistently work, as MacIvers points out with the following example:</p>
-
-<div class="highlight"><pre><span class="n">my_account</span> <span class="o">=</span> <span class="no">Account</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:customer</span> <span class="o">=&gt;</span> <span class="no">Customer</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">"jose"</span><span class="p">))</span>
-<span class="n">my_account</span><span class="o">.</span><span class="n">save</span>
-</pre></div>
-
-<p>In this case, an error could occur when saving <em>either</em> the <code>Account</code> object <em>or</em> the <code>Customer</code> object. And so a general-purpose helper wouldn’t be enough; one would have to write a special helper for every model, accounting for each of that model’s associations, in every application.</p>
-
-<p>I certainly sympathize with MacIver’s frustration.</p>
-
-<h2 id="why_use_datamapper_at_all_then_2">Why use DataMapper at all, then?</h2>
-
-<p>It’s really a shame that such a “fundamental flaw”<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> exists in DataMapper. Otherwise, I find it to be quite a nice ORM, with at least a couple of (admittedly subjective) advantages over the more popular <a href="https://github.com/rails/rails/tree/master/activerecord">ActiveRecord</a>:</p>
-
-<ol>
-<li>With DataMapper, your database schema is defined in your models themselves. The ActiveRecord approach uses a separate file to define table schemas (schema.rb), making it sometimes awkward to reason about code in the classes used to interact with those tables. (The existence of gems such as <a href="https://github.com/ctran/annotate_models">annotate</a> attests to this awkwardness.)</li>
-
-<li>DataMapper adopts the philosophy of having a 1:1 mapping between database records and objects in memory. Whereas in ActiveRecord you might have multiple <code>Account</code> instances referencing the same record (with different dirty local states), in DataMapper this is not the case. The upshot is the elimination of an entire category of bugs (<em>what happened to my attributes?</em>).</li>
-</ol><h2 id="addressing_the_problem_3">Addressing the problem</h2>
-
-<p>While I understand where MacIver was coming from when he wrote that original post, when I first read it I found myself scratching my head and wondering, <em>Why didn’t he do something about it?</em> This is particularly vexing given that MacIver mentioned having worked with DataMapper for at least “several months” and bemoaned encountering the same flaw “time and time again.” As a software developer, whenever I find myself repeatedly struggling with a tool–<em>especially</em> <a href="https://github.com/datamapper">an open source one</a>–I inevitably end up trying to patch it or otherwise find some way around its (perceived) shortcomings.</p>
-
-<p>It should be noted that, probably at some point after MacIver’s post, DataMapper <em>did</em> introduce <a href="http://datamapper.org/docs/create_and_destroy.html">a <code>raise_on_save_failure</code> option</a> which (obviously) raises exceptions on save failures. However, these exceptions still don’t include any useful information; and it seems <a href="http://datamapper.lighthouseapp.com/projects/20609/tickets/1322-show-objecterrors-when-raise_on_save_failure-is-set">the DataMapper developers aren’t receptive to the idea that they should</a><sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>.</p>
-
-<p>Luckily, it turns out that a solution to this problem isn’t even particularly complicated. It’s true that wrapping the above snippet into a helper in a <em>client application</em> doesn’t solve the problem; but wrapping it in <em>DataMapper</em> does.</p>
-
-<div class="highlight"><pre><span class="k">module</span> <span class="nn">DataMapper</span>
-  <span class="k">module</span> <span class="nn">Resource</span>
-    <span class="n">alias_method</span> <span class="ss">:save?</span><span class="p">,</span> <span class="ss">:save</span>
-
-    <span class="k">def</span> <span class="nf">save</span>
-      <span class="k">return</span> <span class="k">if</span> <span class="nb">self</span><span class="o">.</span><span class="n">save?</span> <span class="o">||</span> <span class="nb">self</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">empty?</span>
-      <span class="n">error_message</span> <span class="o">=</span> <span class="nb">self</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="s2">"</span><span class="si">#{</span><span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">e</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span> <span class="p">}</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">"; "</span><span class="p">)</span>
-      <span class="k">raise</span> <span class="no">SaveFailureError</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">error_message</span><span class="p">,</span> <span class="nb">self</span><span class="p">)</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-</pre></div>
-
-<p>How is the above any different from writing a wrapper in your application? Simple: every time a resource is saved in DataMapper, the <code>save</code> method is called (internally). This means that in the simple case—where saving a record fails because it is invalid—the exception raised will be informative by reporting the record’s validation errors. In the more complex case—where saving a record fails because its child is invalid—the exception raised will be informative by reporting the <em>child’s</em> validation errors.</p>
-
-<h2 id="enter_dmnoisyfailures_4">Enter dm-noisy-failures</h2>
-
-<p>I’m sure you saw this one coming from a mile away. Yes, I wrote a gem to do what I’m describing: <a href="http://dtao.github.com/dm-noisy-failures">dm-noisy-failures</a> (the excerpt above is taken directly from the library). This gem overwrites DataMapper’s <code>save</code>, <code>update</code>, <code>create</code>, and <code>destroy</code> methods with variations that throw exceptions (with descriptive error messages) on failure. The original methods returning true and false are aliased as <code>save?</code>, <code>update?</code>, <code>create?</code>, and <code>destroy?</code>–a nice resolution, in my opinion, as it conforms to existing Ruby idioms.</p>
-
-<p><a href="https://github.com/dtao/dm-noisy-failures">Check it out</a> and let me know what you think. <small>My quest to <a href="/posts/making-yaml-safe-again.html">actually publicize my open source projects</a> continues!</small></p>
-
-<p>As <a href="http://www.drmaciver.com/blog">he still seems to be active</a>, and he also seems like a smart and thoughtful guy, I plan on contacting MacIver about my little gem to see what he thinks. It’s very possible he’s not even doing anything with DataMapper anymore; but it can’t hurt to seek his feedback. While I’m at it I should probably also get in touch with the DataMapper folks, who <a href="http://solnic.eu/2012/12/20/datamapper-2-status-and-roadmap.html">are currently working on a major update</a>.</p>
-<div class="footnotes">
-<hr>
-<ol>
-<li id="fn:1">
-<p>To be fair, as the article was written in 2010, MacIver may have changed his stance between then and now. However, I did a brief search for any sort of retraction and couldn’t find one; so I’m sticking with the present tense here. <a href="#fnref:1" rev="footnote">↩</a></p>
-</li>
-<li id="fn:2">
-<p>Which in turn borrows from the <a href="http://datamapper.org/docs/validations">official DataMapper documentation</a>. <a href="#fnref:2" rev="footnote">↩</a></p>
-</li>
-<li id="fn:3">
-<p>I happen to agree with most of MacIver’s points, so I do view DataMapper’s API as flawed. But I’m also quite sure the library’s developers had reasons for designing it that way—or anyway, I haven’t seen any evidence to the contrary—so it’s clearly debatable to some extent. Hence my use of quotes. <a href="#fnref:3" rev="footnote">↩</a></p>
-</li>
-<li id="fn:4">
-<p>As far as I can tell, the DataMapper team’s reasoning for excluding validation errors from exceptions is that “[the] #save command can return false for reasons other than validations being invalid.” This seems to me like an unfortunate case of <a href="http://en.wikipedia.org/wiki/Perfect_is_the_enemy_of_good"><em>the perfect is the enemy of the good</em></a>. <a href="#fnref:4" rev="footnote">↩</a></p>
-</li>
-</ol>
-</div>]]></description><pubDate>Tue, 29 Jan 2013 23:21:00 -0800</pubDate><guid>http://philosopherdeveloper.com/posts/unbreaking-datamapper.html</guid></item></channel></rss>
+</div>]]></description><pubDate>Fri, 08 Feb 2013 22:11:00 -0800</pubDate><guid>http://philosopherdeveloper.com/posts/your-brain-is-a-liability.html</guid></item></channel></rss>

@@ -25,6 +25,23 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/cannibalizing-yourself-on-purpose.html'>Cannibalizing yourself on purpose</a>
+      </span>
+      <span class='date'>September 24, 2012</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>I read an article in the New York Times recently entitled <a href="http://www.nytimes.com/2012/09/22/opinion/nocera-has-apple-peaked.html">Has Apple Peaked?</a> and found myself nodding my head to a lot of the author’s points. The basic premise of the article was this: <em>maybe</em> Apple has peaked, and maybe it isn’t because Steve Jobs has passed away but rather because, as a company on top of the world, they now have everything to lose and can no longer take big risks.</p>
+
+<p>I think there’s something to this, and I’d add another source of inertia for consideration: <strong>hubris</strong> (big surprise to those of you familiar with my general dislike for Apple, I’m sure!). At Apple’s scale, given the massive success they’ve enjoyed over the past several years, I have no doubt that the company’s sense of self-importance is extraordinarily high. Which is obviously justified to a significant degree. But one common observation I have about human nature—and I am increasingly convinced that it applies to businesses the same way it applies to individuals—is that it is very easy to pat yourself on the back for a job well done and claim more credit for your success than you <em>really</em> deserve. Put another way: it can be very easy to miss what an important role <em>luck</em> has played in your life, and thus to take full credit for your good fortune.</p>
+
+<p>Which means that if you’re a company like Apple, you start to get complacent. You watch every product you release hit record-breaking sales, you see your competitors struggling to gain any kind of momentum, you notice the lines stretching for blocks outside every one of your retail stores, and… you start to relax. You think, <em>no one can touch us right now</em>. You feel invincible. You take for granted that everything you do is ground-breaking. Of course it <span class="post-link">... (<a href="/posts/cannibalizing-yourself-on-purpose.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html'>Brushing up on C.S. - Part 1: Algorithmic Complexity</a>
       </span>
       <span class='date'>September 15, 2012</span>
@@ -113,68 +130,6 @@
 <p>Initially, business is going well for the factory owner. The CV system enables him to react as soon as a defect is found, taking corrective action at once to prevent further damages. For the first couple of weeks following the CV installation, he is extremely pleased with his investment.</p>
 
 <p>Over time, however, <span class="post-link">... (<a href="/posts/trouble-with-stop-the-line-ci.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/littlest-ruby-debugger.html'>The littlest Ruby debugger</a>
-      </span>
-      <span class='date'>March 16, 2012</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>It is a well-known fact among my teammates that my tolerance for hacks is higher than most developers’. And so it is that sometimes I write code that others find horrifying.</p>
-
-<p>Here’s one that I personally like, and which has caused more than one of my teammates to chuckle in half-approval. It came up again just today, as we are using <a href="http://www.padrinorb.com/">Padrino</a> on my current project and a coworker wanted to know if Sinatra and/or Padrino had an equivalent to the Rails console (to allow a dev to poke around the system at some arbitrary point during the program’s execution—say, in the middle of handling a request at the controller level).</p>
-
-<p>Frankly, I’m no Sinatra expert. For all I know there <em>is</em> an equivalent to the Rails console in Sinatra. I’ve never really cared, because if I want to poke around the code mid-request I just whip up something like this, which I shall call the <strong>littlest Ruby debugger</strong>:</p>
-
-<div class="highlight"><pre><span class="nb">puts</span> <span class="s2">"Start typing away."</span>
-<span class="k">while</span> <span class="p">(</span><span class="n">line</span> <span class="o">=</span> <span class="no">STDIN</span><span class="o">.</span><span class="n">readline</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span> <span class="o">!=</span> <span class="s2">""</span>
-  <span class="nb">puts</span> <span class="nb">eval</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<span class="k">end</span>
-</pre></div>
-
-<p>Yes, yes, I know. Any developer who lets something like that slip into production code deserves to be shot. But I would honestly argue that the chances of that are so close to zero as to be completely unworthy of any serious consideration.</p>
-
-<p>Here’s an example of the above hack in action, responding to a request on my local machine (with my commands highlighted):</p>
-<pre>  DEBUG -      GET (0.0120ms) /layouts/ - 200
-0:0:0:0:0:0:0:1%0 - - [16/Mar/2012 16:22:44] "GET /layouts/ HTTP/1.1" 200 - 0.0160
-Start typing away.
-<span class="highlight-special">params.inspect</span>
-{:layout_id=&gt;"1"}
-<span class="highlight-special">params[:layout_id]</span>
-1
-<span class="highlight-special">self.methods.select { |m| m.start_with?("c") }</span>
-current_user
-cache_action
-check_box_tag
-content_tag
-content_for
-concat_content
-content_for?
-concat
-capture_html
-capture
-content_blocks
-content_type
-current_engine
-current_path
-call!
-call
-coffee
-creole
-cache_control
-client_error?
-com
-class
-clone
-class_eval
-
-  DEBUG - TEMPLATE (0.0010ms) /layouts/application
-  DEBUG -      GET</pre> <span class="post-link">... (<a href="/posts/littlest-ruby-debugger.html">read the full post</a>)</span>
   </section>
 </article>
 <div class='next-page'>

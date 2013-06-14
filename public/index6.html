@@ -25,6 +25,32 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/ghost-clicks-in-jquery-mobile.html'>Ghost clicks in jQuery Mobile</a>
+      </span>
+      <span class='date'>November 01, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>I know it’s been a long time since I’ve written (<em>especially</em> for someone who’s repeatedly claimed he will write daily posts). I’ve got some more substantial ideas to discuss in the near future (honest!)<strike>, but this particular post is going to be a short one</strike>. [Correction: this post ended up being kinda long.]</p>
+
+<p>On my current project we’re in the process of wrapping up a mobile website we built using <a href="http://jquerymobile.com/">jQuery Mobile</a>. One issue we encountered during development was that on certain pages, a strange “ghost click” behavior was observed: the user would click a button, the page would change, and then a button on the destination page (positioned at the same location as the original button) would seem to be automatically clicked as if the user had clicked twice—or as if a <em>ghost</em> had clicked it.</p>
+
+<p>It turns out that this is a known issue for mobile web browsers, which <a href="http://code.google.com/mobile/articles/fast_buttons.html">Google wrote about back in January</a>. In the article, Ryan Fioravanti explains that most mobile browsers introduce a delay of ~300 ms before every <code>click</code> event, for the reason that they want to account for the possibility that the user might be double-clicking to zoom in on the page. So what can happen on a mobile web project this:</p>
+
+<ul>
+<li>Someone notices that the UI seems sluggish. In particular, clicking on buttons feels very slow.</li>
+
+<li>A developer looks into the problem and finds that the issue can be mitigated by handling an event other than <code>click</code>, such as <code>touchstart</code> (jQuery Mobile has a <code>vclick</code> event).</li>
+
+<li>Now that the clickable element in question handles a non-<code>click</code> event, when it is clicked, <strong>there is still a <code>click</code> event waiting to be triggered within the next ~300 ms</strong>; and so if a page <span class="post-link">... (<a href="/posts/ghost-clicks-in-jquery-mobile.html">read the full post</a>)</span>
+</li>
+</ul>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/jquery-mobile-trick-correction.html'>About that jQuery Mobile trick: Correction</a>
       </span>
       <span class='date'>July 26, 2011</span>
@@ -181,54 +207,6 @@
 </pre></div>
 
 <p>This allowed my <code>Enumerator&lt;T&gt;</code> type to behave quite well when used in <code>foreach</code> loops without causing unnecessary garbage collection. And the fact that it was a mutable value type hardly mattered—just like it hardly matters for <code>List&lt;T&gt;.Enumerator</code>, <code>Dictionary&lt;TKey, TValue&gt;.Enumerator</code>, etc. (The only times when it hypothetically matters is when you pass an <code>Enumerator&lt;T&gt;</code> value to a method and for some reason <em>expect</em> the code within the method to affect the <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/sometimes-the-best-strategy-is-to-retreat.html'>Sometimes the best strategy is to retreat</a>
-      </span>
-      <span class='date'>February 28, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>I have a few remarks to make about <a href="http://dtao.github.com/ConcurrentList/">my <code>ConcurrentList&lt;T&gt;</code> class</a>, which I have written about a <a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">couple</a> of <a href="/posts/boy-can-dream.html">times</a> already.</p>
-
-<p><em>What, are you “retreating” from your concurrent list idea?</em> In a way, yes. Let me explain. From the beginning, my concept of the usefulness of a lock-free <code>IList&lt;T&gt;</code> implementation was that it would scale better than using a <code>List&lt;T&gt;</code> plus <code>lock</code> statements by eliminating contention when many threads are accessing the list concurrently.</p>
-
-<p>Is this actually true? Accessing the list <code>how</code>?</p>
-
-<p>Since a concurrent implementation of <code>Insert</code>, <code>RemoveAt</code> etc. is not supported in <code>ConcurrentList&lt;T&gt;</code>, there are really only a few operations that need to be considered:</p>
-
-<ul>
-<li>Getting/setting an item at a specified index</li>
-
-<li>Adding to the list</li>
-
-<li>Iterating over the list</li>
-</ul><p>Critically, I think the assumption is that one would need a lock-free data structure to optimize the scenario where multiple threads may be <em>reading</em> from the list (via accessing items at random indexes) while one or more other threads are <em>adding</em> to it. <strong>I actually don’t think you need a lock-free data structure for this at all.</strong></p>
-
-<p>Here’s the thing: if you’ve got a <code>List&lt;T&gt;</code>, and you synchronize all calls to <code>Add</code> with, e.g., a <code>lock</code> statement, <strong>you don’t need to also synchronize reads</strong>. They will <em>always</em> be thread-safe. Accessing an element at an index of a <code>List&lt;T&gt;</code> that is <em>only</em> growing with calls to <code>Add</code> <em>will</em> work from multiple threads. If you are skeptical, consider what actually happens when <code>Add</code> is called (<strong>warning: reliance upon specific implementation details ahead!</strong>):</p>
-
-<ol>
-<li>
-<p>The <code>List&lt;T&gt;</code> gets the next available index in its internal array.</p>
-</li>
-
-<li>
-<p>If the index is beyond the end of the array:</p>
-
-<ol>
-<li>A new array is allocated.</li>
-
-<li>The elements of the current array are copied over.</li>
-
-<li>A reference to this new <span class="post-link">... (<a href="/posts/sometimes-the-best-strategy-is-to-retreat.html">read the full post</a>)</span>
-</li>
-</ol>
-</li>
-</ol>
   </section>
 </article>
 <div class='next-page'>
