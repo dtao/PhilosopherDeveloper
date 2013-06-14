@@ -1,143 +1,59 @@
-The following is the most recent post from my blog, **The Philosopher Developer**, written on May 31, 2013.
+The following is the most recent post from my blog, **The Philosopher Developer**, written on June 14, 2013.
 
 ***
 
-Introducing Lazy.js
-===================
+Hero culture vs. Borg culture
+=============================
 
-I recently started a JavaScript project called **Lazy.js** that's been getting quite a lot of attention[^a-lot-of-attention]. Essentially the project is a utility library in a similar vein to [Underscore](http://underscorejs.org/) or [Lo-Dash](http://lodash.com/), but with [lazy evaluation](http://en.wikipedia.org/wiki/Lazy_evaluation) (hence the name).
+Hero culture
+------------
 
-The reason I think the project has been piquing the interest of so many JavaScript developers is that it offers the promise of some truly solid performance, even compared to Lo-Dash (which is itself highly optimized in comparison to Underscore). This chart shows the performance of Lazy.js compared to both of those libraries for several common operations on arrays of 10 elements each on Chrome:
+Most of us in software (and probably in other fields) know about **hero culture**. It's a concept everybody loves to hate. The term refers to an environment where individuals work in isolation and thrive on receiving sole credit for their work. This is generally perceived as leading to inflated egos and poor cooperation among developers. It's the same phenomenon you see in professional sports, when star athletes are sometimes accused of not being good "team players" and getting greedy with the ball, wanting to be the center of attention.
 
-![Lazy.js performance versus Underscore and Lo-Dash](/images/lazy-performance.png)
-{: .plain }
+So there are social reasons to dislike hero culture. There are plenty of practical reasons, too. One involves a principle known as the [bus factor](http://en.wikipedia.org/wiki/Bus_factor): the more you rely on a hero, the more vulnerable you are in the event of losing him or her--e.g., if he or she is hit by a bus, or leaves for another company.
 
-You can read more about what Lazy.js *does* [on the project website](http://dtao.github.io/lazy.js/) or in the README [on its GitHub page](https://github.com/dtao/lazy.js). In this blog post, I want to write a little bit about how it *works*, and what makes it different.
+But you guys know me. If everybody else is going left, I'm going to go right (a highly predictable trait that [my friend Sameer](http://www.skalb.com/) frequently reminds me of).
 
-A different paradigm
---------------------
+Borg culture
+------------
 
-Fundamentally, Lazy.js represents a paradigm shift from the model of Underscore and Lo-Dash (starting now I'm just going to say "Underscore" for brevity), which provide a host of useful functions for what I'll call **array transformation**[^array-transformation]: each function accepts an array as input, does something with it, and then gives back a new array:
+If you turn away from hero culture and sprint in the opposite direction, you'll eventually start getting into what I'll call **Borg culture**.
 
-![Array transformation](/images/array-transformation.png)
-{: .plain }
+Borg culture is the antithesis of hero culture, where every individual is functionally equivalent. In a Borg culture, there is no place for glory or arrogance. There's also no pride and no personal ownership. I would argue that this isn't really better.
 
-This isn't how Lazy.js works. Instead, what is essentially happening at the core of Lazy.js is **function composition**: each function accepts a *function* as input, stores it, and gives back an object that can do the same. Then ultimately when `each(fn)` is called on the last object in the chain, it composes all of those functions together, effectively changing the behavior of `fn`.
+A while back I wrote about [software engineering versus software craftsmanship](/posts/am-i-an-engineer.html). In general, I think most of us would associate my description of "engineering" with what is typically done at larger corporations--less personal, more mechanical. That sounds like Borg culture. Actually, I think it's just the opposite. Big companies are notoriously conducive to hero culture, because they have a tendency to become large and bloated, teeming with mediocrity. This encourages better-than-average individuals to rise above the fray and get a lot of recognition for not being mediocre.
 
-Let's take `map` as an example. The idea of *mapping* is simple and something we do all the time; it basically means *translating* or *converting*.
+I suspect many of us have been in that situation at least once or twice. It can be a nice feeling, to have everyone impressed with you for something that really wasn't so hard. It's a dangerous place to be in, though, because after a while you get comfortable and stop improving. Without data to back it up, I nonetheless feel confident in saying that this happens all the time to "engineers" at big companies.
 
-Here's some code that uses `map` from Underscore:
+Counterintuitively, I see those who fall much closer to the "craftsman" end of the spectrum often succumb to the allure of Borg culture. On first glance that doesn't seem like it would be right. But it is, in my experience, for at least two reasons:
 
-~~~{: lang=javascript }
-var array1 = [1, 2, 3, 4, 5];
-var array2 = _.map(array1, function(x) { return x + array1.length; });
-~~~
+1. A craftsman (in my personal, egregiously over-generalized opinion) is more humble. He is likely to reject labels like "hero" or "rock star" (ugh!) and downplay his own talents.
+2. Craftsmen put a lot of stock in practices that de-emphasize *personal* awesomeness: pair programming, TDD, CI, etc. These so-called agile methods embrace the inevitability of mistakes and focus on solving problems iteratively. There is a humility to this mindset as well.
 
-In the above snippet, `array1` is *mapped* to `array2` using a function that shifts each value up by five. The process involves three significant parts:
+Some of the outcomes of Borg culture are commonly viewed in a positive light, but I believe it would be wise to consider them more critically. One example is **collective code ownership**. Agile teams often sing the praises of this idea that we're all responsible for all of the code. That can be a great thing, inasmuch as it encourages each of us to follow the [Boy Scout Rule](http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule) and happily fix one another's bugs. It can also be problematic.
 
-1. Look at every element in the array
-2. Apply the mapping function on it
-3. Store the result in a new array
+A Borg culture anecdote
+-----------------------
 
-This 3-step process is a core part of Underscore's paradigm: again, arrays go in, arrays come out. With Lazy.js, parts 1 and 3 above are not a core part of the paradigm. You can get the equivalent of step 1 with `each`, and you can get the equivalent of step 3 with `toArray`; but you're not *required* to do either of those things.
+On my last project at ThoughtWorks, I was pairing with our team's tech lead on a pretty important piece of our project's overall architecture. We set out to lay the groundwork for what would eventually become a public API. One of the decisions we made early on as a team was to be very disciplined about dogfooding our own API, building a front end that would operate as an ordinary client, with no special privileges. We didn't want to go the standard website approach where your logic ends up being tightly coupled to your views. Everybody was more or less on board with this plan.
 
-To illustrate what I mean, let's look at the `map` example again, this time using Lazy.js.
+We did a bit of work, but didn't get all that much done before it was time to rotate pairs. (Another decision we had made as a team was to regularly rotate pairs, to maximize knowledge transfer among devs and get everybody exposed to everything. The project was an iPad app, with a Ruby back end as well as a mobile web UI. So we were all writing Objective-C, Ruby, and CoffeeScript--a great learning experience for most of us\![^exclamation-points])
 
-~~~{: lang=javascript }
-var array    = [1, 2, 3, 4, 5];
-var sequence = Lazy(array).map(function(x) { return x + array.length; });
-~~~
+One of us--I can't remember who--stayed on the same story and worked alongside another dev. Some time later, the pairs rotated again. It turned out that this work took place over the course of several rotations. By the end, the two developers working on the story were quite far removed from the conversations we originally had about it. Context was lost, and it was a bit of a mess: the coupling we had hoped to avoid was quite strong, and the API was not shaping up at all.
 
-Remember that `sequence` above is not an array; none of the elements of `array` has been accessed at this point. Which means we can do this:
+This wasn't supposed to happen! The whole point of rotating pairs and having everybody work on everything was to ensure that context *not* be lost. What went wrong?
 
-~~~{: lang=javascript }
-// Result: 8
-var middle = sequence.get(2);
-~~~
+In retrospect, recognizing that things had been going badly, the team acknowledged that we should have bent the rules with respect to pair rotation on this particular story. Looking back on the situation now, though, I think what happened is not so surprising. It comes back to what I said earlier about Borg culture: taken too far, it can cause a team to be deficient in personal pride and individual ownership. Then [broken window theory](http://en.wikipedia.org/wiki/Broken_windows_theory) sets in: since the code is *everyone's* responsibility, everybody thinks "surely someone else is keeping an eye on this." It might as well be *no one's* responsibility.
 
-...and dive straight into the middle of the sequence without iterating. This is what I meant by saying step 1 from Underscore's paradigm is not a core part of Lazy.js.
+Specialization is inevitable
+----------------------------
 
-Similarly, we can do this:
+Collective ownership is a great idea, but it has its limits. On large projects, it can be unrealistic. Imagine a small community where everyone knows each other and there's a neighborhood watch. That sounds about right. If you tried to apply the same idea to a larger city it wouldn't hold. A person can't deeply, personally care about every street corner in a metropolis. So specialization needs to happen.
 
-~~~{: lang=javascript }
-/* Output:
- * 6
- * 7
- * 8
- * 9
- * 10
- */
-sequence.each(function(x) { console.log(x); });
-~~~
+I actually left ThoughtWorks before the project was completed. Around that time, the team was discussing the idea of splitting into specialized groups: one for the iOS app, one for the back end, one for the mobile web UI--or anyway, something like that. We had been tossing the idea around for a while, but none of us really *wanted* to do that. Over time, however, it was becoming clear that it was probably the right thing to do. We needed ourselves to take more ownership in what we were doing; and if it that wasn't happening on its own, we needed to [program ourselves](/posts/automating-yourself.html) to *make* it happen.
 
-...and, *without creating any extra array*, we've viewed the results. This is why I said Underscore's step 3 (storing results in a new array) is also not a core part of Lazy.js.
+When you make people responsible for something, they tend to rise to the occasion. This is the real reason I think we need to shake up our biases, just a little bit, when it comes to hero culture. Of course, if we were to head back in that direction we wouldn't want to call it "hero culture" but something less self-congratulatory. No one wants to foster a team filled with arrogance. But we also don't want a scenario where there's no coherent vision and nobody takes personal responsibility for anything, right?
 
-Digging a bit deeper
---------------------
+So as it seems I'm always saying, aim for the middle. Hero culture has its fair share of problems, but so does borg culture. Let's not throw the baby out with the bathwater; personal ownership and accountability are actually *good* aspects of hero culture. And collaboration and humility are terrific aspects of Borg culture. Take the good from each, and try to avoid becoming so proud or so dogmatic that you start inheriting the bad.
 
-So I've said what makes Lazy.js different from Underscore, but I haven't really explained how it works in much depth.
-
-I did mention function composition. Let's take a look at a concrete example to make that a bit clearer.
-
-~~~{: lang=javascript }
-var array = Lazy.range(1, 1000).toArray();
-
-console.log("First 10 squares that are evenly divisible by of 3:");
-var sequence = Lazy(array)
-  .map(function(x) { return x * x; })
-  .filter(function(x) { return x % 3 === 0; })
-  .take(10)
-  .each(function(x) { console.log(x); });
-~~~
-
-Maybe that's a bit noisy--I just wanted to have a full example program--so I'll focus on just the `map`, `filter`, and `take` parts.
-
-As I said earlier, each function in Lazy.js accepts another function and then creates an object to store it. So the result of `map` is an object--a `MappedSequence`--that stores its argument and exposes the same API as the object originally returned by `Lazy(array)`.
-
-    MappedSequence(mapFn)
-
-This object is then the "parent" of any objects *it* creates. The result of `filter`, then--a `FilteredSequence`--holds a reference to the mapped sequence as well as its  filtering function:
-
-    MappedSequence(mapFn)
-      FilteredSequence(filterFn)
-
-Next we have `take`, which creates a `TakeSequence` that stores the count we pass to it:
-
-    MappedSequence(mapFn)
-      FilteredSequence(filterFn)
-        TakeSequence(count)
-
-Finally, when `each` is called, we compose everything together. In this example, the data underlying our nested sequences is an array; so `each(fn)` does just what you'd think: iterates over the source array, and...
-
-- feeds each element to `mapFn`,
-- feeds the result of `mapFn` into `filterFn`,
-- feeds those elements with truthy results from `filterFn` to the `TakeSequence`, which...
-- feeds the first 10 results to `fn`, then ends the iteration (by returning `false`)
-
-Another way of looking at it is this. Let's forget about arrays (or collections, or sequences) entirely for a moment. The core idea behind `map` is, as I said, *translation*. This is independent of the idea of iteration. It's simply the idea of, for some value, mapping it to another value.
-
-Same with `filter`: it doesn't necessarily have to do with iteration. The idea of filtering is, for some value, testing whether it satisfies some condition or not.
-
-And so, if we don't think about arrays at all, we can still combine these concepts. For some value *x*, we can *map* it to *y*, and then we can *filter* that *y* to check whether it satisfies a condition.
-
-    // Looks like function composition to me!
-    filter(map(x))
-
-As a pure replacement for Underscore--which it can be--Lazy.js is basically an inversion of the 3-step process I described. Instead of doing 1-2-3, 1-2-3, &c. for each operation, we can do 1 (for each element in the source...), then *all 2s combined* (every `map`, `filter`, etc. composed together), and finally 3 (store the results in a new array). You don't *need* to use Lazy.js that way--as I hopefully have emphasized quite enough by now!--but you can, if you're just looking for a drop-in Underscore replacement. And that wouldn't be a bad call, given the performance difference!
-
-The reason I keep saying that isn't all that Lazy.js is about, though, is that there's a lot more you can do as a result of this different model. You can generate indefinite sequences, iterate asynchronously, map/reduce on DOM events (or any event type, really), lazily split strings, and more. Take a look at [the Lazy.js website](http://dtao.github.io/lazy.js) or--better yet--actually [give Lazy.js a try](https://github.com/dtao/lazy.js) and see for yourself what else you can do.
-
-The road ahead
---------------
-
-Thus far this project has received a much more enthusiastic response than I would've predicted, which is a bit daunting. That said, I'm not sure it's actually being used much out in the wild yet. I only just recently [published it as a Node package](https://npmjs.org/package/lazy.js); and while I've started working on documenting the code properly, I haven't quite settled on an approach yet. (In other words, the documentation is quite lacking at the moment.) Even the organization of the repository (names of folders, which files go where, etc.) is something I haven't really ironed out. So a lot is in flux.
-
-That said, it would make me really happy if people start trying out Lazy.js for real and [submitting issues](https://github.com/dtao/lazy.js/issues) to help me find bugs faster and prioritize working on the most useful real-world features.
-
-I also attribute some of the library's sudden popularity to [the project website](http://dtao.github.io/lazy.js/), which includes a nice benchmark runner to compare Lazy.js against [several other libraries](http://dtao.github.io/lazy.js/comparisons.html) and view the results in an intuitive and visually appealing format. In the back of my mind I'm planning to eventually refactor some code out of there and into another open source project specifically geared towards comparing the performance of competing libraries, or even standalone functions.
-
-For now, though, I'll keep working on Lazy.js and hoping to get some feedback from users.
-
-[^a-lot-of-attention]: For me, anyway--as of the time I'm writing this, it has [865 stars on GitHub]((https://github.com/dtao/lazy.js)!
-
-[^array-transformation]: I [don't have a C.S. background](/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html), so I don't know if there's a academic term for these ideas. Probably is.
+[^exclamation-points]: FYI, you might start seeing more exclamation points from me in the immediate future. I just finished reading [*Surely you're joking, Mr. Feynman!*](http://www.amazon.com/Surely-Feynman-Adventures-Curious-Character/dp/0393316041) and loved it! (Feynman makes liberal use of exclamation points. My high school English teacher would not have approved.)
