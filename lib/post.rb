@@ -119,7 +119,7 @@ class Post
   end
 
   attr_reader :identifier, :date, :title, :published
-  attr_accessor :include_social_links, :allow_comments, :previous, :next
+  attr_accessor :include_date, :include_social_links, :allow_comments, :previous, :next
 
   def comments
     Comment.all(:post_identifier => self.identifier)
@@ -185,6 +185,7 @@ class Post
     @date = info["date"]
     @title = info["title"]
     @published = info["published"]
+    @include_date = true
     @include_social_links = true
     @allow_comments = true
   end

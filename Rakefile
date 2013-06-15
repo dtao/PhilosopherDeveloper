@@ -108,6 +108,7 @@ def compile_about
     "date"  => Date.parse("2013-01-24")
   })
 
+  about_post.include_date = false
   about_post.include_social_links = false
   about_post.allow_comments = false
 
@@ -197,6 +198,11 @@ namespace :compile do
   task :latest do
     load_posts()
     measure("Compiling latest post") { compile_post(Post.latest) }
+  end
+
+  desc "Compile the About page"
+  task :about do
+    measure("Compiling about page") { compile_about() }
   end
 
   desc "Compile CSS"
