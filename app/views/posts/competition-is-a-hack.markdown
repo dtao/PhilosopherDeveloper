@@ -1,4 +1,4 @@
-I have this theory that our society, fueled by an economy based on competition (the foundation of capitalism and a significant part of our cultural identity, at least in most developed western countries), is burdened by a force very much akin to technical debt. This prevents our species from progressing nearly as fast as we should be able to, just as technical debt slows down software teams in the world of technology. And in the same way that technical debt ultimately stems from hacks, I believe that the "hack" underlying this great societal inertia is *competition itself*, which is inherently harmful.
+I have this theory that our society, fueled by an economy based on competition (the foundation of capitalism and a significant part of our cultural identity, at least in most developed western countries), is burdened by a force very much akin to technical debt. This prevents our species from progressing nearly as fast as we should, just as technical debt slows down software teams. And in the same way that technical debt ultimately stems from hacks, I believe that the "hack" underlying this great societal inertia is *competition itself*, which is inherently harmful.
 
 This is actually something that I feel strongly about, so if you are interested in this idea but have suggestions or criticisms--*especially* if you have criticisms, actually--please let me know your thoughts in the comments! As with most of my posts, I'm writing this at a time when the idea is relatively fresh in my head; I haven't worked out all the nuances yet. It could be that a year from now I won't even feel this way anymore.
 
@@ -7,7 +7,7 @@ In any case, let's take a few steps back so I can provide a bit of context on wh
 What is technical debt?
 -----------------------
 
-First, let's define **technical debt** (or "tech debt"): it's what accumulates over the life of a software project from the decision to trade quality for speed. Early on, a company or software team will often knowingly perform low-quality work (often called "hacks") in exchange for faster progress. Some teams do this obliviously--unaware that they are trading anything--while others (probably most) do so acknowledging that this decision will eventually result in legacy [cruft](http://en.wikipedia.org/wiki/Cruft) exerting *drag* on the project. Most teams that incur tech debt assume that at some point down the road, after having reaped the benefits of their initial velocity, they will take the time to revisit the more problematic areas in their code and "refactor" or clean up after themselves.
+First, let's define **technical debt** (or "tech debt"): it's what accumulates over the life of a software project from the decision to trade quality for speed. Early on, a company or software team will often knowingly perform low-quality work ("hacks") in exchange for faster progress. Some teams do this obliviously--unaware that they are trading anything--while others (probably most) do so acknowledging that this decision will eventually result in legacy [cruft](http://en.wikipedia.org/wiki/Cruft) exerting *drag* on the project. Most teams that incur tech debt assume that at some point down the road, after having reaped the benefits of their initial velocity, they will take the time to revisit the more problematic areas in their code and "refactor" or clean up after themselves.
 
 The conventional wisdom here is that this strategy is worthwhile if the early gain more than offsets the later setback. If you think about it, this is basically the same gambit that the proverbial Hare took in his race with the Tortoise:
 
@@ -20,14 +20,62 @@ So this is the decision software teams make: whether or not to allow themselves 
 Our debt was established long before we were here
 -------------------------------------------------
 
-Millions of years ago, nature faced a monumental design challenge: to create a world thriving with an amazing abundance of life, ruled by highly intelligent beings, starting from only some humble single-celled organisms.
+Millions of years ago, nature faced a monumental engineering challenge: to build a world thriving with an amazing abundance of life, ruled by highly intelligent beings, starting from only some humble single-celled organisms.
 
-Would you have any idea how to solve this problem? I sure wouldn't. So nature went with a **hack**: random mutations and limited resources.
+Would you have any idea how to solve this problem? I sure wouldn't. So nature went with a hack: random mutations and limited resources.
 
-When resources are limited, not all individuals are able to survive. Mutations therefore enable certain individuals to survive and reproduce more successfully than others. In time, over the course of countless generations, these mutations accumulate to differentiate lifeforms. This is the process of natural selection, which Darwin wrote about and then we all studied.
+When resources are limited, not all individuals are able to survive. Mutations therefore enable certain individuals to survive and reproduce more successfully than others. In time, over the course of countless generations, these mutations accumulate to differentiate lifeforms. This is the process of natural selection, which Darwin wrote about and we all studied in school. It is supposedly the basis for the diversity of life we now see on Earth, and the core process responsible for the development of our incredibly advanced brains. And it is deeply rooted in competition.
 
-Now, competition is in our blood. It is the foundation of capitalism.
+Now, competition is in our blood.
 
 Competition is destructive
 --------------------------
 
+We're taught to believe that competition is a good thing. And maybe it is, for us, in the end. But the issue is hardly black and white.
+
+Let's take a quick survey of some clear examples of destructive competition.
+
+Obviously, **wars**--the ultimate competition--are quite destructive, in just about every sense. They result in the loss of human life, the destruction of our creations, and the depletion of our resources.
+
+- The American Civil War cost $4.2 billion a century and a half ago, which would be $79.7 billion today[^cost-of-us-wars], with a death toll that may have been as high as 750,000 soldiers[^civil-war-death-toll].
+- World War I cost the U.S. alone about $20 billion nearly a century ago, or $334 billion in today's dollars[^cost-of-us-wars]. Worldwide it resulted in over 37 million deaths[^world-war-1-death-toll].
+- World War II cost the U.S. $296 billion from 1941 to 1945 or $4.1 *trillion* dollars today[^cost-of-us-wars]. That's just the U.S. Its worldwide death toll was over 60 million people, or over 2.5% of the population of the entire planet[^world-war-2-death-toll].
+
+Admittedly, these numbers are somewhat sensational. It might seem unfair to blame all of this destruction on *competition* per se. I actually think it *is* fair--i.e, if you went back far enough, and changed the conditions that fundamentally stirred our competitive nature before these wars ever started, they could have been prevented--but I'll not dive into that rabbit hole. There are plenty of examples elsewhere.
+
+Look at pharmaceuticals. The major phara companies spend a great deal on R&D, but they also spend huge sums of money on advertising: in 2007, GSK spent $2.5 billion, Johnson & Johnson spent $2.4 billion, and Pfizer spent $1.3 billion[^pharma-advertising-budgets]. Some amount of advertising is arguably necessary for public awareness, even in a non-competitive environment; but clearly a significant part of advertising involves promoting the idea that a company's products are superior to their competitors'. Perhaps more importantly, the time and effort (and money, obviously) that these companies invest in developing new drugs lead to advances in research *that they do not share with each other*, in the hope of establishing a competitive advantage. Treatments are therefore developed more slowly and at greater cost than if the major players worked together and shared their research.
+
+Examples abound in the software world as well. In 2011, for example, the average cost of a software security breach was $7.2 million[^cost-of-security-breach]. This is how much companies spent to recover from breaches that actually *occurred*. Just imagine how much time and energy (and money) they spent to prevent them from happening in the first place! To give you an idea, Symantec's annual revenue is $6.7 billion[^symantec-revenue]. McAfee's was somewhere around $2.1 billion before they were acquired by Intel[^mcafee revenue]. Security companies' products are used throughout the corporate world to protect IT investments.
+
+Meanwhile, software companies dedicate significant resources to securing their systems, developing hack-resistent software. In the academic world, researchers work on cryptography and developing algorithms that are computationally expensive by design to protect against brute force attacks. Hackers purchase powerful GPUs and spin them endlessly (consuming energy) to break through these protective barriers.
+
+All of this energy, time, money. Imagine if human beings didn't try to break into one another's systems, or steal each other's property. How many billions of dollars could be saved? How many millions of hours? How much total human mental effort could be diverted to more useful things if so many of us weren't thinking about ways to subvert or protect ourselves from others!
+
+*If* competition is ultimately beneficial, it is in *spite* of the destruction it causes. In other words, it is at best one of those rare cases of *good* technical debt, where the benefits outweigh the drawbacks. Regardless, even in this best case scenario it is our nature as humans that makes competition a good thing--not an intrinsic property of competition itself.
+
+What would outsiders think?
+---------------------------
+
+A little mental exercise I enjoy is to imagine that we as a species are being observed by some advanced alien species. What would they think?
+
+It's interesting that in pretty much all sci-fi universes, when we encounter alien civilizations they tend to be united at the planetary (or galactic) level. You never hear about their civil wars. (Well, maybe if you're a hardcore fan and read all of the mythology you do. But I think most of you are with me on this.) Maybe, in these fictional worlds, these aliens are so much more advanced than we are because they don't waste time competing with each other!
+
+I like to imagine another advanced race looking down at us and feeling puzzled. They see that our minds are fairly capable, and that we sometimes make important discoveries that enhance our knowledge of the universe. But there seems to be a "bug" in our system, that causes us to go in circles most of the time: cutting off communication, building walls, basically sabotaging our own progress on a regular basis. This race doesn't understand our behavior because they always cooperate. They don't *get* competition.
+
+How could such a race exist?
+
+[^cost-of-us-wars]: [http://www.fas.org/sgp/crs/natsec/RS22926.pdf](http://www.fas.org/sgp/crs/natsec/RS22926.pdf)
+
+[^civil-war-death-toll]: [http://www.nytimes.com/2012/04/03/science/civil-war-toll-up-by-20-percent-in-new-estimate.html](http://www.nytimes.com/2012/04/03/science/civil-war-toll-up-by-20-percent-in-new-estimate.html)
+
+[^world-war-1-death-toll]: [http://en.wikipedia.org/wiki/World_War_I_casualties](http://en.wikipedia.org/wiki/World_War_I_casualties)
+
+[^world-war-2-death-toll]: [http://en.wikipedia.org/wiki/World_War_II_casualties](http://en.wikipedia.org/wiki/World_War_II_casualties)
+
+[^pharma-advertising-budgets]: [http://www.fiercepharma.com/special-reports/top-13-advertising-budgets](http://www.fiercepharma.com/special-reports/top-13-advertising-budgets)
+
+[^cost-of-security-breach]: [http://www.bloomberg.com/news/2011-03-08/security-breach-costs-climb-7-to-7-2-million-per-incident.html](http://www.bloomberg.com/news/2011-03-08/security-breach-costs-climb-7-to-7-2-million-per-incident.html)
+
+[^symantec-revenue]: [http://en.wikipedia.org/wiki/Symantec](http://en.wikipedia.org/wiki/Symantec)
+
+[^mcafee revenue]: [http://news.techeye.net/business/mcafee-posts-record-revenue-results-for-2010](http://news.techeye.net/business/mcafee-posts-record-revenue-results-for-2010)
