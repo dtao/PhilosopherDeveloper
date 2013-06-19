@@ -43,26 +43,41 @@ Obviously, **wars**--the ultimate competition--are quite destructive, in just ab
 
 Admittedly, these numbers are somewhat sensational. It might seem unfair to blame all of this destruction on *competition* per se. I actually think it *is* fair--i.e, if you went back far enough, and changed the conditions that fundamentally stirred our competitive nature before these wars ever started, they could have been prevented--but I'll not dive into that rabbit hole. There are plenty of examples elsewhere.
 
-Look at pharmaceuticals. The major phara companies spend a great deal on R&D, but they also spend huge sums of money on advertising: in 2007, GSK spent $2.5 billion, Johnson & Johnson spent $2.4 billion, and Pfizer spent $1.3 billion[^pharma-advertising-budgets]. Some amount of advertising is arguably necessary for public awareness, even in a non-competitive environment; but clearly a significant part of advertising involves promoting the idea that a company's products are superior to their competitors'. Perhaps more importantly, the time and effort (and money, obviously) that these companies invest in developing new drugs lead to advances in research *that they do not share with each other*, in the hope of establishing a competitive advantage. Treatments are therefore developed more slowly and at greater cost than if the major players worked together and shared their research.
+Look at pharmaceuticals. The major phara companies spend a great deal on R&D, but they also spend huge sums of money on advertising: in 2007, GSK spent $2.5 billion, Johnson & Johnson spent $2.4 billion, and Pfizer spent $1.3 billion[^pharma-advertising-budgets]. Some amount of advertising is arguably necessary for public awareness, even in a non-competitive environment; but clearly a significant part of advertising involves promoting the idea that a company's products are superior to its competitors'. Perhaps more importantly, the time and effort (and money, obviously) that these companies invest in developing new drugs lead to advances in research *that they do not share with each other*, in the hope of establishing a competitive advantage. Treatments are therefore developed more slowly and at greater cost than if the major players worked together and shared their research.
 
-Examples abound in the software world as well. In 2011, for example, the average cost of a software security breach was $7.2 million[^cost-of-security-breach]. This is how much companies spent to recover from breaches that actually *occurred*. Just imagine how much time and energy (and money) they spent to prevent them from happening in the first place! To give you an idea, Symantec's annual revenue is $6.7 billion[^symantec-revenue]. McAfee's was somewhere around $2.1 billion before they were acquired by Intel[^mcafee revenue]. Security companies' products are used throughout the corporate world to protect IT investments.
+Examples abound in the software world as well. In 2011, for example, the average cost of a software security breach was $7.2 million[^cost-of-security-breach]. This is how much companies spent to recover from breaches that *actually happened*. Just imagine how much time and energy (and money) they spent to prevent them from happening in the first place! To give you an idea, Symantec's annual revenue is $6.7 billion[^symantec-revenue]. McAfee's was somewhere around $2.1 billion before they were acquired by Intel[^mcafee revenue]. Security companies' products are used throughout the corporate world to protect IT investments.
 
 Meanwhile, software companies dedicate significant resources to securing their systems, developing hack-resistent software. In the academic world, researchers work on cryptography and developing algorithms that are computationally expensive by design to protect against brute force attacks. Hackers purchase powerful GPUs and spin them endlessly (consuming energy) to break through these protective barriers.
 
-All of this energy, time, money. Imagine if human beings didn't try to break into one another's systems, or steal each other's property. How many billions of dollars could be saved? How many millions of hours? How much total human mental effort could be diverted to more useful things if so many of us weren't thinking about ways to subvert or protect ourselves from others!
+!["Give me your secrets!" "You can't have them!"](/images/tug-of-war.jpg)
 
-*If* competition is ultimately beneficial, it is in *spite* of the destruction it causes. In other words, it is at best one of those rare cases of *good* technical debt, where the benefits outweigh the drawbacks. Regardless, even in this best case scenario it is our nature as humans that makes competition a good thing--not an intrinsic property of competition itself.
+All of this energy, time, money. If you're a hacker, and I'm a company, we're constantly exerting force against each other. Why? Why are you so insistent getting *in*, and why am I so concerned with keeping you *out*? What if we were on the same side?
+
+Imagine if human beings didn't try to break into one another's systems, or steal each other's property. How many billions of dollars could be saved? How many millions of hours? How much total human mental effort could be diverted to more useful things if so many of us weren't thinking about ways to subvert or protect ourselves from others!
+
+*If* competition is ultimately beneficial, it is in *spite* of the destruction it causes. In other words, it is at best one of those rare cases of *good* technical debt, where the benefits outweigh the drawbacks. Regardless, even in this best case scenario it is our nature as humans--unable to ever *truly* trust each other and cooperate effectively on a large scale--that makes competition a good thing. It isn't inherently good by itself.
 
 What would outsiders think?
 ---------------------------
 
-A little mental exercise I enjoy is to imagine that we as a species are being observed by some advanced alien species. What would they think?
+A little mental exercise I enjoy is to imagine that we as a species are being observed by some advanced alien species and speculate about what they must think.
 
-It's interesting that in pretty much all sci-fi universes, when we encounter alien civilizations they tend to be united at the planetary (or galactic) level. You never hear about their civil wars. (Well, maybe if you're a hardcore fan and read all of the mythology you do. But I think most of you are with me on this.) Maybe, in these fictional worlds, these aliens are so much more advanced than we are because they don't waste time competing with each other!
+It's interesting that in science fiction, when we encounter alien civilizations they tend to be internally united, at the planetary or even the galactic level. You never hear about their political parties or civil wars. (Well, maybe if you're a hardcore fan and read all of the mythology you do. But I think most of you are with me on this.) Maybe, in these fictional worlds, these aliens are so much more advanced than we are because they don't waste time competing with each other!
 
-I like to imagine another advanced race looking down at us and feeling puzzled. They see that our minds are fairly capable, and that we sometimes make important discoveries that enhance our knowledge of the universe. But there seems to be a "bug" in our system, that causes us to go in circles most of the time: cutting off communication, building walls, basically sabotaging our own progress on a regular basis. This race doesn't understand our behavior because they always cooperate. They don't *get* competition.
+I like to imagine another advanced race looking down at us and feeling puzzled. They see that our minds are fairly capable, and that we sometimes make important discoveries that enhance our knowledge of the universe. But there seems to be a "bug" in our system, which causes us to go in circles most of the time: cutting off communication, building walls, basically sabotaging our own progress on a regular basis. This race doesn't understand our behavior because they always cooperate and they can't see why we don't do the same. They don't *get* competition.
 
-How could such a race exist?
+!["They seem to spend a lot of time negating their own work, don't they?"](/images/earth.jpg)
+
+Could such a race exist? Or is natural selection, based on competition for limited resources, the only path to becoming so advanced in the first place, and so any sufficiently advanced race will inevitably be competitive just like us?
+
+Refactoring society
+-------------------
+
+I obviously don't know if any super-advanced, ultra-cooperative alien civilization exists. As far as I know, no one does. But let me propose that there *is* a variable in this equation that most of us wrongly assume to be constant: **limited resources**. Fundmanetally, the only reason to compete--the only reason I would want to *take* something from you, or get it before you, or frankly the only reason I'd compare myself to you at all--is that there isn't enough to go around.
+
+This has historically been the case for almost all of human existence. I would argue, though, that we're approaching a point where it no longer quite holds. The world already produces enough food to feed everyone on the planet[^enough-food]. Producing electricy for the entire planet is probably within reach (definitely need to do some more research on this one). Projects like the recently-announced [Google Loon](http://www.google.com/loon/) even strive to bring the *internet* to the global population.
+
+So I don't think it's *theoretically impossible* that we could start to move away from this paradigm we've been locked in, as a species, from the very beginning. But as I already admitted, competition is in our blood. If you buy my analogy on technical debt, it is like the most pernicious kind of technical debt, that starts with a simple hack and spawns an entire system that's fundamentally broken.
 
 [^cost-of-us-wars]: [http://www.fas.org/sgp/crs/natsec/RS22926.pdf](http://www.fas.org/sgp/crs/natsec/RS22926.pdf)
 
@@ -79,3 +94,5 @@ How could such a race exist?
 [^symantec-revenue]: [http://en.wikipedia.org/wiki/Symantec](http://en.wikipedia.org/wiki/Symantec)
 
 [^mcafee revenue]: [http://news.techeye.net/business/mcafee-posts-record-revenue-results-for-2010](http://news.techeye.net/business/mcafee-posts-record-revenue-results-for-2010)
+
+[^enough-food]: [http://www.fao.org/docrep/003/Y6265e/y6265e03.htm](http://www.fao.org/docrep/003/Y6265e/y6265e03.htm)
