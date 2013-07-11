@@ -25,6 +25,44 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/whats-annoying-about-sorted-list-index-of-key.html'>What's annoying about SortedList<TKey, TValue>.IndexOfKey</a>
+      </span>
+      <span class='date'>May 24, 2010</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p><strong>Update: Some time after writing this post, I created a <a href="http://dtao.github.com/NBinarySearch/">project on GitHub</a> for this.</strong></p>
+
+<p>Here’s a problem I’m sure tons of developers have run into, resulting in much frustration.</p>
+
+<p>Say you have a sorted list of some kind, but it’s not a <code>List(T)</code>, and it’s not an array. In other words, it’s an <code>IList(T)</code> that you know is sorted. If you want to search for an item within that list, it makes sense to utilize a <a href="http://en.wikipedia.org/wiki/Binary_search">binary search</a>, rather than a linear search; but guess what? That doesn’t exist in the .NET framework. There’s <code>List(T).BinarySearch</code>, and there’s <code>Array.BinarySearch(T)</code>, but there’s no general <code>BinarySearch</code> (just like there’s no general <code>Sort</code>).</p>
+
+<p>One data structure where this proves particularly frustrating is <code>SortedList(TKey, TValue)</code>, because, although <code>SortedList(TKey, Value)</code> <em>does</em> have an <code>IndexOfKey</code> method, and this method <em>is</em> a binary search, it returns -1 if the value passed isn’t found. This basically makes it a crippled version of <code>Array.BinarySearch(T)</code>, which actually returns the <strong>negative bitwise complement</strong> of the “next best” index (that of the first value greater than the value searched for) – a useful little piece of information that allows you to write code like this:</p>
+
+<div class="highlight"><pre><span class="kt">int</span> <span class="n">closestIndex</span> <span class="p">=</span> <span class="n">Array</span><span class="p">.</span><span class="n">BinarySearch</span><span class="p">(</span><span class="n">myArray</span><span class="p">,</span> <span class="n">someValue</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">closestIndex</span> <span class="p">&lt;</span> <span class="m">0</span><span class="p">)</span>
+    <span class="n">closestIndex</span> <span class="p">=</span> <span class="p">~</span><span class="n">closestIndex</span><span class="p">;</span>
+</pre></div>
+
+<p>Now, why do you suppose <code>IndexOfKey</code> is inconsistent with <code>List(T).BinarySearch</code> and <code>Array.BinarySearch(T)</code>? Is it due to some subtle difference in implementation that is necessary for the internal structure of <code>SortedList(TKey, TValue)</code>?</p>
+
+<p>Buh, no. Take a look at the source code for the <code>IndexOfKey</code> method using <a href="http://www.red-gate.com/products/reflector/">Reflector</a>, and what you’ll find is this peculiar little bit of code:</p>
+
+<div class="highlight"><pre>    <span class="kt">int</span> <span class="n">num</span> <span class="p">=</span> <span class="n">Array</span><span class="p">.</span><span class="n">BinarySearch</span><span class="p">&lt;</span><span class="n">TKey</span><span class="p">&gt;(</span><span class="k">this</span><span class="p">.</span><span class="n">keys</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">_size</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">comparer</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">num</span> <span class="p">&lt;</span> <span class="m">0</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
+</pre></div>
+
+<p><strong>Seriously</strong>? You’re telling me <code>IndexOfKey</code> <em>actually uses <code>Array.BinarySearch(T)</code></em>, <span class="post-link">... (<a href="/posts/whats-annoying-about-sorted-list-index-of-key.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/difference-between-converting-and-unboxing.html'>The difference between converting and unboxing: read my mind, compiler!</a>
       </span>
       <span class='date'>May 05, 2010</span>

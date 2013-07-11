@@ -25,6 +25,45 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html'>How I discovered a bug in the C# compiler, part 1</a>
+      </span>
+      <span class='date'>March 31, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>This is the story of <strong>my epic adventure in discovering a bug in</strong> (the latest version of) <strong>the C# compiler</strong>.</p>
+
+<p>First of all, some background. I was working on a library, mostly for personal use, which was to include an enumerable collection type similar to <code>List&lt;T&gt;</code> or <code>T[]</code>. One of the goals of this library was to be <em>efficient</em>; so, naturally, for this type’s enumerator I made the decision to create a mutable value type.</p>
+
+<p><strong><em>Wait a minute!</em></strong> What’s that, you say? <em>Mutable value types are <strong>evil</strong>!</em> Oh?</p>
+
+<p>This is a topic for a whole other blog post; but just to give a mini-argument in <em>defense</em> of this decision, by way of example, let me point out one simple fact: <strong>if you make the return value of <code>GetEnumerator</code> a <em>reference type</em>, then every <code>foreach</code> loop creates a new object to be garbage collected later</strong>. Don’t care? That’s fine; I <em>did</em> care, so I took an alternate approach (which, incidentally, is the same approach utilized by the designers of the collections in the <code>System.Collections.Generic</code> namespace in the BCL).</p>
+
+<p>For <em>my</em> <code>GetEnumerator</code>, I explicitly implemented both <code>IEnumerable.GetEnumerator</code> <em>and</em> <code>IEnumerable&lt;T&gt;.GetEnumerator</code> and made a public version of the method returning an <code>Enumerator&lt;T&gt;</code> struct, like this:</p>
+
+<div class="highlight"><pre><span class="k">public</span> <span class="n">Enumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">Enumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">IEnumerator</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;.</span><span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerator</span> <span class="n">System</span><span class="p">.</span><span class="n">Collections</span><span class="p">.</span><span class="n">IEnumerable</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="nf">GetEnumerator</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>This allowed my <code>Enumerator&lt;T&gt;</code> type to behave quite well when used in <code>foreach</code> loops without causing unnecessary garbage collection. And the fact that it was a mutable value type hardly mattered—just like it hardly matters for <code>List&lt;T&gt;.Enumerator</code>, <code>Dictionary&lt;TKey, TValue&gt;.Enumerator</code>, etc. (The only times when it hypothetically matters is when you pass an <code>Enumerator&lt;T&gt;</code> value to a method and for some reason <em>expect</em> the code within the method to affect the <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/sometimes-the-best-strategy-is-to-retreat.html'>Sometimes the best strategy is to retreat</a>
       </span>
       <span class='date'>February 28, 2011</span>
@@ -148,31 +187,6 @@
 <p>Yeah, that’s <em>terrible</em>. <strong>It’s like using a hammer to perform brain surgery.</strong> But how was my teammate to know, or even suspect there was anything wrong with what he was doing?</p>
 
 <p>I think the .NET culture has embraced LINQ <span class="post-link">... (<a href="/posts/tempted-by-linq.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/multithreading-and-multitasking.html'>Multithreading and multitasking</a>
-      </span>
-      <span class='date'>February 04, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>Watch the following video and count how many times the players in white pass the basketball. Then scroll down to read the rest of this post.</p>
-    
-    <p class="centered">.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.</p>
-    
-    <p><strong>Did you see the gorilla?</strong> OK, the truth is: <em>I</em> did, but only because I was expecting it (the name of the website where I first saw the video, <a href="http://www.theinvisiblegorilla.com/">The Invisible Gorilla</a>, kind of gives it away). Apparently a lot of viewers do <em>not</em> see the gorilla, though, because they are too busy focusing on the people throwing and catching the ball to notice it.</p>
-    
-    <p>It’s a fairly well-documented fact at this point that <a href="http://www.npr.org/templates/story/story.php?storyId=95256794">human beings are not so good at multitasking</a> (the fact that that link points to a 2-year-old article right there tells you that this is not news). Rather, we are very quick at <a href="http://en.wikipedia.org/wiki/Context_switching"><em>context-switching</em></a>.</p>
-    
-    <p>Those of you software engineers reading this: does that term sound familiar? I thought so. <strong>Context switching</strong> is the process of suspending and restoring the state of different <a href="http://en.wikipedia.org/wiki/Thread_%28computer_science%29"><em>threads</em></a> or <em>processes</em> on a single CPU. More simply, it is akin to shifting one’s attention back and forth between multiple things. A good example would be driving while talking on the phone. It’s actually impossible to pay attention to both simultaneously, according to neuroscientists; rather, what you are likely able to do when driving while talking is <em>switch</em> between thinking about your driving and thinking about your phone conversation, very rapidly:</p>
-    
-    <figure><img src="/images/context-switching.png" alt="An illustration of context switching between driving and talking"><figcaption>An illustration of context switching between driving and talking</figcaption></figure>
-    
-    <p>Computers are exactly like this too. This is becoming less true now that dual-core, quad-core, even six-core processors (this will likely only keep increasing) have become the norm, at least on desktop computers (and <em>especially</em> on servers, where 24 cores or more is not at <span class="post-link">... (<a href="/posts/multithreading-and-multitasking.html">read the full post</a>)</span></p>
   </section>
 </article>
 <div class='next-page'>
