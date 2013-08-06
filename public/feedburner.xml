@@ -1,4 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://philosopherdeveloper.com/</link><item><title>Problem obsession</title><link>http://philosopherdeveloper.com/posts/problem-obsession.html</link><description><![CDATA[<p>My last course as a grad student at CMU was <em>Entrepreneurship for Software Engineers</em>, in which teams of students basically worked on startup ideas for one semester, sharing their progress and collecting feedback during each class session and presenting to a small group of VC reps at the end of the term. I worked on a silly little app called <a href="http://www.instapie.net">InstaPie</a>–which I haven’t touched in months (mainly because I don’t have an Apple computer anymore!), though I <em>do</em> plan to pick it back up soon, I swear—and I remember during my presentation to the VCs, one of them asked, “What problem are you trying to solve here?”</p>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>The Philosopher Developer</title><description>Dan Tao's blog, The Philosopher Developer</description><link>http://philosopherdeveloper.com/</link><item><title>Carousels, context, and judgment</title><link>http://philosopherdeveloper.com/posts/carousels-context-and-judgment.html</link><description><![CDATA[<p>I recently had a brief<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> online exchange with <a href="http://matthewcopeland.me/">Matt Copeland</a>, a former coworker at ThoughtWorks, about the website <a href="http://shouldiuseacarousel.com/">shouldiuseacarousel.com</a>. It’s a fun little site presenting several bullet points against the use of carousels (rotating banners) in website UIs<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>.</p>
+
+<p>I’m no designer or UX expert. Over the years I’ve noticed that I <em>do</em> seem to take a greater interest in frontend-y stuff than most other developers I work with; but that’s a far cry from someone with expertise in user experience. Still, when Matt first posted a link to the carousel-bashing site I found myself responding skeptically. Of course, maybe that’s because I respond skeptically to pretty much everything that exists in this world.</p>
+
+<p>Anyway, this shall be my attempt to explain my skepticism, concisely if I can (but knowing me, I probably can’t).</p>
+
+<h2 id="judgments_require_context_1">Judgments require context</h2>
+
+<p>Consider this point:</p>
+
+<p class="plain"><img src="/images/point-without-context.png" alt="A point with no context"></p><p>A point with no context</p>
+
+<p>Where is it? To answer that question we need some frame of <em>context</em>, or reference. For example, we could define a plane that the point lies in, with X and Y axes. Let’s do that:</p>
+
+<p class="plain"><img src="/images/point-on-coordinate-system.png" alt="A point on a coordinate system"></p><p>A point on a coordinate system</p>
+
+<p>Now we have context. The point is at <code>(5, 5)</code>.</p>
+
+<h2 id="contexts_can_be_changed_2">Contexts can be changed</h2>
+
+<p>But wait, is the point really at <code>(5, 5)</code>? Or is it just <em>somewhere</em>, and we overlaid a pair of axes on top of it? Clearly—in this case at least, since I’m the one writing this!–it’s the latter. We could just as easily draw the context like this:</p>
+
+<p class="plain"><img src="/images/point-on-different-coordinate-system.png" alt="Same point, different coordinate system"></p><p>Same point, different coordinate system</p>
+
+<p>Now the point is “at” <code>(100, 100)</code>.</p>
+
+<p>The lesson here is that the context we bring to something affects how we measure it. This example was abstract, but the principle applies to all kinds of things.</p>
+
+<p>Of course, we all know that already, right? Sure—but it’s easy to forget it, or to fail to recognize where it applies, especially when the “point” is something we feel strongly about.</p>
+
+<h2 id="back_to_carousels_3">Back to carousels</h2>
+
+<p>Whether carousels are generally “good” or “bad” isn’t a question I have any ambition to answer. If anything, if the UX community seems to have reached a consensus that they’re not good, I would tend to yield to that opinion. What I want to point out is simply that this is a case of bring-your-own-context, and that in such cases it’s necessary to acknowledge that fact before zeroing in on a judgment.</p>
+
+<p>To be more specific: of the 6 references to information arguing against carousels on <a href="shouldiuseacarousel.com">shouldiuseacarousel.com</a>, 4 of them are explicitly about “clicking” or some other form of user interaction (such as a user performing a “task”<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>). I checked and one of the remaining 2 (<a href="http://www.widerfunnel.com/conversion-rate-optimization/rotating-offers-the-scourge-of-home-page-design">this article on the site WiderFunnel</a>) similarly appeals to carousels’ poor click-through performance. (The other reference I couldn’t track down in about 20 seconds of Google searching, so I didn’t bother. That’s at least 5 out of 6.)</p>
+
+<p>The overall picture I get from this is that carousels are <strong>bad at generating clicks</strong>. This is the context, the frame of reference, that I guess a lot of designers must use in evaluating the effectiveness of some UI element. And maybe that’s fair, especially considering how much screen real estate carousels generally take up. (<em>If it isn’t driving clicks, did we really have to make it so big?</em>) But surely it isn’t the <em>only</em> possible metric by which we could make a judgment.</p>
+
+<p>Personally, I found the anti-carousel argument arguments presented on the site a little odd at first. I’m not deeply involved in the world of UX, so maybe it’s because I haven’t internalized the same metrics by which most professionals in that world tend to judge interfaces. But I never thought of carousels as being a vehicle for interactive elements in the first place. I thought of them more as little slide shows, <strong>presenting content in a space-efficient way without requiring the user to scroll</strong>.</p>
+
+<p>Here’s an example: <a href="http://www.regmovies.com/">the home page for Regal Cinemas</a> has a carousel showcasing some of the films that are currently playing in their theaters. This may be good or bad for a host of other reasons; again, I’m no expert. But I <em>do</em> think it would be wrong to assume that this particular carousel exists to generate clicks.</p>
+
+<p><img src="/images/good-carousel.png" alt="The carousel on the Regal Cinemas home page"></p><p>The carousel on the Regal Cinemas home page</p>
+
+<p>See, I actually think that this one makes sense. Yes, there are little interactive elements—links to buy tickets and view the trailer for each film—but they hardly seem like the focus here (as is evidenced by their tiny size and way-off-to-the-bottom-left positioning). I would guess that the implicit purpose of this carousel is simply to give the visitor a quick survey of what’s playing right now. To me, it serves that purpose well.</p>
+
+<p>So this is a clear example of how the context you bring to something affects your judgment of that thing. We could judge carousels based on their click generation effectiveness, in which case they look pretty bad:</p>
+
+<p class="plain"><img src="/images/click-generation-effectiveness.png" alt=""></p><p></p>
+
+<p>But we could also judge them based on, say, information density (how much content is presented in a given area of the screen), in which case they would fare much better:</p>
+
+<p class="plain"><img src="/images/information-density.png" alt=""></p><p></p>
+
+<p>Keep in mind that I’m not saying information density is necessarily a worthwhile metric. Simply that it’s a <em>separate</em> one from click generation—I think that much is obvious—and so answering the question of how carousels measure up on that front requires a different set of questions.</p>
+
+<h2 id="a_fixed_context_is_basically_dogma_4">A fixed context is basically dogma</h2>
+
+<p>As I already said, I’m not here to argue that carousels are awesome. My example of information density is in fact probably a poor one, since I’m guessing most UX professionals would say that too much densely packed information is a bad thing. But if you at least agree that there are multiple ways to judge the elements of a user interface, then it should give you pause when someone says “Don’t ever use widgets because they’re bad at <em>X</em>.”</p>
+
+<p><em>X</em> may be important. But it likely isn’t the only characteristic by which a widget should be judged. This attitude is analogous to taking the coordinate system from my first example, where the point lies at <code>(5, 5)</code>, and treating it as <em>fixed</em>, unaware that someone else could use a different system and interpret the point as somewhere else. A person with this mindset might think of the coordinates <code>(5, 5)</code> as being an <em>intrinsic property</em> of the point, and therefore view the point as inherently either “good” or “bad” based on that. To me, that’s pretty much the same thing as dogma: refusing to acknowledge the possibility of other contexts.</p>
+
+<p>I realize that I’m getting a bit heavy-handed at this point, so I’m going to call it a day. I leave you with these words of wisdom:</p>
+
+<blockquote>
+<p>“Don’t ever use hammers. They’re really bad at driving screws.”</p>
+</blockquote>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>As in, literally about 2 Tweets each. <a href="#fnref:1" rev="footnote">↩</a></p>
+</li>
+<li id="fn:2">
+<p>Ironically, the site itself uses a carousel (to drive home the point, I guess). <a href="#fnref:2" rev="footnote">↩</a></p>
+</li>
+<li id="fn:3">
+<p>And to my dismay, the “task” article about a user failing to recognize a deal displayed on a carousel, appears to be based on <em>a single user</em>. <strong>What?</strong> Are we really going to treat that as rigorous research? <a href="#fnref:3" rev="footnote">↩</a></p>
+</li>
+</ol>
+</div>]]></description><pubDate>Tue, 06 Aug 2013 11:08:00 -0700</pubDate><guid>http://philosopherdeveloper.com/posts/carousels-context-and-judgment.html</guid></item><item><title>Problem obsession</title><link>http://philosopherdeveloper.com/posts/problem-obsession.html</link><description><![CDATA[<p>My last course as a grad student at CMU was <em>Entrepreneurship for Software Engineers</em>, in which teams of students basically worked on startup ideas for one semester, sharing their progress and collecting feedback during each class session and presenting to a small group of VC reps at the end of the term. I worked on a silly little app called <a href="http://www.instapie.net">InstaPie</a>–which I haven’t touched in months (mainly because I don’t have an Apple computer anymore!), though I <em>do</em> plan to pick it back up soon, I swear—and I remember during my presentation to the VCs, one of them asked, “What problem are you trying to solve here?”</p>
 
 <p>This wasn’t my first exposure to the question, of course. We’d been taught to always keep this question in our crosshairs, to not lose sight of the goal. Identifying the problem and proposing a solution is an important part of any elevator pitch, I hear. If you can’t answer that question, then you’ve lost your way somehow. Start retracing your steps until you get back to the place where a problem is clear and what you’re working on actually solves it.</p>
 
@@ -10,9 +90,9 @@
 
 <p>First, let’s say that one day, hundreds or thousands of years in the future, we’ve solved all of our problems. No more crime, hunger, sickness, any of that stuff. The whole human race is living prosperously and peacefully. Then what? Do we have nothing to do anymore? Of course not: hopefully, in a world like that, we’d all be artists and scientists: creating and discovering things, just because. In which case, the whole point of solving problems was presumably to <em>get</em> to that point.</p>
 
-<p>That’s not very realistic, if you ask me; so here’s the second possibility. We <em>never</em> solve all of our problems. That is, there will always be something “wrong” that needs to be addressed. When then? Are we going to perpetually work on solving problems when the work will never be done? Well, <em>yes</em>, actually; but is that <em>all we’re going to do</em>, to the exclusion of all other things? Seems a bit like <a href="https://en.wikipedia.org/wiki/Sisyphus">Sisyphus</a>, doesn’t it?</p>
+<p>That’s not very realistic, if you ask me; so here’s the second possibility. We <em>never</em> solve all of our problems. That is, there will always be something “wrong” that needs to be addressed. What then? Are we going to perpetually work on solving problems when the work will never be done? Well, <em>yes</em>, actually; but is that <em>all we’re going to do</em>, to the exclusion of all other things? Seems a bit like <a href="https://en.wikipedia.org/wiki/Sisyphus">Sisyphus</a>, doesn’t it?</p>
 
-<p>In either of these scenarios, I think we’re better off not diverting 100% of our attention to the mere solving of problems. It would not be a very gratifying existence. In the first case it ends up that we’re just getting the rough part out of the way, setting up some distant future generation for a <em>truly</em> good life while we toil away in the present. (As noble as that may sound, it still undermines the <em>inherent</em> value of solving problems as more than just a means to an end.) And in the second case we’re essentially devoting our entire existence to maintenance: perpetually chipping away at an issue that’s never going away.</p>
+<p>In either of these scenarios, I think we’re better off not diverting 100% of our attention to the mere solving of problems. It would not be a very gratifying existence. In the first case it ends up that we’re just getting the rough part out of the way, setting up some distant future generation for a <em>truly</em> good life while we toil away in the present. (As noble as that may sound, it still undermines the <em>inherent</em> value of solving problems as more than just a means to an end.) And in the second case we’re devoting all of our energy to what is ultimately just maintenance: perpetually chipping away at an issue that’s never going to be fully resolved.</p>
 
 <p>Of course, I’m not saying that we should forget about solving real problems and turn all of our attention to purely creative or theoretical work. That would be a mistake. Really it comes down to this: solving problems should not be the <em>only</em> thing we think about. Problems are important, and we need people in this world to be working on them. But not <em>every</em> person.</p>
 
@@ -631,32 +711,4 @@ filter(map(x))</code></pre>
 <p>I almost worded this, “whether you <em>are</em> a craftsman or an engineer”; but let’s not get caught up in the idea that these terms actually define individuals. It is a convenient mental grouping, for me; but we are all obviously different and how you define yourself may not jive with the division I’ve drawn here at all—in which case, let me know! Leave a comment, or write an e-mail, or just come talk to me some time if we work together. <a href="#fnref:4" rev="footnote">↩</a></p>
 </li>
 </ol>
-</div>]]></description><pubDate>Wed, 03 Apr 2013 13:18:00 -0700</pubDate><guid>http://philosopherdeveloper.com/posts/am-i-an-engineer.html</guid></item><item><title>Automating yourself</title><link>http://philosopherdeveloper.com/posts/automating-yourself.html</link><description><![CDATA[<p>When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.</p>
-
-<p class="hidden-in-abbreviated-version"><img src="/images/espresso_machine_thumb.jpg" alt="Our espresso machine"></p><p>Our espresso machine</p>
-
-<p>Back in Philly, we’d had a modest kitchen with just enough counter space for the machine. On lazy weekend mornings, I’d often turn it on and prepare us each a latte drink. It was a nice little ritual.</p>
-
-<p>So we brought it to San Francisco with us. But our first apartment, a little studio we rented from a friend of a friend, didn’t have the room for it. So the machine went into storage.</p>
-
-<p>Then in 2011, we moved to our current apartment in the Mission. The espresso machine is back; but we don’t have quite the counter space that we did in Philadelphia, so it’s sitting on a little cart underneath our microwave, unplugged.</p>
-
-<p class="hidden-in-abbreviated-version"><img src="/images/espresso_machine2.jpg" alt="Our espresso machine now"></p><p>Our espresso machine now</p>
-
-<p>This isn’t terribly inconvenient. To use it, I only need to pick it up and set it somewhere—say, on our table—then put it back when I’m finished. Still, the fact remains: <strong>I haven’t used it once</strong><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> since moving here.</p>
-
-<p>How strange, that such a small and seemingly insignificant detail could have such a disproportionate impact on our lives! Instead of plugged in and on the counter, the espresso machine is unplugged and a few feet lower. That’s a small change. But now instead of using the machine every week or so, I <em>never</em> use it. That’s a comparatively <em>big</em> change.</p>
-
-<p>I’ve pondered this from time to time, and an idea that keeps recurring to me is that <strong>we humans are programmable</strong>. At least to an extent. Simply by recognizing that my internal decision-making circuitry seems to ignore the espresso machine when it’s near the ground but will actually commit to using it when it’s on the counter, I can alter my behavior by changing its location.</p>
-
-<p>It’s a silly example, but I think this is actually a really important lesson. The distinction here is essentially the difference between <em>manual</em> and <em>automatic</em> processes. With the espresso machine where it is now, making an espresso is a highly <em>manual</em> process for me—not just the act itself, but even <em>having the idea</em> to make one. Back in Philadelphia, because it was right there in front of me, the idea tended to just pop into my head. Automatically.</p>
-
-<p>We are most effective when we are able to automate the things we do; that much is obvious. But getting software or robots to do all of our grunt work for us isn’t the only kind of automation. The more we can reduce manual deliberation, and say to ourselves less and less, “Remember to do that”–i.e., the more we can automate the way we <em>think</em>–the more we can achieve.</p>
-
-<p>I realize that aside from the espresso machine example this may sound a bit hand-wavy. I intend to address this notion in more concrete terms in a future post; for now I just wanted to get the idea out there.</p>
-<div class="footnotes">
-<hr>
-<ol><li id="fn:1">
-<p>That actually isn’t the full story. The real reason I <em>still</em> haven’t used it is that there’s a part that we apparently lost somewhere between Philadelphia and here. But I’ve only included this detail in a footnote because it doesn’t really change my argument; I only even <em>noticed</em> this part was missing after we’d already been in our new apartment for several months. So it’s clear that I am not using the machine nearly as often as I used to. In addition, I’m hoping that by writing this post I will motivate myself to finally order a replacement for that part! <a href="#fnref:1" rev="footnote">↩</a></p>
-</li></ol>
-</div>]]></description><pubDate>Thu, 28 Feb 2013 06:53:00 -0800</pubDate><guid>http://philosopherdeveloper.com/posts/automating-yourself.html</guid></item></channel></rss>
+</div>]]></description><pubDate>Wed, 03 Apr 2013 13:18:00 -0700</pubDate><guid>http://philosopherdeveloper.com/posts/am-i-an-engineer.html</guid></item></channel></rss>

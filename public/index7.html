@@ -25,6 +25,59 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-2.html'>How I discovered a bug in the C# compiler, part 2</a>
+      </span>
+      <span class='date'>April 03, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>This post continues from where <a href="/posts/how-i-discovered-a-bug-in-the-c-compiler-part-1.html">my last one</a> left off; but don’t worry—I swear I’ll make this one more less rambling and more comprehensible. And rest assured that I will actually get to the explanation this time!</p>
+
+<p>So where did we leave off? We witnessed some truly bizarre behavior of a <strong>mutable value type</strong> within a <strong>using statement</strong> which also happens to include a <strong>closure</strong>. What does this look like?</p>
+
+<p>How about instead of using a custom value type to illustrate, this time I’ll show you what I mean with a type straight from the BCL itself (meaning, this guy was written by Microsoft folks, so you know it’s not just something weird about the way <em>I</em> did things):</p>
+
+<div class="highlight"><pre><span class="kt">var</span> <span class="n">list</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span> <span class="p">};</span>
+
+<span class="c1">// Criterion 1: within a using statement...</span>
+<span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">e</span> <span class="p">=</span> <span class="n">list</span><span class="p">.</span><span class="n">GetEnumerator</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="c1">// Criterion 2: ...which includes a closure...</span>
+    <span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">closure</span> <span class="p">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">;</span>
+    
+    <span class="c1">// Criterion 3: ...a mutable value type...</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">MoveNext</span><span class="p">())</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Current</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><strong>What do you think the above program will print?</strong></p>
+
+<p>Well, if you were paying <em>attention</em> to my last post (and if not—honestly, I totally understand), you’d know the answer already. The above program outputs:</p>
+
+<pre><code>0
+0
+0
+0
+0</code></pre>
+
+<p>…and on and on, ad infinitum.</p>
+
+<p>Remember, this happens <em>specifically</em> when all three of the above criteria (reiterated in the code comments) are met. It does <em>not</em> happen when only one or two of those criteria are met.</p>
+
+<p>Now let’s get to the bottom of this. In order to do so, there are a few puzzle pieces we need to understand.</p>
+
+<h2 id="puzzle_piece_1_how_does_the_c_compiler_implement_closures_1">Puzzle Piece #1: How does the C# compiler implement closures?</h2>
+
+<p>This one’s a head-scratcher for a lot of C# developers who’ve never really looked into the inner workings of closures. I’d<span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-2.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html'>How I discovered a bug in the C# compiler, part 1</a>
       </span>
       <span class='date'>March 31, 2011</span>
@@ -57,7 +110,7 @@
 <span class="p">}</span>
 </pre></div>
 
-<p>This allowed my <code>Enumerator&lt;T&gt;</code> type to behave quite well when used in <code>foreach</code> loops without causing unnecessary garbage collection. And the fact that it was a mutable value type hardly mattered—just like it hardly matters for <code>List&lt;T&gt;.Enumerator</code>, <code>Dictionary&lt;TKey, TValue&gt;.Enumerator</code>, etc. (The only times when it hypothetically matters is when you pass an <code>Enumerator&lt;T&gt;</code> value to a method and for some reason <em>expect</em> the code within the method to affect the <span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html">read the full post</a>)</span></p>
+<p>This allowed my <code>Enumerator&lt;T&gt;</code> type to behave quite well when used in <code>foreach</code> loops without causing unnecessary garbage collection. And the fact that it was a mutable value type hardly mattered—just like it hardly matters for <code>List&lt;T&gt;.Enumerator</code>, <code>Dictionary&lt;TKey, TValue&gt;.Enumerator</code>, etc. (The only times when it hypothetically matters is when you pass an <code>Enumerator&lt;T&gt;</code> value to a method and for some reason <em>expect</em> the code within the method to affect the<span class="post-link">... (<a href="/posts/how-i-discovered-a-bug-in-the-csharp-compiler-part-1.html">read the full post</a>)</span></p>
   </section>
 </article>
 <article class='abbreviated'>
@@ -101,7 +154,7 @@
 
 <li>The elements of the current array are copied over.</li>
 
-<li>A reference to this new <span class="post-link">... (<a href="/posts/sometimes-the-best-strategy-is-to-retreat.html">read the full post</a>)</span>
+<li>A reference to this new<span class="post-link">... (<a href="/posts/sometimes-the-best-strategy-is-to-retreat.html">read the full post</a>)</span>
 </li>
 </ol>
 </li>
@@ -156,37 +209,7 @@
 
 <p>Here’s the basic idea. Clearly utilizing a single array that is resized on certain Add operations would be problematic: allocating a new array and copying all elements to it in a lock-free way would be, at least I have to speculate, quite costly (imagine multiple concurrent threads all copying elements concurrently—seems very wasteful). So I considered using a <em>linked list</em> of arrays, where when an Add call requires additional storage, a new array could be allocated and appended to the linked list. But once you introduce a linked list, random access in O(1) becomes, well, less possible.</p>
 
-<p>I was <em>thinking</em> you probably couldn’t do it with a simple array of arrays (e.g., a <code>List&lt;T[]&gt;</code>) simply because then you’d eventually run into the problem of having to resize the “outer” array eventually. But then it dawned on me: <strong>assuming <code>Count</code> is bounded</strong> <span class="post-link">... (<a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">read the full post</a>)</span></p>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/tempted-by-linq.html'>Tempted by LINQ? Stop and think</a>
-      </span>
-      <span class='date'>February 09, 2011</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p>LINQ is a really awesome tool for .NET developers, just like a hammer is a really awesome tool for a carpenter. But here’s the thing.</p>
-
-<p>Sometimes I feel like, before LINQ, a .NET developer was akin to a carpenter without a hammer. And then the hammer came along, and carpenters the world over <em>totally</em> fell in love with it. It helped them get so many tasks done more quickly than they could before. But this led them to start using hammers in totally unintended ways.</p>
-
-<p>These carpenters would attend meetings where they would ask questions like, “Does anyone know how to use a hammer as a level?” and “Who can show me how to tighten bolts using my hammer?” Some of the older carpenters at these meetings would shake their heads knowingly, while others would enthusiastically chime in with their clever and novel uses for hammers.</p>
-
-<p>Guys, LINQ is just <strong>one tool</strong>. A carpenter wouldn’t use a hammer for every single task he needs to accomplish. Likewise, we should not be using this <em>one</em> feature of .NET to do everything having anything to do with collections within the language.</p>
-
-<p>This is <em>particularly</em> important to me, because I work on code that must be high-performance all the time at work. I remember when I first introduced my teammates to LINQ; one developer on the team in particular got very excited and started using LINQ extension methods all over the place. For example we would find code like this:</p>
-
-<div class="highlight"><pre><span class="k">For</span> <span class="k">Each</span> <span class="n">prod</span> <span class="ow">As</span> <span class="n">Product</span> <span class="ow">In</span> <span class="n">Products</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">Function</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">p</span><span class="p">.</span><span class="n">IsQuoting</span><span class="p">).</span><span class="n">OrderBy</span><span class="p">(</span><span class="n">Function</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">p</span><span class="p">.</span><span class="n">Expiration</span><span class="p">).</span><span class="n">ThenBy</span><span class="p">(</span><span class="n">Function</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">p</span><span class="p">.</span><span class="n">Strike</span><span class="p">)</span>
-    <span class="n">prod</span><span class="p">.</span><span class="n">SendQuotes</span><span class="p">()</span>
-<span class="k">Next</span>
-</pre></div>
-
-<p>Yeah, that’s <em>terrible</em>. <strong>It’s like using a hammer to perform brain surgery.</strong> But how was my teammate to know, or even suspect there was anything wrong with what he was doing?</p>
-
-<p>I think the .NET culture has embraced LINQ <span class="post-link">... (<a href="/posts/tempted-by-linq.html">read the full post</a>)</span></p>
+<p>I was <em>thinking</em> you probably couldn’t do it with a simple array of arrays (e.g., a <code>List&lt;T[]&gt;</code>) simply because then you’d eventually run into the problem of having to resize the “outer” array eventually. But then it dawned on me: <strong>assuming <code>Count</code> is bounded</strong><span class="post-link">... (<a href="/posts/how-to-build-a-thread-safe-lock-free-resizable-array.html">read the full post</a>)</span></p>
   </section>
 </article>
 <div class='next-page'>

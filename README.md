@@ -1,26 +1,87 @@
-The following is the most recent post from my blog, **The Philosopher Developer**, written on July 11, 2013.
+The following is the most recent post from my blog, **The Philosopher Developer**, written on August 06, 2013.
 
 ***
 
-Problem obsession
-=================
+Carousels, context, and judgment
+================================
 
-My last course as a grad student at CMU was *Entrepreneurship for Software Engineers*, in which teams of students basically worked on startup ideas for one semester, sharing their progress and collecting feedback during each class session and presenting to a small group of VC reps at the end of the term. I worked on a silly little app called [InstaPie](http://www.instapie.net)--which I haven't touched in months (mainly because I don't have an Apple computer anymore!), though I *do* plan to pick it back up soon, I swear--and I remember during my presentation to the VCs, one of them asked, "What problem are you trying to solve here?"
+I recently had a brief[^and-i-mean-brief] online exchange with [Matt Copeland](http://matthewcopeland.me/), a former coworker at ThoughtWorks, about the website [shouldiuseacarousel.com](http://shouldiuseacarousel.com/). It's a fun little site presenting several bullet points against the use of carousels (rotating banners) in website UIs[^irony].
 
-This wasn't my first exposure to the question, of course. We'd been taught to always keep this question in our crosshairs, to not lose sight of the goal. Identifying the problem and proposing a solution is an important part of any elevator pitch, I hear. If you can't answer that question, then you've lost your way somehow. Start retracing your steps until you get back to the place where a problem is clear and what you're working on actually solves it.
+I'm no designer or UX expert. Over the years I've noticed that I *do* seem to take a greater interest in frontend-y stuff than most other developers I work with; but that's a far cry from someone with expertise in user experience. Still, when Matt first posted a link to the carousel-bashing site I found myself responding skeptically. Of course, maybe that's because I respond skeptically to pretty much everything that exists in this world.
 
-It makes sense; I won't debate that. Nonetheless, I think this mentality is too fixed in our brains. We have **problem obsession**: always needing to fix something, solve something. Take something *problematic* and address that, rather than just pursuing an idea for its own sake.
+Anyway, this shall be my attempt to explain my skepticism, concisely if I can (but knowing me, I probably can't).
 
-I'm reminded of this whenever I hear people discussing things like space exploration or research into seemingly sci-fi notions like wormholes, or time travel, or [cloning a woolly mammoth](http://www.npr.org/blogs/thetwo-way/2013/05/31/187581614/report-of-liquid-woolly-mammoth-blood-prompts-clone-talk). There's a very practical attitude some people have about this, which is: until we've solved all of our *actual* problems, happening right now, here on Earth, we should put those other things on hold. They're not worth the resources, taxpayer money, etc. I don't have a strong opinion about that, to be honest (the taxpayer money part--if private enterprise is the way forward for space travel, I won't complain); but I do feel these things are important. Almost *more* important, in a way, than solving our problems.
+Judgments require context
+-------------------------
 
-Before you dismiss me as speaking nonsense, let me propose two possibilities.
+Consider this point:
 
-First, let's say that one day, hundreds or thousands of years in the future, we've solved all of our problems. No more crime, hunger, sickness, any of that stuff. The whole human race is living prosperously and peacefully. Then what? Do we have nothing to do anymore? Of course not: hopefully, in a world like that, we'd all be artists and scientists: creating and discovering things, just because. In which case, the whole point of solving problems was presumably to *get* to that point.
+![A point with no context](/images/point-without-context.png)
+{: .plain }
 
-That's not very realistic, if you ask me; so here's the second possibility. We *never* solve all of our problems. That is, there will always be something "wrong" that needs to be addressed. When then? Are we going to perpetually work on solving problems when the work will never be done? Well, *yes*, actually; but is that *all we're going to do*, to the exclusion of all other things? Seems a bit like [Sisyphus](https://en.wikipedia.org/wiki/Sisyphus), doesn't it?
+Where is it? To answer that question we need some frame of *context*, or reference. For example, we could define a plane that the point lies in, with X and Y axes. Let's do that:
 
-In either of these scenarios, I think we're better off not diverting 100% of our attention to the mere solving of problems. It would not be a very gratifying existence. In the first case it ends up that we're just getting the rough part out of the way, setting up some distant future generation for a *truly* good life while we toil away in the present. (As noble as that may sound, it still undermines the *inherent* value of solving problems as more than just a means to an end.) And in the second case we're essentially devoting our entire existence to maintenance: perpetually chipping away at an issue that's never going away.
+![A point on a coordinate system](/images/point-on-coordinate-system.png)
+{: .plain }
 
-Of course, I'm not saying that we should forget about solving real problems and turn all of our attention to purely creative or theoretical work. That would be a mistake. Really it comes down to this: solving problems should not be the *only* thing we think about. Problems are important, and we need people in this world to be working on them. But not *every* person.
+Now we have context. The point is at `(5, 5)`.
 
-Circling back to my experience in the entrepreneurship class at CMU: I think this all struck me with particular force hearing that question from a VC investor. Because there's undoubtedly a lot of awesome innovation happening in Silicon Valley, the Bay Area, and all around the world's other tech centers. But there are also a lot of "problems" getting solved here that maybe aren't really so important, and I blame problem obsession. Maybe we can actually spare a few heads on "It's hard to get a taxi in San Francisco!" and "We're going to turn the restaurant reservation system on its head!" I, for one, would like to see a higher percentage of the talented people in this world making things that are just intriguing, or beautiful, or fun. For its own sake.
+Contexts can be changed
+-----------------------
+
+But wait, is the point really at `(5, 5)`? Or is it just *somewhere*, and we overlaid a pair of axes on top of it? Clearly--in this case at least, since I'm the one writing this!--it's the latter. We could just as easily draw the context like this:
+
+![Same point, different coordinate system](/images/point-on-different-coordinate-system.png)
+{: .plain }
+
+Now the point is "at" `(100, 100)`.
+
+The lesson here is that the context we bring to something affects how we measure it. This example was abstract, but the principle applies to all kinds of things.
+
+Of course, we all know that already, right? Sure--but it's easy to forget it, or to fail to recognize where it applies, especially when the "point" is something we feel strongly about.
+
+Back to carousels
+-----------------
+
+Whether carousels are generally "good" or "bad" isn't a question I have any ambition to answer. If anything, if the UX community seems to have reached a consensus that they're not good, I would tend to yield to that opinion. What I want to point out is simply that this is a case of bring-your-own-context, and that in such cases it's necessary to acknowledge that fact before zeroing in on a judgment.
+
+To be more specific: of the 6 references to information arguing against carousels on [shouldiuseacarousel.com](shouldiuseacarousel.com), 4 of them are explicitly about "clicking" or some other form of user interaction (such as a user performing a "task"[^performing-a-task]). I checked and one of the remaining 2 ([this article on the site WiderFunnel](http://www.widerfunnel.com/conversion-rate-optimization/rotating-offers-the-scourge-of-home-page-design)) similarly appeals to carousels' poor click-through performance. (The other reference I couldn't track down in about 20 seconds of Google searching, so I didn't bother. That's at least 5 out of 6.)
+
+The overall picture I get from this is that carousels are **bad at generating clicks**. This is the context, the frame of reference, that I guess a lot of designers must use in evaluating the effectiveness of some UI element. And maybe that's fair, especially considering how much screen real estate carousels generally take up. (*If it isn't driving clicks, did we really have to make it so big?*) But surely it isn't the *only* possible metric by which we could make a judgment.
+
+Personally, I found the anti-carousel argument arguments presented on the site a little odd at first. I'm not deeply involved in the world of UX, so maybe it's because I haven't internalized the same metrics by which most professionals in that world tend to judge interfaces. But I never thought of carousels as being a vehicle for interactive elements in the first place. I thought of them more as little slide shows, **presenting content in a space-efficient way without requiring the user to scroll**.
+
+Here's an example: [the home page for Regal Cinemas](http://www.regmovies.com/) has a carousel showcasing some of the films that are currently playing in their theaters. This may be good or bad for a host of other reasons; again, I'm no expert. But I *do* think it would be wrong to assume that this particular carousel exists to generate clicks.
+
+![The carousel on the Regal Cinemas home page](/images/good-carousel.png)
+
+See, I actually think that this one makes sense. Yes, there are little interactive elements--links to buy tickets and view the trailer for each film--but they hardly seem like the focus here (as is evidenced by their tiny size and way-off-to-the-bottom-left positioning). I would guess that the implicit purpose of this carousel is simply to give the visitor a quick survey of what's playing right now. To me, it serves that purpose well.
+
+So this is a clear example of how the context you bring to something affects your judgment of that thing. We could judge carousels based on their click generation effectiveness, in which case they look pretty bad:
+
+![](/images/click-generation-effectiveness.png)
+{: .plain }
+
+But we could also judge them based on, say, information density (how much content is presented in a given area of the screen), in which case they would fare much better:
+
+![](/images/information-density.png)
+{: .plain }
+
+Keep in mind that I'm not saying information density is necessarily a worthwhile metric. Simply that it's a *separate* one from click generation--I think that much is obvious--and so answering the question of how carousels measure up on that front requires a different set of questions.
+
+A fixed context is basically dogma
+----------------------------------
+
+As I already said, I'm not here to argue that carousels are awesome. My example of information density is in fact probably a poor one, since I'm guessing most UX professionals would say that too much densely packed information is a bad thing. But if you at least agree that there are multiple ways to judge the elements of a user interface, then it should give you pause when someone says "Don't ever use widgets because they're bad at *X*."
+
+*X* may be important. But it likely isn't the only characteristic by which a widget should be judged. This attitude is analogous to taking the coordinate system from my first example, where the point lies at `(5, 5)`, and treating it as *fixed*, unaware that someone else could use a different system and interpret the point as somewhere else. A person with this mindset might think of the coordinates `(5, 5)` as being an *intrinsic property* of the point, and therefore view the point as inherently either "good" or "bad" based on that. To me, that's pretty much the same thing as dogma: refusing to acknowledge the possibility of other contexts.
+
+I realize that I'm getting a bit heavy-handed at this point, so I'm going to call it a day. I leave you with these words of wisdom:
+
+> "Don't ever use hammers. They're really bad at driving screws."
+
+[^and-i-mean-brief]: As in, literally about 2 Tweets each.
+
+[^irony]: Ironically, the site itself uses a carousel (to drive home the point, I guess).
+
+[^performing-a-task]: And to my dismay, the "task" article about a user failing to recognize a deal displayed on a carousel, appears to be based on *a single user*. **What?** Are we really going to treat that as rigorous research?

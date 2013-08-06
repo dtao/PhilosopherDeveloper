@@ -25,6 +25,69 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/are-strings-really-immutable-in-net.html'>Are strings REALLY immutable in .NET?</a>
+      </span>
+      <span class='date'>May 28, 2010</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p><strong>Edit: <a href="/posts/string-manipulation-in-net-epilogue.html">I wrote a follow-up</a> to this.</strong></p>
+
+<p class="large">True or false:<br>It’s possible to reverse a string in-place in .NET.</p>
+
+<p>The <strong>beginner</strong> says: True! I could do it like this:</p>
+
+<div class="highlight"><pre><span class="k">static</span> <span class="k">void</span> <span class="nf">ReverseString</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="n">str</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span>
+    
+    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="p">&lt;</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">char</span> <span class="n">temp</span> <span class="p">=</span> <span class="n">str</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+        <span class="n">str</span><span class="p">[</span><span class="n">j</span><span class="p">--]</span> <span class="p">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">++]</span> <span class="p">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>I’ve got news for you, friend: <strong>that will not work</strong>. It won’t even <em>compile</em>, in fact. While you can <em>access</em> the characters in a string by index, you cannot <em>set</em> them.</p>
+
+<p>The <strong>intermediate developer</strong> says: False! <a href="http://msdn.microsoft.com/en-us/library/system.string.aspx#remarksToggle">Strings are immutable</a> in .NET.</p>
+
+<p>Good answer! It’s a well-known fact (among experienced .NET developers) that the <code>System.String</code> class is designed to be immutable; you cannot change an instance once it has been instantiated.</p>
+
+<p>This is what often confuses rookie developers who try to write code like the following and fail to understand why it doesn’t work:</p>
+
+<div class="highlight"><pre><span class="kt">string</span> <span class="n">str</span> <span class="p">=</span> <span class="s">"Hello!"</span><span class="p">;</span>
+
+<span class="n">str</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="sc">'H'</span><span class="p">,</span> <span class="sc">'J'</span><span class="p">);</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+</pre></div>
+
+<p>The above program outputs “Hello!”, not “Jello!” as some might expect. This is because the <code>String.Replace</code> method <em>returns a new string</em> resulting from the replacement operation. In other words, the program could be “fixed” as follows:</p>
+
+<div class="highlight"><pre><span class="kt">string</span> <span class="n">str</span> <span class="p">=</span> <span class="s">"Hello!"</span><span class="p">;</span>
+
+<span class="c1">// notice: here we are assigning str</span>
+<span class="c1">// to a new object</span>
+<span class="n">str</span> <span class="p">=</span> <span class="n">str</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="sc">'H'</span><span class="p">,</span> <span class="sc">'J'</span><span class="p">);</span>
+
+<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+</pre></div>
+
+<p>This is standard behavior for any immutable type (which includes all of the primitive types in .NET such as <code>int</code>, <code>double</code>, <code>bool</code>, etc., as well as <code>DateTime</code> and <code>string</code>).</p>
+
+<p>OK, so, since strings are immutable, clearly you can’t reverse one in-place, right? So the answer must be false?</p>
+
+<p>The <strong>master</strong> says: <strong>True</strong>.</p>
+<strong><em>Whaaaaaaaaaaat?!?!?</em></strong>
+<p>OK, first of all, you can use the <code>fixed</code> keyword in C# to access a string from a char pointer. This<span class="post-link">... (<a href="/posts/are-strings-really-immutable-in-net.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/whats-annoying-about-sorted-list-index-of-key.html'>What's annoying about SortedList<TKey, TValue>.IndexOfKey</a>
       </span>
       <span class='date'>May 24, 2010</span>
@@ -56,7 +119,7 @@
     <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
 </pre></div>
 
-<p><strong>Seriously</strong>? You’re telling me <code>IndexOfKey</code> <em>actually uses <code>Array.BinarySearch(T)</code></em>, <span class="post-link">... (<a href="/posts/whats-annoying-about-sorted-list-index-of-key.html">read the full post</a>)</span></p>
+<p><strong>Seriously</strong>? You’re telling me <code>IndexOfKey</code> <em>actually uses <code>Array.BinarySearch(T)</code></em>,<span class="post-link">... (<a href="/posts/whats-annoying-about-sorted-list-index-of-key.html">read the full post</a>)</span></p>
   </section>
 </article>
 <article class='abbreviated'>
@@ -101,7 +164,7 @@
 <div class="highlight"><pre><span class="kt">int</span> <span class="n">int32</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
 <span class="kt">object</span> <span class="n">boxedInt32</span> <span class="p">=</span> <span class="n">int32</span><span class="p">;</span>
 <span class="kt">long</span> <span class="n">int64</span>
-</pre></div> <span class="post-link">... (<a href="/posts/difference-between-converting-and-unboxing.html">read the full post</a>)</span>
+</pre></div><span class="post-link">... (<a href="/posts/difference-between-converting-and-unboxing.html">read the full post</a>)</span>
   </section>
 </article>
     <footer>

@@ -25,6 +25,36 @@
   <header>
     <h1>
       <span class='title'>
+        <a href='/posts/tempted-by-linq.html'>Tempted by LINQ? Stop and think</a>
+      </span>
+      <span class='date'>February 09, 2011</span>
+    </h1>
+  </header>
+  <section class='content'>
+    <p>LINQ is a really awesome tool for .NET developers, just like a hammer is a really awesome tool for a carpenter. But here’s the thing.</p>
+
+<p>Sometimes I feel like, before LINQ, a .NET developer was akin to a carpenter without a hammer. And then the hammer came along, and carpenters the world over <em>totally</em> fell in love with it. It helped them get so many tasks done more quickly than they could before. But this led them to start using hammers in totally unintended ways.</p>
+
+<p>These carpenters would attend meetings where they would ask questions like, “Does anyone know how to use a hammer as a level?” and “Who can show me how to tighten bolts using my hammer?” Some of the older carpenters at these meetings would shake their heads knowingly, while others would enthusiastically chime in with their clever and novel uses for hammers.</p>
+
+<p>Guys, LINQ is just <strong>one tool</strong>. A carpenter wouldn’t use a hammer for every single task he needs to accomplish. Likewise, we should not be using this <em>one</em> feature of .NET to do everything having anything to do with collections within the language.</p>
+
+<p>This is <em>particularly</em> important to me, because I work on code that must be high-performance all the time at work. I remember when I first introduced my teammates to LINQ; one developer on the team in particular got very excited and started using LINQ extension methods all over the place. For example we would find code like this:</p>
+
+<div class="highlight"><pre><span class="k">For</span> <span class="k">Each</span> <span class="n">prod</span> <span class="ow">As</span> <span class="n">Product</span> <span class="ow">In</span> <span class="n">Products</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">Function</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">p</span><span class="p">.</span><span class="n">IsQuoting</span><span class="p">).</span><span class="n">OrderBy</span><span class="p">(</span><span class="n">Function</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">p</span><span class="p">.</span><span class="n">Expiration</span><span class="p">).</span><span class="n">ThenBy</span><span class="p">(</span><span class="n">Function</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="n">p</span><span class="p">.</span><span class="n">Strike</span><span class="p">)</span>
+    <span class="n">prod</span><span class="p">.</span><span class="n">SendQuotes</span><span class="p">()</span>
+<span class="k">Next</span>
+</pre></div>
+
+<p>Yeah, that’s <em>terrible</em>. <strong>It’s like using a hammer to perform brain surgery.</strong> But how was my teammate to know, or even suspect there was anything wrong with what he was doing?</p>
+
+<p>I think the .NET culture has embraced LINQ<span class="post-link">... (<a href="/posts/tempted-by-linq.html">read the full post</a>)</span></p>
+  </section>
+</article>
+<article class='abbreviated'>
+  <header>
+    <h1>
+      <span class='title'>
         <a href='/posts/multithreading-and-multitasking.html'>Multithreading and multitasking</a>
       </span>
       <span class='date'>February 04, 2011</span>
@@ -43,7 +73,7 @@
     
     <figure><img src="/images/context-switching.png" alt="An illustration of context switching between driving and talking"><figcaption>An illustration of context switching between driving and talking</figcaption></figure>
     
-    <p>Computers are exactly like this too. This is becoming less true now that dual-core, quad-core, even six-core processors (this will likely only keep increasing) have become the norm, at least on desktop computers (and <em>especially</em> on servers, where 24 cores or more is not at <span class="post-link">... (<a href="/posts/multithreading-and-multitasking.html">read the full post</a>)</span></p>
+    <p>Computers are exactly like this too. This is becoming less true now that dual-core, quad-core, even six-core processors (this will likely only keep increasing) have become the norm, at least on desktop computers (and <em>especially</em> on servers, where 24 cores or more is not at<span class="post-link">... (<a href="/posts/multithreading-and-multitasking.html">read the full post</a>)</span></p>
   </section>
 </article>
 <article class='abbreviated'>
@@ -79,7 +109,7 @@
 <span class="p">}</span>
 </pre></div>
 
-<p>If I were to ask you, <em>What does the above code do?</em>, an initial response might be that <span class="post-link">... (<a href="/posts/terminating-condition.html">read the full post</a>)</span></p>
+<p>If I were to ask you, <em>What does the above code do?</em>, an initial response might be that<span class="post-link">... (<a href="/posts/terminating-condition.html">read the full post</a>)</span></p>
   </section>
 </article>
 <article class='abbreviated'>
@@ -151,70 +181,7 @@
             <span class="n">mutableStrings</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">s</span><span class="p">;</span>
             <span class="n">arrays</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">=</span> <span class="n">s</span><span class="p">.</span><span class="n">ToCharArray</span><span class="p">();</span>
         <span class="p">}</span>
-</pre></div> <span class="post-link">... (<a href="/posts/string-manipulation-in-net-epilogue.html">read the full post</a>)</span>
-  </section>
-</article>
-<article class='abbreviated'>
-  <header>
-    <h1>
-      <span class='title'>
-        <a href='/posts/are-strings-really-immutable-in-net.html'>Are strings REALLY immutable in .NET?</a>
-      </span>
-      <span class='date'>May 28, 2010</span>
-    </h1>
-  </header>
-  <section class='content'>
-    <p><strong>Edit: <a href="/posts/string-manipulation-in-net-epilogue.html">I wrote a follow-up</a> to this.</strong></p>
-
-<p class="large">True or false:<br>It’s possible to reverse a string in-place in .NET.</p>
-
-<p>The <strong>beginner</strong> says: True! I could do it like this:</p>
-
-<div class="highlight"><pre><span class="k">static</span> <span class="k">void</span> <span class="nf">ReverseString</span><span class="p">(</span><span class="kt">string</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="n">str</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span>
-    
-    <span class="k">while</span> <span class="p">(</span><span class="n">i</span> <span class="p">&lt;</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">char</span> <span class="n">temp</span> <span class="p">=</span> <span class="n">str</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-        <span class="n">str</span><span class="p">[</span><span class="n">j</span><span class="p">--]</span> <span class="p">=</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-        <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">++]</span> <span class="p">=</span> <span class="n">temp</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-<p>I’ve got news for you, friend: <strong>that will not work</strong>. It won’t even <em>compile</em>, in fact. While you can <em>access</em> the characters in a string by index, you cannot <em>set</em> them.</p>
-
-<p>The <strong>intermediate developer</strong> says: False! <a href="http://msdn.microsoft.com/en-us/library/system.string.aspx#remarksToggle">Strings are immutable</a> in .NET.</p>
-
-<p>Good answer! It’s a well-known fact (among experienced .NET developers) that the <code>System.String</code> class is designed to be immutable; you cannot change an instance once it has been instantiated.</p>
-
-<p>This is what often confuses rookie developers who try to write code like the following and fail to understand why it doesn’t work:</p>
-
-<div class="highlight"><pre><span class="kt">string</span> <span class="n">str</span> <span class="p">=</span> <span class="s">"Hello!"</span><span class="p">;</span>
-
-<span class="n">str</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="sc">'H'</span><span class="p">,</span> <span class="sc">'J'</span><span class="p">);</span>
-
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
-</pre></div>
-
-<p>The above program outputs “Hello!”, not “Jello!” as some might expect. This is because the <code>String.Replace</code> method <em>returns a new string</em> resulting from the replacement operation. In other words, the program could be “fixed” as follows:</p>
-
-<div class="highlight"><pre><span class="kt">string</span> <span class="n">str</span> <span class="p">=</span> <span class="s">"Hello!"</span><span class="p">;</span>
-
-<span class="c1">// notice: here we are assigning str</span>
-<span class="c1">// to a new object</span>
-<span class="n">str</span> <span class="p">=</span> <span class="n">str</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="sc">'H'</span><span class="p">,</span> <span class="sc">'J'</span><span class="p">);</span>
-
-<span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
-</pre></div>
-
-<p>This is standard behavior for any immutable type (which includes all of the primitive types in .NET such as <code>int</code>, <code>double</code>, <code>bool</code>, etc., as well as <code>DateTime</code> and <code>string</code>).</p>
-
-<p>OK, so, since strings are immutable, clearly you can’t reverse one in-place, right? So the answer must be false?</p>
-
-<p>The <strong>master</strong> says: <strong>True</strong>.</p>
-<strong><em>Whaaaaaaaaaaat?!?!?</em></strong>
-<p>OK, first of all, you can use the <code>fixed</code> keyword in C# to access a string from a char pointer. This <span class="post-link">... (<a href="/posts/are-strings-really-immutable-in-net.html">read the full post</a>)</span></p>
+</pre></div><span class="post-link">... (<a href="/posts/string-manipulation-in-net-epilogue.html">read the full post</a>)</span>
   </section>
 </article>
 <div class='next-page'>

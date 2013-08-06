@@ -118,8 +118,17 @@ class Post
     @@do_image_manipulation
   end
 
-  attr_reader :identifier, :date, :title, :published
-  attr_accessor :include_date, :include_social_links, :allow_comments, :previous, :next
+  attr_reader :identifier,
+    :date,
+    :title,
+    :published
+
+  attr_accessor :include_date,
+    :include_social_links,
+    :allow_comments,
+    :snippet_paragraphs,
+    :previous,
+    :next
 
   def comments
     Comment.all(:post_identifier => self.identifier)
@@ -188,6 +197,7 @@ class Post
     @include_date = true
     @include_social_links = true
     @allow_comments = true
+    @snippet_paragraphs = info["snippet_paragraphs"]
   end
 
   def get_html_fragment(max_length=nil)
@@ -199,9 +209,23 @@ class Post
     raw_html = Maruku.new(markdown).to_html
 
     if max_length
-      raw_html = HTML_Truncator.truncate(raw_html, max_length, {
-        :ellipsis => " <span class=\"post-link\">... (<a href=\"#{link}\">read the full post</a>)</span>"
-      })
+      ellipsis = "<span class=\"post-link\">... (<a href=\"#{link}\">read the full post</a>)</span>"
+
+      if snippet_paragraphs
+        raw_html = begin
+          paragraphs = []
+          Nokogiri::HTML.fragment(raw_html).children[0..(snippet_paragraphs + 1)].each_with_index do |paragraph, index|
+            paragraphs << paragraph.to_html
+          end
+          paragraphs << "<p>#{ellipsis}</p>"
+          paragraphs.join("\n")
+        end
+
+      else
+        raw_html = HTML_Truncator.truncate(raw_html, max_length, {
+          :ellipsis => ellipsis
+        })
+      end
     end
 
     Nokogiri::HTML.fragment(raw_html)
