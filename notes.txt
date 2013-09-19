@@ -1,6 +1,0 @@
-Requirements for Fedora:
-
-- For eventmachine:
-	yum install make automake gcc gcc-c++ kernel-devel
-- For nokogiri:
-	yum install libxml-devel libxslt-devel
