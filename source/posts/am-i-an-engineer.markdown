@@ -9,7 +9,6 @@ Most people outside of the software development profession (and even many on the
 Let's say you placed software developers along a spectrum, where at one end "engineering" might as well be a foreign word, and at the other end writing software is *obviously* a form of engineering, in much the same way that painting or sculpture is obviously a form of art.
 
 ![Is software development a form of engineering?](/images/engineering-spectrum.png)
-{: .plain }
 
 Personally, I have worked at various points along this spectrum. My first developer job was at a trading company in Philadelphia, which would have fallen pretty close to the extreme left end. At [ThoughtWorks](http://www.thoughtworks.com) I would say the culture was somewhere in the middle, with plenty of developers leaning in both directions (I definitely worked with self-professed "engineers" at ThoughtWorks, as well as individuals who vehemently rejected the label).
 

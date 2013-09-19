@@ -68,7 +68,6 @@ Activity                       | Relative Value of activity | Hours spent on act
 -------------------------------|---------------------------:|------------------------:|
 Implementing reporting backend | 10                         | 3                       |
 Fiddling with chart rendering  | 1                          | 5                       |
-{: #activity-value-vs-time-table .hidden }
 
 Of course, like any good developer, I eventually would get around to writing reusable methods with easier-to-remember interfaces and use *those* to render my charts. But at some point I noticed a pattern: mostly I was putting charts **where tables already were**. The point of the chart was to display the data in a visual form, to make it a bit easier to parse for a human. The work of translating the data in the table to JavaScript code to render the chart was tedious, but easily repeatable.
 

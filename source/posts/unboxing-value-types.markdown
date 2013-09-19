@@ -74,7 +74,6 @@ This explains the discrepancy between Damien_The_Unbeliever's answer and yodaj00
 I will henceforth refer to this phenomenon as:
 
 **Enum-Integer Duality**
-{: .centered }
 
 The unboxing mystery—what had been the "missing link" in my mind—is solved by understanding how the **JIT compiler gives special treatment to enum values**. So there you have it.
 

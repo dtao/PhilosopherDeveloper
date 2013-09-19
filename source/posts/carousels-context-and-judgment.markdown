@@ -16,12 +16,10 @@ Judgments require context
 Consider this point:
 
 ![A point with no context](/images/point-without-context.png)
-{: .plain }
 
 Where is it? To answer that question we need some frame of *context*, or reference. For example, we could define a plane that the point lies in, with X and Y axes. Let's do that:
 
 ![A point on a coordinate system](/images/point-on-coordinate-system.png)
-{: .plain }
 
 Now we have context. The point is at `(5, 5)`.
 
@@ -31,7 +29,6 @@ Contexts can be changed
 But wait, is the point really at `(5, 5)`? Or is it just *somewhere*, and we overlaid a pair of axes on top of it? Clearly---in this case at least, since I'm the one writing this!--it's the latter. We could just as easily draw the context like this:
 
 ![Same point, different coordinate system](/images/point-on-different-coordinate-system.png)
-{: .plain }
 
 Now the point is "at" `(100, 100)`.
 
@@ -59,12 +56,10 @@ See, I actually think that this one makes sense. Yes, there are little interacti
 So this is a clear example of how the context you bring to something affects your judgment of that thing. We could judge carousels based on their click generation effectiveness, in which case they look pretty bad:
 
 ![](/images/click-generation-effectiveness.png)
-{: .plain }
 
 But we could also judge them based on, say, information density (how much content is presented in a given area of the screen), in which case they would fare much better:
 
 ![](/images/information-density.png)
-{: .plain }
 
 Keep in mind that I'm not saying information density is necessarily a worthwhile metric. Simply that it's a *separate* one from click generation---I think that much is obvious---and so answering the question of how carousels measure up on that front requires a different set of questions.
 

@@ -9,7 +9,6 @@ Earlier today a user on Stack Overflow posted the question, ["Does the `??` oper
 A fair number of users responded with the obvious jab: "Why don't you just write a test and see for yourself?" It's a pretty reasonable question. To find the answer one way or another would only require a few lines of code in a simple tool (like [SimpleDevelop](https://github.com/dtao/SimpleDevelop)!) and less than a minute.
 
 ![Lock and key](/images/lock-and-key.jpg)
-{: .no-caption }
 
 But the user replied, "I wanted to know authoritatively."
 
@@ -28,7 +27,6 @@ Now, before I go any further, I just want to be clear: I *basically* agree with 
 Here's another: maybe **documentation** doesn't give us the final say *either*. After all, those of us who've been in the software industry for more than a week know that *specified behavior* and *actual behavior* are (sadly) seldom the same thing.
 
 ![Project management](/images/project-management-cartoon.png)
-{: .no-caption }
 
 This can happen for multiple reasons. One reason is that the specified behavior wasn't properly thought out, or doesn't meet the targeted business need(s) as well as the software itself does. This is actually a fairly OK scenario: "The software's right; we just goofed on the documentation."
 
@@ -41,7 +39,6 @@ But even supposing they *are* the same thing, software *changes*—often **more 
 And then there's always this.
 
 ![Documentation](/images/how-the-project-was-documented.png)
-{: .no-caption }
 
 Quite often, software just flat-out **isn't documented at all**.
 

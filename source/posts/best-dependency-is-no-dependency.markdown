@@ -27,7 +27,6 @@ But you know what? I actually think there's something to this. A couple of thing
 First, there's the "fastest" claim and that absurd graph. Obviously, if the library does *nothing*, it's as "fast" as it can possibly get. But, you know, I say "obviously"; yet it's very easy to forget this fundamental axiom:
 
 You make software *faster* by making it *do less*.
-{: .large }
 
 (This concept is clearly not original to me. I'm sure I've read an article or blog post specifically about this idea somewhere else; unfortunately, I was not able to find a reference with a quick Google search.)
 
@@ -40,7 +39,6 @@ But the other point this brought to my mind is not performance-related. It has t
 For a taste of what I'm talking about, here is a collage of the dependencies (that I can *think* of) we have on my current project:
 
 ![Dependencies](/images/dependency-overload.jpg)
-{: .plain .no-caption }
 
 (There's not really any good reason HAML goes in the center. [Picasa](http://http://picasa.google.com/) chose to put it there.)
 

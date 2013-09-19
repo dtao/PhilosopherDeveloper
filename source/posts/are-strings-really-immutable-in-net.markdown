@@ -8,7 +8,6 @@ published: true
 
 True or false:  
 It's possible to reverse a string in-place in .NET.
-{: .large }
 
 The **beginner** says: True! I could do it like this:
 

@@ -27,7 +27,6 @@ Watch the following video and count how many times the players in white pass the
 .  
 .  
 .  
-{: .centered }
 
 **Did you see the gorilla?** OK, the truth is: *I* did, but only because I was expecting it (the name of the website where I first saw the video, [The Invisible Gorilla](http://www.theinvisiblegorilla.com/), kind of gives it away). Apparently a lot of viewers do *not* see the gorilla, though, because they are too busy focusing on the people throwing and catching the ball to notice it.
 

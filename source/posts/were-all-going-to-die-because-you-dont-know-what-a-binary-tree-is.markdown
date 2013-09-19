@@ -86,7 +86,6 @@ This is why I think the Singularity could actually happen. It isn't that any one
 There's no doubt that the people working in these fields are ridiculously smart. I'm not trying to say they're clueless. **But that doesn't mean that each group understands the work of every other group.** They're *tinkerers*, and, as with me and most other software developers, their curiosity can sometimes (perhaps even *most* of the time) outpace their understanding. It's only a matter of time before somebody puts it all together in a way he or she doesn't fully grasp, and then **boom**.
 
 Robot Apocalypse.
-{: .huge }
 
 That's right, I said it. *We're all doomed.*
 

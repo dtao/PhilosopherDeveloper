@@ -31,7 +31,6 @@ void Respond()
 If I were to ask you, *What does the above code do?*, an initial response might be that it will print the words "Provoke!" and "Respond!" to the console over and over again, indefinitely. This might be one way to depict such a process:
 
 ![Provoke and respond](/images/provoke-respond.png)
-{: .plain }
 
 This is how I believe we tend to *visualize* back-and-forth personal conflicts (if we are visual thinkers, anyway). We think of individuals locked in an ongoing dispute as somewhat akin to [Dr. Seuss's The Zax](http://www.youtube.com/watch?v=_MVdgz2ghhw), eternally stubborn, never budging. If two individuals are belligerent enough, and stubborn enough, they just might argue *forever* while the world around them moves on.
 
@@ -44,7 +43,6 @@ How many times have you thought this about two people arguing? *This could go on
 For the not-so-programmatically-inclined, a bit of explanation: **recursion** is like the [Ouroboros](http://en.wikipedia.org/wiki/Ouroboros), a dragon (or snake) devouring itself tail-first. A simple example of a recursive mathematical formula might look like this (forgive me if this notation is a little off; it's been a while since I've done any *real* math!):
 
 ![A simple recursive formula](/images/simple-recursive-formula.png)
-{: .plain }
 
 Even if that looks like gibberish to you (not to insult anyone's intelligence---I just don't want to assume anything about my potential readers), notice one important detail: the function *f(n)* appears to be **defined in terms of itself**. (Contemplating the above formula for a moment, you may realize that it defines one way of calculating the sum of positive integers from 1 to *n*. Suppose *n* is 5, for example. One way to compute the sum of the numbers 1–5 would be to take the sum of the numbers 1–4 and add 5, right? Likewise, to get the sum of the numbers 1–4 you could take the sum of the numbers 1–3 and add 4. Continue following this process all the way down to 1, and you finally reach a stopping point: the sum of the numbers 1–1 is simply 1.)
 
@@ -53,12 +51,10 @@ So you can see why I compared recursion to Ouroboros. In order to progress along
 To illustrate this fact, consider the following "simplified" version of the above formula, in which I have eliminated the *n = 1* branch:
 
 ![A recursive formula with a bit of a problem](/images/oversimplified-recursive-formula.png)
-{: .plain }
 
 At first, this formula appears to behave no differently from the first one. If *n = 5*, then we have:
 
 ![Revealing the flaw in the oversimplified recursive formula](/images/expanded-oversimplified-recursive-formula.png)
-{: .plain }
 
 But wait... when does that formula *end*? **It doesn't**. It goes to *f(1)*, then to *f(0)*, then to *f(-1)*, on and on, infinitely.
 
