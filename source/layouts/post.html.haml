@@ -2,7 +2,19 @@
   %article
     - if is_blog_article?
       %header
-        %h1= current_article.friendly_date
+        %h1
+          = current_article.friendly_date
+          %span.comments= link_to("", "#{current_article.url}#disqus_thread")
 
     = find_and_preserve do
       = yield
+
+    #disqus_thread
+
+- if is_blog_article?
+  :javascript
+    window.disqus_shortname = "philosopherdeveloper";
+    window.disqus_title = "#{current_article.title.gsub('"', '\"')}";
+
+  = javascript_include_tag("disqus")
+  = javascript_include_tag("disqusCount")
