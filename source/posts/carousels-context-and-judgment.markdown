@@ -28,7 +28,7 @@ Now we have context. The point is at `(5, 5)`.
 Contexts can be changed
 -----------------------
 
-But wait, is the point really at `(5, 5)`? Or is it just *somewhere*, and we overlaid a pair of axes on top of it? Clearly--in this case at least, since I'm the one writing this!--it's the latter. We could just as easily draw the context like this:
+But wait, is the point really at `(5, 5)`? Or is it just *somewhere*, and we overlaid a pair of axes on top of it? Clearly---in this case at least, since I'm the one writing this!--it's the latter. We could just as easily draw the context like this:
 
 ![Same point, different coordinate system](/images/point-on-different-coordinate-system.png)
 {: .plain }
@@ -37,7 +37,7 @@ Now the point is "at" `(100, 100)`.
 
 The lesson here is that the context we bring to something affects how we measure it. This example was abstract, but the principle applies to all kinds of things.
 
-Of course, we all know that already, right? Sure--but it's easy to forget it, or to fail to recognize where it applies, especially when the "point" is something we feel strongly about.
+Of course, we all know that already, right? Sure---but it's easy to forget it, or to fail to recognize where it applies, especially when the "point" is something we feel strongly about.
 
 Back to carousels
 -----------------
@@ -54,7 +54,7 @@ Here's an example: [the home page for Regal Cinemas](http://www.regmovies.com/) 
 
 ![The carousel on the Regal Cinemas home page](/images/good-carousel.png)
 
-See, I actually think that this one makes sense. Yes, there are little interactive elements--links to buy tickets and view the trailer for each film--but they hardly seem like the focus here (as is evidenced by their tiny size and way-off-to-the-bottom-left positioning). I would guess that the implicit purpose of this carousel is simply to give the visitor a quick survey of what's playing right now. To me, it serves that purpose well.
+See, I actually think that this one makes sense. Yes, there are little interactive elements---links to buy tickets and view the trailer for each film---but they hardly seem like the focus here (as is evidenced by their tiny size and way-off-to-the-bottom-left positioning). I would guess that the implicit purpose of this carousel is simply to give the visitor a quick survey of what's playing right now. To me, it serves that purpose well.
 
 So this is a clear example of how the context you bring to something affects your judgment of that thing. We could judge carousels based on their click generation effectiveness, in which case they look pretty bad:
 
@@ -66,7 +66,7 @@ But we could also judge them based on, say, information density (how much conten
 ![](/images/information-density.png)
 {: .plain }
 
-Keep in mind that I'm not saying information density is necessarily a worthwhile metric. Simply that it's a *separate* one from click generation--I think that much is obvious--and so answering the question of how carousels measure up on that front requires a different set of questions.
+Keep in mind that I'm not saying information density is necessarily a worthwhile metric. Simply that it's a *separate* one from click generation---I think that much is obvious---and so answering the question of how carousels measure up on that front requires a different set of questions.
 
 A fixed context is basically dogma
 ----------------------------------

@@ -4,7 +4,7 @@ date: 2011-02-24
 published: true
 ---
 
-Well, I've finished an initial implementation of a `ConcurrentList<T>` data structure. It implements the `IList<T>` interface (partially--no `Insert`, `RemoveAt`, etc.--it is an append-only structure) and is both **thread-safe** and **lock-free**.
+Well, I've finished an initial implementation of a `ConcurrentList<T>` data structure. It implements the `IList<T>` interface (partially---no `Insert`, `RemoveAt`, etc.--it is an append-only structure) and is both **thread-safe** and **lock-free**.
 
 (I also came up with a few different ways to resolve the `Count` issue mentioned in my previous post; what I've settled on for now is basically the most obvious and straightforward version.)
 

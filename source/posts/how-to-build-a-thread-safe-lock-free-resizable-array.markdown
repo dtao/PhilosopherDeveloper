@@ -17,7 +17,7 @@ OK, so, **how do we do it**?
 
 Before I even describe my idea (still a work in progress), I should disclose the fact that, to my simultaneous disappointment and delight, it appears I managed to come up with a concept on my own that is *remarkably* similar to what researchers at Texas A&M University, including [Bjarne Stroustrup](http://en.wikipedia.org/wiki/Bjarne_Stroustrup), [designed and published](http://www.stroustrup.com/lock-free-vector.pdf).
 
-Here's the basic idea. Clearly utilizing a single array that is resized on certain Add operations would be problematic: allocating a new array and copying all elements to it in a lock-free way would be, at least I have to speculate, quite costly (imagine multiple concurrent threads all copying elements concurrently--seems very wasteful). So I considered using a *linked list* of arrays, where when an Add call requires additional storage, a new array could be allocated and appended to the linked list. But once you introduce a linked list, random access in O(1) becomes, well, less possible.
+Here's the basic idea. Clearly utilizing a single array that is resized on certain Add operations would be problematic: allocating a new array and copying all elements to it in a lock-free way would be, at least I have to speculate, quite costly (imagine multiple concurrent threads all copying elements concurrently---seems very wasteful). So I considered using a *linked list* of arrays, where when an Add call requires additional storage, a new array could be allocated and appended to the linked list. But once you introduce a linked list, random access in O(1) becomes, well, less possible.
 
 I was *thinking* you probably couldn't do it with a simple array of arrays (e.g., a `List<T[]>`) simply because then you'd eventually run into the problem of having to resize the "outer" array eventually. But then it dawned on me: **assuming `Count` is bounded at `int.MaxValue`, we could actually use a *fixed-size* array of arrays.**
 
@@ -99,7 +99,7 @@ public void Add(T element)
 }
 ```
 
-Notice anything fishy? The call to `Interlocked.Increment(ref m_index)` happens *before* `element` is inserted into the array, which means using `m_index` as `Count` will result in "false positives," by which I mean values *higher* than the actual number of elements inserted. However, the "workaround" in the above implementation--maintaining a separate `m_count` field and calling `Interlocked.Increment(ref m_count)` at the end of the `Add` method--also has a flaw: if two `Add` operations take place concurrently, `m_count` may be incremented after the *higher* index **first**, resulting in the following problem:
+Notice anything fishy? The call to `Interlocked.Increment(ref m_index)` happens *before* `element` is inserted into the array, which means using `m_index` as `Count` will result in "false positives," by which I mean values *higher* than the actual number of elements inserted. However, the "workaround" in the above implementation---maintaining a separate `m_count` field and calling `Interlocked.Increment(ref m_count)` at the end of the `Add` method---also has a flaw: if two `Add` operations take place concurrently, `m_count` may be incremented after the *higher* index **first**, resulting in the following problem:
 
 ```csharp
 for (int i = 0; i < list.Count; ++i)

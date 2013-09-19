@@ -6,7 +6,7 @@ published: true
 
 I bet you weren't expecting any sane developer to make this argument!
 
-Well, to be fair, the title of this post is somewhat intentionally provocative[^provocative-title]. But anyway, you're here now; so it served its purpose. And make no mistake: I *am* going to defend global state--just possibly not in quite the way you might be expecting.
+Well, to be fair, the title of this post is somewhat intentionally provocative[^provocative-title]. But anyway, you're here now; so it served its purpose. And make no mistake: I *am* going to defend global state---just possibly not in quite the way you might be expecting.
 
 What we mean by global state
 ----------------------------
@@ -38,7 +38,7 @@ More to the point: if I acknowledge the drawbacks of global state, why do I also
 Deciding what should be global
 ------------------------------
 
-I think the real question with global state comes down to considering a section of code, and deciding *what should be flexible*. That may sound obvious on one hand--variables are things that change, so we use variables where we want to allow flexibility--but on the other, I suspect the idea of making this decision feels somewhat foreign to lots of developers. Many of us have come to accept, almost without thinking, that flexibility is an inherent good. Invariant, inflexible aspects of a software system are perceived as weaknesses or poor design. Flexibility, modularity, reusability: these are all sort of rolled up into one big bundle of attributes we automatically ascribe to any "good" or "well-written" software.
+I think the real question with global state comes down to considering a section of code, and deciding *what should be flexible*. That may sound obvious on one hand---variables are things that change, so we use variables where we want to allow flexibility---but on the other, I suspect the idea of making this decision feels somewhat foreign to lots of developers. Many of us have come to accept, almost without thinking, that flexibility is an inherent good. Invariant, inflexible aspects of a software system are perceived as weaknesses or poor design. Flexibility, modularity, reusability: these are all sort of rolled up into one big bundle of attributes we automatically ascribe to any "good" or "well-written" software.
 
 But fundamentally, we human beings are limited in our mental capacity. Infinitely flexible systems are not in our best interest, for the simple reason that flexibility demands our attention[^flexibility-demands-attention]. And so choosing the scope of a variable is really a matter of deciding **at what point some information should require our attention**, and at what point we should be able to take it for granted.
 
@@ -47,18 +47,18 @@ There's a great section of [Gödel, Escher, Bach](http://www.amazon.com/Gödel-E
 Hofstadter goes on to compare the functioning of these knobs on the TV to "constants," "parameters," and "variables"--terms that should be quite familiar to any software developer:
 
 > We build up our mental representation of a situation layer by layer. The lowest
-> layer establishes the deepest aspect of the context--sometimes being so low that it cannot
+> layer establishes the deepest aspect of the context---sometimes being so low that it cannot
 > vary at all. For instance, the three-dimensionality of our world is so ingrained that most
 > of us never would imagine letting it slip mentally. It is a constant constant. Then there are
 > layers which establish temporarily, though not permanently, fixed aspects of situations,
-> which could be called background assumptions--things which, in the back of your mind,
+> which could be called background assumptions---things which, in the back of your mind,
 > you know can vary, but which most of the time you unquestioningly accept as
 > unchanging aspects. These could still be called "constants". For instance, when you go to
 > a football game, the rules of the game are constants of that sort. Then there are
 > "parameters": you think of them as more variable, but you temporarily hold them
 > constant. At a football game, parameters might include the weather, the opposing team,
-> and so forth. There could be--and probably are--several layers of parameters. Finally, we
-> reach the "shakiest" aspects of your mental representation of the situation--the variables.
+> and so forth. There could be---and probably are---several layers of parameters. Finally, we
+> reach the "shakiest" aspects of your mental representation of the situation---the variables.
 > These are things such as \[a player\] stepping out of bounds, which are mentally "loose"
 > and which you don't mind letting slip away from their real values, for a short moment.
 
@@ -67,11 +67,11 @@ Really, I probably could have skipped everything I've written so far and just st
 The relationship between explicit and global
 --------------------------------------------
 
-It's very common for developers coming from more "conventional" backgrounds (har har) to be initially perplexed by the "magic"[^stages-of-convention-based-frameworks] of convention-based frameworks such as [Rails](http://rubyonrails.org/). This is a natural reaction for many of us with previous experience working on [big balls of mud](http://en.wikipedia.org/wiki/Big_ball_of_mud), with enough global state to give us nightmares. But when you consider the opposite approach--explicit configuration at every level--I think what you'll find is a lot of boilerplate[^boilerplate] and an indefensible number of [YAGNI](http://www.xprogramming.com/Practices/PracNotNeed.html) violations.
+It's very common for developers coming from more "conventional" backgrounds (har har) to be initially perplexed by the "magic"[^stages-of-convention-based-frameworks] of convention-based frameworks such as [Rails](http://rubyonrails.org/). This is a natural reaction for many of us with previous experience working on [big balls of mud](http://en.wikipedia.org/wiki/Big_ball_of_mud), with enough global state to give us nightmares. But when you consider the opposite approach---explicit configuration at every level---I think what you'll find is a lot of boilerplate[^boilerplate] and an indefensible number of [YAGNI](http://www.xprogramming.com/Practices/PracNotNeed.html) violations.
 
 Which brings me to an objection I've been sensing through the ether while writing this. Somewhere out there, one of you is yelling at the screen: *Global values and implicit values are not the same thing!* If it seems to you that I've been conflating the ideas of "global state" with "hidden information" until now, that's probably fair. But now chew on this for a second: **the more global something is, the less explicit it should have to be**.
 
-Here's one of probably millions of examples I could give: when you walk up to someone in the U.S.[^sorry-non-american-readers], I'm guessing you don't start the conversation by asking, "Do you speak English?" The vast majority of people here speak English--it is effectively a *global value* in our country--which means we can be *implicit* in that knowledge when we interact. It saves time, and removes one potential variable of consideration--*What language(s) does this individual speak?*--from our minds, reducing cognitive load.
+Here's one of probably millions of examples I could give: when you walk up to someone in the U.S.[^sorry-non-american-readers], I'm guessing you don't start the conversation by asking, "Do you speak English?" The vast majority of people here speak English---it is effectively a *global value* in our country---which means we can be *implicit* in that knowledge when we interact. It saves time, and removes one potential variable of consideration--*What language(s) does this individual speak?*--from our minds, reducing cognitive load.
 
 The pitfalls of always being explicit
 -------------------------------------
@@ -95,7 +95,7 @@ A doctor might be vexed by an overly-explicit patient:
 > Doctor: How much do you weigh?  
 > Patient: On which planet?
 
-These things are what Hofstadter called "constants"; we may be able to *imagine* them changing--in some cases much more readily than others (e.g., changing time zones vs. changing planets)--but, generally speaking, we expect them not to. At the very least, they're certainly not going to change mid-conversation.
+These things are what Hofstadter called "constants"; we may be able to *imagine* them changing---in some cases much more readily than others (e.g., changing time zones vs. changing planets)--but, generally speaking, we expect them not to. At the very least, they're certainly not going to change mid-conversation.
 
 More importantly, there are *very sensible defaults* for the "ambiguous" values in these examples. If someone refers to "Kathryn" in a conversation with me, he or she is almost certainly referring to the Kathryn most important to me: my wife. If you ask someone what time it is, you're very likely asking about the time zone where you currently are. And in almost *every* conversation, when referring to properties of objects, we're specifically talking about how things are on Earth. All of this can remain *implicit*; we don't have to think about these things at all.
 
@@ -110,7 +110,7 @@ The "mass" is, of course, the cognitive load I mentioned of having to think abou
 
 This is why I enjoy working with convention-based frameworks. They shed much of this extra "mass," enabling developers to take things for granted that would otherwise weigh us down.
 
-So yes, maybe at its core [convention over configuration](http://en.wikipedia.org/wiki/Convention_over_configuration) is just a fancy name for hidden global variables. But they're carefully chosen variables, which--after an admittedly necessary learning curve--establish a deeper level of shared knowledge, freeing us to be more implicit and less explicit. And just like in real life, that's often a good thing.
+So yes, maybe at its core [convention over configuration](http://en.wikipedia.org/wiki/Convention_over_configuration) is just a fancy name for hidden global variables. But they're carefully chosen variables, which---after an admittedly necessary learning curve---establish a deeper level of shared knowledge, freeing us to be more implicit and less explicit. And just like in real life, that's often a good thing.
 
 [^provocative-title]: And yes, I realize that to any non-programmer that sounds completely absurd.
 

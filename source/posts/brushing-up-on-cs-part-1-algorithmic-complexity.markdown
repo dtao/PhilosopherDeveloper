@@ -9,7 +9,7 @@ Preamble
 
 As I'm sure plenty of you already know (the title of this blog is a bit of a giveaway), I was a **philosophy** major in college. Which means I was *not* a C.S. major. But that's not the full extent of it: I didn't *minor* in C.S., either; I actually took *absolutely no computer sciences courses at all* in college.
 
-I did recently receive an M.S. in software engineering from [Carnegie Mellon](http://www.cmu.edu/silicon-valley/); but the courses in that program were higher-level in nature: software architecture, process management, software metrics, entrepreneurship--that sort of thing. And so I've still never really had an academic foundation for a lot of the more theoretical stuff that those with bachelor's degrees in computer science have.
+I did recently receive an M.S. in software engineering from [Carnegie Mellon](http://www.cmu.edu/silicon-valley/); but the courses in that program were higher-level in nature: software architecture, process management, software metrics, entrepreneurship---that sort of thing. And so I've still never really had an academic foundation for a lot of the more theoretical stuff that those with bachelor's degrees in computer science have.
 
 To clarify: I *do* know a decent amount of C.S. stuff in practice, because:
 
@@ -21,7 +21,7 @@ Anyway, all this is my long-winded way of introducing a little series of blog po
 Those of you already well-versed with theoretical C.S. stuff will probably not be all that intrigued by this or the next few posts. Then again, maybe you will. My goal is actually two-fold here:
 
 1. Obviously, to add to my own knowledge and study some of the things that fascinate me more in depth
-2. To do my best to explain these concepts in a straightforward and easily comprehensible way, so that even someone without a C.S. background can understand them (at least insofar as it's feasible--I will readily admit some of this stuff may end up being too tricky for me to explain without requiring some lower level knowledge on the part of the reader)
+2. To do my best to explain these concepts in a straightforward and easily comprehensible way, so that even someone without a C.S. background can understand them (at least insofar as it's feasible---I will readily admit some of this stuff may end up being too tricky for me to explain without requiring some lower level knowledge on the part of the reader)
 
 OK, now that I've written about five too many paragraphs *introducing* this series (not off to a good start!), let's go ahead and dive in.
 
@@ -34,7 +34,7 @@ But upon thinking about it for a bit, I realized I'd be getting ahead of myself 
 
 ### The Basic Gist
 
-I personally find most academic terms like "algorithmic complexity" to be vaguely pretentious[^pretentious], so I'm going to present the idea as much in plain English as I can. The whole point of this concept is to explain how well an algorithm--essentially, any software procedure, or even more simply a set of instructions--will perform, i.e., **how fast it runs**. But that's not the whole picture. Actually, how "fast" an algorithm runs is not a specific enough question; the real issue is how fast it runs *for a given set of input*.
+I personally find most academic terms like "algorithmic complexity" to be vaguely pretentious[^pretentious], so I'm going to present the idea as much in plain English as I can. The whole point of this concept is to explain how well an algorithm---essentially, any software procedure, or even more simply a set of instructions---will perform, i.e., **how fast it runs**. But that's not the whole picture. Actually, how "fast" an algorithm runs is not a specific enough question; the real issue is how fast it runs *for a given set of input*.
 
 (I can already see the flags going up in my more technical readers heads: "That is not an accurate way of explaning algorithmic complexity!" Hold your horses, guys. I'm getting there.)
 
@@ -58,7 +58,7 @@ You would ultimately pay Gym A more than twice as much as you'd pay Gym B in thi
 
 We're now honing in on what algorithmic complexity is really about. It is intended as a way of measuring **the cost of an algorithm relative to input size**. In the gym example, we could think of "Choose Gym A" or "Choose Gym B" as two separate algorithms, where the input size is the number of years you have a membership with either gym.
 
-In the case of Gym A, doubling the number of years doubles the cost. So in terms of algorithmic complexity, we would say this is *O(n)*[^big-o-notation], which I read as "order of *n*" (the *n* represents whatever value you use to define input size--in this case, the number of years).
+In the case of Gym A, doubling the number of years doubles the cost. So in terms of algorithmic complexity, we would say this is *O(n)*[^big-o-notation], which I read as "order of *n*" (the *n* represents whatever value you use to define input size---in this case, the number of years).
 
 In the case of Gym B, doubling the number of years does what? Has no effect, actually. The cost is $1,000 regardless of whether you're with the gym for 1 year or 100 years. And so we would describe this "algorithm's" complexity as *O(1)*. Notice there is no *n* there, because the input size in this case does not impact the cost of the algorithm at all.
 
@@ -93,9 +93,9 @@ Let's add two more people to the mix: Alice and Bob. Below is a quick list of th
 11. Bob-Jill
 12. Bob-Alice
 
-Whoa! We just went from two introductions to twelve! Clearly this method of greeting people would not be sustainable if the number of people grew much larger. (And yet, the Owambo people in Namibia greet one another in precisly this way--and to be honest, I quite like it. But that is a *completely* different topic.)
+Whoa! We just went from two introductions to twelve! Clearly this method of greeting people would not be sustainable if the number of people grew much larger. (And yet, the Owambo people in Namibia greet one another in precisly this way---and to be honest, I quite like it. But that is a *completely* different topic.)
 
-So, clearly this situation is different from the case of Gym A from my earlier example. Whereas with Gym A, the cost of membership grew *linearly* (in a straight line) over time, the number of greetings above basically explodes out of control if you add many more people to the setting. This is an example of an *O(n<sup>2</sup>)* algorithm--one in which the performance cost of the procedure in question grows *exponentially* with input size.
+So, clearly this situation is different from the case of Gym A from my earlier example. Whereas with Gym A, the cost of membership grew *linearly* (in a straight line) over time, the number of greetings above basically explodes out of control if you add many more people to the setting. This is an example of an *O(n<sup>2</sup>)* algorithm---one in which the performance cost of the procedure in question grows *exponentially* with input size.
 
 It probably isn't the best example I could have given, as it's not 100% obvious that the exponent should be 2 (4 squared is 16, not 12). If you want an explanation, I'll provide it in a footnote[^complexity-explanation].
 

@@ -5,7 +5,7 @@ published: false
 ---
 
 There are a couple of "bigger" topics that I've been wanting to write about lately (not big as in
-*important*, of course--more big as in being more work to write about); but I can't seem to find the
+*important*, of course---more big as in being more work to write about); but I can't seem to find the
 time (read: make the effort). So here's a fun little challenge for now.
 
 The background is that I recently discovered an interesting performance optimization in Chrome. It

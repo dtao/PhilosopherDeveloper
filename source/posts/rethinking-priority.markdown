@@ -30,14 +30,14 @@ The other mistake is more psychological. I can't really prove this, but it's my 
 How we could do it differently
 ------------------------------
 
-Here's a different approach I would like to try some day. Instead of adopting the mindset that we will always work on high-priority items--logical though that may be in theory--what if we allocated our time **in advance** on a weighted basis, so that high-priority items get the most time but medium- and/or low-priority work gets some time as well? For example, we might say that out of every two weeks (10 working days), "high-priority" work gets 7 days, "medium" work gets 2, and "low" gets 1[^exact-breakdown-of-work].
+Here's a different approach I would like to try some day. Instead of adopting the mindset that we will always work on high-priority items---logical though that may be in theory---what if we allocated our time **in advance** on a weighted basis, so that high-priority items get the most time but medium- and/or low-priority work gets some time as well? For example, we might say that out of every two weeks (10 working days), "high-priority" work gets 7 days, "medium" work gets 2, and "low" gets 1[^exact-breakdown-of-work].
 
 <iframe src="http://charter.herokuapp.com/embed/NBSU8ZSB" style="height: 450px; width: 600px;" />
 
 Why take this approach? I acknowledge that it seems a bit counterintuitive to *force* work on lower-priority tasks, when there's theoretically more important work to do. But I actually think this would get us closer to an ideal distribution of work than where most of us currently are. Instead of the mildly [ADD](http://en.wikipedia.org/wiki/ADD) pattern of working on whatever seems important right now, and perpetually "forgetting" to do less-urgent work, a fixed allocation would nudge us back in the direction of refactoring, fixing bugs, and actually implementing some of those nice-to-haves we never seem to implement.
 
-More importantly, I think this strategy would allow us to be more honest with ourselves. The truth is that "high-priority" often doesn't really mean high priority: it's a stand-in for *probability of happening* (the psychological mistake I mentioned). Knowing that so-called "low priority" work *is* going to get done--that it *won't* just get swept under the rug--might enable us to make more truthful decisions about what we should be spending the lion's share of our time on.
+More importantly, I think this strategy would allow us to be more honest with ourselves. The truth is that "high-priority" often doesn't really mean high priority: it's a stand-in for *probability of happening* (the psychological mistake I mentioned). Knowing that so-called "low priority" work *is* going to get done---that it *won't* just get swept under the rug---might enable us to make more truthful decisions about what we should be spending the lion's share of our time on.
 
 What do you think?
 
-[^exact-breakdown-of-work]: I'm just throwing these numbers out there. I would expect any team who attempted something like this to revisit the breakdown periodically in the beginning--say, every couple of months--to calibrate and figure out what works best.
+[^exact-breakdown-of-work]: I'm just throwing these numbers out there. I would expect any team who attempted something like this to revisit the breakdown periodically in the beginning---say, every couple of months---to calibrate and figure out what works best.

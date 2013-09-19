@@ -10,7 +10,7 @@ A few years ago my parents gave me and my wife this knife as a Christmas present
 
 We weren't quite sure what to make of it at first, but it wasn't long before we both loved it. It is a *very* sharp knife, which makes it a breeze to cut through just about anything. Unfortunately, that *anything* includes human flesh. I know this because a few months after receiving the knife I was cutting an avocado and the knife slipped in my hand. It was quite a bad cut.
 
-Obviously--I still have all ten fingers--my wound healed eventually. But I do have a pretty clear memory of the incident, which makes me quite fearful of repeating it. Here are two ways I could protect myself from future self-inflicted injury:
+Obviously---I still have all ten fingers---my wound healed eventually. But I do have a pretty clear memory of the incident, which makes me quite fearful of repeating it. Here are two ways I could protect myself from future self-inflicted injury:
 
 1. Decide **the knife is too sharp**. I could replace the Shun knife with a duller one, so that if my hand ever slips while cutting again the injury won't be so bad.
 2. Decide **I wasn't careful enough**. In the future I could cut more slowly and be very cautious whenever I'm using the knife.
@@ -25,7 +25,7 @@ Besides these two approaches, I propose that there is a third option.
 
 ![Or at least, a *different* way](/images/better-way.gif)
 
-**I could just continue to use the knife as before.** Sure, I cut myself, and it hurt; but in the end, I healed. It was a pretty minor wound[^minor-wound], in the grand scheme of things. And in software, except in some rare cases, we're not talking life or death. Even at large companies with a great deal on the line I'd argue this applies in most everyday cases; but it's *especially* true at smaller companies, where remaining nimble--and responding quickly to change--is so much more important than avoiding risk.
+**I could just continue to use the knife as before.** Sure, I cut myself, and it hurt; but in the end, I healed. It was a pretty minor wound[^minor-wound], in the grand scheme of things. And in software, except in some rare cases, we're not talking life or death. Even at large companies with a great deal on the line I'd argue this applies in most everyday cases; but it's *especially* true at smaller companies, where remaining nimble---and responding quickly to change---is so much more important than avoiding risk.
 
 Put another way: I could spend the rest of my life cutting very slowly to reduce the risk of injuring myself; or I could let myself move quickly and live with the risk of sometimes drawing a little blood. Over time I believe the latter approach leads to greater total progress[^charter].
 

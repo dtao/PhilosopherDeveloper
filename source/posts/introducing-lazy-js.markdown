@@ -89,13 +89,13 @@ var sequence = Lazy(array)
   .each(function(x) { console.log(x); });
 ```
 
-Maybe that's a bit noisy--I just wanted to have a full example program--so I'll focus on just the `map`, `filter`, and `take` parts.
+Maybe that's a bit noisy---I just wanted to have a full example program---so I'll focus on just the `map`, `filter`, and `take` parts.
 
-As I said earlier, each function in Lazy.js accepts another function and then creates an object to store it. So the result of `map` is an object--a `MappedSequence`--that stores its argument and exposes the same API as the object originally returned by `Lazy(array)`.
+As I said earlier, each function in Lazy.js accepts another function and then creates an object to store it. So the result of `map` is an object---a `MappedSequence`--that stores its argument and exposes the same API as the object originally returned by `Lazy(array)`.
 
     MappedSequence(mapFn)
 
-This object is then the "parent" of any objects *it* creates. The result of `filter`, then--a `FilteredSequence`--holds a reference to the mapped sequence as well as its  filtering function:
+This object is then the "parent" of any objects *it* creates. The result of `filter`, then---a `FilteredSequence`--holds a reference to the mapped sequence as well as its  filtering function:
 
     MappedSequence(mapFn)
       FilteredSequence(filterFn)
@@ -122,9 +122,9 @@ And so, if we don't think about arrays at all, we can still combine these concep
     // Looks like function composition to me!
     filter(map(x))
 
-As a pure replacement for Underscore--which it can be--Lazy.js is basically an inversion of the 3-step process I described. Instead of doing 1-2-3, 1-2-3, &c. for each operation, we can do 1 (for each element in the source...), then *all 2s combined* (every `map`, `filter`, etc. composed together), and finally 3 (store the results in a new array). You don't *need* to use Lazy.js that way--as I hopefully have emphasized quite enough by now!--but you can, if you're just looking for a drop-in Underscore replacement. And that wouldn't be a bad call, given the performance difference!
+As a pure replacement for Underscore---which it can be---Lazy.js is basically an inversion of the 3-step process I described. Instead of doing 1-2-3, 1-2-3, &c. for each operation, we can do 1 (for each element in the source...), then *all 2s combined* (every `map`, `filter`, etc. composed together), and finally 3 (store the results in a new array). You don't *need* to use Lazy.js that way---as I hopefully have emphasized quite enough by now!--but you can, if you're just looking for a drop-in Underscore replacement. And that wouldn't be a bad call, given the performance difference!
 
-The reason I keep saying that isn't all that Lazy.js is about, though, is that there's a lot more you can do as a result of this different model. You can generate indefinite sequences, iterate asynchronously, map/reduce on DOM events (or any event type, really), lazily split strings, and more. Take a look at [the Lazy.js website](http://dtao.github.io/lazy.js) or--better yet--actually [give Lazy.js a try](https://github.com/dtao/lazy.js) and see for yourself what else you can do.
+The reason I keep saying that isn't all that Lazy.js is about, though, is that there's a lot more you can do as a result of this different model. You can generate indefinite sequences, iterate asynchronously, map/reduce on DOM events (or any event type, really), lazily split strings, and more. Take a look at [the Lazy.js website](http://dtao.github.io/lazy.js) or---better yet---actually [give Lazy.js a try](https://github.com/dtao/lazy.js) and see for yourself what else you can do.
 
 The road ahead
 --------------
@@ -137,6 +137,6 @@ I also attribute some of the library's sudden popularity to [the project website
 
 For now, though, I'll keep working on Lazy.js and hoping to get some feedback from users.
 
-[^a-lot-of-attention]: For me, anyway--as of the time I'm writing this, it has [865 stars on GitHub](https://github.com/dtao/lazy.js)!
+[^a-lot-of-attention]: For me, anyway---as of the time I'm writing this, it has [865 stars on GitHub](https://github.com/dtao/lazy.js)!
 
 [^array-transformation]: I [don't have a C.S. background](/posts/brushing-up-on-cs-part-1-algorithmic-complexity.html), so I don't know if there's a academic term for these ideas. Probably is.

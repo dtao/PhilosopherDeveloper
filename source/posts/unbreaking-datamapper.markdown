@@ -66,7 +66,7 @@ module DataMapper
 end
 ```
 
-How is the above any different from writing a wrapper in your application? Simple: every time a resource is saved in DataMapper, the `save` method is called (internally). This means that in the simple case--where saving a record fails because it is invalid--the exception raised will be informative by reporting the record's validation errors. In the more complex case--where saving a record fails because its child is invalid--the exception raised will be informative by reporting the *child's* validation errors.
+How is the above any different from writing a wrapper in your application? Simple: every time a resource is saved in DataMapper, the `save` method is called (internally). This means that in the simple case---where saving a record fails because it is invalid---the exception raised will be informative by reporting the record's validation errors. In the more complex case---where saving a record fails because its child is invalid---the exception raised will be informative by reporting the *child's* validation errors.
 
 Enter dm-noisy-failures
 -----------------------
@@ -81,6 +81,6 @@ As [he still seems to be active](http://www.drmaciver.com/blog), and he also see
 
 [^borrowing]: Which in turn borrows from the [official DataMapper documentation](http://datamapper.org/docs/validations).
 
-[^flaw-or-not]: I happen to agree with most of MacIver's points, so I do view DataMapper's API as flawed. But I'm also quite sure the library's developers had reasons for designing it that way--or anyway, I haven't seen any evidence to the contrary--so it's clearly debatable to some extent. Hence my use of quotes.
+[^flaw-or-not]: I happen to agree with most of MacIver's points, so I do view DataMapper's API as flawed. But I'm also quite sure the library's developers had reasons for designing it that way---or anyway, I haven't seen any evidence to the contrary---so it's clearly debatable to some extent. Hence my use of quotes.
 
 [^developer-pushback]: As far as I can tell, the DataMapper team's reasoning for excluding validation errors from exceptions is that "\[the\] #save command can return false for reasons other than validations being invalid." This seems to me like an unfortunate case of [*the perfect is the enemy of the good*](http://en.wikipedia.org/wiki/Perfect_is_the_enemy_of_good).

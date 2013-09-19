@@ -12,7 +12,7 @@ I may have been a kid, but I immediately saw where he was going. Next, he counte
 
 Of course, I have no memory of what the actual end result was. And obviously, it was not a precisely accurate number. But there's no doubt in my mind that it was an **accurate ballpark** estimate. My grandpa never studied human anatomy, but he figured out within an order of magnitude how many hairs were on my head with <strike>a minimal</strike> an *optimal* amount of effort.
 
-Often, in software, ballpark estimates are exactly what we want. Particularly in your stereotypical "agile" project, where the client understands that absolute estimates are tough to produce but relative estimates are easy and that's why we use story points, *yada yada yada*, there are still very practical reasons to require some kind of time-based estimates. But the goal is not--it *can't* be--to pinpoint an exact date when a product will ship[^ship-date]. The goal is generally:
+Often, in software, ballpark estimates are exactly what we want. Particularly in your stereotypical "agile" project, where the client understands that absolute estimates are tough to produce but relative estimates are easy and that's why we use story points, *yada yada yada*, there are still very practical reasons to require some kind of time-based estimates. But the goal is not---it *can't* be---to pinpoint an exact date when a product will ship[^ship-date]. The goal is generally:
 
 1. To get a sense of how much the project will cost, to see if it makes financial sense to pursue it
 2. To get a sense of what other teams' schedules (e.g., sales and marketing) should look like

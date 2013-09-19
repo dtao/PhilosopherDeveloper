@@ -6,7 +6,7 @@ published: true
 
 It is a well-known fact among my teammates that my tolerance for hacks is higher than most developers’. And so it is that sometimes I write code that others find horrifying.
 
-Here’s one that I personally like, and which has caused more than one of my teammates to chuckle in half-approval. It came up again just today, as we are using [Padrino](http://www.padrinorb.com/) on my current project and a coworker wanted to know if Sinatra and/or Padrino had an equivalent to the Rails console (to allow a dev to poke around the system at some arbitrary point during the program’s execution--say, in the middle of handling a request at the controller level).
+Here’s one that I personally like, and which has caused more than one of my teammates to chuckle in half-approval. It came up again just today, as we are using [Padrino](http://www.padrinorb.com/) on my current project and a coworker wanted to know if Sinatra and/or Padrino had an equivalent to the Rails console (to allow a dev to poke around the system at some arbitrary point during the program’s execution---say, in the middle of handling a request at the controller level).
 
 Frankly, I’m no Sinatra expert. For all I know there *is*[^sinatra-equivalent] an equivalent to the Rails console in Sinatra. I’ve never really cared, because if I want to poke around the code mid-request I just whip up something like this, which I shall call the **littlest Ruby debugger**:
 

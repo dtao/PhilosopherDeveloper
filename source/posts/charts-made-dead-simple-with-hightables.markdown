@@ -4,7 +4,7 @@ date: 2013-04-10 08:34:00 -0700
 published: true
 ---
 
-In a footnote to [my post a while ago on SafeYAML](/posts/making-yaml-safe-again.html)[^safe-yaml], I established a goal of writing more about my many open source projects, which I have a bad habit of not telling anyone about--sometimes even long after they're finished!
+In a footnote to [my post a while ago on SafeYAML](/posts/making-yaml-safe-again.html)[^safe-yaml], I established a goal of writing more about my many open source projects, which I have a bad habit of not telling anyone about---sometimes even long after they're finished!
 
 So today I want to write about a pretty good one that's relatively polished and full-featured. It's called [HighTables](http://dtao.github.io/HighTables/), and it's a JavaScript library that makes adding charts to existing sites with HTML tables *extremely* easy.
 
@@ -72,7 +72,7 @@ Fiddling with chart rendering  | 1                          | 5                 
 
 Of course, like any good developer, I eventually would get around to writing reusable methods with easier-to-remember interfaces and use *those* to render my charts. But at some point I noticed a pattern: mostly I was putting charts **where tables already were**. The point of the chart was to display the data in a visual form, to make it a bit easier to parse for a human. The work of translating the data in the table to JavaScript code to render the chart was tedious, but easily repeatable.
 
-And from there came the realization that I could (and probably should) just automate every bit of the process, and write a *library* to *always* render a chart from a table--provided that table had some class (like `render-to-line-chart`) associated with it. So that's exactly how HighTables works: you add one class to your table, include the library in your page, and charts display automatically. (The charts above are rendered from <a href="javascript:revealTable();">a hidden table</a>, by the way, in case you were confused!)
+And from there came the realization that I could (and probably should) just automate every bit of the process, and write a *library* to *always* render a chart from a table---provided that table had some class (like `render-to-line-chart`) associated with it. So that's exactly how HighTables works: you add one class to your table, include the library in your page, and charts display automatically. (The charts above are rendered from <a href="javascript:revealTable();">a hidden table</a>, by the way, in case you were confused!)
 
 So, by all means, [try out HighTables](https://github.com/dtao/HighTables) and let me know what you think! I've already used it a good deal myself, and I can honestly say it's been really useful to me. But the more use it gets, the more useful it should become as bugs are fixed, features are introduced, yada yada. At least that's the hope.
 

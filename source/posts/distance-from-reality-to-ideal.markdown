@@ -33,5 +33,5 @@ The distance between reality and the ideal
 
 - key lesson from these examples: when reality and ideal are far apart, start closer to reality
 
-- are these things good, or will they need to be replaced? doesn't matter--they will work, for now.
+- are these things good, or will they need to be replaced? doesn't matter---they will work, for now.
   and either they will evolve and slowly drag developers closer to ideal, or they will be replaced

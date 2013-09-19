@@ -1,5 +1,5 @@
 ---
-title: For the last time, you can't unbox a value type as a diff--wait, what's this?
+title: For the last time, you can't unbox a value type as a diff---wait, what's this?
 date: 2011-01-07
 published: false
 ---

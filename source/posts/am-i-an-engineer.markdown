@@ -13,7 +13,7 @@ Let's say you placed software developers along a spectrum, where at one end "eng
 
 Personally, I have worked at various points along this spectrum. My first developer job was at a trading company in Philadelphia, which would have fallen pretty close to the extreme left end. At [ThoughtWorks](http://www.thoughtworks.com) I would say the culture was somewhere in the middle, with plenty of developers leaning in both directions (I definitely worked with self-professed "engineers" at ThoughtWorks, as well as individuals who vehemently rejected the label).
 
-More recently I've worked in environments that fall much closer to the right side of the spectrum. The culture at [Cardpool](http://www.cardpool.com)--founded by two former Microsoft employees and with its first two hires from Google--was, not surprisingly, firmly in the software-as-engineering camp. I would expect no different from most large software companies (or developers with large company roots). And a couple of weeks ago I started at Google myself, which I'm guessing will be about as far to the right as I'll ever get in my career.
+More recently I've worked in environments that fall much closer to the right side of the spectrum. The culture at [Cardpool](http://www.cardpool.com)--founded by two former Microsoft employees and with its first two hires from Google---was, not surprisingly, firmly in the software-as-engineering camp. I would expect no different from most large software companies (or developers with large company roots). And a couple of weeks ago I started at Google myself, which I'm guessing will be about as far to the right as I'll ever get in my career.
 
 (By the way, it's probably not a coincidence that I chose to assign the left and right sides of the spectrum to the viewpoints that I did; read [Steve Yegge's argument](https://plus.google.com/110981030061712822816/posts/KaSKeg4vQtz) that software developers fall into "liberal" and "conservative" groups to get an interesting view on a related subject. And while you're at it, also read Richard Gabriel's [The Rise of *Worse is Better*](http://www.dreamsongs.com/RiseOfWorseIsBetter.html) for a much older but very similar perspective on two approaches to software, which he deems the *MIT approach* versus the *New Jersey approach*.)
 
@@ -36,7 +36,7 @@ Of course, she wants her code to lead to useful software, which is why it is imp
 
 To an engineer, **the practice of writing software is a discipline**. There is a right way to do it; and although it's naturally impossible to ever achieve perfection, knowledge and experience equip good engineers to get closer and closer over time, as they learn from experience and apply what they've learned to their future work. For this reason an engineer will prefer to formalize her knowledge over time in the form of policies and conventions that can be applied at the team level.
 
-If I may be abstract for a moment, I picture an engineer's development--not of code, but of herself--as being like the growth of a redwood: up and up, better and better.
+If I may be abstract for a moment, I picture an engineer's development---not of code, but of herself---as being like the growth of a redwood: up and up, better and better.
 
 ![An engineer grows like a redwood.](/images/redwood-tree.jpg)
 
@@ -81,7 +81,7 @@ Among the myriad questions and objections you may find yourself thinking of in r
 
 I tend to agree with the spirit of this question, but I think there are at least two ways in which it is partially misguided.
 
-1. As I said, people can adapt. This includes craftsman-style developers. Assigned to a large project with a sizable team, I'm confident that any good team--on either side of the spectrum--would adopt a fairly disciplined approach to building the software, with much more structure than perhaps they would on a smaller project.
+1. As I said, people can adapt. This includes craftsman-style developers. Assigned to a large project with a sizable team, I'm confident that any good team---on either side of the spectrum---would adopt a fairly disciplined approach to building the software, with much more structure than perhaps they would on a smaller project.
 2. However, the question implies[^what-the-question-implies] a certain inevitability to the need for a team to work on a large-scale project. I would challenge this assumption, and return to my earlier point about requirements. I suspect that in many cases, software projects that end up becoming large have little justification for getting that way. Sometimes the size and complexity of a piece of software inflates with the size of the team, forming a harmful feedback loop that leads to bloat. But that's a topic for another post.
 
 In any case, it is probably true that sometimes large software projects are justifiable[^justifiable-large-software-projects]; and these require a great deal of organization and collaboration to run smoothly. And so an engineering culture is likely to emerge on these projects, regardless of the sort of software developers working on them. That said, it may sometimes also be possible to break a large project down into smaller projects, in which case semi-autonomous teams might still flourish with a craftsmanship culture.
@@ -91,7 +91,7 @@ Closing thoughts
 
 I've said that it can be difficult for these two kinds of software developers to work together. Regardless, I still believe we have a lot to learn from one another by crossing from one side of the spectrum to the other on a regular basis, at least socially if not professionally. So think about whether you're more like a "craftsman" or more like an "engineer" as I've described them[^more-like-not-same-as], and seek out people who you think are different from you.
 
-The fact that Richard Gabriel wrote about the MIT approach and the New Jersey approach *decades* ago--and it still feels relevant today--says something to me. Gabriel may have concluded that "Worse is Better"; but it's clear to me that, just as there will always be different personalities, both philosophies of software development are here to stay. So let's do our best to understand each other--or at least not kill each other.
+The fact that Richard Gabriel wrote about the MIT approach and the New Jersey approach *decades* ago---and it still feels relevant today---says something to me. Gabriel may have concluded that "Worse is Better"; but it's clear to me that, just as there will always be different personalities, both philosophies of software development are here to stay. So let's do our best to understand each other---or at least not kill each other.
 
 [^maybe-not-worst-case]: OK, maybe not *worst* case scenario. But it would still be unfortunate.
 
@@ -99,4 +99,4 @@ The fact that Richard Gabriel wrote about the MIT approach and the New Jersey ap
 
 [^justifiable-large-software-projects]: It seems pretty clear to me that Google is a perfect example of this.
 
-[^more-like-not-same-as]: I almost worded this, "whether you *are* a craftsman or an engineer"; but let's not get caught up in the idea that these terms actually define individuals. It is a convenient mental grouping, for me; but we are all obviously different and how you define yourself may not jive with the division I've drawn here at all--in which case, let me know! Leave a comment, or write an e-mail, or just come talk to me some time if we work together.
+[^more-like-not-same-as]: I almost worded this, "whether you *are* a craftsman or an engineer"; but let's not get caught up in the idea that these terms actually define individuals. It is a convenient mental grouping, for me; but we are all obviously different and how you define yourself may not jive with the division I've drawn here at all---in which case, let me know! Leave a comment, or write an e-mail, or just come talk to me some time if we work together.

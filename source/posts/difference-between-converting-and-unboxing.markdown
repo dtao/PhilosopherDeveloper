@@ -59,7 +59,7 @@ And here's a similar dialogue depicting what happened with the Stack Overflow us
 > **Programmer**: I'll give you a hint! It starts with "C" and rhymes with "urrency."  
 > **Compiler**: A Currency! Sweet!  
 > **Programmer**: Yep, that's right! Now here it is...  
-> **Compiler** (*opening box*): Yesss, a Cur--wait a second.  
+> **Compiler** (*opening box*): Yesss, a Cur---wait a second.  
 > **Programmer**: What's wrong, Compiler?  
 > **Compiler**: You said this was going to be a Currency. It's clearly a decimal.  
 > **Programmer**: So what? Aren't they the same thing to you?  
