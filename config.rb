@@ -38,8 +38,7 @@
 # Reload the browser automatically whenever files change
 # activate :livereload
 
-require File.join(File.dirname(__FILE__), 'lib/ext/middleman/renderers/middleman_redcarpet_html')
-require File.join(File.dirname(__FILE__), 'lib/ext/middleman/sitemap/resource')
+Dir.glob(File.join(File.dirname(__FILE__), 'lib/**/*.rb')).each(&method(:require))
 
 activate :blog do |blog|
   blog.sources = "posts/:title.html"
