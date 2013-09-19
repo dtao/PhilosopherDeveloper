@@ -16,23 +16,23 @@ My *guess* is that JQM does this for optimization purposes, since JavaScript can
 
 **Anyway**, here's the "trick" I promised: my coworkers and I found an **ingenious** solution to the "one `page()` call per DOM element" limitation: whatever item you want to re-render, to ensure all styles are applied properly by JQM, **do this**:
 
-~~~{: lang=javascript }
+```javascript
 function refreshStyles( $element ) {
   var $wrapper = $element.wrap( $( "<div>" ) );
   $wrapper.page();
   $element.unwrap();
 }
-~~~
+```
 
 **Edit 2011-Jul-29: [The above snippet is wrong!](/posts/jquery-mobile-trick-correction.html)** Use the following instead:
 
-~~~{: lang=javascript }
+```javascript
 function refreshStyles( $element ) {
   $element.wrap( '<div id="refresh-styles-wrapper">' );
   $("#refresh-styles-wrapper").page();
   $element.unwrap();
 }
-~~~
+```
 
 **(End edit.)**
 

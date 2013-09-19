@@ -10,24 +10,24 @@ The scenario was this: the developer had a `DataTable` whose columns corresponde
 
 Here's the code he posted:
 
-~~~{: lang=csharp }
+```csharp
 foreach (PropertyInfo p in props)
 {
     p.SetValue(this, table.Rows[0][p.Name], null);
 }
-~~~
+```
 
 When it came to the `Currency` property, the program was throwing an `ArgumentException`. *WTF?* this developer thought. *What happened to my implicit operator?*
 
 Well, here's the first problem: the code above tries to pass a `decimal` to a call to `SetValue` for a `PropertyInfo` object whose `PropertyType` is `Currency`. So, presumably, the code could be fixed like this:
 
-~~~{: lang=csharp }
+```csharp
 foreach (PropertyInfo p in props)
 {
     Currency c = (Currency)table.Rows[0][p.Name];
     p.SetValue(this, c, null);
 }
-~~~
+```
 
 That should work, right?
 
@@ -35,11 +35,11 @@ Well, no. Here's the thing: the `implicit` operator, as you may know, allows you
 
 When a value type is boxed inside a `System.Object`, *using* that value requires first *unboxing* it -- **as its original type**. Many C# developers are surprised to learn that the following code throws an exception:
 
-~~~{: lang=csharp }
+```csharp
 int int32 = 0;
 object boxedInt32 = int32;
 long int64 = (long)boxedInt32;
-~~~
+```
 
 Even though converting from `int` to `long` is totally doable, the compiler doesn't *know* it's supposed to do this if it's just dealing with a `System.Object`.
 
@@ -71,7 +71,7 @@ Moral of the story: even though the syntax happens to be the same, unboxing a va
 
 Oh yeah, and here's the code that actually *does* work:
 
-~~~{: lang=csharp }
+```csharp
 foreach (PropertyInfo p in props)
 {
      if (p.PropertyType == typeof(Currency))
@@ -85,4 +85,4 @@ foreach (PropertyInfo p in props)
          p.SetValue(this, table.Rows[0][p.Name], null);
      }
 }
-~~~
+```

@@ -41,24 +41,24 @@ The Implementation
 
 At the heart of a `FastString` object there are two parts: `buffer`, an underlying `StringBuilder` (the mutable data structure underneath), and `length`, an integer. In addition to these fields, there is the concept of **buffer ownership**: if a `FastString` has the same length (not to be confused with *capacity*) as its buffer, that means it is the "owner" of the buffer:
 
-~~~{: lang=csharp }
+```csharp
 private bool OwnsBuffer
 {
     get { return this.buffer.Length == this.length; }
 }
-~~~
+```
 
 Now, the idea here is that if you use `+` to append to a `FastString`, two things can happen. If the `FastString` is the owner of its underlying buffer, that means that you can safely append directly to the buffer. This is because no other `FastString` instances can be referencing any characters past the current end of the buffer, and so the immutability of every existing instance is maintained. Then the `+` operator returns a new `FastString` instance pointing to the same buffer but with the new length. At this point, this new instance becomes the buffer's new owner.
 
 It is a bit of a strange approach, I grant you. But it is perfect for a particularly common use case: concatenating many strings in a loop:
 
-~~~{: lang=csharp }
+```csharp
 FastString whole = "";
 foreach (string part in parts)
 {
     whole += part;
 }
-~~~
+```
 
 Here, every time a new `FastString` is instantiated via the `+=` operator, the previous owner (which is essentially discarded in the above loop) cedes ownership and the new instance inherits it. Notably, this will have the same performance characteristics as using a `StringBuilder`, because, after all, that's basically what it is doing. But the proof is in the pudding: here's example output from a sample run concatenating 20,000 strings:
 

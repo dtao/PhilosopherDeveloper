@@ -64,19 +64,19 @@ Determining *which array* a particular index falls into, then, requires simply r
 
 With an *a<sub>1</sub>* of 1 and an *r* of 2, this translates to the following code:
 
-~~~{: lang=csharp }
+```csharp
 int GetArrayIndex(int index)
 {
     double n = Math.Log(index + 1, 2);
     return (int)Math.Truncate(n);
 }
-~~~
+```
 
 Pretty simple, right?
 
 Believe it or not, the main issue I've encountered so far is **having an *accurate* O(1) `Count` operation**. To understand why, consider this implementation of `Add`:
 
-~~~{: lang=csharp }
+```csharp
 public void Add(T element)
 {
     int index = Interlocked.Increment(ref m_index) - 1;
@@ -97,17 +97,17 @@ public void Add(T element)
  
     Interlocked.Increment(ref m_count);
 }
-~~~
+```
 
 Notice anything fishy? The call to `Interlocked.Increment(ref m_index)` happens *before* `element` is inserted into the array, which means using `m_index` as `Count` will result in "false positives," by which I mean values *higher* than the actual number of elements inserted. However, the "workaround" in the above implementation--maintaining a separate `m_count` field and calling `Interlocked.Increment(ref m_count)` at the end of the `Add` method--also has a flaw: if two `Add` operations take place concurrently, `m_count` may be incremented after the *higher* index **first**, resulting in the following problem:
 
-~~~{: lang=csharp }
+```csharp
 for (int i = 0; i < list.Count; ++i)
 {
     // This element may not have been set yet!
     T element = list[i];
 }
-~~~
+```
 
 This is something I haven't worked out 100% yet. The structure designed by Stroustrup et al. resolves this issue by utilizing a `Descriptor` object which describes the most recent operation performed on the array and is updated with a single *CAS* (compare-and-swap) instruction. What I don't like about this is that it means *every* call to Add allocates a new object. A small one, yes, but an object nonetheless.
 

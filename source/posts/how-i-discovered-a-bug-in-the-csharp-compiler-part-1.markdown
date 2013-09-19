@@ -14,7 +14,7 @@ This is a topic for a whole other blog post; but just to give a mini-argument in
 
 For *my* `GetEnumerator`, I explicitly implemented both `IEnumerable.GetEnumerator` *and* `IEnumerable<T>.GetEnumerator` and made a public version of the method returning an `Enumerator<T>` struct, like this:
 
-~~~{: lang=csharp }
+```csharp
 public Enumerator<T> GetEnumerator()
 {
   return new Enumerator<T>(this);
@@ -29,7 +29,7 @@ System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
 {
   return GetEnumerator();
 }
-~~~
+```
 
 This allowed my `Enumerator<T>` type to behave quite well when used in `foreach` loops without causing unnecessary garbage collection. And the fact that it was a mutable value type hardly mattered—just like it hardly matters for `List<T>.Enumerator`, `Dictionary<TKey, TValue>.Enumerator`, etc. (The only times when it hypothetically matters is when you pass an `Enumerator<T>` value to a method and for some reason *expect* the code within the method to affect the value outside that method's scope—but that's just insanity on your part!)
 
@@ -37,7 +37,7 @@ So I realize I could probably give a much more thorough explanation of that deci
 
 Here is a critical excerpt from one of these unit tests:
 
-~~~{: lang=csharp }
+```csharp
 using (var enumerator = _array.GetEnumerator())
 {
   int x;
@@ -50,7 +50,7 @@ using (var enumerator = _array.GetEnumerator())
   enumeratorObject.Reset();
   Assert.IsTrue(enumeratorObject.MoveNext());
 }
-~~~
+```
 
 What the heck is the point of that test? I'm glad you asked! Actually, I'm not glad, because the question sort of makes me realize that I did something rather dumb. But this will be educational for us all; so allow me to explain.
 
@@ -62,12 +62,12 @@ What's so stupid about that? A couple of things. First and foremost, doing so vi
 
 Don't get me wrong: when I say I "implemented" it, I don't mean to imply that I put any non-trivial amount of work into it. I didn't. Implementing a `Reset` method for this particular enumerator type basically looked like this:
 
-~~~{: lang=csharp }
+```csharp
 void System.Collections.IEnumerator.Reset()
 {
   _index = -1;
 }
-~~~
+```
 
 But [just because something's easy to implement, that doesn't mean it isn't a mistake to do so](http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare). If you're not expecting anyone to ever use it, just don't write it. It can only mislead and confuse others. That's all I'm saying.
 
@@ -112,7 +112,7 @@ Nope. I put together a skeleton project with the same basic parts minus NUnit an
 
 So then I thought maybe it had something to do with a custom value type implementing `IDisposable`. So I tried this:
 
-~~~{: lang=csharp }
+```csharp
 struct Enumerator : IDisposable
 {
     int _field;
@@ -130,13 +130,13 @@ using (var s = new SimpleStruct())
 {
     Console.WriteLine("{0}, {1}", s.Increment(), s.Increment());
 }
-~~~
+```
 
 The above outputs `0, 1`. So that wasn't it either.
 
 Long story short, I eventually discovered it was **the specific combination of mutating a value type inside a `using` statement *with* a closure** that caused the behavior I was seeing. So, in other words:
 
-~~~{: lang=csharp }
+```csharp
 // This will output 0, 1.
 using (var s = new SimpleStruct())
 {
@@ -152,6 +152,6 @@ using (var s = new SimpleStruct())
 
     Console.WriteLine("{0}, {1}", s.Increment(), s.Increment());
 }
-~~~
+```
 
 Because this has turned into such a long post (or it feels like one, anyway), I'm going to pull a typical me and split it into two posts. This feels like a good stopping point; can any readers figure out why the behavior of the two blocks of code above would be different? In my next post I will give the full explanation (which I have verified with someone on the actual C# compiler team). So don't worry if you can't figure it out; the answer's on its way soon!

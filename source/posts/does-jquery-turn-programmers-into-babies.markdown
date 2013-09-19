@@ -8,35 +8,35 @@ Part of me kind of hates[^hating-jquery] [jQuery](http://jquery.com/). Let me te
 
 The other day I was wondering if there's a good way to take an element and put another element around it at the same location in the DOM. For example:
 
-~~~{: lang=html }
+```html
 <div class="outer">
     <div class="inner">
     </div>
 </div>
-~~~
+```
 
 The goal would be to enclose `inner` within a `<div>` so that the resulting DOM looks like this:
 
-~~~{: lang=html }
+```html
 <div class="outer">
     <div class="middle">
         <div class="inner">
         </div>
     </div>
 </div>
-~~~
+```
 
 So I did a quick Google search and... guess what? There's already [a jQuery method to do exactly this](http://api.jquery.com/wrap/)!
 
-~~~{: lang=javascript }
+```javascript
 $(".inner").wrap( $('<div class="middle">') );
-~~~
+```
 
 But [you guys already knew about that](/posts/little-jquery-mobile-trick.html), of course. (There's also, naturally, [a method to do the exact opposite](http://api.jquery.com/unwrap/).)
 
 Some time later, I found myself writing code that I wanted to be executed the *first* time a page was shown (in jQuery Mobile—big surprise!); what I came up with looked something like this:
 
-~~~{: lang=javascript }
+```javascript
 function doSomethingWhenPageShows() {
   if ($page.is(":visible")) {
     doSomething($page);
@@ -47,17 +47,17 @@ function doSomethingWhenPageShows() {
     });
   }
 }
-~~~
+```
 
 Pretty clever, yeah? (And yeah, yeah, I *know* that's reckless as it unbinds all handlers attached to the `"pageshow"` event... **whatever**. It was fine in this context! Trust me! Now leave me alone.)
 
 That is, it seemed clever **until I realized [there's already a jQuery method to do this too](http://api.jquery.com/one/)!**
 
-~~~{: lang=javascript }
+```javascript
 $page.one("pageshow", function() {
   doSomething($page);
 });
-~~~
+```
 
 OK, awesome, jQuery is magical and does everything I could ever possibly need. Here's why I *kinda* don't like that.
 

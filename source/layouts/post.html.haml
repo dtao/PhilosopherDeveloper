@@ -4,4 +4,5 @@
       %header
         %h1= current_article.friendly_date
 
-    = yield
+    = find_and_preserve do
+      = yield

@@ -22,7 +22,7 @@ Engineer 2: Are you asking me for implementation details? Get out of my face!
 
 Why do I bring this up? Well, just today [a user on Stack Overflow asked](http://stackoverflow.com/questions/5326874/why-would-i-use-enumerable-elementat-versus-the-operator) about the [`ElementAt`](http://msdn.microsoft.com/en-us/library/bb299233.aspx) method, specifically wondering when it should or should not be used in place of the indexer for a collection type implementing `IList<T>`. *My* opinion is that `ElementAt` does not make sense in this case, since it is not needed. My view is that it makes sense to use `ElementAt` in those (fairly rare) cases when you want to access a specific item in a non-indexed collection, such as the *second* item in a `Queue<T>` (so, if you want the equivalent of `Peek` for the item *after* the next item in the queue):
 
-~~~{: lang=csharp }
+```csharp
 var random = new Random();
 var queue = new Queue<int>();
 for (int i = 0; i < 10; ++i)
@@ -32,7 +32,7 @@ for (int i = 0; i < 10; ++i)
 
 int firstUp = queue.Peek();
 int nextUp = queue.ElementAt(1);
-~~~
+```
 
 Not surprisingly, [mine was not the only viewpoint on the subject](http://stackoverflow.com/questions/5326874/why-would-i-use-enumerable-elementat-versus-the-operator/5326989#5326989). An opposing view was that `ElementAt` provides a nice abstraction around the concept of random indexed access, which is actually optimized to take advantage of the `IList<T>` interface when available; and so it makes sense to use it *whenever you want*.
 
@@ -42,7 +42,7 @@ I have trouble imagining code where using `ElementAt` as an abstraction provides
 
 For instance, say I wrote a `BinarySearch` method for any sorted `IList<T>` (I [sort of did, actually](/posts/whats-annoying-about-sorted-list-index-of-key.html)):
 
-~~~{: lang=csharp }
+```csharp
 public static int BinarySearch<T>(this IList<T> list, int index, int length, T value, IComparer<T> comparer) {
   // Argument validation
 
@@ -64,13 +64,13 @@ public static int BinarySearch<T>(this IList<T> list, int index, int length, T v
 }
 
 // Useful overloads
-~~~
+```
 
 Now, let's think about what it means to use `ElementAt` as an abstraction. It would allow us to define `BinarySearch` to take a less specific colletion type, right? Just `IEnumerable<T>`? Cool!
 
 So:
 
-~~~{: lang=csharp }
+```csharp
 public static int BinarySearch<T>(this IEnumerable<T> list, int index, int length, T value, IComparer<T> comparer) {
   // Argument validation
 
@@ -92,7 +92,7 @@ public static int BinarySearch<T>(this IEnumerable<T> list, int index, int lengt
 }
 
 // Useful overloads
-~~~
+```
 
 Nice, so now I can perform a binary search on any sequence! Sweet...
 
@@ -102,7 +102,7 @@ Nice, so now I can perform a binary search on any sequence! Sweet...
 
 ...hmm, does this actually make sense?
 
-~~~{: lang=csharp }
+```csharp
 var linkedList = new LinkedList<int>();
 for (int i = 0; i < 1000000; ++i)
 {
@@ -111,7 +111,7 @@ for (int i = 0; i < 1000000; ++i)
 
 // How long will this take?
 int index = linkedList.BinarySearch(new Random().Next(1000000));
-~~~
+```
 
 Running the equivalent of the above code 10 times for a `LinkedList<T>` took about **14 seconds**. For a `List<T>` it took **17 *milliseconds*.**
 

@@ -10,12 +10,12 @@ Here’s one that I personally like, and which has caused more than one of my te
 
 Frankly, I’m no Sinatra expert. For all I know there *is*[^sinatra-equivalent] an equivalent to the Rails console in Sinatra. I’ve never really cared, because if I want to poke around the code mid-request I just whip up something like this, which I shall call the **littlest Ruby debugger**:
 
-~~~{: lang=ruby }
+```ruby
 puts "Start typing away."
 while (line = STDIN.readline).strip != ""
   puts eval(line)
 end
-~~~
+```
 
 Yes, yes, I know. Any developer who lets something like that slip into production code deserves to be shot. But I would honestly argue that the chances of that are so close to zero as to be completely unworthy of any serious consideration.
 

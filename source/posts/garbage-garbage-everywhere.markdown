@@ -6,11 +6,11 @@ published: false
 
 Today I want to respond to a comment that was left on a previous post with regard to the following LINQ query:
 
-~~~{: lang=vbnet }
+```vbnet
 For Each prod As Product In Products.Where(Function(p) p.IsQuoting).OrderBy(Function(p) p.Expiration).ThenBy(Function(p) p.Strike)
     prod.SendQuotes()
 Next
-~~~
+```
 
 What's wrong with the above code? In most cases, **nothing, really**. It gets the job done in a somewhat obvious way, in a some readable line of code.
 
@@ -32,9 +32,9 @@ Now consider this: whether or not a society expects its *individual citizens* to
 
 *What the heck does this have to do with that LINQ query?* I'm glad you asked. Let's look at that first line again:
 
-~~~{: lang=vbnet }
+```vbnet
 For Each prod As Product In Products.Where(Function(p) p.IsQuoting).OrderBy(Function(p) p.Expiration).ThenBy(Function(p) p.Strike)
-~~~
+```
 
 How much garbage does this code create? I will count the throwaway objects:
 
@@ -57,7 +57,7 @@ Which would you choose?
 
 For the record, here's how you could do the same work with no garbage:
 
-~~~{: lang=vbnet }
+```vbnet
 ' Initialization code somewhere--
 ' Let's say this ProductComparer class encompasses the OrderBy/ThenBy logic.
 
@@ -76,4 +76,4 @@ For Each prod As Product in Products
         prod.SendQuotes()
     End If
 Next
-~~~
+```

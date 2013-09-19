@@ -10,7 +10,7 @@ So today I want to write about a pretty good one that's relatively polished and 
 
 Here, I'll give you an example (**note**: this is probably not going to display properly for those of you on RSS readers; [visit the website](http://philosopherdeveloper.com/posts/charts-made-dead-simple-with-hightables.html) to see what I'm trying to show you!):
 
-~~~{: lang=html }
+```html
 <table class="render-to-bar-chart">
   <tr>
     <th>Method of rendering a chart</th>
@@ -25,7 +25,7 @@ Here, I'll give you an example (**note**: this is probably not going to display 
     <td>10</td>
   </tr>
 </table>
-~~~
+```
 
 And the result:
 

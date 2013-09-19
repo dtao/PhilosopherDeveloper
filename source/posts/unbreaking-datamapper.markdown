@@ -11,7 +11,7 @@ In a [strongly-worded blog post back in 2010](http://www.drmaciver.com/2010/04/d
 
 Borrowing from MacIver's post[^borrowing], the below is a boilerplate example of how one might attempt to save a record and report any failures using DataMapper:
 
-~~~{: lang=ruby }
+```ruby
 my_account = Account.new(:name => "Jose")
 if my_account.save
   # my_account is valid and has been saved
@@ -20,16 +20,16 @@ else
     puts e
   end
 end
-~~~
+```
 
 The above can be pretty annoying to anyone who expects conciseness from an API. Most developers don't like the idea of having to write several lines of code just to save a record to a database.
 
 Why not wrap the above into a common helper? This still won't consistently work, as MacIvers points out with the following example:
 
-~~~{: lang=ruby }
+```ruby
 my_account = Account.new(:customer => Customer.new(:name => "jose"))
 my_account.save
-~~~
+```
 
 In this case, an error could occur when saving *either* the `Account` object *or* the `Customer` object. And so a general-purpose helper wouldn't be enough; one would have to write a special helper for every model, accounting for each of that model's associations, in every application.
 
@@ -52,7 +52,7 @@ It should be noted that, probably at some point after MacIver's post, DataMapper
 
 Luckily, it turns out that a solution to this problem isn't even particularly complicated. It's true that wrapping the above snippet into a helper in a *client application* doesn't solve the problem; but wrapping it in *DataMapper* does.
 
-~~~{: lang=ruby }
+```ruby
 module DataMapper
   module Resource
     alias_method :save?, :save
@@ -64,7 +64,7 @@ module DataMapper
     end
   end
 end
-~~~
+```
 
 How is the above any different from writing a wrapper in your application? Simple: every time a resource is saved in DataMapper, the `save` method is called (internally). This means that in the simple case--where saving a record fails because it is invalid--the exception raised will be informative by reporting the record's validation errors. In the more complex case--where saving a record fails because its child is invalid--the exception raised will be informative by reporting the *child's* validation errors.
 

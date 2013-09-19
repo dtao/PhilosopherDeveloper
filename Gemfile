@@ -14,8 +14,8 @@ gem "middleman-blog"
 gem "middleman-bourbon"
 gem "middleman-neat"
 
-# Maruku for Markdown
-gem "maruku", :github => 'bhollis/maruku'
+# Redcarpet for Markdown
+gem "redcarpet", ">= 3.0.0"
 
 # Required for blog post summaries
 gem "nokogiri"

@@ -10,6 +10,9 @@
 # Ignore the build directory
 /build
 
+# Also ignore the source/javascripts/lib directory, as that's where I'm putting Bower dependencies
+/source/javascripts/lib
+
 # Ignore Sass' cache
 /.sass-cache
 

@@ -1,0 +1,6 @@
+{
+  "name": "The Philosopher Developer",
+  "dependencies": {
+    "highlightjs": ">= 7.3.0"
+  }
+}

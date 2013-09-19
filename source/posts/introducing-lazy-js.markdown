@@ -27,10 +27,10 @@ Let's take `map` as an example. The idea of *mapping* is simple and something we
 
 Here's some code that uses `map` from Underscore:
 
-~~~{: lang=javascript }
+```javascript
 var array1 = [1, 2, 3, 4, 5];
 var array2 = _.map(array1, function(x) { return x + array1.length; });
-~~~
+```
 
 In the above snippet, `array1` is *mapped* to `array2` using a function that shifts each value up by five. The process involves three significant parts:
 
@@ -42,23 +42,23 @@ This 3-step process is a core part of Underscore's paradigm: again, arrays go in
 
 To illustrate what I mean, let's look at the `map` example again, this time using Lazy.js.
 
-~~~{: lang=javascript }
+```javascript
 var array    = [1, 2, 3, 4, 5];
 var sequence = Lazy(array).map(function(x) { return x + array.length; });
-~~~
+```
 
 Remember that `sequence` above is not an array; none of the elements of `array` has been accessed at this point. Which means we can do this:
 
-~~~{: lang=javascript }
+```javascript
 // Result: 8
 var middle = sequence.get(2);
-~~~
+```
 
 ...and dive straight into the middle of the sequence without iterating. This is what I meant by saying step 1 from Underscore's paradigm is not a core part of Lazy.js.
 
 Similarly, we can do this:
 
-~~~{: lang=javascript }
+```javascript
 /* Output:
  * 6
  * 7
@@ -67,7 +67,7 @@ Similarly, we can do this:
  * 10
  */
 sequence.each(function(x) { console.log(x); });
-~~~
+```
 
 ...and, *without creating any extra array*, we've viewed the results. This is why I said Underscore's step 3 (storing results in a new array) is also not a core part of Lazy.js.
 
@@ -78,7 +78,7 @@ So I've said what makes Lazy.js different from Underscore, but I haven't really 
 
 I did mention function composition. Let's take a look at a concrete example to make that a bit clearer.
 
-~~~{: lang=javascript }
+```javascript
 var array = Lazy.range(1, 1000).toArray();
 
 console.log("First 10 squares that are evenly divisible by of 3:");
@@ -87,7 +87,7 @@ var sequence = Lazy(array)
   .filter(function(x) { return x % 3 === 0; })
   .take(10)
   .each(function(x) { console.log(x); });
-~~~
+```
 
 Maybe that's a bit noisy--I just wanted to have a full example program--so I'll focus on just the `map`, `filter`, and `take` parts.
 

@@ -1,1 +1,2 @@
-//= require_tree .
+//= require lib/highlightjs/highlight.pack
+//= require main

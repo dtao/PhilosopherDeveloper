@@ -14,7 +14,7 @@ I [asked the community at Stack Overflow about this](http://stackoverflow.com/qu
 
 Below is a relatively short program I wrote to test the performance difference between these two scenarios, both in terms of execution speed and that of memory allocation.
 
-~~~{: lang=csharp }
+```csharp
 using System;
 using System.Diagnostics;
 using System.Linq.Expressions;
@@ -132,13 +132,13 @@ namespace ThreadStaticTest
         }
     }
 }
-~~~
+```
 
 ### The Result
 
 Here is the output I got from the above test on a 24-core server:
 
-~~~{: lang=text }
+```text
 CPU count: 24
 Testing local array allocation...
 Testing ThreadStatic attribute...
@@ -148,7 +148,7 @@ Results for '() => CalculateSum(AllocateArray())':
 2183.7554 ms, GC[616/1/0]
 Results for '() => CalculateSum(GetThreadStaticArray())':
 70.9415 ms, GC[0/0/0]
-~~~
+```
 
 *Wow*, that's a big difference. Using `[ThreadStatic]` fields performed something like **30x faster**, and without *any* garbage collections compared to using local arrays instantiated on every call (which also caused **616** generation-0 GCs and even a generation-1 GC!).
 

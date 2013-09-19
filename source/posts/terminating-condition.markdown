@@ -14,7 +14,7 @@ As I am a software developer, I often perceive parallels between *real-world phe
 
 For those who can read it, consider the following code snippet:
 
-~~~{: lang=csharp }
+```csharp
 void Provoke()
 {
     Console.WriteLine("Provoke!");
@@ -26,7 +26,7 @@ void Respond()
     Console.WriteLine("Respond!");
     Provoke();
 }
-~~~
+```
 
 If I were to ask you, *What does the above code do?*, an initial response might be that it will print the words "Provoke!" and "Respond!" to the console over and over again, indefinitely. This might be one way to depict such a process:
 
@@ -95,7 +95,7 @@ Or, of course, the environment does *not* enforce any such rule, in which case t
 
 So how does one prevent this from happening? We already know the answer for a computer program: by introducing a terminating condition. In the `Provoke`/`Respond` example, that terminating condition might be added like this:
 
-~~~{: lang=csharp }
+```csharp
 void Provoke(int energyLeft)
 {
     if (energyLeft < 1)
@@ -119,7 +119,7 @@ void Respond(int energyLeft)
     Console.WriteLine("Respond!");
     Provoke(energyLeft - 1);
 }
-~~~
+```
 
 The above code represents a trivial solution to a nonexistent problem. Its purpose is merely to illustrate how the introduction of a terminating condition can turn a program that would otherwise **crash** into one that is perfectly harmless.
 

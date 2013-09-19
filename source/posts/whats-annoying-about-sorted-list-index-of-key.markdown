@@ -12,24 +12,24 @@ Say you have a sorted list of some kind, but it's not a `List(T)`, and it's not 
 
 One data structure where this proves particularly frustrating is `SortedList(TKey, TValue)`, because, although `SortedList(TKey, Value)` *does* have an `IndexOfKey` method, and this method *is* a binary search, it returns -1 if the value passed isn't found. This basically makes it a crippled version of `Array.BinarySearch(T)`, which actually returns the **negative bitwise complement** of the "next best" index (that of the first value greater than the value searched for) -- a useful little piece of information that allows you to write code like this:
 
-~~~{: lang=csharp }
+```csharp
 int closestIndex = Array.BinarySearch(myArray, someValue);
 if (closestIndex < 0)
     closestIndex = ~closestIndex;
-~~~
+```
 
 Now, why do you suppose `IndexOfKey` is inconsistent with `List(T).BinarySearch` and `Array.BinarySearch(T)`? Is it due to some subtle difference in implementation that is necessary for the internal structure of `SortedList(TKey, TValue)`?
 
 Buh, no. Take a look at the source code for the `IndexOfKey` method using [Reflector](http://www.red-gate.com/products/reflector/), and what you'll find is this peculiar little bit of code:
 
-~~~{: lang=csharp }
+```csharp
     int num = Array.BinarySearch<TKey>(this.keys, 0, this._size, key, this.comparer);
     if (num < 0)
     {
         return -1;
     }
     return num;
-~~~
+```
 
 **Seriously**? You're telling me `IndexOfKey` *actually uses `Array.BinarySearch(T)`*, and just refuses to return the same value?
 
@@ -39,7 +39,7 @@ This is NOT ACCEPTABLE (to me, anyway). Thankfully, Reflector allows us to take 
 
 (I've also included the obvious overloads.)
 
-~~~{: lang=csharp }
+```csharp
 public static int BinarySearch<T>(this IList<T> list, int index, int length, T value, IComparer<T> comparer) {
     if (list == null)
         throw new ArgumentNullException("list");
@@ -74,6 +74,6 @@ public static int BinarySearch<T>(this IList<T> list, T value, IComparer<T> comp
 public static int BinarySearch<T>(this IList<T> list, T value) where T : IComparable<T> {
     return list.BinarySearch(value, Comparer<T>.Default);
 }
-~~~
+```
 
 Feel free to add this code to any static helper class you like. I know I will.

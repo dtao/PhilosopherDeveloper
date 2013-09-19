@@ -12,9 +12,9 @@ There was [quite a stir in the Rails community recently](http://news.ycombinator
 
 Without getting too caught up in the weeds, I will just say the vulnerability was ultimately a consequence of the fact that Ruby's [YAML](http://www.yaml.org/) library by default permits the deserialization of arbitrary Ruby objects. This is a problem for Rails--as well as many other Ruby frameworks, to be fair--because, until patches were released to address this problem, any Rails app could be "tricked" into parsing malicious YAML by basically anybody, without any special credentials. The key weakness in Rails, specifically, was that Rails would automatically parse the parameters of any XML request, including parameters like this:
 
-~~~{: lang=xml }
+```xml
 <data type="yaml">--- !ruby/object {}</data>
-~~~
+```
 
 I'm not giving anything away here; exploits [have already been made public](https://community.rapid7.com/community/metasploit/blog/2013/01/09/serialization-mischief-in-ruby-land-cve-2013-0156). The important takeaway is pretty simple: never parse YAML from untrusted user input. Not in an application, and *definitely* not in a framework. Which means, in the case of Rails, don't automatically parse params as YAML. The patches that were released (and which we quickly deployed, obviously) addressed this issue by disabling XML parameter parsing by default. (Less aggressive patches were also made available for sites that needed to parse XML params by simply removing YAML from the list of types that could be embedded in an XML request.)
 

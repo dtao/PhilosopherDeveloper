@@ -14,11 +14,11 @@ Guys, LINQ is just **one tool**. A carpenter wouldn't use a hammer for every sin
 
 This is *particularly* important to me, because I work on code that must be high-performance all the time at work. I remember when I first introduced my teammates to LINQ; one developer on the team in particular got very excited and started using LINQ extension methods all over the place. For example we would find code like this:
 
-~~~{: lang=vbnet }
+```vbnet
 For Each prod As Product In Products.Where(Function(p) p.IsQuoting).OrderBy(Function(p) p.Expiration).ThenBy(Function(p) p.Strike)
     prod.SendQuotes()
 Next
-~~~
+```
 
 Yeah, that's *terrible*. **It's like using a hammer to perform brain surgery.** But how was my teammate to know, or even suspect there was anything wrong with what he was doing?
 
@@ -28,9 +28,9 @@ Take [this Stack Overflow question](http://stackoverflow.com/questions/4903166/c
 
 The top-rated answer to the question looks like this (I in no way intend to disparage this answer—it is a perfectly acceptable solution, and the question did not specify performance as a concern—but only to use it as an illustration of how inefficient LINQ *can* be):
 
-~~~{: lang=csharp }
+```csharp
 string[] elements = input.Split(delimiter).Where((s, i) => i != 1).ToArray();
-~~~
+```
 
 This looks nice and all. But now let's frame it in the form of **plain English instructions**; then you tell me if it sounds efficient to you.
 
@@ -43,7 +43,7 @@ So you see what I mean? Between steps 2 and 4 above, the instructions tell you t
 
 The inefficiency here is a generic one: it is simply the process of allocating an array that holds every element of *another* array, minus one. My implementation of this, which doesn't do *nearly* as much work as the above code—and which I suggested in response to the Stack Overflow question—is as follows:
 
-~~~{: lang=csharp }
+```csharp
 public static T[] SkipElement<T>(this T[] source, int index)
 {
     // Leaving out null/bounds checking for brevity.
@@ -55,7 +55,7 @@ public static T[] SkipElement<T>(this T[] source, int index)
 
 // Elsewhere
 string[] elements = input.Split(delimiter).SkipElement(1);
-~~~
+```
 
 Plenty of developers, if they were to read this post, would roll their eyes and say that worrying about this in the first place constitutes premature optimization. And that'd be a fair point in the majority of cases. But I see no reason why we need to automatically jump to LINQ every time we see a problem like this. I mean, look at that implementation above; is it *really* so complex? Is it a maintenance headache? Personally, I don't think so.
 

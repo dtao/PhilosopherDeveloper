@@ -12,13 +12,13 @@ OK, wait. Let me take a step back. And explain.
 
 At one point on my last project I dealt with a bug that involved certain records for a certain bank *disappearing*. Not from the internal database, mind you—only from the in-memory storage of a particular application. To my astonishment, I eventually traced the cause of the bug to the following Java code:
 
-~~~{: lang=java }
+```java
 public Collection<T> sortList(List<T> list) {
     Collection<T> sortedList = new TreeSet<T>(this.comparator);
     sortedList.addAll(list);
     return sortedList;
 }
-~~~
+```
 
 Non-programmers, I understand that is gibberish to you. Now here's the scary part: **it's gibberish to most *programmers* too**.
 

@@ -12,7 +12,7 @@ It's possible to reverse a string in-place in .NET.
 
 The **beginner** says: True! I could do it like this:
 
-~~~{: lang=csharp }
+```csharp
 static void ReverseString(string str) {
     int i = 0;
     int j = str.Length - 1;
@@ -23,7 +23,7 @@ static void ReverseString(string str) {
         str[i++] = temp;
     }
 }
-~~~
+```
 
 I've got news for you, friend: **that will not work**. It won't even *compile*, in fact. While you can *access* the characters in a string by index, you cannot *set* them.
 
@@ -33,17 +33,17 @@ Good answer! It's a well-known fact (among experienced .NET developers) that the
 
 This is what often confuses rookie developers who try to write code like the following and fail to understand why it doesn't work:
 
-~~~{: lang=csharp }
+```csharp
 string str = "Hello!";
 
 str.Replace('H', 'J');
 
 Console.WriteLine(str);
-~~~
+```
 
 The above program outputs "Hello!", not "Jello!" as some might expect. This is because the `String.Replace` method *returns a new string* resulting from the replacement operation. In other words, the program could be "fixed" as follows:
 
-~~~{: lang=csharp }
+```csharp
 string str = "Hello!";
 
 // notice: here we are assigning str
@@ -51,7 +51,7 @@ string str = "Hello!";
 str = str.Replace('H', 'J');
 
 Console.WriteLine(str);
-~~~
+```
 
 This is standard behavior for any immutable type (which includes all of the primitive types in .NET such as `int`, `double`, `bool`, etc., as well as `DateTime` and `string`).
 
@@ -63,7 +63,7 @@ The **master**[^master] says: **True**.
 
 OK, first of all, you can use the `fixed` keyword in C# to access a string from a char pointer. This means that if you're compiling in `unsafe` mode, reversing a string in-place actually becomes totally straightforward:
 
-~~~{: lang=csharp }
+```csharp
 static unsafe void ReverseString(string str) {
     int i = 0;
     int j = str.Length - 1;
@@ -77,11 +77,11 @@ static unsafe void ReverseString(string str) {
         }
     }
 }
-~~~
+```
 
 What's that, you say? Nobody compiles with the `/unsafe` switch? Fair enough. But did you know it's actually *still* possible to reverse a string in-place in .NET, **without compiling in `unsafe` mode**? It's sad, but true; and it's all thanks to an evil little gremlin named "Reflection":
 
-~~~{: lang=csharp }
+```csharp
 static void ReverseString(string str) {
     int i = 0;
     int j = str.Length - 1;
@@ -98,13 +98,13 @@ static void ReverseString(string str) {
         setter.Invoke(str, new object[] { i++, temp });
     }
 }
-~~~
+```
 
 So, actually, **yes, it is possible to reverse a string in-place in .NET, even when compiling without the `/unsafe` switch**. It's evil, and you should **never** do it; but it's *possible*.
 
 By the way, in case you're not grasping why this is so evil, let me just offer a quick little illustration to show why having a method like this would be absolutely horrible. (This also explains pretty clearly why strings are immutable in .NET in the first place.)
 
-~~~{: lang=csharp }
+```csharp
 Console.Write("What's your name? ");
 string name = Console.ReadLine();
 
@@ -116,7 +116,7 @@ Console.WriteLine(
     name,
     reverse
 );
-~~~
+```
 
 The output of the above program (for "Daniel") is this:
 
@@ -124,14 +124,14 @@ The output of the above program (for "Daniel") is this:
 
 Oh crap! Well, that makes sense, because we set `name` and `reverse` to the same object. But what about this?
 
-~~~{: lang=csharp }
+```csharp
 string x = "Hello";
 string y = "Hello";
 
 ReverseString(x);
 
 Console.WriteLine(y);
-~~~
+```
 
 At least *that* should output "Hello", right? Since `x` and `y` are two different objects?
 
@@ -145,11 +145,11 @@ Just to make sure, let me throw one more insane little bit of code your way. Jus
 
 **What do you think this code will output?**
 
-~~~{: lang=csharp }
+```csharp
 ReverseString("Hello!");
 
 Console.WriteLine("Hello!");
-~~~
+```
 
 "No," I hear you saying. "It can't be... surely not..."
 

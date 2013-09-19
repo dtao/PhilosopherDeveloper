@@ -22,7 +22,7 @@ Now, to illustrate how well this method performs, I thought I'd compare it to it
 
 Take a look:
 
-~~~{: lang=csharp }
+```csharp
 class Program {
     const int N = 10000;
     const int L = 10;
@@ -77,11 +77,11 @@ class Program {
         return new string(chars);
     }
 }
-~~~
+```
 
 The output of the above code is pretty astounding:
 
-~~~{: lang=text }
+```text
 Took 3.1009 ms to reverse 10000 strings out-of-place.
 Took 1.8825 ms to reverse 10000 strings in-place.
 Took 1.7296 ms to reverse 10000 arrays.
@@ -97,7 +97,7 @@ First 10 reversal results (to verify proper reversal):
 7: AJFRGAWSPM AJFRGAWSPM AJFRGAWSPM
 8: MWOTQZLGFF MWOTQZLGFF MWOTQZLGFF
 9: WDBJJHTTOG WDBJJHTTOG WDBJJHTTOG
-~~~
+```
 
 Do you *see* that? Reversing strings in-place turned out to be **almost as fast as reversing `char[]` arrays!** Yeah, that's pretty nuts. For something that's supposed to be completely and utterly illegal, it turns out string manipulation in .NET is actually ridiculously inexpensive. (Also notice that the fastest way I could think of to reverse a string the kosher way (i.e., out-of-place)--which itself includes some unsafe low-level performance optimizations with `stackalloc` and `fixed`--really can't compete with in-place reversal.)
 
@@ -107,7 +107,7 @@ With these together, we end up with this shocking possibility: taking a string, 
 
 Here's some example code that shows how messed up this gets:
 
-~~~{: lang=csharp }
+```csharp
 Console.WriteLine("Hello!");
 
 "Hello!".ChangeTo("Goodbye!");
@@ -125,17 +125,17 @@ string.Empty.ChangeTo("I am definitely not empty.");
 Console.WriteLine("Hello!");
 
 Console.ReadLine();
-~~~
+```
 
 Can you possibly guess what the above code outputs? Let me spare you the mind-tingling anticipation and just tell you:
 
-~~~{: lang=text }
+```text
 Hello!
 Goodbye!
 Goodboy!
 !yobdooG
 I am definitely not empty.
-~~~
+```
 
 Just let that simmer. **Five consecutive calls to `Console.WriteLine("Hello!")` output five completely different strings.**
 
