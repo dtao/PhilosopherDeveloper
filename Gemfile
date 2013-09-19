@@ -20,6 +20,9 @@ gem "redcarpet", ">= 3.0.0"
 # Required for blog post summaries
 gem "nokogiri"
 
+# Required for syntax highlighting
+gem "pygments.rb"
+
 # For faster file watcher updates on Windows:
 gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
 

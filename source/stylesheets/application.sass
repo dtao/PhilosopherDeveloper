@@ -5,7 +5,7 @@
 
 // ----- For syntax highlighting -----
 
-@import "github"
+@import "pygments"
 
 // ----- Colors -----
 
@@ -116,9 +116,12 @@ article
     display: block
     margin: auto
 
-pre, code
-  color: $pink
-  font-family: $code-font
+  code
+    color: $pink
+    font-family: $code-font
+
+  pre
+    padding: 10px
 
 a
   color: $light-green
@@ -127,19 +130,20 @@ a
 
   &:hover
     color: darken($light-green, 20%)
+    text-decoration: underline
 
 body > header
   h1, h2
     font-family: $title-font
     font-weight: bold
     text-align: center
-    text-transform: uppercase
 
     a:hover
       color: $light-green
 
   h1
     margin-bottom: 0
+    text-transform: uppercase
 
     a
       color: $black
@@ -147,6 +151,7 @@ body > header
   h2
     color: $dark-gray
     margin-top: 0
+    text-transform: lowercase
 
     a
       color: $dark-gray

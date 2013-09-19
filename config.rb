@@ -38,6 +38,7 @@
 # Reload the browser automatically whenever files change
 # activate :livereload
 
+require File.join(File.dirname(__FILE__), 'lib/ext/middleman/renderers/middleman_redcarpet_html')
 require File.join(File.dirname(__FILE__), 'lib/ext/middleman/sitemap/resource')
 
 activate :blog do |blog|
