@@ -1,1 +1,2 @@
+//= require ga
 //= require main
