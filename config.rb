@@ -41,9 +41,10 @@
 Dir.glob(File.join(File.dirname(__FILE__), 'lib/**/*.rb')).each(&method(:require))
 
 activate :blog do |blog|
-  blog.sources = "posts/:title.html"
+  blog.paginate  = true
   blog.permalink = "posts/:title.html"
-  blog.layout = "post"
+  blog.sources   = "posts/:title.html"
+  blog.layout    = "post"
 end
 
 activate :bourbon
