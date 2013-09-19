@@ -1,0 +1,42 @@
+!!! 5
+%html
+  %head
+    %title The Philosopher Developer
+    %meta(charset="utf-8")
+    %meta(name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no")
+    = favicon_tag("favicon.ico")
+    = stylesheet_link_tag("application")
+    = javascript_include_tag("application")
+    = javascript_include_tag("http://w.sharethis.com/button/buttons.js")
+
+  %body
+    %header
+      - if is_blog_article?
+        %h1= link_to(current_article.title, current_article.url)
+        %h2= link_to('The Philosopher Developer', '/')
+
+      - else
+        %h1= link_to(current_page.data['title'] || 'The Philosopher Developer', '/')
+        %h2= link_to(current_page.data['subtitle'] || 'half-sound logic, half-decent code', '/')
+
+    %main
+      %nav
+        %ul
+          %li
+            = link_to('About', '/about.html')
+            = link_to('https://github.com/dtao') do
+              = image_tag('icons/github-small.png')
+            = link_to('http://stackoverflow.com/users/105570/dan-tao') do
+              = image_tag('icons/stackoverflow-small.png')
+            = link_to('https://twitter.com/dan_tao') do
+              = image_tag('icons/twitter-small.png')
+
+        %ul
+          - blog.articles[0...10].each do |article|
+            %li= link_to(article.title, article.url)
+
+        %ul
+          %li= link_to('All Posts', '/posts.html')
+
+      #content
+        = yield

@@ -1,0 +1,7 @@
+- wrap_layout :layout do
+  %article
+    - if is_blog_article?
+      %header
+        %h1= current_article.friendly_date
+
+    = yield

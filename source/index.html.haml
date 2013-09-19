@@ -1,0 +1,10 @@
+- blog.articles[0...5].each do |article|
+  %article
+    %header
+      %h1
+        = article.title
+        .date= article.friendly_date
+
+    = article.summary
+
+    %p= link_to('Read more', article.url)

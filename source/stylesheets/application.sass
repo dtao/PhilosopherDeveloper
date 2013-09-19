@@ -1,0 +1,214 @@
+// ----- Let's try these out -----
+
+@import "bourbon"
+@import "neat"
+
+// ----- For syntax highlighting -----
+
+@import "pygments"
+
+// ----- Colors -----
+
+$black:       #000
+$dark-gray:   #555
+$light-blue:  #dfefff
+$light-gray:  #eee
+$light-green: #36BCAB
+$pink:        #d14
+$yellow:      #ffe
+
+// ----- Fonts -----
+
+@import url("//fonts.googleapis.com/css?family=Lato:300,400|Oswald")
+
+$heading-font: Lato, Helvetica, Arial, sans-serif
+
+$content-font: Cambria, Georgia, serif
+
+$code-font: Consolas, Inconsolata, monospace
+
+// ----- Borrowed from Wordpress "Chunk" theme -----
+
+$title-font: Oswald, Helvetica, Arial, sans-serif
+
+body
+  background-image: linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px)
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px)
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px)
+
+  background-repeat: repeat-x
+  margin: auto
+  padding-bottom: 60px
+
+// ----- Layout -----
+
+$desktop-width: 1200px
+$tablet-width:  768px
+$phone-width:   640px
+
+main
+  @include outer-container
+
+  @include media($tablet-width)
+    min-width: $tablet-width
+    max-width: $desktop-width * 4 / 3
+    width: 75%
+
+    nav
+      @include span-columns(3)
+
+      ul
+        list-style: none
+        padding-left: 0
+
+        li a
+          font-family: $heading-font
+          font-size: 150%
+          font-weight: 300
+
+          &:hover
+            color: lighten($light-green, 20%)
+
+          img
+            vertical-align: middle
+
+        li:nth-child(even) a
+          color: darken($light-green, 20%)
+
+          &:hover
+            color: lighten($light-green, 20%)
+
+    #content
+      @include span-columns(9)
+
+  @include media(max-width $tablet-width - 1)
+    nav
+      display: none
+
+    #content
+      @include span-columns(12)
+
+  .posts
+    display: table
+
+    .post
+      display: table-row
+
+      .title
+        display: table-cell
+        padding-right: 1em
+
+      .date
+        display: table-cell
+        text-align: right
+
+// ----- Other typography stuff -----
+
+h1, h2, h3, h4, h5, h6
+  font-family: $heading-font
+  font-weight: 300
+
+article
+  p, li, blockquote
+    font-family: $content-font
+
+  img
+    display: block
+    margin: auto
+
+pre, code
+  color: $pink
+  font-family: $code-font
+
+a
+  color: $light-green
+  font-weight: bold
+  text-decoration: none
+
+  &:hover
+    color: darken($light-green, 20%)
+
+body > header
+  h1, h2
+    font-family: $title-font
+    font-weight: bold
+    text-align: center
+    text-transform: uppercase
+
+    a:hover
+      color: $light-green
+
+  h1
+    margin-bottom: 0
+
+    a
+      color: $black
+
+  h2
+    color: $dark-gray
+    margin-top: 0
+
+    a
+      color: $dark-gray
+
+  @include media(max-width $tablet-width - 1)
+    h1, h2
+      text-align: left
+
+// ----- Responsive font sizing -----
+
+@mixin set-font-size($base-font-size)
+  body > header
+    h1
+      font-size: $base-font-size * 4
+    h2
+      font-size: $base-font-size * (4 / 3)
+
+  blockquote
+    font-size: $base-font-size * (5 / 6)
+
+  pre
+    font-size: $base-font-size * (2 / 3)
+
+  code
+    font-size: $base-font-size - 2
+
+  pre code
+    font-size: $base-font-size * (2 / 3)
+
+  figure
+    figcaption
+      font-size: $base-font-size * (2 / 3)
+
+  article, .posts
+    font-size: $base-font-size
+
+    small
+      font-size: $base-font-size * (2 / 3)
+
+    header
+      h1
+        font-size: $base-font-size * 2
+
+        .date
+          color: $dark-gray
+          font-size: $base-font-size
+
+        .comments
+          font-size: $base-font-size
+          white-space: nowrap
+
+    .footnotes
+      font-size: $base-font-size * (7 / 12)
+
+@include set-font-size(16px)
+
+@include media(max-width $tablet-width - 1)
+  header, article
+    padding: 10px
+
+@include media($tablet-width)
+  @include set-font-size(20px)
+
+@include media($desktop-width)
+  @include set-font-size(24px)
