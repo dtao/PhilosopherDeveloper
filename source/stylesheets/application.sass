@@ -67,23 +67,11 @@ main
           padding-bottom: 10px
           border-bottom: 1px solid black
 
-        li a
-          font-family: $heading-font
+        li
           font-size: 150%
-          font-weight: 300
-
-          &:hover
-            color: lighten($light-green, 20%)
-            text-decoration: underline
 
           img
             vertical-align: middle
-
-        li:nth-child(even) a
-          color: darken($light-green, 20%)
-
-          &:hover
-            color: lighten($light-green, 20%)
 
     #content
       @include span-columns(9)
@@ -114,6 +102,23 @@ main
         text-align: right
 
 // ----- Other typography stuff -----
+
+@mixin nav-link
+  font-family: $heading-font
+  font-weight: 300
+
+  a
+    font-weight: 300
+
+    &:hover
+      color: lighten($light-green, 20%)
+      text-decoration: underline
+
+  &:nth-child(even) a
+    color: darken($light-green, 20%)
+
+    &:hover
+      color: lighten($light-green, 20%)
 
 h1, h2, h3, h4, h5, h6
   font-family: $heading-font
@@ -176,6 +181,10 @@ body > header
   @include media(max-width $tablet-width - 1)
     h1, h2
       text-align: left
+
+nav ul li,
+.posts .post
+  @include nav-link
 
 // ----- Responsive font sizing -----
 
