@@ -6,10 +6,7 @@ published: false
 
 The road to perfection is never-ending.
 
-I visualize the path of personal progress---whether as a software engineer, or otherwise---as a perilous one, riddled with illusions. Wherever we stand, we think we're on an island of englightenment and look back at those further back on the path with disdain. "Don't walk along those rickety bridges!" we shout back at them. "They are poorly built! They will collapse underneath you!" Meanwhile we forget that we had to cross those very same bridges to get where we are. And to those ahead of us on their own paths, our island of enlightenment is itself a garbage pile. 
-
-PHP and Visual Basic
---------------------
+I visualize the path of personal progress---whether as a software engineer, or anything else---as a perilous one, riddled with illusions. Wherever we stand, it's easy to think we're on an island of englightenment and look back at those behind on the path with disdain. "Don't walk along those rickety bridges!" we shout back at them. "They are poorly built! They will collapse underneath you!" Meanwhile we forget that we had to cross those very same bridges to get where we are. And to those ahead of us on their own paths, our island of enlightenment is itself a garbage pile.
 
 At Cardpool we used to tease our designer because he preferred PHP to Ruby on Rails. Sometimes he would ask the other engineers how to do something basic in Ruby, one of us would tell him, and he'd sort of roll his eyes and go "Ugh, this would be *so* much easier in PHP." And we'd all have a good laugh (or *I* would anyway, because I'm a jerk) at how *foolish* he sounded for saying such things.
 
@@ -19,7 +16,7 @@ There's also a lot of hate for Visual Basic, a similarly crappy language (not to
 
 Guess what my first exposure to software development was? Hacking VBA macros in Microsoft Excel and writing little webpages in PHP.
 
-Could it have been otherwise? I don't know. But I have this hypothesis that if you're going to reach the island of Good Web Development, a path through the PHP forest is the best route to take. If you're going to become a world-class application developer, spending some time in the swamp of VB is good for you.
+Could it have been otherwise? I don't know. But I have this hypothesis that if you're going to reach the island of Good Web Development, a path through the PHP Forest is the best route to take. If you're going to become a world-class application developer, spending some time in the Swamp of VB is good for you.
 
 Here's the thing. If you're using Microsoft Office, you can click "Record Macro" (or whatever the button is), do a few things, then open up an editor and see code that automates what you just did. From looking at this code, you can kinda see how it works; and it's pretty obvious how you could tweak that and make it do something a little different. So the distance from "I don't know how to code" to "Gee, I just automated some mundane tasks!" is quite small.
 
@@ -28,9 +25,6 @@ Same with PHP. You follow maybe one or two online tutorials to set up an Apache 
 Meanwhile, imagine taking a complete neophyte and helping him or her get started with, say, Rails. "Well, to begin with you must understand this concept called MVC. Here are some articles explaining the core ideas." This poor soul will be completely lost. The ideas of MVC are abstract and intangible; it takes experience to appreciate what they really are and why they're useful. Same goes for an ORM like ActiveRecord, or a dependency management system like Bundler, or even a version control system like Git.
 
 My point is that you can't just throw all of your hard-won knowledge about how "good" developers build software the "right" way at a new developer and expect it to stick. We learn in gradual steps, not leaps. And from knowing *nothing*, the first step is nowhere near MVC. It's much closer to PHP[^mvc-vs-php].
-
-Bootstrap
----------
 
 [^stupid]: All in good fun, of course. We obviously didn't really think he was stupid, or we wouldn't have hired him.
 
