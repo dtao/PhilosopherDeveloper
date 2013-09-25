@@ -91,9 +91,6 @@ main
       &.full-width
         width: 100%
 
-      header h1
-        margin-top: 0
-
   @include media(max-width $tablet-width - 1)
     nav
       display: none
@@ -123,6 +120,9 @@ h1, h2, h3, h4, h5, h6
   font-weight: 300
 
 article
+  header h1
+    margin-top: 0
+
   p, li, blockquote
     font-family: $content-font
 
