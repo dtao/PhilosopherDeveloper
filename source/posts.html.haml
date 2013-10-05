@@ -1,5 +1,8 @@
 .posts
-  - blog.articles.each do |article|
-    .post
-      .title= link_to(article.title, article.url)
-      .date= article.friendly_date
+  - articles_by_period = blog.articles.group_by(&:period_date)
+  - articles_by_period.keys.sort.reverse.each do |period_date|
+    %h2= articles_by_period[period_date].first.friendly_period
+    - articles_by_period[period_date].each do |article|
+      .post
+        .title= link_to(article.title, article.url)
+        .date= article.friendly_date
