@@ -130,6 +130,7 @@ h1, h2, h3, h4, h5, h6
 article
   header h1
     margin-top: 0
+    margin-bottom: 0.5ex
 
     a
       color: black
@@ -253,3 +254,9 @@ nav ul li,
 
 @include media($desktop-width)
   @include set-font-size(24px)
+
+// Not sure what's up with their stylesheet, but without these rules the sharing
+// buttons look like CRAP
+#share_this
+  .stMainServices, .stHBubble, .stButton_gradient
+    height: 22px !important
