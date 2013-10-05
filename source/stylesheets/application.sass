@@ -49,10 +49,13 @@ $phone-width:   640px
 main
   @include outer-container
 
+  @include media($desktop-width)
+    width: 75%
+
   @include media($tablet-width)
     min-width: $tablet-width
     max-width: $desktop-width * 4 / 3
-    width: 75%
+    width: 90%
 
     nav
       @include span-columns(3)
@@ -127,6 +130,13 @@ h1, h2, h3, h4, h5, h6
 article
   header h1
     margin-top: 0
+
+    a
+      color: black
+      font-weight: 300
+
+      &:hover
+        color: lighten($light-green, 20%)
 
   p, li, blockquote
     font-family: $content-font
@@ -235,7 +245,7 @@ nav ul li,
 @include set-font-size(16px)
 
 @include media(max-width $tablet-width - 1)
-  header, article
+  body > header, main
     padding: 10px
 
 @include media($tablet-width)
