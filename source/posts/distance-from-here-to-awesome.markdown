@@ -1,12 +1,28 @@
 ---
-title: PHP, Visual Basic, and the road to perfection
-date: 2013-09-25
+title: The distance from here to awesome
+date: 2013-10-06
 published: false
 ---
 
 The road to perfection is never-ending.
 
-I visualize the path of personal progress---whether as a software engineer, or anything else---as a perilous one, riddled with illusions. Wherever we stand, it's easy to think we're on an island of englightenment and look back at those behind us with disdain. "Don't walk along those rickety bridges!" we shout back at them. "They are poorly built! They will collapse underneath you!" Meanwhile we forget that we had to cross those very same bridges to get where we are. And to those ahead of us on their own paths, our island of enlightenment is itself a garbage pile.
+I visualize the path of personal progress---whether as a software engineer, or anything else---as a perilous one, riddled with illusions. Wherever we stand, it's easy to think we're on an island of englightenment and look back at those behind us with disdain. "Don't walk along those rickety bridges!" we shout back at them. "They are poorly built! They will collapse underneath you!" Meanwhile we forget that we had to cross those very same bridges to get where we are. And to those ahead of us on their own paths, our enlightened island is itself a garbage pile.
+
+Twitter Bootstrap: a flawed framework
+-------------------------------------
+
+A little while ago I attended a meetup of sorts at the ThoughtWorks office in San Francisco, where I had a chance to chat with Pete Hodgson, my old friend and colleague. Pete talked about [Bourbon](http://bourbon.io/), a mixin library for SASS, along with [Neat](http://neat.bourbon.io/), a companion grid framework. Specifically he discussed how these tools are in many ways preferably to Twitter's extremely popular [Bootstrap](http://getbootstrap.com/) framework, for a variety of reasons.
+
+Pete is a very smart guy, and he had very good arguments against Bootstrap. I won't enumerate all of them, but I will tell you that one of the big ones is that Bootstrap encourages you to put lots of presentation logic in your HTML, violating the widely-lauded notion of [semantic markup](http://en.wikipedia.org/wiki/Semantic_HTML). So instead of a nice semantic, content-heavy HTML document with `<article>`s and `<section>`s and `<aside>`s, Bootstrap tends to produce a lot of "noisy" pages with `<div class="row">`s and `<div class="col-lg-10">`s and so forth.
+
+To web developers with a lot of experience under their belt, there is an intuitive *ickiness* to this. The idea for semantic markup was borne out of frustration with old-school, "Web 1.0" sites where a task as seemingly simple as redesigning the layout was a nightmare because there was such tight coupling between server-side rendering logic and the down-to-the-pixel look of a page. Focusing on *semantics* establishes a helpful separation between content and presentation, achieving something like what XML and XLST were supposed to provide but with the more flexible (and hipper) HTML and CSS.
+
+The problem with this hard-won knowledge is that it's a bit abstract, and doesn't exactly tell you how to make a nice-looking website. You know what *does* make it easy to make a nice-looking[^nice-looking] website? Bootstrap.
+
+But let me rewind for a second. If Bootstrap were *just* a collection of pretty UI features, that'd be one thing. But it isn't just that. The fact is that Bootstrap *does* address a problem
+
+PHP and Visual Basic: bad languages
+-----------------------------------
 
 When I was at Cardpool we used to tease our designer because he preferred PHP to Ruby on Rails. Sometimes he would ask the other engineers how to do something basic in Ruby, one of us would tell him, and he'd sort of roll his eyes and go "Ugh, this would be *so* much easier in PHP." And we'd all have a good laugh (or *I* would anyway, because I'm a jerk) at how *foolish* he sounded for saying such things.
 
@@ -25,6 +41,8 @@ Same with PHP. You follow maybe one or two online tutorials to set up an Apache 
 Meanwhile, imagine taking a complete neophyte and helping him or her get started with, say, Rails. "Well, to begin with you must understand this concept called MVC. Here are some articles explaining the core ideas." This poor soul will be completely lost. The ideas of MVC are abstract and intangible; it takes experience to appreciate what they really are and why they're useful. Same goes for an ORM like ActiveRecord, or a dependency management system like Bundler, or even a version control system like Git.
 
 My point is that you can't just throw all of your hard-won knowledge about how "good" developers build software the "right" way at a new developer and expect it to stick. We learn in gradual steps, not leaps. And from knowing *nothing*, the first step is nowhere near MVC. It's much closer to PHP[^mvc-vs-php].
+
+[^nice-looking]: Albeit unfortunately rather cookie-cutter, too, these days.
 
 [^stupid]: All in good fun, of course. We obviously didn't really think he was stupid, or we wouldn't have hired him.
 
