@@ -10,6 +10,9 @@ gem 'middleman-livereload', '~> 3.1.0'
 # Blogging plugin
 gem 'middleman-blog'
 
+# Need this for RSS
+gem 'builder'
+
 # Bourbon & Neat for styling
 gem 'middleman-bourbon'
 gem 'middleman-neat'

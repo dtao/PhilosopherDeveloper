@@ -13,6 +13,8 @@ per_page: 10
         = image_tag('icons/stackoverflow-small.png')
       = link_to('https://twitter.com/dan_tao') do
         = image_tag('icons/twitter-small.png')
+      = link_to('http://feeds.feedburner.com/philosopherdeveloper') do
+        = image_tag('icons/rss-small.png')
 
   %ul
     - blog.articles[0...10].each do |article|
