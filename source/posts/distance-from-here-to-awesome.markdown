@@ -19,7 +19,11 @@ To web developers with a lot of experience under their belt, there is an intuiti
 
 The problem with this hard-won knowledge is that it's a bit abstract, and doesn't exactly tell you how to make a nice-looking website. You know what *does* make it easy to make a nice-looking[^nice-looking] website? Bootstrap.
 
-But let me rewind for a second. If Bootstrap were *just* a collection of pretty UI features, that'd be one thing. But it isn't just that. The fact is that Bootstrap *does* address a problem
+But let me rewind for a second. If Bootstrap were *just* a collection of pretty UI features, that'd be one thing. But it isn't just that. The fact is that Bootstrap *does* address a problem, which is the prevalence of disorganized [spaghetti](http://en.wikipedia.org/wiki/Spaghetti_code) layouts with rampant code duplication and CSS rules whose interactions are extremely fragile (e.g., remove a `<div>` and suddenly the text is blue). This was a real problem. Then Bootstrap came along with its simple vocabulary of consistent syling rules and attractive defaults, and suddenly coming up with a sane, pleasant layout became much easier.
+
+*Yeah, but they didn't do it the right way! It isn't semantic!*
+
+In other words, it isn't *totally awesome*. But it *couldn't* be. The *distance to awesome* from where we were, with the spaghetti styling and house-of-cards layouts, was just too great.
 
 PHP and Visual Basic: bad languages
 -----------------------------------
