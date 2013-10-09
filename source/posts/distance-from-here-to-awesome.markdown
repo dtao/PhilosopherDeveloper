@@ -4,26 +4,30 @@ date: 2013-10-06
 published: false
 ---
 
-The road to perfection is never-ending.
-
 I visualize the path of personal progress---whether as a software engineer, or anything else---as a perilous one, riddled with illusions. Wherever we stand, it's easy to think we're on an island of englightenment and look back at those behind us with disdain. "Don't walk along those rickety bridges!" we shout back at them. "They are poorly built! They will collapse underneath you!" Meanwhile we forget that we had to cross those very same bridges to get where we are. And to those ahead of us on their own paths, our enlightened island is itself a garbage pile.
+
+Let's talk about Twitter Bootstrap.
 
 Twitter Bootstrap: a flawed framework
 -------------------------------------
 
-A little while ago I attended a meetup of sorts at the ThoughtWorks office in San Francisco, where I had a chance to chat with Pete Hodgson, my old friend and colleague. Pete talked about [Bourbon](http://bourbon.io/), a mixin library for SASS, along with [Neat](http://neat.bourbon.io/), a companion grid framework. Specifically he discussed how these tools are in many ways preferably to Twitter's extremely popular [Bootstrap](http://getbootstrap.com/) framework, for a variety of reasons.
+A little while ago I attended a meetup of sorts at the ThoughtWorks office in San Francisco, where I had a chance to chat with Pete Hodgson, my old friend and colleague. Pete talked about [Bourbon](http://bourbon.io/), a mixin library for SASS, along with [Neat](http://neat.bourbon.io/), a companion grid framework. Specifically he discussed how these tools are in many ways preferable to Twitter's extremely popular [Bootstrap](http://getbootstrap.com/) framework, for a variety of reasons.
 
-Pete is a very smart guy, and he had very good arguments against Bootstrap. I won't enumerate all of them, but I will tell you that one of the big ones is that Bootstrap encourages you to put lots of presentation logic in your HTML, violating the widely-lauded notion of [semantic markup](http://en.wikipedia.org/wiki/Semantic_HTML). So instead of a nice semantic, content-heavy HTML document with `<article>`s and `<section>`s and `<aside>`s, Bootstrap tends to produce a lot of "noisy" pages with `<div class="row">`s and `<div class="col-lg-10">`s and so forth.
+Pete is a smart guy, and he had some good arguments against Bootstrap. I won't enumerate all of them, but one of the big ones is that Bootstrap encourages you to put lots of presentation logic in your HTML, violating the generally-accepted principle of [semantic markup](http://en.wikipedia.org/wiki/Semantic_HTML). So instead of a nice semantic, content-heavy HTML document with `<article>`s and `<section>`s and `<aside>`s, Bootstrap tends to produce a lot of "noisy" pages with `<div class="row">`s and `<div class="col-lg-10">`s and so forth.
 
 To web developers with a lot of experience under their belt, there is an intuitive *ickiness* to this. The idea for semantic markup was borne out of frustration with old-school, "Web 1.0" sites where a task as seemingly simple as redesigning the layout was a nightmare because there was such tight coupling between server-side rendering logic and the down-to-the-pixel look of a page. Focusing on *semantics* establishes a helpful separation between content and presentation, achieving something like what XML and XLST were supposed to provide but with the more flexible (and hipper) HTML and CSS.
 
 The problem with this hard-won knowledge is that it's a bit abstract, and doesn't exactly tell you how to make a nice-looking website. You know what *does* make it easy to make a nice-looking[^nice-looking] website? Bootstrap.
 
-But let me rewind for a second. If Bootstrap were *just* a collection of pretty UI features, that'd be one thing. But it isn't just that. The fact is that Bootstrap *does* address a problem, which is the prevalence of disorganized [spaghetti](http://en.wikipedia.org/wiki/Spaghetti_code) layouts with rampant code duplication and CSS rules whose interactions are extremely fragile (e.g., remove a `<div>` and suddenly the text is blue). This was a real problem. Then Bootstrap came along with its simple vocabulary of consistent syling rules and attractive defaults, and suddenly coming up with a sane, pleasant layout became much easier.
+*So Bootstrap is a crappy tool make a poorly-designed, nice-looking website?*
+
+Hang on for a second. If Bootstrap were *just* a collection of pretty UI features, that'd be one thing. But it isn't just that. The fact is that Bootstrap *does* address a problem, which is the prevalence of disorganized [spaghetti](http://en.wikipedia.org/wiki/Spaghetti_code) layouts with rampant code duplication and CSS rules whose interactions are extremely fragile (e.g., remove a `<div>` and suddenly the text is blue). This was a real problem. Then Bootstrap came along with its simple vocabulary of consistent syling rules and attractive defaults, and suddenly coming up with a sane, pleasant layout became much easier.
 
 *Yeah, but they didn't do it the right way! It isn't semantic!*
 
-In other words, it isn't *totally awesome*. But it *couldn't* be. The *distance to awesome* from where we were, with the spaghetti styling and house-of-cards layouts, was just too great.
+In other words, it isn't *totally awesome*.
+
+Well, my position is that it *couldn't* be. Or rather, it couldn't be awesome, while at the same time gaining widespread adoption. Developers---like everyone else---move in small steps rather than giant leaps. So if you're going to introduce a New Way of Doing Things, it needs to be familiar somehow. The *distance to awesome* from where we were, with the spaghetti styling and house-of-cards layouts, was just too great.
 
 PHP and Visual Basic: bad languages
 -----------------------------------
