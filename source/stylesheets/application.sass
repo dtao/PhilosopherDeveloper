@@ -7,6 +7,10 @@
 
 @import "highlighting.css"
 
+// ----- Post-specific styling -----
+
+@import "posts/charts-made-dead-simple-with-hightables"
+
 // ----- Colors -----
 
 $black:       #000
@@ -145,6 +149,24 @@ article
   img, iframe
     display: block
     margin: auto
+
+  table
+    width: 75%
+    margin: auto
+
+    th, td
+      padding: 0.5ex 0.5em
+
+      &:not(:first-child)
+        text-align: right
+
+  figure
+    .pie-chart
+      float: left
+      width: 50%
+
+    &:after
+      clear: both
 
   figcaption
     font-family: $heading-font

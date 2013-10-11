@@ -8,6 +8,8 @@
     = stylesheet_link_tag("application")
     = javascript_include_tag("application")
 
+    = yield_content(:extra_javascript)
+
   %body
     %header
       - if is_blog_article?

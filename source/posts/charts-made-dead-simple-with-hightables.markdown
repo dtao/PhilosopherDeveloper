@@ -2,6 +2,11 @@
 title: Charts made dead simple with HighTables
 date: 2013-04-10 08:34:00 -0700
 published: true
+
+javascript:
+  - http://code.jquery.com/jquery-1.10.1.min.js
+  - http://code.highcharts.com/highcharts.js
+  - http://danieltao.com/HighTables/hightables.min.js
 ---
 
 In a footnote to [my post a while ago on SafeYAML](/posts/making-yaml-safe-again.html)[^safe-yaml], I established a goal of writing more about my many open source projects, which I have a bad habit of not telling anyone about---sometimes even long after they're finished!
@@ -50,15 +55,15 @@ For what it's worth, HighTables itself isn't all that complicated. It leverages 
 
 My problem with Highcharts in the past was that it has [a *behemoth* API](http://api.highcharts.com/highcharts). Rendering a chart was never a simple matter of calling `pieChart()`; instead, any chart-creation logic requires a whole ton of options that an average person is very unlikely to remember from one use to the next. And so I always found myself returning to the Highcharts website, perusing documentation, and following examples to ever get a chart to display on sites I've worked on.
 
-<figure class="hidden-in-abbreviated-version">
+<figure>
   <div class="pie-chart"
        data-title="Value of activity"
-       data-source="#activity-value-vs-time-table"
+       data-source="table:last-of-type"
        data-value-columns="2"
        data-options="getChartOptions"></div>
   <div class="pie-chart"
        data-title="Time invested in activity"
-       data-source="#activity-value-vs-time-table"
+       data-source="table:last-of-type"
        data-value-columns="3"
        data-options="getChartOptions"></div>
   <figcaption>Notice any discrepancy?</figcaption>

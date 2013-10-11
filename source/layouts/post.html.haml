@@ -1,5 +1,10 @@
 - wrap_layout :layout do
-  %article
+  - if current_page.data['javascript']
+    - content_for(:extra_javascript) do
+      - current_page.data['javascript'].each do |script|
+        = javascript_include_tag(script)
+
+  %article(id="#{File.basename(current_page.path, '.html')}")
     - if is_blog_article?
       %header
         %h1
