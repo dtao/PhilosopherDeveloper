@@ -1,7 +1,7 @@
 ---
 title: The absense of disproof is not proof
-date: 2013-10-10
-published: false
+date: 2013-10-11 08:17:00 -0800
+published: true
 ---
 
 Here's a mistake people often make: thinking that the absense of any obvious disproof is the same thing as proof.
@@ -35,14 +35,6 @@ Of course, again, I later thought up a whole bunch of counterexamples.
 
 And so on. Funny that at first, it seemed so believable that there would be only one example. Then at some point it's as if a faucet is turned on and the exceptions are suddenly quite plentiful!
 
-The lesson here is, of course, that being unable to disprove something right away hardly means that it's right. Keep this in mind the next time you're so sure of something and think that because no one can disprove you, it must be true.
+The lesson here[^one-last-example] is, of course, that being unable to disprove something right away hardly means that it's right. Keep this in mind the next time you're so sure of something and think that because no one can disprove you, it must be true.
 
-***
-
-OK, one last example. This one is a bit of a slap on the wrist to myself---since it involves me forgeting the very lesson I just stated---but it's also a fun little challenge for anyone reading who cares to try and disprove the claim I'm about to (sort of) make.
-
-A long time ago my friends and I were talking about words, and we were trying to think of the *longest one-syllable word* and the *shortest N-syllable words*. For shortest four-syllable word, I came up with *aviary*. I was quite pleased with myself over this because it seems to me it would be very hard to beat; the letter-to-syllable ratio is only 1.5! So I actually started telling people that *aviary* is the shorted four-syllable word there is.
-
-Of course, now that I am older and wiser I see that I was wrong to be so sure, just because I couldn't think of any counterexamples. But I *would* be very interested to find out if anyone out there can think of an even *shorter* four-syllable word. (Of course this would be extremely easy to do with a computer, given the right database. I'm guessing I could even look it up right now. But I haven't bothered, because it's a pleasant little delusion for me to think that *aviary* is so special, as a word.)
-
-Incidentally, the longest single-syllable words I recall coming up with were all along the lines of *stretched*, *scratched*---words lke that. I also seem to remember someone proposing the word *scraunched*, which I think is a pretty rare word.
+[^one-last-example]: OK, one last example. This one is a bit of a slap on the wrist to myself---since it involves me forgeting the very lesson I just stated---but it's also a fun little challenge for anyone reading who cares to try and disprove the claim I'm about to (sort of) make.<br /><br />A long time ago my friends and I were talking about words, and we were trying to think of the *longest one-syllable word* and the *shortest N-syllable words*. For shortest four-syllable word, I came up with *aviary*. I was quite pleased with myself over this because it seems to me it would be very hard to beat; the letter-to-syllable ratio is only 1.5! So I actually started telling people that *aviary* is the shorted four-syllable word there is.<br /><br />Of course, now that I am older and wiser I see that I was wrong to be so sure, just because I couldn't think of any counterexamples. But I *would* be very interested to find out if anyone out there can think of an even *shorter* four-syllable word. (Of course this would be extremely easy to do with a computer, given the right database. I'm guessing I could even look it up right now. But I haven't bothered, because it's a pleasant little delusion for me to think that *aviary* is so special, as a word.)<br /><br />Incidentally, the longest single-syllable words I recall coming up with were all along the lines of *stretched*, *scratched*---words lke that.
