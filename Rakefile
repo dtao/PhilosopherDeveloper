@@ -1,3 +1,5 @@
+require 'middleman-gh-pages'
+
 def report(message)
   before, after = message.split(/\=>\s*/, 2)
 
