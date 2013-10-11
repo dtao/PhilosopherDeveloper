@@ -12,6 +12,8 @@ The professor asserted that this perception issue could be explained by the word
 
 Of course, later that day some very obvious exceptions starting popping into my head: *idealist*, *philanthropist*, *pragmatist*, *patriotism*, *humanism*, *egalitarianism*. And so our professor's hypothesis couldn't be correct. Or anyway, if there were *some* truth to it (i.e., if *-ist* words *do* tend to be negative *on average* and so this does play into our perception of the ideas those words represent), it was certainly not the whole truth. At best it was only a small sliver of an explanation.
 
+***
+
 While my wife and I were living in Namibia in 2008, we observed an interesting quirk in the Namibian dialect of English: many people use the present participle tense of the verb *to have* in cases where American speakers would use the simple present tense.
 
 > Are you having a pen? *(As opposed to "Do you have")*  
@@ -39,8 +41,8 @@ The lesson here is, of course, that being unable to disprove something right awa
 
 OK, one last example. This one is a bit of a slap on the wrist to myself---since it involves me forgeting the very lesson I just stated---but it's also a fun little challenge for anyone reading who cares to try and disprove the claim I'm about to (sort of) make.
 
-A long time ago my friends and I were talking about words, and we were trying to think of the *longest one-syllable word* and the *shortes N-syllable words*. For shorted four-syllable word, I came up with *aviary*. I was quite pleased with myself over this because it seems to me it would be very hard to beat; the letter-to-syllable ratio is only 1.5! So I actually started telling people that *aviary* is the shorted four-syllable word there is.
+A long time ago my friends and I were talking about words, and we were trying to think of the *longest one-syllable word* and the *shortest N-syllable words*. For shortest four-syllable word, I came up with *aviary*. I was quite pleased with myself over this because it seems to me it would be very hard to beat; the letter-to-syllable ratio is only 1.5! So I actually started telling people that *aviary* is the shorted four-syllable word there is.
 
-Of course, now that I am older and wiser I see that I was wrong to be so sure, just because I couldn't think of any counterexamples. But I *would* be very interested to find out if someone can think of an even *shorter* four-syllable word. (Of course this would be extremely easy to do with a computer, given the right database. I'm sure I could even look it up right now. But I haven't bothered, because it's a pleasant little delusion for me to think that *aviary* is so special, as a word.)
+Of course, now that I am older and wiser I see that I was wrong to be so sure, just because I couldn't think of any counterexamples. But I *would* be very interested to find out if anyone out there can think of an even *shorter* four-syllable word. (Of course this would be extremely easy to do with a computer, given the right database. I'm guessing I could even look it up right now. But I haven't bothered, because it's a pleasant little delusion for me to think that *aviary* is so special, as a word.)
 
 Incidentally, the longest single-syllable words I recall coming up with were all along the lines of *stretched*, *scratched*---words lke that. I also seem to remember someone proposing the word *scraunched*, which I think is a pretty rare word.
