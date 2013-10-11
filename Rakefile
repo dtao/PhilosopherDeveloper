@@ -1,18 +1,3 @@
-require "builder"
-require "benchmark"
-
-def measure(description, &block)
-  puts "#{description}..."
-  measurement = Benchmark.measure(&block)
-  puts "    => took #{'%0.2f' % measurement.total} seconds"
-end
-
-def build_xml
-  builder = Builder::XmlMarkup.new
-  yield builder
-  builder.target!
-end
-
 def report(message)
   before, after = message.split(/\=>\s*/, 2)
 
@@ -22,37 +7,6 @@ def report(message)
     puts after || 'Done.'
   rescue Exception => e
     puts "Failed! #{e.message}"
-  end
-end
-
-namespace :compile do
-  desc "Compile RSS feed"
-  task :rss do
-    measure("Compiling RSS") do
-      # Basically stolen from http://recipes.sinatrarb.com/p/views/rss
-      rss = build_xml do |xml|
-        xml.instruct! :xml, :version => "1.0"
-        xml.rss :version => "2.0" do
-          xml.channel do
-            xml.title "The Philosopher Developer"
-            xml.description "Dan Tao's blog, The Philosopher Developer"
-            xml.link "http://philosopherdeveloper.com/"
-
-            Post.all.take(10).each do |post|
-              xml.item do
-                xml.title post.title
-                xml.link "http://philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
-                xml.description { xml.cdata!(post.to_html(:feed => true)) }
-                xml.pubDate post.date.rfc822()
-                xml.guid "http://philosopherdeveloper.com/posts/#{CGI.escape(post.identifier)}.html"
-              end
-            end
-          end
-        end
-      end
-
-      write_file("public", "feedburner.xml") { rss }
-    end
   end
 end
 

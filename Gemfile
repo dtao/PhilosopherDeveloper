@@ -10,6 +10,9 @@ gem 'middleman-livereload', '~> 3.1.0'
 # Blogging plugin
 gem 'middleman-blog'
 
+# Syntax highlighting
+gem 'middleman-syntax'
+
 # Need this for RSS
 gem 'builder'
 

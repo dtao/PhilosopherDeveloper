@@ -1,10 +1,6 @@
 class Middleman::Renderers::MiddlemanRedcarpetHTML < ::Redcarpet::Render::HTML
   include Redcarpet::Render::SmartyPants
 
-  def block_code(code, language)
-    Pygments.highlight(code, :lexer => language)
-  end
-
   # Grab the current postprocess, which is needed by SmartyPants.
   alias_method :orig_postprocess, :postprocess
 
