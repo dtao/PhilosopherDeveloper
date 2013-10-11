@@ -1,10 +1,10 @@
 ---
-title: The absense of disproof is not proof
-date: 2013-10-11 08:17:00 -0800
+title: The absence of disproof is not proof
+date: 2013-10-11 08:17:00 -0700
 published: true
 ---
 
-Here's a mistake people often make: thinking that the absense of any obvious disproof is the same thing as proof.
+Here's a mistake people often make: thinking that the absence of any obvious disproof is the same thing as proof.
 
 I took a class in college called *Gender and Language*. It was sort of a sociology-meets-linguistics course. One of the first points our professor made was a theory about the concept of feminism and why it is, compared to what you might expect, a relatively controversial issue. (I think most of us have met people with a negative reaction to the word "feminist"; or anyway, *I* certainly have.)
 
