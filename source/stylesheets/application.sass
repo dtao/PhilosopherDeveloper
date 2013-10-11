@@ -187,6 +187,22 @@ a
   &:hover
     color: darken($light-green, 20%)
 
+hr
+  border: none
+  text-align: center
+
+  &:after
+    content: "~~~"
+    color: $dark-gray
+
+.footnotes
+  hr
+    display: none
+
+  border-bottom: 1px solid $light-gray
+  margin-bottom: 20px
+  padding-bottom: 20px
+
 body > header
   h1, h2
     font-family: $title-font
