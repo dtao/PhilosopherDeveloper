@@ -1,6 +1,6 @@
 ---
 title: The distance from here to awesome
-date: 2013-10-06
+date: 2013-10-21
 published: false
 ---
 
@@ -33,18 +33,18 @@ The tricky thing about *awesome* is that it can be really far away. So if you wa
 
 OK, enough about Bootstrap. Let's talk aobut PHP.
 
-PHP and Visual Basic: flawed languages
+PHP and Visual Basic: crappy languages
 --------------------------------------
 
-When I was at Cardpool we used to tease our designer because he preferred PHP to Ruby on Rails. Sometimes he would ask the other engineers how to do something basic in Ruby, one of us would tell him, and he'd sort of roll his eyes and go "Ugh, this would be *so* much easier in PHP." And we'd all have a good laugh (or *I* would anyway, because I'm a jerk) at how *foolish* he sounded for saying such things.
+When I was at Cardpool we used to tease our designer because he preferred PHP to Ruby on Rails. Sometimes he would ask the other engineers how to do something The Rails Way, one of us would explain it to him, and he'd sort of roll his eyes and go "Ugh, this would be *so* much easier in PHP." And we'd all have a good laugh (or *I* would anyway, because I'm a jerk) at how *foolish* he sounded for saying such things.
 
-The tech community loves to hate PHP because it's a bad language. And it really is. This has been discussed in about a million places; there's [a popular blog post that calls the language "a fractal of bad design"](http://me.veekun.com/blog/2012/04/09/php-a-fractal-of-bad-design/) if you want to read one.
+The developer community loves to hate PHP because it's a bad language. And it really is. This has been discussed in about a million places; there's [a popular blog post that calls the language "a fractal of bad design"](http://me.veekun.com/blog/2012/04/09/php-a-fractal-of-bad-design/) if you want to read one.
 
-There's also a lot of hate for Visual Basic, a similarly crappy language (not to be confused with VB.NET, a perfectly respectable language[^respectable-language] but with baggage by association with its heritage). VB is really verbose, does insane error handling, uses 1-based array indexing (*what?!*), and has all kinds of other issues. All totally true, and worthy of hatred.
+There's also a lot of hate for Visual Basic, a similarly crappy language (not to be confused with VB.NET, a perfectly respectable language[^respectable-language] with an unfortunate heritage). VB is really verbose, does insane error handling, uses 1-based array indexing (*what?!*), and has all kinds of other issues. All totally worthy of hatred.
 
-Incidentally, guess what my first experience with software development was? Hacking VBA macros in Microsoft Excel and writing little webpages in PHP.
+Incidentally, guess what my first experience with software development was? Hacking VBA macros in Microsoft Excel and writing little web pages in PHP.
 
-Here's the thing. If you're using Excel, you can click "Record Macro" (or whatever the button is), do a few things, then open up an editor and see code that automates what you just did. From looking at this code, you can kinda see how it works, make a few changes, and make it do something a little different. So the distance from "I don't know how to code" to "Gee, I just automated some mundane tasks!" is quite small. This is a baby step.
+Here's the magical thing about VB. If you're using Excel, you can click "Record Macro" (or whatever the button is), do a few things, then open up an editor and see generated code that automates what you just did. This code is crappy (it's VB); but if you're new to programming, that isn't what you notice. What you notice is that from just looking at it you can kinda see how it works, make a few changes, and make it do something a little different. So the distance from "I don't know how to code" to "Gee, I just automated some mundane tasks!" is quite small. This is a baby step.
 
 Same with PHP. You follow maybe one or two online tutorials to set up an Apache server with mod_php, install MySQL, write a couple of `<?` and `?>` tags and it's off to the races. You're opening up your web browser and seeing your work in no time. Again, it's a baby step from "I've never done web development" to "I'm building a website right now" *(with a crappy language, but that doesn't concern me yet)*.
 
@@ -69,7 +69,7 @@ Because when it comes down to it, which would be better? For me to try and solve
 
 It would be frustrating, undoubtedly. But in this... completely preposterous world I've just dreamed up, where I'm some kind of leader of the masses (this analogy seems to have spiraled out of control a bit)... I think it would be crucial for me to realize that I'm not the only person who would ever come along to try and change things. Maybe I could fix one issue. Then someone else might rise up in the next generation and fix another. And so on. Things would improve over time---in small steps, not giant leaps.
 
-Actually, I don't think it's that controversial to say that *this is how reality works*.
+Actually, I don't think it's that controversial to say that this is how progress happens in the real world.
 
 So yes, our modern society is a much better place, in many ways, than it was a century ago. But, of course, it isn't *totally awesome*. There is still discrimination of all forms, crime, poverty, government corruption, the works. Awesome is a long way off. The way to get there is to keep taking small steps towards it.
 
