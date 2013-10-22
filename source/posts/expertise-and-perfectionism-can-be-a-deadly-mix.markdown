@@ -1,6 +1,6 @@
 ---
-title: Expertise and perfectionism are a paralyzing mix
-date: 2013-10-22 07:51:00 -0700
+title: Expertise and perfectionism can be a deadly mix
+date: 2013-10-22 08:16:00 -0700
 published: true
 ---
 
@@ -80,7 +80,7 @@ First---and this is actually a bigger topic, worthy of its own post, but I just 
 
 Second: remember to check your attitude. There is a strong temptation, when you are a relative expert in some area, to be impatient with those who know less than you. It is *particularly* strong when those people *act* like they know *better* than you (as was the case with the new guy in my first example about e-mail validation). They might be disrespectful or arrogant; it might feel good to "put them in their place," so to speak. But as I've tried to argue here, just because someone knows less than you about something, that doesn't necessarily mean he's wrong and you're right. If you're a perfectionist, you may actually be in a bad position to judge, precisely *because* you're an expert and can see more flaws.
 
-Basically, **perfectionism is unscalable**. The more you know about something, the more flaws you see; and the more flaws you see, the more you *have* to be tolerant of them. Or else you'll become paralyzed.
+Basically, **perfectionism is unscalable**. The more you know about something, the more flaws you see; and the more flaws you see, the more you *have* to be tolerant of them. The alternative is, at best, you'll expend a lot of unnecessary energy fixing benign edge cases. At worst, you'll become paralyzed.
 
 [^still-a-perfectionist]: My wife would almost certainly argue as much.
 
