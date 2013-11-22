@@ -63,9 +63,13 @@ Aside from the seemingly paradoxical nature of such a formula, it doesn't actual
 While the dragon may *think* it can go on consuming itself forever, clearly it will not survive this process. Sooner or later, the constraints of reality will set in. The same danger exists for any recursive (or mutually recursive) function: it cannot be allowed to continue indefinitely as each call requires the executing environment to maintain an additional level of "depth." In order to make this clearer, I will borrow an idea utilized by [Douglas Hofstadter](http://en.wikipedia.org/wiki/Douglas_Hofstadter) in his excellent book *Gödel, Escher, Bach: An Eternal Golden Braid* and tell you a story (well, a few, actually):
 
 > A boy sat on his grandfather's lap and said, "Grandpa, tell me a story." The grandfather responded, "All right, grandson," and began to tell a story that his father had told *him* as a boy:
+
 > > A boy sat on his father's lap and said, "Father, tell me a story." The father responded, "All right, son," and began to tell a story of when he was a boy:
+
 > > > A boy sat alone in the forest with a box of matches. He lit them, one by one, until he accidentally started a fire and burned the entire forest down.
+
 > > "And that's why you don't play with matches," the father said.
+
 > "And that's why you don't play with matches," said the grandfather.
 
 I know, I know---awesome story, right? What I was trying to illustrate was this: in *following* the above story, possibly without realizing it, you maintained a mental *stack* of stories, three layers deep. On the first layer, there was the boy on his grandfather's lap. On top of that layer, there was the grandfather's story of himself on his father's lap. And atop *that* layer, there was the story of the boy who played with matches. As the story concluded, you were able to "unwind" this stack of stories; when the innermost story of the boy in the forest concluded, you found yourself back in the story with the boy on his father's lap. And when *that* story concluded, you were able to return your attention to the *first* story of the boy on his grandfather's lap.
