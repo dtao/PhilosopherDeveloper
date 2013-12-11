@@ -7,17 +7,27 @@ class Middleman::Renderers::MiddlemanRedcarpetHTML < ::Redcarpet::Render::HTML
   def postprocess(document)
     fragment = Nokogiri::HTML.fragment(document)
 
-    images = fragment.css('p > img')
-    images.each do |image|
+    # Convert all <p><img>s into <figure><img>s
+    fragment.css('p > img').each do |image|
       paragraph = image.parent
-      paragraph.name = 'figure'
+      convert_to_figure(paragraph, image)
+    end
 
-      caption = Nokogiri::XML::Node.new('figcaption', fragment)
-      caption.content = image['alt']
-      paragraph.add_child(caption)
+    # And likewise w/ <p><a><img>s
+    fragment.css('p > a > img').each do |image|
+      paragraph = image.parent.parent
+      convert_to_figure(paragraph, image)
     end
 
     # Let SmartyPants do its thing.
     orig_postprocess(fragment.to_html)
+  end
+
+  def convert_to_figure(container, image)
+    container.name = 'figure'
+
+    caption = Nokogiri::XML::Node.new('figcaption', container.document)
+    caption.content = image['alt']
+    container.add_child(caption)
   end
 end
