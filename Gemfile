@@ -14,7 +14,7 @@ gem 'middleman-blog'
 gem 'middleman-gh-pages'
 
 # Syntax highlighting
-gem 'middleman-syntax'
+gem 'middleman-syntax', :github => 'middleman/middleman-syntax', :branch => 'master'
 
 # Need this for RSS
 gem 'builder'
