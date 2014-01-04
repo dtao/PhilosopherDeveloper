@@ -1,7 +1,7 @@
 ---
 title: Testing private methods
 date: 2014-01-02
-published: true
+published: false
 ---
 
 I'm currently working on a library called [Autodoc](https://github.com/dtao/autodoc). It serves multiple purposes[^multiple-purposes], one of which is to make testing your JavaScript code dead simple. Here's an example of how you use it:
