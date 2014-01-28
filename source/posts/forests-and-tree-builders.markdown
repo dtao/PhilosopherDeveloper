@@ -1,7 +1,7 @@
 ---
 title: Forests and treebuilders
-date: 2014-01-28
-published: false
+date: 2014-01-28 11:12:00 -0800
+published: true
 ---
 
 You're building a forest. You have big plans for this forest; it's going to be big, and green, and
