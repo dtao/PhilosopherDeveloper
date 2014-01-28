@@ -4,9 +4,9 @@ date: 2014-01-28
 published: false
 ---
 
-You're building a forest[^building-a-forest]. You have big plans for this forest; it's going to be
-big, and green, and beautiful. A swath of trees will sweep over the rolling hills here, there'll be
-a tranquil little clearing there. It's crystal clear in your head. It will be glorious.
+You're building a forest. You have big plans for this forest; it's going to be big, and green, and
+beautiful. A swath of trees will sweep over the rolling hills here, there'll be a tranquil little
+clearing there. It's breathtaking in your head. It will be glorious.
 
 Naturally for a forest, you need trees. And you want beautiful, elegant trees. So you recruit the
 top treebuilders from the best treebuilding academies. You're going for the top talent.
@@ -20,18 +20,18 @@ concerned. Whenever you visit the treebuilders below, you can see that they are 
 impressive work. But when you return to the hilltop, the developing forest doesn't look like what
 you had imagined. It isn't awe-inspiring. In fact, it seems a bit chaotic.
 
-On one particular visit to the worksites, it suddenly clicks for you. The treebuilders are
-passionate about *trees*. They don't particularly care about the forest.
+On one particular visit to the work sites, it suddenly clicks for you. The treebuilders are
+passionate about *trees*. They don't really care about the forest.
 
-They're smart folks, and they understand that *you* care a great deal about the forest. And they
-recognize that it's their job to help you make it beautiful. But they don't share your vision. They
-just love building these trees of all shapes and sizes. Whether or not the project is progressing
-the way you want it to is *your* problem, as far as they're concerned.
+They're smart folks. They understand that *you* care about the forest. And they recognize that it's
+their job to help you make it beautiful. But they don't share your vision. They just love building
+these trees of all shapes and sizes. Whether or not the project is progressing the way you want it
+to is *your* problem, as far as they're concerned.
 
 This makes you a bit frustrated. How can you be solely responsible for ensuring the forest is a
 masterpiece, when your workers don't ultimately care about it like you do? Worse, you start to feel
-that you've been wasting your time. This "top talent" that you once prized so highly is looking less
-and less like a good investment.
+that you've been squandering your resources. This "top talent" that you once prized so highly is
+looking less and less like a good investment.
 
 Rather abruptly, you decide on a major change of direction. You let go of most of your skilled
 treebuilders and bring on a new team of less skilled (and less expensive) workers. These new guys
@@ -55,7 +55,7 @@ vision; but at least their trees didn't collapse. Clearly these new low-quality 
 
 What can you do? You start to hear rumors of a group of treebuilding consultants. They are experts,
 some of them from the same high-profile academies as the first group. But they also pride themselves
-on understanding forests. They care about trees *and* forests.
+on maintaining a higher-level perspective than other workers. They care about trees *and* forests.
 
 They're very expensive---even slightly more expensive than the first group---but that isn't an issue
 to you. It will be worth it if you're finally able to complete the grand forest you've been dreaming
@@ -98,9 +98,9 @@ really care about. More importantly, their shoddy work gave the consultants some
 the beginning: cleaning up the mess.
 
 You see, you don't know this about the consultants; but without a mess to clean up, something to
-*fix*, they can be a bit lost sometimes. This is the nature of expertise; when you are faced with
-similar challenges over and over again, you can develop a sort of dependence on the nature of the
-challenge. Problems that differ dramatically from the kind you're familar with actually become
+*fix*, they can be a bit lost sometimes. This is the nature of expertise: when you are faced with
+similar challenges over and over again, you develop a sort of dependence on the nature of the
+challenge. Problems that differ dramatically from the kind you're familiar with actually become
 *harder*, because they take you out of your comfort zone, forcing you to abandon (sometimes with
 great pain) the assumptions you usually carry around.
 
@@ -109,11 +109,11 @@ the sick trees, replace them with healthy ones, restructure what's left, fill in
 routine is their rhythm, their formula for building great forests. So their success was actually
 dependent on you bringing them on *after* the first two groups.
 
-Unfortunately, that isn't the end of story, either. When the treebuilding consultants leave, you
-have a fine forest. And they even helped you to design it in such a way that maintenance is easy.
-But then when you discover a problem, or something you want to change, and you try to get in touch
-with them, they aren't available. And then you realize: they care about *forests in general*. They
-never cared about *your forest* in particular.
+But even that isn't the end of story. When the treebuilding consultants leave, you have a fine
+forest. And they even helped you to design it in such a way that maintenance is easy. But then when
+you discover a problem, or something you want to change, and you try to get in touch with them, they
+aren't available. And then you realize: they care about *forests in general*. They never cared about
+*your forest* in particular.
 
 So none of the groups was really perfect. Months, years after you first had the idea, you've finally
 learned that only *you* truly care about your forest. No matter what kind of treebuilders you employ
@@ -124,9 +124,7 @@ great forest. And a smile spreads across your face, as you think about how glad 
 one up here, with the great vision, instead of one of your underlings. *They missed the forest for
 the trees*, you think. *They never saw the big picture, like I do.*
 
-Meanwhile, a few workers remain down below, strolling through the forest, cleaning up. They're
-chatting about life, their families, the world. One of them points to a particularly beautiful tree
-and remarks how well-built it is. The boss never understood trees, he says. For some reason he was
-always obsessed with forests.
-
-[^building-a-forest]: *Building a forest?* It's called symbolism, people.
+Meanwhile, a few workers remain down below, cleaning up. They're chatting about life, their
+families, the world. One of them points to a particularly beautiful tree and remarks how well-built
+it is. The boss never understood trees, he says. For some reason he was always obsessed with
+forests.
