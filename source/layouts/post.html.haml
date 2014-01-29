@@ -25,6 +25,10 @@
   :javascript
     stLight.options({publisher: "7abd834e-cceb-4612-8fa6-268c0815d106", doNotHash: false, doNotCopy: false, hashAddressBar: false});
 
+- # Don't load Disqus stuff in dev, or else it'll create a bunch of discussions
+- # w/ http://localhost* URLs
+
+- if is_blog_article? && !development?
   / Disqus stuff
   :javascript
     window.disqus_shortname = "philosopherdeveloper";
