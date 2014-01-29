@@ -29,6 +29,7 @@
   :javascript
     window.disqus_shortname = "philosopherdeveloper";
     window.disqus_title = "#{current_article.title.gsub('"', '\"')}";
+    window.disqus_identifier = "#{current_article.slug}";
 
   = javascript_include_tag("disqus")
   = javascript_include_tag("disqusCount")
