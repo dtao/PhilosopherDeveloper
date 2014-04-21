@@ -1,7 +1,7 @@
 ---
-title: Real constraints and artificial constraints
+title: Artificial constraints and the pursuit of mastery
 date: 2014-04-21
-published: false
+published: true
 ---
 
 About a month and a half ago, my old colleague [Pete Hodgson](https://twitter.com/ph1) wrote an article called [JavaScript without the this](http://programming.oreilly.com/2014/03/javascript-without-the-this.html), describing a strategy for writing applications in JavaScript without ever (or at least seldom) needing to use the `this` keyword.
@@ -44,7 +44,7 @@ But that leaves the question on the table: when *should* you write JavaScript th
 
 Before answering that question directly, let me confess something. After EMB---which, remember, was my first JavaScript project---I did not know what a prototype was, or how constructor functions work in JavaScript. I didn't know how `this` gets resolved. In fact **I'm not sure I even knew that JavaScript _had_ a `this` keyword**. I learned all of these things later, working on other JavaScript projects and doing research online to satisfy my own curiosity. So the style we used as a team protected me and my teammates from a certain class of bugs, yes; but it also sheltered us (or at least me) from a great deal of knowledge.
 
-That knowledge has served me well in my JavaScript work since EMB. For example, prototype-based inheritance is crucial to the design and performance of [lazy.js](http://danieltao.com/lazy.js/), my biggest open source project. On a more experimental level, dabbling with prototypes has led me to code some other interesting ideas such as [providing named arguments in JavaScript](https://github.com/dtao/named-args), [fixing the built-in `sort` function](https://github.com/dtao/sortfix), and even [putting the browser in a bubble](https://github.com/dtao/truman.js).
+That knowledge has served me well in my JavaScript work since EMB. For example, prototype-based inheritance is crucial to the design and performance of [lazy.js](http://danieltao.com/lazy.js/), my biggest open source project. On a more experimental level, dabbling with prototypes has led me to code some other interesting ideas such as [providing named arguments in JavaScript](https://github.com/dtao/named-args), [fixing the language's built-in array sorting](https://github.com/dtao/sortfix), and even [putting the browser in a bubble by faking network requests](https://github.com/dtao/truman.js).
 
 With that in mind, I propose the following simple distinction:
 
