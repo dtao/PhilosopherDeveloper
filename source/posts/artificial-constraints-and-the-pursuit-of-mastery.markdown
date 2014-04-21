@@ -1,6 +1,6 @@
 ---
 title: Artificial constraints and the pursuit of mastery
-date: 2014-04-21 10:11:00 -0800
+date: 2014-04-21 10:11:00 -0700
 published: true
 ---
 
