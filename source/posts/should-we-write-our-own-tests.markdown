@@ -8,7 +8,7 @@ I have a feeling anyone reading this is likely to feel that the answer to the qu
 
 Let me first make a confession, which will probably (and understandably) be offensive to anyone reading this who identifies as a QA, test engineer, or something along those lines.[^being-a-jerk] For some time now I've held the belief that we as software developers should definitely be writing our own tests, and so the role of software QA is one that shouldn't have to exist.
 
-To be clear, I have met plenty of very smart and capable QAs and have I never questioned the value of their work. I guess you could say I thought of software QA teams as sort of a necessary evil, a hack to provide better quality assurance given that many devs simply *don't* write tests, or write crappy tests. But if devs would just do their job right, I thought, QAs wouldn't be necessary.
+To be clear, I have met plenty of very smart and capable QAs and I have never questioned the value of their work. I guess you could say I thought of software QA teams as sort of a necessary evil, a hack to provide better quality assurance given that many devs simply *don't* write tests, or write crappy tests. But if devs would just do their job right, I thought, QAs wouldn't be necessary.
 
 I also thought of QA folks in the context of big waterfall environments where software projects would go through a development phase, then a QA phase. This is in contrast to the more "agile" style of *iterative* development, where the code is built and tested, continuously, either in parallel (two teams) or as one in the same process (devs writing their own tests).
 
