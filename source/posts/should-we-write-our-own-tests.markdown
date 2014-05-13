@@ -1,7 +1,7 @@
 ---
 title: Should we write our own tests?
-date: 2014-05-12
-published: false
+date: 2014-05-13 08:55:00 -0700
+published: true
 ---
 
 I have a feeling anyone reading this is likely to feel that the answer to the question *Should we write our own tests?* is obvious. But obviously what? Yes or no?
@@ -26,7 +26,7 @@ I think this second reason provides a pretty strong argument in favor of having 
 
 ## Preemptive counterarguments
 
-I don't want to spend *too* much time speculating what arguments or observations other might make to what I'm saying---if you want to say something, go ahead and comment!---but there are a handful of responses I can already picture, which I might as well address just to save time.
+I don't want to spend *too* much time speculating what arguments or observations others might make to what I'm saying---if you want to say something, go ahead and comment!---but there are a handful of responses I can already anticipate, which I might as well address just to save time.
 
 ### The person who wrote the code is in the best position to test it
 
@@ -36,11 +36,11 @@ This is absolutely true. I'm not saying that developers shouldn't *also* write t
 
 Yes, but this doesn't really address the fundamental issue, which is that tests should be written by someone without bias. Whether one developer wrote some code alone or two devs wrote it working together, the people who wrote the code will have difficulty testing it without any bias.
 
-### A programmer wants his/her tests to fail as much as anyone; the alternative is a bug!
+### A programmer wants his/her tests to fail as much as anyone when the alternative is buggy software!
 
-This is a good point: maybe it's inaccurate to say that a dev has a vested interest in seeing tests pass. I mean, I've never worked in an environment where developers were rewarded simply for having tests pass. But that doesn't mean we're capable of objectivity.
+This is a good point: maybe it's inaccurate to say that a dev has a *vested interest* in seeing tests pass. I mean, I've never worked in an environment where developers were rewarded simply for having passing tests. But that doesn't mean we're capable of objectivity.
 
-Sure, we all know we're fallible and so we expect to sometimes catch mistakes and off-by-one errors and such things in our tests. But what if I write some code with a specific case in mind, and I completely neglect some other equally valid case? It's a classic *I don't know what I don't know* scenario: my design is fundamentally based on assumptions that I'm not writing tests for because I don't realize I'm making those assumptions!
+Sure, we all know we're fallible and so we expect to sometimes catch mistakes and off-by-one errors and such things in our tests. But what if I write some code with a specific case in mind, and I completely neglect some other equally valid case? It's a classic I-don't-know-what-I-don't-know scenario: my design is fundamentally based on assumptions that I'm not writing tests for because I don't realize I'm making those assumptions!
 
 So I maintain that developers are biased in favor of their own tests passing, not in the sense that we really *want* them to pass for our own pride, but in that we're predisposed to thinking our code is correct and writing only the tests that reinforce the assumptions we made in writing it.
 
@@ -48,10 +48,12 @@ So I maintain that developers are biased in favor of their own tests passing, no
 
 I still hold the opinion that if a dev doesn't write tests *at all*, that is a pretty bad sign, just as it would be a bad sign if a researcher promoted a hypothesis they themselves never bothered to test. But it doesn't follow that *only* devs should write tests, or that the tests developers write are enough.
 
-I'm really just thinking out loud here. Notably I haven't gone into much detail about what what third-party tests should look like (though I have clearly said "write tests"---implying *automated* tests---and not "execute test scripts"), because I myself haven't put enough thought into that question to answer it. I just find myself much more sympathetic to an idea I used to be unfairly dismissive of, and---as always seems to happen!---I'm finding there's more to the story than I originally thought.
+I'm really just thinking out loud here. Notably I haven't gone into much detail about what third-party tests should look like (though I have clearly said "write tests"---implying *automated* tests---and not "execute test scripts"), because I myself haven't put enough thought into that question to answer it. I just find myself much more sympathetic to an idea I used to be unfairly dismissive of,[^unfairly-dismissive] and---as always seems to happen!---I'm finding there's more to the story than I originally thought.
 
 [^being-a-jerk]: As a weak self-defense against potential accusations of being a jerk, I should point out that my first job out of college was as a software QA.
 
 [^slate-star-codex]: If you're *really* interested, I've just started reading the blog [*Slate Star Codex*](http://slatestarcodex.com/), and I am enjoying it quite a bit.
 
 [^qa-dev-or-set]: *Software Engineer in Test*: an official role at Google, as opposed to say a SWE (software engineer) or an SRE (site reliability engineer).
+
+[^unfairly-dismissive]: *Hopefully*, I'm preaching to the choir here, and I was actually alone in having these reprehensible misconceptions about testing in the first place!
