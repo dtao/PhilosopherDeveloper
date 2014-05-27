@@ -1,41 +1,53 @@
 ---
-title: Thoughts on interviewing
+title: Ideas for better interviews in tech
 date: 2014-05-20 17:02:00 -0700
 published: false
 ---
 
-I've just started getting involved in interviewing engineer candidates at Google, and I wanted to get my thoughts down while they're fresh in my head and before I've been so influenced by Google's approach to interviews that I can't imagine other approaches.
+I've just started getting involved in interviewing engineer candidates at Google, and I wanted to get my thoughts down while they're fresh in my head and before I've been so influenced by Google's approach that I can't imagine other approaches.
 
-For starters, let me just list some *possible* problems with the way I'm seeing interviews happen at Google.[^possible-problems]
+My reason for writing this is that I want to propose some ideas for how interviews could be more effective, both at Google and in the tech industry as a whole. But first let me describe a few of the reasons why I think interviews at most tech companies[^most-tech-companies] today aren't as effective as they should be.
 
-1. There's too much of a focus on algorithms, and not enough on identifying other types of engineering strengths
-2. Candidates are encouraged to go into greater depth than necessary when solving problems
-3. A candidate's *speed* in solving problems is given too much weight
+1. There's too much focus on algorithms
+2. There's too much focus on speed
+3. Interviews go into too much depth per problem
 4. Problems are too theoretical
 5. Problems are unnecessarily difficult
 
 ## Too many algorithms
 
-We at Google sure do love algorithms. And I think that makes sense, both in terms of Google's products and Google's culture. Many of the company's products make heavy use of machine learning, distributed computing, and other technologies that are built on advanced algorithms and data structures. And the culture is definitely one that glorifies all things nerdy and theoretical.
+We at Google sure do love algorithms. More and more, tech companies with engineering roots (i.e., the founders were engineers) are the same way. It's only natural: when engineers lay the foundation, engineering will be in the company's blood. So it makes sense, from a cultural standpoint at the very least, to cover algorithms in interviews for engineering candidates.
 
-So I *do* think algorithms should be a significant part of the interview process here, for *culture fit* alone if nothing else.
+But in my experience tech companies don't just *cover* algorithms in their interviews. It's basically *all they do*.
 
 ![Algorithms everywhere!](/images/algorithms-everywhere.png)
 
-However, Google's interview process doesn't just *include* algorithms. It's basically 5 or 6 rounds of multiple algorithm problems in succession *and nothing else*. I know that was my interview experience, and from what I've seen so far on the other side of the fence that seems to be the norm.
+I've made this analogy before, but I think it's a good one. Think of basketball players. One trait that is probably loosely correlated with overall basketball ability is free throw percentage: how often a player can make a shot from the free throw line without anyone blocking the basket or interfering. Now imagine that a team hired players **exclusively based on their free throw percentages**. This team might have an extremely impressive average free throw percentage---probably the best in the world---but it's pretty obvious that wouldn't mean it had all the best players.
 
-I've made this analogy before, but I think it's a good one. Think of basketball players. One trait that is probably loosely correlated with overall basketball ability is free throw percentage: how often a player can make a shot from the free throw line without anyone blocking the basket or interfering. Now imagine that a team hired players exclusively based on their free throw percentages. This team might have an extremely impressive average free throw percentage---probably the best in the world!---but it's pretty obvious that wouldn't mean it had all the best players.
+I think hiring engineers based almost exclusively on their performance on algorithm-heavy interview questions is like hiring basketball players based almost exclusively on their free throw percentage.
 
-So I think hiring engineers based almost exclusively on their performance on algorithm-heavy interview questions is like hiring basketball players based almost exclusively on their free throw percentage. You will likely get *some* of the best talent---many of the best engineers are probably great at algorithms, just as many of the best basketball players are probably great at free throws---but you will also miss a lot, and you will hire some mediocre people who just happen to be very strong in one area.
+But there's a more important problem with focusing so much on algorithms. Interviews are conducted in a finite amount of time. The more time that's spent on algorithms, the less time there is to cover anything else.
 
-## Too much depth
+## How fast can you think?
 
-The way most interviews at Google seem to work is this. First, the interviewer states a problem. The candidate then thinks about it for a minute or two, maybe they discuss the problem back and forth a bit, and eventually they settle on some sort of solution. (If a candidate can't come up with anything at all, he is obviously doomed.) Then the interviewer asks the candidate to actually implement the solution, by writing code (some interviewers allow pseudocode) on a whiteboard.
+This leads me directly into the second problem. Precisely *because* interviews are limited by time, there is often this very strong bias in favor of candidates who can solve problems quickly. I've had many teammates over the years who, following an interview, will make comments like, "He took 20 minutes to solve that problem. It should have only taken 10."
 
-I think it's perfectly reasonable to ask candidates to write some code. Naturally we want to avoid [FizzBuzz](http://blog.codinghorror.com/why-cant-programmers-program/) situations. I don't think doing it on a whiteboard is ideal, but I also don't think it's a huge problem. However, I do think that asking a candidate to write out a *full implementation* of some code *on a whiteboard* is overkill. It's spending precious diving deeply into just one problem, when it would probably be more informative to trade a little depth for breadth and explore other problems.
+I should admit here that I'm biased. I have always been somewhat "slow" as a thinker. In math, science, reading, everything. I had friends in high school and college who could solve math problems much faster than I could. But with a little time, I could almost always solve the same problems. In fact, quite often, I could solve problems my faster friends couldn't solve. It could take me an hour, but I would figure it out. So I've always been a bit like the proverbial tortoise.
 
-![Dude, you're so deep](/images/dude-so-deep.png)
+So I honestly feel it's silly to rank people based on whether they can solve a problem in 10, or 20, or 45 minutes. To me, if they can both solve it at all, they're on equal footing.
 
+My own bias aside,[^bias-aside] the speed thing is really just not rooted in any kind of reality. Let's even suppose that some people can consistently, all the time, solve algorithm problems faster. This does not mean one developer can do in a month what another developer would take two months to accomplish. The problem-solving part of being a software developer represents a tiny, tiny slice of his or her working hours. Most of our time is spent coding, debugging, writing tests, refactoring, and talking to people. Optimizing candidates for their *speed* in coming up with algorithms is like looking for a car with the best 0-60 time and expecting it to make a noticeable impact on your commute.
 
+## Some like it deep
 
-[^possible-problems]: I emphasize *possible* here because I'm not 100% convinced of the points I'm about to make, nor do I think if they're "right" that it's necessarily a black-and-white situation. These simply indicate the way I'm leaning at the moment.
+It's perfectly reasonable to ask someone applying for a coding position to write some code. Naturally we want to avoid [FizzBuzz](http://blog.codinghorror.com/why-cant-programmers-program/) situations. I don't think doing it on a *whiteboard* is ideal,[^coding-on-whiteboard] but I also don't think it's a huge problem.
+
+What I *do* think is a problem is that candidates are often asked to fully implement a solution---as in, write out the code---in a completely unrealistic environment, when doing so reveals very little new information. If you've given somebody an algorithm problem, and they've come up with a reasonable idea for a solution, then that demonstrates their ability to solve algorithm problems. Then if you ask them to write some code, and they write some code, then that demonstrates their ability to write code. So why keep going? Why make them write out *so much* code that it takes up most of the interview?
+
+Wasting a lot of time having candidates write out code isn't even that big of a deal on its own, though. The bigger problem is that spending too much time on one problem---i.e., going for depth rather than breadth---just doesn't tell you very much.
+
+[^most-tech-companies]: Naturally, I can't speak with authority on this---nor can just about anybody, I would imagine, since no one has interviewed at "most tech companies." I'm basing what I write on my own experience at several different companies, along with anecdotes I've heard and articles I've write about others.
+
+[^bias-aside]: Can I actually say "bias aside"? Probably not. But I've gone and done it anyway.
+
+[^coding-on-whiteboard]: I will say it's a bit crazy to me that, even today, so many interviews for engineering candidates are conducted *without a computer*. It's the twenty-first century, people!
