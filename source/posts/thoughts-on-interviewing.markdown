@@ -14,7 +14,7 @@ My reason for writing this is that I want to propose some ideas for how intervie
 4. Problems are too theoretical
 5. Problems are unnecessarily difficult
 
-## Too many algorithms
+## Algorithms aren't everything
 
 We at Google sure do love algorithms. More and more, tech companies with engineering roots (i.e., the founders were engineers) are the same way. It's only natural: when engineers lay the foundation, engineering will be in the company's blood. So it makes sense, from a cultural standpoint at the very least, to cover algorithms in interviews for engineering candidates.
 
@@ -28,7 +28,7 @@ I think hiring engineers based almost exclusively on their performance on algori
 
 But there's a more important problem with focusing so much on algorithms. Interviews are conducted in a finite amount of time. The more time that's spent on algorithms, the less time there is to cover anything else.
 
-## How fast can you think?
+## Problem-solving speed != developer productivity
 
 This leads me directly into the second problem. Precisely *because* interviews are limited by time, there is often this very strong bias in favor of candidates who can solve problems quickly. I've had many teammates over the years who, following an interview, will make comments like, "He took 20 minutes to solve that problem. It should have only taken 10."
 
@@ -38,16 +38,48 @@ So I honestly feel it's silly to rank people based on whether they can solve a p
 
 My own bias aside,[^bias-aside] the speed thing is really just not rooted in any kind of reality. Let's even suppose that some people can consistently, all the time, solve algorithm problems faster. This does not mean one developer can do in a month what another developer would take two months to accomplish. The problem-solving part of being a software developer represents a tiny, tiny slice of his or her working hours. Most of our time is spent coding, debugging, writing tests, refactoring, and talking to people. Optimizing candidates for their *speed* in coming up with algorithms is like looking for a car with the best 0-60 time and expecting it to make a noticeable impact on your commute.
 
-## Some like it deep
+## Breadth over depth
 
 It's perfectly reasonable to ask someone applying for a coding position to write some code. Naturally we want to avoid [FizzBuzz](http://blog.codinghorror.com/why-cant-programmers-program/) situations. I don't think doing it on a *whiteboard* is ideal,[^coding-on-whiteboard] but I also don't think it's a huge problem.
 
-What I *do* think is a problem is that candidates are often asked to fully implement a solution---as in, write out the code---in a completely unrealistic environment, when doing so reveals very little new information. If you've given somebody an algorithm problem, and they've come up with a reasonable idea for a solution, then that demonstrates their ability to solve algorithm problems. Then if you ask them to write some code, and they write some code, then that demonstrates their ability to write code. So why keep going? Why make them write out *so much* code that it takes up most of the interview?
+What I *do* think is a problem is having candidates write out *so much code* in such an unrealistic environment. If a testing framework were available, or the candidate had an IDE or even a terminal open where they could run some tests, that would be one thing. Instead they're generally expected to just write line after line, with no feedback loop, with the strange pressure of someone watching them.
 
-Wasting a lot of time having candidates write out code isn't even that big of a deal on its own, though. The bigger problem is that spending too much time on one problem---i.e., going for depth rather than breadth---just doesn't tell you very much.
+And what do we gain from this? Remember that time is scarce, so every minute spent on one thing is a minute *not* spent on something else. This means the write-lots-of-code interview format trades breadth for depth, sacrificing shallow information about potentially a variety of things for presumably deeper information about a candidate's ability to write code.
+
+![](/images/dude-so-deep.jpg)
+
+I don't buy it. To me the ability to write code is a bit like the ability to juggle: you can tell pretty quickly whether someone can actually do it. You don't need to watch them go for five minutes without dropping a ball to be certain.
+
+Sure, you could watch a *little* longer to get a sense of just how developed a juggler's skill is. But I think the law of diminishing returns applies here. The longer you observe, the less meaningful information you gain each minute.
+
+![](/images/value-of-interview-question-over-time.png)
+
+So writing lots of code---or for that matter diving deep in *any* sense into a single problem---isn't worth the time. Having candidates write *some* code is a reasonable litmus test; but once it's obvious the guy can juggle, move on.
+
+## Theoretical problems are great in theory
+
+I *love* theoretical problems. Seriously. If I sit in on an interview and the interviewer asks some theoretical question I haven't heard before, it will likely occupy my mind until I can figure it out---potentially long after the interview is over. They're a lot of fun, and I'm sure they do tell you *something* about a candidate's ability.
+
+But they're edge cases. Sure, there will be points in your career when it makes sense to implement a custom data structure for some reason, or to write a specialized algorithm. But these are mere blips compared to the day-to-day work of understanding and implementing business requirements, reading other developers' code, and writing your code to be as readable as possible.
+
+When I interviewed at Google, I actually took the time at the end of the interview to ask one of my interviewers, "In all honesty, how relevant do you feel these kinds of problems are to the work you do here?" (I seem to recall the question involved implementing a [trie](http://en.wikipedia.org/wiki/Trie).) She sort of nodded, acknowledging my skepticism, but said that the goal was to identify candidates with strong fundamentals.
+
+In a later conversation with some of my friends from ThoughtWorks, my friend [Damon](https://twitter.com/damaneice) made what I think is an excellent comparison. He said (and I'm paraphrasing of course):
+
+> It's like saying, "Can you dribble halfway down the court, spin around,
+> do a double back flip, then make a 180 and do a layup? You know, just the
+> fundamentals."
+
+Just because most devs learned a bunch of theoretical stuff in college doesn't mean that stuff forms the foundation of what we do as professionals. But I guess I can't blame people with C.S. degrees for thinking it does. I can understand how it would *feel* that way. It just isn't so.[^theoretical-stuff-is-not-the-foundation]
+
+## Tougher questions, better hires?
+
+To be continued.
 
 [^most-tech-companies]: Naturally, I can't speak with authority on this---nor can just about anybody, I would imagine, since no one has interviewed at "most tech companies." I'm basing what I write on my own experience at several different companies, along with anecdotes I've heard and articles I've write about others.
 
 [^bias-aside]: Can I actually say "bias aside"? Probably not. But I've gone and done it anyway.
 
 [^coding-on-whiteboard]: I will say it's a bit crazy to me that, even today, so many interviews for engineering candidates are conducted *without a computer*. It's the twenty-first century, people!
+
+[^theoretical-stuff-is-not-the-foundation]: Naturally I am biased on this topic as I was a philosophy major myself. Anyway, it's very unscientific of me to simply make this assertion without backing it up. But I'll save that for another post.
