@@ -35,8 +35,7 @@ GEM
     em-websocket (0.5.0)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.5.3)
-    eventmachine (1.0.3)
-    eventmachine (1.0.3-x86-mingw32)
+    eventmachine (1.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     ffi (1.9.0)
@@ -149,6 +148,7 @@ PLATFORMS
 
 DEPENDENCIES
   builder
+  eventmachine (~> 1.0.4)
   middleman (~> 3.1.5)
   middleman-blog
   middleman-bourbon

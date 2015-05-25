@@ -16,6 +16,9 @@ gem 'middleman-gh-pages'
 # Syntax highlighting
 gem 'middleman-syntax', :github => 'middleman/middleman-syntax', :branch => 'master'
 
+# Required for Ruby >= 2.2.0
+gem 'eventmachine', '~> 1.0.4'
+
 # Need this for RSS
 gem 'builder'
 
