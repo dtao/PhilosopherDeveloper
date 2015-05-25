@@ -20,7 +20,7 @@ class Middleman::Sitemap::Resource
   end
 
   def friendly_date
-    date.strftime('%B %d, %y')
+    date.strftime('%B %d, %Y')
   end
 
   def friendly_period
