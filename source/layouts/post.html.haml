@@ -11,7 +11,7 @@
           = current_article.friendly_date
           %span.comments= link_to("", "#{current_article.url}#disqus_thread")
 
-    = partial("sharing")
+    = partial("sharing") unless development?
 
     = find_and_preserve do
       = yield
