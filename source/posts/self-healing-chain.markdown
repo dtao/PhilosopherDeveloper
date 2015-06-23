@@ -1,7 +1,7 @@
 ---
 title: The self-healing chain
-date: 2015-05-25
-published: false
+date: 2015-06-22
+published: true
 ---
 
 In school, we learned about series and parallel circuits. In a series or "daisy chain" circuit, the
@@ -88,11 +88,11 @@ true. But I think it would be healthy for us to reverse our perspective on the i
 my *fault*, but does it *affect* me, and is it something I'm in any position to help *fix*?
 
 This is the difference between a struggling project where everyone's trying to avoid being blamed
-for its failure, and one where everyone's actively trying to fix it. Which do you think has a
-greater chance of success?
+for its failure, and one where everyone's actively trying to solve the problem. Which do you think
+has a greater chance of success?
 
 When we stop saying "That's not my job" and start focusing on how we can fix the problems our
-projects face---and stop caring about whose *fault* they are, or who "should" be fixing them---we
-turn our teams into self-healing chains.
+projects face---and stop caring about whose *fault* they are, or who "should" be fixing them---our
+teams become self-healing chains.
 
 [^harrowing-tales]: I'm young enough that I don't remember ever having to deal with the horrors of series circuits myself!
