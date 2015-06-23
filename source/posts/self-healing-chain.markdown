@@ -10,7 +10,7 @@ single failed component brings down the whole chain. A parallel circuit, on the 
 really a single circuit; it's *many* circuits, all wired up in parallel so that one component can
 fail without affecting all the others.
 
-![A series circuits and a parallel circuit](/images/series-parallel-circuits.png)
+![A series circuit and a parallel circuit](/images/series-parallel-circuits.png)
 
 Series circuits have at least two serious problems:
 
