@@ -1,3 +1,5 @@
+# The Philosopher Developer
+
 This is the repo for my blog, [The Philosopher Developer][1].
 
 The site is developed using [Middleman][2] and is hosted on [GitHub Pages][3]. I use [Disqus][4] for
@@ -19,6 +21,17 @@ new post.
 
 I think that about covers it.
 
+## Notes for myself
+
+```
+bundle install
+middleman start
+```
+
+On Mac I've run into issues installing [eventmachine][14]. Just now I had luck installing it using
+Ruby 2.0.0-p643, on El Capitan 10.11.1 (15B42), after updating XCode and running `brew update`
+(currently on 0.9.5, git revision 37b1c).
+
 [1]: http://philosopherdeveloper.com/
 [2]: http://middlemanapp.com/
 [3]: http://pages.github.com/
@@ -32,3 +45,4 @@ I think that about covers it.
 [11]: http://danieltao.com/
 [12]: https://twitter.com/dan_tao
 [13]: http://feeds.feedburner.com/philosopherdeveloper
+[14]: https://github.com/eventmachine/eventmachine
