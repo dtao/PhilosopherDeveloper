@@ -1,7 +1,7 @@
 ---
 title: The Talking Down Epidemic
 date: 2016-10-22
-published: false
+published: true
 ---
 
 Whenever I see someone talk down to someone else, I think, "What was the point of that?"
