@@ -1,7 +1,7 @@
 ---
-title: Pride can be a weakness
+title: Pride is a weakness
 date: 2017-02-04
-published: false
+published: true
 ---
 
 I remember one day in college, a friend came into the commons area of the dorm
