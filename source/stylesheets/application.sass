@@ -347,8 +347,6 @@ sup
 @include media($desktop-width)
   @include set-font-size(24px)
 
-// Not sure what's up with their stylesheet, but without these rules the sharing
-// buttons look like CRAP
-#share_this
-  .stMainServices, .stHBubble, .stButton_gradient
-    height: 22px !important
+// Prevent UI jitter when sharing buttons load
+.sharethis-inline-share-buttons
+  min-height: 32px
