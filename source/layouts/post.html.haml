@@ -3,6 +3,9 @@
     - content_for(:extra_javascript) do
       - current_page.data['javascript'].each do |script|
         = javascript_include_tag(script)
+      - if is_blog_article?
+        / ShareThis
+        = javascript_include_tag("//platform-api.sharethis.com/js/sharethis.js#property=589652d7b750240012d3ebf7&product=inline-share-buttons")
 
   %article(id="#{File.basename(current_page.path, '.html')}")
     - if is_blog_article?
@@ -17,13 +20,6 @@
       = yield
 
     #disqus_thread
-
-- if is_blog_article?
-  / ShareThis stuff
-  = javascript_include_tag("//w.sharethis.com/button/buttons.js")
-
-  :javascript
-    stLight.options({publisher: "7abd834e-cceb-4612-8fa6-268c0815d106", doNotHash: false, doNotCopy: false, hashAddressBar: false});
 
 - # Don't load Disqus stuff in dev, or else it'll create a bunch of discussions
 - # w/ http://localhost* URLs
