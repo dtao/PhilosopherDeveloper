@@ -1,11 +1,10 @@
 - wrap_layout :layout do
-  - if current_page.data['javascript']
-    - content_for(:extra_javascript) do
+  - content_for(:extra_javascript) do
+    - if current_page.data['javascript']
       - current_page.data['javascript'].each do |script|
         = javascript_include_tag(script)
-      - if is_blog_article?
-        / ShareThis
-        = javascript_include_tag("//platform-api.sharethis.com/js/sharethis.js#property=589652d7b750240012d3ebf7&product=inline-share-buttons")
+    - if is_blog_article?
+      = javascript_include_tag("//platform-api.sharethis.com/js/sharethis.js#property=589652d7b750240012d3ebf7&product=inline-share-buttons")
 
   %article(id="#{File.basename(current_page.path, '.html')}")
     - if is_blog_article?
