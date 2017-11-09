@@ -1,5 +1,5 @@
 ---
-title: Common mistakes in tech interviews
+title: How we do tech interviews wrong
 date: 2017-04-15
 published: false
 ---
@@ -13,21 +13,19 @@ going to invent it again.
 There are probably more than three common mistakes, of course; but I'm choosing
 to focus on three because [them's the rules][2]. Here they are:
 
-1. We often think of the interview as a **filtering** process. I believe we
-   should think of it as a **matchmaking** process.
-2. We always look for the **same skills** in every candidate. I believe we
+1. We often focus on candidates' **weaknesses** without meaning to, by giving
+   them challenges and noting when they fail. I believe we should focus on
+   identifying their **strengths**.
+2. We generally look for the **same skills** in every candidate. I believe we
    should look for **unique skills** in every candidate.
-3. We tend to establish an **asymmetrical** dynamic with candidates. I believe
-   we should strive to treat candidates as **equals**.
+3. We tend to view candidates as **applicants**. I believe we should view them
+   as **potential teammates**.
 
-# Filtering versus matchmaking
+# Strengths, not weaknesses
 
-So first, the filtering mentality. This is our instinct: when there are many
-choices available to us, we seek to filter them down so that we can focus on a
-manageable set of options to make a decision. Think of picking a restaurant for
-dinner. It would be overwhelming to consider every restaurant in a city like
-Austin one at a time, so you narrow the field of choices right away with some broad
-criteria such as what types of cuisine you want.
+Spotting weaknesses makes sense, purely for practical reasons, at the top of
+a filter. When supply greatly outweighs demand, as is often the case with tech
+jobs,
 
 Eventually, though, you need to stop eliminating options and actually start
 thinking about which restaurants sound *really good* to you. Similarly, assuming
@@ -35,10 +33,6 @@ you have a decent recruiting pipeline, by the time you're interviewing someone
 in person you probably don't need to be so worried about filtering out *bad*
 candidates. By the in-person interview a better use of your time is
 trying to identify *great* candidates.
-
-Remember the point of filtering. It's to reduce the set of options to a
-manageable size, not to make a final decision. When have you ever made a truly
-*great* decision by eliminating options until you were only left with one?
 
 I think of it a bit like exploring a cave with hidden treasure. The goal is to
 explore as much of the cave as possible, to find all the treasure you can. When
@@ -60,25 +54,24 @@ For the record, I do think it's valuable to have some engineers on the team who
 are strong in these areas. They aren't always relevant, but sometimes they come
 in handy. That said, not *everyone* on the team needs to have strong C.S. chops.
 This is especially true when there are deficiencies on the team in other areas,
-such as expertise in key technologies, discipline in testing, or effective
+such as expertise in key technologies, discipline in testing, or leadership or
 mentoring skills.
 
 In my experience, the most effective teams are not teams whose members all have
-the same sets of skills. They're teams made up of people with a diverse range of
-complementary skills. For example, maybe some team members are meticulous and
-detail-oriented while others are much more focused on meeting goals and getting
-things done. As a leader, having these kinds of people working together can be
-extremely useful. Sometimes you even put these teammates together and the way
-their skills and instincts balance each other yields excellent results.
+the same skills. They're teams made up of people with a diverse range of
+*complementary* skills. On the Bitbucket team, we've got deep expertise in
+Git, Mercurial, Django, Postgres, AWS, Docker; the list goes on. But this
+expertise is spread *across* the team; there isn't any one person on the team
+who's deeply knowledgeable in all of these areas.
 
 The point is that maybe when you're interviewing someone you should not be
 looking for the same thing every time. Maybe it's better to ask yourself, "What
-sort of person could we really use on this team right now?" and look for that
-person. Today it could be a computer science wizard; tomorrow it could be a
-self-taught hacker who's never cracked open a textbook but has great instincts.
-Next week it could be someone who doesn't necessarily write the most elegant
-code, but who is particularly good at focusing on the bigger picture problems
-the team is trying to solve.
+sort of person could we really use on this team right now?" Today it could be a
+computer science wizard; tomorrow it could be a self-taught hacker who's never
+cracked open a textbook but loves to tinker. Next week it could be someone who
+doesn't necessarily write the most elegant code, but who is particularly good at
+stepping back and looking at the bigger picture problems the team is trying to
+solve.
 
 # Asymmetrical dynamic versus treating candidates as equals
 
