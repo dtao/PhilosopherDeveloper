@@ -4,19 +4,21 @@ date: 2017-05-20
 published: false
 ---
 
-I'm writing this for a number of reasons. For starters, I don't think I talk about this often enough with my own team. We are typically so focused on our day-to-day work that we all lose sight of just what an amazing opportunity this is. More generally, I've been meaning for a while now to write something like this, as a pseudo-response of sorts to articles with titles like [Programming Sucks][1]. It seems that many in our profession feel compelled to lament everything that's less than perfect about being a software engineer. I wish I read more articles by people who love their jobs.
+I'm writing this for a number of reasons. For starters, I don't think I talk about this often enough with my own team. We are typically so focused on our day-to-day work that it can be all too easy to lose sight of just what an amazing opportunity we all have.
 
-So to an extent this is just me making a conscious effort to put some positivity out there.
+More generally, I've been meaning for a while now to write something like this, as a pseudo-response of sorts to articles with titles like [Programming Sucks][1]. These write-ups are sadly common[^sadly-common]. It seems that many in our profession feel compelled to lament everything that's less than perfect about being a software engineer, conveniently forgetting that we really *do* have a sweet gig--especially those of us lucky enough to work at great companies, on terrific products, with incredible teams, like me. I wish I read more articles by people who love their jobs.
+
+So to an extent this is just me making a conscious effort to put some positivity out there, in a space where I feel a lot more positivity is warranted.
 
 # A brief history
 
-I used to work at [ThoughtWorks][2] as a consultant. It was a great gig, and to this day I believe I had some of the best teammates there that I'll have in my career. After a couple years consulting, though, I started to get curious about what it would be like to work at a company where I felt a true sense of ownership in the work I was doing.
+I used to work at [ThoughtWorks][2] as a consultant. It was a great gig, providing a relentless stream of learning opportunities from working at different clients, following different processes, and playing with different technologies on every project. To this day I strongly recommend consulting to anyone who's early in their career and willing to prioritize education over financial reward (a wise investment). After a couple years consulting, though, I started to realize I didn't feel much personal ownership in the work I was doing[^personal-ownership], and I wanted to know what that would feel like.
 
 I started looking at startups, and before long I found myself at [Cardpool][3]. I was the fourth engineer on the team. The role came with tons of responsibility, and it was honestly pretty thrilling. I remember the first time I had to SSH into a production server and fix a problem. We were out to a team dinner, and my boss noticed on his phone that the website was down. One of the other engineers took me outside and we worked on a laptop on the sidewalk, piggybacking off some free Starbucks WiFi nearby to fix a production issue. I don't remember what the problem *was*, but I remember the rush of adrenaline. My coworker jumped up and down when the website came back up.
 
 That's part of what's so great--and so scary--about being on a small engineering team at a startup. You're the first and last line of defense for all production issues. On the other hand, Cardpool had well under a million customers when I worked there. No matter how much I liked it, I knew I was only having a modest impact on a relatively small number of people.
 
-I left Cardpool to work at Google, for two reasons. The first was scale: I wanted some experience working at a company making a big impact. Whether you like Google or not, the company's presence on the internet is pretty indisputable. The other reason I left for a bigger company was that my wife was pregnant with our first child, and I wanted to work at a "safe" company with good perks and the stability to ensure I could leave work at work and prioritize family.
+I left Cardpool to work at Google, for two reasons. The first was scale: I wanted some experience working at a company making a big impact. The other reason I left for a bigger company was that my wife and I were pregnant with our first child, and I wanted to work at a stable company with good perks and a mature corporate culture to ensure I could leave work at work and prioritize family.
 
 It became clear to me at Google that the company's massive scale--taken together, Google's services handle literally *millions* of queries per *second*--was incompatible with the way we worked at Cardpool. Leaving the keys to your infrastructure with software engineers is a reality of life at startups, where the famous Facebook mantra "move fast and break things" really describes the only way to survive; but the bigger they are, the harder they fall, and a large company will never expose itself to that much risk. So as an engineer at Google, I was always removed from the infrastructure running the services I worked on, sometimes by several layers.
 
@@ -37,3 +39,6 @@ And all this happens under the umbrella of [Atlassian][4], a company that's doin
 [3]: https://www.cardpool.com/
 [4]: https://www.atlassian.com/
 [5]: https://www.atlassian.com/company/values
+
+[^sadly-common]: Though, I must admit, rarely as amusing as the linked article.
+[^personal-ownership]: It can be frustrating when you aren't allowed to tell people what you've worked on, especially when you've worked on products they actually use!
