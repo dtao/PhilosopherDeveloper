@@ -4,16 +4,20 @@ subtitle: The Philosopher Developer
 layout: post
 ---
 
-I'm a software development manager currently residing in Austin, Texas. I work on the [Bibucket][1] team at [Atlassian][2]. Previously I worked at [Google][3] on the Ads Review team. Before that I was at a startup called [Cardpool][4], and before that I was a consultant at [ThoughtWorks][5].
+I was born and raised in a suburb of Philadelphia, lived in San Francisco for almost 5 years, and moved to Austin with my family in 2015.
 
-I studied philosophy at Duke University, then a couple of years later went to [Carnegie Mellon Silicon Valley][6] for a graduate degree in software engineering. In between I lived with my wife in Namibia for a year through [WorldTeach][7], an organization that places volunteer teachers in developing countries around the world.
+Currently I'm leading the [Bibucket][1] engineering team in Austin for [Atlassian][2]. My previous experience runs the gamut from consulting at [ThoughtWorks][3] to a startup called [Cardpool][4] to [Google][5] on the Ads Review team.
 
-One principle I believe in quite strongly is that there's really no place for arrogance in this world. Having lived in Silicon Valley, I can't help but feel that most of us in this industry are encouraged to forget that. The culture is one seemingly designed to inflate egos and reward self-importance. Having said that, I realize that I'm guilty of it as well. So let this page serve as my perpetual apology for ever letting my head get too big, or acting like I know what I'm talking about.
+I studied philosophy at Duke University, then a couple of years later went to [Carnegie Mellon Silicon Valley][6] for a graduate degree in software engineering. In between I lived with my wife in Namibia for a year working for [WorldTeach][7], an organization that places volunteer teachers in developing countries around the world.
+
+Strangely I've found that the more experienced I become, the less I seem motivated to write in this blog. It's a bit of a paradox: with more experience, I *should* have more of value to share, yet that same experience makes me more skeptical that anything I have to say is really worth sharing.
+
+I suppose, like everybody else, I'm still figuring stuff out.
 
 [1]: https://bitbucket.org
 [2]: https://www.atlassian.com/company/careers
-[3]: http://www.google.com/about/jobs/
-[4]: http://www.cardpool.com/
-[5]: http://www.thoughtworks.com/
-[6]: http://www.cmu.edu/silicon-valley/
+[3]: https://www.thoughtworks.com/
+[4]: https://www.cardpool.com/
+[5]: https://careers.google.com/
+[6]: https://www.cmu.edu/silicon-valley/
 [7]: http://www.worldteach.org/
