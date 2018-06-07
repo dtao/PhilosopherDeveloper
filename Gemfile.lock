@@ -14,7 +14,7 @@ GIT
     redcarpet (3.0.0)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     activesupport (3.2.14)
       i18n (~> 0.6, >= 0.6.4)
@@ -166,4 +166,4 @@ RUBY VERSION
    ruby 2.0.0p648
 
 BUNDLED WITH
-   1.13.6
+   1.16.2
