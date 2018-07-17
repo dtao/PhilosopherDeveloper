@@ -1,50 +1,65 @@
 ---
 title: When the golden rule goes wrong
-date: 2018-07-12
+date: 2018-07-17
 published: false
 ---
 
-I'm from Philadelphia. There's an anecdote I like to tell sometimes to encapsulate what I think of
-as "Philly" culture. It isn't even my own story, but whatever.
+One of my friends from Philadelphia[^philadelphia] once told me about a time
+he went on a trip with mostly guys he didn't know (I think it was for a
+bachelor party or something). Most members of the group were from the midwest
+or maybe the south[^maybe-the-south]. At first everything was fine, but as the
+trip went on, he started to feel uneasy. Eventually he realized that it was
+making him uncomfortable how *nice* everyone was being to each other.
 
-My friend told me about a time he went on a trip with some guys he didn't know for a bachelor party.
-Most of the guys in the group were from the midwest or the south or something. (It doesn't really
-matter. They just definitely *weren't* from Philadelphia.) The way he tells it, as the trip went
-on, he became more and more uncomfortable with how nice everyone was being to each other.
+For my friend and his regular social group, normal behavior is just constantly
+tearing each other to pieces. You make fun of each other, mock everything your
+friend says or does, at every opportunity. I'm sure this sounds incredibly
+unpleasant to many people, but for my friend and his group it's what puts
+everyone at ease. No one is exempt, but no one is singled out.
 
-Here's the context: for a group of young adult males in Philadelphia, normal behavior is just
-constantly tearing each other to pieces. You make fun of each other, mock everything your friend
-says or does, repeatedly. In a strange way, it makes everyone feel good because nothing is sacred
-and no one is immune.
+This is why my friend wasn't comfortable in this new group of polite
+strangers. He was suspicious of their kindness and kept bracing for the
+sarcasm. He had trouble letting his guard down.
 
-So you can understand how my friend wasn't comfortable in this new group of polite midwesternites.
-I remember him saying, "They were, like, *complimenting* each other on stuff." The horror!
+At Atlassian there is a company culture of giving "kudos", which is a material
+way of recognizing a coworker for going above and beyond by giving them a gift
+card or donating to a charity on their behalf. It's a way to reinforce
+positivity throughout the company, by empowering employees to reward each
+other's hard work.
 
-We're all familiar with the so-called Golden Rule: treat others the way *you* would want to be
-treated.
+Now here's my problem: I completely relate to the way my friend felt on that
+trip. When someone gives me a compliment, my natural knee-jerk reaction is to
+deflect it somehow. I may consciously understand that the compliment is
+sincere, but I still unconsciously brace for sarcasm. This is especially true
+in situations where I don't personally feel what I did was anything noteworthy
+or special.
 
-I've been thinking about this rule a lot lately. For the most part, most of the time, it makes 
-ton of sense. But recently, on my team, it has come to light that there might be times when the
-golden rule isn't exactly perfect.
+So for *me*, the idea of receiving a kudos actually makes me a little
+uncomfortable, just as my friend was uncomfortable in a group of friends being
+nice to each other. Those who have given me compliments over the years may
+have noticed this as I often respond sarcastically, e.g. "Yeah, I'm pretty
+much a hero."
 
-I'll give you an example. At Atlassian there is a company culture of giving "kudos", which is a
-material way of recognizing a coworker for going above and beyond by giving them a $25 gift card.
-It's a way to reinforce positivity throughout the company, by empowering employees to recognize
-each other's hard work.
+We're all familiar with the so-called Golden Rule: treat others the way *you*
+would want to be treated.
 
-Sound familiar? Like I said, I'm from Philly. That story about my friend: I completely relate to
-that. When someone gives me a compliment, my natural knee-jerk reaction is to deflect it somehow.
-I may actually turn it around and tease the person for giving me the compliment! This is especially
-true for situations when I don't personally feel what I did was anything special.
+This rule makes a ton of sense. But as a manager, and as a person who is
+naturally sarcastic and guarded, it poses a problem. One of the biggest ways
+that I have let my team down over the past few years is by not making enough
+of a point to recognize great work as often as I should. This applies to giving
+kudos[^doing-your-job], but it also manifests in a hundred different little
+missed opportunities, from writing more to praising team members more publicly
+for good work to simply saying, "Hey, great job."
 
-So for *me*, the idea of receiving a kudos actually makes me a little uncomfortable, just as my
-friend was uncomfortable seeing a group of friends give compliments to each other. Those who have
-given me compliments over the years may have noticed this as I often respond sarcastically, e.g.
-"Yeah, I'm pretty much a hero." (Lately I have at least become self-aware enough that I try to at
-least manage a polite "Thanks!")
+[^philadelphia]: This may seem like an irrelevant detail, but I don't think it
+is. This is the town where football fans [booed and threw snowballs at Santa
+Claus][1]. It really shouldn't be called the City of Brotherly Love.
 
-I am a firm believer in the golden rule. But as you can probably see, now, this is actually
-problematic. One of the biggest ways that I have let my team down over the past several years is by
-not making enough of a point to recognize great work as often as I should. One of the other team
-leads on Bitbucket and I even sometimes joke about giving out "Doing your job" stickers instead of
-kudos. In our own sad way, we're applying the golden rule.
+[^maybe-the-south]: It doesn't really matter. They just definitely *weren't*
+from Philadelphia.
+
+[^doing-your-job]: I even sometimes joke with one of the other team leads on
+Bitbucket about giving out "Doing your job" stickers instead of kudos. We
+should probably stop making that joke.
+
+[1]: https://www.snopes.com/fact-check/philadelphia-fans-boo-santa-claus/
