@@ -1,6 +1,6 @@
 ---
 title: When the golden rule goes wrong
-date: 2018-07-17
+date: 2018-07-20
 published: false
 ---
 
@@ -60,35 +60,35 @@ hasn't made it any less true.
 
 I call this a distortion of the golden rule because, at the risk of stating the
 obvious, the golden rule isn't about saddling others with your own weird
-hangups. Having spent some time recently thinking more about this, I've come to
-understand two things that I never really thought about before. First, if I'm
-honest with myself, I _do_ want to receive praise for the same reason everyone
-does: I want to know when I'm meeting others' expectations. Second, especially
-for managers, the "you" in the golden rule should be your *aspirational* self.
+hangups. It's also not "Treat others the way that would make you feel the least
+awkward." The rule is to treat others the way you would *want* to be treated.
+So what is it I actually want?
+
+Having spent some time recently thinking more about this, I've come to accept
+that, if I'm honest with myself, I _do_ want to receive praise. Not for my ego
+(though that's always nice), but because I want to grow. And growing requires
+for me to be challenged, and to know when I've met those challenges.
 
 The truth is that we all want positive feedback in some form, whether it's
 verbal praise, a solid performance review or an [audible clicking sound][1]. I
-may feel _uncomfortable_ with it, but I still want and even need it. The same
-is true for things that are difficult: I want to be challenged, even though
-tackling challenges is hard and I may not like that in the moment. But these
-are two sides of the same coin. And the spirit of the golden rule is not "Treat
-others the way you would feel least uncomfortable with"; it's about putting
-yourself in the other person's shoes and trying to understand what their needs
-are.
+may feel _uncomfortable_ with it, but I still want and even need it, for the
+same reasons that I want and need to be challenged. They are both part of my
+own personal growth.
 
-Which brings me to the second point about what "you" means in the golden rule.
-The idea that there are multiple personae in our minds is not new: Freud
-distinguished between the id and the ego, for example, while MacLean proposed
-the so-called reptilian complex as opposed to the limbic system. I can want to
-lose weight, yet at the same time I may want to eat a donut. The innovation of
-these theories positing multiple aspects of the self is that we can think of
-these competing desires as represents different versions of *me*.
+And so for me as a manager, applying the golden rule doesn't mean never making
+anyone on my team feel awkward[^awkward]. It certainly doesn't mean withholding
+praise. It means challenging them, and letting them and everyone else know when
+they've met those challenges, whether they like it or not.
+
+So yeah, basically... I'm going to start giving more kudos.
 
 [^philadelphia]: This may seem like an irrelevant detail, but I don't think it is. This is the town where football fans [booed and threw snowballs at Santa Claus][2]. It really shouldn't be called the City of Brotherly Love.
 
 [^maybe-the-south]: It doesn't really matter. They just definitely *weren't* from Philadelphia.
 
 [^doing-your-job]: I even sometimes joke with one of the other team leads on Bitbucket about giving out "Doing your job" stickers instead of kudos. We should probably stop making that joke.
+
+[^awkward]: And trust me, there are plenty of people on my team who do the same thing I do and deflect compliments and act perplexed when they receive kudos.
 
 [1]: https://www.scientificamerican.com/article/positive-reinforcement-helps-surgeons-learn/
 [2]: https://www.snopes.com/fact-check/philadelphia-fans-boo-santa-claus/
