@@ -5,7 +5,7 @@ published: false
 ---
 
 One of my friends from Philadelphia[^philadelphia] once told me about a time
-he went on a trip -- I think it was a bachelor party or something -- with
+he went on a trip---I think it was a bachelor party or something---with
 mostly guys he didn't know. Most members of the group were from the midwest or
 maybe the south[^maybe-the-south]. At first everything was fine, but as the
 trip went on, he started to feel uneasy. Eventually he realized that it was
@@ -56,8 +56,8 @@ five or pulling them aside to say, "Hey, great job."
 On reflection, I've realized that I have unconsciously projected my own
 discomfort with receiving praise onto my team in an unfortunate distortion of
 the golden rule. Because *I* feel awkward with praise, I have been stingy in
-giving out praise to others. This has certainly not been deliberate -- I have
-always had the _intention_ of providing lots of positive feedback -- but that
+giving out praise to others. This has certainly not been deliberate---I have
+always had the _intention_ of providing lots of positive feedback---but that
 hasn't made it any less true.
 
 I call this a distortion of the golden rule because, at the risk of stating the
