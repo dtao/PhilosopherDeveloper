@@ -1,7 +1,7 @@
 ---
 title: When the golden rule goes wrong
 date: 2018-07-24
-published: false
+published: true
 ---
 
 One of my friends from Philadelphia[^philadelphia] once told me about a time
