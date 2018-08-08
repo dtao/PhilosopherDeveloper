@@ -26,8 +26,10 @@ class Middleman::Renderers::MiddlemanRedcarpetHTML < ::Redcarpet::Render::HTML
   def convert_to_figure(container, image)
     container.name = 'figure'
 
-    caption = Nokogiri::XML::Node.new('figcaption', container.document)
-    caption.content = image['alt']
-    container.add_child(caption)
+    if image['alt']
+      caption = Nokogiri::XML::Node.new('figcaption', container.document)
+      caption.content = image['alt']
+      container.add_child(caption)
+    end
   end
 end
