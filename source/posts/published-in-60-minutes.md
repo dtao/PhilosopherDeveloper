@@ -14,9 +14,9 @@ day.
 You've probably heard the expression "The perfect is the enemy of the good." A
 big part of the reason for the discrepancy between the value I provide in 1-1
 interactions[^value-i-provide] vs. written communication is the amount of
-scrutiny I apply to the things I write versus the things I say in personal
-interactions. Meanwhile, the value of the information I share in written form is
-nowhere *near* 100x as valuable.
+scrutiny I apply to the things I write versus the things I say. Meanwhile, the
+value of the information I share in written form is nowhere *near* 100x as
+valuable.
 
 I suspect the phenomenon of diminishing returns kicks in very quickly for me
 with written communication. Most of the value is captured in the first 50% of
