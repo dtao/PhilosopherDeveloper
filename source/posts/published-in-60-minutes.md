@@ -1,7 +1,7 @@
 ---
-title: Publish in under an hour
+title: Published in 60 minutes
 date: 2018-08-08
-published: false
+published: true
 ---
 
 I realized something recently: I share my ideas with people every day in 1-1
