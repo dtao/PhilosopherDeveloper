@@ -16,11 +16,11 @@ published: false
    valuable.
 
 4. I suspect the phenomenon of diminishing returns kicks in very quickly for me
-   with written communication. Most of the value is captured in the first 10%
-   of time invested; the remaining 90% of time invested only improves the final
+   with written communication. Most of the value is captured in the first 50%
+   of time invested; the remaining 50% of time invested only improves the final
    result by, say, 10 to 20%. This is what that looks like:
 
-   <insert chart>
+   ![Impact over time depending on level of perfectionism](/images/perfectionism-over-time.png)
 
 5. Over the course of my life, my hypothesis is that I would have a bigger
    impact by polishing less and delivering more. If you're reading this and
