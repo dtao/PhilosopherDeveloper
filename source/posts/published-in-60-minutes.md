@@ -11,7 +11,7 @@ years my rate of publishing posts on this blog is less than 2 per year.
 Meanwhile I have multiple conversations, both at work and outside of work, every
 day.
 
-You've probably heard the expression "The enemy is the perfect of the good." A
+You've probably heard the expression "The perfect is the enemy of the good." A
 big part of the reason for the discrepancy between the value I provide in 1-1
 interactions[^value-i-provide] vs. written communication is the amount of
 scrutiny I apply to the things I write versus the things I say in personal
