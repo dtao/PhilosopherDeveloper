@@ -1,6 +1,6 @@
 ---
 title: Carousels, context, and judgment
-date: 2013-08-06 11:08:00 -0700
+date: 2013-08-06
 published: true
 ---
 

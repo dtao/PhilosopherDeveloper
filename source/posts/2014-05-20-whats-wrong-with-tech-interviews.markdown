@@ -1,6 +1,6 @@
 ---
 title: What's wrong with tech interviews
-date: 2014-05-20 17:02:00 -0700
+date: 2014-05-20
 published: false
 ---
 

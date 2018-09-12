@@ -1,6 +1,6 @@
 ---
 title: Problem obsession
-date: 2013-07-11 09:21:00 -0700
+date: 2013-07-11
 published: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Introducing Lazy.js
-date: 2013-05-31 11:12:00 -0700
+date: 2013-05-31
 published: true
 ---
 

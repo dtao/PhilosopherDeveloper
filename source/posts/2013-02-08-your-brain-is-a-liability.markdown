@@ -1,6 +1,6 @@
 ---
 title: Your brain is a liability
-date: 2013-02-08 22:11:00 -0800
+date: 2013-02-08
 published: true
 ---
 

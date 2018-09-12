@@ -1,6 +1,6 @@
 ---
 title: Should we write our own tests?
-date: 2014-05-13 08:55:00 -0700
+date: 2014-05-13
 published: true
 ---
 

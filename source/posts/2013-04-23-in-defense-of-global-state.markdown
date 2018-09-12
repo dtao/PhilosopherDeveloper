@@ -1,6 +1,6 @@
 ---
 title: In defense of global state
-date: 2013-04-23 12:49:00 -0700
+date: 2013-04-23
 published: true
 ---
 

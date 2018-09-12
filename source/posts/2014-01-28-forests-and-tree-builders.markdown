@@ -1,6 +1,6 @@
 ---
 title: Forests and treebuilders
-date: 2014-01-28 11:12:00 -0800
+date: 2014-01-28
 published: true
 ---
 

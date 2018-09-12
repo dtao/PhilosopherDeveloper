@@ -1,6 +1,6 @@
 ---
 title: The absence of disproof is not proof
-date: 2013-10-11 08:17:00 -0700
+date: 2013-10-11
 published: true
 ---
 

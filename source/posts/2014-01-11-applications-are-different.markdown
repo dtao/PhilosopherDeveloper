@@ -1,6 +1,6 @@
 ---
 title: Applications are different
-date: 2014-01-11 21:38:00 -0800
+date: 2014-01-11
 published: true
 ---
 

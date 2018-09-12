@@ -1,6 +1,6 @@
 ---
 title: Hero culture vs. Borg culture
-date: 2013-06-14 08:30:00 -0700
+date: 2013-06-14
 published: true
 ---
 

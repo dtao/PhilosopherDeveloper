@@ -1,6 +1,6 @@
 ---
 title: I demand smarter tools
-date: 2014-01-04 10:52:00 -08:00
+date: 2014-01-04
 published: true
 ---
 

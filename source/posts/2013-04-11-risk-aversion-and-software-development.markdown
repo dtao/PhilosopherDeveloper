@@ -1,6 +1,6 @@
 ---
 title: Risk aversion and software development
-date: 2013-04-11 19:17:00 -0700
+date: 2013-04-11
 published: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Rethinking priority
-date: 2013-04-27 14:17:00 -0700
+date: 2013-04-27
 published: true
 ---
 

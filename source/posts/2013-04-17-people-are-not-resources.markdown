@@ -1,6 +1,6 @@
 ---
 title: People are not resources
-date: 2013-04-17 18:36:00 -0700
+date: 2013-04-17
 published: true
 ---
 

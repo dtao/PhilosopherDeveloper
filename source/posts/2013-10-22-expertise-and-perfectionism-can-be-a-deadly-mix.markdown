@@ -1,6 +1,6 @@
 ---
 title: Expertise and perfectionism can be a deadly mix
-date: 2013-10-22 08:16:00 -0700
+date: 2013-10-22
 published: true
 ---
 
