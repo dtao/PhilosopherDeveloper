@@ -5,7 +5,7 @@ Dir.glob(File.join(File.dirname(__FILE__), 'lib/**/*.rb')).each(&method(:require
 activate :blog do |blog|
   blog.paginate  = true
   blog.permalink = "posts/:title.html"
-  blog.sources   = "posts/:title.html"
+  blog.sources   = "posts/:year-:month-:day-:title.html"
   blog.layout    = "post"
 end
 
