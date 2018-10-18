@@ -20,32 +20,37 @@ servers might run out of memory and crash."
 Bob thought for a moment. "All right, so it sounds like if we don't set up
 auto-scaling, we might not be able to handle peak traffic; is that right?"
 Alice nodded. "Then let's update the summary on this ticket to _Prepare the
-system for peak traffic_. How does that sound?"
+servers for peak traffic_. I think that better captures the outcome we actually
+care about without being too prescriptive about a solution. Think of it like
+this: we don't actually care about auto-scaling per se, as long as our servers
+can handle production load. Does that sound right?"
 
-Alice shrugged. "I guess that's fine."
+Alice shrugged. "I suppose you're right. It's less specific, but I guess that's
+fine as long as the final solution meets our needs."
 
 The next day, Bob met with his supervisor, Carol. While they went over the
 state of Bob's project, Carol pointed to an item that caught her interest.
 "This one here," she said, pointing to Alice's ticket. "It says _Prepare the
-system for peak traffic_. That sounds like a technical concern. What's the
+servers for peak traffic_. That sounds like a technical concern. What's the
 business goal there?"
 
-Bob cleared his throat. "Well, I guess we don't want the system to crash while
-our users are trying to use it," he said. "That could cause our customers to
-lose faith in us and hurt our brand."
+Bob cleared his throat. "Well, we don't want the system to crash while our
+users are trying to use it," he said. "That could cause our customers to lose
+faith in us and hurt our brand."
 
 Carol nodded. "If I may," she said, taking Bob's laptop and editing the field,
-"perhaps we change this to: _Protect the brand by prevent an embarrassing
-outage_." She handed the laptop back to Bob. "Does that capture what we're
-_really_ after here?"
+"perhaps we change this to: _Protect against embarrassment due to an outage_."
+She handed the laptop back to Bob. "Think of it this way: if our servers were
+to crash, that wouldn't matter in itself as long as our customers didn't think
+less of us."
 
 Bob shrugged. "I suppose so."
 
 The following day, Carol was chatting with the VP of the department when Bob's
-project came up. She mentioned that one of Bob's devs was working on preventing
-an outage in order to avoid embarrassment. "Hmm," the VP said. "But I wonder,
-is embarrassment itself really what matters to us here? What's the actual
-_business_ goal?"
+project came up. She mentioned that one of Bob's devs was doing some work to
+mitigate against potential embarrassment caused by an outage. "Hmm," the VP
+said. "But I wonder, is embarrassment itself really what matters to us here?
+What's the actual _business_ goal?"
 
 Carol considered the question. After a pause, she replied, "I suppose it isn't
 really embarrassment or the brand's reputation that matters, per se, as long as
@@ -53,8 +58,8 @@ we continue to acquire customers."
 
 The VP smiled. "That's right. And just to drive the point home: if there were
 some project that would trash our brand and humiliate all of us, but it secured
-us a steady stream of paying customers indefinitely? I'd greenlight that
-project in a heartbeat."
+us a steady stream of paying customers indefinitely? That would be perfectly
+acceptable, from a business perspective."
 
 Carol left the conversation in deep thought. When she got back to her desk, she
 e-mailed Bob. _Thinking we might still want to tweak that ticket about
@@ -78,42 +83,49 @@ After the meeting one of the investors pulled her aside. "Listen," he said,
 care about is the return on our investment. Run a profitable business, or get
 that valuation up and sell. Just make us that return and we'll all be happy."
 
-Over the weekend the investor was at a party, where he recounted his
-conversation with the CEO the day before to one of his friends. The friend
-gave him a worried look and said, "You work so hard, always chasing that
-ROI. But what is it you're really after? Why do you need so much money?"
+Over the weekend the investor met with his spiritual advisor, where he
+recounted his conversation with the CEO the day before. His advisor gave him a
+worried look. "You work so hard, always chasing that ROI," she said. "But what
+is it you're really after? Why do you need so much money? What is the real
+_goal_?"
 
 The investor ruminated the question. "I suppose if I'm honest," he said at
 last, "I'm exhausted, and I just want to retire. I don't actually care about
 the money. I just want to get to a point where I can _stop_ working so much,
 without having to worry about taking care of my family and living comfortably."
 
-That night the investor talked with his wife, Grace. "I've been thinking," he
-said. "I would like for us both to retire in the next few years, so we can
-spend more time with the kids and just relax."
+The spiritual advisor reported to the enclave later that evening. As she
+approached the table in the center of a dimly-lit room, she removed her human
+mask to reveal her true lizard form. "My asset is growing weak," she hissed.
+"It may be that the time has come to replace him."
 
-"That would be nice," Grace agreed. "But is _that_ actually what we want? To
-relax? I feel there must be more to life than that."
+One of the elder members of the enclave spoke up. "Remind us," he said softly,
+"why have you been guiding this man? What is it we are hoping to accomplish
+here?"
 
-On Sunday, Grace met with her spiritual advisor. "My husband is thinking about
-retirement," she said. "He wants us both to stop working and just relax, but
-I wonder if we should instead be thinking about doing something more meaningful
-with our lives."
+The agent looked down. "Sir, the objective of this mission was to ultimately
+leverage the firm's portfolio of technology companies to disrupt global markets
+and weaken the human economy so that we might take over."
 
-The advisor closed his eyes and took a deep breath. "And what would be more
-meaningful?" he asked her.
+"I see," the elder said. "Then what truly matters is that we can dominate
+humankind, whether or not we use this man's company as a means to do so." The
+other members of the enclave all expressed their agreement.
 
-Grace thought long and hard. She decided to meditate on it. After many nights
-of deep meditation, she realized that she felt called to help others. She
-worked with her husband to found a non-profit geared at helping uneducated
-workers acquire the skills necessary to start a career in tech.
+The elder later reported to the chamber of The Great One, who awaited him from
+her towering throne. "Your majesty," he said, prostrating himself. "Our mission
+to enslave the human race is progressing as hoped."
 
-A student went through this program and was granted an internship at a local
-tech company. After going through orientation, the student met his new team and
-had a seat at his new desk. As he got settled in, his new boss came up to him.
+The Great One sighed and looked into the distance. "I grow tired of this
+mission to enslave humanity. We have already conquered so many worlds. And for
+what? Only to trap another billion souls to add to our crystal collection?" The
+Great One gestured lethargically to a glass display housing several glowing
+trinkets in a corner of the chamber.
 
-"We're excited to have you on the team!" said the boss. "No rush, but once
-you've finished working through our onboarding materials, I've already got a
-little project ready for you. I've already sent you some information about it.
-Just look in your inbox for the subject line _Configure auto-scaling for the
-worker queues_."
+At that moment, a lizard technician ran into the room. "Your majesty!" he
+cried, "our mothership's computers are being overloaded! Something is causing
+all our processing units to overheat. If we don't do something soon, the result
+will be total system failure."
+
+The Great One glowered at the technician, then at the elder, who stood there
+paralyzed. "This is outrageous," roared The Great One. "Has no one configured
+auto-scaling?"
