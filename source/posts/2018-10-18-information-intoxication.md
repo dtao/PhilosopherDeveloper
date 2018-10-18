@@ -1,7 +1,7 @@
 ---
 title: Information intoxication
 date: 2018-10-18
-published: false
+published: true
 ---
 
 I still remember the last time I got hopelessly inebriated. It wasn't as long
