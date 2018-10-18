@@ -1,12 +1,12 @@
 ---
-title: Information underexposure
-date: 2018-10-17
+title: Information intoxication
+date: 2018-10-18
 published: false
 ---
 
 I still remember the last time I got hopelessly inebriated. It wasn't as long
 ago as I'd like to admit. But it was a turning point for me, a wake-up call to
-a grown man with two children. But the details of the story aren't really
+a grown man with two children. The details of the story aren't really
 important, except for one: it started with the all-too-common mistake of
 drinking without having eaten dinner.
 
@@ -16,12 +16,12 @@ had a full meal. I assume it has something to do with the food in your body
 "absorbing" the alcohol; at least, that's how we generally talk about it,
 though I have no real idea what's happening on a physiological level. In any
 case, it's very easy to get drunk when you haven't eaten recently because the
-amount of alcohol you might be accustomed to drinking on a "normal" night out
+amount of alcohol you might be accustomed to drinking on a normal night out
 will have a much greater effect on you than you're used to.
 
 The relationship between food and alcohol in the context I'm describing is one
 of proportionality. Ideally a small amount of alcohol is preceded by a
-medium-to-large amount of food. The alcohol provides a pleasant buzz, but the
+medium-to-large amount of food. The alcohol provides a pleasant buzz, while the
 food acts as a buffer, protecting against some of the negative effects of the
 alcohol.
 
