@@ -1,7 +1,7 @@
 ---
 title: The business goal
-date: 2018-09-30
-published: false
+date: 2018-11-12
+published: true
 ---
 
 The team met up on Monday morning, as they always did to discuss the items in
