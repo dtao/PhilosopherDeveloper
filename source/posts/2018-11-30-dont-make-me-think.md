@@ -4,7 +4,7 @@ date: 2018-11-30
 published: false
 ---
 
-*Note: I'm going for another [60-minute post][1] with this one.*
+*Note: This is another of those [60-minute posts][1].*
 
 Suppose I said to you, "Go read *War and Peace* and write me a 10-page book
 report on it." What would you say? Probably something like *Why?* or *Who do
@@ -40,25 +40,25 @@ is a bit like giving them a homework assignment. It's a decision that requires
 gathering more information (i.e. asking, *What are the benefits?*), doing some
 analysis, and finally committing to at least a small amount of overhead (e.g.
 filling out a form) that the person hadn't originally planned for. For many,
-the cost of making this decision pushes it past that unspoking diving line.
+the cost of making this decision pushes it past that unspoken diving line.
 
 ```
-Tasks I will perform on command             Tasks I will not perform on command
----------------------------------|---------------------------------------------
-            |                              |                     |
-       Handing you                 Deciding whether to           |
-        a stapler                   start a membership           |
-                                                          Writing a report
-                                                          on War and Peace
+Tasks I will perform on command                                 Tasks I will not perform on command
+--------------------------------------------------|------------------------------------------------
+            |                                               |                           |
+       Handing you                                  Deciding whether to                 |
+        a stapler                                    start a membership                 |
+                                                                                 Writing a report
+                                                                                 on War and Peace
 ```
 
 For the dev on my team, sharing details about the membership with customers had
 a dramatic effect because it effectively reduced the size of the task being
 assigned---skipping the information gathering and some of the analysis (e.g.
-*This will pay for itself from savings on your purchased today alone*)---so
+*This will pay for itself from savings on your purchase today alone*)---so
 that it moved to the left of that line.
 
-I'll share another anecdote. Recently one of the engineers on the Bitbucket
+I'll share another anecdote. Recently one of the engineers on Bitbucket
 switched over to the security team. One day, in this new role, he started
 conducting some testing against our staging environment, causing some
 disruption to the team. When asked to stop, he reached out to the leader of the
@@ -66,19 +66,19 @@ DevOps team to inquire when would be a good time to conduct his tests against
 the staging environment. The answer he got: *Never*.
 
 See the similarity? *When can I run these tests that might cause some
-disruption?* is a bit like *Would you like a membership?* The answer requires
-data gathering and analysis, which the person being asked may not have time to
-perform. The way to get people to say yes in these situations is to do that
-data gathering and analysis _for_ them, so that the cost of the decision you're
-asking them to make is much smaller[^cost-of-decision].
+disruption?* is a bit like asking, *Would you like a membership?* The answer
+requires data gathering and analysis, which the person being asked may not have
+time to perform. The way to get people to say yes in these situations is to do
+that data gathering and analysis _for_ them, so that the cost of the decision
+you're asking them to make is much smaller[^cost-of-decision].
 
 Here's another way of framing the lesson here. Sometimes *No* or *Never*
-doesn't mean *No, you can't do that*; sometimes it means *No, I won't invest in
-making that decision right now* (in other words: *No, I won't do that homework
-assignment*). Be aware of that, and account for it by doing the legwork: make
-a concrete proposal, explain the benefits, show that _you've_ done the
-homework. In doing so you can make it easier and easier for someone to say yes,
-just like handing over a stapler.
+doesn't mean *No, you can't do that*; sometimes it means *No, I won't take the
+time to make that decision right now* (in other words: *No, I won't do that
+homework assignment*). Be aware of that, and account for it by doing the
+legwork: make a concrete proposal, explain the benefits, show that _you've_
+done the homework. In doing so you can make it easier and easier for someone to
+say yes, just like handing over a stapler.
 
 [1]: /posts/published-in-60-minutes.html
 
