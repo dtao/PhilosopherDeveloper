@@ -42,15 +42,7 @@ analysis, and finally committing to at least a small amount of overhead (e.g.
 filling out a form) that the person hadn't originally planned for. For many,
 the cost of making this decision pushes it past that unspoken diving line.
 
-```
-Tasks I will perform on command                                 Tasks I will not perform on command
---------------------------------------------------|------------------------------------------------
-            |                                               |                           |
-       Handing you                                  Deciding whether to                 |
-        a stapler                                    start a membership                 |
-                                                                                 Writing a report
-                                                                                 on War and Peace
-```
+![Tasks I will and won't perform on command](/images/dont-make-me-think.png)
 
 For the dev on my team, sharing details about the membership with customers had
 a dramatic effect because it effectively reduced the size of the task being
