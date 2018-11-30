@@ -1,7 +1,7 @@
 ---
 title: Don't make me think
 date: 2018-11-30
-published: false
+published: true
 ---
 
 *Note: This is another of those [60-minute posts][1].*
