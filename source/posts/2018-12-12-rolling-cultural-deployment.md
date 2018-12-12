@@ -1,6 +1,6 @@
 ---
 title: The never-ending rolling deployment
-date: 2018-12-10
+date: 2018-12-12
 published: false
 ---
 
