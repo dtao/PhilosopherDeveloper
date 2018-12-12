@@ -1,5 +1,5 @@
 ---
-title: The never-ending rolling deployment
+title: The rolling cultural deployment
 date: 2018-12-12
 published: false
 ---
