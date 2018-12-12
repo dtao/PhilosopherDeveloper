@@ -1,7 +1,7 @@
 ---
 title: The rolling cultural deployment
 date: 2018-12-12
-published: false
+published: true
 ---
 
 When we use the word "software" we're really talking about two things. First
