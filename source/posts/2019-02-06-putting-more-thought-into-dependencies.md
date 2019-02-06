@@ -1,6 +1,6 @@
 ---
-title: Thoughts on dependencies
-date: 2019-02-02
+title: Putting more thought into dependencies
+date: 2019-02-06
 published: false
 ---
 
