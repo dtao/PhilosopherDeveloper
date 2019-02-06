@@ -1,7 +1,7 @@
 ---
 title: Putting more thought into dependencies
 date: 2019-02-06
-published: false
+published: true
 ---
 
 In my time as an engineer I've had lots of conversations about software
@@ -13,8 +13,8 @@ of my opinions in writing, as doing so would likely take up an entire book.
 
 With that in mind, I gave myself [60 minutes][1] to just write down everything
 I could, and I used that as a first draft[^first-draft]. I've since made some
-revisions, but what follows is a bit rough. It's best to think of it as more a
-stream of consciousness than a buttoned-up treatise.
+revisions, but what follows is still a bit rough. It's best to think of it as
+more a stream of consciousness than a buttoned-up treatise.
 
 ## The biggest problem
 
@@ -37,13 +37,13 @@ without realizing it. This all happened, basically, because the maintainer was
 Which brings me to the "competent actors" assumption. Or maybe I should call it
 the assumption of _perfectly competent, tireless_ actors. Even if everyone who
 contributes to an ecosystem is _basically_ competent and hard-working, they
-make mistakes, and they burn out. (Not to mentioned that we all have limited
-time on this earth, and most people don't want to spend every waking moment of
-their lives maintaining the dependency tree of a library they're most likely
-giving away for free.) I don't think I've ever seen an application of semantic
-versioning that didn't ultimately boil down to a human making a call (e.g. _Is
+make mistakes, and they burn out. (Not to mention that we all have limited time
+on this earth, and not everyone wants to spend every waking moment of their
+lives maintaining the dependency tree of a library they're most likely giving
+away for free.) I don't think I've ever seen an application of semantic
+versioning that didn't ultimately boil down to a human making a call, e.g. _Is
 this a major or minor version bump?_ and _Should I keep supporting this older
-version?_), and humans tend not to do things perfectly.
+version?_ And humans tend to not always make the right call.
 
 ## The party analogy
 
@@ -57,19 +57,20 @@ friends of friends of friends. And much like when you make a copy of a copy (at
 least back in the days of analog!), fidelity is lost at each link in the chain.
 
 To state this more quantitatively: our trust level naturally diminishes with
-each degree of separation. Let's call the rate at which it declines the "trust
-drop-off rate", and imagine the rate for an average person is, say, 0.1 (or
-10%). That means if you trust your close friends 100%, maybe you trust _their_
-friends 90%, and _their_ friends 81%, etc. Eventually, if your policy is
-"Anyone can invite anyone", then you're likely to end up having people at the
-party you don't trust very much.
+each degree of separation. Let's call the rate at which it declines the **trust
+drop-off rate**, and imagine the rate for an average person is, say, 10%. That
+means if you trust your close friends 100%, maybe you trust _their_ friends
+90%, and _their_ friends 81%, and _their_ friends 73%. Eventually, if your
+policy is "Anyone can invite anyone", then you're likely to end up having
+people at the party you don't trust very much.
 
 With libraries, what often happens is that software teams will apply some fuzzy
 trust criteria to their direct dependencies---for example, when looking for a
-library that does X, you'll check to see how many stars on GitHub each option
-has, or how many downloads on npm or RubyGems, or how many associated questions
-on StackOverflow---but we won't apply those same criteria to indirect
-dependencies. We _act_ as though the trust drop-off rate is 0%.
+library that does X, you'll identify some options and check each one to see how
+many stars on GitHub it has, or how many downloads on npm or RubyGems, or how
+many associated questions on StackOverflow---but we won't apply those same
+criteria to indirect dependencies. We _act_ as though the trust drop-off rate
+is 0%.
 
 ## In defense of `--no-deps`
 
@@ -106,9 +107,10 @@ one of two buckets:
 ### The problem with the correctness argument
 
 The argument that `--no-deps` leads to incompatible dependencies leans heavily
-on the assumption I mentioned earlier of perfectly competent actors.
+on the assumption I mentioned earlier of perfectly competent, tireless library
+maintainers.
 
-The default system for resolving dependencies entails library authors specify
+The default system for resolving dependencies is that library authors specify
 what works and what doesn't. This is equivalent to vouching for one another.
 Time for another analogy!
 
@@ -152,17 +154,17 @@ make sure we have all the right versions of any upstream requirements?"
 
 I know that sounds absurd, by why? I'll tell you why: because we've become
 desensitized to _massive_ changes to our dependency trees, as just a normal
-thing that happens. It's so normal that we don't even look at the contents
-of lock files anymore (if any of us ever did in the first place). In fact, we
-actively exclude lock files from diffs when reviewing code because we don't
-think it's reasonable to expect a human to review them.
+thing that happens. It's so normal that we don't even look at the contents of
+lock files anymore (if any of us ever did in the first place). In fact, many
+teams actively exclude lock files from diffs when reviewing code because we
+don't think it's reasonable to expect a human to review them.
 
-Here's the problem lock files (like package-lock.json, Gemfile.lock, or
-Pipfile.lock) are meant to solve. Say you just have a file that specifies all
-of your direct dependencies, and you rely on a package manager to identify your
-indirect dependencies; i.e. you _aren't_ using `--no-deps`. If your deployments
-involve a step to install these dependencies, e.g. `npm install` or `pip
-install -r requirements.txt`, you may end up unwittingly installing new
+Here's the problem lock files (like package-lock.json, yarn.lock, Gemfile.lock,
+or Pipfile.lock) are meant to solve. Say you just have a file that specifies
+all of your direct dependencies, and you rely on a package manager to identify
+your indirect dependencies; i.e. you _aren't_ using `--no-deps`. If your
+deployments involve a step to install these dependencies, e.g. `npm install` or
+`pip install -r requirements.txt`, you may end up unwittingly installing new
 versions of upstream dependencies from one deployment to the next. A lock file
 ensures you're always installing exactly the same version of every direct and
 indirect (upstream) dependency.
@@ -171,22 +173,20 @@ In other words a lock file provides deterministic builds. It is _not_ a
 conservative approach to managing dependencies in the same way that `--no-deps`
 is. The problem with trust remains. In fact, when a team uses package-lock.json
 and never reviews changes to that file because they're often far too numerous
-to review... _those are exactly the conditions that allowed the event-stream
-disaster to happen_.
+to review... those are exactly the conditions that would allow a malicious
+upstream package to slip through, just like the event-stream disaster.
 
-In other words, using a lock file together with a package manager does not
-simply automate a mundane task and reduce maintenance cost. It _trades_
-maintenance cost for safety. What's more, by automating that task and thereby
-largely removing human decision-making from the process, it desensitizes teams
-to the sizes of their dependency trees. This is similar to the economic
-phenomenon where, if you subsidize an industry with no corresponding mechanism
-to control costs, costs will simply rise to consume available
-subsidies[^i-am-no-economist].
+Using a lock file together with a package manager does not simply automate a
+mundane task and reduce maintenance cost. It _trades_ maintenance for control.
+What's more, by automating that task and thereby largely removing human
+decision-making from the process, it desensitizes teams to the sizes of their
+dependency trees. This is similar to the economic phenomenon where, if you
+subsidize an industry with no corresponding mechanism to control costs, costs
+will simply rise to consume available subsidies[^i-am-no-economist].
 
 As a side note, this is why in Bitbucket we have _not_ defaulted to excluding
-this file, or other lock files like yarn.lock and Gemfile.lock, from pull
-request diffs. If teams want that behavior, they [must explicitly enable
-it][6].
+this file, or other lock files, from pull request diffs. If teams want that
+behavior, they must [explicitly enable it][6].
 
 ## Closing thoughts
 
@@ -202,13 +202,12 @@ you to find.)
 
 There are benefits to package managers, no question. I'm not saying that
 software teams are foolish or irresponsible for using them. I'm not even saying
-you should use `--no-deps` (or equivalent) all the time (the Bitbucket team
-doesn't); in many cases, I understand that would be impractical. That said, I
-believe too many devs haven't really put much thought into this; and so if
-anything I suppose my goal in writing this was to get you to do just that: put
-some thought into it, and at least know your reasons for managing your
-dependencies the way you are (hopefully they're better than "that's just how
-it's done").
+you should use `--no-deps` (or equivalent) all the time. In many cases, I
+understand that would be impractical. That said, I believe too many devs
+haven't really put much thought into this; and so if anything I suppose my goal
+in writing this was to get you to do just that: put some thought into it, and
+at least know your reasons for managing your dependencies the way you are
+(hopefully they're better than "that's just how it's done").
 
 [1]: /posts/published-in-60-minutes.html
 [2]: https://semver.org/
