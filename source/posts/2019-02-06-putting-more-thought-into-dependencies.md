@@ -19,7 +19,7 @@ more a stream of consciousness than a buttoned-up treatise.
 ## The biggest problem
 
 Probably the biggest oversight that I see being made time and time again is
-that developers don't appreciate the huge rule that **trust** plays in their
+that developers don't appreciate the huge role that **trust** plays in their
 dependency strategy. We assume that the ecosystems we depend on are full of
 good, competent actors who are consistently making their software better. This
 is sort of the premise of [semantic versioning][2], commonly known as _semver_,
@@ -152,7 +152,7 @@ I can almost hear you, reader, asking, "So what are we supposed to do? Manually
 *hand-edit* our requirements file whenever we want to upgrade a dependency, to
 make sure we have all the right versions of any upstream requirements?"
 
-I know that sounds absurd, by why? I'll tell you why: because we've become
+I know that sounds absurd, but why? I'll tell you why: because we've become
 desensitized to _massive_ changes to our dependency trees, as just a normal
 thing that happens. It's so normal that we don't even look at the contents of
 lock files anymore (if any of us ever did in the first place). In fact, many
