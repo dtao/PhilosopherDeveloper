@@ -9,7 +9,7 @@ and perhaps in other fields) in Google, the first result is a [blog post on
 Coding Horror](https://blog.codinghorror.com/falling-into-the-pit-of-success/)
 by Jeff Atwood. In the post, he links to [an MSDN
 article](https://blogs.msdn.microsoft.com/brada/2003/10/02/the-pit-of-success/)
-by Brad Adams, which as far as I can tell is considered the seminal piece of
+by Brad Abrams, which as far as I can tell is considered the seminal piece of
 writing on the topic (though the term itself was apparently coined by a CLR
 architect named Rico Mariani).
 
@@ -23,7 +23,7 @@ form[^current-form], so badly misfigured.
 
 Therefore I've taken it upon myself to lovingly restore the original content to
 a more readable presentation. Without further ado, I present *The Pit of
-Success* by Brad Adams.
+Success* by Brad Abrams.
 
 > *The Pit of Success*: in stark contrast to a summit, a peak, or a journey
 > across a desert to find victory through many trials and surprises, we want our
