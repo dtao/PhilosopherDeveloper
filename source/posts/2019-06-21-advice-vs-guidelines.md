@@ -1,7 +1,7 @@
 ---
 title: Advice vs. guidelines
 date: 2019-06-21
-published: false
+published: true
 ---
 
 *It's been a while! This is another [60-minute post][1].*
@@ -92,4 +92,4 @@ sense to you, you'll probably start to notice it quite a lot in the world.
 
 [1]: /posts/published-in-60-minutes.html
 
-[^feel]: Well, it doesn't feel that way to _me_, anyway! Maybe if I were a diehard capitalist.
+[^feel]: Well, it doesn't feel that way to _me_, anyway! Maybe if I were a die-hard capitalist.
