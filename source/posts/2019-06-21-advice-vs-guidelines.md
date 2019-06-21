@@ -27,13 +27,13 @@ work.
 Logically, the people with the authority to control a system write guidelines
 while those with no authority dispense advice.
 
-Here's an example. Suppose you're visiting a friend in another country and
-your luggage gets lost. You ask an airline employee for help, but they say
-there's nothing they can do. Your friend knows corruption is rampant, so she
-suggests that you offer the employee a bribe. This would be _advice_: your
-friend obviously knows that corruption is wrong, but she's not trying to change
-the system right now. She's treating the fact that the system is corrupt as a
-given and focusing on helping you, her friend.
+Here's an example. Suppose you're visiting a friend in another country and your
+luggage gets lost. You ask an airline employee for help, but they say there's
+nothing they can do. Your friend knows corruption is rampant, so he suggests
+that you offer the employee a bribe. This would be _advice_: your friend
+obviously knows that corruption is wrong, but he's not trying to change the
+system right now. He's treating the fact that the system is corrupt as a given
+and focusing on helping you, his friend.
 
 Now imagine that the airport authority decides to formalize this advice in the
 form of guidelines. Suppose that be helpful to the entire population of
@@ -52,13 +52,13 @@ allowed to go outside at night without their husbands. These individuals are
 trying to be helpful: they can't stop the crime themselves, so they treat it as
 a given and offer suggestions to avoid it.
 
-One last example. If my friend is interviewing for a new job and he gets as far
-as salary negotiations, I will probably tell him to lie about what he's
+One last example. If my friend is interviewing for a new job and she gets as
+far as salary negotiations, I will probably tell her to lie about what she's
 currently making. This is because I know that in many cases the recruiter or
-hiring manager he's meeting with will try to offer him as little as they can.
+hiring manager she's meeting with will try to offer her as little as they can.
 I don't _like_ that companies try to pay their employees as little as possible;
-but when I'm looking to help one person (my friend) within
-the system, I will take the system as it is for granted.
+but when I'm looking to help one person (my friend) within the system, I will
+take the system as it is for granted.
 
 Sometimes we mistake advice for guidelines, and vice versa. This can be the
 result of a mismatch in perceived authority. For example, as a manager, I might
@@ -71,19 +71,21 @@ Now flip the salary example around and pretend you're in control of the system:
 you're running your own company, so you get to decide how salaries are
 determined. Would you say, "We'll ask candidates what they're currently making,
 assume they're lying, and negotiate them down to something that seems closer to
-reality"? Hopefully not. That doesn't feel[^feel] like how the system _should_
-work. I'd like to think that if I'm running my own company one day, it would be
-more like: "We'll establish a standard salary for every role we need, and when
-we hire someone into that role that's what we'll pay them."
+what we think they're making (and incidentally, if there really is a gender
+wage gap in this industry, we will gladly perpetuate that with this approach)"?
+Hopefully not. That doesn't feel[^feel] like how the system _should_ work. I'd
+like to think that if I'm running my own company one day, it would be more
+like: "We'll establish a standard salary for every role we need, and when we
+hire someone into that role that's what we'll pay them."
 
-Of course, if that isn't how every _other_ company does things, that could put
-my company at a disadvantage. Maybe I'll end up paying junior employees more
-than I should, or I'll miss out on top talent because my offers aren't high
-enough. When I start thinking along these lines, I become doubtful of my
-ability to define the system after all; and when I don't believe I can change
-the system, I don't bother writing guidelines, I just give advice.
+Of course, if that isn't how every _other_ company does things, I might start
+to worry: maybe I'll end up paying junior employees more than I should, or I'll
+miss out on top talent because my offers to them aren't high enough. When I
+start thinking along these lines, I become doubtful of my ability to define the
+system after all; and when I don't believe I can change the system, I don't
+bother writing guidelines, I just give advice.
 
-If this distinction makes sense to you, you'll probably start to notice the
-difference between advice and guidelines a lot.
+So that's the concept. If this distinction between guidelines and advice makes
+sense to you, you'll probably start to notice it quite a lot in the world.
 
 [^feel]: Well, it doesn't feel that way to _me_, anyway! Maybe if I were a diehard capitalist.
