@@ -4,6 +4,8 @@ date: 2019-06-21
 published: false
 ---
 
+*It's been a while! This is another [60-minute post][1].*
+
 Here's a concept I often find myself mentally coming back to. I frequently want
 to use these terms in conversation, but I refrain because I am aware whoever
 I'm talking to doesn't have a shared understanding of what I mean by these
@@ -87,5 +89,7 @@ bother writing guidelines, I just give advice.
 
 So that's the concept. If this distinction between guidelines and advice makes
 sense to you, you'll probably start to notice it quite a lot in the world.
+
+[1]: /posts/published-in-60-minutes.html
 
 [^feel]: Well, it doesn't feel that way to _me_, anyway! Maybe if I were a diehard capitalist.
