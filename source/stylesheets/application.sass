@@ -68,13 +68,13 @@ main
 
       text-align: right
 
+      > *:not(:last-child)
+        padding-bottom: 10px
+        border-bottom: 1px solid black
+
       ul
         list-style: none
         padding-left: 0
-
-        &:not(:last-of-type)
-          padding-bottom: 10px
-          border-bottom: 1px solid black
 
         li
           font-size: 150%
@@ -355,3 +355,6 @@ sup
 // Prevent UI jitter when sharing buttons load
 .sharethis-inline-share-buttons
   min-height: 32px
+
+#mc_embed_signup_scroll p:first-child
+  margin-top: 0
