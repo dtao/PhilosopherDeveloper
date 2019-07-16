@@ -6,7 +6,7 @@
     - if is_blog_article?
       = javascript_include_tag("//platform-api.sharethis.com/js/sharethis.js#property=589652d7b750240012d3ebf7&product=inline-share-buttons")
 
-  %article(id="#{File.basename(current_page.path, '.html')}")
+  %article(id="#{current_page.slug}")
     - if is_blog_article?
       %header
         %h1
