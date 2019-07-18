@@ -57,7 +57,10 @@ by the end of that period simply for having done good work. Most career tracks
 at most companies have some tiered structure allowing for individuals to be
 promoted in this way at least once or twice. This might look something like:
 
-![A typical tiered structure for promotions](/images/recognition-based-promotions.png)
+<figure>
+    <img alt="A typical tiered structure for promotions" src="/images/recognition-based-promotions.png" style="max-height: 90px;" />
+    <figcaption>A typical tiered structure for promotions</figcaption>
+</figure>
 
 Looking at the tiered structure above, my observation is that promotions tend
 to be more like rewards on the left (e.g. being promoted from Junior Developer
@@ -73,7 +76,10 @@ make sense to promote them all as then there will be no team to manage! In
 general, most management tracks have this issue as the nature of management is
 that there are fewer roles available the higher up you go.
 
-![Promotions on a management track tend to be more opportunity-based](/images/opportunity-based-promotions.png)
+<figure>
+    <img alt="Promotions on a management track tend to be more opportunity-based" src="/images/opportunity-based-promotions.png" style="max-height: 90px;" />
+    <figcaption>Promotions on a management track tend to be more opportunity-based</figcaption>
+</figure>
 
 ## The problematic distance between promotions and hiring
 
