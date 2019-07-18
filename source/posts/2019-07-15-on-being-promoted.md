@@ -4,13 +4,15 @@ date: 2019-07-15
 published: false
 ---
 
-Here's a little tip I received fairly early in my career. I've received this
-tip in various forms from various people, but the following is a direct quote
-from a boss I had not too long ago:
+Here's a little tip I received fairly early in my career. I've heard this in
+various forms from various people, but the following is a direct quote from a
+boss I had not long ago:
 
-> operate as if you already have the job that you want and then you'll be
+> Operate as if you already have the job that you want and then you'll be
 > promoted and everyone will be surprised, thinking you had been in that role
-> all along
+> all along.
+
+## Good advice, bad guideline
 
 For anyone who wants to be promoted, this is great advice. Getting a promotion
 is ultimately a matter of _convincing_ someone---sometimes it's your manager,
@@ -23,6 +25,8 @@ because I wanted to write about this topic. While the above tip is great
 _advice_, it does not make for great guidelines. In fact, as a guideline, I
 would say that it's both unfair and harmful. To explain why I think this, I
 will start by describing the dual nature of promotions.
+
+## Recognition vs. opportunity
 
 There are at least two aspects to a promotion: **recognition**, and
 **opportunity**. In my experience, every promotion decision involves both of
@@ -69,6 +73,8 @@ that there are fewer roles available the higher up you go.
 
 ![Promotions on a management track tend to be more opportunity-based](/images/opportunity-based-promotions.png)
 
+## The problematic distance between promotions and hiring
+
 Earlier I wrote that, as a guideline, the expectation that employees should do
 the job they want to get is both unfair and harmful. (Again, it's great
 _advice_ for an individual; it's a bad guideline for an entire organization.)
@@ -93,6 +99,40 @@ more is not uncommon)---while an external candidate simply has to spend a few
 hours convincing their interviewers and the hiring manager they can do it.
 
 This is harmful because the resulting lack of internal mobility causes serious
-damage to morale. Employees notice that roles that seem perpetually out of
-reach to them seem to get filled with relatively little difficulty by external
-candidates.
+damage to morale. When you've worked hard for years to prove yourself and get
+a promotion, only to see someone else hired into the same role without having
+to jump through any hoops, it can stir up resentment. A potentially even bigger
+problem is the paradigm this creates (really I should say, the paradigm it
+_has_ created in the industry), where it is generally much easier to obtain a
+title that you want by going through another company's hiring process rather
+than your own company's promotion process. This is a recipe for losing many or
+most of your senior people[^senior-people].
+
+## How it needs to change
+
+My conclusion is very easy to say but I realize that it's not so easy to put
+into practice. It starts with understanding the inherent lack of fairness in a
+system where promotions are based on recognition, which is focused on the past,
+while hiring is primarily based on opportunity, which is focused on the future.
+From there, the change I would like to see most organizations make is a shift
+towards providing more opportunity internally. Practically speaking what this
+means is more hiring at the bottom and promoting to the top.
+
+For example, if your team needs a technical leader (maybe that's called a
+Principal Developer in your organization), rather than hiring a Principal
+Developer externally, give one of the more senior members on the team a
+promotion and hire someone junior to backfill them.
+
+One of the most obvious reasons we don't do this is that it feels like taking
+a big risk, promoting someone based on opportunity rather than recognition.
+What if they aren't up to the task[^up-to-the-task]? My position is that you're
+taking a big risk either way. Whether you're looking at someone external or
+someone internal who hasn't already been doing the job for a year or more, you
+can't know for sure how they'll perform in the role. At least the internal
+candidate has proven themselves capable in their _current_ role, and they've
+contributed to your organization for this long and want a chance to do more,
+which is more than you can say (yet) for the external candidate.
+
+[^senior-people]: The cynic in me recognizes that at some companies, this might actually be the evil master plan: out with the old, in with the new!
+
+[^up-to-the-task]: Personally, I am a fan of explicit trial programs for things like this---Atlassian for example recently launched an apprentice manager program for employees who are interested in becoming managers---though that comes with risks as well.
