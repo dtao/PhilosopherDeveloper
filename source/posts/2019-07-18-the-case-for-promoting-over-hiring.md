@@ -1,6 +1,6 @@
 ---
-title: On being promoted
-date: 2019-07-15
+title: The case for promoting over hiring
+date: 2019-07-18
 published: false
 ---
 
