@@ -5,8 +5,8 @@ published: false
 ---
 
 Here's a little tip I received fairly early in my career. I've heard this in
-various forms from various people, but the following is a direct quote from a
-boss I had not long ago:
+various forms from various people, but the following is a quote from a boss I
+had not too many years ago:
 
 > Operate as if you already have the job that you want and then you'll be
 > promoted and everyone will be surprised, thinking you had been in that role
@@ -17,15 +17,15 @@ boss I had not long ago:
 For anyone who wants to be promoted, this is great advice. Getting a promotion
 is ultimately a matter of _convincing_ someone---sometimes it's your manager,
 sometimes it's a committee---that you'll be effective in a new role. And the
-easiest way to convince someone of something [is always to do all of the work
+easiest way to convince someone of something is always [to do all of the work
 for them](/posts/dont-make-me-think.html). Put another way, the advice says:
-"Make the decision easy for your manager by doing the job you want, so they
-don't feel they're taking a risk on you."
+Make the decision easy for your manager by making it for them. Go ahead and do
+the job you want, and then they won't feel they're taking a risk on you.
 
 I recently wrote about [advice vs. guidelines](/posts/advice-vs-guidelines)
 because I wanted to write about this topic. While the above tip is great
-_advice_, it does not make for great guidelines.  To explain why I think this,
-I will start by describing the dual nature of promotions.
+_advice_, it does not make for great guidelines. To understand why, let's take
+a brief detour to discuss the dual nature of promotions.
 
 ## Reward vs. opportunity
 
@@ -33,8 +33,8 @@ A promotion is two things: a **reward**, and an **opportunity**. In my
 experience, every promotion decision involves both of these aspects to some
 degree; but one of them often dominates the conversation depending on the
 circumstances and the culture of the organization. My opinion is that at most
-companies, the promotion process over-emphasizes reward, particularly as
-employees get further along in their careers.
+companies, the promotion process over-emphasizes reward, which becomes
+increasingly problematic as employees get further along in their careers.
 
 ![A reward is based on the past, an opportunity is based on the future](/images/reward-vs-opportunity.png)
 
@@ -47,8 +47,8 @@ you've _done_.
 An opportunity is **future-focused** and is about the **role**. Employees are
 given greater responsibility to take on a new role moving forward, generally to
 fill a business need. When you give someone a promotion as an opportunity, you
-are saying, "We need someone to do this, and we believe you are capable." The
-emphasis is on the _role_, and what you _will be expected to do_ in it.
+are saying, "We need someone to do this, and we're counting on you to do it."
+The emphasis is on the _role_, and what you _will be expected to do_ in it.
 
 Reward-based promotions are generally not blocked by anything other than
 budgetary constraints. Take a group of individuals, put them all in the same
@@ -81,19 +81,20 @@ that there are fewer roles available the higher up you go.
     <figcaption>Promotions on a management track tend to be more opportunity-based</figcaption>
 </figure>
 
-## The problematic distance between promotions and hiring
+## The troubling distance between promotions and hiring
 
 Now again consider the idea that you should do the job you want in order to be
 promoted. Again, my position is that this is great _advice_ for an individual,
 but a bad _guideline_ for an entire organization. The distinction between
-reward vs. opportunity should help me explain why.
+reward vs. opportunity helps to illuminate why.
 
-This guideline focuses on the past. In that way it treats all promotions as if
-they are rewards. This becomes increasingly inappropriate the higher
-up you go in level. The positions with the most responsibility are not rewards;
-they're opportunities.
+This guideline focuses on the past. In that way, it instructs organizations to
+treat all promotions as if they are rewards. This becomes increasingly
+inappropriate the higher up you go in level. The positions with the most
+responsibility are not rewards; they are _opportunities_ to have a bigger
+impact.
 
-Meanwhile, when we look to _hire_ someone into a role, their past is
+Meanwhile, when you look to _hire_ someone into a role, their past is
 essentially unavailable. You do not reward a new hire for the great work
 they've done for your organization, because they haven't done any. Hiring by
 necessity must therefore focus on the future and the value that you expect a
@@ -123,19 +124,19 @@ recipe for losing your best senior people[^best-senior-people].
 
 ## How it needs to change
 
-My conclusion is very easy to say but I realize that it's not so easy to put
-into practice. It starts with understanding the inherent lack of fairness in a
-system where promotions are viewed as rewards, which are focused on the past,
-leaving a vacuum for hiring to fill as the primary means of filling roles based
-on business need, i.e. granting opportunities. From there, the change I would
-like to see most organizations make is a shift towards providing more
-opportunity internally. Practically speaking what this means is more hiring at
-the bottom and promoting to the top.
+My conclusion is very easy to state but I realize that it's not so easy to put
+into practice. It starts with understanding the inherent asymmetry in a system
+where promotions are viewed as rewards, which are focused on the past, leaving
+hiring as the primary mechanism for filling roles based on business need, i.e.
+granting opportunities for the future. From there, the change I would like to
+see most organizations make is a shift towards providing more opportunity
+internally. Practically speaking what this means is more hiring at the bottom
+and promoting to the top.
 
 For example, if your team needs a technical leader (maybe that's called a
 Principal Developer in your organization), rather than hiring a Principal
-Developer externally, give one of the more senior members on the team a
-promotion and hire someone junior to backfill them.
+Developer externally, consider promoting one of the more senior members on the
+team and hiring someone junior to backfill them.
 
 One of the most obvious reasons we don't do this is that it feels like taking a
 big risk, giving someone an opportunity when they haven't irrefutably proven
