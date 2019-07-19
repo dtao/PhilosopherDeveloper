@@ -1,7 +1,7 @@
 ---
 title: The case for promoting over hiring
 date: 2019-07-18
-published: false
+published: true
 ---
 
 Here's a little tip I received fairly early in my career. I've heard this in
