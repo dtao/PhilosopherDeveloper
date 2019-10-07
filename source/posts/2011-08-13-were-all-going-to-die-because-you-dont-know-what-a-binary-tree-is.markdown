@@ -1,7 +1,7 @@
 ---
 title: We're all going to die because you don't know what a binary tree is
 date: 2011-08-13
-published: false
+published: true
 ---
 
 Guys, I'm worried about **[The Singularity](http://en.wikipedia.org/wiki/Technological_singularity)**.
@@ -41,7 +41,7 @@ Basically what scares me about this is that it demonstrates a [craftsman's](http
 Suppose you had a carpenter come to your house to install some cabinets, and part of the job required him to fasten some screws. And now suppose that in order to do this part of the job, he pulled out a **hammer**. You would be surprised, right? Maybe a little concerned, even? You might have a quick exchange like this:
 
 > **You**: I couldn't help but notice you seem to be planning on using a *hammer* to fasten those screws.  
-> **Carpenter**: Yeah, I think it'll work. Normally this hammer's pretty good at putting little things like these *\[eyeing the > screws\]* into wood and such.  
+> **Carpenter**: Yeah, I think it'll work. Normally this hammer's pretty good at putting little things like these *\[eyeing the screws\]* into wood and such.  
 > **You**: Yes... I suppose it is...  
 > **Carpenter**: So I figure I'll just, you know, drive 'em on in with this.  
 > **You**: Hmm. But won't that... strip the holes?  
