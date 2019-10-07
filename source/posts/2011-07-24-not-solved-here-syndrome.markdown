@@ -1,7 +1,7 @@
 ---
 title: Not solved here syndrome
 date: 2011-07-24
-published: false
+published: true
 ---
 
 I'm not even going to flatter myself with the whole *You must have been wondering where I was!* spiel this time. For those of you out there who actually haven't given up on me completely by now: thanks! As you might have suspected, I've been both busy (with work and school) *and* lazy (with this blog)—a pretty deadly combination.
