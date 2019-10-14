@@ -1,7 +1,7 @@
 ---
-title: The need for software that explains
+title: Software that explains itself
 date: 2019-10-14
-published: false
+published: true
 ---
 
 My first job as a developer was at a company called MP Capital, an algorithmic
