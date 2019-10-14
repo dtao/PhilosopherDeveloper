@@ -14,13 +14,13 @@ triggered it, every step of the way. At the time I didn't appreciate just how
 unique this was.
 
 At Google, I remember the search team had something similar: a tool that could
-provide a rule-based explanation for why a given search result was shown for a
-given profile at a given position.
+provide a rule-based explanation for why a given page was listed for a given
+profile at a given position in the search results.
 
 More recently I've been working on a side project with a friend that involves
-scanning legal documents. The code is fairly complex in some areas; at times
-it's unclear why it produces certain results. Again, I've found myself wanting
-the same functionality: not just a result, but a result accompanied by an
+scanning documents. The code is fairly complex in some areas; at times it's
+unclear why it produces certain results. Again, I've found myself wanting the
+same functionality: not just a result, but a result accompanied by an
 explanation.
 
 There is no [pit of success](/posts/pit-of-success.html) here. By _default_,
@@ -31,17 +31,15 @@ local variable, did the loop exit early, was an error raised and handled---is
 hidden away.
 
 In this paradigm, visibility into the _why?_ of software is a feature that the
-developer has to build. Responsible engineers write copious logging to capture
-the processes happening internally as software does its thing. But logs are
-only as useful as the developer writing them. They're also detached from the
-environment in which the software is actually used (so if you're surprised by a
-result, you have to go look at the logs somewhere else).
+developer has to build. Responsible engineers add copious logging to their code
+to capture the processes happening internally as software runs. But the
+usefulness of logs is limited by the foresight of the developer writing them.
+It's also limited by how easy they are to access.
 
-One of the [biggest fears][^biggest-fears] with computers is that one day we
-will develop advanced artificial intelligence whose behavior we can't
-understand. I can all but guarantee this will happen if we never take the time
-to build the capability for AI to explain itself. Hidden-by-default should not
-be an option.
+One of the biggest fears[^biggest-fears] with computers is that one day we will
+develop advanced artificial intelligence whose behavior we can't understand. I
+can all but guarantee this will happen if we never take the time to build the
+capability for AI to explain itself. Hidden-by-default should not be an option.
 
 Imagine a new software paradigm where nothing is hidden. Where every output of
 the software is accompanied by a token entitling me to a full explanation of
