@@ -1,7 +1,7 @@
 ---
 title: What is a spike?
-date: 2020-01-21
-published: false
+date: 2020-01-23
+published: true
 ---
 
 Many software teams use the term "spike" or "research spike" to refer to a
