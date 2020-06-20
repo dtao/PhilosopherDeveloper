@@ -16,7 +16,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (3.2.14)
+    activesupport (3.2.22.5)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     bourbon (3.1.8)
@@ -46,7 +46,7 @@ GEM
     hike (1.2.3)
     http_parser.rb (0.5.3)
     http_parser.rb (0.5.3-x86-mingw32)
-    i18n (0.6.5)
+    i18n (0.6.11)
     kramdown (1.1.0)
     listen (1.2.3)
       rb-fsevent (>= 0.9.3)
@@ -96,7 +96,7 @@ GEM
       sprockets-helpers (~> 1.0.0)
       sprockets-sass (~> 1.0.0)
     mini_portile (0.5.1)
-    multi_json (1.8.0)
+    multi_json (1.13.1)
     neat (1.4.0)
       bourbon (>= 2.1)
       sass (>= 3.2)
