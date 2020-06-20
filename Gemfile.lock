@@ -38,8 +38,8 @@ GEM
     eventmachine (1.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    ffi (1.9.0)
-    ffi (1.9.0-x86-mingw32)
+    ffi (1.10.0)
+    ffi (1.10.0-x86-mingw32)
     fssm (0.2.10)
     haml (4.0.3)
       tilt
