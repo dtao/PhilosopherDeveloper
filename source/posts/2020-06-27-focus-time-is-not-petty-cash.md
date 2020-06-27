@@ -1,7 +1,7 @@
 ---
 title: Focus time is not petty cash
 date: 2020-06-27
-published: false
+published: true
 ---
 
 Budgets are useful when you have a limited amount of something and discipline
@@ -31,14 +31,14 @@ What would happen if your *entire budget* were petty cash?
 
 Imagine that at the start of every month, you withdrew all of your last month's
 income as cash and put it in a drawer. Rather than set aside any specific
-amount of that case for any specific purpose, you simply withdrew from the
+amount of that cash for any specific purpose, you simply withdrew from the
 drawer whenever you wanted, for any reason. If you felt like treating yourself
 to coffee and a donut one morning, you'd take some cash from the drawer. If you
 felt like going out for a drink with your friends, you'd take some cash from
 the drawer. If you felt like heading to Best Buy and purchasing a new TV, you'd
 take some cash from the drawer.
 
-What could go wrong in this scenario? Hopefully it's obvious: be treating all
+What could go wrong in this scenario? Hopefully it's obvious: by treating all
 of your money as petty cash, you could very easily run _out_ of money without
 having covered your necessities. You might find that your rent is due and you
 can't pay it. Or you might realize that your refrigerator is empty and you have
@@ -50,7 +50,7 @@ There's another limited resource that we all need to budget for: our **time**.
 And unlike money, there are very few ways to create more of it. This makes the
 need for a thoughtful budget all the more important, because there are things
 that we *need* that require our time, and without ensuring we make time for
-those things, we allow those needs to be neglected.
+those things, we neglect those needs.
 
 Any organization that employs knowledge workers, such as a technology company,
 *needs* for those workers to be able to focus in order to complete their tasks.
@@ -77,14 +77,16 @@ time).
 Whenever someone on my team incurs a business expense (e.g. for a trip, or more
 recently for work-from-home supplies), they submit a report for my approval. I
 have to approve it, then someone from the finance team reviews it, ensuring the
-team isn't exceeding whatever budget the expense falls under, and then
+team isn't exceeding whatever budget the expense falls under; and then
 eventually the team member is reimbursed by the company i.e. the money is
 actually spent.
 
-On the other hand, whenever someone wants to schedule a meeting, they just put
-it on the calendar and invite as many participants as they want. No one has to
-approve this "expense". No one is making sure that we aren't eating into our
+On the other hand, whenever someone wants to schedule a _meeting_, they just
+put it on the calendar and invite as many participants as they want. No one has
+to approve this expense. No one is making sure that we aren't eating into our
 focus time budget. In essence, our time is in a big petty cash drawer.
+
+---
 
 I suspect there's a better way, but it can get tricky when you collaborate with
 teammates in multiple time zones across the world, not to mention that for any
