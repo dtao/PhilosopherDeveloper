@@ -1,6 +1,6 @@
 ---
-title: Thoughts on courage
-date: 2020-12-24
+title: The need for courage
+date: 2020-12-27
 published: false
 ---
 
