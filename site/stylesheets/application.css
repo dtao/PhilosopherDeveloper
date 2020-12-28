@@ -1,0 +1,536 @@
+/*
+ * NOTE:
+ * The contents of this file are copy/pasted from
+ * https://philosopherdeveloper.com/
+ * In other words this is no longer the result of a working asset build; it is
+ * pure duct tape.
+ */
+@import url(highlighting.css);
+/* line 2, /Users/dtao/Projects/PhilosopherDeveloper/vendor/bundle/ruby/2.0.0/gems/neat-1.4.0/app/assets/stylesheets/grid/_grid.scss */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/* line 2, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/posts/charts-made-dead-simple-with-hightables.scss */
+#charts-made-dead-simple-with-hightables table {
+  display: none; }
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Lato Light"), local("Lato-Light"), url(https://fonts.gstatic.com/s/lato/v14/S6u9w4BMUTPHh7USSwaPGQ3q5d0N7w.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Lato Light"), local("Lato-Light"), url(https://fonts.gstatic.com/s/lato/v14/S6u9w4BMUTPHh7USSwiPGQ3q5d0.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lato Regular"), local("Lato-Regular"), url(https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjxAwXiWtFCfQ7A.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lato Regular"), local("Lato-Regular"), url(https://fonts.gstatic.com/s/lato/v14/S6uyw4BMUTPHjx4wXiWtFCc.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* cyrillic */
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Oswald Regular"), local("Oswald-Regular"), url(https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752HT8Gl-1PK62t.woff2) format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Oswald Regular"), local("Oswald-Regular"), url(https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752Fj8Gl-1PK62t.woff2) format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB; }
+
+/* latin-ext */
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Oswald Regular"), local("Oswald-Regular"), url(https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752Fz8Gl-1PK62t.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* latin */
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Oswald Regular"), local("Oswald-Regular"), url(https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752GT8Gl-1PKw.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+/* line 38, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+body {
+  background-image: linear, false, rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px;
+  background-image: -moz-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px);
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.22), rgba(255, 255, 255, 0) 150px);
+  background-repeat: repeat-x;
+  margin: auto;
+  padding-bottom: 60px; }
+
+/* line 53, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+main {
+  *zoom: 1;
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto;
+  display: block; }
+  /* line 18, /Users/dtao/Projects/PhilosopherDeveloper/vendor/bundle/ruby/2.0.0/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+  main:before, main:after {
+    content: " ";
+    display: table; }
+  /* line 23, /Users/dtao/Projects/PhilosopherDeveloper/vendor/bundle/ruby/2.0.0/gems/bourbon-3.1.8/app/assets/stylesheets/addons/_clearfix.scss */
+  main:after {
+    clear: both; }
+  @media screen and (min-width: 1200px) {
+    /* line 53, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    main {
+      width: 75%; } }
+  @media screen and (min-width: 768px) {
+    /* line 53, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    main {
+      min-width: 768px;
+      max-width: 1600px;
+      width: 60%; }
+      /* line 66, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+      main nav {
+        display: block;
+        float: left;
+        margin-right: 2.35765%;
+        width: 23.23176%;
+        text-align: right; }
+        /* line 33, /Users/dtao/Projects/PhilosopherDeveloper/vendor/bundle/ruby/2.0.0/gems/neat-1.4.0/app/assets/stylesheets/grid/_span-columns.scss */
+        main nav:last-child {
+          margin-right: 0; }
+        /* line 71, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+        main nav > *:not(:last-child) {
+          padding-bottom: 10px;
+          border-bottom: 1px solid black; }
+        /* line 75, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+        main nav ul {
+          list-style: none;
+          padding-left: 0; }
+          /* line 79, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+          main nav ul li {
+            font-size: 150%; }
+            /* line 82, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+            main nav ul li a.icon-link:hover {
+              text-decoration: none; }
+            /* line 85, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+            main nav ul li img {
+              vertical-align: middle; }
+      /* line 88, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+      main #content {
+        display: block;
+        float: left;
+        margin-right: 2.35765%;
+        width: 74.41059%; }
+        /* line 33, /Users/dtao/Projects/PhilosopherDeveloper/vendor/bundle/ruby/2.0.0/gems/neat-1.4.0/app/assets/stylesheets/grid/_span-columns.scss */
+        main #content:last-child {
+          margin-right: 0; }
+        /* line 91, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+        main #content.full-width {
+          width: 100%; } }
+  @media screen and (max-width: 767px) {
+    /* line 95, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    main nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      line-height: 50px;
+      margin: 0;
+      padding: 0;
+      background-color: #555555;
+      opacity: 0.9;
+      filter: alpha(opacity=90); }
+      /* line 109, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+      main nav ul {
+        display: inline-block;
+        float: left;
+        list-style: none;
+        margin: 0;
+        padding: 0 1em; }
+        /* line 116, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+        main nav ul:first-child li:first-child, main nav ul:nth-child(2) {
+          display: none; }
+        /* line 120, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+        main nav ul:last-child {
+          float: right; }
+        /* line 123, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+        main nav ul li {
+          display: inline-block; }
+          /* line 126, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+          main nav ul li a {
+            color: #a6e5dd;
+            font-weight: bold;
+            border: none; }
+          /* line 131, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+          main nav ul li img {
+            height: 24px;
+            width: 24px;
+            vertical-align: middle;
+            border: none; }
+    /* line 137, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    main #content {
+      display: block;
+      float: left;
+      margin-right: 2.35765%;
+      width: 100%; }
+      /* line 33, /Users/dtao/Projects/PhilosopherDeveloper/vendor/bundle/ruby/2.0.0/gems/neat-1.4.0/app/assets/stylesheets/grid/_span-columns.scss */
+      main #content:last-child {
+        margin-right: 0; } }
+  /* line 140, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  main .posts {
+    display: table;
+    width: 100%; }
+    /* line 144, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    main .posts .post {
+      display: table-row; }
+      /* line 147, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+      main .posts .post .title {
+        display: table-cell;
+        padding-right: 1em; }
+      /* line 151, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+      main .posts .post .date {
+        display: table-cell;
+        text-align: right; }
+
+/* line 174, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+h1, h2, h3, h4, h5, h6 {
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  font-weight: 300; }
+
+/* line 179, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+article header h1 {
+  margin-top: 0;
+  margin-bottom: 0.5ex; }
+  /* line 183, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  article header h1 a {
+    color: black;
+    font-weight: 300; }
+    /* line 187, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    article header h1 a:hover {
+      color: #7edace; }
+/* line 190, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+article p, article li, article blockquote {
+  font-family: Cambria, Georgia, serif; }
+/* line 193, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+article blockquote {
+  margin-left: 1em;
+  padding: 5px 1em;
+  border-left: 5px solid #36bcab;
+  background-color: #eeeeee; }
+/* line 199, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+article iframe {
+  display: block;
+  margin: auto !important; }
+/* line 203, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+article table {
+  width: 75%;
+  margin: auto; }
+  /* line 207, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  article table th, article table td {
+    padding: 0.5ex 0.5em; }
+    /* line 210, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    article table th:not(:first-child), article table td:not(:first-child) {
+      text-align: right; }
+/* line 213, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+article figure {
+  text-align: center; }
+  /* line 216, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  article figure img {
+    max-width: 100%; }
+  /* line 219, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  article figure .pie-chart {
+    float: left;
+    width: 50%; }
+  /* line 223, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  article figure:after {
+    clear: both; }
+/* line 226, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+article figcaption {
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  text-align: center; }
+/* line 230, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+article code {
+  color: #dd1144;
+  font-family: Consolas, Inconsolata, monospace;
+  white-space: nowrap; }
+/* line 235, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+article pre {
+  padding: 10px;
+  overflow: scroll; }
+
+/* line 239, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+a {
+  color: #36bcab;
+  text-decoration: none; }
+  /* line 243, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  a:hover {
+    color: #1f6d63; }
+
+/* line 246, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+hr {
+  border: none;
+  text-align: center; }
+  /* line 250, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  hr:after {
+    content: "~~~";
+    color: #555555; }
+
+/* line 254, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+.footnotes {
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 20px;
+  padding-bottom: 20px; }
+  /* line 255, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  .footnotes hr {
+    display: none; }
+
+/* line 263, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+body > header h1, body > header h2 {
+  font-family: Oswald, Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  text-align: center; }
+  /* line 268, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  body > header h1 a:hover, body > header h2 a:hover {
+    color: #36bcab; }
+/* line 271, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+body > header h1 {
+  margin-bottom: 0;
+  text-transform: uppercase; }
+  /* line 275, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  body > header h1 a {
+    color: black; }
+/* line 278, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+body > header h2 {
+  color: #555555;
+  margin-top: 0;
+  text-transform: lowercase; }
+  /* line 283, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  body > header h2 a {
+    color: #555555; }
+@media screen and (max-width: 767px) {
+  /* line 287, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  body > header h1, body > header h2 {
+    text-align: left; } }
+
+/* line 290, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+nav ul li,
+.posts .post {
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  font-weight: 300; }
+  /* line 161, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  nav ul li a,
+  .posts .post a {
+    font-weight: 300; }
+    /* line 164, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    nav ul li a:hover,
+    .posts .post a:hover {
+      color: #7edace;
+      text-decoration: underline; }
+  /* line 168, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  nav ul li:nth-child(even) a,
+  .posts .post:nth-child(even) a {
+    color: #1f6d63; }
+    /* line 171, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    nav ul li:nth-child(even) a:hover,
+    .posts .post:nth-child(even) a:hover {
+      color: #7edace; }
+
+/* line 294, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+sup {
+  font-size: 50%; }
+
+/* line 301, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+body > header h1 {
+  font-size: 64px; }
+/* line 303, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+body > header h2 {
+  font-size: 21.33333px; }
+
+/* line 306, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+blockquote {
+  font-size: 16px; }
+
+/* line 309, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+pre {
+  font-size: 10.66667px; }
+
+/* line 312, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+code {
+  font-size: 14px; }
+
+/* line 315, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+pre code {
+  font-size: 10.66667px; }
+
+/* line 319, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+figure figcaption {
+  font-size: 10.66667px; }
+
+/* line 322, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+article, .posts {
+  font-size: 16px; }
+  /* line 325, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  article small, .posts small {
+    font-size: 10.66667px; }
+  /* line 329, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  article header h1, .posts header h1 {
+    font-size: 32px; }
+    /* line 332, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    article header h1 .date, .posts header h1 .date {
+      color: #555555;
+      font-size: 16px; }
+    /* line 336, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    article header h1 .comments, .posts header h1 .comments {
+      font-size: 16px;
+      white-space: nowrap; }
+  /* line 340, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  article .footnotes, .posts .footnotes {
+    font-size: 9.33333px; }
+
+@media screen and (max-width: 767px) {
+  /* line 346, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  body > header, main {
+    padding: 10px; } }
+@media screen and (min-width: 768px) {
+  /* line 301, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  body > header h1 {
+    font-size: 80px; }
+  /* line 303, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  body > header h2 {
+    font-size: 26.66667px; }
+
+  /* line 306, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  blockquote {
+    font-size: 20px; }
+
+  /* line 309, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  pre {
+    font-size: 13.33333px; }
+
+  /* line 312, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  code {
+    font-size: 18px; }
+
+  /* line 315, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  pre code {
+    font-size: 13.33333px; }
+
+  /* line 319, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  figure figcaption {
+    font-size: 13.33333px; }
+
+  /* line 322, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  article, .posts {
+    font-size: 20px; }
+    /* line 325, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    article small, .posts small {
+      font-size: 13.33333px; }
+    /* line 329, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    article header h1, .posts header h1 {
+      font-size: 40px; }
+      /* line 332, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+      article header h1 .date, .posts header h1 .date {
+        color: #555555;
+        font-size: 20px; }
+      /* line 336, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+      article header h1 .comments, .posts header h1 .comments {
+        font-size: 20px;
+        white-space: nowrap; }
+    /* line 340, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    article .footnotes, .posts .footnotes {
+      font-size: 11.66667px; } }
+@media screen and (min-width: 1200px) {
+  /* line 301, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  body > header h1 {
+    font-size: 96px; }
+  /* line 303, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  body > header h2 {
+    font-size: 32px; }
+
+  /* line 306, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  blockquote {
+    font-size: 24px; }
+
+  /* line 309, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  pre {
+    font-size: 16px; }
+
+  /* line 312, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  code {
+    font-size: 22px; }
+
+  /* line 315, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  pre code {
+    font-size: 16px; }
+
+  /* line 319, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  figure figcaption {
+    font-size: 16px; }
+
+  /* line 322, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  article, .posts {
+    font-size: 24px; }
+    /* line 325, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    article small, .posts small {
+      font-size: 16px; }
+    /* line 329, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    article header h1, .posts header h1 {
+      font-size: 48px; }
+      /* line 332, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+      article header h1 .date, .posts header h1 .date {
+        color: #555555;
+        font-size: 24px; }
+      /* line 336, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+      article header h1 .comments, .posts header h1 .comments {
+        font-size: 24px;
+        white-space: nowrap; }
+    /* line 340, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+    article .footnotes, .posts .footnotes {
+      font-size: 14px; }
+
+  /* line 356, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  body > header h1, body > header h2 {
+    margin-left: 20px;
+    margin-right: 20px; } }
+/* line 361, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+.sharethis-inline-share-buttons {
+  min-height: 32px; }
+
+/* line 364, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+#mc_embed_signup_scroll p:first-child {
+  margin-top: 0; }
+
+/* line 367, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+#mce-responses {
+  margin: 0 !important;
+  padding: 0 !important; }
+  /* line 371, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
+  #mce-responses .response {
+    margin-top: 0 !important;
+    width: auto !important; }
