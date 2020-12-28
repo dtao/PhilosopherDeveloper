@@ -1,3 +1,4 @@
+excerpt-html==0.1b2
 Jinja2==2.11.2
 markdown==3.3.3
 PyYAML==5.3.1

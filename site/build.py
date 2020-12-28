@@ -3,6 +3,7 @@
 import os
 import re
 
+import excerpt_html
 import jinja2
 import markdown
 import yaml
@@ -66,6 +67,7 @@ def get_post_data(path):
     try:
         slug = re.sub(r'[^a-z]', '-', title.lower())
         pretty_date = date.strftime('%B %d, %Y')
+        excerpt = excerpt_html.excerpt_html(html, cut_mark=None)
     except AttributeError as e:
         raise ValueError('Invalid frontmatter for {}: {}'.format(path, e))
 
@@ -76,18 +78,24 @@ def get_post_data(path):
         'slug': slug,
         'date': date,
         'pretty_date': pretty_date,
-        'html': html
+        'html': html,
+        'excerpt': excerpt
     }
 
 
 def render_post(post_data):
     """Render the full HTML file for the given post data."""
+    return render_from_template('post.html', post_data)
+
+
+def render_from_template(template_name, data):
+    """Render the full HTML from the given template for the given data."""
     template_path = os.path.join(os.path.dirname(__file__), 'templates',
-                                 'post.html')
+                                 template_name)
     with open(template_path) as f:
         template = jinja2.Template(f.read())
 
-    return template.render(post_data)
+    return template.render(data)
 
 
 if __name__ == '__main__':
@@ -99,10 +107,22 @@ if __name__ == '__main__':
         sys.exit(1)
 
     src_dir = sys.argv[-2]
-    for post_data in get_all_posts(src_dir):
+    posts = list(get_all_posts(src_dir))
+
+    print('Rendering individual posts...')
+    for post_data in posts:
         dest_path = os.path.join(
-            sys.argv[-1], '{}.html'.format(post_data['filename']))
+            sys.argv[-1], 'posts', '{}.html'.format(post_data['filename']))
         post_html = render_post(post_data)
         with open(dest_path, 'w') as f:
             f.write(post_html)
         print('Wrote post "{}" to {}'.format(post_data['title'], dest_path))
+
+    print('Rendering index page...')
+    index_html = render_from_template('index.html', {
+        'posts': sorted(posts, key=lambda post: post['date'], reverse=True)
+    })
+    index_path = os.path.join(sys.argv[-1], 'index.html')
+    with open(index_path, 'w') as f:
+        f.write(index_html)
+    print('Wrote index to {}'.format(index_path))

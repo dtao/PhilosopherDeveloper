@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Philosopher Developer</title>
+    <meta charset='utf-8'>
+    <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport'>
+    <meta content='upgrade-insecure-requests' http-equiv='Content-Security-Policy'>
+    <link href="/images/favicon.ico" rel="icon" type="image/ico" />
+    <link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+    
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">The Philosopher Developer</a></h1>
+      <h2><a href="/">half-sound logic, half-decent code</a></h2>
+    </header>
+    <main>
+      <nav>
+        <ul>
+          <li><a href="/about.html">About</a></li>
+          <li>
+                  <a class="icon-link" href="https://github.com/dtao"><img src="/images/icons/github-small.png" />
+            </a>
+      
+                  <a class="icon-link" href="http://stackoverflow.com/users/105570/dan-tao"><img src="/images/icons/stackoverflow-small.png" />
+            </a>
+      
+                  <a class="icon-link" href="https://twitter.com/dan_tao"><img src="/images/icons/twitter-small.png" />
+            </a>
+      
+                  <a class="icon-link" href="https://soundcloud.com/dantao"><img src="/images/icons/soundcloud-small.png" />
+            </a>
+      
+                  <a class="icon-link" href="http://feeds.feedburner.com/philosopherdeveloper"><img src="/images/icons/rss-small.png" />
+            </a>
+      
+          </li>
+        </ul>
+        <!-- Begin Mailchimp Signup Form -->
+        <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+            #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+            /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+               We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+        </style>
+        <div id="mc_embed_signup">
+            <form action="https://gmail.us3.list-manage.com/subscribe/post?u=7f8ad8dac39c270ff8acac8a1&amp;id=66a2f70dfc" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll">
+                    <p>Subscribe to get notified when I post something new.</p>
+                    <div class="mc-field-group">
+                        <label for="mce-EMAIL">Email Address</label>
+                        <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+                    </div>
+                    <div id="mce-responses" class="clear">
+                        <div class="response" id="mce-error-response" style="display:none"></div>
+                        <div class="response" id="mce-success-response" style="display:none"></div>
+                    </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_7f8ad8dac39c270ff8acac8a1_66a2f70dfc" tabindex="-1" value=""></div>
+                    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                </div>
+            </form>
+        </div>
+        <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='ADDRESS';ftypes[3]='address';fnames[4]='PHONE';ftypes[4]='phone';fnames[5]='BIRTHDAY';ftypes[5]='birthday';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+        <!--End mc_embed_signup-->
+        <ul>
+          {% for post in posts[:10] %}
+          <li><a href="/posts/{{ post.filename }}.html">{{ post.title }}</a></li>
+          {% endfor %}
+        </ul>
+        <ul>
+          <li><a href="/posts.html">All Posts</a></li>
+        </ul>
+      </nav>
+      <div id='content'>
+        {% for post in posts[:10] %}
+        <article>
+          <header>
+            <h1>
+              <a href="/posts/{{ post.filename }}.html">{{ post.title }}</a>
+              <div class='date'>{{ post.pretty_date }}</div>
+            </h1>
+          </header>
+          {{ post.excerpt|safe }}
+          <p>
+            <a href="/posts/{{ post.filename }}.html">Read more</a>
+          </p>
+        </article>
+        {% endfor %}
+        <p>
+          <a href="/posts.html">All Posts</a>
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
