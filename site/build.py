@@ -29,20 +29,42 @@ def get_post_data(path):
     with open(path) as f:
         source = f.read()
 
-    _, frontmatter, content = source.split('---\n', maxsplit=2)
+    try:
+        _, frontmatter, content = source.split('---\n', maxsplit=2)
+    except ValueError as e:
+        raise ValueError('Error parsing {}: {}'.format(path, e))
 
-    metadata = yaml.load(frontmatter, Loader=yaml.SafeLoader)
-    title = metadata['title']
-    date = metadata['date']
-    html = markdown.markdown(content)
+    try:
+        metadata = yaml.load(frontmatter, Loader=yaml.SafeLoader)
+    except ValueError as e:
+        raise ValueError(
+            'Error parsing frontmatter for {}: {}'.format(path, e))
+
+    try:
+        title = metadata['title']
+        date = metadata['date']
+    except KeyError as e:
+        raise ValueError(
+            'Post {} missing required property: {}'.format(path, e))
+
+    try:
+        html = markdown.markdown(content)
+    except ValueError as e:
+        raise ValueError('Error parsing Markdown for {}: {}'.format(path, e))
+
+    try:
+        slug = re.sub(r'[^a-z]', '-', title.lower())
+        pretty_date = date.strftime('%B %d, %Y')
+    except AttributeError as e:
+        raise ValueError('Invalid frontmatter for {}: {}'.format(path, e))
 
     return {
         'metadata': metadata,
         'title': title,
         'filename': os.path.basename(path),
-        'slug': re.sub(r'[^a-z]', '-', title.lower()),
+        'slug': slug,
         'date': date,
-        'pretty_date': date.strftime('%B %d, %Y'),
+        'pretty_date': pretty_date,
         'html': html
     }
 

@@ -1,6 +1,6 @@
 ---
 title: Am I an engineer?
-date: 2013-04-03 13:18:00 -0700
+date: 2013-04-03
 published: true
 ---
 

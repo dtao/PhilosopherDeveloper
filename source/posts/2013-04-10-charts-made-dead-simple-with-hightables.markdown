@@ -1,6 +1,6 @@
 ---
 title: Charts made dead simple with HighTables
-date: 2013-04-10 08:34:00 -0700
+date: 2013-04-10
 published: true
 
 javascript:

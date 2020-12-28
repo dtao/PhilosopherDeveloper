@@ -1,6 +1,6 @@
 ---
 title: Automating yourself
-date: 2013-02-28 06:53:00 -0800
+date: 2013-02-28
 published: true
 ---
 
