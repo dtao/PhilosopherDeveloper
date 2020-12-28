@@ -29,7 +29,7 @@ def get_post_data(path):
     with open(path) as f:
         source = f.read()
 
-    _, frontmatter, content = source.split('---\n')
+    _, frontmatter, content = source.split('---\n', maxsplit=2)
 
     metadata = yaml.load(frontmatter, Loader=yaml.SafeLoader)
     title = metadata['title']
