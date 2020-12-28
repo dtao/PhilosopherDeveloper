@@ -8,6 +8,17 @@ import markdown
 import yaml
 
 
+def get_all_posts(path):
+    """Iterate all posts located in the given directory.
+
+    This function returns a generator and internally calls `get_post_data` on
+    each post as it's iterated.
+    """
+    for filename in os.listdir(path):
+        if filename.endswith('.markdown') or filename.endswith('.md'):
+            yield get_post_data(os.path.join(path, filename))
+
+
 def get_post_data(path):
     """Parse a blog post at the given path and return a dict.
 
@@ -84,14 +95,14 @@ if __name__ == '__main__':
 
     args = sys.argv
     if len(args) < 3:
-        print('Usage: python {} <source_file> <dest_dir>'.format(__file__))
+        print('Usage: python {} <source_dir> <dest_dir>'.format(__file__))
         sys.exit(1)
 
-    src_path = sys.argv[-2]
-    dest_path = os.path.join(sys.argv[-1],
-                             '{}.html'.format(os.path.basename(src_path)))
-    post_data = get_post_data(src_path)
-    post_html = render_post(post_data)
-    with open(dest_path, 'w') as f:
-        f.write(post_html)
-    print('Wrote post "{}" to {}'.format(post_data['title'], dest_path))
+    src_dir = sys.argv[-2]
+    for post_data in get_all_posts(src_dir):
+        dest_path = os.path.join(
+            sys.argv[-1], '{}.html'.format(post_data['filename']))
+        post_html = render_post(post_data)
+        with open(dest_path, 'w') as f:
+            f.write(post_html)
+        print('Wrote post "{}" to {}'.format(post_data['title'], dest_path))
