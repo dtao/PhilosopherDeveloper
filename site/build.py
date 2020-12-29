@@ -3,11 +3,14 @@
 import itertools
 import os
 import re
+import shutil
 
 import excerpt_html
 import jinja2
 import markdown
 import yaml
+
+BASE_DIR = os.path.dirname(__file__)
 
 
 def get_all_posts(path):
@@ -91,8 +94,7 @@ def render_post(post_data):
 
 def render_from_template(template_name, data):
     """Render the full HTML from the given template for the given data."""
-    template_path = os.path.join(os.path.dirname(__file__), 'templates',
-                                 template_name)
+    template_path = os.path.join(BASE_DIR, 'templates', template_name)
     with open(template_path) as f:
         template = jinja2.Template(f.read())
 
@@ -112,7 +114,7 @@ if __name__ == '__main__':
     posts_dir = os.path.join(dest_dir, 'posts')
     os.makedirs(posts_dir, exist_ok=True)
 
-    posts = list(get_all_posts(src_dir))
+    posts = list(get_all_posts(os.path.join(src_dir, 'posts')))
 
     print('Rendering individual posts...')
     for post_data in posts:
@@ -143,3 +145,11 @@ if __name__ == '__main__':
     with open(all_posts_path, 'w') as f:
         f.write(all_posts_html)
     print('Wrote "All posts" page to {}'.format(all_posts_path))
+
+    print('Copying images and other assets...')
+    shutil.copytree(os.path.join(src_dir, 'images'),
+                    os.path.join(dest_dir, 'images'), dirs_exist_ok=True)
+    shutil.copytree(os.path.join(BASE_DIR, 'stylesheets'),
+                    os.path.join(dest_dir, 'stylesheets'), dirs_exist_ok=True)
+    shutil.copy(os.path.join(src_dir, 'favicon.ico'), dest_dir)
+    print('Copied images and assets')
