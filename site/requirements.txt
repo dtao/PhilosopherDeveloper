@@ -1,3 +1,4 @@
+beautifulsoup4==4.9.3
 excerpt-html==0.1b2
 Jinja2==2.11.2
 markdown==3.3.3

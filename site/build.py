@@ -5,6 +5,7 @@ import os
 import re
 import shutil
 
+import bs4
 import excerpt_html
 import jinja2
 import markdown
@@ -89,7 +90,20 @@ def get_post_data(path):
 
 def render_post(post_data):
     """Render the full HTML file for the given post data."""
-    return render_from_template('post.html', post_data)
+    html = render_from_template('post.html', post_data)
+
+    # Replace all <img> elements w/ <figure> markup
+    doc = bs4.BeautifulSoup(html, 'html.parser')
+    images = doc.find_all('img')
+    for img in images:
+        figure = doc.new_tag('figure')
+        img.parent.replace_with(figure)
+        figure.append(img)
+        caption = doc.new_tag('figcaption')
+        caption.string = img['alt']
+        figure.append(caption)
+
+    return doc.prettify()
 
 
 def render_from_template(template_name, data):
