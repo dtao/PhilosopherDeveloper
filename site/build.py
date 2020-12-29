@@ -1,5 +1,6 @@
 """Very basic module for building the entire site."""
 
+import itertools
 import os
 import re
 
@@ -119,10 +120,22 @@ if __name__ == '__main__':
         print('Wrote post "{}" to {}'.format(post_data['title'], dest_path))
 
     print('Rendering index page...')
-    index_html = render_from_template('index.html', {
-        'posts': sorted(posts, key=lambda post: post['date'], reverse=True)
-    })
+    published_posts = sorted([post for post in posts
+                              if post['metadata'].get('published', True)],
+                             key=lambda post: post['date'], reverse=True)
+    index_html = render_from_template('index.html', {'posts': published_posts})
     index_path = os.path.join(sys.argv[-1], 'index.html')
     with open(index_path, 'w') as f:
         f.write(index_html)
     print('Wrote index to {}'.format(index_path))
+
+    print('Rendering "All posts" page...')
+    posts_by_year = itertools.groupby(published_posts,
+                                      key=lambda post: post['date'].year)
+    all_posts_html = render_from_template('posts.html', {
+        'posts_by_year': posts_by_year
+    })
+    all_posts_path = os.path.join(sys.argv[-1], 'posts.html')
+    with open(all_posts_path, 'w') as f:
+        f.write(all_posts_html)
+    print('Wrote "All posts" page to {}'.format(all_posts_path))

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The Philosopher Developer</title>
+    <meta charset='utf-8'>
+    <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport'>
+    <meta content='upgrade-insecure-requests' http-equiv='Content-Security-Policy'>
+    <link href="/images/favicon.ico" rel="icon" type="image/ico" />
+    <link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">The Philosopher Developer</a></h1>
+      <h2><a href="/">half-sound logic, half-decent code</a></h2>
+    </header>
+    <main>
+      <div class='posts'>
+        {% for (year, posts) in posts_by_year %}
+        <h2>{{ year }}</h2>
+        {% for post in posts %}
+        <div class='post'>
+          <div class='title'><a href="/posts/{{ post.filename }}.html">{{ post.title }}</a></div>
+          <div class='date'>{{ post.pretty_date }}</div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+      </div>
+    </main>
+  </body>
+</html>
