@@ -108,12 +108,16 @@ if __name__ == '__main__':
         sys.exit(1)
 
     src_dir = sys.argv[-2]
+    dest_dir = sys.argv[-1]
+    posts_dir = os.path.join(dest_dir, 'posts')
+    os.makedirs(posts_dir, exist_ok=True)
+
     posts = list(get_all_posts(src_dir))
 
     print('Rendering individual posts...')
     for post_data in posts:
-        dest_path = os.path.join(
-            sys.argv[-1], 'posts', '{}.html'.format(post_data['filename']))
+        dest_path = os.path.join(posts_dir,
+                                 '{}.html'.format(post_data['filename']))
         post_html = render_post(post_data)
         with open(dest_path, 'w') as f:
             f.write(post_html)
@@ -124,7 +128,7 @@ if __name__ == '__main__':
                               if post['metadata'].get('published', True)],
                              key=lambda post: post['date'], reverse=True)
     index_html = render_from_template('index.html', {'posts': published_posts})
-    index_path = os.path.join(sys.argv[-1], 'index.html')
+    index_path = os.path.join(dest_dir, 'index.html')
     with open(index_path, 'w') as f:
         f.write(index_html)
     print('Wrote index to {}'.format(index_path))
@@ -135,7 +139,7 @@ if __name__ == '__main__':
     all_posts_html = render_from_template('posts.html', {
         'posts_by_year': posts_by_year
     })
-    all_posts_path = os.path.join(sys.argv[-1], 'posts.html')
+    all_posts_path = os.path.join(dest_dir, 'posts.html')
     with open(all_posts_path, 'w') as f:
         f.write(all_posts_html)
     print('Wrote "All posts" page to {}'.format(all_posts_path))
