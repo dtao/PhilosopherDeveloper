@@ -5,4 +5,17 @@ where the blog is hosted. The goal is to have as close to zero dependencies as
 possible and to take a YAGNI approach. Eventually this will replace the current
 build based on [Middleman][1].
 
+Features:
+
+- [x] Render all posts
+- [x] Render index page
+- [x] Render "All posts" page
+- [ ] Render "About" page
+- [x] Render images as figures
+- [ ] Ensure syntax highlighting is working
+- [ ] Ensure custom CSS & JS are working
+- [ ] Ensure "Subscribe" form is working
+- [ ] Enable social sharing
+- [ ] Enable Disqus comments
+
 [1]: https://middlemanapp.com/
