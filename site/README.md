@@ -15,6 +15,7 @@ Features:
 - [x] Ensure syntax highlighting is working
 - [ ] Ensure custom CSS & JS are working
 - [x] Ensure footnotes are working
+- [x] Ensure tables are working
 - [ ] Ensure "Subscribe" form is working
 - [ ] Enable social sharing
 - [ ] Enable Disqus comments

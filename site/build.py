@@ -67,7 +67,8 @@ def get_post_data(path):
     try:
         html = markdown.markdown(content, extensions=['codehilite',
                                                       'fenced_code',
-                                                      'footnotes'])
+                                                      'footnotes',
+                                                      'tables'])
     except ValueError as e:
         raise ValueError('Error parsing Markdown for {}: {}'.format(path, e))
 

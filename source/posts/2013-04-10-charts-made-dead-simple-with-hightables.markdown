@@ -70,7 +70,7 @@ My problem with Highcharts in the past was that it has [a *behemoth* API](http:/
 </figure>
 
 Activity                       | Relative Value of activity | Hours spent on activity |
--------------------------------|---------------------------:|------------------------:|
+------------------------------ | -------------------------: | ----------------------- |
 Implementing reporting backend | 10                         | 3                       |
 Fiddling with chart rendering  | 1                          | 5                       |
 
