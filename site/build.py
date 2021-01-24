@@ -65,7 +65,7 @@ def get_post_data(path):
             'Post {} missing required property: {}'.format(path, e))
 
     try:
-        html = markdown.markdown(content)
+        html = markdown.markdown(content, extensions=['fenced_code'])
     except ValueError as e:
         raise ValueError('Error parsing Markdown for {}: {}'.format(path, e))
 

@@ -276,8 +276,9 @@ article figcaption {
   text-align: center; }
 /* line 230, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
 article code {
+  font-family: Consolas, Inconsolata, monospace; }
+article > code {
   color: #dd1144;
-  font-family: Consolas, Inconsolata, monospace;
   white-space: nowrap; }
 /* line 235, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
 article pre {
