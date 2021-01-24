@@ -1,7 +1,7 @@
 ---
 title: Dan Tao
 subtitle: The Philosopher Developer
-layout: post
+date: 2021-01-24
 ---
 
 I was born and raised in a suburb of Philadelphia, lived in San Francisco for almost 5 years, and moved to Austin with my family in 2015.

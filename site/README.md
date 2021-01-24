@@ -10,7 +10,7 @@ Features:
 - [x] Render all posts
 - [x] Render index page
 - [x] Render "All posts" page
-- [ ] Render "About" page
+- [x] Render "About" page
 - [x] Render images as figures
 - [ ] Ensure syntax highlighting is working
 - [ ] Ensure custom CSS & JS are working

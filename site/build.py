@@ -82,7 +82,7 @@ def get_post_data(path):
         'filename': os.path.basename(path),
         'slug': slug,
         'date': date,
-        'pretty_date': pretty_date,
+        'pretty_date': metadata.get('subtitle', pretty_date),
         'html': html,
         'excerpt': excerpt
     }
@@ -159,6 +159,14 @@ if __name__ == '__main__':
     with open(all_posts_path, 'w') as f:
         f.write(all_posts_html)
     print('Wrote "All posts" page to {}'.format(all_posts_path))
+
+    print('Rendering "About" page...')
+    about_data = get_post_data(os.path.join(src_dir, 'about.markdown'))
+    about_html = render_post(about_data)
+    about_path = os.path.join(dest_dir, 'about.html')
+    with open(about_path, 'w') as f:
+        f.write(about_html)
+    print('Wrote "About" page to {}'.format(about_path))
 
     print('Copying images and other assets...')
     shutil.copytree(os.path.join(src_dir, 'images'),
