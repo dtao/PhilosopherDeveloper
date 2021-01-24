@@ -12,7 +12,7 @@ Features:
 - [x] Render "All posts" page
 - [x] Render "About" page
 - [x] Render images as figures
-- [ ] Ensure syntax highlighting is working
+- [x] Ensure syntax highlighting is working
 - [ ] Ensure custom CSS & JS are working
 - [ ] Ensure "Subscribe" form is working
 - [ ] Enable social sharing

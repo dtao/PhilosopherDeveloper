@@ -11,5 +11,8 @@ Jinja2==2.11.2
 # Support writing post content in Markdown and rendering to HTML
 markdown==3.3.3
 
+# Syntax highlighting for fenced code blocks
+Pygments==2.7.4
+
 # Support frontmatter in YAML format
 PyYAML==5.3.1
