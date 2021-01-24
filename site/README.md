@@ -14,6 +14,7 @@ Features:
 - [x] Render images as figures
 - [x] Ensure syntax highlighting is working
 - [ ] Ensure custom CSS & JS are working
+- [x] Ensure footnotes are working
 - [ ] Ensure "Subscribe" form is working
 - [ ] Enable social sharing
 - [ ] Enable Disqus comments

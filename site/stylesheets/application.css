@@ -303,12 +303,12 @@ hr {
     color: #555555; }
 
 /* line 254, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
-.footnotes {
+.footnote {
   border-bottom: 1px solid #eeeeee;
   margin-bottom: 20px;
   padding-bottom: 20px; }
   /* line 255, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
-  .footnotes hr {
+  .footnote hr {
     display: none; }
 
 /* line 263, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
@@ -411,7 +411,7 @@ article, .posts {
       font-size: 16px;
       white-space: nowrap; }
   /* line 340, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
-  article .footnotes, .posts .footnotes {
+  article .footnote, .posts .footnote {
     font-size: 9.33333px; }
 
 @media screen and (max-width: 767px) {
@@ -464,7 +464,7 @@ article, .posts {
         font-size: 20px;
         white-space: nowrap; }
     /* line 340, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
-    article .footnotes, .posts .footnotes {
+    article .footnote, .posts .footnote {
       font-size: 11.66667px; } }
 @media screen and (min-width: 1200px) {
   /* line 301, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
@@ -512,7 +512,7 @@ article, .posts {
         font-size: 24px;
         white-space: nowrap; }
     /* line 340, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
-    article .footnotes, .posts .footnotes {
+    article .footnote, .posts .footnote {
       font-size: 14px; }
 
   /* line 356, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
