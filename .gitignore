@@ -4,17 +4,5 @@
 # or operating system, you probably want to add a global ignore instead:
 # git config --global core.excludesfile ~/.gitignore_global
 
-# Ignore bundler config
-/.bundle
-
 # Ignore the build directory
 /build
-
-# Also ignore the source/javascripts/lib directory, as that's where I'm putting Bower dependencies
-/source/javascripts/lib
-
-# Ignore Sass' cache
-/.sass-cache
-
-# Ignore vendored bundle
-/vendor
