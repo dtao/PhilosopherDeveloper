@@ -19,5 +19,6 @@ Features:
 - [x] Ensure "Subscribe" form is working
 - [x] Enable social sharing
 - [x] Enable Disqus comments
+- [ ] Ensure RSS feed is working
 
 [1]: https://middlemanapp.com/

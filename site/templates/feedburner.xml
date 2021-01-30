@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>The Philosopher Developer</title>
+  <id>https://philosopherdeveloper.com/</id>
+  <link href="http://philosopherdeveloper.com/"/>
+  <link href="http://philosopherdeveloper.com/feedburner.xml" rel="self"/>
+  <updated>{{ updated }}</updated>
+  <author>
+    <name>Dan Tao</name>
+  </author>
+  {% for post in posts %}
+  <entry>
+    <title>{{ post.title }}</title>
+    <link rel="alternate" href="https://philosopherdeveloper.com/posts/{{ slug }}.html"/>
+    <id>https://philosopherdeveloper.com/posts/{{ post.slug }}.html</id>
+    <published>{{ post.date }}</published>
+    <updated>{{ post.date }}</updated>
+    <author>
+      <name>Dan Tao</name>
+    </author>
+    <content type="html">{{ post.html }}</content>
+  </entry>
+  {% endfor %}
+</feed>

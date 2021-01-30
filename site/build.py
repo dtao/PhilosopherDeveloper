@@ -170,6 +170,16 @@ if __name__ == '__main__':
         f.write(about_html)
     print('Wrote "About" page to {}'.format(about_path))
 
+    print('Rendering RSS feed...')
+    rss_xml = render_from_template('feedburner.xml', {
+        'updated': published_posts[0]['date'],
+        'posts': published_posts[:10]
+    })
+    rss_path = os.path.join(dest_dir, 'feedburner.xml')
+    with open(rss_path, 'w') as f:
+        f.write(rss_xml)
+    print('Wrote RSS feed to {}'.format(rss_path))
+
     print('Copying images and other assets...')
     shutil.copytree(os.path.join(src_dir, 'images'),
                     os.path.join(dest_dir, 'images'), dirs_exist_ok=True)
