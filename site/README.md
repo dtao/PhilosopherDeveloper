@@ -18,6 +18,6 @@ Features:
 - [x] Ensure tables are working
 - [x] Ensure "Subscribe" form is working
 - [x] Enable social sharing
-- [ ] Enable Disqus comments
+- [x] Enable Disqus comments
 
 [1]: https://middlemanapp.com/

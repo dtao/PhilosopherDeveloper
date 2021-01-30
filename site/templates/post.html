@@ -23,14 +23,37 @@
       <article id='{{ slug }}'>
         {% if subtitle %}
         <header>
-          <h1>{{ subtitle }}</h1>
+          <h1>{{ subtitle }} <span class="comments"><a href="#disqus_thread"></a></span></h1>
         </header>
         {% endif %}
         {% if not metadata.disable_sharing %}
         <div class="sharethis-inline-share-buttons"></div>
         {% endif %}
+
         {{ html|safe }}
+
+        <div id="disqus_thread"></div>
+
       </article>
     </main>
   </body>
+
+  <script>
+    window.disqus_shortname = "philosopherdeveloper";
+    window.disqus_title = "{{ title }}";
+    window.disqus_identifier = "{{ slug }}";
+
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.type = 'text/javascript';
+      s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+  </script>
 </html>
