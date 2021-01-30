@@ -21,9 +21,11 @@
     </header>
     <main>
       <article id='{{ slug }}'>
+        {% if subtitle %}
         <header>
           <h1>{{ subtitle }}</h1>
         </header>
+        {% endif %}
         {% if not metadata.disable_sharing %}
         <div class="sharethis-inline-share-buttons"></div>
         {% endif %}

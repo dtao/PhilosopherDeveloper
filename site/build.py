@@ -85,7 +85,7 @@ def get_post_data(path):
         'filename': os.path.basename(path),
         'slug': slug,
         'date': date,
-        'pretty_date': metadata.get('subtitle', pretty_date),
+        'subtitle': metadata.get('subtitle', pretty_date),
         'html': html,
         'excerpt': excerpt
     }

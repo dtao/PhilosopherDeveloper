@@ -1,6 +1,6 @@
 ---
 title: Dan Tao
-subtitle: The Philosopher Developer
+subtitle: false
 date: 2021-01-24
 disable_sharing: true
 ---
