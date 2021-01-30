@@ -10,6 +10,9 @@
     {% for js_url in metadata.javascript %}
     <script src="{{ js_url }}"></script>
     {% endfor %}
+    {% if not metadata.disable_sharing %}
+    <script src="https://platform-api.sharethis.com/js/sharethis.js#property=589652d7b750240012d3ebf7&product=inline-share-buttons"></script>
+    {% endif %}
   </head>
   <body>
     <header>
@@ -21,6 +24,9 @@
         <header>
           <h1>{{ subtitle }}</h1>
         </header>
+        {% if not metadata.disable_sharing %}
+        <div class="sharethis-inline-share-buttons"></div>
+        {% endif %}
         {{ html|safe }}
       </article>
     </main>

@@ -17,7 +17,7 @@ Features:
 - [x] Ensure footnotes are working
 - [x] Ensure tables are working
 - [x] Ensure "Subscribe" form is working
-- [ ] Enable social sharing
+- [x] Enable social sharing
 - [ ] Enable Disqus comments
 
 [1]: https://middlemanapp.com/
