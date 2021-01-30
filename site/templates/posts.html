@@ -19,7 +19,7 @@
         <h2>{{ year }}</h2>
         {% for post in posts %}
         <div class='post'>
-          <div class='title'><a href="/posts/{{ post.filename }}.html">{{ post.title }}</a></div>
+          <div class='title'><a href="/posts/{{ post.slug }}.html">{{ post.title }}</a></div>
           <div class='date'>{{ post.pretty_date }}</div>
         </div>
         {% endfor %}

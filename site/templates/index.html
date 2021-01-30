@@ -64,7 +64,7 @@
         <!--End mc_embed_signup-->
         <ul>
           {% for post in posts[:10] %}
-          <li><a href="/posts/{{ post.filename }}.html">{{ post.title }}</a></li>
+          <li><a href="/posts/{{ post.slug }}.html">{{ post.title }}</a></li>
           {% endfor %}
         </ul>
         <ul>
@@ -76,13 +76,13 @@
         <article>
           <header>
             <h1>
-              <a href="/posts/{{ post.filename }}.html">{{ post.title }}</a>
+              <a href="/posts/{{ post.slug }}.html">{{ post.title }}</a>
               <div class='date'>{{ post.pretty_date }}</div>
             </h1>
           </header>
           {{ post.excerpt|safe }}
           <p>
-            <a href="/posts/{{ post.filename }}.html">Read more</a>
+            <a href="/posts/{{ post.slug }}.html">Read more</a>
           </p>
         </article>
         {% endfor %}

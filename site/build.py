@@ -82,7 +82,6 @@ def get_post_data(path):
     return {
         'metadata': metadata,
         'title': title,
-        'filename': os.path.basename(path),
         'slug': slug,
         'date': date,
         'subtitle': metadata.get('subtitle', pretty_date),
@@ -136,7 +135,7 @@ if __name__ == '__main__':
     print('Rendering individual posts...')
     for post_data in posts:
         dest_path = os.path.join(posts_dir,
-                                 '{}.html'.format(post_data['filename']))
+                                 '{}.html'.format(post_data['slug']))
         post_html = render_post(post_data)
         with open(dest_path, 'w') as f:
             f.write(post_html)
