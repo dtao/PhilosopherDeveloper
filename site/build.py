@@ -73,7 +73,12 @@ def get_post_data(path):
         raise ValueError('Error parsing Markdown for {}: {}'.format(path, e))
 
     try:
-        slug = re.sub(r'[^a-z]', '-', title.lower())
+        # Replace spaces with dashes
+        slug = re.sub(r'\s+', '-', title.lower())
+
+        # Eliminate everything else that isn't alphanumeric or a dash
+        slug = re.sub(r'[^a-z0-9\-]', '', slug)
+
         pretty_date = date.strftime('%B %d, %Y')
         excerpt = excerpt_html.excerpt_html(html, cut_mark=None)
     except AttributeError as e:
