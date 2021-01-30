@@ -13,6 +13,17 @@
     {% if not metadata.disable_sharing %}
     <script src="https://platform-api.sharethis.com/js/sharethis.js#property=589652d7b750240012d3ebf7&product=inline-share-buttons"></script>
     {% endif %}
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-37508084-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
   </head>
   <body>
     <header>
