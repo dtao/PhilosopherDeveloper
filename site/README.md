@@ -13,7 +13,7 @@ Features:
 - [x] Render "About" page
 - [x] Render images as figures
 - [x] Ensure syntax highlighting is working
-- [ ] Ensure custom CSS & JS are working
+- [x] Ensure custom CSS & JS are working
 - [x] Ensure footnotes are working
 - [x] Ensure tables are working
 - [ ] Ensure "Subscribe" form is working

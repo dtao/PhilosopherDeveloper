@@ -4,9 +4,9 @@ date: 2013-04-10
 published: true
 
 javascript:
-  - http://code.jquery.com/jquery-1.10.1.min.js
-  - http://code.highcharts.com/highcharts.js
-  - http://danieltao.com/HighTables/hightables.min.js
+  - https://code.jquery.com/jquery-1.10.1.min.js
+  - https://code.highcharts.com/highcharts.js
+  - https://danieltao.com/HighTables/hightables.min.js
 ---
 
 In a footnote to [my post a while ago on SafeYAML](/posts/making-yaml-safe-again.html)[^safe-yaml], I established a goal of writing more about my many open source projects, which I have a bad habit of not telling anyone about---sometimes even long after they're finished!

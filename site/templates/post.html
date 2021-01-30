@@ -7,6 +7,9 @@
     <meta content='upgrade-insecure-requests' http-equiv='Content-Security-Policy'>
     <link href="/images/favicon.ico" rel="icon" type="image/ico" />
     <link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+    {% for js_url in metadata.javascript %}
+    <script src="{{ js_url }}"></script>
+    {% endfor %}
   </head>
   <body>
     <header>
