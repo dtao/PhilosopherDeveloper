@@ -1,6 +1,6 @@
 ---
-title: How to reduce tension
-date: 2020-11-27
+title: On reducing tension
+date: 2021-01-31
 published: false
 ---
 
