@@ -13,6 +13,6 @@ Large, distributed teams use centralized version control and vice versa
 
 The original VC systems followed a client/server model, where a central server would host the entire history of a team's code base (repository) and individual team members download changes to their local clients, which are essentially up-to-date snapshots. [Subversion](http://subversion.apache.org/) is probably the most popular existing VC system within this lineage. A newer breed of systems is known as distributed version control, which---as the name implies---is based on a decentralized model where every contributor to a project maintains a full copy of the entire repository. The most popular distributed system is Git, though Mercurial and Bazaar are also popular options.
 
-<iframe src="http://charter.herokuapp.com/embed/KBOKGNE6" style="height: 450px; width: 600px;" />
+<iframe src="https://charter.herokuapp.com/embed/KBOKGNE6" style="height: 450px; width: 600px;" />
 
 [^first-sentence]: After writing that sentence I felt very strongly that I was writing the introduction to a 5th grade essay.

@@ -6,7 +6,7 @@ published: true
 
 Watch the following video and count how many times the players in white pass the basketball. Then scroll down to read the rest of this post.
 
-<iframe width="420" height="315" src="http://www.youtube.com/embed/vJG698U2Mvo" frameborder="0" allowfullscreen></iframe>
+<iframe width="420" height="315" src="https://www.youtube.com/embed/vJG698U2Mvo" frameborder="0" allowfullscreen></iframe>
 
 .  
 .  

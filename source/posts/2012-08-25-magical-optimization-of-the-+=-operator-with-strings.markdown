@@ -19,7 +19,7 @@ Before bothering to profile anything, here was my guess: I figured that on small
 
 To my surprise, after [profiling the two options on a variety of browsers](http://jsperf.com/concatenating-lots-of-little-strings/2), I found that the `+=` operator beats the pants off the array method on Chrome.
 
-![The performance of += on Chrome is pretty astonishing](http://i.imgur.com/wIYN7.png)
+![The performance of += on Chrome is pretty astonishing](https://i.imgur.com/wIYN7.png)
 
 *How could this be?* I thought. Given an immutable data structure for strings, it seemed to me any use of `+` would necessitate the allocation of an entirely new block of memory to hold a copy of the original data plus the appended data. The only obvious alternative I could think of was to use some sort of [rope](http://en.wikipedia.org/wiki/Rope_\(computer_science\)), which felt like a totally unwarranted compromise for a language like JavaScript given that it would make random access O(log N) instead of O(1) and would hardly ever be useful (not to mention that appends would still be O(log N), so they almost certainly still wouldn't beat the array method).
 

@@ -29,7 +29,7 @@ Besides these two approaches, I propose that there is a third option.
 
 Put another way: I could spend the rest of my life cutting very slowly to reduce the risk of injuring myself; or I could let myself move quickly and live with the risk of sometimes drawing a little blood. Over time I believe the latter approach leads to greater total progress[^charter].
 
-<iframe src="http://charter.herokuapp.com/embed/136BV6U4" style="height: 450px; width: 600px;" />
+<iframe src="https://charter.herokuapp.com/embed/136BV6U4" style="height: 450px; width: 600px;" />
 
 I recognize that my knife analogy starts to break down right about now, because the total amount of time we're talking about over the course of my life is pretty insignificant. If I were a professional chef, I think the literal lesson might still apply. As it happens, I'm a professional software developer; and the *figurative* lesson applies as much to those in our field as to anybody, if not more so.
 
@@ -39,5 +39,5 @@ I'm not saying don't be careful. Of course you could easily take this argument t
 
 [^charter]: Hey by the way, that chart was made using a tool called [Charter][1]{: .new-window }, *another* one of my open source projects! (And Charter itself uses [HighTables][2]{: .new-window }--that's what they call dogfooding, my friends.)
 
-[1]: http://charter.herokuapp.com/
+[1]: https://charter.herokuapp.com/
 [2]: http://dtao.github.io/HighTables/

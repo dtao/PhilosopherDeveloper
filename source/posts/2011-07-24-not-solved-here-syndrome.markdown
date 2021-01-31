@@ -63,4 +63,4 @@ All too often, software already exists to solve a certain problem, but we as eng
 
 I don't know how well we can realistically expect to move away from this phenomenon; but it does make me sad to think of how much further along we could be in the world of software if we were better at reusing one another's work and building on top of it. It seems to me we ought to have built a skyscraper by now, and all we have is a vast scattering of fat little buildings.
 
-[^internet-cats]: You know, I'm not generally a cat person; but for some reason [internet cats](http://www.youtube.com/watch?v=z_AbfPXTKms) are awesome to me.
+[^internet-cats]: You know, I'm not generally a cat person; but for some reason [internet cats](https://www.youtube.com/watch?v=z_AbfPXTKms) are awesome to me.

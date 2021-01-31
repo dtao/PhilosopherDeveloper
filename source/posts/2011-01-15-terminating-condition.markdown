@@ -32,9 +32,9 @@ If I were to ask you, *What does the above code do?*, an initial response might 
 
 ![Provoke and respond](/images/provoke-respond.png)
 
-This is how I believe we tend to *visualize* back-and-forth personal conflicts (if we are visual thinkers, anyway). We think of individuals locked in an ongoing dispute as somewhat akin to [Dr. Seuss's The Zax](http://www.youtube.com/watch?v=_MVdgz2ghhw), eternally stubborn, never budging. If two individuals are belligerent enough, and stubborn enough, they just might argue *forever* while the world around them moves on.
+This is how I believe we tend to *visualize* back-and-forth personal conflicts (if we are visual thinkers, anyway). We think of individuals locked in an ongoing dispute as somewhat akin to [Dr. Seuss's The Zax](https://www.youtube.com/watch?v=_MVdgz2ghhw), eternally stubborn, never budging. If two individuals are belligerent enough, and stubborn enough, they just might argue *forever* while the world around them moves on.
 
-<iframe width="420" height="315" src="http://www.youtube.com/embed/_MVdgz2ghhw" frameborder="0" allowfullscreen></iframe>
+<iframe width="420" height="315" src="https://www.youtube.com/embed/_MVdgz2ghhw" frameborder="0" allowfullscreen></iframe>
 
 How many times have you thought this about two people arguing? *This could go on forever*, etc. **But this is not an accurate view.** As anyone who's witnessed or been a part of such a conflict knows, they *don't* go on forever. Nor does the code above. Developers with a keen eye will realize that my `Provoke`/`Respond` code snippet exhibits [mutual recursion](http://en.wikipedia.org/wiki/Mutual_recursion); it will *not* execute forever but will instead overflow the call stack.
 

@@ -13,11 +13,11 @@ How we think about priority
 
 The way most teams prioritize work seems totally sensible on the surface. Essentially, tasks are assigned some priority ranking such as "high", "medium" or "low"; and then the highest-ranked tasks actually get assigned to people. In a perfect world this would mean that the most important things always get done, and then when there's a surplus of time a team can "catch up" on issues that aren't quite as urgent. In practice I think a different reality tends to emerge.
 
-<iframe src="http://charter.herokuapp.com/embed/G8G85MQY" style="height: 450px; width: 600px;" />
+<iframe src="https://charter.herokuapp.com/embed/G8G85MQY" style="height: 450px; width: 600px;" />
 
 On projects I've been a part of, inevitably it turns out that the "high-priority" work is the *only* work that gets done. We never seem to run out of high-priority things to do; and so there ends up being **this giant mountain of "low-priority" issues** that, if we're honest with ourselves, will never be tackled. Which would imply that more and more important things keep always coming up.
 
-<iframe src="http://charter.herokuapp.com/embed/K8IUBCNI" style="height: 450px; width: 600px;" />
+<iframe src="https://charter.herokuapp.com/embed/K8IUBCNI" style="height: 450px; width: 600px;" />
 
 But either this isn't true, or it shouldn't be.
 
@@ -32,7 +32,7 @@ How we could do it differently
 
 Here's a different approach I would like to try some day. Instead of adopting the mindset that we will always work on high-priority items---logical though that may be in theory---what if we allocated our time **in advance** on a weighted basis, so that high-priority items get the most time but medium- and/or low-priority work gets some time as well? For example, we might say that out of every two weeks (10 working days), "high-priority" work gets 7 days, "medium" work gets 2, and "low" gets 1[^exact-breakdown-of-work].
 
-<iframe src="http://charter.herokuapp.com/embed/NBSU8ZSB" style="height: 450px; width: 600px;" />
+<iframe src="https://charter.herokuapp.com/embed/NBSU8ZSB" style="height: 450px; width: 600px;" />
 
 Why take this approach? I acknowledge that it seems a bit counterintuitive to *force* work on lower-priority tasks, when there's theoretically more important work to do. But I actually think this would get us closer to an ideal distribution of work than where most of us currently are. Instead of the mildly [ADD](http://en.wikipedia.org/wiki/ADD) pattern of working on whatever seems important right now, and perpetually "forgetting" to do less-urgent work, a fixed allocation would nudge us back in the direction of refactoring, fixing bugs, and actually implementing some of those nice-to-haves we never seem to implement.
 

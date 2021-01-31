@@ -6,7 +6,7 @@ published: false
 
 Indulge me, for a moment, as I rationalize what is essentially an entire blog post to defend my ego from strangers on the internet.
 
-[![XKCD #386](http://imgs.xkcd.com/comics/duty_calls.png)](http://xkcd.com/386/)
+[![XKCD #386](https://imgs.xkcd.com/comics/duty_calls.png)](http://xkcd.com/386/)
 
 I recently wrote a protip on Coderwall called ["Bootstrap without all the debt"](https://coderwall.com/p/wixovg), in which I described a method for abstracting your markup from Bootstrap using [SASS](http://sass-lang.com/) and its `@extend` directive, or something similar (e.g., LESS). It got a *lot* of views[^lot-of-views], mainly thanks to a link on [Hacker News](https://news.ycombinator.com/item?id=6740324). Of course, with the HN link came some very opinionated readers, many of whom were quick to identify flaws in my suggestion.
 
