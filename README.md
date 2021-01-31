@@ -2,7 +2,7 @@
 
 This is the repo for my blog, [The Philosopher Developer][1].
 
-The site is hosted on [GitHub Pages][3]. I use [Disqus][4] for comments and
+The site is hosted on [Netlify][3]. I use [Disqus][4] for comments and
 [ShareThis][5] for the social sharing buttons (Twitter, etc.) on each post.
 (Incidentally, if you know of a better sharing product, [let me know][6]! I'm
 really not a huge fan of ShareThis, mainly because I feel like it slows down
@@ -24,7 +24,7 @@ updates whenever I write a new post.
 I think that about covers it.
 
 [1]: https://philosopherdeveloper.com/
-[3]: https://pages.github.com/
+[3]: https://www.netlify.com/
 [4]: https://disqus.com/
 [5]: https://www.sharethis.com/
 [6]: https://github.com/dtao/PhilosopherDeveloper/issues
