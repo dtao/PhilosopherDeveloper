@@ -187,8 +187,8 @@ if __name__ == '__main__':
 
     print('Copying images and other assets...')
     shutil.copytree(os.path.join(src_dir, 'images'),
-                    os.path.join(dest_dir, 'images'), dirs_exist_ok=True)
+                    os.path.join(dest_dir, 'images'))
     shutil.copytree(os.path.join(BASE_DIR, 'stylesheets'),
-                    os.path.join(dest_dir, 'stylesheets'), dirs_exist_ok=True)
+                    os.path.join(dest_dir, 'stylesheets'))
     shutil.copy(os.path.join(src_dir, 'favicon.ico'), dest_dir)
     print('Copied images and assets')
