@@ -124,7 +124,7 @@ def render_post(post_data):
         caption.string = img['alt']
         figure.append(caption)
 
-    return doc.prettify()
+    return str(doc)
 
 
 def render_from_template(template_name, data):
