@@ -2,8 +2,8 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>The Philosopher Developer</title>
   <id>https://philosopherdeveloper.com/</id>
-  <link href="http://philosopherdeveloper.com/"/>
-  <link href="http://philosopherdeveloper.com/feedburner.xml" rel="self"/>
+  <link href="https://philosopherdeveloper.com/"/>
+  <link href="https://philosopherdeveloper.com/feedburner.xml" rel="self"/>
   <updated>{{ updated }}</updated>
   <author>
     <name>Dan Tao</name>
