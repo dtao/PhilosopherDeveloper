@@ -14,7 +14,7 @@
     <link rel="alternate" href="https://philosopherdeveloper.com/posts/{{ post.slug }}.html"/>
     <id>https://philosopherdeveloper.com/posts/{{ post.slug }}.html</id>
     <published>{{ post.date }}</published>
-    <updated>{{ post.date }}</updated>
+    <updated>{{ post.updated }}</updated>
     <author>
       <name>Dan Tao</name>
     </author>

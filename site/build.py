@@ -1,7 +1,9 @@
 """Very basic module for building the entire site."""
 
+import datetime
 import itertools
 import os
+import pathlib
 import re
 import shutil
 
@@ -43,7 +45,8 @@ def get_post_data(path):
     parsing the frontmatter as YAML, and whose 'html' property is the result of
     rendering the Markdown content to HTML.
     """
-    with open(path) as f:
+    fname = pathlib.Path(path)
+    with fname.open() as f:
         source = f.read()
 
     try:
@@ -84,11 +87,18 @@ def get_post_data(path):
     except AttributeError as e:
         raise ValueError('Invalid frontmatter for {}: {}'.format(path, e))
 
+    # Use the modified time of the source file to infer last updated time.
+    updated = datetime.datetime.fromtimestamp(fname.stat().st_mtime)
+
+    # Strip away microsecond component and render in ISO 8601 format.
+    updated = updated.replace(microsecond=0).astimezone().isoformat()
+
     return {
         'metadata': metadata,
         'title': title,
         'slug': slug,
         'date': date,
+        'updated': updated,
         'subtitle': metadata.get('subtitle', pretty_date),
         'html': html,
         'excerpt': excerpt
