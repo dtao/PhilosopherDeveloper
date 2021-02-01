@@ -11,6 +11,9 @@ Jinja2==2.11.2
 # Support writing post content in Markdown and rendering to HTML
 markdown==3.3.3
 
+# VERY important extension to convert "---" to "&mdash;"
+markdown-emdash==0.1.0
+
 # Syntax highlighting for fenced code blocks
 Pygments==2.7.4
 
