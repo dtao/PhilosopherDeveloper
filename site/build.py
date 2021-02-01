@@ -87,18 +87,22 @@ def get_post_data(path):
     except AttributeError as e:
         raise ValueError('Invalid frontmatter for {}: {}'.format(path, e))
 
+    # Render an RFC 3339 date for valid Atom content.
+    date_iso = datetime.datetime(date.year, date.month, date.day).isoformat()
+
     # Use the modified time of the source file to infer last updated time.
     updated = datetime.datetime.fromtimestamp(fname.stat().st_mtime)
 
     # Strip away microsecond component and render in ISO 8601 format.
-    updated = updated.replace(microsecond=0).astimezone().isoformat()
+    updated_iso = updated.replace(microsecond=0).astimezone().isoformat()
 
     return {
         'metadata': metadata,
         'title': title,
         'slug': slug,
         'date': date,
-        'updated': updated,
+        'published': date_iso,
+        'updated': updated_iso,
         'subtitle': metadata.get('subtitle', pretty_date),
         'html': html,
         'excerpt': excerpt
@@ -187,7 +191,7 @@ if __name__ == '__main__':
 
     print('Rendering RSS feed...')
     rss_xml = render_from_template('feedburner.xml', {
-        'updated': published_posts[0]['date'],
+        'updated': published_posts[0]['updated'],
         'posts': published_posts[:10]
     })
     rss_path = os.path.join(dest_dir, 'feedburner.xml')
