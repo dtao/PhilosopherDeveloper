@@ -43,12 +43,15 @@
 
         {{ html|safe }}
 
+        {% if not metadata.disable_comments %}
         <div id="disqus_thread"></div>
+        {% endif %}
 
       </article>
     </main>
   </body>
 
+  {% if not metadata.disable_comments %}
   <script>
     window.disqus_shortname = "philosopherdeveloper";
     window.disqus_title = "{{ title }}";
@@ -67,4 +70,5 @@
       (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
     }());
   </script>
+  {% endif %}
 </html>

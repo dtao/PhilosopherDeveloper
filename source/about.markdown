@@ -3,6 +3,7 @@ title: Dan Tao
 subtitle: false
 date: 2021-01-24
 disable_sharing: true
+disable_comments: true
 ---
 
 I was born and raised in a suburb of Philadelphia. After high school, I studied
