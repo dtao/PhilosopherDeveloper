@@ -77,8 +77,12 @@ def get_post_data(path):
         raise ValueError('Error parsing Markdown for {}: {}'.format(path, e))
 
     try:
+        # Start with the file name, removing the leading YYYY-MM-DD date
+        filename, ext = os.path.splitext(fname.name)
+        slug = re.sub(r'^\d{4}-\d{2}-\d{2}-', '', filename)
+
         # Replace spaces with dashes
-        slug = re.sub(r'\s+', '-', title.lower())
+        slug = re.sub(r'\s+', '-', slug)
 
         # Eliminate everything else that isn't alphanumeric or a dash
         slug = re.sub(r'[^a-z0-9\-]', '', slug)
