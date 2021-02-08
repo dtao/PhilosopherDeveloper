@@ -1,7 +1,7 @@
 ---
 title: The power of positive thinking
 date: 2011-01-25
-published: true
+published: false
 ---
 
 _Note: this is a **very** old post from my old Wordpress blog. Occasionally I
