@@ -1,5 +1,5 @@
 ---
-title: Modesty is overrated
+title: Modesty is a luxury
 date: 2021-02-09
 published: false
 ---
