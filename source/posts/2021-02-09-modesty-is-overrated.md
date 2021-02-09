@@ -14,15 +14,15 @@ Two or three years later, one of Atlassian's founders visited the office in Aust
 
 I don't remember everything I said to my colleague, but I remember telling him this: **your work does not speak for itself**. At least not in a large organization. You need to **speak for your work**, because there's too much going on, and if you don't make people aware of the value you're providing then they aren't going to magically notice.
 
-# The radius of noticeability
+# The radius of influence
 
-Here's where I think the idea of work-speaking-for-itself comes from. Given a small enough group, it works. Without calling any attention to themselves, people can stand out in small groups simply by demonstrating their talents. This is because of the **radius of noticeability**: people naturally pay attention to those in their immediate environment.
+Here's where I think the idea of work-speaking-for-itself comes from. Given a small enough group, it works. Without calling any attention to themselves, people can stand out in small groups simply by demonstrating their talents. This is because of the **radius of influence**: people naturally pay attention to those in their immediate environment.
 
 Imagine a primary school classroom with 30 students. Everyone is given the same assignments, takes the same tests, and is graded on the same scale. In this environment, if you are legitimately the most gifted student, you can afford to be as humble as you like; people will still notice you because you'll stand out based on merit alone. You and your classmates are all performing the same tasks, and you're doing the best job. Unless you're actively trying to _hide_ that fact, others will find out one way or another.
 
 Some students will notice your consistently good scores as the teacher hands back your graded assignments. Some will notice that you always answer correctly when the teacher calls on you. Some will notice that you always seem to complete the exam before everyone else. Still others may notice _none_ of these things but will still hear your name mentioned in conversation. Everyone is either within your radius or connected to it through someone else.
 
-![Radius of noticeability](/images/radius-of-noticeability.png)
+![Cascading radii of influence](/images/radius-of-influence.png)
 
 Now think of a street performer, someone who shows off their talents to passersby for tips. In some ways this is not so different from the classroom: people still notice the street performer as they walk by, similar to how students might notice their most gifted classmates. But for a street performer, the goal is to make a powerful impression in a very short period. Only a small percentage of pedestrians will stop and watch you, and only a percentage of _those_ will bother to pay you for your performance. People are entering and leaving your radius so briefly that, first, you must be quite good, and second, you must perform in a location where you'll be exposed to many, many people.
 
@@ -47,7 +47,7 @@ This system is imperfect as it does not ensure that _all_ information is propaga
 In case the previous two sections seemed unrelated, allow me to connect the dots. You can get away with a pull-based system for distributing information as long as:
 
 - You don't work with too many people (small enough values of N); and
-- Everyone you work with, everyone who needs to know what you're doing, is within your radius of noticeability
+- Everyone you work with, everyone who needs to know what you're doing, is within your radius of influence
 
 This may be true at a small startup, but it's less true the larger your organization becomes. Eventually you _must_ forgo modesty and learn to broadcast your contributions; you must participate in the push-based system. Otherwise your work will go unnoticed; or worse, the work you're doing will end up being counterproductive.
 
@@ -58,8 +58,8 @@ I don't _know_ the answer, but I have a hypothesis. Everything I've said so far 
 One way of thinking about this is that not everyone has the same radius. Some individuals have a radius so big, virtually anything that they do will be noticed on a large scale. These individuals _don't_ need a push-based system, because everybody's pulling. They can afford to be modest.
 
 <figure>
-    <img alt="The affordability of modesty as a function of your radius of noticeability" src="/images/affordability-of-modesty.png" style="max-height: 400px;" />
-    <figcaption>The affordability of modesty as a function of your radius of noticeability</figcaption>
+    <img alt="The affordability of modesty as a function of your radius of influence" src="/images/affordability-of-modesty.png" style="max-height: 400px;" />
+    <figcaption>The affordability of modesty as a function of your radius of influence</figcaption>
 </figure>
 
 I believe that **modesty is a luxury**, and that we don't actually admire people for being modest _per se_. We admire modesty _in those who can afford it_ because of what it signals: that they have achieved a level of recognition that allows them not to worry about self-promotion. In contrast, if you aren't aware of someone's achievements, you can't even _see_ their modesty; it is only visible to those who know what they've actually done!
