@@ -40,6 +40,8 @@ But consider the algorithmic complexity of this implementation. It is O(N<sup>2<
 
 A better implementation for information sharing at a larger scale is a _push-based_ system. Nodes broadcast when they have new information via some centralized channel, and other nodes can subscribe to this channel. For information that is particularly important or impactful, these subscriber nodes can then broadcast to additional channels.
 
+![A pull-based vs. a push-based system for information sharing](/images/pull-vs-push-based.png)
+
 This system is imperfect as it does not ensure that _all_ information is propagated to _all_ nodes, but it is reasonably good at getting the most relevant information distributed while avoiding total information siloing. More importantly, it is _viable_ in a way that a pull-based system---picture that Apple-wide daily standup meeting---simply isn't.
 
 # The luxury of modesty
