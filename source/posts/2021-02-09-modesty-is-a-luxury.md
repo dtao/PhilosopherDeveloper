@@ -1,7 +1,7 @@
 ---
 title: Modesty is a luxury
 date: 2021-02-09
-published: false
+published: true
 ---
 
 About a year ago, a colleague reached out to me for some advice. He was a peer of mine and was receiving feedback from his manager that he wasn't meeting expectations. He suspected that I was faring a bit better within the organization and wanted my opinion on how he could improve.
