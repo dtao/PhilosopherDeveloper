@@ -152,6 +152,9 @@ if __name__ == '__main__':
     src_dir = sys.argv[-2]
     dest_dir = sys.argv[-1]
     posts_dir = os.path.join(dest_dir, 'posts')
+
+    print('Initializing directory...')
+    shutil.rmtree(dest_dir, ignore_errors=True)
     os.makedirs(posts_dir, exist_ok=True)
 
     posts = list(get_all_posts(os.path.join(src_dir, 'posts')))
