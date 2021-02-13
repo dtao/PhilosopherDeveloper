@@ -1,0 +1,7 @@
+-r requirements.txt
+
+# Used to conveniently invoke commands in Procfile
+honcho==1.0.1
+
+# Used for watchmedo command (for local dev) -- see Procfile
+watchdog[watchmedo]==2.0.0

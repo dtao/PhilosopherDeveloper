@@ -23,6 +23,13 @@ updates whenever I write a new post.
 
 I think that about covers it.
 
+## Developing the site locally
+
+```
+pip install -r requirements.dev.txt
+honcho start
+```
+
 [1]: https://philosopherdeveloper.com/
 [3]: https://www.netlify.com/
 [4]: https://disqus.com/
