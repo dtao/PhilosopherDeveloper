@@ -59,10 +59,7 @@ I don't _know_ the answer, but I have a hypothesis. Everything I've said so far 
 
 One way of thinking about this is that not everyone has the same radius. Some individuals have a radius so big, virtually anything that they do will be noticed on a large scale. These individuals _don't_ need a push-based system, because everybody's pulling. They can afford to be modest.
 
-<figure>
-    <img alt="The affordability of modesty as a function of your radius of influence" src="/images/affordability-of-modesty.png" style="max-height: 400px;" />
-    <figcaption>The affordability of modesty as a function of your radius of influence</figcaption>
-</figure>
+![The affordability of modesty as a function of your radius of influence](/images/affordability-of-modesty.png)
 
 I believe that **modesty is a luxury**, and that we don't actually admire people for being modest _per se_. We admire modesty _in those who can afford it_ because of what it signals: that they have achieved a level of recognition that allows them not to worry about self-promotion. In contrast, if you aren't aware of someone's achievements, you can't even _see_ their modesty; it is only visible to those who know what they've actually done!
 

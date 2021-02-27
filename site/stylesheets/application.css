@@ -262,6 +262,7 @@ article figure {
   text-align: center; }
   /* line 216, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
   article figure img {
+    max-height: 400px;
     max-width: 100%; }
   /* line 219, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
   article figure .pie-chart {
