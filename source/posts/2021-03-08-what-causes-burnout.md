@@ -1,7 +1,7 @@
 ---
 title: What causes burnout?
 date: 2021-03-08
-published: false
+published: true
 ---
 
 I've been thinking about burnout.
@@ -10,20 +10,21 @@ It's a topic that comes up often, and the framing is almost always the same:
 *The team is feeling burnt out. What can we do to help them recover?* The
 proposed answers tend to fall into a few predictable categories: games or other
 social activities, encouraging team members to take time off from work, and
-gifts.
+gifts (like one of those "I survived &lt;insert nightmarish project&gt;"
+T-shirts).
 
 All of these proposed answers for addressing burnout are good things. I like
 social activities! I like for people to take time off from work! I like giving
 gifts! However:
 
 1. These tactics are all reactive, not proactive
-2. These tactics are also often ineffective
+2. These tactics are not guaranteed to be effective
 
 Something most of us don't spend enough time thinking about is how to _prevent_
 burnout. We tend to take it for granted that if people are working too much
 and not getting enough breaks, burnout is inevitable. And I'm sure there is
-some truth to this. But the way I think of burnout highlights some key
-variables in this formula that I believe we should be focusing on more.
+some truth to this. But the way I think of burnout highlights a couple of key
+variables in this formula that I believe deserve more attention.
 
 # Running on empty
 
@@ -33,6 +34,8 @@ and it is a finite resource. Some activities consume this resource, while
 others replenish it. Most of us can tell when we're running dangerously low on
 this fuel. *Burnout* is the feeling you get when you've run out. You can't do
 any more work until you refuel.
+
+![A full tank vs. an empty tank](/images/burnout.png)
 
 I like this way of thinking about burnout because it brings two very specific
 questions into focus:
@@ -93,20 +96,24 @@ resftul, their time off left them restless.
 This is a tragic outcome. The manager _thinks_ they've done the right thing:
 they recognized their team member's burnout and they took it seriously. The
 team member, meanwhile, still feels burnt out, but now with the added burden of
-feeling guilty for being ungrateful.
+feeling guilty, regretful, resentful, or all of the above.
 
 It's therefore important for managers who are dealing with burnout not to take
 the easy route, but rather to work with our teams on finding the best way to
-refuel. For example, maybe a team member misses a family member or loved one.
-Instead of "Take next week off", which would give them very little time to make
+refuel.
+
+For example, maybe a team member misses a family member or loved one. Instead
+of "Take next week off", which would give them very little time to make
 arrangements, their manager could ask them to plan a trip and work with them on
-adjusting project plans around it. Meanwhile, another team member might not
-_want_ to take time off, but would rather take a break from their current
-project to work on something else.
+adjusting project plans around it. Another team member might not _want_ to take
+time off, but would rather take a break from their current project to work on
+something else. Still another team member might be highly motivated but simply
+misses the face-to-face interactions they used to have at the office and would
+appreciate some extracurricular time together as a team.
 
 Inevitably, there won't be a one-size-fits-all solution here. The important
 thing is that if the goal is to give team members a chance to recharge, we need
-to first understand what recharges them.
+to first understand what actually recharges them.
 
 # What it should look like
 
@@ -114,9 +121,18 @@ This is what we want.
 
 ![Slow to burn, quick to refuel](/images/low-burn-rate.png)
 
-Hopefully we've all had the good fortunate to work in environments like this.
-The work is enjoyable and fulfilling, so the burn rate is low (no leaky tank).
-Meanwhile, when team members _do_ take time to refuel, they're able to spend
-the time effectively---traveling, visiting loved ones, pursuing hobbies,
+Hopefully we've all had the good fortune to work in environments like this. The
+work is enjoyable and fulfilling, so the burn rate is low (no leaks in the
+tank). Meanwhile, when team members _do_ take time to refuel, they're able to
+spend that time effectively---traveling, visiting loved ones, pursuing hobbies,
 whatever it may be---and they can come back feeling refreshed rather than
 overwhelmed.
+
+I wish I had a magic recipe for achieving this desired end state in all
+circumstances. I don't. What can be particularly tricky is that for large
+teams, the right approach may very well differ across sub-teams.
+
+Regardless, the surest way I can think of to get there is to ask the right
+questions. What's causing us to lose fuel? (How can we patch any leaks?) And
+what are the best ways for us to replenish? A team that can answer both of
+these questions has the key to minimizing burnout.
