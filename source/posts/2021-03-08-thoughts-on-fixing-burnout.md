@@ -1,5 +1,5 @@
 ---
-title: What causes burnout?
+title: Thoughts on fixing burnout
 date: 2021-03-08
 published: true
 ---
@@ -135,4 +135,4 @@ teams, the right approach may very well differ across sub-teams.
 Regardless, the surest way I can think of to get there is to ask the right
 questions. What's causing us to lose fuel? (How can we patch any leaks?) And
 what are the best ways for us to replenish? A team that can answer both of
-these questions has the key to minimizing burnout.
+these questions has the key to avoiding burnout.
