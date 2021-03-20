@@ -6,7 +6,7 @@ beautifulsoup4==4.9.3
 excerpt-html==0.1b2
 
 # Page templates
-Jinja2==2.11.2
+Jinja2==2.11.3
 
 # Support writing post content in Markdown and rendering to HTML
 markdown==3.3.3
