@@ -1,24 +1,22 @@
 ---
-title: Communication requires information to be received
-date: 2021-09-08
+title: Communication is an outcome
+date: 2021-09-17
 published: false
 ---
 
 This is something I've observed countless times in both my personal and
 professional life.
 
-Too often, I will hear someone say, "I sent you a Slack message about this
-yesterday." Or: "I sent you an email last week." Or: "I brought this up in a
-meeting last month." The context is that I don't know something, and the person
-I'm talking to is frustrated I don't know it because---in their mind---they
-already communicated it to me.
+Often, I will hear someone say that they sent someone else an email, or a Slack
+message, or a text, confident that they communicated important information to
+the other person.
 
-It's the same phenomenon when a team member says, "I wrote a blog post about
+It can be the same when a team member says, "I wrote a blog post about
 this." Or: "I shared a page with the team." Or: "I gave a demo of this."
 
-The fallacy is a misunderstanding of good communication. To _communicate_
+The fallacy is a misunderstanding of good communication. **To _communicate_
 something means to successfully transfer the information into another person's
-brain. It isn't just the sending, it's confirmation of the receipt.
+brain.** It isn't just the sending, it's confirmation of the receipt.
 
 What if you send a Slack message and the recipient doesn't notice it? What if
 you publish a blog post and no one reads it? Then you aren't actually
@@ -34,9 +32,9 @@ times. I have also honestly _forgotten_ things that people have told me. We all
 have. To the extent these cases represent communication failures, the fault was
 mostly or entirely mine. But they were still communication failures.
 
-What I'm saying is that **communication is a skill**, and skilled communicators
-are effective at transmitting information all the way into other people's
-minds, and validating that it has reached its destination.
-
-So this common assumption---I _sent_ information, therefore it must have been
-received---is, to me, a sign of misunderstanding what communication really is.
+What I'm saying is that **communication is an outcome, not an action**.
+Communication is not saying things, or writing things, or sharing things. _How_
+you communicate something is an implementation detail; what matters is whether
+it actually lands, and sticks, in the mind(s) of your audience. Skilled
+communicators are those who can reliably transmit information accurately all
+the way into other people's heads.
