@@ -41,7 +41,7 @@ I like this way of thinking about burnout because it brings two very specific
 questions into focus:
 
 1. At what rate are we burning fuel?
-2. We can we refuel most effectively?
+2. How can we refuel most effectively?
 
 In my experience, normally _when burnout is a concern_, it's because there is
 an underlying problem in the answer to one or both questions.
