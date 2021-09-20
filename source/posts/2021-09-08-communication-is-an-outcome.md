@@ -24,7 +24,7 @@ you publish a blog post and nobody reads it? Then you aren't actually
 communicating. You're putting a message in a bottle and hoping someone
 discovers it when it washes ashore.
 
-![Is this communicatiion?](/images/message-in-a-bottle.jpg)
+![Is this communication?](/images/message-in-a-bottle.jpg)
 
 Am I claiming that, when you share information, it is 100% your fault if your
 audience doesn't absorb and remember it forever? No. Without a doubt, I have
@@ -44,7 +44,7 @@ So how do you know if you have communicated effectively?
 
 1. **Good**: At a bare minimum, you need a response. Not from a robot---a blue
    checkmark or some analytics data doesn't count[^robot-response]---a response
-   from the person. That said, not all responses are creaed equal.
+   from the person. That said, not all responses are created equal.
 2. **Better**: Ideally the response includes an attempt to understand. An email
    that just reads "Thank you" doesn't tell you the recipient even bothered
    reading what you wrote. On the other hand, "Thanks for writing this, you
@@ -72,6 +72,7 @@ diagram to help visualize the ideas, or a list of questions to better
 understand their perspective. For me, it's often as simple as a 30-minute video
 chat.
 
-Just remember that communication is an outcome. The work isn't done when you hit send.
+Just remember that communication is an outcome. The work isn't done when you
+hit send.
 
 [^robot-response]: Think for a moment about what these signals actually mean: that a computer sent a message to another computer. E.g. a client application established a connection to a server application, _theoretically_ as the result of a human action---but maybe not. And even if it was, the person might have clicked on a link accidentally; or they opened a window and then immediately got distracted and forgot about it; or their child was playing with their phone; or their cat was walking on their keyboard.
