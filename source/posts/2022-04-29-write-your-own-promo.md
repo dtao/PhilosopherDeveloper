@@ -1,7 +1,7 @@
 ---
 title: Write your own promo
-date: 2022-04-29
-published: false
+date: 2022-05-03
+published: true
 ---
 
 At many tech companies, there is a formal process for requesting a promotion. At Atlassian, the biggest part of this process is a collaboration between a promotion candidate and their manager on compiling documentation justifying the promotion. The main requirement for this documentation is that it provide strong evidence, based on a standard framework, demonstrating that the candidate is performing at the level they're targeting for promotion. Ultimately this document (the "packet") is reviewed by a panel comprising 7 senior staff members, and the panel ultimately decides by vote whether to approve it.
