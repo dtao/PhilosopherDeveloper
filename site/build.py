@@ -24,7 +24,11 @@ def get_all_posts(path):
     """
     for filename in os.listdir(path):
         if filename.endswith('.markdown') or filename.endswith('.md'):
-            yield get_post_data(os.path.join(path, filename))
+            try:
+                yield get_post_data(os.path.join(path, filename))
+            except ValueError:
+                print('File "{}" is not a valid post. Moving on...'.format(filename))
+                continue
 
 
 def get_post_data(path):
