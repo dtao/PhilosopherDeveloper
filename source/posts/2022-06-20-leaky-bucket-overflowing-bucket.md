@@ -1,7 +1,7 @@
 ---
 title: Leaky bucket, overflowing bucket
-date: 2022-06-20
-published: false
+date: 2022-06-22
+published: true
 ---
 
 *Note: this post was [published in 60 minutes][1].*
@@ -12,15 +12,17 @@ Early on in most of our careers, our responsibilities are limited. The people we
 
 Let's call the ratio of capacity to responsibility the "C/R ratio". At this stage in our careers, C/R is greater than 1. This means that, for most of us, **our capacity exceeds our responsibility**: we are _capable_ of doing more than is being asked of us.
 
-For this reason, when we're still relatively new in our careers, failure to fulfill our responsibilities is typically a sign of a "leak". We have the capacity, but we still dropped the ball. Fortunately, leaks can be patched. With a little mentorship, some better time management tools, or just simple practice, we can get better at managing the responsibilities assigned to us and become more reliable workers.
+For this reason, when we're still relatively new in our careers, failure to fulfill our responsibilities is typically a sign of a "leak". We have the capacity, but we still dropped the ball.
 
-[image of leaky bucket]
+![A bucket that's leaking](/images/leaky-bucket.png)
+
+Fortunately, leaks can be patched. With a little mentorship, some better time management tools, or just simple practice, we can get better at managing the responsibilities assigned to us and become more reliable workers.
 
 As we grow in our careers, both our capacity and our responsibilities increase. We can do more, and more is asked and expected of us. But often the rate at which responsibility increases exceeds the rate at which capacity increases, driving C/R down. Eventually, we may reach a point where C/R drops below 1, meaning suddenly **our responsibility exceeds our capacity**[^peter-principle].
 
 This represents a difficult moment for many people. You start developing that feeling of "dropping the ball" again. You associate this feeling with the presence of a leak, but you struggle to find ways to patch it. In fact, at this point to call the issue a "leak" is to misdiagnose the problem. It is no longer a leak that can be patched; it is an _overflow_.
 
-[image of overflowing bucket]
+![A bucket that's overflowing](/images/overflowing-bucket.png)
 
 At this stage, it becomes necessary to revisit your C/R ratio. If you want to get it back to 1[^back-to-one], at a high level, you have two options:
 
