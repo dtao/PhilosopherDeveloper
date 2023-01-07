@@ -22,16 +22,18 @@ By now the men have become friendly with each other. Sy reveals that he has a se
 
 ***
 
-Years have passed. Both men are much older. One day, they happen to meet again on the same beach. Their collections have grown. Saul now has two carts connected together, while Sy's collection is so large, it fills a long train of almost twenty carts. While Sy is still carrying his magic stick, he is surprised to see that Saul seems to have his stashed away. He is even more surprised to see that Saul seems to be digging holes without using the stick.
+Years have passed. Both men are much older. One day, they happen to meet again on the same beach.
 
-Sy asks Saul why he has gone back to digging random holes. Saul admits that the stick was very useful, and he still uses it sometimes. But over time, he says that he started to suspect it wasn't able to find everything there was to find. He now has his collection divided into two carts: one holds everything he's found with the stick, while the other holds things he found just from digging, without the stick.
+Their collections have grown. Saul now has two carts connected together, while Sy's collection is so large, it fills a long train of almost twenty carts. While Sy is still carrying his magic stick, he is surprised to see that Saul seems to have his stashed away. He is even more surprised to learn that Saul has been digging holes without using the stick.
 
-Sy is dismayed. Why would Saul not always use the stick? He starts looking through the items in Saul's second cart. Quickly, he finds items that he has in his own collection. He shows these to Saul, hoping to persuade his friend that the stick can find these things.
+Sy asks Saul why he has gone back to digging random holes. Saul admits that the stick was very useful, and he still uses it sometimes. But he explains that over time, he started to suspect the stick wasn't able to find everything there was to find. He now has his collection divided into two carts: one holds everything he's found with the stick, while the other holds things he found just from digging, without the stick.
 
-Perhaps, Saul admits. But he points out that some of the items in his cart don't appear anywhere in Sy's collection, even though it is much larger. This is not surprising, Sy insists. By chance, over a lifetime, surely anyone would find _some_ things that Sy hadn't found. But he knows that his stick would eventually find these things. Saul is not so sure.
+Sy is dismayed. Why would Saul not always use the stick? He starts looking through the items in Saul's second cart. Quickly, he finds items that he has in his own collection. He shows these to Saul, hoping to persuade his friend that there is nothing special about these things; the stick can find them, much faster than random digging.
 
-After arguing for some time, the friends realize they are not going to agree. The day is coming to an end. They shake hands once more, and part ways for the second time.
+Perhaps, Saul admits. But he points out that some of the items in his cart don't appear anywhere in Sy's collection, even though Sy's collection is much larger. Sy responds that this should not be surprising. By chance, over a lifetime, surely anyone would find _some_ things that Sy hadn't found with the stick. But this is just pure luck. He insists that his stick would eventually find these things. Saul is not so sure.
+
+After debating for some time, the friends realize they are not going to agree. The day is coming to an end. They shake hands once more, and part ways for a second time.
 
 As he leaves his friend, Sy feels sadness knowing that Saul will spend the rest of his days wasting considerable time digging holes in the wrong places.
 
-Saul meanwhile carries on with lingering doubt. Perhaps Sy is right, and he is wasting his time. But he continues to have a feeling that there are things the magic stick cannot find, and it saddens him to think that his friend Sy might never find these things. In his own collection, many of this favorite things are the ones he found just by digging, without the magic stick.
+Saul meanwhile carries on with lingering doubt. Maybe Sy is right, and he is wasting his time. But he still has a feeling that there are things the magic stick cannot find. It saddens him to think that, as long as his friend Sy refuses to dig holes without using the magic stick, he might never find these things.
