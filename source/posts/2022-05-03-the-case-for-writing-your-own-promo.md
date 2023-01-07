@@ -4,6 +4,8 @@ date: 2022-05-03
 published: true
 ---
 
+_This is [advice][1] that I have given multiple times, to multiple managers. I figured it was time to write it down._
+
 At many tech companies, there is a formal process for requesting a promotion. At Atlassian, the biggest part of this process is a collaboration between a promotion candidate and their manager on compiling documentation justifying the promotion. The main requirement for this documentation is that it provide strong evidence, based on a standard framework, demonstrating that the candidate is performing at the level they're targeting for promotion. Ultimately this document (the "packet") is reviewed by a panel comprising 7 senior staff members, and the panel ultimately decides by vote whether to approve it.
 
 I've noticed that different managers take different approaches to this collaboration. Here is advice I find myself giving often:
@@ -22,3 +24,5 @@ Many managers bristle at this suggestion, mainly because they view this as their
 6. **You should own the outcome.** In the end, if your promotion is approved, you should feel proud! If your promotion isn't approved, you don't want to feel like a victim. In the end, no one should be more invested in a successful outcome than you are.
 
 The biggest objection I hear to all of these points is _"But as a manager, this is my job"_. I view it a bit differently. I would say that your job is to support your team in performing their best. When it comes to promoting team members, what's best for them isn't for you to spend hours writing up a page that will ultimately determine their fate. Giving someone the responsibility to drive their own results, offering help and guidance along the way, not only supports their professional growth but offers the greatest chance of success.
+
+[1]: /posts/advice-vs-guidelines.html
