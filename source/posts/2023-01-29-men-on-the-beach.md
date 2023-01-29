@@ -1,7 +1,7 @@
 ---
 title: The men on the beach
-date: 2022-01-07
-published: false
+date: 2023-01-29
+published: true
 ---
 
 Two traveling men meet on a vast, endless beach.
@@ -28,7 +28,7 @@ Their collections have grown. Saul now has two carts connected together, while S
 
 Sy asks Saul why he has gone back to digging random holes. Saul admits that the stick was very useful, and he still uses it sometimes. But he explains that over time, he started to suspect the stick wasn't able to find everything there was to find. He now has his collection divided into two carts: one holds everything he's found with the stick, while the other holds things he found just from digging, without the stick.
 
-Sy is dismayed. Why would Saul not always use the stick? He starts looking through the items in Saul's second cart. Quickly, he finds items that he has in his own collection. He shows these to Saul, hoping to persuade his friend that there is nothing special about these things; the stick can find them, much faster than random digging.
+Sy is dismayed. Why would Saul not always use the magic stick? He starts looking through the items in Saul's second cart. Quickly, he finds items that he has in his own collection. He shows these to Saul, hoping to persuade his friend that there is nothing special about these things; the stick can find them, much faster than random digging.
 
 Perhaps, Saul admits. But he points out that some of the items in his cart don't appear anywhere in Sy's collection, even though Sy's collection is much larger. Sy responds that this should not be surprising. By chance, over a lifetime, surely anyone would find _some_ things that Sy hadn't found with the stick. But this is just pure luck. He insists that his stick would eventually find these things. Saul is not so sure.
 
