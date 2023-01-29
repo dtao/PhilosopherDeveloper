@@ -30,6 +30,8 @@ pip install -r requirements.dev.txt
 honcho start
 ```
 
+The site will be accessible at http://localhost:8080
+
 [1]: https://philosopherdeveloper.com/
 [3]: https://www.netlify.com/
 [4]: https://disqus.com/
