@@ -59,7 +59,7 @@ wolf.
 I have to remind myself of this sometimes, not only when I give someone else
 advice but also when I hear advice that doesn't resonate for me. My knee-jerk
 reaction is often _That sounds completely wrong!_ But then I realize: maybe it
-just isn't what _I_ need to hear." It could be exactly what someone else needs
+just isn't what _I_ need to hear. It could be exactly what someone else needs
 to hear.
 
 Let others hear what they need to hear, and keep your ears open for the keys
