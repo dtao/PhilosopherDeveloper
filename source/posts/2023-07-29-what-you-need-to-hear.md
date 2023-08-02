@@ -19,10 +19,10 @@ find this is rarely the case. Even when I _think_ what I'm saying is general,
 inevitably someone has a reaction to what I say that surprises me and shows me
 that what I have to say isn't as universal as I thought.
 
-In truth, I am skeptical that there is any form of advice that would valuable to
-all people. We all come from different backgrounds, face different challenges,
-and are the result of a unique combination of countless variables that
-collectively made us who and what we are.
+In truth, I am skeptical that there is any form of advice that would be valuable
+to all people. We all come from different backgrounds, face different
+challenges, and are the result of a unique combination of countless variables
+that collectively made us who and what we are.
 
 This is an imperfect analogy, but it is a bit like every human has an internal
 set of metaphorical locks, and advice is like a key. Many keys fit locks that
