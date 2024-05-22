@@ -109,6 +109,7 @@ def get_post_data(path):
         'metadata': metadata,
         'title': title,
         'slug': slug,
+        'url_path': f'/posts/{slug}.html',
         'date': date,
         'published': date_iso,
         'updated': updated_iso,
@@ -197,6 +198,9 @@ if __name__ == '__main__':
 
     print('Rendering "About" page...')
     about_data = get_post_data(os.path.join(src_dir, 'about.markdown'))
+    # Override URL path since this is using the sample template used for posts
+    # but About doesn't follow the same URL pattern.
+    about_data['url_path'] = '/about.html'
     about_html = render_post(about_data)
     about_path = os.path.join(dest_dir, 'about.html')
     with open(about_path, 'w') as f:
