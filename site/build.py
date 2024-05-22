@@ -124,7 +124,9 @@ def render_post(post_data):
 
     # Replace all <img> elements w/ <figure> markup
     doc = bs4.BeautifulSoup(html, 'html.parser')
-    images = doc.find_all('img')
+    images = [image for image in doc.find_all('img')
+              if 'buymeacoffee.com' not in image['src']]
+
     for img in images:
         figure = doc.new_tag('figure')
         img.parent.replace_with(figure)
