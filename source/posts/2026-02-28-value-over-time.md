@@ -1,6 +1,6 @@
 ---
 title: Value over time
-date: 2026-01-31
+date: 2026-02-28
 published: true
 ---
 
