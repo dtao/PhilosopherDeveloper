@@ -16,7 +16,7 @@
   </head>
   <body>
     <header>
-      <h1><a href="/posts/{{ slug }}.html">{{ title }}</a></h1>
+      <h1><a href="{{ url_path }}">{{ title }}</a></h1>
       <h2><a href="/">The Philosopher Developer</a></h2>
     </header>
     <main>
@@ -31,6 +31,11 @@
         {% endif %}
 
         {{ html|safe }}
+
+        <section id="bmac">
+          <span>Did you enjoy reading this?</span>
+          <a href="https://www.buymeacoffee.com/dtao" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-green.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+        </section>
 
         {% if not metadata.disable_comments %}
         <div id="disqus_thread"></div>
