@@ -15,7 +15,7 @@ markdown==3.3.3
 markdown-emdash==0.1.0
 
 # Syntax highlighting for fenced code blocks
-Pygments==2.7.4
+Pygments==2.15.0
 
 # Support frontmatter in YAML format
 PyYAML==5.3.1
