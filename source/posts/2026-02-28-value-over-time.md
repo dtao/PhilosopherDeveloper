@@ -125,13 +125,17 @@ instruments, validate you're headed the right way, then drive 10 ft.
 forward. You stop, check your instruments again, validate again, and
 drive another 10 ft. And so on.
 
+![Bird's eye view of prioritizing quality over speed](/images/car-analogy-quality.png)
+
 In this scenario, your group is focusing _too much_ on heading the right
 direction, and not enough on getting there faster. To them, as an
 advisor, I might say: "Stop getting out of the car so much and just GO."
 
 Or suppose your team gets in the car, figures out what direction you
-want to go, and then just _floor_ it, racing for hours without
+want to go, and then just _floors_ it, racing for hours without
 stopping.
+
+![Bird's eye view of prioritizing speed over quality](/images/car-analogy-speed.png)
 
 In this scenario your group is too focused on moving fast. You could be
 veering wildly off course, even heading 180 degrees the wrong way. If I
@@ -180,6 +184,31 @@ project timeline to be shortened, but because I believe the end result
 will be higher-quality if we start getting feedback from customers much
 earlier in the process, giving us more time to incorporate that feedback
 into our work.
+
+# Area under the curve
+
+The visual I tend to have in my mind is like this: imagine the value you
+deliver as an area chart, with time as the x-axis and value delivered
+(cumulative) as the y-axis. Essentially what I believe we want to do is
+to **maximize the area under the curve**. When we think about it this
+way, the following statements are all pretty obvious:
+
+Quality (delivering more value) is good.
+
+![Higher quality = greater area under the curve](/images/quality-is-good.png)
+
+Quantity (delivering more things) is also good.
+
+![Higher quantity = greater area under the curve](/images/quantity-is-good.png)
+
+Delivering value _earlier_ is good.
+
+![Shipping earlier = greater area under the curve](/images/early-is-good.png)
+
+These things are all good. At any given time, we should ask ourselves:
+what maximizes area under the curve?
+
+---
 
 There is no set formula here. You could be Harper Lee and create [one
 incredible masterpiece][3], win the Pulitzer Prize, and have greater
