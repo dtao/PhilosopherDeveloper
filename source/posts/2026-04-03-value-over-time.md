@@ -1,7 +1,7 @@
 ---
 title: Value over time
-date: 2026-02-28
-published: false
+date: 2026-04-03
+published: true
 ---
 
 Throughout my career the question of "quality vs. speed" has always been
