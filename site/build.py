@@ -125,16 +125,37 @@ def render_post(post_data):
 
     # Replace all <img> elements w/ <figure> markup
     doc = bs4.BeautifulSoup(html, 'html.parser')
+
+    # Consecutive Markdown images share a paragraph. Use it as a layout row
+    # when it contains only images and whitespace.
+    for paragraph in doc.find_all('p'):
+        contents = [node for node in paragraph.contents
+                    if not isinstance(node, bs4.NavigableString) or node.strip()]
+        if (len(contents) > 1 and
+                all(getattr(node, 'name', None) == 'img' for node in contents)):
+            paragraph.name = 'div'
+            paragraph['class'] = ['image-row']
+
     images = [image for image in doc.find_all('img')
               if 'buymeacoffee.com' not in image['src']]
 
     for img in images:
         figure = doc.new_tag('figure')
-        img.parent.replace_with(figure)
+        # Remove a standalone image's paragraph, but preserve shared containers
+        # such as image rows and table cells.
+        parent = img.parent
+        if (parent.name == 'p' and
+                all(node is img or
+                    (isinstance(node, bs4.NavigableString) and not node.strip())
+                    for node in parent.contents)):
+            parent.replace_with(figure)
+        else:
+            img.replace_with(figure)
         figure.append(img)
-        caption = doc.new_tag('figcaption')
-        caption.string = img['alt']
-        figure.append(caption)
+        if img.get('alt'):
+            caption = doc.new_tag('figcaption')
+            caption.string = img['alt']
+            figure.append(caption)
 
     return str(doc)
 

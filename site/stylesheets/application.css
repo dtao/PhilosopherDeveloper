@@ -275,6 +275,33 @@ article figure {
 article figcaption {
   font-family: Lato, Helvetica, Arial, sans-serif;
   text-align: center; }
+
+article .image-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+  max-width: 100%;
+}
+article .image-row > figure {
+  min-width: 0;
+  margin: 0;
+}
+article .image-row > figure > img {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+@media (max-width: 600px) {
+  article .image-row {
+    grid-auto-flow: row;
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
 /* line 230, /Users/dtao/Projects/PhilosopherDeveloper/source/stylesheets/application.sass */
 article code {
   font-family: Consolas, Inconsolata, monospace; }
