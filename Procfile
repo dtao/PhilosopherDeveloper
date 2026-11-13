@@ -1,2 +1,2 @@
 site: python -m http.server --directory build 8080
-builder: watchmedo shell-command -p 'source/**/*;site/**/*' -i 'README.md' -c 'python site/build.py source build'
+builder: python site/build.py source build && watchmedo shell-command --recursive --ignore-directories --wait -c 'python site/build.py source build' source site
