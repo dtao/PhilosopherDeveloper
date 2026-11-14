@@ -25,6 +25,8 @@ I think that about covers it.
 
 ## Developing the site locally
 
+Use Python 3.9 or newer.
+
 ```
 pip install -r requirements.dev.txt
 honcho start

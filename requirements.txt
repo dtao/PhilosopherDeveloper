@@ -6,16 +6,16 @@ beautifulsoup4==4.9.3
 excerpt-html==0.1b2
 
 # Page templates
-Jinja2==3.1.2
+Jinja2==3.1.6
 
 # Support writing post content in Markdown and rendering to HTML
-markdown==3.3.3
+markdown==3.8.1
 
 # VERY important extension to convert "---" to "&mdash;"
 markdown-emdash==0.1.0
 
 # Syntax highlighting for fenced code blocks
-Pygments==2.7.4
+Pygments==2.20.0
 
 # Support frontmatter in YAML format
-PyYAML==5.3.1
+PyYAML==6.0.3
