@@ -19,8 +19,12 @@ live now with our three children.
 
 My experience runs the gamut from algorithmic trading in Philadelphia to
 software consulting at [ThoughtWorks][3], to a startup called [Cardpool][4], to
-[Google][5] on the Ads Review team. Currently I'm the head of engineering for
-[Bibucket Cloud][1] at [Atlassian][2].
+[Google][5] on the Ads Review team.
+
+I've now been at [Atlassian][2] for 12 years. Over that time I've run
+engineering for [Bitbucket][1], DevOps Products, and [Confluence][9]. Today I'm
+an individual contributor for the first time in over a decade, working in our
+Dev Infra organization to make all Atlassian engineers more effective.
 
 If you look back on [the history][8] of this blog, you can see that my output
 has diminished over time. I like to think that I'll be able to turn that
@@ -37,3 +41,4 @@ Like everyone else, I'm still figuring things out.
 [6]: https://www.cmu.edu/silicon-valley/
 [7]: https://www.worldteach.org/
 [8]: https://philosopherdeveloper.com/posts.html
+[9]: https://www.atlassian.com/software/confluence
