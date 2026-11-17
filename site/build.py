@@ -136,8 +136,7 @@ def render_post(post_data):
             paragraph.name = 'div'
             paragraph['class'] = ['image-row']
 
-    images = [image for image in doc.find_all('img')
-              if 'buymeacoffee.com' not in image['src']]
+    images = doc.find_all('img')
 
     for img in images:
         figure = doc.new_tag('figure')
