@@ -8,12 +8,38 @@ import re
 import shutil
 
 import bs4
-import excerpt_html
 import jinja2
 import markdown
 import yaml
 
 BASE_DIR = os.path.dirname(__file__)
+
+TEMPLATES = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.join(BASE_DIR, 'templates')))
+
+WORDS_PER_MINUTE = 230
+SUMMARY_LENGTH = 240
+
+
+def summarize(html):
+    """Return the plain text of the first real paragraph, truncated."""
+    doc = bs4.BeautifulSoup(html, 'html.parser')
+    for paragraph in doc.find_all('p'):
+        text = ' '.join(paragraph.get_text().split())
+        if text:
+            break
+    else:
+        return ''
+
+    if len(text) <= SUMMARY_LENGTH:
+        return text
+    return text[:SUMMARY_LENGTH].rsplit(' ', 1)[0].rstrip(',;:.') + '\u2026'
+
+
+def reading_time(html):
+    """Estimate the minutes needed to read the given HTML."""
+    words = len(bs4.BeautifulSoup(html, 'html.parser').get_text().split())
+    return max(1, round(words / WORDS_PER_MINUTE))
 
 
 def get_all_posts(path):
@@ -76,6 +102,7 @@ def get_post_data(path):
                                                       'fenced_code',
                                                       'footnotes',
                                                       'mdx_emdash',
+                                                      'smarty',
                                                       'tables'])
     except ValueError as e:
         raise ValueError('Error parsing Markdown for {}: {}'.format(path, e))
@@ -91,8 +118,8 @@ def get_post_data(path):
         # Eliminate everything else that isn't alphanumeric or a dash
         slug = re.sub(r'[^a-z0-9\-]', '', slug)
 
-        pretty_date = date.strftime('%B %d, %Y')
-        excerpt = excerpt_html.excerpt_html(html, cut_mark=None)
+        pretty_date = f'{date:%B} {date.day}, {date.year}'
+        short_date = f'{date:%b} {date.day}'
     except AttributeError as e:
         raise ValueError('Invalid frontmatter for {}: {}'.format(path, e))
 
@@ -113,9 +140,12 @@ def get_post_data(path):
         'date': date,
         'published': date_iso,
         'updated': updated_iso,
+        'pretty_date': pretty_date,
+        'short_date': short_date,
         'subtitle': metadata.get('subtitle', pretty_date),
         'html': html,
-        'excerpt': excerpt
+        'summary': summarize(html),
+        'reading_time': reading_time(html),
     }
 
 
@@ -161,11 +191,7 @@ def render_post(post_data):
 
 def render_from_template(template_name, data):
     """Render the full HTML from the given template for the given data."""
-    template_path = os.path.join(BASE_DIR, 'templates', template_name)
-    with open(template_path) as f:
-        template = jinja2.Template(f.read())
-
-    return template.render(data)
+    return TEMPLATES.get_template(template_name).render(data)
 
 
 if __name__ == '__main__':
@@ -185,6 +211,14 @@ if __name__ == '__main__':
     os.makedirs(posts_dir, exist_ok=True)
 
     posts = list(get_all_posts(os.path.join(src_dir, 'posts')))
+    published_posts = sorted([post for post in posts
+                              if post['metadata'].get('published', True)],
+                             key=lambda post: post['date'], reverse=True)
+
+    # Link each published post to its chronological neighbors.
+    for newer, older in zip(published_posts, published_posts[1:]):
+        newer['older'] = older
+        older['newer'] = newer
 
     print('Rendering individual posts...')
     for post_data in posts:
@@ -196,9 +230,6 @@ if __name__ == '__main__':
         print('Wrote post "{}" to {}'.format(post_data['title'], dest_path))
 
     print('Rendering index page...')
-    published_posts = sorted([post for post in posts
-                              if post['metadata'].get('published', True)],
-                             key=lambda post: post['date'], reverse=True)
     index_html = render_from_template('index.html', {'posts': published_posts})
     index_path = os.path.join(dest_dir, 'index.html')
     with open(index_path, 'w') as f:

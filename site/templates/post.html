@@ -1,63 +1,108 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ title }} - The Philosopher Developer</title>
-    <meta charset='utf-8'>
-    <meta content='initial-scale=1.0, width=device-width, user-scalable=no' name='viewport'>
-    <meta content='upgrade-insecure-requests' http-equiv='Content-Security-Policy'>
-    <link href="/favicon.ico" rel="icon" type="image/ico" />
-    <link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+{% extends "base.html" %}
+
+{% set canonical = "https://philosopherdeveloper.com" ~ url_path %}
+
+{% block title %}{{ title }} - The Philosopher Developer{% endblock %}
+{% block description %}{{ summary|e }}{% endblock %}
+
+{% block meta %}
+    <link rel="canonical" href="{{ canonical }}">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="The Philosopher Developer">
+    <meta property="og:title" content="{{ title|e }}">
+    <meta property="og:description" content="{{ summary|e }}">
+    <meta property="og:url" content="{{ canonical }}">
+    <meta name="twitter:card" content="summary">
+{% endblock %}
+
+{% block head %}
     {% for js_url in metadata.javascript %}
     <script src="{{ js_url }}"></script>
     {% endfor %}
-    {% if not metadata.disable_sharing %}
-    <script src="https://platform-api.sharethis.com/js/sharethis.js#property=589652d7b750240012d3ebf7&product=inline-share-buttons"></script>
-    {% endif %}
-  </head>
-  <body>
-    <header>
-      <h1><a href="{{ url_path }}">{{ title }}</a></h1>
-      <h2><a href="/">The Philosopher Developer</a></h2>
-    </header>
-    <main>
-      <article id='{{ slug }}'>
-        {% if subtitle %}
-        <header>
-          <h1>{{ subtitle }} <span class="comments"><a href="#disqus_thread"></a></span></h1>
+{% endblock %}
+
+{% block content %}
+      <article class="post wrap" id="{{ slug }}">
+        <header class="post-header">
+          <h1>{{ title }}</h1>
+          {% if subtitle %}
+          <p class="meta">
+            <time datetime="{{ date }}">{{ subtitle }}</time>
+            <span aria-hidden="true">&middot;</span> {{ reading_time }} min read
+            {% if not metadata.disable_comments %}
+            <span aria-hidden="true">&middot;</span> <a href="#disqus_thread">Comments</a>
+            {% endif %}
+          </p>
+          {% endif %}
         </header>
-        {% endif %}
+
+        <div class="prose">
+          {{ html|safe }}
+        </div>
+
         {% if not metadata.disable_sharing %}
-        <div class="sharethis-inline-share-buttons"></div>
+        <footer class="post-footer">
+          <p class="share">
+            <span class="share-label">Share</span>
+            <a href="https://bsky.app/intent/compose?text={{ (title ~ ' ' ~ canonical)|urlencode }}">Bluesky</a>
+            <a href="https://twitter.com/intent/tweet?text={{ title|urlencode }}&amp;url={{ canonical|urlencode }}">Twitter</a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ canonical|urlencode }}">LinkedIn</a>
+            <a href="mailto:?subject={{ title|urlencode }}&amp;body={{ canonical|urlencode }}">Email</a>
+            <button type="button" class="copy-link" data-url="{{ canonical }}">Copy link</button>
+          </p>
+        </footer>
         {% endif %}
-
-        {{ html|safe }}
-
-        {% if not metadata.disable_comments %}
-        <div id="disqus_thread"></div>
-        {% endif %}
-
       </article>
-    </main>
-  </body>
 
-  {% if not metadata.disable_comments %}
-  <script>
-    window.disqus_shortname = "philosopherdeveloper";
-    window.disqus_title = "{{ title }}";
-    window.disqus_identifier = "{{ slug }}";
+      {% if newer or older %}
+      <nav class="post-nav wrap" aria-label="More posts">
+        {% if older %}
+        <a class="older" href="{{ older.url_path }}">
+          <span class="post-nav-label">&larr; Previous</span>
+          <span class="post-nav-title">{{ older.title }}</span>
+        </a>
+        {% endif %}
+        {% if newer %}
+        <a class="newer" href="{{ newer.url_path }}">
+          <span class="post-nav-label">Next &rarr;</span>
+          <span class="post-nav-title">{{ newer.title }}</span>
+        </a>
+        {% endif %}
+      </nav>
+      {% endif %}
 
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
+      {% if not metadata.disable_comments %}
+      <section class="comments wrap" aria-label="Comments">
+        <div id="disqus_thread"></div>
+      </section>
+      {% endif %}
+{% endblock %}
 
-    (function () {
-      var s = document.createElement('script'); s.async = true;
-      s.type = 'text/javascript';
-      s.src = 'https://' + disqus_shortname + '.disqus.com/count.js';
-      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-  </script>
-  {% endif %}
-</html>
+{% block scripts %}
+    {% if not metadata.disable_sharing %}
+    <script>
+      document.querySelectorAll('.copy-link').forEach(function (button) {
+        button.addEventListener('click', function () {
+          navigator.clipboard.writeText(button.dataset.url).then(function () {
+            button.textContent = 'Copied';
+            setTimeout(function () { button.textContent = 'Copy link'; }, 2000);
+          });
+        });
+      });
+    </script>
+    {% endif %}
+    {% if not metadata.disable_comments %}
+    <script>
+      window.disqus_shortname = "philosopherdeveloper";
+      window.disqus_title = {{ title|tojson }};
+      window.disqus_identifier = "{{ slug }}";
+
+      ['embed.js', 'count.js'].forEach(function (name) {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://' + disqus_shortname + '.disqus.com/' + name;
+        document.head.appendChild(s);
+      });
+    </script>
+    {% endif %}
+{% endblock %}

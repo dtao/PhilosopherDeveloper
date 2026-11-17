@@ -2,12 +2,8 @@
 
 This is the repo for my blog, [The Philosopher Developer][1].
 
-The site is hosted on [Netlify][3]. I use [Disqus][4] for comments and
-[ShareThis][5] for the social sharing buttons (Twitter, etc.) on each post.
-(Incidentally, if you know of a better sharing product, [let me know][6]! I'm
-really not a huge fan of ShareThis, mainly because I feel like it slows down
-page loads significantly. But I'm also too lazy to fiddle with those buttons
-myself.)
+The site is hosted on [Netlify][3]. I use [Disqus][4] for comments. Sharing
+links at the bottom of each post are plain links (no third-party scripts).
 
 The content of the posts themselves is all in **source/posts**. Each post is
 written in [Markdown][7] and rendered using [Python Markdown][8], with
@@ -35,8 +31,6 @@ The site will be accessible at http://localhost:8080
 [1]: https://philosopherdeveloper.com/
 [3]: https://www.netlify.com/
 [4]: https://disqus.com/
-[5]: https://www.sharethis.com/
-[6]: https://github.com/dtao/PhilosopherDeveloper/issues
 [7]: https://daringfireball.net/projects/markdown/
 [8]: https://python-markdown.github.io/
 [9]: https://pygments.org/

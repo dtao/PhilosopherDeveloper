@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>{% block title %}The Philosopher Developer{% endblock %}</title>
+    <meta name="description" content="{% block description %}Essays and parables on software, leadership, and working well with other people, by Dan Tao.{% endblock %}">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#f7f4ee" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#171614" media="(prefers-color-scheme: dark)">
+    {% block meta %}{% endblock %}
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="alternate" type="application/atom+xml" title="The Philosopher Developer" href="https://feeds.feedburner.com/philosopherdeveloper">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+    <link rel="stylesheet" href="/stylesheets/application.css">
+    {% block head %}{% endblock %}
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="wordmark" href="/">The Philosopher Developer</a>
+        <nav aria-label="Primary">
+          <a href="/posts.html">Writing</a>
+          <a href="/about.html">About</a>
+          <a href="https://feeds.feedburner.com/philosopherdeveloper">RSS</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <form class="subscribe" action="https://gmail.us3.list-manage.com/subscribe/post?u=7f8ad8dac39c270ff8acac8a1&amp;id=66a2f70dfc" method="post" target="_blank">
+          <label for="subscribe-email">Get new posts by email.</label>
+          <p class="subscribe-note">Only new posts. Unsubscribe anytime.</p>
+          <div class="subscribe-row">
+            <input type="email" name="EMAIL" id="subscribe-email" placeholder="you@example.com" autocomplete="email" required>
+            <button type="submit">Subscribe</button>
+          </div>
+          <!-- Honeypot field for Mailchimp; real people should not fill this in. -->
+          <div class="visually-hidden" aria-hidden="true"><input type="text" name="b_7f8ad8dac39c270ff8acac8a1_66a2f70dfc" tabindex="-1" value=""></div>
+        </form>
+
+        <div class="colophon">
+          <p>&copy; Dan Tao. Like the philosopher king, but nerdier.</p>
+          <ul class="elsewhere">
+            <li><a href="https://github.com/dtao">GitHub</a></li>
+            <li><a href="https://stackoverflow.com/users/105570/dan-tao">Stack Overflow</a></li>
+            <li><a href="https://twitter.com/dan_tao">Twitter</a></li>
+            <li><a href="https://soundcloud.com/dantao">SoundCloud</a></li>
+            <li><a href="https://danieltao.com/">danieltao.com</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

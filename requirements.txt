@@ -2,9 +2,6 @@
 # of <img> tags with <figure> + <figcaption>
 beautifulsoup4==4.9.3
 
-# Used for providing an HTML excerpt of each post on the index page
-excerpt-html==0.1b2
-
 # Page templates
 Jinja2==3.1.6
 
