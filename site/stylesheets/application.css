@@ -374,6 +374,17 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
 }
 .prose img { max-width: 100%; height: auto; }
 
+/* Transparent images (mostly black-on-white diagrams) sit directly on the
+   page in light mode. In dark mode, back them with paper so dark lines stay
+   visible. */
+@media (prefers-color-scheme: dark) {
+  .prose img.transparent {
+    padding: 0.75rem;
+    border-radius: var(--radius);
+    background: #f7f4ee;
+  }
+}
+
 .prose .image-row {
   display: grid;
   grid-auto-flow: column;

@@ -6,7 +6,7 @@ published: true
 
 When my wife and I moved from Philadelphia to San Francisco in 2010, we brought our espresso machine with us.
 
-![Our espresso machine](/images/espresso_machine_thumb.jpg)
+![Our espresso machine](/images/espresso_machine_thumb.png)
 
 Back in Philly, we'd had a modest kitchen with just enough counter space for the machine. On lazy weekend mornings, I'd often turn it on and prepare us each a latte drink. It was a nice little ritual.
 

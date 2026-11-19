@@ -67,7 +67,7 @@ For those of you who were too lazy (!) to click on the link up top, the idea beh
 
 In a way, this idea suggests that humankind is doomed to be succeeded by a new evolution of intelligent beings on Earth.
 
-![Evolution to machines](/images/evolution-to-machines.jpg)
+![Evolution to machines](/images/evolution-to-machines.png)
 
 *Preposterous!* you say? I'm not so sure. What makes this seemingly far-fetched concept actually *plausible*, in my mind, is exactly what I've been talking about. Software developers *don't* fully understand the systems they build. The Java snippet above is actually a disturbingly *micro-level* example of this; typically, we do at least understand the *individual lines of code* we write. When you get to the scale of an entire software *system*, built by a team of maybe a dozen or more developers, then the level of comprehension by any single individual of the system as a whole drops from "rough" to **downright scary**.
 

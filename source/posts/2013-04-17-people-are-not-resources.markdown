@@ -63,7 +63,7 @@ I suspect there are many who would argue with me on this point, insisting that h
 
 If your goal is to get a good *value* out of someone, that essentially means you're looking to under-compensate them somehow. I don't mean to suggest you should offer 10x the average salary for people who are really worth it. I just mean that this mentality by its very nature treats team-building as a zero-sum game, where the company benefits by paying its employees as little as possible---and there is no downside, because people are resources. This sets up the relationship from the very beginning in a bad direction. Either this person will become bitter about the arrangement and leave, or they'll simply become complacent and start performing way below their potential---at which point, there goes the value you were so excited about.
 
-![What happens to people treated like resources](/images/dilbert-life-suck.gif)
+![What happens to people treated like resources](/images/dilbert-life-suck.png)
 
 So I think you need to pick one: either view people as *teammates* that you're going to bring on for their creativity and their ideas and give as much freedom as you would want in their shoes; or view them as resources and give up on going for the "best" because you'll just end up overpaying.
 

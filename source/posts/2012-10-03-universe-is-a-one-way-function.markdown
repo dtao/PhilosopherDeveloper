@@ -52,7 +52,7 @@ This declaration of having the answer so early in the game seemed absurd to me. 
 
 Put another way: my friend had not narrowed down the possibilities enough to justify his feeling of certainty, at least to my thinking. He was guilty of **overeager deduction**.
 
-![Overeager deduction](/images/premature_deduction.jpg)
+![Overeager deduction](/images/premature_deduction.png)
 
 That said, I can't really blame him. We humans do this all the time. We *have* to, because the alternative---i.e., basing our beliefs on logical certainties---is completely impractical. But I'll get to that. Time to shift gears.
 
@@ -145,7 +145,7 @@ In the very beginning of my explanation of one-way functions, I mentioned that t
 
 And yet there is a tremendous advantage to understanding the world---both practically and emotionally. Practically speaking, we're better able to predict and manipulate our environment when we understand its rules---so a greater capacity for understanding is an advantage. I also think we're biologically hard-wired to feel rewarded or even euphoric whenever we're able to solve difficult mental problems, for just this reason. It's a kind of positive reinforcement, encouraging us to pursue even deeper understanding. (It's one of the reasons I believe humanity has advanced so far in science and technology.) And so emotionally, I think it makes sense for humans to crave this experience: of figuring things out, of "solving" the mysteries of this world and of our lives.
 
-![Eureka!](/images/eureka.jpg)
+![Eureka!](/images/eureka.png)
 
 ### Heuristics in software
 
@@ -169,7 +169,7 @@ This is **what we all do**. This is how our brains work. In this world, full of 
 
 So we exercise our internal *heuristics*, however we may have formed them over our lifetimes---forged by some mysterious blend of instinct, intuition, education, and so on---and we narrow down the options that our brains subconsciously deem worthy of consideration. The more we refine this ability, the more quickly we're able to arrive at a final decision; this in turn gives us the emotional reward we're after and propels us forward.
 
-![Just one idea](/images/just_one_idea.jpg)
+![Just one idea](/images/just_one_idea.png)
 
 Some of us are able to do this quite quickly, which can be advantageous even when it doesn't lead to the truth, or to a "correct" result. We get away with it, I believe, because most of the time this strategy leads us to an understanding that is *good enough*--just like my knapsack algorithm was good enough, or like Newtownian physics was good enough until Einstein came along, or how if you pick any sufficiently controversial topic chances are you'll be able to find [intelligent, well-reasoned arguments on either side](http://intelligencesquaredus.org/debates)--because the truth is complicated, and it's not possible for our brains to weigh every available piece of evidence and arrive at complete *certainty* with respect to such issues (that's why they're controversial). They are *really tough* one-way functions; the best debaters among us simply have the best heuristics, albeit ones that could well have led them in opposite directions.
 

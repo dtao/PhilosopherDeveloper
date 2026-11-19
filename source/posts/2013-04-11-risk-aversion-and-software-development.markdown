@@ -6,7 +6,7 @@ published: true
 
 A few years ago my parents gave me and my wife this knife as a Christmas present:
 
-![The Shun Classic Utility Knife](/images/shun-utility-knife.jpg)
+![The Shun Classic Utility Knife](/images/shun-utility-knife.png)
 
 We weren't quite sure what to make of it at first, but it wasn't long before we both loved it. It is a *very* sharp knife, which makes it a breeze to cut through just about anything. Unfortunately, that *anything* includes human flesh. I know this because a few months after receiving the knife I was cutting an avocado and the knife slipped in my hand. It was quite a bad cut.
 

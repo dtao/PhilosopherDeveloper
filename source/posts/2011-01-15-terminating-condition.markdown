@@ -38,7 +38,7 @@ This is how I believe we tend to *visualize* back-and-forth personal conflicts (
 
 How many times have you thought this about two people arguing? *This could go on forever*, etc. **But this is not an accurate view.** As anyone who's witnessed or been a part of such a conflict knows, they *don't* go on forever. Nor does the code above. Developers with a keen eye will realize that my `Provoke`/`Respond` code snippet exhibits [mutual recursion](http://en.wikipedia.org/wiki/Mutual_recursion); it will *not* execute forever but will instead overflow the call stack.
 
-![Unregulated recursion is the Ouroboros of software](/images/ouroboros.jpg)
+![Unregulated recursion is the Ouroboros of software](/images/ouroboros.png)
 
 For the not-so-programmatically-inclined, a bit of explanation: **recursion** is like the [Ouroboros](http://en.wikipedia.org/wiki/Ouroboros), a dragon (or snake) devouring itself tail-first. A simple example of a recursive mathematical formula might look like this (forgive me if this notation is a little off; it's been a while since I've done any *real* math!):
 
@@ -125,7 +125,7 @@ The above code represents a trivial solution to a nonexistent problem. Its purpo
 
 What's frustrating for me is when I see two people engaged in an argument where each one believes that he or she is being the "bigger person" and that it is the *other* one who's responsible for the conflict. Snide remarks, passive-aggressive comments, a superior attitude: all of these escalate an argument just as much as shouted insults and pointed fingers. In other words, *it isn't whether you're shouting or not; it's whether you're adding more layers to the "stack"* that affects the outcome of a conflict. Unless at least one person (preferably both) *takes responsibility* for establishing a *terminating condition*, the fight will continue to blaze---and the stack will continue to grow---until something or someone explodes.
 
-![Warning: Anger Overflow!](/images/screaming-stackoverflow.jpg)
+![Warning: Anger Overflow!](/images/screaming-stackoverflow.png)
 
 In any case, I think our resemblance to computers in this respect really is quite striking. Like computers, we are susceptible to our own kinds of "overflows" (e.g., of emotion) when engaged in mutually recursive behavior (e.g., arguments). And unless one actively provides a *terminating condition* in such circumstances (apology? forgiveness?), a conflict can grow quickly beyond one's ability to control it.
 

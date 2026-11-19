@@ -149,8 +149,43 @@ def get_post_data(path):
     }
 
 
-def render_post(post_data):
-    """Render the full HTML file for the given post data."""
+def png_has_alpha(path):
+    """Whether the PNG at `path` can contain transparency.
+
+    Reads only the PNG header: an alpha channel (color types 4 and 6) or a
+    tRNS chunk ahead of the image data. Missing or non-PNG files are False.
+    """
+    try:
+        with open(path, 'rb') as f:
+            if f.read(8) != b'\x89PNG\r\n\x1a\n':
+                return False
+            while True:
+                header = f.read(8)
+                if len(header) < 8:
+                    return False
+                length = int.from_bytes(header[:4], 'big')
+                kind = header[4:]
+                if kind == b'IHDR':
+                    data = f.read(length)
+                    if data[9] in (4, 6):
+                        return True
+                    f.seek(4, os.SEEK_CUR)
+                elif kind == b'tRNS':
+                    return True
+                elif kind == b'IDAT':
+                    return False
+                else:
+                    f.seek(length + 4, os.SEEK_CUR)
+    except OSError:
+        return False
+
+
+def render_post(post_data, images_dir=None):
+    """Render the full HTML file for the given post data.
+
+    If `images_dir` is given, local PNGs with transparency get a
+    `transparent` class so the stylesheet can back them in dark mode.
+    """
     html = render_from_template('post.html', post_data)
 
     # Replace all <img> elements w/ <figure> markup
@@ -169,6 +204,11 @@ def render_post(post_data):
     images = doc.find_all('img')
 
     for img in images:
+        src = img.get('src', '')
+        if (images_dir and src.startswith('/images/') and
+                png_has_alpha(os.path.join(images_dir, src[len('/images/'):]))):
+            img['class'] = img.get('class', []) + ['transparent']
+
         figure = doc.new_tag('figure')
         # Remove a standalone image's paragraph, but preserve shared containers
         # such as image rows and table cells.
@@ -205,6 +245,7 @@ if __name__ == '__main__':
     src_dir = sys.argv[-2]
     dest_dir = sys.argv[-1]
     posts_dir = os.path.join(dest_dir, 'posts')
+    images_dir = os.path.join(src_dir, 'images')
 
     print('Initializing directory...')
     shutil.rmtree(dest_dir, ignore_errors=True)
@@ -224,7 +265,7 @@ if __name__ == '__main__':
     for post_data in posts:
         dest_path = os.path.join(posts_dir,
                                  '{}.html'.format(post_data['slug']))
-        post_html = render_post(post_data)
+        post_html = render_post(post_data, images_dir)
         with open(dest_path, 'w') as f:
             f.write(post_html)
         print('Wrote post "{}" to {}'.format(post_data['title'], dest_path))
@@ -252,7 +293,7 @@ if __name__ == '__main__':
     # Override URL path since this is using the sample template used for posts
     # but About doesn't follow the same URL pattern.
     about_data['url_path'] = '/about.html'
-    about_html = render_post(about_data)
+    about_html = render_post(about_data, images_dir)
     about_path = os.path.join(dest_dir, 'about.html')
     with open(about_path, 'w') as f:
         f.write(about_html)

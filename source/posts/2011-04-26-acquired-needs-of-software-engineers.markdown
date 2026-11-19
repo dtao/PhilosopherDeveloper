@@ -8,7 +8,7 @@ There is something that's been on my mind recently, and it's what I'll call the 
 
 So, to understand what I mean by **acquired need**, consider a caveman.
 
-![Caveman](/images/caveman.jpg)
+![Caveman](/images/caveman.png)
 
 What does this guy **need**? Not a whole lot, right? I mean, the *essentials*, sure: food, water, shelter... anything else? Not really. A caveman needs basically those three things, and that's it.
 

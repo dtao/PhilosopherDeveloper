@@ -64,7 +64,7 @@ possibility" for a typical task, where the outcome is fairly well defined but
 the work is variable.
 
 <figure> <img alt="Zone of possibility for a typical task"
-    src="/images/scope-v-work-typical.jpg" style="max-height: 300px;" />
+    src="/images/scope-v-work-typical.png" style="max-height: 300px;" />
     <figcaption>Zone of possibility for a typical task</figcaption> </figure>
 
 Earlier I mentioned a mistake that many teams make. This is to treat a spike as
@@ -84,7 +84,7 @@ variable. Rather, **a spike is the inverse of a typical task in that the _work_
 is fixed and it's the _scope_ that is variable**.
 
 <figure> <img alt="Zone of possibility for a spike"
-    src="/images/scope-v-work-spike.jpg" style="max-height: 300px;" />
+    src="/images/scope-v-work-spike.png" style="max-height: 300px;" />
     <figcaption>Zone of possibility for a spike</figcaption> </figure>
 
 A spike is great for those situations when you have a finite amount of time,
