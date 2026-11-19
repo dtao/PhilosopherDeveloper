@@ -17,7 +17,7 @@ Features:
 - [x] Ensure tables are working
 - [x] Ensure "Subscribe" form is working
 - [x] Enable social sharing
-- [x] Enable Disqus comments
+- [x] Render archived comments
 
 ## Side-by-side images
 

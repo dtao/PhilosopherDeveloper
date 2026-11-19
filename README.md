@@ -2,7 +2,9 @@
 
 This is the repo for my blog, [The Philosopher Developer][1].
 
-The site is hosted on [Netlify][3]. I use [Disqus][4] for comments. Sharing
+The site is hosted on [Netlify][3]. Comments are closed; the
+ones left on older posts via [Disqus][4] are archived in **source/comments**
+(see scripts/fetch_disqus_comments.py) and rendered as static HTML. Sharing
 links at the bottom of each post are plain links (no third-party scripts).
 
 The content of the posts themselves is all in **source/posts**. Each post is
