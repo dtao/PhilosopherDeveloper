@@ -20,6 +20,12 @@
             {% for post in posts %}
             <li>
               <a href="{{ post.url_path }}">{{ post.title }}</a>
+              {% if post.comment_count %}
+              {% set label = post.comment_count ~ ' comment' ~ ('s' if post.comment_count != 1 else '') %}
+              <a class="archive-comments" href="{{ post.url_path }}#comments" title="{{ label }}" aria-label="{{ label }}">
+                <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden="true"><path d="M2.5 3h11a1 1 0 0 1 1 1v6.5a1 1 0 0 1-1 1H7l-3 2.5v-2.5H2.5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>{{ post.comment_count }}
+              </a>
+              {% endif %}
               <time datetime="{{ post.date }}">{{ post.short_date }}</time>
             </li>
             {% endfor %}

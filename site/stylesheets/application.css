@@ -293,6 +293,19 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
 }
 .archive-list a { text-decoration: none; line-height: 1.35; }
 .archive-list time { color: var(--muted); white-space: nowrap; }
+.archive-list .archive-comments {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-left: auto;
+  margin-right: -0.4rem;
+  font: 0.7rem var(--mono);
+  color: var(--muted);
+  opacity: 0.75;
+  white-space: nowrap;
+}
+.archive-list .archive-comments:hover { color: var(--accent); opacity: 1; }
+.archive-list .archive-comments svg { position: relative; top: 0.05em; }
 
 @media (max-width: 560px) {
   .archive-year { grid-template-columns: 1fr; gap: 0.5rem; }
