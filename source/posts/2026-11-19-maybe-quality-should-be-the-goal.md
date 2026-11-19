@@ -16,7 +16,7 @@ that quality takes a nosedive. So the standard thinking is that we treat
 quality as a **guardrail**: we'll monitor it and make sure it doesn't go down.
 As long as throughput goes up and quality doesn't tank, everyone's happy.
 
-(insert quality-as-guardrail image here)
+![Increase throughput, protect quality](/images/throughput-goal-quality-guardrail-sketch.png)
 
 Personally, I am not so sure about this premise.
 
@@ -46,7 +46,7 @@ So here's my thought. What if instead of treating quality as a guardrail and
 throughput as the goal, we reversed it - made quality the goal, and throughput
 the guardrail?
 
-(insert quality-as-goal image here)
+![Improve quality, maintain throughput](/images/quality-goal-throughput-guardrail-sketch.png)
 
 We certainly don't want to slow down. I'd even say we should aim to at
 least double the rate at which we ship new features. But beyond that,
