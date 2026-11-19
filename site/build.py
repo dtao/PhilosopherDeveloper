@@ -254,7 +254,8 @@ def get_archived_comments(comments_dir, slug):
 
     roots = []
     for comment in by_id.values():
-        parent = by_id.get(comment['parent'])
+        # Disqus gives `id` as a string but `parent` as a number.
+        parent = by_id.get(str(comment['parent']))
         (parent['replies'] if parent else roots).append(comment)
     return roots, len(comments)
 
