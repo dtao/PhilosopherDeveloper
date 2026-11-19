@@ -61,25 +61,28 @@ cybersecurity incidents. There is a lot of room for improvement.
 Imagine if the products we use had all the same features they have today, but
 were lightning fast, extremely reliable, never went down, and were so well made
 that users essentially never ran into weird bugs. I think that would go a long
-way toward earning customer trust. And it's a very different place from where
-we, as an industry, are focusing right now.
+way toward earning the trust of the people _using_ these products. And it's a
+very different place from where most of us are focusing right now.
 
-Until quality is uniformly excellent across our products, I think there's
-a lot to be said for driving it up much more aggressively.
+Until quality is uniformly excellent across our products, I think there's a lot
+to be said for being more ambitious about driving it up. Shipping more features
+only helps the customers who have an appetite for more change. Improving
+quality indisputably benefits *all* of them.
 
 # Guardrails get demoted
 
-There's another problem with calling quality a guardrail. As soon as you
-call something a guardrail, you've already demoted it relative to
-whatever your real goal is.
+There's another problem with calling quality a guardrail, which is really a
+feature of guardrails in general. By designating something a guardrail, you've
+implicitly demoted it relative to whatever your real goal is.
 
-If the real goal is throughput, then quality tends not to be a very
-effective guardrail at all. Eventually you'll reach a point where you
-could get a lot more throughput in exchange for only a small dip in
-quality. Then you start to develop an exchange-rate mentality: what if I
-could improve throughput by 10 and only hurt quality by 1? If throughput
-is what really matters, that seems like a great trade. Yes, quality
-matters, but only as a guardrail, so it doesn't matter *as much*.
+If your real goal is throughput, then you will feel good when throughput goes
+up, and you will get frustrated when the guardrail stops you from achieving
+that. This is only natural. Eventually you'll reach a point where you could get
+a lot more throughput in exchange for only a small dip in quality, and this
+will lead to an exchange-rate mentality: _What if I could improve throughput by
+10 and only hurt quality by 1?_ If throughput is what really matters, that
+seems like a great trade. Yes, quality matters, but only as a guardrail, so it
+doesn't matter *as much*.
 
 And that's how a situation that was already not great starts going
 backwards.
@@ -101,12 +104,12 @@ For me, it boils down to making people's lives better: giving them
 something to enjoy, helping them complete a task more effectively, giving
 them back some free time, solving a problem they have.
 
-That's impossible to track objectively, so in the charts above I didn't
-use some abstract "quality" line. Instead I used measurable things that
-are clearly components of quality: number of bugs, performance,
-availability. What these have in common is that improving them benefits
-*everyone*. No customer is going to complain that we fixed too many bugs,
-made the product too fast, or kept it up too reliably.
+That's impossible to track objectively, so in the charts above I didn't use some
+abstract "quality" line. Instead I used measurable things that are
+clearly _correlated_ with quality: number of bugs, performance, availability.
+What these have in common is that they are measurable, and improving them
+benefits everyone. No customer is going to complain that we fixed too many
+bugs, made the product too fast, or kept it up too reliably.
 
 That's what makes quality fundamentally different from throughput.
 Shipping faster probably helps a lot of customers, but some customers
