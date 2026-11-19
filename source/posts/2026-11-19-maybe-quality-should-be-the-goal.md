@@ -66,7 +66,7 @@ very different place from where most of us are focusing right now.
 
 Until quality is uniformly excellent across our products, I think there's a lot
 to be said for being more ambitious about driving it up. Shipping more features
-only helps the customers who have an appetite for more change. Improving
+primarily serves the customers who have an appetite for more change. Improving
 quality indisputably benefits *all* of them.
 
 # Guardrails get demoted
@@ -94,9 +94,9 @@ To be fair, the models keep getting better, and maybe some of that
 problem will go away on its own. But better models won't change what
 we're choosing to prioritize, or where we're putting our attention.
 
-# What I mean by "quality"
+# A couple of disclaimers
 
-One last disclaimer. I'm talking about quality very loosely, and quality
+First, I'm talking about quality very loosely, and quality
 isn't a well-defined thing. It's one of those things we all recognize
 when we experience it, but none of us can define precisely.
 
@@ -105,15 +105,23 @@ something to enjoy, helping them complete a task more effectively, giving
 them back some free time, solving a problem they have.
 
 That's impossible to track objectively, so in the charts above I didn't use some
-abstract "quality" line. Instead I used measurable things that are
-clearly _correlated_ with quality: number of bugs, performance, availability.
-What these have in common is that they are measurable, and improving them
-benefits everyone. No customer is going to complain that we fixed too many
-bugs, made the product too fast, or kept it up too reliably.
+abstract "quality" line. Instead I used measurable things that are clearly
+_correlated_ with quality: number of bugs, performance, availability. What these
+have in common is that they are measurable, and improving them benefits
+everyone. No customer is going to complain that we fixed too many bugs, made
+the product too fast, or kept it up too reliably.
 
-That's what makes quality fundamentally different from throughput.
-Shipping faster probably helps a lot of customers, but some customers
-don't even want it. Improving quality objectively helps every one of
-them.
+Second, I don't actually think _either_ quality or throughput should be a
+guardrail in an absolute sense. As I've [written before][2], what we should
+really be striving for is delivering the most **value over time**. That's an
+optimization problem, where we aim to maximize the *product* of velocity and
+quality, not just maximize one while holding the other steady (the same way you
+don't maximize area of a rectangle by only focusing on either length or width).
+
+Pragmatically, though, I know a problem like this often becomes more tractable
+when you focus on one dimension at a time while guarding the other. And I'm
+saying that if we're going to pick one dimension to push on right now, quality
+may well be where the greater opportunity lies to help more people.
 
 [1]: /posts/takeaways-from-aie-code-summit
+[2]: /posts/value-over-time
