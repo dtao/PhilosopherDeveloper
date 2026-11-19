@@ -533,7 +533,7 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
   border-top: 1px solid var(--rule);
 }
 .comments h2 { margin: 0 0 0.5rem; font-size: 1.35rem; font-weight: 500; }
-.comments-note { margin: 0 0 2rem; color: var(--muted); font-size: 0.9em; font-style: italic; }
+.comments-note { margin: 0 0 2rem; color: var(--muted); font-size: 0.8em; font-style: italic; }
 .comment-list { list-style: none; margin: 0; padding: 0; }
 .comment { margin: 0 0 1.75rem; }
 .comment .comment-list {
@@ -546,7 +546,7 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
 a.comment-author:hover { color: var(--accent); }
 .comment-date { color: var(--muted); text-decoration: none; }
 .comment-date:hover { color: var(--accent); }
-.comment-body { font-size: 0.95em; color: var(--text-soft); overflow-wrap: anywhere; }
+.comment-body { font-size: 0.85em; color: var(--text-soft); overflow-wrap: anywhere; }
 .comment-body p { margin: 0 0 0.75em; }
 .comment-body p:last-child { margin-bottom: 0; }
 .comment-body a { color: var(--accent); }
