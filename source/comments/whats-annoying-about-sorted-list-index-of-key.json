@@ -1,0 +1,38 @@
+[
+  {
+    "id": "878704808",
+    "parent": null,
+    "created_at": "2010-08-25T17:46:50",
+    "author": "Alexander M. Batishchev",
+    "author_url": "http://godfather.net.ru/",
+    "message": "<p>Daniel, why does `BinarySearch(this IList  list, T value)` have generic type constraint and other methods - not?</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704809",
+    "parent": 878704808,
+    "created_at": "2010-08-25T19:10:17",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>What do you mean by constraint? Do you mean why is it generic at all? I suppose the most logical reason I could give for that is simply that it makes more sense to consider a list \"sorted\" (and therefore eligible for a binary search) if every element is of the same type. However, I suppose you could also write a BinarySearch method to accept any <code>IList</code> (non-generic) and an <code>IComparer</code> (again, non-generic). Theoretically this way you could even run a binary search on something like an <code>ArrayList</code> full of different types of objects (which would be weird, but kind of cool, too). A significant downside to this approach, of course, would be the inevitable boxing of value types. Since a binary search is generally used for performance reasons, this seems like a pretty big drawback to the non-generic alternative.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704810",
+    "parent": null,
+    "created_at": "2013-03-20T02:53:02",
+    "author": "jack",
+    "author_url": null,
+    "message": "<p>Great find, but what does this help when SortedList does not implement IList? There is little use for the closest int index when we can only read from the list with TKey which again triggers a new binary search.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704813",
+    "parent": 878704810,
+    "created_at": "2013-04-05T23:40:46",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Sorry for the delayed response. SortedList does not itself implement IList, but the SortedList.Keys and SortedList.Values properties do. So if you want to search for either a specific key or a specific value, this code will allow you do that.</p>",
+    "deleted": false
+  }
+]

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "5400481751",
+    "parent": null,
+    "created_at": "2021-05-28T21:36:26",
+    "author": "Ted Keenan",
+    "author_url": null,
+    "message": "<p>IMHO, you are looking narrowly at individual communication at the expense of communication at the organization level. At the organization level there are probably three additional considerations as follows: First that the most important information get raised to the appropriate decision makers rapidly, second that important information gets disseminated widely, and third that only a limited amount of time is spent gathering and propagating information. <br>The best model for this kind of distribution is not the push based model that you describe, but a hierarchy of pull based nodes with efficient curation. Such a model grows at log(n) plus it gets the  most important information to the most people. If it is well done then any truly significant information should reach every person in the organization regardless of source. Something that is not guaranteed in the other models.<br>My guess is that you personally are fairly good at pushing information out, most managers are. The truly great managers are good at digesting information and pushing out the right information to the right audience, regardless if the audience is up, down or across, as well as communicating what information they are pruning and why. While your co-worker may have some need for more self-promotion, if the person's work is truly good, you are probably under promoting it or failing to connect the worker with a community that will value it. If it is bad, perhaps you are unwilling to provide that feed back.<br>The model you describe is a model that is just as uncurated as a pull model. It will probably disseminate some information faster than a pure pull model. But to have a truly efficient model you need curation regardless of whether the model is a push model or a pull model.</p>",
+    "deleted": false
+  }
+]

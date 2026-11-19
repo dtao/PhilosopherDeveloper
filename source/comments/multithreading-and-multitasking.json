@@ -1,0 +1,20 @@
+[
+  {
+    "id": "878704936",
+    "parent": null,
+    "created_at": "2011-02-04T23:08:56",
+    "author": "David",
+    "author_url": "http://harmonious-healthit.blogspot.com/",
+    "message": "<p>Really enjoyed this post. But does the paragraph about \"concentrating...is equivalent to locking our most valuable resource\" suggest that maybe A.D.D. is a good thing?</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704938",
+    "parent": 878704936,
+    "created_at": "2011-02-04T23:45:17",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Haha, I didn't really think about that! But you know, something I didn't mention in the post is that context switching (at least for a computer) is actually very expensive, so I would view concentration as an efficiency <em>optimization</em>: it allows us to comprehend something more quickly by dedicating our brains to it for a longer-than-average amount of time, avoiding the usual cost of context switching. If A.D.D. had an equivalent in software terms, I think it would be insufficiently low <a href=\"http://en.wikipedia.org/wiki/Mutex\" rel=\"nofollow noopener\" target=\"_blank\" title=\"http://en.wikipedia.org/wiki/Mutex\">mutex</a> timeouts (another concept I didn't cover in the post, but I think you can guess its meaning from the word \"timeout\").</p>",
+    "deleted": false
+  }
+]

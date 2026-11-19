@@ -1,0 +1,29 @@
+[
+  {
+    "id": "949827016",
+    "parent": null,
+    "created_at": "2013-07-02T22:58:31",
+    "author": "Nathan Zook",
+    "author_url": null,
+    "message": "<p>I disagree that the problem is the deserialization of arbitrary objects.  The only objects which are fundamentally dangerous are singleton objects, and you cannot allocate those.  The problem is that any document can declare that any class on a targeted system is to be initialized like a hash.  (Hashes are initialized by calling obj[key]=value across the map)  The default is for objects to be initialized by calling obj.instance_variable_set(:@key, value).  Requiring classes to document them selves as supporting hash-like initialization would close this attack without turning off this sweet ability.</p>",
+    "deleted": false
+  },
+  {
+    "id": "949853739",
+    "parent": 949827016,
+    "created_at": "2013-07-02T23:29:24",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>I acknowledge that it's a pretty sweet ability. But for it to be the default behavior is problematic, as we've clearly seen in the case of Rails. The problem is especially evident with open source projects (of which there are many when we're talking about Ruby!), where if an attacker can very carefully trace the code path from the moment of object deserialization, he or she *may* be able to find a hole and exploit it. This is much easier w/ the hash style of initialization, clearly; but it is also possible even with instance_variable_set. (Working remote code exploits were found in Rails using Ruby 1.8.7, before the hash-style initialization was even an option. There's an example here: <a href=\"http://blog.codeclimate.com/blog/2013/01/10/rails-remote-code-execution-vulnerability-explained/)\" rel=\"nofollow noopener\" target=\"_blank\" title=\"http://blog.codeclimate.com/blog/2013/01/10/rails-remote-code-execution-vulnerability-explained/)\">http://blog.codeclimate.com...</a></p><p>Basically, if you can instantiate *any arbitrary type* in the domain of another system, there is the potential for a vulnerability. Not a guarantee—again, it depends on the code—but the potential. In the case of Rails, that potential was a reality.</p><p>Arguably from a theoretical standpoint, we might agree that it isn't the job of a YAML parsing library to worry about security implications. There might be more sensible mechanisms we could think of to figure out how to limit the ways anyone could use deserialization from YAML to compromise an application. But any strategy that takes the burden off the library and puts it on application (or external library) developers is simply not going to be effective, because it requires *many* parties to do something (e.g., examine their class implementations for security against hash-style initialization) instead of just one.</p><p>I wrote SafeYAML because I wanted there to be an option, in Ruby, to say: don't deserialize arbitrary objects at all. Yes, it's a heavy-handed fix; and yes, it will be overkill in some scenarios. But I suspect that in *many* scenarios, it's exactly what was needed because lots of developers weren't using YAML to represent anything other than numbers, strings, arrays, etc. in the first place. And so this sweet ability, which was not even being used in these cases, was nothing more than a liability.</p>",
+    "deleted": false
+  },
+  {
+    "id": "998030853",
+    "parent": 949853739,
+    "created_at": "2013-08-12T22:33:18",
+    "author": "Hongli Lai",
+    "author_url": null,
+    "message": "<p>I'm really glad with SafeYAML. It's stupid that the behavior hasn't been made the default or at least easily exposable from the default libraries.</p><p>For some projects I've migrated to JSON because depending on SafeYAML (or any gem at all) is problematic in those specific scenarios.</p>",
+    "deleted": false
+  }
+]

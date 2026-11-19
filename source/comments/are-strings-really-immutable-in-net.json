@@ -1,0 +1,65 @@
+[
+  {
+    "id": "878704818",
+    "parent": null,
+    "created_at": "2010-06-30T23:27:35",
+    "author": "Jerod Houghtelling",
+    "author_url": "http://www.solidsyntaxprogrammer.com",
+    "message": "<p>Great post! Many developers overlook the possible side effects for not using objects the way they were intended to be used.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704814",
+    "parent": null,
+    "created_at": "2010-08-25T17:40:15",
+    "author": "Alexander M. Batishchev",
+    "author_url": "http://godfather.net.ru/",
+    "message": "<p>Thank you, Daniel! Great post.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704820",
+    "parent": null,
+    "created_at": "2010-09-17T14:06:06",
+    "author": "Darin Dimitrov",
+    "author_url": null,
+    "message": "<p>In .NET 4.0 you cannot obtain the SetChar method using reflection.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704821",
+    "parent": 878704820,
+    "created_at": "2010-09-18T00:05:30",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>You're quite right. It turns out you <em>can</em> achieve the same effect using different private members, however. Thus I have updated the EvilStringHelper class to be .NET 4.0-compatible. (Why I went through the trouble of doing this, I can't really say. Sheer curiosity, I suppose.)</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704822",
+    "parent": 878704821,
+    "created_at": "2010-09-18T15:26:31",
+    "author": "Alexander M. Batishchev",
+    "author_url": "http://godfather.net.ru/",
+    "message": "<p>Where?</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704823",
+    "parent": 878704821,
+    "created_at": "2010-09-18T19:25:10",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>A. Batishchev: <a href=\"http://philosopherdeveloper.wordpress.com/c-code/evilstringhelper/\" rel=\"nofollow noopener\" target=\"_blank\" title=\"http://philosopherdeveloper.wordpress.com/c-code/evilstringhelper/\">here</a>.</p>",
+    "deleted": false
+  },
+  {
+    "id": "3636919775",
+    "parent": null,
+    "created_at": "2017-11-28T19:41:56",
+    "author": "spatley",
+    "author_url": null,
+    "message": "<p>That is insane, and awesome, and horrible, and amazing</p>",
+    "deleted": false
+  }
+]

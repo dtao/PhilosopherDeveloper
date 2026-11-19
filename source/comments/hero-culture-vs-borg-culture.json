@@ -1,0 +1,38 @@
+[
+  {
+    "id": "931177023",
+    "parent": null,
+    "created_at": "2013-06-14T22:50:22",
+    "author": "Anthony M",
+    "author_url": null,
+    "message": "<p>Watch out for those broken windows.</p>",
+    "deleted": false
+  },
+  {
+    "id": "931226409",
+    "parent": 931177023,
+    "created_at": "2013-06-15T00:11:06",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Anthony! Is that agreement or an indictment? I will choose \"agreement\" to soothe my conscience.</p>",
+    "deleted": false
+  },
+  {
+    "id": "1898997751",
+    "parent": null,
+    "created_at": "2015-03-10T14:11:47",
+    "author": "Ethaniel",
+    "author_url": null,
+    "message": "<p>&gt; Then broken window theory sets in: since the code is everyone’s responsibility, everybody thinks “surely someone else is keeping an eye on this.” It might as well be no one’s responsibility.</p><p>IMO there’s no “broken window theory” here, it’s “diffusion of responsibility”: <a href=\"https://en.wikipedia.org/wiki/Diffusion_of_responsibility\" rel=\"nofollow noopener\" target=\"_blank\" title=\"https://en.wikipedia.org/wiki/Diffusion_of_responsibility\">https://en.wikipedia.org/wi...</a></p>",
+    "deleted": false
+  },
+  {
+    "id": "4508537241",
+    "parent": null,
+    "created_at": "2019-06-19T19:56:06",
+    "author": "Rachel Lovelace",
+    "author_url": "https://www.linkedin.com/in/rachel-shelley-2801a787",
+    "message": "<p>Great insight into Hero Culture. And I like your Borg Culture. I can definitely appreciate the reference. Business culture today has embraced an equality first ethos that I believe is just as toxic in its extreme as Hero Culture can become. It's a knee jerk reaction to those who justifiably are tired of the peacocking upper crust of the workforce. Fair enough. I get it. But going Borg isn't the antidote, because Hero Culture isn't the pathogen. They are simply two extremes on the same spectrum. You nailed it when you identified personal ownership, accountability, collaboration, and humility as being the balance we need to strike. Now, how to get there?... Creativity, boldness, and grit. Great article!</p>",
+    "deleted": false
+  }
+]

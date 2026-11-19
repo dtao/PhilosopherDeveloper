@@ -1,0 +1,20 @@
+[
+  {
+    "id": "4242534668",
+    "parent": null,
+    "created_at": "2018-12-15T15:41:12",
+    "author": "blackcompe",
+    "author_url": null,
+    "message": "<p>Great analogy! I don't think a single facet of society could ever embody a blue/green model, and this is because traditions and values are built upon *beliefs*, not scientific method.</p>",
+    "deleted": false
+  },
+  {
+    "id": "4321534998",
+    "parent": null,
+    "created_at": "2019-02-04T12:00:15",
+    "author": "Vichar Mohio",
+    "author_url": null,
+    "message": "<p>I really like this analogy and the concept of tolerance as a backward compatible code is particularly alluring. However, I do think there is an aspect of time associated with both \"instant\" deployment vs \"rolling\" deployment that you may not be addressing. From my understanding, a rolling deployment basically solves for an updated solution + reduction in bugs/breakdown of order during transition. The pace of adoption may be a concern, but it is a secondary concern.</p><p>I suspect that many activists are not optimising for the same thing. Instead they're optimising for an updated solution *in the shortest period of time possible\" - the breakdown of status quo for the transition period is seen as fair payment to bring about an accelerated change. Not sure if anyone has data on what is better over a long period of time, but I could see how if people aimed at doing a rolling cultural deployment for civil rights (or women rights or caste rights), the whole process would take much much longer (I bet it would still happen - just would take longer).</p><p>It is almost as if rolling cultural deployment is the way things will work out in any case in the real world. BUT to accelerate the pace of new software adoption you have to go in there without tolerance (because people in positions of power are most likely satisfied with the status quo &amp; have no reason to change).</p><p>The question then becomes what is important in a given context: speed of change or keeping discomfort to a minimum. And both can be valid points of view.</p><p>Having said that, I think you can still have sympathy for another perspective, while still pushing HARD for your own perspective. Thoughts?</p>",
+    "deleted": false
+  }
+]

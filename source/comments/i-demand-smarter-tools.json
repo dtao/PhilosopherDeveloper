@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1293817901",
+    "parent": null,
+    "created_at": "2014-03-20T20:37:04",
+    "author": "Brad",
+    "author_url": null,
+    "message": "<p>That's one of the big reasons that I decided to avoid LoDash.  Unwinding for loops feels like giving up.  For all of its performance blind spots, I appreciate that Underscore is primarily a product of inspiration from a passionate writer.  I'd wager that if Jeremy Ashkenas was writing deep nests of 'if' statements, we would have neither underscore nor backbone, and JDD would have nothing to optimize.</p><p>I just heard your interview on the Javascript Show.  Very intrigued by Lazy.js, perhaps with react.js.  Have you used this combo?</p>",
+    "deleted": false
+  },
+  {
+    "id": "1847879978",
+    "parent": null,
+    "created_at": "2015-02-11T15:55:53",
+    "author": "lujaw",
+    "author_url": null,
+    "message": "<p>awesome article.. philosophical as well as inspiring, thanks for sharing..</p>",
+    "deleted": false
+  },
+  {
+    "id": "2227208367",
+    "parent": null,
+    "created_at": "2015-08-31T04:08:32",
+    "author": "Chris Ainsley",
+    "author_url": null,
+    "message": "<p>Speed and simplicity. That's what you want. Higher level abstractions are absolutely essential, but such abstractions should be strongly typed. There is no substitute for strong typing when it comes to performant reliable code. Almost all the problems of JavaScript come from weak typing, which is why typescript and asm.js exist.</p><p>Smarter tools, yes. Except for tool authors, humans should not be writing boiler plate code. That area of development is mundane and error prone, and therefore best automated.</p>",
+    "deleted": false
+  }
+]

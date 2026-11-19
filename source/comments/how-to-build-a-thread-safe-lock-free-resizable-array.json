@@ -1,0 +1,47 @@
+[
+  {
+    "id": "878704994",
+    "parent": null,
+    "created_at": "2012-05-25T14:26:15",
+    "author": "Khoa Nguyen",
+    "author_url": "http://khoamn.wordpress.com/",
+    "message": "<p>Nice job ! dude, this is what I'm looking for ! Thanks</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705001",
+    "parent": null,
+    "created_at": "2013-02-16T00:11:16",
+    "author": "Roland Pihlakas",
+    "author_url": "http://www.simplify.ee/",
+    "message": "<p>Hello there!<br>Thanks for a nice idea, I quite like it. <br>I would like to propose a few optimizations.</p><p>First, <br>\tindex -= ((int)Math.Pow(2, arrayIndex) - 1);<br>can be replaced with:<br>\tindex -= ((1 &lt;&lt; arrayIndex) - 1);</p><p>Secondly,<br>GetArrayIndex(int count) can be implemented using this code:</p><p>\tx++;</p><p>\t//compute floor(log2(x)):<br>\tdouble x2 = (double)x;<br>\tint* ptr = (int*)(double*)&amp;x2;<br>\tint d1 = ptr[1];<br>\tint log = (d1 &gt;&gt; 20) - 1023;<br>\treturn log;</p><p>Or with this (I am not sure this is always faster than the series of if's in Your code in GitHub):</p><p>\tx++;</p><p>\t//compute floor(log2(x)):</p><p>\tx |= (x &gt;&gt; 1);<br>\tx |= (x &gt;&gt; 2);<br>\tx |= (x &gt;&gt; 4);<br>\tx |= (x &gt;&gt; 8);<br>\tx |= (x &gt;&gt; 16);</p><p>\t//count the number of set bits:<br>\tx -= ((x &gt;&gt; 1) &amp; 0x55555555);<br>\tx = (((x &gt;&gt; 2) &amp; 0x33333333) + (x &amp; 0x33333333));<br>\tx = (((x &gt;&gt; 4) + x) &amp; 0x0f0f0f0f);\t<br>\tx = unchecked((x * 0x01010101) &gt;&gt; 24);</p><p>\treturn x - 1;</p><p>You can find more bit hacks here:<br><a href=\"http://aggregate.org/MAGIC/\" rel=\"nofollow noopener\" target=\"_blank\" title=\"http://aggregate.org/MAGIC/\">http://aggregate.org/MAGIC/</a></p>",
+    "deleted": false
+  },
+  {
+    "id": "879911637",
+    "parent": 878705001,
+    "created_at": "2013-04-29T21:22:12",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Thanks for the input, and sorry for the late reply! If you’re serious about these changes, feel free to <a href=\"https://github.com/dtao/ConcurrentList/pull/new/master\" rel=\"nofollow noopener\" target=\"_blank\" title=\"https://github.com/dtao/ConcurrentList/pull/new/master\">submit a pull request on GitHub</a>.<br> I’ll take a look, and if your proposed changes have a positive impact <br>on performance then I’ll merge them in (and you’ll be a contributor!).</p>",
+    "deleted": false
+  },
+  {
+    "id": "1171007837",
+    "parent": null,
+    "created_at": "2013-12-20T02:43:21",
+    "author": "hiya83",
+    "author_url": null,
+    "message": "<p>Hi, this might be old, but just took a look at your ConcurrentList.cs in git and wanted to point out a couple of possible issues in Add function (didn't look at others):</p><p>1. if your array size is at 15, and multiple threads happen to call it at the same time, your first CAS for swapping out the array pointer will succeed but subsequent ones will have memory leak (just remembered this is in C# so nevermind, but note for whoever who might use this for native code...)</p><p>2. if 2 (or more) threads were to call Add together, and say thread A started first, gets index 2 at start &amp; gets to start of line 88. Now it switches over to thread B (or B catches up), B gets index 3 and finishes the whole function before A executes line 88. So B will get fuzzyCount of 3 and since its index is 3, the equality check fails and the CAS is never performed. Now A does the rest of Add, gets fuzzyCount of 4 (since B incremented it to 3), but index is 2, so equality fails as well and doesn't do CAS either. So now even though there are 4 elements, the count is only 2. Another single Add will fix it, but if the trend continues, the count will never be accurate. I believe a spinloop with CAS checking like in the common lockfree ring buffer implementations or a TLS scheme to track size per thread should fix this issue.</p><p>Z</p>",
+    "deleted": false
+  },
+  {
+    "id": "1172233485",
+    "parent": 1171007837,
+    "created_at": "2013-12-21T00:41:19",
+    "author": "hiya83",
+    "author_url": null,
+    "message": "<p>Actually the 2nd CAS is not even necessary; you can make the safe version of count be volatile and just do a straight spinloop comparison. though if the safe count is used a lot, cas might be better after all? This is my implementation in C++:</p><p>int index = ATOMIC_INCREMENT_32(&amp;m_Size);<br>int arr_idx = 0;<br>int ele_idx = 0;<br>GetIndices(index, arr_idx, ele_idx);<br>if (m_Data[arr_idx] == NULL)<br>{<br>        T* new_array = new T[(1 &lt;&lt; (arr_idx + m_DefaultHighBit))];<br>\tif (ATOMIC_CAS_64(&amp;m_Data[arr_idx], 0, new_array) != 0)<br>\t{<br>\t\t// don't leak memory, hopefully shouldn't create that many arrays unnecessarily? :(<br>\t\tdelete[] new_array;<br>\t}<br>}</p><p>while(m_SizeSafe != index);<br>m_SizeSafe = index + 1;</p>",
+    "deleted": false
+  }
+]

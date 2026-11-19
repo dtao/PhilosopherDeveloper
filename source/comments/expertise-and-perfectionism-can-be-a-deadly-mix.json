@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1092914636",
+    "parent": null,
+    "created_at": "2013-10-23T00:40:47",
+    "author": "svick",
+    "author_url": null,
+    "message": "<p>I think the hardest thing about all this is figuring out which flaws to ignore.<br>In your email regex example, if you let the inexperienced developer write it, you probably wouldn't end up with the right kind of flawed (too permissive).<br>I think it takes an expert who can see all the flaws and also can figure out which flaws to ignore to write the best possible code (and I don't mean perfect or flawless code).<br>(There should be a term for code like that. Maybe “perfectly flawed”?)</p>",
+    "deleted": false
+  },
+  {
+    "id": "1093156167",
+    "parent": null,
+    "created_at": "2013-10-23T06:50:38",
+    "author": "Anthony Maitz",
+    "author_url": null,
+    "message": "<p>I hope I'm the new, arrogant, hotshot.  Making a product work always involves making trade offs of time.  If email validation was not part of the core experience of the product, an 80% implementation that allows the team to focus on the product's more unique problems is probably a better solution.  If they were making an email app, that would be different.  I would argue that in this example, the developers didn't see the forest for the trees.  The real problem wasn't solving email validation.</p>",
+    "deleted": false
+  },
+  {
+    "id": "1094015615",
+    "parent": 1093156167,
+    "created_at": "2013-10-23T17:52:34",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Sorry to disappoint—I think it would have been quite arrogant of <strong>me</strong> to describe someone <em>older</em> and <em>more experienced</em> as a \"young hot shot!\" The e-mail validation story was from a different project.</p><p>That said, I definitely agree about 80% implementations. One detail I regrettably left out of this post (and I didn't even realize I omitted this until a brief Twitter exchange w/ Giles—not sure if you know each other) is that I think the TW team more or less converged on the decision to do <strong>no validation at all</strong>. This, to me, was a mistake: basically preferring 0% over 80% because neither is 100% anyway (there's that perfectionism creeping in). Of course, in the TWers' defense: no decision is quite that simple, right? Maybe the rest of the team felt that putting in <em>no</em> effort would be better than putting in any effort on a poorly implemented feature (i.e., if we ended up just using the new guy's regex, which might have been too restrictive, without proper testing... though that would be pretty unlikely w/ pair programming and TDD).</p><p>And then there is your point about seeing the forest for the trees. I would be sympathetic to the argument that a meeting about e-mail validation should never have occurred in the first place—or rather, it should have occurred only after many other more important discussions had already taken place (and valuable software had been built).</p>",
+    "deleted": false
+  },
+  {
+    "id": "1094026632",
+    "parent": 1092914636,
+    "created_at": "2013-10-23T18:00:46",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>You raise a good point. Certainly not all flawed solutions are created equal: there is <em>good, but not perfect</em> and then there's <em>just plain bad</em>. For the record, I don't think the scenario you mentioned—letting an inexperienced dev write the wrong kind of validation—would have been very likely in this case. ThoughtWorks projects involve pair programming and generally TDD; so there would have been at least two pairs of eyes involved no matter what (and possibly more due to pair rotation) as well as a bevy of test cases. Though one inexperienced dev may be liable to take the wrong approach with a problem like this, you're right that an \"expert\" is more likely to have a sense of what sort of flawed approach is acceptable.</p><p>And I like your term! <em>Perfectly flawed</em>: this could actually prove a useful concept for convincing otherwise expert perfectionists to pursue less-than-perfect solutions to problems where the alternatives are either:</p><p>1. No solution at all, or:<br>2. A \"perfect\" approach that's needlessly expensive (maybe we could call this <em>flawed perfection</em>?)</p>",
+    "deleted": false
+  }
+]

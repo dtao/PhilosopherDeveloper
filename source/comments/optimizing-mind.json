@@ -1,0 +1,29 @@
+[
+  {
+    "id": "878705088",
+    "parent": null,
+    "created_at": "2012-02-21T00:42:36",
+    "author": "David",
+    "author_url": "http://harmonious-healthit.blogspot.com/",
+    "message": "<p>Interesting, Dan! I think a person can be a little of both. I think I have both an optimizing mind (I very much related to your coffee example, and do this kind of thing all the time, when it comes to mundane tasks like going from room to room, taking out the trash, etc., and sometimes with respect to more significant things. I also can sometimes be a compulsive optimizer. But maybe one is not \"compulsive\" if one only does it occasionally.</p><p>I like the conclusion -- it takes different brain types, just as most projects need different personality types (by whatever measurement of \"types\" one uses).</p><p>David</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705095",
+    "parent": null,
+    "created_at": "2012-08-11T20:15:35",
+    "author": "Torben Jonas",
+    "author_url": null,
+    "message": "<p>This is funny. I just googled for this topic and found this entry here which describes my own feelings as best as possible :) I am a hobby programmer and I tend to optimize my code very often. Unfortunately I do not optimize it before writing it but afterwards. So sometime I have to rewrite several parts more than once. It is like your coffee walk: I write something and go on with another task. While writing I think \"Let's code it step-by-step so that the code is better understandable\" and then suddenly in another task I get an idea to optimize one of the older codeparts and return to them instead of finish the current one. It is a bit annoying to rework my code that often (and sometime there are some more dependent codeparts which have to be reworked to work correctly) but on the other hand I feel much better after all this.<br>Life is hard :D</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705100",
+    "parent": 878705095,
+    "created_at": "2012-08-26T03:01:34",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Torben: All I can say to this is that I know exactly how you feel!</p>",
+    "deleted": false
+  }
+]

@@ -1,0 +1,11 @@
+[
+  {
+    "id": "1212759394",
+    "parent": null,
+    "created_at": "2014-01-22T23:38:54",
+    "author": "jchook",
+    "author_url": null,
+    "message": "<p>Brilliant. Thank you. Would love to see a Model.find() method that threw a not found exception. May fork it, though you haven't convinced me not to use ActiveRecord instead : )</p>",
+    "deleted": false
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "878704802",
+    "parent": null,
+    "created_at": "2010-05-06T21:58:22",
+    "author": "Chris Boden",
+    "author_url": null,
+    "message": "<p>Hahaha, that dramatization is wonderful. I appreciate your help with that problem immensely. Thank you!</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704804",
+    "parent": null,
+    "created_at": "2010-05-21T23:45:11",
+    "author": "Raul Vejar",
+    "author_url": null,
+    "message": "<p>Nice post, the dialogs are hilarious.<br>BTW, is there any way to avoid having to unbox to the specific type besides using something parsing the object into the generic type?<br>For example if I know the property is numeric I can unbox it as an object and then parse the string representation into a double or decimal thus avoiding the intermediate cast. I would really like something that would actually trigger the implicit conversion on runtime</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704806",
+    "parent": 878704804,
+    "created_at": "2010-05-21T23:51:38",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>The standard approach to accomplish what you're asking for (if I understand you correctly) is to use the <code>System.Convert</code> class and one of its methods based on the type you want: <code>Convert.ToDouble</code>, <code>Convert.ToDecimal</code>, etc.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704807",
+    "parent": 878704806,
+    "created_at": "2010-05-21T23:55:24",
+    "author": "Raul Vejar",
+    "author_url": null,
+    "message": "<p>Yeah, it works like a charm, thanks</p>",
+    "deleted": false
+  }
+]

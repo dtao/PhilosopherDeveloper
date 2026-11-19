@@ -1,0 +1,11 @@
+[
+  {
+    "id": "911106590",
+    "parent": null,
+    "created_at": "2013-05-28T14:47:37",
+    "author": "Barney Carroll",
+    "author_url": null,
+    "message": "<p>Excellent little project. It's true that highCharts' API is absolutely horrid: for something whose output is so generic, it's baffling why so much code is necessary to do the simplest things — so wrapping that monstrosity behind the facet of procedural markup is particularly elegant.</p><p>PS: Your bar chart example uses text (and data, if only implicitly) to describe an 'out of 10' scale, which Highcharts then decides to ramp up to 11. Not as awesome as it may sound!</p>",
+    "deleted": false
+  }
+]

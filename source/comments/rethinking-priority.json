@@ -1,0 +1,56 @@
+[
+  {
+    "id": "878400337",
+    "parent": null,
+    "created_at": "2013-04-28T12:38:05",
+    "author": "Skyborne",
+    "author_url": null,
+    "message": "<p>My dad's workplace prioritizes issues for technicians, then assigns them out highest-priority first. But to prevent starvation, tasks unfinished on one day get moved up one level the next day. If they're swamped with critical work like \"machine is completely broken\" then a minor thing like \"machine squeaks\" may take a week to be addressed, but it can make it all the way to max priority.</p><p>I've been meaning to make an age+priority aware sort for our bug tracker but it's low priority....</p>",
+    "deleted": false
+  },
+  {
+    "id": "878427336",
+    "parent": null,
+    "created_at": "2013-04-28T13:37:45",
+    "author": "petert",
+    "author_url": null,
+    "message": "<p>Correct approach.  Similar to the observation you just made, in many fields, particularly the creative design fields, we often think if we burn the midnight oil that the \"light bulb\" will turn on.  In other words, pry your eyelids open and drink coffee till you find your solution, because of course this will happen.  To the contrary, sometimes it is best to make sure your concept or big idea is sound, then to address the challenges in small bursts of focus and testing of ideas, take a break, come back and reassess, then apply the small bursts again.  The key is that it takes mental discipline, as you identified, and some humbleness to be able to know when the idea (or priority) has flaws and that the process needs to allow adaptation and adjustments, rather than just \"forging ahead.\"</p>",
+    "deleted": false
+  },
+  {
+    "id": "878980611",
+    "parent": 878427336,
+    "created_at": "2013-04-29T01:35:00",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Hey Peter! It's funny—I've only worked in software, so I tend to write about \"software teams\" and how things are generally done in the software industry (from what I've seen). But I figured it was probably this way in many other fields as well. I suspect that for many people, the habit of relentlessly prioritizing and focusing on the \"big game\" is simultaneously what enables them to excel, but also what can blind them to the revelations there are to be had from pursuing the \"small game\" from time to time.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878990674",
+    "parent": 878400337,
+    "created_at": "2013-04-29T01:46:44",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Haha, nice one. Yeah, it seems to me that if an issue is legitimately a problem—as opposed to a simple disagreement over something should be—there must <i>eventually</i> come a point where the issue is so old that it cannot justifiably be ignored any longer.</p><p>I'm reminded of an old mind experiment relating to series and the notion of infinity. It has to do with numbered balls being placed in a bag and retrieving them from the bag at one tenth the rate they're being added. You could take out ball number 1, then 11, then 21, and so forth—removing every tenth ball—or you could take out 1, then 2, then 3, and so on.</p><p>In either case, you \"progress\" at the same rate; but in the former case you're constantly (and futilely) striving to \"keep up\" while missing 90% of the work, while in the latter you are clearly not finishing work at the rate it seems to materialize (just as we can't actually execute every single idea that pops into our brains) but you are doing a more thorough job, in a way.</p>",
+    "deleted": false
+  },
+  {
+    "id": "879974273",
+    "parent": null,
+    "created_at": "2013-04-29T22:58:58",
+    "author": "David Tao",
+    "author_url": null,
+    "message": "<p>Hi Dan! Excellent point. I also noticed that \"probability of happening\" was often the factor. So for example, usability issues were seldom addressed, but \"new features\" were almost always the top of the list, and as we know often the software that is so feature-laden is very frustrating. Using usability as an example, it is hard because any single usability feature might not be high in itself, but collectively the lack of usability can be a big deterrent to use of the software and a reason users abandon it. However, the hypothetical allocation of 70/20/10 might not work because people tend to assign \"high\" to more items than \"medium\" and certainly \"low.\" How about a higher \"percentage of the highs\" being done, then a lesser percentage of the \"medium\" backlog, with the lowest percentage being applied to the \"low\" backlog.</p>",
+    "deleted": false
+  },
+  {
+    "id": "880024142",
+    "parent": 879974273,
+    "created_at": "2013-04-30T00:15:55",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Thanks, Dad! Your experience with the pile-up of usability issues reminds me of the phrase \"death by a thousand papercuts\" that my old boss used to use (or just \"death by a thousand cuts\").</p><p>I can understand your skepticim about the 70/20/10 breakdown—and naturally I wouldn't expect those exact numbers either—but my thinking was that adopting such a system would actually influence people to stop over-reporting items as high priority. It's just as you said: \"people tend to assign 'high' to more items [than medium or low].\" But if \"high-priority\" items only get 70% of the time, then this tendency will actually <i>reduce</i> the rate at which work gets done. And so people will instead try to allocate work according to the 70/20/10 (or whatever) breakdown, which I think will end up being closer to the real world and not this distorted reality where things are labeled as being more important than they are.</p>",
+    "deleted": false
+  }
+]

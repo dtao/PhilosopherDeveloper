@@ -1,0 +1,29 @@
+[
+  {
+    "id": "878705051",
+    "parent": null,
+    "created_at": "2011-09-03T02:57:33",
+    "author": "Pete Hodgson",
+    "author_url": "http://blog.thepete.net/",
+    "message": "<p>I couldn't help fiddling with this, and came up with a slightly more succinct solution:</p><p>[sourcecode language=\"javascript\"]<br>function refreshStyles( $element ) {<br>    $element.wrap( '&lt;div&gt;' ).parent().page();<br>    $element.unwrap();<br>}<br>[/sourcecode]</p><p>And then I went crazy and made it a little TOO succinct (but still correct):</p><p>[sourcecode language=\"javascript\"]<br>function refreshStyles( $element ) {<br>    $element.wrap( '&lt;div&gt;' ).parent().page().end().unwrap();<br>}<br>[/sourcecode]</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705053",
+    "parent": 878705051,
+    "created_at": "2011-09-03T04:17:25",
+    "author": "Pete Hodgson",
+    "author_url": "http://blog.thepete.net/",
+    "message": "<p>My divs got eaten. Both of those calls to wrap should have a string param specifying a div.</p><p>Maybe wordpress will prefer this way of encoding it: $element.wrap( \"&lt;div&gt;\" )</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705056",
+    "parent": 878705053,
+    "created_at": "2011-09-03T04:49:21",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Pete: Nice edit! It's funny; I realized somewhat later after posting this that the reason my original version didn't work is that <code>wrap</code> returns the <em>child</em> element, not the parent, and thus going through the trouble of re-querying the DOM for the wrapper wasn't really necessary (i.e., using <code>parent</code> would do the trick, as you've done). Apparently I was too lazy to refactor, though. Also, I fixed your original comment using Wordpress's <a href=\"http://en.support.wordpress.com/code/posting-source-code/\" rel=\"nofollow noopener\" target=\"_blank\" title=\"http://en.support.wordpress.com/code/posting-source-code/\">awesome syntax</a>.</p>",
+    "deleted": false
+  }
+]

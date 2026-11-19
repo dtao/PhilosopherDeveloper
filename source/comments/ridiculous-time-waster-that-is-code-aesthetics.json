@@ -1,0 +1,38 @@
+[
+  {
+    "id": "878705030",
+    "parent": null,
+    "created_at": "2011-03-15T16:47:56",
+    "author": "Steven Jeuris",
+    "author_url": "http://whathecode.wordpress.com/",
+    "message": "<p>Curious you didn't mention style of identifiers. I did a review on a scientific paper which studies camel casing vs underscores which can be found here: <a href=\"http://whathecode.wordpress.com/2011/02/10/camelcase-vs-underscores-scientific-showdown/\" rel=\"nofollow noopener\" target=\"_blank\" title=\"http://whathecode.wordpress.com/2011/02/10/camelcase-vs-underscores-scientific-showdown/\">http://whathecode.wordpress...</a></p><p>The reason programmers are passionate about such arguments is because they truly believe one approach to have advantages over another approach. I can give arguments based on experience for most of your given examples, although unfortunately not backed up with scientific evidence.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705027",
+    "parent": null,
+    "created_at": "2011-03-24T01:52:50",
+    "author": "Carra",
+    "author_url": null,
+    "message": "<p>One of the most important sentences in Code Complete is \"Code aesthetics are religious wars\". Since accepting that I've not been all that bothered by syntax.</p><p>Although those developers who use<br>if (isDone() == true)<br>still annoy me.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705034",
+    "parent": 878705027,
+    "created_at": "2011-03-25T09:42:56",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Haha, that is indeed a silly one. You know what I dislike even <em>more</em>? This one:</p><p><code>if (true == isDone())</code></p><p>That's just plain crazy-looking (though I understand the historical background of it).</p><p>I think it really sank in for me just <em>how</em> absurd this is when someone pointed out that it makes about as much sense as:</p><p><code>if ((isDone() == true) == true)</code></p><p>...and so on (ad infinitum!).</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705037",
+    "parent": null,
+    "created_at": "2011-09-01T08:17:01",
+    "author": "Mark T",
+    "author_url": null,
+    "message": "<p>Since I changed jobs I have started worrying a lot less about code aesthetics and just concentrate on the simplicity/obviousness of the code's intention. I tend to stick with whatever style the code file already has as I believe that consistency is very important (within the same code file at least). I find it too mentally distracting if the same file has various different styles in it.</p><p>I do still dislike if/while statements without braces though. And the tautologicalness of the isDone() == true style.</p><p>Oh and I also dislike using spaces instead of tabs, mainly because of the extra hits of the backspace key required when deleting stuff.</p>",
+    "deleted": false
+  }
+]

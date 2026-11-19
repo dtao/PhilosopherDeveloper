@@ -1,0 +1,83 @@
+[
+  {
+    "id": "878705016",
+    "parent": null,
+    "created_at": "2011-02-26T23:10:54",
+    "author": "Alan Ning",
+    "author_url": "http://askldjd.wordpress.com/",
+    "message": "<p>Nice idea.</p><p>I read the code, and it looks like Count() has a spinwait, and won't return until Add() operation completes (fuzzy = index).</p><p>Maybe I am wrong, but doesn't that hurt concurrency? It looks like a implicit spinlock.</p><p>Thanks and good effort.</p><p>... Alan</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705011",
+    "parent": null,
+    "created_at": "2011-02-27T00:57:15",
+    "author": "damageboy",
+    "author_url": null,
+    "message": "<p>The main benefit/performance boost is (I think) is for a specific scenario:<br>multiple reader threads with a single writer/appender thread.</p><p>That is where you should expect to see a performance boost as the plain dumb \"use lock()\" solution would still lock for every read/indexer operation while the concurrent list DOES NOT.</p><p>You can't and shouldn't see a performance boost for the Add() operation. I don't think it was ever the intention...</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705017",
+    "parent": null,
+    "created_at": "2011-02-27T03:33:28",
+    "author": "damageboy",
+    "author_url": null,
+    "message": "<p>I'm performing some surgery to your implementation.<br>Nothing too big, just a few perf. hacks to squeeze some more cycles out it.<br>Since you didn't put it on githun as a separate project, I won't branch the whole thing, but I will post my version of your code on github as a separate repo. You can contact me if want to discuss this in a more fluent manner. I'm \"damageboy\" on skype too.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705013",
+    "parent": null,
+    "created_at": "2011-02-27T17:58:13",
+    "author": "damageboy",
+    "author_url": null,
+    "message": "<p>BTW, I will change your Count getter implementation<br>to be non-spinning.</p><p>Since Count is more often used by readers I want it to run as unhindered as possible.</p><p>To keep it still correct I will change the Add() implementation to use CompareAndExchange() on _lazyCount instead of incrementing it, so that when there is more than one writer/appender to the ConcurrentList, the writers will compete BETWEEN themselves, without hindring readers.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705019",
+    "parent": 878705016,
+    "created_at": "2011-03-01T04:20:59",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Alan, that's a good question. Whether it \"hurts\" concurrency depends, I guess, on what your use case for this class is. My view was that it doesn't hurt the use case I had in mind: <code>Add</code> operations would be unencumbered by any thread contention from one another <em>or</em> from reader threads; meanwhile, readers would not interfere with one another either. In fact, spinning while waiting for pending calls to <code>Add</code> to complete does not really represent any problem to <em>concurrency</em> at all (to <em>performance</em>, yes, but not arising from any contention between threads). I hope that makes sense!</p><p><strong>That said, there is actually a bug in my implementation of <code>Count</code> anyway. So, I plan to fix that.</strong> (By any chance, can you see what it is?)</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705021",
+    "parent": 878705011,
+    "created_at": "2011-03-01T04:24:48",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>So, if you get a chance to take a look at my most recent post, you'll see that I actually question whether this use case is a worthwhile one. In fact, if we restrict write operations to only <code>Add</code> and the indexed setter (and synchronize these via a <code>lock</code> statement), <strong>I don't think readers need to be synchronized at all</strong>. Read the post, take a look at my <code>SynchronizedList&lt;T&gt;</code> class <a href=\"https://github.com/dtao/PhilosopherDeveloper/blob/master/ConcurrentList/ConcurrentList/SynchronizedList.cs\" rel=\"nofollow noopener\" target=\"_blank\" title=\"https://github.com/dtao/PhilosopherDeveloper/blob/master/ConcurrentList/ConcurrentList/SynchronizedList.cs\">here, and let me know your thoughts.</a></p>",
+    "deleted": false
+  },
+  {
+    "id": "878705022",
+    "parent": 878705017,
+    "created_at": "2011-03-01T04:26:10",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>I would like to discuss this on Skype! My name is \"danielltao\"; I've actually added you already, so let's chat some time when we're both on.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705024",
+    "parent": 878705013,
+    "created_at": "2011-03-01T04:28:19",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Bad news: I'm relatively certain my <code>Count</code> implementation was actually broken anyway (though in a very subtle way which, clearly, was not even picked up by my unit tests).</p><p>I am going to take a look at your GitHub repo soon and share my thoughts with you as well.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705025",
+    "parent": 878705019,
+    "created_at": "2011-03-02T01:00:10",
+    "author": "Alan Ning",
+    "author_url": "http://askldjd.wordpress.com/",
+    "message": "<p>Hmm... here's my thought, which could be wrong as I lack of experience in C#.</p><p>It looks like there is a race condition between the following two lines.</p><p>int count = m_index;</p><p>if (count &gt; m_fuzzyCount)</p><p>So in the case 100 items have been added since the first line but before the second line, m0fuzzyCount can be far greater than m_index. Since you return m_index, the actual Count is smaller than it should be.</p><p>Then again, the post condition of Count is unclear to me. This could be acceptable depending on your contract.</p><p>... Alan</p>",
+    "deleted": false
+  }
+]

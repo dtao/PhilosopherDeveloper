@@ -1,0 +1,47 @@
+[
+  {
+    "id": "878704846",
+    "parent": null,
+    "created_at": "2011-01-16T07:14:34",
+    "author": "scottsinope",
+    "author_url": "http://scottofsinope.wordpress.com/",
+    "message": "<p>I love this- a wonderful look at human interaction.  You draw wonderful parallels between people, software, and math- but where I made the mental leap was in one sentence:\"the function f(n) appears to be defined in terms of itself.\"</p><p>That's when it clicked.  There aren't conflicts- if both parties are truly sincere about their positions (not just a provoke-respond, but a true -/+) they are not far apart, but rather one and the same- there is an underlying solidarity and when worked down to it's most simple; n=n even if nn.  Try to talk to your friend, because if you are correct in your analysis, if both parties are adamant then there is an underlying solidarity, but if one is not, then you have reached your termination level.</p><p>Wow.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704848",
+    "parent": 878704846,
+    "created_at": "2011-01-23T05:49:19",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Thanks for the kind words, Scott. When you first left this comment I visited your blog and read your first post, which was the only one at the time. I just took another look and I see you've been posting regularly! I find your thoughts so far to be pretty fascinating—keep up the good work!</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704853",
+    "parent": null,
+    "created_at": "2011-01-23T21:29:39",
+    "author": "Bragaadeesh",
+    "author_url": "http://Bragadeesh.blogspot.com/",
+    "message": "<p>Wow! Another excellent write up.</p><p>I just want something to tel about the second version of the response provoke cycle</p><p>Void response(){<br>     If(thinkAnnotherIsFool || thinkAnotherIsProvoking || thinkWorldIsDefinedThisWay || thinkNouse || thinkIAmMe || thinkOthersThatProvokeMeToStop)<br>         Return;<br>      Else<br>         Provoke();<br>}</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704855",
+    "parent": null,
+    "created_at": "2011-01-24T15:00:17",
+    "author": "Raina",
+    "author_url": null,
+    "message": "<p>Hey man...nice article, but for those of us that are not programmers, can you explain what exactly a stack overflow is.  Why can't computers keep processing an infinitely recursive loop? Are there physical limitations?  I don't know, maybe something like - since we don't have perfectly efficient machines (and most likely never will), we will always lose some fraction of initial potential energy while trying to create energy of the form that powers computers (electricity presently); and since (presumably) there is a finite amount of potential energy present in the universe, the infinitely recursive loop cannot go on infinitely?  I understand that hardware malfunctions will probably be more likely than us literally running out of energy to keep a computer running, but I was just asking about the general idea.</p>",
+    "deleted": false
+  },
+  {
+    "id": "878704856",
+    "parent": 878704855,
+    "created_at": "2011-01-24T18:22:31",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Dude, it's not about energy (though that is also a totally valid point you make there); it's about <em>memory</em> (literal \"memory\" in the human case and RAM in the computer case). Think of the story example I gave, which is really just a rehash of GEB's story-within-a-story chapter with Achilles and Tortoise. You have to keep track of the \"levels\" of the story in order to be able to \"unwind\" them later; e.g., when level Z comes to an end, in order to get back to level Y below it you must have been <em>storing</em> Y somewhere. And when Y comes to an end, in order to get back to X you must have been <em>storing</em> that as well. With infinite recursion, this essentially requires storing an infinite (ever-increasing) number of levels, i.e., and infinite amount of information.</p>",
+    "deleted": false
+  }
+]

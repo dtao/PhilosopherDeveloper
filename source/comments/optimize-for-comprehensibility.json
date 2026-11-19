@@ -1,0 +1,38 @@
+[
+  {
+    "id": "878705140",
+    "parent": null,
+    "created_at": "2013-01-06T20:41:04",
+    "author": "Steven Jeuris",
+    "author_url": "http://whathecode.wordpress.com/",
+    "message": "<p>\"The limited value of locality\" touches on a few points I'm very passionate about. The debate whether or not to favor short methods for arguably improved readability is a big one. I previously wrote about this in my article Function Hell: <a href=\"http://whathecode.wordpress.com/2010/12/07/function-hell/\" rel=\"nofollow noopener\" target=\"_blank\" title=\"http://whathecode.wordpress.com/2010/12/07/function-hell/\">http://whathecode.wordpress...</a></p><p>You mention \"a higher number of shorter methods can lead to more reusable code that's easier to unit test\". There is some truth to the mentioned testability, and it is an often made argument for splitting into many small methods. However, I've got one major concern with the first part of that statement. It CAN lead to more reusable code, but can equally well prevent it. Writing reusable code is just a matter of thinking about reusability, not applying some magic process which automatically leads to it. A real world example of this (by a highly respected TDD developer) can be found in the 'UPDATE' section of my article.</p><p>From experience at Cardpool you mention \"when you have to scroll multiple times the height of your screen to read the entirety of a method's code, locality falls apart\". I'm not arguing long methods are good, usually it does indicate something needs to be refactored. However, just splitting into smaller methods blinds you from other possible refactoring methods. Additionally, using \"code paragraphs\" with a comment on top of them also provides for quicker readability of those paragraphs, which is even more readable than a descriptive function name. There is a slight risk of getting outdated comments this way, but if you wouldn't change the method name when changing it's internal logic, wouldn't that lead to the exact same result? When stating \"[t]here's so much to hold in your brain at once, it becomes difficult to reason about what the code is doing, where changes should be made, and what impact they'll have.\", you are basically saying you are reading complex code. It is an illusion that hiding this complexity behind functions increases your understanding of it. What should be really done is create proper truly reusable abstractions and hide the complexities behind those; and yes, those abstractions CAN be functions.</p><p>As your following sections indicate, that is something I don't have to point out to you. However, I hope you understand why I don't agree with the conclusion: \"This has really all been a long-winded way of saying: absolutely prefer shorter methods.\" As a software engineer it isn't our job to write functions, we are designers. Writing functions is just a tool to achieve this. Writing short functions is another, but that doesn't mean it always leads to good design. To summarize: yes, long functions indicate a problem, but short methods aren't necessarily the solution. Take my article \"Abstraction is Everything\" for example: <a href=\"http://whathecode.wordpress.com/2010/12/20/abstraction-is-everything/\" rel=\"nofollow noopener\" target=\"_blank\" title=\"http://whathecode.wordpress.com/2010/12/20/abstraction-is-everything/\">http://whathecode.wordpress...</a></p><p>Thank you for resurfacing this interesting topic. I hope I was able to express my concerns with your argumentation without sounding to harsh, which wasn't my intention. ;p</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705141",
+    "parent": 878705140,
+    "created_at": "2013-01-07T01:43:55",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>You don't sound harsh at all! I appreciate your points, which of course are totally valid. I suspect we're actually not too far apart in our opinions on this, actually. I've just oversimplified my position for brevity with a slight preference towards one end of the spectrum; you lean a bit the other way.</p><p>Insofar as your point is that shorter methods <em>per se</em> do not make code more readable, I have to agree. But I think I could rephrase that objection in a general way: following some guideline dogmatically, without thinking, will not always yield positive results. This is true of <em>any</em> guideline, no matter how useful it may be overall.</p><p>I think your problem is really with this kind of abuse of the general principle: that <em>blindly</em> refactoring into shorter and shorter methods does not make code more readable and, in fact, can be counterproductive. (In my defense, I did concede that you could go too far in that direction.)</p><p>The concept I really wanted to put out there with this post was the one comparing good code to a good hypertext article; or maybe I should have focused more on the conversation analogy. To respond to your point that holding a lot in your brain at once is just a necessary part of \"reading complex code\": <em>this</em>, to me, is really what I want to challenge.</p><p>Everything in this world is hopelessly complex; yet we can somehow understand a lot of it and explain it to one another. We do this by hiding detail by default and only revealing information at the abstraction level corresponding to how deeply someone wants to understand something. If I speak to a neuroscientist about his or her job, I'm sure there is a vast amount of knowledge there that I won't be able to understand; but I'm equally sure there is a way for them to describe what they do at a high level so that not only can I understand, but I can ask questions (drill deeper) and gain a more detailed understanding that way.</p><p>Clearly this is something we can both write about at length! I think you said it well, though: \"Yes, long functions indicate a problem, but short methods aren't necessarily the solution.\" I would just reword it slightly: \"Long functions indicate a problem [too little abstraction]. Shorter methods <em>per se</em> are not the solution; however, the solution [better abstraction] probably involves shorter methods.\"</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705142",
+    "parent": 878705141,
+    "created_at": "2013-01-07T15:38:26",
+    "author": "Steven Jeuris",
+    "author_url": "http://whathecode.wordpress.com/",
+    "message": "<p>\"The concept I really wanted to put out there with this post was the one comparing good code to a good hypertext article.\"</p><p>I found that to be a really good analogy to represent the Single Level of Abstraction Principle, which is something I do value more than 'short methods', yes. :)</p><p>Your rephrasing of my conclusion is spot on. Indeed, our opinions aren't far apart at all. It's simply that I cringe whenever I see \"short methods\" written without any second thought in the same sentence since I've seen this guideline being followed dogmatically countless times.</p><p>Would love to read more from you, keep up the writing ;p</p>",
+    "deleted": false
+  },
+  {
+    "id": "908254423",
+    "parent": 878705141,
+    "created_at": "2013-05-25T18:24:05",
+    "author": "Alexey Tarasevich",
+    "author_url": null,
+    "message": "<p>I would rephrase it like \"Shorter functions correlate with better code, but they are not a criteria\" or \"Better abstractions correlate more with better code than shorter methods\". But exact definitions are 1. impossible 2. boring :)</p>",
+    "deleted": false
+  }
+]

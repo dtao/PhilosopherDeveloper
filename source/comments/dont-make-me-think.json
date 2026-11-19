@@ -1,0 +1,38 @@
+[
+  {
+    "id": "4219355292",
+    "parent": null,
+    "created_at": "2018-11-30T17:42:24",
+    "author": "Evan",
+    "author_url": null,
+    "message": "<p>For some reason your story of the Barnes and Noble membership reminds me of a clever Regal Theater employee I once knew who, instead of offering customers an upgraded combo with free Skittles, would just build make shift combos from the orders of several customers and then hand out free Skittles to unsuspecting guests. I wonder what he would think of this ...</p>",
+    "deleted": false
+  },
+  {
+    "id": "4219784902",
+    "parent": 4219355292,
+    "created_at": "2018-11-30T22:30:19",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>I don't know, but that person sounds like a genius!</p>",
+    "deleted": false
+  },
+  {
+    "id": "4223372212",
+    "parent": null,
+    "created_at": "2018-12-03T16:40:34",
+    "author": "Kathryn Anne Morrison",
+    "author_url": null,
+    "message": "<p>Love this! Steve Chandler also has a great piece of \"Expectations vs Agreements\" and co-creating assignments with the people you are making requests of. Happy to share it with you later.</p>",
+    "deleted": false
+  },
+  {
+    "id": "4499263808",
+    "parent": null,
+    "created_at": "2019-06-12T11:39:44",
+    "author": "Ben",
+    "author_url": null,
+    "message": "<p>I absolutely agree with you. I would in fact restate the real issue:</p><p>(A) Make my life easier / Do the work for me / Solve my problems</p><p>                             vs.<br>(B) Giving me problems / Giving me more work</p><p>The former will always win out over the latter.</p>",
+    "deleted": false
+  }
+]

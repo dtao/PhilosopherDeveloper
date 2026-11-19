@@ -1,0 +1,38 @@
+[
+  {
+    "id": "878705130",
+    "parent": null,
+    "created_at": "2012-09-16T12:01:13",
+    "author": "svick",
+    "author_url": "http://blog.svick.org/",
+    "message": "<p>I hope that next time, you will introduce a real-world example of O(n log n). :-)</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705132",
+    "parent": 878705130,
+    "created_at": "2012-09-16T23:11:18",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Challenge accepted!</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705136",
+    "parent": null,
+    "created_at": "2012-09-20T00:53:56",
+    "author": "David",
+    "author_url": "http://harmonious-healthit.blogspot.com/",
+    "message": "<p>Like! You did explain things in understandable terms. The \"greeting\" analogy reminded me of the \"goodbye\" analogy when people leave a family gathering like a wedding and everyone needs to hug everyone else. That happens more, I think, than everyone greeting everyone, because it tends to happen at once, revealing the \"algorithmic complexity\" of the goodbyes, whereas the hello are spread out and the complexity isn't obvious.</p>",
+    "deleted": false
+  },
+  {
+    "id": "1897143902",
+    "parent": null,
+    "created_at": "2015-03-09T17:44:04",
+    "author": "Ethaniel",
+    "author_url": null,
+    "message": "<p>&gt; This is an example of an O(n2) algorithm—one in which the performance cost of the procedure in question grows exponentially with input size.</p><p>O(n²) is not exponential, it’s quadratic. ;)<br><a href=\"https://en.wikipedia.org/wiki/Big_O_notation#Orders_of_common_functions\" rel=\"nofollow noopener\" target=\"_blank\" title=\"https://en.wikipedia.org/wiki/Big_O_notation#Orders_of_common_functions\">https://en.wikipedia.org/wi...</a></p>",
+    "deleted": false
+  }
+]

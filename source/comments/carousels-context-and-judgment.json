@@ -1,0 +1,29 @@
+[
+  {
+    "id": "997359874",
+    "parent": null,
+    "created_at": "2013-08-12T13:01:56",
+    "author": "scottmuc",
+    "author_url": null,
+    "message": "<p>Yup, context is always key.</p>",
+    "deleted": false
+  },
+  {
+    "id": "997518860",
+    "parent": 997359874,
+    "created_at": "2013-08-12T14:51:36",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>I sorta repeat myself, don't I? ;)</p>",
+    "deleted": false
+  },
+  {
+    "id": "997525682",
+    "parent": 997518860,
+    "created_at": "2013-08-12T14:58:59",
+    "author": "scottmuc",
+    "author_url": null,
+    "message": "<p>Nah, it's good. Repetition helps sink things in. Twitter does a wonderful job of enabling rants without context. It's good to bring context in any debate to make sure people are debating the same thing. I will always miss our debates :-)</p>",
+    "deleted": false
+  }
+]

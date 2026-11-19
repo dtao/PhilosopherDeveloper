@@ -1,0 +1,29 @@
+[
+  {
+    "id": "5424188626",
+    "parent": null,
+    "created_at": "2021-06-18T09:16:52",
+    "author": "Rico Mariani",
+    "author_url": null,
+    "message": "<p>Good story here.  This article is actually what got me blogging in the first place.  After I gave that talk Brad asked me for a quote on what I thought it meant, I gave him these words:</p><p>\"The Pit of Success: in stark contrast to a summit, a peak, or a journey across a desert to find victory through many trials and surprises, we want our customers to simply fall into winning practices by using our platform and frameworks. To the extent that we make it easy to get into trouble we fail.\"</p><p>Which he put into his blog.  I was looking over his shoulder while he did it.  But as he was doing it I remarked, \"I should have my own blog\" so Brad helped me get set up on what passed for the MSDN blogs of the time.</p><p>Most of what's there was written in real time right after the talk.</p><p>Interestingly, the whole Pit of Success thing wasn't even in my notes for the talk.  I made it up on the spot.</p><p>-Rico</p>",
+    "deleted": false
+  },
+  {
+    "id": "5424384376",
+    "parent": 5424188626,
+    "created_at": "2021-06-18T13:40:09",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>So cool! Some of my best ideas, especially analogies, come to me in the moment too. Often what happens is I visualize something in my head (like a pit), and then I'll just describe out loud what I'm picturing using the most fitting terms I can think of on the fly.</p><p>Thanks for stopping by. It's a real treat to hear from the very person whose idea I was promoting!</p>",
+    "deleted": false
+  },
+  {
+    "id": "5426751544",
+    "parent": 5424384376,
+    "created_at": "2021-06-20T16:53:35",
+    "author": "Rico Mariani",
+    "author_url": null,
+    "message": "<p>:)</p>",
+    "deleted": false
+  }
+]

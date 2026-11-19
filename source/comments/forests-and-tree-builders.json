@@ -1,0 +1,56 @@
+[
+  {
+    "id": "1220827196",
+    "parent": null,
+    "created_at": "2014-01-28T23:19:16",
+    "author": "Kathryn Morrison",
+    "author_url": null,
+    "message": "<p>Those last two paragraphs deserve more than two paragraphs!</p>",
+    "deleted": false
+  },
+  {
+    "id": "1220985017",
+    "parent": 1220827196,
+    "created_at": "2014-01-29T01:21:44",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>Indeed they do :)</p>",
+    "deleted": false
+  },
+  {
+    "id": "1221816334",
+    "parent": null,
+    "created_at": "2014-01-29T15:03:52",
+    "author": "Marcel Popescu",
+    "author_url": null,
+    "message": "<p>Awesome.</p>",
+    "deleted": false
+  },
+  {
+    "id": "1248296908",
+    "parent": null,
+    "created_at": "2014-02-17T18:24:04",
+    "author": "Fred Stluka",
+    "author_url": "http://bristle.com",
+    "message": "<p>Daniel,</p><p>Well put!  I added it to the Software Design row of my links page:<br>- <a href=\"http://bristle.com/~fred/#software_design\" rel=\"nofollow noopener\" target=\"_blank\" title=\"http://bristle.com/~fred/#software_design\">http://bristle.com/~fred/#s...</a></p><p>--Fred</p>",
+    "deleted": false
+  },
+  {
+    "id": "1575113813",
+    "parent": null,
+    "created_at": "2014-09-05T11:20:03",
+    "author": "random_visitor",
+    "author_url": null,
+    "message": "<p>leftists and equalizers are going to hate this.</p>",
+    "deleted": false
+  },
+  {
+    "id": "1684515702",
+    "parent": null,
+    "created_at": "2014-11-09T17:51:40",
+    "author": "Anders Johnson",
+    "author_url": "http://andrz.me/",
+    "message": "<p>Interesting analogy. My only dispute is with the thought that skilled consultants might be more likely to care about your forest's health in the long term, vis-a-vis permanent employees, as the latter are more likely to be with you in the far future, and thereby might have more present incentive to invest in the quality of present work as they might expect to be liable for its future consequences.</p>",
+    "deleted": false
+  }
+]

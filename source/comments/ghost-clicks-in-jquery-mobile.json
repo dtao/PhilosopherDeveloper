@@ -1,0 +1,29 @@
+[
+  {
+    "id": "878705077",
+    "parent": null,
+    "created_at": "2011-11-19T02:15:19",
+    "author": "David Tao",
+    "author_url": "http://harmonious-healthit.blogspot.com/",
+    "message": "<p>Hi Dan! I'm on a business call right now with some of our developers working on mobile apps using Jquery mobile and HTML5! If they have \"ghost clicks\" I will point them to your blog!</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705082",
+    "parent": null,
+    "created_at": "2012-11-26T16:02:08",
+    "author": "Amy",
+    "author_url": null,
+    "message": "<p>Hi, is there any solutions to prevent this ghost click?</p>",
+    "deleted": false
+  },
+  {
+    "id": "878705083",
+    "parent": null,
+    "created_at": "2012-12-26T22:53:17",
+    "author": "Jamie Robertson",
+    "author_url": "http://www.jamierobertsoninteractive.com/",
+    "message": "<p>Thanks, your article really helped me, I had spent ages messing around with event bubbling. Strangely this:</p><p>$('.exit').tap (function() {<br>\tif(confirm('Are you sure you want to exit?')) {<br>\t\twindow.location = \"index.html\";<br>\t\treturn false;<br>\t}<br>\telse {<br>\t\treturn false;<br>\t}<br>});</p><p>works just fine using JQM &amp; phoneGap BUT ONLY ON ANDROID</p><p>to make the same script work on an IOS browser you have to use click(); like you say in your article.</p><p>$('.exit').click (function() {<br>\tif(confirm('Are you sure you want to exit?')) {<br>\t\twindow.location = \"index.html\";<br>\t\treturn false;<br>\t}<br>\telse {<br>\t\treturn false;<br>\t}<br>});</p><p>Different types of new click events are a bit of a new thing.<br>have a look here:<br><a href=\"http://ben-major.co.uk/2012/05/jquery-mobile-events-finally-launched/\" rel=\"nofollow noopener\" target=\"_blank\" title=\"http://ben-major.co.uk/2012/05/jquery-mobile-events-finally-launched/\">http://ben-major.co.uk/2012...</a><br>for new JQM events</p>",
+    "deleted": false
+  }
+]

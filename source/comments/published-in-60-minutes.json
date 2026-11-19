@@ -1,0 +1,29 @@
+[
+  {
+    "id": "4078852790",
+    "parent": null,
+    "created_at": "2018-09-05T14:30:29",
+    "author": "svick",
+    "author_url": null,
+    "message": "<p>I think there are some pretty good reasons why it makes sense to polish written ideas much more than spoken ones.</p><p>Specifically, written ideas can be read by hundreds or thousands of people over a long period of time. This means that every bit of polish has much higher total effect than when speaking to someone in person.</p><p>It also means you can't tailor the message as well as when you're talking with someone, especially since feedback is much less immediate. Depending on your audience, you might not be able to assume they know something, so you might have to explain it in more detail or provide links. And you can't easily ask if what you said was understood, so you should spend the effort to make sure what you're saying is phrased well.</p>",
+    "deleted": false
+  },
+  {
+    "id": "4152272802",
+    "parent": 4078852790,
+    "created_at": "2018-10-19T06:54:04",
+    "author": "Dan Tao",
+    "author_url": "http://philosopherdeveloper.com/",
+    "message": "<p>You're not wrong!</p><p>When I first brought up this idea with someone on my team, he raised more or less the same points.</p><p>While I don't dispute that your points are valid, I do think it's a case of diminishing returns. The more polish I apply to a written idea, the less of an improvement each iteration of polish actually makes. So I think _some_ polish is appropriate, but I know myself and I feel I have a tendency to overdo it. That said, everybody is different: I fully acknowledge that for some people, the opposite advice might be appropriate—some folks ought to polish their ideas a bit more than they do!</p><p>But the biggest problem for me is that I've historically let a lot of ideas \"fall on the floor\" as a result of taking so long to polish them—or allowing the effort required to polish those ideas create too great a psychological barrier, to the point where I couldn't find the motivation to even get started—so that the ultimate result was _nothing_ being shared. So a big part of this for me is just trying something new that I am hopeful will get me to share more of my thoughts... which, after all, is the whole purpose of this blog!</p>",
+    "deleted": false
+  },
+  {
+    "id": "4499348922",
+    "parent": null,
+    "created_at": "2019-06-12T13:08:29",
+    "author": "Ben",
+    "author_url": null,
+    "message": "<p>I wrote an app that is less than perfect (read: has a lot of flaws), but despite those glaring issues, it delivers an extra-ordinary amount of \"business value\". Often times: \"near-enough\" is \"good-enough\". In other words, having an imperfect solution is better than having none at all. If I had stopped to make it polished, i very much doubt I would have written/completed anything at all.</p><p>I suppose the same applies to most things, including writing blogs.</p>",
+    "deleted": false
+  }
+]
