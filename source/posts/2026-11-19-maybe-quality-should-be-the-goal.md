@@ -18,7 +18,7 @@ As long as throughput goes up and quality doesn't tank, everyone's happy.
 
 ![Increase throughput, protect quality](/images/throughput-goal-quality-guardrail-sketch.png)
 
-Personally, I am not so sure about this premise.
+I am not so sure about this premise.
 
 # How much faster do we actually want to go?
 
@@ -32,10 +32,10 @@ many other enterprise companies offer similar controls. So it's already the
 case that delivering more, faster, isn't necessarily for everyone.
 
 But let's accept that at least for _most_ customers it would be nice to get new
-capabilities sooner, things that let them do what they couldn't do before. We
-still don't know what the limit is. If we shipped twice as many features in a
-year, would that be the sweet spot? What about 10X as many features? I don't
-know what the limit is, but I'm quite confident there is one.
+capabilities sooner, things that let them do what they couldn't do before. How
+much do they want? If we shipped twice as many features in a year, would that
+be the sweet spot? What about 10X as many features? I don't know what the limit
+is, but I'm quite confident there is one.
 
 (Steve Yegge actually [found the limit][1]: at one point his agents were
 shipping so many features to his game that the players asked him to stop.)
@@ -43,7 +43,7 @@ shipping so many features to his game that the players asked him to stop.)
 # Flip it around
 
 So here's my thought. What if instead of treating quality as a guardrail and
-throughput as the goal, we reversed it - made quality the goal, and throughput
+throughput as the goal, we reversed it---made quality the goal, and throughput
 the guardrail?
 
 ![Improve quality, maintain throughput](/images/quality-goal-throughput-guardrail-sketch.png)
@@ -61,8 +61,8 @@ cybersecurity incidents. There is a lot of room for improvement.
 Imagine if the products we use had all the same features they have today, but
 were lightning fast, extremely reliable, never went down, and were so well made
 that users essentially never ran into weird bugs. I think that would go a long
-way toward earning the trust of the people _using_ these products. And it's a
-very different place from where most of us are focusing right now.
+way toward earning the trust of the people _using_ these products. And it's
+very different from where most of us are focusing our energy right now.
 
 Until quality is uniformly excellent across our products, I think there's a lot
 to be said for being more ambitious about driving it up. Shipping more features
@@ -105,7 +105,7 @@ something to enjoy, helping them complete a task more effectively, giving
 them back some free time, solving a problem they have.
 
 That's impossible to track objectively, so in the charts above I didn't use some
-abstract "quality" line. Instead I used measurable things that are clearly
+abstract "quality" line. Instead I used metrics that are clearly
 _correlated_ with quality: number of bugs, performance, availability. What these
 have in common is that they are measurable, and improving them benefits
 everyone. No customer is going to complain that we fixed too many bugs, made
@@ -116,12 +116,12 @@ guardrail in an absolute sense. As I've [written before][2], what we should
 really be striving for is delivering the most **value over time**. That's an
 optimization problem, where we aim to maximize the *product* of velocity and
 quality, not just maximize one while holding the other steady (the same way you
-don't maximize area of a rectangle by only focusing on either length or width).
+don't maximize the area of a rectangle by focusing only on length or width).
 
 Pragmatically, though, I know a problem like this often becomes more tractable
-when you focus on one dimension at a time while guarding the other. And I'm
-saying that if we're going to pick one dimension to push on right now, quality
-may well be where the greater opportunity lies to help more people.
+when you focus on one dimension at a time while guarding the other. If we're
+going to pick one dimension to push on right now, quality may well be where the
+greater opportunity lies to help more people.
 
 [1]: /posts/takeaways-from-aie-code-summit
 [2]: /posts/value-over-time
