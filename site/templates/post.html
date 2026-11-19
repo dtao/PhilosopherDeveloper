@@ -21,6 +21,26 @@
     {% endfor %}
 {% endblock %}
 
+{% macro comment_list(comments) %}
+        <ol class="comment-list">
+          {% for comment in comments %}
+          <li class="comment" id="comment-{{ comment.id }}">
+            <p class="comment-meta">
+              {% if comment.author_url %}
+              <a class="comment-author" href="{{ comment.author_url }}" rel="nofollow ugc">{{ comment.author }}</a>
+              {% else %}
+              <span class="comment-author">{{ comment.author }}</span>
+              {% endif %}
+              <span aria-hidden="true">&middot;</span>
+              <a class="comment-date" href="#comment-{{ comment.id }}"><time datetime="{{ comment.date_iso }}">{{ comment.pretty_date }}</time></a>
+            </p>
+            <div class="comment-body">{{ comment.message|safe }}</div>
+            {% if comment.replies %}{{ comment_list(comment.replies) }}{% endif %}
+          </li>
+          {% endfor %}
+        </ol>
+{% endmacro %}
+
 {% block content %}
       <article class="post wrap" id="{{ slug }}">
         <header class="post-header">
@@ -29,8 +49,8 @@
           <p class="meta">
             <time datetime="{{ date }}">{{ subtitle }}</time>
             <span aria-hidden="true">&middot;</span> {{ reading_time }} min read
-            {% if not metadata.disable_comments %}
-            <span aria-hidden="true">&middot;</span> <a href="#disqus_thread">Comments</a>
+            {% if comment_count %}
+            <span aria-hidden="true">&middot;</span> <a href="#comments">{{ comment_count }} comment{{ 's' if comment_count != 1 }}</a>
             {% endif %}
           </p>
           {% endif %}
@@ -71,9 +91,15 @@
       </nav>
       {% endif %}
 
-      {% if not metadata.disable_comments %}
-      <section class="comments wrap" aria-label="Comments">
-        <div id="disqus_thread"></div>
+      {% if archived_comments %}
+      <section class="comments wrap" id="comments" aria-labelledby="comments-heading">
+        <h2 id="comments-heading">Comments</h2>
+        <p class="comments-note">
+          This blog used to have comments, powered by Disqus. Comments are
+          closed now, but the conversation that happened here is preserved
+          below.
+        </p>
+        {{ comment_list(archived_comments) }}
       </section>
       {% endif %}
 {% endblock %}
@@ -88,20 +114,6 @@
             setTimeout(function () { button.textContent = 'Copy link'; }, 2000);
           });
         });
-      });
-    </script>
-    {% endif %}
-    {% if not metadata.disable_comments %}
-    <script>
-      window.disqus_shortname = "philosopherdeveloper";
-      window.disqus_title = {{ title|tojson }};
-      window.disqus_identifier = "{{ slug }}";
-
-      ['embed.js', 'count.js'].forEach(function (name) {
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://' + disqus_shortname + '.disqus.com/' + name;
-        document.head.appendChild(s);
       });
     </script>
     {% endif %}

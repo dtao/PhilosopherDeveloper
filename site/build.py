@@ -2,6 +2,7 @@
 
 import datetime
 import itertools
+import json
 import os
 import pathlib
 import re
@@ -229,6 +230,35 @@ def render_post(post_data, images_dir=None):
     return str(doc)
 
 
+def get_archived_comments(comments_dir, slug):
+    """Load the archived Disqus comments for a post as a tree.
+
+    Returns a list of top-level comments, each with a `replies` list, plus
+    the total comment count. Comments were archived by
+    scripts/fetch_disqus_comments.py.
+    """
+    path = os.path.join(comments_dir, f'{slug}.json')
+    if not os.path.exists(path):
+        return [], 0
+
+    with open(path) as f:
+        comments = json.load(f)
+
+    by_id = {}
+    for comment in comments:
+        created = datetime.datetime.fromisoformat(comment['created_at'])
+        by_id[comment['id']] = dict(comment,
+                                    date_iso=created.date().isoformat(),
+                                    pretty_date=f'{created:%B} {created.day}, {created.year}',
+                                    replies=[])
+
+    roots = []
+    for comment in by_id.values():
+        parent = by_id.get(comment['parent'])
+        (parent['replies'] if parent else roots).append(comment)
+    return roots, len(comments)
+
+
 def render_from_template(template_name, data):
     """Render the full HTML from the given template for the given data."""
     return TEMPLATES.get_template(template_name).render(data)
@@ -252,6 +282,9 @@ if __name__ == '__main__':
     os.makedirs(posts_dir, exist_ok=True)
 
     posts = list(get_all_posts(os.path.join(src_dir, 'posts')))
+    for post in posts:
+        post['archived_comments'], post['comment_count'] = get_archived_comments(
+            os.path.join(src_dir, 'comments'), post['slug'])
     published_posts = sorted([post for post in posts
                               if post['metadata'].get('published', True)],
                              key=lambda post: post['date'], reverse=True)
