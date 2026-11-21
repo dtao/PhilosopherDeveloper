@@ -1,6 +1,6 @@
 ---
 title: You are not a set of tasks
-date: 2026-11-20
+date: 2026-04-15
 published: true
 ---
 
