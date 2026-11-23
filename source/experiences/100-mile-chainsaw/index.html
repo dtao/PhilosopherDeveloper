@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>The 100-mile chainsaw - The Philosopher Developer</title>
+    <meta name="description" content="An interactive parable about scale, and what we stop being able to see. Adapted from the essay by Dan Tao.">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#f7f4ee" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#171614" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://philosopherdeveloper.com/experiences/100-mile-chainsaw/">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="The Philosopher Developer">
+    <meta property="og:title" content="The 100-mile chainsaw">
+    <meta property="og:description" content="An interactive parable about scale, and what we stop being able to see.">
+    <meta property="og:url" content="https://philosopherdeveloper.com/experiences/100-mile-chainsaw/">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header class="bar">
+      <a class="wordmark" href="/">The Philosopher Developer</a>
+      <nav aria-label="Experience">
+        <a href="/posts/100-mile-chainsaw.html"><span class="long">Read the essay</span><span class="short">Essay</span></a>
+        <button type="button" id="sound-toggle" aria-pressed="true">Sound on</button>
+      </nav>
+    </header>
+
+    <main id="stage">
+      <canvas id="world" aria-label="A forest, seen from above"></canvas>
+
+      <div class="hud" id="hud" hidden>
+        <div class="sun" aria-hidden="true"><div class="sun-fill" id="sun-fill"></div></div>
+        <div class="hud-left">
+          <span class="hud-day" id="hud-day"></span>
+          <span class="hud-tool" id="hud-tool"></span>
+        </div>
+        <div class="hud-right">
+          <span class="hud-label">Trees felled today</span>
+          <span class="hud-count" id="hud-count">0</span>
+          <span class="hud-sub" id="hud-sub"></span>
+        </div>
+        <div class="scale" aria-hidden="true">
+          <div class="scale-bar" id="scale-bar"></div>
+          <span id="scale-label"></span>
+        </div>
+        <p class="hint" id="hint"></p>
+        <button type="button" class="end-day" id="end-day">End the day</button>
+      </div>
+
+      <div class="dim" id="dim"></div>
+      <div class="reveal" id="reveal" hidden></div>
+      <p class="caption" id="caption" hidden></p>
+
+      <section class="card" id="card" aria-live="polite"></section>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>

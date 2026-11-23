@@ -133,11 +133,19 @@ def get_post_data(path):
     # Strip away microsecond component and render in ISO 8601 format.
     updated_iso = updated.replace(microsecond=0).astimezone().isoformat()
 
+    # A post can have an interactive "experience" (a self-contained page under
+    # source/experiences/<name>/). Lists link to the experience; the post's own
+    # page remains as the text version.
+    experience = metadata.get('experience')
+    experience_path = f'/experiences/{experience}/' if experience else None
+
     return {
         'metadata': metadata,
         'title': title,
         'slug': slug,
         'url_path': f'/posts/{slug}.html',
+        'experience_path': experience_path,
+        'link_path': experience_path or f'/posts/{slug}.html',
         'date': date,
         'published': date_iso,
         'updated': updated_iso,
@@ -349,4 +357,13 @@ if __name__ == '__main__':
     shutil.copytree(os.path.join(BASE_DIR, 'stylesheets'),
                     os.path.join(dest_dir, 'stylesheets'))
     shutil.copy(os.path.join(src_dir, 'favicon.ico'), dest_dir)
+    experiences_dir = os.path.join(src_dir, 'experiences')
+    if os.path.isdir(experiences_dir):
+        shutil.copytree(experiences_dir, os.path.join(dest_dir, 'experiences'))
+    for post in posts:
+        if post['experience_path']:
+            name = post['metadata']['experience']
+            if not os.path.isfile(os.path.join(experiences_dir, name, 'index.html')):
+                print('WARNING: post "{}" links to missing experience "{}"'.format(
+                    post['title'], name))
     print('Copied images and assets')

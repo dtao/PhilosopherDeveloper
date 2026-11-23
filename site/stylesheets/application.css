@@ -616,3 +616,31 @@ a.comment-author:hover { color: var(--accent); }
   .site-header nav, .site-footer, .post-footer, .post-nav, .comments { display: none; }
   body { background: none; color: #000; font-size: 11pt; }
 }
+
+/* ---------------------------------------------------------- Experiences */
+
+.interactive-tag {
+  display: inline-block;
+  margin-left: 0.6em;
+  padding: 0.1em 0.5em;
+  border: 1px solid var(--accent-soft);
+  border-radius: 999px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  vertical-align: 0.25em;
+  white-space: nowrap;
+}
+
+.experience-banner {
+  margin: 0 0 2rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text-soft);
+  font-size: 0.95em;
+}
+.experience-banner .interactive-tag { margin: 0 0.6em 0 0; }

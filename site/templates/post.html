@@ -56,6 +56,13 @@
           {% endif %}
         </header>
 
+        {% if experience_path %}
+        <p class="experience-banner">
+          <span class="interactive-tag">Interactive</span>
+          This essay is also an interactive experience. <a href="{{ experience_path }}">Step inside <span aria-hidden="true">&rarr;</span></a>
+        </p>
+        {% endif %}
+
         <div class="prose">
           {{ html|safe }}
         </div>
@@ -77,13 +84,13 @@
       {% if newer or older %}
       <nav class="post-nav wrap" aria-label="More posts">
         {% if older %}
-        <a class="older" href="{{ older.url_path }}">
+        <a class="older" href="{{ older.link_path }}">
           <span class="post-nav-label">&larr; Previous</span>
           <span class="post-nav-title">{{ older.title }}</span>
         </a>
         {% endif %}
         {% if newer %}
-        <a class="newer" href="{{ newer.url_path }}">
+        <a class="newer" href="{{ newer.link_path }}">
           <span class="post-nav-label">Next &rarr;</span>
           <span class="post-nav-title">{{ newer.title }}</span>
         </a>

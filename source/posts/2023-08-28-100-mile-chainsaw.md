@@ -2,6 +2,7 @@
 title: The 100-mile chainsaw
 date: 2023-08-28
 published: true
+experience: 100-mile-chainsaw
 ---
 
 John was a lumberjack. Every day he would go to the forest, chop down trees, and

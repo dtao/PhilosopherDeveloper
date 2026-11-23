@@ -19,7 +19,7 @@
           <ol class="archive-list">
             {% for post in posts %}
             <li>
-              <a href="{{ post.url_path }}">{{ post.title }}</a>
+              <a href="{{ post.link_path }}">{{ post.title }}</a>{% if post.experience_path %}<span class="interactive-tag">Interactive</span>{% endif %}
               {% if post.comment_count %}
               {% set label = post.comment_count ~ ' comment' ~ ('s' if post.comment_count != 1 else '') %}
               <a class="archive-comments" href="{{ post.url_path }}#comments" title="{{ label }}" aria-label="{{ label }}">
