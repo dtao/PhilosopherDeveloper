@@ -14,34 +14,37 @@
   var REDUCED_MOTION = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Sight (viewFt) barely grows while reach (bladeFt) grows by orders of
+  // magnitude. On the "far" days the blade runs past the edge of what John can
+  // see, into a world that is simulated but never shown until the end.
   var STAGES = [
     { key: 'axe', day: 'Day 1', tool: 'An axe', short: 'Axe',
-      mode: 'objects', viewFt: 150, homes: 1,
+      mode: 'objects', viewFt: 150, reachFt: 4, homes: 1,
       hint: 'Tap a tree to swing the axe. Three swings fell it.' },
     { key: 'chainsaw', day: 'Day 2', tool: 'A chainsaw', short: 'Chainsaw',
-      mode: 'objects', viewFt: 150, bladeFt: 3, reachFt: 5, homes: 1,
+      mode: 'objects', viewFt: 150, bladeFt: 3, cutReachFt: 5, homes: 1,
       sound: { freq: 130, level: 0.06 },
       hint: 'Press and drag through the trees.' },
     { key: 'hundred-ft', day: 'Day 3', tool: 'A 100-foot chainsaw', short: '100-foot saw',
-      mode: 'objects', viewFt: 1100, bladeFt: 100, homes: 2,
+      mode: 'objects', viewFt: 240, bladeFt: 100, homes: 2,
       sound: { freq: 82, level: 0.08 },
       hint: 'Press and sweep.' },
     { key: 'mile', day: 'Day 4', tool: 'A chainsaw a mile long', short: 'Mile-long saw',
-      mode: 'texture', viewFt: 3.2 * MILE, bladeFt: MILE,
+      mode: 'far', viewFt: 420, bladeFt: MILE,
       cabins: 16, villages: [{ homes: 7, radiusFt: 260 }],
-      sound: { freq: 52, level: 0.1, rumble: 0.35 },
-      hint: 'Press and sweep.' },
+      sound: { freq: 52, level: 0.1, rumble: 0.45 },
+      hint: 'Press and sweep. Turning the blade reaches farther than moving it.' },
     { key: 'mile-survey', day: 'Day 5', tool: 'The mile-long saw, with surveyors', short: 'Mile-long saw + surveyors',
-      mode: 'texture', viewFt: 3.2 * MILE, bladeFt: MILE,
+      mode: 'far', viewFt: 420, bladeFt: MILE,
       cabins: 18, villages: [{ homes: 6, radiusFt: 240 }, { homes: 8, radiusFt: 280 }],
       surveyed: 0.75,
-      sound: { freq: 52, level: 0.1, rumble: 0.35 },
-      hint: 'Your surveyors have flagged the homes they found.' },
+      sound: { freq: 52, level: 0.1, rumble: 0.45 },
+      hint: 'Flags at the edge mark homes your surveyors found, and how far away they are.' },
     { key: 'hundred-mile', day: 'Years later', tool: 'A chainsaw 100 miles long', short: '100-mile saw',
-      mode: 'texture', viewFt: 240 * MILE, bladeFt: 100 * MILE,
+      mode: 'far', viewFt: 650, bladeFt: 100 * MILE,
       cabinsPerSqMi: 1 / 2.5, villagesPerSqMi: 1 / 240,
       surveyedCount: 40,
-      sound: { freq: 34, level: 0.12, rumble: 0.7 },
+      sound: { freq: 34, level: 0.12, rumble: 0.8 },
       hint: 'Your surveyors flagged what they could.' }
   ];
 
@@ -113,6 +116,14 @@
       if (v >= 1) return (v < 10 ? v.toFixed(1) : Math.round(v).toLocaleString('en-US')) + ' ' + units[i][1];
     }
     return String(n);
+  }
+
+  function fmtLen(ft) {
+    if (ft >= MILE * 0.5) {
+      var mi = Math.round(ft / MILE * 10) / 10;
+      return mi + (mi === 1 ? ' mile' : ' miles');
+    }
+    return Math.round(ft) + ' ft';
   }
 
   function fmtArea(sqmi) {
@@ -363,7 +374,10 @@
 
   function stageScale(def, w, h) {
     var ftPerPx = def.viewFt / Math.min(w, 1100);
-    if (def.bladeFt) ftPerPx = Math.max(ftPerPx, def.bladeFt / (0.62 * Math.min(w, h)));
+    // Near days: keep the whole blade on screen. Far days: never.
+    if (def.mode === 'objects' && def.bladeFt) {
+      ftPerPx = Math.max(ftPerPx, def.bladeFt / (0.62 * Math.min(w, h)));
+    }
     return ftPerPx;
   }
 
@@ -383,7 +397,6 @@
       particles: [],
       lumber: 0,
       destroyed: 0,
-      clearedCells: 0,
       time: 0,
       running: false,
       cutting: false,
@@ -398,17 +411,21 @@
     S.bladePx = def.bladeFt ? def.bladeFt / S.ftPerPx : 0;
     S.ground = makeLayer(S.W, S.H, S.dpr);
     S.forest = makeLayer(S.W, S.H, S.dpr);
-    if (def.mode === 'objects') genObjects(S);
-    else genTexture(S);
+    genObjects(S);
+    if (def.mode === 'far') genWorld(S);
     return S;
   }
 
-  function addHome(S, xPx, yPx, village) {
+  function clearedSqMi(S) {
+    return S.world ? S.world.clearedSqFt / (MILE * MILE) : null;
+  }
+
+  function addHome(S, xf, yf, village) {
     var r = S.rand;
     var h = {
       id: S.homes.length + 1,
-      x: xPx, y: yPx,
-      xf: xPx * S.ftPerPx, yf: yPx * S.ftPerPx,
+      xf: xf, yf: yf,
+      x: xf / S.ftPerPx, y: yf / S.ftPerPx,
       wf: 26 + r() * 8, hf: 20 + r() * 6,
       rot: (r() - 0.5) * 0.6,
       village: village || 0,
@@ -419,17 +436,17 @@
     return h;
   }
 
-  // Near stages: individual trees you can see fall.
+  // What John can see: individual trees in a small window.
   function genObjects(S) {
     var r = S.rand, ft = S.ftPerPx;
-    for (var i = 0; i < S.def.homes; i++) {
+    for (var i = 0; i < (S.def.homes || 0); i++) {
       for (var tries = 0; tries < 20; tries++) {
         var hx = S.W * (0.15 + r() * 0.7), hy = S.H * (0.22 + r() * 0.6);
         var ok = Math.abs(hx - S.W / 2) > S.W * 0.08 || Math.abs(hy - S.H / 2) > S.H * 0.1;
         for (var j = 0; j < S.homes.length; j++) {
           if (Math.hypot(S.homes[j].x - hx, S.homes[j].y - hy) < 90 / ft) ok = false;
         }
-        if (ok) { addHome(S, hx, hy); break; }
+        if (ok) { addHome(S, hx * ft, hy * ft); break; }
       }
     }
 
@@ -483,65 +500,72 @@
     });
   }
 
-  // Far stages: the forest is a texture; a grid counts what's cleared.
-  function genTexture(S) {
-    var def = S.def, r = S.rand, ft = S.ftPerPx;
-    var c = 4;
-    S.cell = c;
-    S.gw = Math.ceil(S.W / c);
-    S.gh = Math.ceil(S.H / c);
-    var n = S.gw * S.gh;
-    S.cellTrees = new Float32Array(n);
-    S.cleared = new Uint8Array(n);
-    S.cellVillage = new Int16Array(n);
+  // What John can reach: a coarse model of the whole forest around him, in
+  // feet, centered on his window. It is never drawn during the day.
+  function genWorld(S) {
+    var def = S.def, r = S.rand;
+    var side = def.bladeFt + Math.max(S.wFt, S.hFt) * 1.5;
+    var G = 384, c = side / G, half = side / 2;
+    var Wd = {
+      side: side, G: G, c: c, half: half,
+      cover: new Float32Array(G * G),
+      density: new Float32Array(G * G),
+      lake: new Float32Array(G * G),
+      villages: [],
+      quads: [],
+      clearedSqFt: 0
+    };
+    S.world = Wd;
 
-    var lakeScale = S.wFt / 3.2, toneScale = S.wFt / 7;
-    S.lakeAt = function (xf, yf) { return fbm(xf / lakeScale, yf / lakeScale, S.seed + 11, 4); };
-    S.toneAt = function (xf, yf) { return fbm(xf / toneScale, yf / toneScale, S.seed + 23, 3); };
-
-    // Sample lake/tone at cell corners for smooth interpolation.
-    var cw = S.gw + 1, ch = S.gh + 1;
-    var lakeG = new Float32Array(cw * ch), toneG = new Float32Array(cw * ch);
-    for (var gy = 0; gy < ch; gy++) {
-      for (var gx = 0; gx < cw; gx++) {
-        lakeG[gy * cw + gx] = S.lakeAt(gx * c * ft, gy * c * ft);
-        toneG[gy * cw + gx] = S.toneAt(gx * c * ft, gy * c * ft);
+    var lakeScale = side / 3.2, toneScale = side / 7;
+    var seed = S.seed;
+    function computeLakes() {
+      for (var gy = 0; gy < G; gy++) {
+        for (var gx = 0; gx < G; gx++) {
+          Wd.lake[gy * G + gx] = fbm(((gx + 0.5) * c - half) / lakeScale, ((gy + 0.5) * c - half) / lakeScale, seed + 11, 4);
+        }
       }
+      var sorted = Array.prototype.slice.call(Wd.lake).sort(function (a, b) { return a - b; });
+      Wd.lakeT = sorted[Math.floor(sorted.length * 0.92)];
     }
-    // Water covers roughly the top 8% of the lake field.
-    var sorted = Array.prototype.slice.call(lakeG).sort(function (a, b) { return a - b; });
-    S.lakeT = sorted[Math.floor(sorted.length * 0.92)];
-
-    function interp(G, px, py) {
-      var gx = px / c, gy = py / c;
-      var x0 = Math.min(cw - 2, Math.max(0, Math.floor(gx)));
-      var y0 = Math.min(ch - 2, Math.max(0, Math.floor(gy)));
-      var u = gx - x0, v = gy - y0;
-      var a = G[y0 * cw + x0], b = G[y0 * cw + x0 + 1];
-      var cc = G[(y0 + 1) * cw + x0], d = G[(y0 + 1) * cw + x0 + 1];
-      return a + (b - a) * u + (cc - a) * v + (a - b - cc + d) * u * v;
+    // John stands on dry land.
+    for (var attempt = 0; attempt < 6; attempt++) {
+      computeLakes();
+      if (Wd.lake[(G / 2) * G + G / 2] < Wd.lakeT - 0.03) break;
+      seed += 7919;
     }
-    S.lakeAtPx = function (px, py) { return interp(lakeG, px, py); };
+    Wd.lakeAt = function (xf, yf) { return fbm(xf / lakeScale, yf / lakeScale, seed + 11, 4); };
+    Wd.toneAt = function (xf, yf) { return fbm(xf / toneScale, yf / toneScale, seed + 23, 3); };
+    Wd.cellOf = function (xf, yf) {
+      var gx = Math.floor((xf + half) / c), gy = Math.floor((yf + half) / c);
+      if (gx < 0 || gy < 0 || gx >= G || gy >= G) return -1;
+      return gy * G + gx;
+    };
+    function dry(xf, yf) {
+      var i = Wd.cellOf(xf, yf);
+      return i >= 0 && Wd.lake[i] < Wd.lakeT - 0.01;
+    }
+    var winX = S.wFt / 2 + 60, winY = S.hFt / 2 + 60;
+    function outsideWindow(xf, yf) { return Math.abs(xf) > winX || Math.abs(yf) > winY; }
+    function randomPoint() { return [(r() - 0.5) * side * 0.96, (r() - 0.5) * side * 0.96]; }
 
     // Settlements.
-    S.villages = [];
-    var areaSqMi = (S.wFt / MILE) * (S.hFt / MILE);
+    var areaSqMi = (side / MILE) * (side / MILE);
     var villageDefs = def.villages ? def.villages.slice() : [];
     if (def.villagesPerSqMi) {
       var nv = Math.round(areaSqMi * def.villagesPerSqMi);
       for (var i = 0; i < nv; i++) villageDefs.push({ homes: 15 + ((r() * 55) | 0), radiusFt: 600 + r() * 900 });
     }
-    function dry(px, py) { return S.lakeAtPx(px, py) < S.lakeT - 0.01; }
     villageDefs.forEach(function (vd) {
       for (var tries = 0; tries < 40; tries++) {
-        var vx = S.W * (0.06 + r() * 0.88), vy = S.H * (0.08 + r() * 0.84);
-        if (!dry(vx, vy)) continue;
-        var v = { id: S.villages.length + 1, x: vx, y: vy, rPx: vd.radiusFt / ft,
-                  xf: vx * ft, yf: vy * ft, rf: vd.radiusFt };
-        S.villages.push(v);
+        var p = randomPoint();
+        var nearWindow = Math.abs(p[0]) < winX + vd.radiusFt && Math.abs(p[1]) < winY + vd.radiusFt;
+        if (!dry(p[0], p[1]) || nearWindow) continue;
+        var v = { id: Wd.villages.length + 1, xf: p[0], yf: p[1], rf: vd.radiusFt };
+        Wd.villages.push(v);
         for (var k = 0; k < vd.homes; k++) {
-          var a = r() * Math.PI * 2, d = Math.sqrt(r()) * v.rPx * 0.8;
-          var hx = vx + Math.cos(a) * d, hy = vy + Math.sin(a) * d;
+          var a = r() * Math.PI * 2, d = Math.sqrt(r()) * v.rf * 0.8;
+          var hx = v.xf + Math.cos(a) * d, hy = v.yf + Math.sin(a) * d;
           if (dry(hx, hy)) addHome(S, hx, hy, v.id);
         }
         break;
@@ -550,8 +574,8 @@
     var nc = def.cabins || Math.round(areaSqMi * (def.cabinsPerSqMi || 0));
     for (i = 0; i < nc; i++) {
       for (var t2 = 0; t2 < 10; t2++) {
-        var cx = r() * S.W, cy = r() * S.H;
-        if (dry(cx, cy)) { addHome(S, cx, cy, 0); break; }
+        var q = randomPoint();
+        if (dry(q[0], q[1]) && outsideWindow(q[0], q[1])) { addHome(S, q[0], q[1], 0); break; }
       }
     }
 
@@ -564,79 +588,20 @@
       }
     }
 
-    // Mark village cells.
-    S.villages.forEach(function (v) {
-      var x0 = Math.max(0, Math.floor((v.x - v.rPx) / c)), x1 = Math.min(S.gw - 1, Math.floor((v.x + v.rPx) / c));
-      var y0 = Math.max(0, Math.floor((v.y - v.rPx) / c)), y1 = Math.min(S.gh - 1, Math.floor((v.y + v.rPx) / c));
-      for (var yy = y0; yy <= y1; yy++) {
-        for (var xx = x0; xx <= x1; xx++) {
-          var nx = Math.max(xx * c, Math.min(v.x, xx * c + c));
-          var ny = Math.max(yy * c, Math.min(v.y, yy * c + c));
-          if (Math.hypot(nx - v.x, ny - v.y) <= v.rPx) S.cellVillage[yy * S.gw + xx] = v.id;
+    // Trees per square foot in each cell.
+    for (var gy = 0; gy < G; gy++) {
+      for (var gx = 0; gx < G; gx++) {
+        var idx = gy * G + gx;
+        if (Wd.lake[idx] >= Wd.lakeT) continue;
+        var cx = (gx + 0.5) * c - half, cy = (gy + 0.5) * c - half;
+        var inV = false;
+        for (var vi = 0; vi < Wd.villages.length; vi++) {
+          var vv = Wd.villages[vi];
+          if (Math.abs(cx - vv.xf) < vv.rf && Math.abs(cy - vv.yf) < vv.rf && Math.hypot(cx - vv.xf, cy - vv.yf) < vv.rf) { inV = true; break; }
         }
-      }
-    });
-    function inVillage(px, py, idx) {
-      var vid = S.cellVillage[idx];
-      if (!vid) return false;
-      var v = S.villages[vid - 1];
-      return Math.hypot(px - v.x, py - v.y) <= v.rPx;
-    }
-
-    // Trees per cell.
-    var cellTreeCount = (c * ft) * (c * ft) / SQFT_PER_TREE;
-    for (gy = 0; gy < S.gh; gy++) {
-      for (gx = 0; gx < S.gw; gx++) {
-        var idx = gy * S.gw + gx;
-        var px = (gx + 0.5) * c, py = (gy + 0.5) * c;
-        if (S.lakeAtPx(px, py) >= S.lakeT || inVillage(px, py, idx)) continue;
-        S.cellTrees[idx] = cellTreeCount;
+        if (!inV) Wd.density[idx] = 1 / SQFT_PER_TREE;
       }
     }
-
-    // Paint pixels.
-    var bw = S.forest.c.width, bh = S.forest.c.height, dpr = S.dpr;
-    var fimg = S.forest.x.createImageData(bw, bh);
-    var gimg = S.ground.x.createImageData(bw, bh);
-    var fd = fimg.data, gd = gimg.data;
-    var dark = [50, 76, 50], light = [96, 122, 72];
-    for (var by = 0; by < bh; by++) {
-      var py2 = (by + 0.5) / dpr;
-      var row = Math.min(S.gh - 1, (py2 / c) | 0) * S.gw;
-      for (var bx = 0; bx < bw; bx++) {
-        var px2 = (bx + 0.5) / dpr;
-        var o = (by * bw + bx) * 4;
-        var lake = S.lakeAtPx(px2, py2);
-        var j = hash2(bx, by, S.seed);
-        var cidx = row + Math.min(S.gw - 1, (px2 / c) | 0);
-        var col;
-        if (lake >= S.lakeT) {
-          var k2 = 0.92 + (lake - S.lakeT) * 0.8 + j * 0.05;
-          col = COLORS.water;
-          gd[o] = col[0] * k2; gd[o + 1] = col[1] * k2; gd[o + 2] = col[2] * k2; gd[o + 3] = 255;
-          continue;
-        }
-        if (lake >= S.lakeT - 0.012) {
-          col = COLORS.sand;
-          gd[o] = col[0]; gd[o + 1] = col[1]; gd[o + 2] = col[2]; gd[o + 3] = 255;
-          continue;
-        }
-        var meadow = inVillage(px2, py2, cidx);
-        col = meadow ? COLORS.meadow : COLORS.soil;
-        var kg = meadow ? 0.94 + j * 0.1 : 0.72 + j * 0.5;
-        gd[o] = col[0] * kg; gd[o + 1] = col[1] * kg; gd[o + 2] = col[2] * kg; gd[o + 3] = 255;
-        if (meadow) continue;
-        var tone = interp(toneG, px2, py2);
-        var tt = Math.max(0, Math.min(1, (tone - 0.3) * 2.2));
-        var kf = 0.8 + j * 0.38;
-        fd[o] = (dark[0] + (light[0] - dark[0]) * tt) * kf;
-        fd[o + 1] = (dark[1] + (light[1] - dark[1]) * tt) * kf;
-        fd[o + 2] = (dark[2] + (light[2] - dark[2]) * tt) * kf;
-        fd[o + 3] = 255;
-      }
-    }
-    S.forest.x.putImageData(fimg, 0, 0);
-    S.ground.x.putImageData(gimg, 0, 0);
   }
 
   // ------------------------------------------------------------- Drawing
@@ -712,7 +677,10 @@
 
   function drawBlade(x, S) {
     if (!S.blade || !S.def.bladeFt) return;
-    var e = bladeEnds(S);
+    // Only draw the part of the blade that could be on screen.
+    var half = Math.min(S.bladePx / 2, Math.hypot(S.W, S.H) * 1.1);
+    var dxh = Math.cos(S.blade.ang) * half, dyh = Math.sin(S.blade.ang) * half;
+    var e = { ax: S.blade.x - dxh, ay: S.blade.y - dyh, bx: S.blade.x + dxh, by: S.blade.y + dyh };
     var w = Math.max(3, Math.min(9, S.bladePx * 0.035));
     x.lineCap = 'round';
     x.strokeStyle = 'rgba(0,0,0,0.3)';
@@ -745,6 +713,61 @@
     return { s: s, ox: (view.w - S.W * s) / 2, oy: (view.h - S.H * s) / 2 };
   }
 
+  var FOG = '226, 228, 220';
+
+  function drawFog(x, S) {
+    var cx = S.W / 2, cy = S.H / 2;
+    var inner = Math.min(S.W, S.H) * 0.3, outer = Math.hypot(S.W, S.H) * 0.52;
+    var g = x.createRadialGradient(cx, cy, inner, cx, cy, outer);
+    g.addColorStop(0, 'rgba(' + FOG + ', 0)');
+    g.addColorStop(0.55, 'rgba(' + FOG + ', 0.5)');
+    g.addColorStop(1, 'rgba(' + FOG + ', 0.97)');
+    x.fillStyle = g;
+    x.fillRect(0, 0, S.W, S.H);
+  }
+
+  function fmtDist(ft) {
+    if (ft < 0.2 * MILE) return Math.round(ft / 10) * 10 + ' ft';
+    var mi = ft / MILE;
+    return (mi < 10 ? mi.toFixed(1) : Math.round(mi)) + ' mi';
+  }
+
+  // Surveyors' reports: a direction and a distance, nothing more. Reports
+  // pointing the same way are merged, showing the nearest and a count.
+  function drawReports(x, S) {
+    var cx = S.W / 2, cy = S.H / 2, R = Math.min(S.W, S.H) * 0.42;
+    var reports = [];
+    for (var i = 0; i < S.homes.length; i++) {
+      var h = S.homes[i];
+      if (h.flagged) reports.push({ ang: Math.atan2(h.yf, h.xf), dist: Math.hypot(h.xf, h.yf) });
+    }
+    if (!reports.length) return;
+    reports.sort(function (a, b) { return a.ang - b.ang; });
+    var groups = [];
+    reports.forEach(function (rp) {
+      var g = groups[groups.length - 1];
+      if (g && rp.ang - g.start < 0.14) { g.angs.push(rp.ang); g.dist = Math.min(g.dist, rp.dist); }
+      else groups.push({ start: rp.ang, angs: [rp.ang], dist: rp.dist });
+    });
+    x.font = '500 10px "IBM Plex Mono", ui-monospace, monospace';
+    x.textAlign = 'center';
+    x.textBaseline = 'middle';
+    groups.forEach(function (g) {
+      var a = g.angs.reduce(function (s2, v) { return s2 + v; }, 0) / g.angs.length;
+      var c = Math.cos(a), s = Math.sin(a);
+      var px = cx + c * R, py = cy + s * R;
+      drawPin(x, px, py + 5, false);
+      var label = fmtDist(g.dist) + (g.angs.length > 1 ? ' \u00d7' + g.angs.length : '');
+      var tw = x.measureText(label).width;
+      var lx = cx + c * (R + 20), ly = cy + s * (R + 20) + 4;
+      x.fillStyle = 'rgba(30, 27, 24, 0.62)';
+      x.fillRect(lx - tw / 2 - 4, ly - 7, tw + 8, 14);
+      x.fillStyle = '#f7f4ee';
+      x.fillText(label, lx, ly);
+    });
+    x.textBaseline = 'alphabetic';
+  }
+
   function render(S, now, dt) {
     ctx.setTransform(view.dpr, 0, 0, view.dpr, 0, 0);
     ctx.fillStyle = '#2d3a2a';
@@ -754,6 +777,7 @@
     ctx.save();
     ctx.translate(fit.ox, fit.oy);
     ctx.scale(fit.s, fit.s);
+    ctx.save();
     if (S.shake > 0.05 && !REDUCED_MOTION) {
       ctx.translate((Math.random() - 0.5) * S.shake, (Math.random() - 0.5) * S.shake);
     }
@@ -762,45 +786,37 @@
 
     var pxPerFt = 1 / S.ftPerPx;
     var i;
-    if (S.def.mode === 'objects') {
-      // Axe progress marks.
-      for (i = 0; i < S.trees.length; i++) {
-        var t = S.trees[i];
-        if (!t.alive || !t.hits) continue;
-        ctx.strokeStyle = '#f0c674';
-        ctx.lineWidth = 3;
-        ctx.beginPath();
-        ctx.arc(t.x, t.y, t.r + 4, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * t.hits / 3);
-        ctx.stroke();
-      }
-      S.homes.forEach(function (h) { drawHome(ctx, h, h.x, h.y, pxPerFt); });
-      // Falling trees.
-      var keep = [];
-      for (i = 0; i < S.falling.length; i++) {
-        var f = S.falling[i];
-        var p = Math.min(1, (now - f.t0) / 650);
-        var e = p * p;
-        var L = f.r * 4.5;
-        var ex = f.x + Math.cos(f.ang) * L * e, ey = f.y + Math.sin(f.ang) * L * e;
-        ctx.strokeStyle = COLORS.bark;
-        ctx.lineWidth = Math.max(1.5, f.r * 0.35);
-        ctx.lineCap = 'round';
-        ctx.beginPath(); ctx.moveTo(f.x, f.y); ctx.lineTo(ex, ey); ctx.stroke();
-        ctx.fillStyle = f.color;
-        ctx.beginPath(); ctx.arc(ex, ey, f.r * (1 - 0.25 * e), 0, Math.PI * 2); ctx.fill();
-        if (p >= 1) bakeLog(S, f);
-        else keep.push(f);
-      }
-      S.falling = keep;
-    } else {
-      for (i = 0; i < S.homes.length; i++) {
-        var hm = S.homes[i];
-        drawHome(ctx, hm, hm.x, hm.y, pxPerFt);
-      }
-      for (i = 0; i < S.homes.length; i++) {
-        if (S.homes[i].flagged) drawPin(ctx, S.homes[i].x, S.homes[i].y, S.homes[i].destroyed);
-      }
+    // Axe progress marks.
+    for (i = 0; i < S.trees.length; i++) {
+      var t = S.trees[i];
+      if (!t.alive || !t.hits) continue;
+      ctx.strokeStyle = '#f0c674';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(t.x, t.y, t.r + 4, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * t.hits / 3);
+      ctx.stroke();
     }
+    if (S.def.mode === 'objects') {
+      S.homes.forEach(function (h) { drawHome(ctx, h, h.x, h.y, pxPerFt); });
+    }
+    // Falling trees.
+    var keep = [];
+    for (i = 0; i < S.falling.length; i++) {
+      var f = S.falling[i];
+      var p = Math.min(1, (now - f.t0) / 650);
+      var e = p * p;
+      var L = f.r * 4.5;
+      var ex = f.x + Math.cos(f.ang) * L * e, ey = f.y + Math.sin(f.ang) * L * e;
+      ctx.strokeStyle = COLORS.bark;
+      ctx.lineWidth = Math.max(1.5, f.r * 0.35);
+      ctx.lineCap = 'round';
+      ctx.beginPath(); ctx.moveTo(f.x, f.y); ctx.lineTo(ex, ey); ctx.stroke();
+      ctx.fillStyle = f.color;
+      ctx.beginPath(); ctx.arc(ex, ey, f.r * (1 - 0.25 * e), 0, Math.PI * 2); ctx.fill();
+      if (p >= 1) bakeLog(S, f);
+      else keep.push(f);
+    }
+    S.falling = keep;
 
     // Particles.
     var alive = [];
@@ -819,6 +835,11 @@
     S.particles = alive;
 
     drawBlade(ctx, S);
+    ctx.restore();
+    if (S.def.mode === 'far') {
+      drawFog(ctx, S);
+      drawReports(ctx, S);
+    }
     ctx.restore();
   }
 
@@ -854,7 +875,9 @@
 
   function fell(S, t, dirAng, now) {
     t.alive = false;
-    S.lumber += 1;
+    // On far days the world model does the counting; these are just the
+    // trees John happens to see fall.
+    if (S.def.mode === 'objects') S.lumber += 1;
     var f = S.forest.x;
     f.globalCompositeOperation = 'destination-out';
     f.beginPath(); f.arc(t.x + t.r * 0.1, t.y + t.r * 0.12, t.r * 1.32, 0, Math.PI * 2); f.fill();
@@ -879,13 +902,9 @@
     }
   }
 
-  function homeRadiusPx(S, h) {
-    return Math.max(h.wf, h.hf) * 0.5 / S.ftPerPx;
-  }
-
-  // Sweep the blade from its previous position to its current one.
+  // Sweep the blade from its previous position to its current one (pixels).
   function sweep(S, a0x, a0y, b0x, b0y, a1x, a1y, b1x, b1y, now) {
-    var tol = Math.max((S.def.reachFt || 1.5) / S.ftPerPx, 2);
+    var tol = Math.max((S.def.cutReachFt || 1.5) / S.ftPerPx, 2);
     var minX = Math.min(a0x, b0x, a1x, b1x) - tol, maxX = Math.max(a0x, b0x, a1x, b1x) + tol;
     var minY = Math.min(a0y, b0y, a1y, b1y) - tol, maxY = Math.max(a0y, b0y, a1y, b1y) + tol;
     var moveAng = S.blade.ang + Math.PI / 2;
@@ -899,56 +918,90 @@
     }
 
     var count = 0, i;
-    if (S.def.mode === 'objects') {
-      for (i = 0; i < S.trees.length; i++) {
-        var t = S.trees[i];
-        if (t.alive && hit(t.x, t.y, 0)) {
-          fell(S, t, moveAng, now);
-          count++;
-          Sound.thud(count, 0.6);
-        }
-      }
-    } else {
-      var c = S.cell;
-      var gx0 = Math.max(0, Math.floor(minX / c)), gx1 = Math.min(S.gw - 1, Math.floor(maxX / c));
-      var gy0 = Math.max(0, Math.floor(minY / c)), gy1 = Math.min(S.gh - 1, Math.floor(maxY / c));
-      for (var gy = gy0; gy <= gy1; gy++) {
-        for (var gx = gx0; gx <= gx1; gx++) {
-          var idx = gy * S.gw + gx;
-          if (S.cleared[idx]) continue;
-          if (hit((gx + 0.5) * c, (gy + 0.5) * c, 0)) {
-            S.cleared[idx] = 1;
-            if (S.cellTrees[idx] > 0) {
-              S.lumber += S.cellTrees[idx];
-              S.clearedCells++;
-              count++;
-            }
-          }
-        }
-      }
-      var f = S.forest.x;
-      f.globalCompositeOperation = 'destination-out';
-      f.beginPath();
-      f.moveTo(a0x, a0y); f.lineTo(b0x, b0y); f.lineTo(b1x, b1y); f.lineTo(a1x, a1y); f.closePath();
-      f.fill();
-      f.lineCap = 'round';
-      f.lineWidth = tol * 2;
-      f.beginPath(); f.moveTo(a1x, a1y); f.lineTo(b1x, b1y); f.stroke();
-      f.globalCompositeOperation = 'source-over';
-      if (count) {
-        for (i = 0; i < 6; i++) {
-          var k = Math.random();
-          spawn(S, a1x + (b1x - a1x) * k, a1y + (b1y - a1y) * k, 1, 'dust');
-        }
+    for (i = 0; i < S.trees.length; i++) {
+      var t = S.trees[i];
+      if (t.alive && hit(t.x, t.y, 0)) {
+        fell(S, t, moveAng, now);
+        count++;
+        Sound.thud(count, 0.6);
       }
     }
+    if (S.def.mode === 'objects') {
+      for (i = 0; i < S.homes.length; i++) {
+        var h = S.homes[i];
+        if (!h.destroyed && hit(h.x, h.y, Math.max(h.wf, h.hf) * 0.5 / S.ftPerPx)) destroyHome(S, h);
+      }
+      if (count) {
+        S.load = Math.min(1, S.load + count * 0.08);
+        if (S.index >= 2) S.shake = Math.min(7, S.shake + count * 0.12);
+      }
+      return;
+    }
+    sweepWorld(S, a0x, a0y, b0x, b0y, a1x, a1y, b1x, b1y);
+  }
+
+  // Everything the blade reaches beyond the window happens here, unseen.
+  function sweepWorld(S, a0x, a0y, b0x, b0y, a1x, a1y, b1x, b1y) {
+    var Wd = S.world, ft = S.ftPerPx, cx = S.W / 2, cy = S.H / 2;
+    function F(v, c0) { return (v - c0) * ft; }
+    var A0x = F(a0x, cx), A0y = F(a0y, cy), B0x = F(b0x, cx), B0y = F(b0y, cy);
+    var A1x = F(a1x, cx), A1y = F(a1y, cy), B1x = F(b1x, cx), B1y = F(b1y, cy);
+    var moved = Math.hypot(A1x - A0x, A1y - A0y) + Math.hypot(B1x - B0x, B1y - B0y);
+    if (moved < 0.5) return;
+    Wd.quads.push([A0x, A0y, B0x, B0y, B1x, B1y, A1x, A1y]);
+
+    // Coverage: sample along the blade; each sample sweeps a thin strip.
+    var L = S.def.bladeFt;
+    var n = Math.min(4000, Math.ceil(L / (Wd.c * 0.5)));
+    var spacing = L / n, cellArea = Wd.c * Wd.c, added = 0, lumber = 0;
+    var d1x = (B1x - A1x) / L, d1y = (B1y - A1y) / L;
+    for (var i = 0; i < n; i++) {
+      var k = (i + 0.5) / n;
+      var p0x = A0x + (B0x - A0x) * k, p0y = A0y + (B0y - A0y) * k;
+      var p1x = A1x + (B1x - A1x) * k, p1y = A1y + (B1y - A1y) * k;
+      var perp = Math.abs((p1x - p0x) * d1y - (p1y - p0y) * d1x);
+      if (perp <= 0) continue;
+      var idx = Wd.cellOf((p0x + p1x) / 2, (p0y + p1y) / 2);
+      if (idx < 0 || !Wd.density[idx]) continue;
+      var old = Wd.cover[idx];
+      if (old >= cellArea) continue;
+      var nw = Math.min(cellArea, old + perp * spacing);
+      Wd.cover[idx] = nw;
+      added += nw - old;
+      lumber += (nw - old) * Wd.density[idx];
+    }
+    Wd.clearedSqFt += added;
+    S.lumber += lumber;
+
+    // Homes: exact test against the swept quad.
+    var minX = Math.min(A0x, B0x, A1x, B1x), maxX = Math.max(A0x, B0x, A1x, B1x);
+    var minY = Math.min(A0y, B0y, A1y, B1y), maxY = Math.max(A0y, B0y, A1y, B1y);
     for (i = 0; i < S.homes.length; i++) {
       var h = S.homes[i];
-      if (!h.destroyed && hit(h.x, h.y, homeRadiusPx(S, h))) destroyHome(S, h);
+      if (h.destroyed) continue;
+      var rr = Math.max(h.wf, h.hf) * 0.5;
+      if (h.xf < minX - rr || h.xf > maxX + rr || h.yf < minY - rr || h.yf > maxY + rr) continue;
+      if (inTri(h.xf, h.yf, A0x, A0y, B0x, B0y, B1x, B1y) ||
+          inTri(h.xf, h.yf, A0x, A0y, B1x, B1y, A1x, A1y) ||
+          distToSeg(h.xf, h.yf, A1x, A1y, B1x, B1y) < rr) {
+        destroyHome(S, h);
+      }
     }
-    if (count) {
-      S.load = Math.min(1, S.load + count * (S.def.mode === 'objects' ? 0.08 : 0.004));
-      if (S.index >= 2) S.shake = Math.min(7, S.shake + count * (S.def.mode === 'objects' ? 0.12 : 0.004));
+
+    if (added > 0) {
+      // Felt, not seen: load on the saw, a rumble, the ground shaking, and
+      // dust drifting in from where the blade disappears into the fog.
+      var rate = added / (L * S.wFt * 0.05);
+      S.load = Math.min(1, S.load + rate);
+      S.shake = Math.min(8, S.shake + rate * 3);
+      var half = Math.hypot(S.W, S.H) * 0.5;
+      var ux = Math.cos(S.blade.ang), uy = Math.sin(S.blade.ang);
+      for (var sgn = -1; sgn <= 1; sgn += 2) {
+        if (Math.random() < Math.min(0.9, 0.2 + rate * 4)) {
+          var dd = half * (0.55 + Math.random() * 0.4);
+          spawn(S, S.blade.x + ux * dd * sgn, S.blade.y + uy * dd * sgn, 2, 'dust');
+        }
+      }
     }
   }
 
@@ -1067,9 +1120,8 @@
   function updateHud(S) {
     var text = fmt(S.lumber);
     if (text !== lastCountText) { hudCount.textContent = text; lastCountText = text; }
-    if (S.def.mode === 'texture') {
-      var sq = S.clearedCells * Math.pow(S.cell * S.ftPerPx / MILE, 2);
-      hudSub.textContent = fmtArea(sq) + ' cleared';
+    if (S.world) {
+      hudSub.textContent = fmtArea(clearedSqMi(S)) + ' cleared';
     } else {
       hudSub.textContent = '';
     }
@@ -1202,8 +1254,8 @@
     var dl = el('dl', { class: 'tally' });
     function row(k, v) { dl.appendChild(el('dt', null, k)); dl.appendChild(el('dd', null, v)); }
     row('Trees felled today', fmt(S.lumber));
-    if (S.def.mode === 'texture') {
-      row('Forest cleared', fmtArea(S.clearedCells * Math.pow(S.cell * S.ftPerPx / MILE, 2)));
+    if (S.world) {
+      row('Forest cleared', fmtArea(clearedSqMi(S)));
     }
     row('All-time', fmt(state.totalLumber) + ' trees');
     root.appendChild(dl);
@@ -1229,6 +1281,7 @@
     lastCountText = '';
     $('#hud-day').textContent = S.def.day;
     $('#hud-tool').textContent = S.def.tool;
+    $('#hud-reach').textContent = 'Reach ' + fmtLen(S.def.bladeFt || S.def.reachFt) + ' \u00b7 Sight ' + fmtLen(S.wFt);
     hud.hidden = false;
     scaleBar(S);
     hideCard();
@@ -1250,7 +1303,7 @@
     state.totalLumber += S.lumber;
     state.results.push({
       key: S.def.key, label: S.def.short, trees: S.lumber, homes: S.destroyed,
-      area: S.def.mode === 'texture' ? S.clearedCells * Math.pow(S.cell * S.ftPerPx / MILE, 2) : null
+      area: clearedSqMi(S)
     });
     setTimeout(function () {
       hud.hidden = true;
@@ -1388,7 +1441,7 @@
           { cls: 'thought', text: 'And if it weren’t, how would he know? Why should he stop?' },
           'What John knows is that the lumber he supplies is still being used by the city. And the visitors from the forest stopped making their pleas long ago.'
         ]);
-        addChoices(root, [{ label: 'Look closer', primary: true, onClick: reveal }]);
+        addChoices(root, [{ label: 'Look around', primary: true, onClick: lookAround }]);
       }
     });
   }
@@ -1481,174 +1534,160 @@
 
   // -------------------------------------------------------------- Reveal
 
-  function cellCleared(S, xf, yf) {
-    var px = xf / S.ftPerPx, py = yf / S.ftPerPx;
-    if (px < 0 || py < 0 || px >= S.W || py >= S.H) return false;
-    return S.cleared[Math.floor(py / S.cell) * S.gw + Math.floor(px / S.cell)] === 1;
-  }
-
-  function villageAtFt(S, xf, yf) {
-    for (var i = 0; i < S.villages.length; i++) {
-      var v = S.villages[i];
-      if (Math.abs(xf - v.xf) < v.rf && Math.abs(yf - v.yf) < v.rf && Math.hypot(xf - v.xf, yf - v.yf) < v.rf) return true;
+  var soilPattern = null;
+  function getSoilPattern(x) {
+    if (!soilPattern) {
+      var c = document.createElement('canvas');
+      c.width = c.height = 64;
+      var cx = c.getContext('2d');
+      var img = cx.createImageData(64, 64);
+      for (var i = 0; i < 64 * 64; i++) {
+        var k = 0.72 + hash2(i % 64, (i / 64) | 0, 3) * 0.5;
+        img.data[i * 4] = COLORS.soil[0] * k;
+        img.data[i * 4 + 1] = COLORS.soil[1] * k;
+        img.data[i * 4 + 2] = COLORS.soil[2] * k;
+        img.data[i * 4 + 3] = 255;
+      }
+      cx.putImageData(img, 0, 0);
+      soilPattern = c;
     }
-    return false;
+    return x.createPattern(soilPattern, 'repeat');
   }
 
-  // Draw the final day's forest around a point at an arbitrary scale.
-  function renderRevealFrame(S, ftPerPx, target, P) {
-    var layer = makeLayer(view.w, view.h, view.dpr);
-    var x = layer.x;
-    var w = view.w, h = view.h;
-    function toFt(px, py) { return [target.xf + (px - P.x) * ftPerPx, target.yf + (py - P.y) * ftPerPx]; }
-    var dry = function (xf, yf) { return S.lakeAt(xf, yf) < S.lakeT; };
-    var nearVillages = S.villages.filter(function (v) {
-      var c = toFt(w / 2, h / 2);
-      return Math.hypot(v.xf - c[0], v.yf - c[1]) < v.rf + Math.max(w, h) * ftPerPx;
+  // Draw the day's world at any scale: world origin (John) appears at screen
+  // point P, at ftPerPx feet per CSS pixel.
+  function renderWorldFrame(S, ftPerPx, P, opts) {
+    var Wd = S.world, w = view.w, h = view.h, dpr = view.dpr;
+    var base = makeLayer(w, h, dpr), lakes = makeLayer(w, h, dpr);
+    var x = base.x;
+    function sx(xf) { return P.x + xf / ftPerPx; }
+    function sy(yf) { return P.y + yf / ftPerPx; }
+
+    // Forest and water, sampled on a coarse grid of the screen.
+    var bw = base.c.width, bh = base.c.height;
+    var step = 4;
+    var lw = Math.ceil(bw / step) + 2, lh = Math.ceil(bh / step) + 2;
+    var lakeG = new Float32Array(lw * lh), toneG = new Float32Array(lw * lh);
+    for (var gy = 0; gy < lh; gy++) {
+      for (var gx = 0; gx < lw; gx++) {
+        var xf = (gx * step / dpr - P.x) * ftPerPx, yf = (gy * step / dpr - P.y) * ftPerPx;
+        lakeG[gy * lw + gx] = Wd.lakeAt(xf, yf);
+        toneG[gy * lw + gx] = Wd.toneAt(xf, yf);
+      }
+    }
+    var bimg = x.createImageData(bw, bh), limg = lakes.x.createImageData(bw, bh);
+    var bd = bimg.data, ld = limg.data;
+    var dark = [50, 76, 50], light = [96, 122, 72];
+    for (var by = 0; by < bh; by++) {
+      var fy = by / step, y0 = fy | 0, v = fy - y0;
+      for (var bx = 0; bx < bw; bx++) {
+        var fx = bx / step, x0 = fx | 0, u = fx - x0;
+        var i00 = y0 * lw + x0;
+        var lake = lakeG[i00] * (1 - u) * (1 - v) + lakeG[i00 + 1] * u * (1 - v) +
+                   lakeG[i00 + lw] * (1 - u) * v + lakeG[i00 + lw + 1] * u * v;
+        var o = (by * bw + bx) * 4;
+        var j = hash2(bx, by, 17);
+        if (lake >= Wd.lakeT - 0.012) {
+          var col = lake >= Wd.lakeT ? COLORS.water : COLORS.sand;
+          var kk = lake >= Wd.lakeT ? 0.94 + j * 0.06 : 1;
+          ld[o] = col[0] * kk; ld[o + 1] = col[1] * kk; ld[o + 2] = col[2] * kk; ld[o + 3] = 255;
+          continue;
+        }
+        var tone = toneG[i00];
+        var tt = Math.max(0, Math.min(1, (tone - 0.3) * 2.2));
+        var kf = 0.8 + j * 0.38;
+        bd[o] = (dark[0] + (light[0] - dark[0]) * tt) * kf;
+        bd[o + 1] = (dark[1] + (light[1] - dark[1]) * tt) * kf;
+        bd[o + 2] = (dark[2] + (light[2] - dark[2]) * tt) * kf;
+        bd[o + 3] = 255;
+      }
+    }
+    x.putImageData(bimg, 0, 0);
+    lakes.x.putImageData(limg, 0, 0);
+
+    // Village clearings.
+    x.fillStyle = rgb(COLORS.meadow);
+    Wd.villages.forEach(function (vl) {
+      var r = vl.rf / ftPerPx;
+      if (r < 0.4) return;
+      x.beginPath(); x.arc(sx(vl.xf), sy(vl.yf), Math.max(r, 0.8), 0, Math.PI * 2); x.fill();
     });
-    function inVillage(xf, yf) {
-      for (var i = 0; i < nearVillages.length; i++) {
-        var v = nearVillages[i];
-        if (Math.hypot(xf - v.xf, yf - v.yf) < v.rf) return true;
-      }
-      return false;
-    }
 
-    if (ftPerPx >= 6) {
-      // Pixel pass, sampled on a coarse grid for lakes.
-      var bw = layer.c.width, bh = layer.c.height, dpr = view.dpr;
-      var img = x.createImageData(bw, bh), d = img.data;
-      var step = 3;
-      var lw = Math.ceil(bw / step) + 1, lh = Math.ceil(bh / step) + 1;
-      var lake = new Float32Array(lw * lh), clr = new Uint8Array(lw * lh), vil = new Uint8Array(lw * lh);
-      for (var gy = 0; gy < lh; gy++) {
-        for (var gx = 0; gx < lw; gx++) {
-          var f = toFt(gx * step / dpr, gy * step / dpr);
-          lake[gy * lw + gx] = S.lakeAt(f[0], f[1]);
-          clr[gy * lw + gx] = cellCleared(S, f[0], f[1]) ? 1 : 0;
-          vil[gy * lw + gx] = inVillage(f[0], f[1]) ? 1 : 0;
-        }
-      }
-      for (var by = 0; by < bh; by++) {
-        for (var bx = 0; bx < bw; bx++) {
-          var gi = Math.round(by / step) * lw + Math.round(bx / step);
-          var lv = lake[gi];
-          var o = (by * bw + bx) * 4;
-          var j = hash2(bx, by, 7);
-          var c, k;
-          if (lv >= S.lakeT) { c = COLORS.water; k = 0.95 + j * 0.06; }
-          else if (lv >= S.lakeT - 0.012) { c = COLORS.sand; k = 1; }
-          else if (vil[gi]) { c = COLORS.meadow; k = 0.94 + j * 0.1; }
-          else if (clr[gi]) { c = COLORS.soil; k = 0.72 + j * 0.5; }
-          else { c = [62, 90, 58]; k = 0.8 + j * 0.38; }
-          d[o] = c[0] * k; d[o + 1] = c[1] * k; d[o + 2] = c[2] * k; d[o + 3] = 255;
-        }
-      }
-      x.putImageData(img, 0, 0);
-    } else {
-      x.fillStyle = rgb(COLORS.soil, 0.95);
-      x.fillRect(0, 0, w, h);
-      var tl = toFt(0, 0), br = toFt(w, h);
-      // Village meadow.
-      nearVillages.forEach(function (v) {
-        x.fillStyle = rgb(COLORS.meadow);
-        x.beginPath();
-        x.arc(P.x + (v.xf - target.xf) / ftPerPx, P.y + (v.yf - target.yf) / ftPerPx, v.rf / ftPerPx, 0, Math.PI * 2);
-        x.fill();
-      });
-      // Ground texture.
-      var spk = Math.round(w * h / 40);
-      var rr = mulberry32(5);
-      for (var i = 0; i < spk; i++) {
-        x.fillStyle = rgb(COLORS.soil, 0.75 + rr() * 0.5);
-        x.globalAlpha = 0.6;
-        var s = 1 + rr() * 2.5;
-        x.fillRect(rr() * w, rr() * h, s, s);
-      }
-      x.globalAlpha = 1;
-      var pxPerFt = 1 / ftPerPx;
-      // Fallen logs on a 40 ft lattice.
-      var L0x = Math.floor(tl[0] / 40) - 2, L1x = Math.ceil(br[0] / 40) + 2;
-      var L0y = Math.floor(tl[1] / 40) - 2, L1y = Math.ceil(br[1] / 40) + 2;
-      if ((L1x - L0x) * (L1y - L0y) < 40000) {
-        for (var ly = L0y; ly <= L1y; ly++) {
-          for (var lx = L0x; lx <= L1x; lx++) {
-            var lxf = (lx + hash2(lx, ly, 1)) * 40, lyf = (ly + hash2(lx, ly, 2)) * 40;
-            if (!dry(lxf, lyf) || inVillage(lxf, lyf) || !cellCleared(S, lxf, lyf)) continue;
-            var ang = hash2(lx, ly, 3) * Math.PI * 2, len = 45 + hash2(lx, ly, 4) * 30;
-            var sx = P.x + (lxf - target.xf) * pxPerFt, sy = P.y + (lyf - target.yf) * pxPerFt;
-            x.strokeStyle = COLORS.bark;
-            x.lineCap = 'round';
-            x.lineWidth = Math.max(1, 1.6 * pxPerFt);
-            x.beginPath(); x.moveTo(sx, sy); x.lineTo(sx + Math.cos(ang) * len * pxPerFt, sy + Math.sin(ang) * len * pxPerFt); x.stroke();
-            if (pxPerFt > 2) {
-              x.strokeStyle = 'rgba(40,30,20,0.35)';
-              x.lineWidth = Math.max(0.5, 0.25 * pxPerFt);
-              for (var bb = 0; bb < 4; bb++) {
-                var t = 0.5 + bb * 0.12, ba = ang + (bb % 2 ? 0.7 : -0.7);
-                var bx2 = sx + Math.cos(ang) * len * t * pxPerFt, by2 = sy + Math.sin(ang) * len * t * pxPerFt;
-                x.beginPath(); x.moveTo(bx2, by2); x.lineTo(bx2 + Math.cos(ba) * 6 * pxPerFt, by2 + Math.sin(ba) * 6 * pxPerFt); x.stroke();
-              }
-            }
-          }
-        }
-      }
-      // Stumps (or standing trees, where the saw never reached) on a 12 ft lattice.
-      if (ftPerPx < 2) {
-        var s0x = Math.floor(tl[0] / 12) - 1, s1x = Math.ceil(br[0] / 12) + 1;
-        var s0y = Math.floor(tl[1] / 12) - 1, s1y = Math.ceil(br[1] / 12) + 1;
-        var standing = [];
-        for (var sy2 = s0y; sy2 <= s1y; sy2++) {
-          for (var sx2 = s0x; sx2 <= s1x; sx2++) {
-            var txf = (sx2 + 0.1 + hash2(sx2, sy2, 8) * 0.8) * 12, tyf = (sy2 + 0.1 + hash2(sx2, sy2, 9) * 0.8) * 12;
-            if (!dry(txf, tyf) || inVillage(txf, tyf)) continue;
-            var px2 = P.x + (txf - target.xf) * pxPerFt, py2 = P.y + (tyf - target.yf) * pxPerFt;
-            if (!cellCleared(S, txf, tyf)) { standing.push([px2, py2, (4.6 + hash2(sx2, sy2, 10) * 2.2) * pxPerFt]); continue; }
-            var sr = (1 + hash2(sx2, sy2, 11) * 0.5) * pxPerFt;
-            x.fillStyle = COLORS.stump;
-            x.beginPath(); x.arc(px2, py2, sr, 0, Math.PI * 2); x.fill();
-            if (sr > 4) {
-              x.strokeStyle = COLORS.stumpRing;
-              x.lineWidth = Math.max(0.6, sr * 0.08);
-              x.beginPath(); x.arc(px2, py2, sr * 0.6, 0, Math.PI * 2); x.stroke();
-              x.beginPath(); x.arc(px2, py2, sr * 0.3, 0, Math.PI * 2); x.stroke();
-              x.strokeStyle = 'rgba(60,40,20,0.5)';
-              x.beginPath(); x.arc(px2, py2, sr, 0, Math.PI * 2); x.stroke();
-            }
-          }
-        }
-        standing.forEach(function (t2) {
-          x.fillStyle = COLORS.canopyShadow;
-          x.beginPath(); x.arc(t2[0] + t2[2] * 0.22, t2[1] + t2[2] * 0.3, t2[2], 0, Math.PI * 2); x.fill();
-        });
-        standing.forEach(function (t2, i2) {
-          x.fillStyle = COLORS.canopy[i2 % COLORS.canopy.length];
-          x.beginPath(); x.arc(t2[0], t2[1], t2[2], 0, Math.PI * 2); x.fill();
-        });
-      }
+    // Everything the blade swept today.
+    x.fillStyle = getSoilPattern(x);
+    x.beginPath();
+    // The same two triangles the hit test uses, so what's drawn matches
+    // what was counted even when the blade turned mid-sweep.
+    // Every triangle is wound the same way so overlaps add up instead of
+    // cancelling out under the nonzero fill rule.
+    function tri(ax, ay, bx, by, cx, cy) {
+      if (cross(ax, ay, bx, by, cx, cy) < 0) { var tx = bx, ty = by; bx = cx; by = cy; cx = tx; cy = ty; }
+      x.moveTo(sx(ax), sy(ay)); x.lineTo(sx(bx), sy(by)); x.lineTo(sx(cx), sy(cy)); x.closePath();
     }
+    Wd.quads.forEach(function (q) {
+      tri(q[0], q[1], q[2], q[3], q[4], q[5]);
+      tri(q[0], q[1], q[4], q[5], q[6], q[7]);
+    });
+    x.fill('nonzero');
+    // Hairline strokes close the seams between adjacent slivers.
+    x.strokeStyle = rgb(COLORS.soil, 0.9);
+    x.lineWidth = 1.6;
+    x.lineJoin = 'round';
+    x.stroke();
+    if (ftPerPx < 3) {
+      // Up close, show the window John actually saw, as he left it.
+      x.drawImage(S.ground.c, sx(-S.wFt / 2), sy(-S.hFt / 2), S.wFt / ftPerPx, S.hFt / ftPerPx);
+      x.drawImage(S.forest.c, sx(-S.wFt / 2), sy(-S.hFt / 2), S.wFt / ftPerPx, S.hFt / ftPerPx);
+    }
+    x.drawImage(lakes.c, 0, 0, w, h);
 
-    // Homes.
+    // Homes. Destroyed ones are marked so they can be seen at any scale.
     var pxf = 1 / ftPerPx;
-    var margin = 60 * ftPerPx + 100;
-    var tl2 = toFt(-margin, -margin), br2 = toFt(w + margin, h + margin);
     S.homes.forEach(function (hm) {
-      if (hm.xf < tl2[0] || hm.xf > br2[0] || hm.yf < tl2[1] || hm.yf > br2[1]) return;
-      drawHome(x, hm, P.x + (hm.xf - target.xf) * pxf, P.y + (hm.yf - target.yf) * pxf, pxf);
+      var hx = sx(hm.xf), hy = sy(hm.yf);
+      if (hx < -20 || hy < -20 || hx > w + 20 || hy > h + 20) return;
+      var size = hm.wf * pxf;
+      if (size >= 4) {
+        drawHome(x, hm, hx, hy, pxf);
+      } else if (!hm.destroyed && size >= 1) {
+        x.fillStyle = COLORS.roof;
+        x.fillRect(hx - size / 2, hy - size / 2, size, size);
+      }
+      if (hm.destroyed && size < 14) {
+        x.fillStyle = 'rgba(20, 10, 6, 0.5)';
+        x.beginPath(); x.arc(hx, hy, 2.6, 0, Math.PI * 2); x.fill();
+        x.fillStyle = '#ff6a45';
+        x.beginPath(); x.arc(hx, hy, 1.9, 0, Math.PI * 2); x.fill();
+      }
     });
-    return layer.c;
+
+    // The window John could see.
+    var bwPx = S.wFt / ftPerPx, bhPx = S.hFt / ftPerPx;
+    var rw = Math.max(5, bwPx), rh = Math.max(5 * bhPx / bwPx, bhPx);
+    x.strokeStyle = 'rgba(255, 255, 255, 0.95)';
+    x.lineWidth = 1.5;
+    x.strokeRect(P.x - rw / 2, P.y - rh / 2, rw, rh);
+    if (opts && opts.label) {
+      x.font = '500 11px "IBM Plex Mono", ui-monospace, monospace';
+      x.textAlign = 'left';
+      var lx = P.x + rw / 2 + 8, ly = P.y + 4;
+      var text = 'what John could see';
+      var tw = x.measureText(text).width;
+      if (lx + tw > w - 8) { x.textAlign = 'right'; lx = P.x - rw / 2 - 8; }
+      x.fillStyle = 'rgba(20, 18, 16, 0.7)';
+      x.fillRect(x.textAlign === 'left' ? lx - 4 : lx - tw - 4, ly - 12, tw + 8, 17);
+      x.fillStyle = '#ffffff';
+      x.fillText(text, lx, ly);
+    }
+    return base.c;
   }
 
-  function reveal() {
+  function lookAround() {
     var S = state.S;
     hideCard();
+    dim.classList.remove('on');
+    var Wd = S.world;
     var finalResult = state.results[state.results.length - 1];
-    var destroyed = S.homes.filter(function (h) { return h.destroyed; });
-    if (!destroyed.length) { ledger(); return; }
-    // Prefer a secluded cabin in the woods, as in the essay.
-    var cabins = destroyed.filter(function (h) { return !h.village; });
-    var pool = cabins.length ? cabins : destroyed;
-    var target = pool[(Math.random() * pool.length) | 0];
 
     S.blade = null;
     S.particles = [];
@@ -1659,27 +1698,41 @@
 
     var fit = fitFor(S);
     var ft0 = S.ftPerPx / fit.s;
-    var groundFt = 100 / Math.min(view.w, 1100);
-    var n = 4;
-    var factor = Math.pow(ft0 / groundFt, 1 / n);
-    var center = { x: view.w / 2, y: view.h * 0.46 };
-    var P0 = { x: fit.ox + target.x * fit.s, y: fit.oy + target.y * fit.s };
+    var P0 = { x: fit.ox + (S.W / 2) * fit.s, y: fit.oy + (S.H / 2) * fit.s };
+
+    // Frame the whole swath (and John's window).
+    var minX = -S.wFt / 2, maxX = S.wFt / 2, minY = -S.hFt / 2, maxY = S.hFt / 2;
+    Wd.quads.forEach(function (q) {
+      for (var i = 0; i < 8; i += 2) {
+        minX = Math.min(minX, q[i]); maxX = Math.max(maxX, q[i]);
+        minY = Math.min(minY, q[i + 1]); maxY = Math.max(maxY, q[i + 1]);
+      }
+    });
+    var padW = (maxX - minX) * 0.08, padH = (maxY - minY) * 0.08;
+    minX -= padW; maxX += padW; minY -= padH; maxY += padH;
+    var ftFull = Math.max((maxX - minX) / view.w, (maxY - minY) / (view.h * 0.86));
+    ftFull = Math.max(ftFull, ft0 * 2);
+    var Pfull = { x: view.w / 2 - ((minX + maxX) / 2) / ftFull, y: view.h * 0.45 - ((minY + maxY) / 2) / ftFull };
+
+    var n = Math.max(2, Math.min(5, Math.ceil(Math.log(ftFull / ft0) / Math.log(6))));
+    var factor = Math.pow(ftFull / ft0, 1 / n);
     var points = [], frames = [snap];
     for (var k = 0; k <= n; k++) {
       var tt = k / n;
-      points.push({ x: P0.x + (center.x - P0.x) * tt, y: P0.y + (center.y - P0.y) * tt });
+      points.push({ x: P0.x + (Pfull.x - P0.x) * tt, y: P0.y + (Pfull.y - P0.y) * tt });
     }
-    for (k = 1; k <= n; k++) frames.push(renderRevealFrame(S, ft0 / Math.pow(factor, k), target, points[k]));
+    for (k = 1; k <= n; k++) {
+      frames.push(renderWorldFrame(S, ft0 * Math.pow(factor, k), points[k], { label: k === n }));
+    }
 
     revealEl.innerHTML = '';
     frames.forEach(function (c, i) {
       c.style.opacity = i === 0 ? '1' : '0';
       revealEl.appendChild(c);
     });
-    dim.classList.remove('on');
     revealEl.hidden = false;
 
-    var dur = REDUCED_MOTION ? 600 : 1900;
+    var dur = REDUCED_MOTION ? 600 : 1800;
     var easing = 'cubic-bezier(0.45, 0, 0.55, 1)';
     function step(i) {
       if (i >= n) { done(); return; }
@@ -1690,24 +1743,29 @@
       if (REDUCED_MOTION) {
         b.animate([{ opacity: 0 }, { opacity: 1 }], { duration: dur, fill: 'forwards' });
       } else {
+        // Zooming out: the current frame shrinks into the next one.
         a.animate([
           { transform: 'translate(0px, 0px) scale(1)' },
-          { transform: 'translate(' + dx + 'px, ' + dy + 'px) scale(' + factor + ')' }
+          { transform: 'translate(' + dx + 'px, ' + dy + 'px) scale(' + (1 / factor) + ')' }
         ], { duration: dur, easing: easing, fill: 'forwards' });
         b.animate([
-          { transform: 'translate(' + (-dx) + 'px, ' + (-dy) + 'px) scale(' + (1 / factor) + ')', opacity: 0 },
-          { opacity: 0, offset: 0.45 },
+          { transform: 'translate(' + (-dx) + 'px, ' + (-dy) + 'px) scale(' + factor + ')', opacity: 0 },
+          { opacity: 1, offset: 0.3 },
           { transform: 'translate(0px, 0px) scale(1)', opacity: 1 }
         ], { duration: dur, easing: easing, fill: 'forwards' });
       }
       setTimeout(function () {
         a.style.visibility = 'hidden';
         step(i + 1);
-      }, dur + (REDUCED_MOTION ? 200 : 250));
+      }, dur + (REDUCED_MOTION ? 200 : 300));
     }
     function done() {
       captionEl.innerHTML = '';
-      captionEl.appendChild(document.createTextNode('One of ' + fmt(finalResult.homes) + ' homes in today’s swath.'));
+      var homes = finalResult ? finalResult.homes : 0;
+      captionEl.appendChild(document.createTextNode(
+        homes > 0
+          ? 'Everything John cut today. Each red dot was someone’s home: ' + fmt(homes) + ' of them.'
+          : 'Everything John cut today.'));
       captionEl.hidden = false;
       requestAnimationFrame(function () { captionEl.classList.add('on'); });
       setTimeout(function () {
@@ -1718,7 +1776,7 @@
       }, REDUCED_MOTION ? 300 : 2600);
     }
     Sound.ensure();
-    setTimeout(function () { step(0); }, 400);
+    setTimeout(function () { step(0); }, 500);
   }
 
   // ---------------------------------------------------------------- Loop

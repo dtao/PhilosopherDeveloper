@@ -142,11 +142,17 @@ button { font: inherit; color: inherit; }
   flex-direction: column;
   gap: 0.1rem;
 }
-.hud-left { left: 16px; }
-.hud-right { right: 16px; text-align: right; }
+.hud-left { left: 12px; }
+.hud-right { right: 12px; text-align: right; }
+.hud-left, .hud-right {
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  background: rgba(20, 18, 16, 0.4);
+}
 
 .hud-day { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
 .hud-tool { font-family: var(--serif); font-size: 1.15rem; font-style: italic; }
+.hud-reach { font-size: 0.68rem; opacity: 0.9; font-variant-numeric: tabular-nums; }
 .hud-label { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
 .hud-count { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 500; font-variant-numeric: tabular-nums; line-height: 1.15; }
 .hud-sub { font-size: 0.68rem; opacity: 0.85; font-variant-numeric: tabular-nums; }
@@ -200,6 +206,11 @@ button { font: inherit; color: inherit; }
 
 @media (max-width: 560px) {
   .hint { bottom: 56px; }
+  .hud-left { max-width: calc(58% - 16px); }
+  .hud-right { max-width: calc(42% - 16px); }
+  .hud-tool { font-size: 0.95rem; line-height: 1.25; }
+  .hud-count { font-size: 1.25rem; }
+  .hud-label { font-size: 0.56rem; }
 }
 
 /* --------------------------------------------------------------- Night */
@@ -375,7 +386,9 @@ button { font: inherit; color: inherit; }
   font-family: var(--mono);
   font-size: 0.8rem;
   text-align: center;
-  white-space: nowrap;
+  width: max-content;
+  max-width: min(40rem, calc(100% - 32px));
+  border-radius: 12px;
   opacity: 0;
   transition: opacity 1.4s ease;
 }
