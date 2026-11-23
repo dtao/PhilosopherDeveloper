@@ -23,10 +23,10 @@
       <section class="wrap" aria-labelledby="latest-heading">
         <h2 class="section-label" id="latest-heading">Latest</h2>
         <article class="featured">
-          <p class="meta"><time datetime="{{ latest.date }}">{{ latest.pretty_date }}</time> <span aria-hidden="true">&middot;</span> {{ latest.reading_time }} min read</p>
-          <h3><a href="{{ latest.url_path }}">{{ latest.title }}</a></h3>
+          <p class="meta"><time datetime="{{ latest.date }}">{{ latest.pretty_date }}</time> <span aria-hidden="true">&middot;</span> {% if latest.experience_path %}Interactive{% else %}{{ latest.reading_time }} min read{% endif %}</p>
+          <h3><a href="{{ latest.link_path }}">{{ latest.title }}</a></h3>
           <p class="summary">{{ latest.summary }}</p>
-          <a class="more" href="{{ latest.url_path }}">Continue reading <span aria-hidden="true">&rarr;</span></a>
+          <a class="more" href="{{ latest.link_path }}">{% if latest.experience_path %}Enter{% else %}Continue reading{% endif %} <span aria-hidden="true">&rarr;</span></a>
         </article>
       </section>
 
@@ -35,10 +35,10 @@
         <ol class="post-list">
           {% for post in posts[1:10] %}
           <li>
-            <a href="{{ post.url_path }}">
+            <a href="{{ post.link_path }}">
               <time datetime="{{ post.date }}">{{ post.short_date }}<span>{{ post.date.year }}</span></time>
               <span class="post-list-body">
-                <span class="post-list-title">{{ post.title }}</span>
+                <span class="post-list-title">{{ post.title }}{% if post.experience_path %}<span class="interactive-tag">Interactive</span>{% endif %}</span>
                 <span class="post-list-summary">{{ post.summary }}</span>
               </span>
             </a>
